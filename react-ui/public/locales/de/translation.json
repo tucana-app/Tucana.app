@@ -1,5 +1,9 @@
 {
 	"navigationbar": {
-		"home": "Zuhause"
+		"findRide": "",
+		"home": "Zuhause",
+		"logIn": "",
+		"offerRide": "",
+		"signUp": ""
 	}
 }

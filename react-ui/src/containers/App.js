@@ -4,6 +4,12 @@ import i18n from "../i18n";
 
 // Loading Containers
 import Home from "../containers/Home/Home";
+import FindRide from "../containers/FindRide/FindRide";
+import OfferRide from "../containers/OfferRide/OfferRide";
+import LogIn from "../containers/LogIn/LogIn";
+import SignUp from "../containers/SignUp/SignUp";
+import Covid19 from "../containers/Covid19/Covid19";
+
 import Page404 from "../containers/Page404/Page404";
 
 // Loading Components
@@ -49,6 +55,21 @@ export default class App extends Component {
           <Switch>
             <Route path="/" component={Home} exact>
               <Home />
+            </Route>
+            <Route path="/offer-ride" component={OfferRide} exact>
+              <OfferRide />
+            </Route>
+            <Route path="/find-ride" component={FindRide} exact>
+              <FindRide />
+            </Route>
+            <Route path="/login" component={LogIn} exact>
+              <LogIn />
+            </Route>
+            <Route path="/signup" component={SignUp} exact>
+              <SignUp />
+            </Route>
+            <Route path="/covid19" component={Covid19} exact>
+              <FindRide />
             </Route>
             <Route component={Page404} />
           </Switch>

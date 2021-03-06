@@ -1,5 +1,9 @@
 {
 	"navigationbar": {
-		"home": "בית"
+		"findRide": "",
+		"home": "בית",
+		"logIn": "",
+		"offerRide": "",
+		"signUp": ""
 	}
 }

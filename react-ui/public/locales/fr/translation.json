@@ -1,5 +1,9 @@
 {
 	"navigationbar": {
-		"home": "Accueil"
+		"findRide": "Trouver une course",
+		"home": "Accueil",
+		"logIn": "S'identifier",
+		"offerRide": "Offrir une course",
+		"signUp": "S'inscrire"
 	}
 }
