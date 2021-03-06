@@ -1,4 +1,10 @@
 {
+	"homePage": {
+		"arrivalPlace": "",
+		"chooseLocation": "",
+		"departurePlace": "",
+		"search": ""
+	},
 	"navigationbar": {
 		"findRide": "Trouver une course",
 		"home": "Accueil",

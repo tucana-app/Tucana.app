@@ -1,4 +1,10 @@
 {
+	"homePage": {
+		"arrivalPlace": "",
+		"chooseLocation": "",
+		"departurePlace": "",
+		"search": ""
+	},
 	"navigationbar": {
 		"findRide": "",
 		"home": "Casa",

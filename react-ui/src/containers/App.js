@@ -69,7 +69,7 @@ export default class App extends Component {
               <SignUp />
             </Route>
             <Route path="/covid19" component={Covid19} exact>
-              <FindRide />
+              <Covid19 />
             </Route>
             <Route component={Page404} />
           </Switch>

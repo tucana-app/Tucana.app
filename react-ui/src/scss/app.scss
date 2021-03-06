@@ -5,21 +5,18 @@
 // Import all CSS librairies and its default variables
 @import "./vendor/bootstrap"; // To customize Bootstrap CSS
 @import "~bootstrap/scss/bootstrap";
-// @import "~react-tabs/style/react-tabs";
 @import "~hover.css/scss/hover";
 @import "~aos/src/sass/aos";
 @import "~animate.css/animate.min";
 @import "~cssgram/source/scss/cssgram";
-// @import "~@fortawesome/fontawesome-free/scss/brands.scss";
-// @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
-// @import "~@fortawesome/fontawesome-free/scss/regular.scss";
-// @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-// @import "~@fortawesome/fontawesome-free/scss/v4-shims.scss";
 @import "~@csstools/normalize.css/normalize.css";
 @import "~rfs/scss";
+
+// Not in use yet
+// @import "~react-tabs/style/react-tabs";
 // @import "~@ttskch/select2-bootstrap4-theme/src/layout";
 // @import "~select2/src/scss/core";
 
-// Import all the CSS rules applying the entire App
-// Including the components and the containers
+// Import all the SCSS rules for each components and containers
+@import "./application/NavigationBar";
 @import "./custom";

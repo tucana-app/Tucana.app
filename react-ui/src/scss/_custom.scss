@@ -1,16 +1,18 @@
 @use "../colors";
 
 // Change the Navigation Bar height here
-$navbar-height: 94px;
+$navbarHeight: 94px;
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  // font-family: "Open Sans Condensed", sans-serif;
-  font-size: x-large;
-  padding-top: $navbar-height;
+  font-family: "Roboto", sans-serif;
+  font-size: large;
+  padding-top: $navbarHeight;
+  background-color: $brand-2;
+  color: $white;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -74,15 +76,15 @@ body {
 // Fonts
 
 .font-title {
-  font-family: "Zilla Slab" !important;
+  font-family: "Jost" !important;
 }
 
 .font-subtitle {
-  font-family: "Amatic SC" !important;
+  // font-family: "Amatic SC" !important;
 }
 
 .font-text {
-  font-family: "Open Sans Condensed", sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
 }
 
 // What is this for?
@@ -98,6 +100,10 @@ body {
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+.vh-100 {
+  height: calc(100vh - #{$navbarHeight}) !important;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
