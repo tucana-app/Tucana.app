@@ -1,0 +1,225 @@
+@use "../colors";
+
+// Change the Navigation Bar height here
+$navbar-height: 82px;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  // font-family: "Open Sans Condensed", sans-serif;
+  font-size: x-large;
+  padding-top: $navbar-height;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-cover,
+.parralax {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.font-small {
+  font-size: 0.75rem;
+}
+
+.frame,
+.frame-hover {
+  padding: 1px;
+  border: solid 3px #efefef;
+}
+
+.frame-hover {
+  &:hover,
+  frame {
+    border: solid 3px #ccc;
+    -moz-box-shadow: 1px 1px 5px #999;
+    -webkit-box-shadow: 1px 1px 5px #999;
+    box-shadow: 1px 1px 5px #999;
+  }
+}
+
+.font-small {
+  font-size: 0.9rem;
+}
+
+.font-smaller {
+  font-size: 0.8rem;
+}
+
+.font-big {
+  font-size: 1.25rem;
+}
+
+.font-bigger {
+  font-size: 1.5rem;
+}
+
+.letter-spacing-big {
+  letter-spacing: 2px;
+}
+
+.letter-spacing-bigger {
+  letter-spacing: 3px;
+}
+
+.line-height-big {
+  line-height: 2rem;
+}
+
+// Fonts
+
+.font-title {
+  font-family: "Zilla Slab" !important;
+}
+
+.font-subtitle {
+  font-family: "Amatic SC" !important;
+}
+
+.font-text {
+  font-family: "Open Sans Condensed", sans-serif !important;
+}
+
+// What is this for?
+.is-medium {
+  display: none;
+}
+
+.is-default {
+  display: none;
+}
+
+.img-cover {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* @media (max-width: 575px) {
+} */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .is-mobile {
+    display: inline-block;
+  }
+
+  .is-medium {
+    display: none;
+  }
+
+  .is-default {
+    display: none;
+  }
+}
+
+/* Column management */
+/* Small devices (landscape phones) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .is-mobile {
+    display: none;
+  }
+
+  .is-medium {
+    display: inline-block;
+  }
+
+  .is-default {
+    display: none;
+  }
+
+  .parralax {
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+  }
+
+  [class*="display-two-columns"] {
+    height: 400px;
+  }
+}
+
+/* Column management */
+/* Medium devices (tablets) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .is-medium {
+    display: none;
+  }
+
+  .is-default {
+    display: inline-block;
+  }
+
+  [class*="display-two-columns"] {
+    height: 500px;
+  }
+
+  .navbar {
+    .navbar-logo {
+      width: 200px;
+    }
+
+    font-size: 1.25rem;
+
+    .dropdown-menu {
+      text-align: left;
+    }
+  }
+}
+
+/* Column management */
+/* Large devices (desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Column management */
+/* Small devices (landscape phones) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Column management */
+/* Medium devices (tablets) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Column management */
+/* Large devices (desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

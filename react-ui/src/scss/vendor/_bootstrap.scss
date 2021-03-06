@@ -1,0 +1,6 @@
+// Override default variables before the import
+$theme-colors: (
+  "success": $brand-1,
+  "dark": $brand-2,
+  "white": $white,
+);
