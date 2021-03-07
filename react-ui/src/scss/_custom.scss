@@ -1,7 +1,7 @@
 @use "../colors";
 
 // Change the Navigation Bar height here
-$navbarHeight: 94px;
+$navbarHeight: 86px;
 
 html {
   scroll-behavior: smooth;
@@ -11,7 +11,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: large;
   padding-top: $navbarHeight;
-  background-color: $brand-2;
+  background-color: $dark;
   color: $white;
 
   -webkit-font-smoothing: antialiased;
@@ -88,11 +88,11 @@ body {
 }
 
 // What is this for?
-.is-medium {
+.displayMediumScreens {
   display: none;
 }
 
-.is-default {
+.displayLargeScreens {
   display: none;
 }
 
@@ -112,15 +112,15 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .is-mobile {
+  .displayMobileScreens {
     display: inline-block;
   }
 
-  .is-medium {
+  .displayMediumScreens {
     display: none;
   }
 
-  .is-default {
+  .displayLargeScreens {
     display: none;
   }
 }
@@ -132,15 +132,15 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .is-mobile {
+  .displayMobileScreens {
     display: none;
   }
 
-  .is-medium {
+  .displayMediumScreens {
     display: inline-block;
   }
 
-  .is-default {
+  .displayLargeScreens {
     display: none;
   }
 
@@ -161,11 +161,11 @@ body {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .is-medium {
+  .displayMediumScreen {
     display: none;
   }
 
-  .is-default {
+  .displayLargeScreens {
     display: inline-block;
   }
 
