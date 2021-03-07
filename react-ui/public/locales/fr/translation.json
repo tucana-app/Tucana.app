@@ -1,9 +1,9 @@
 {
 	"homePage": {
-		"arrivalPlace": "",
-		"chooseLocation": "",
-		"departurePlace": "",
-		"search": ""
+		"arrivalPlace": "Jusqu'à",
+		"chooseLocation": "Choisissez un lieu",
+		"departurePlace": "À partir de",
+		"search": "Rechercher"
 	},
 	"navigationbar": {
 		"findRide": "Trouver une course",
