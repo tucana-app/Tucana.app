@@ -51,7 +51,7 @@ export default class App extends Component {
         (result) => {
           this.setState({
             isMapsApiKeyLoaded: true,
-            // mapsApiKey: result.mapsApiKey,
+            mapsApiKey: result.mapsApiKey,
           });
         },
         // Note: it's important to handle errors here
