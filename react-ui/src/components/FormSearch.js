@@ -39,11 +39,11 @@ class FormSearch extends Component {
         <Form className="bg-light p-3 rounded">
           <Form.Group>
             <Form.Row>
-              <Form.Label column="lg" lg={2} className="text-dark">
-                {t("translation:rideSearch.from")}
-                <span className="text-danger">*</span>
-              </Form.Label>
               <Col>
+                <Form.Label lg={2} className="text-dark">
+                  {t("translation:rideSearch.from")}
+                  <span className="text-danger">*</span>
+                </Form.Label>
                 <InputSearchFrom
                   mapsApiKey={mapsApiKey}
                   isMapsApiKeyLoaded={isMapsApiKeyLoaded}
@@ -55,11 +55,11 @@ class FormSearch extends Component {
           </Form.Group>
           <Form.Group>
             <Form.Row>
-              <Form.Label column="lg" lg={2} className="text-dark">
-                {t("translation:rideSearch.to")}
-                <span className="text-danger">*</span>
-              </Form.Label>
               <Col>
+                <Form.Label lg={2} className="text-dark">
+                  {t("translation:rideSearch.to")}
+                  <span className="text-danger">*</span>
+                </Form.Label>
                 <InputSearchTo
                   isMapsApiKeyLoaded={isMapsApiKeyLoaded}
                   mapsApiKey={mapsApiKey}
@@ -90,6 +90,7 @@ class FormSearch extends Component {
               <Col>
                 <Form.Label lg={2} className="text-dark">
                   {t("translation:rideSearch.numberPassengers")}
+                  <span className="text-danger">*</span>
                 </Form.Label>
                 <Form.Control
                   type="number"

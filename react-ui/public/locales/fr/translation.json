@@ -1,6 +1,6 @@
 {
 	"homePage": {
-		"arrivalPlace": "Jusqu'à",
+		"arrivalPlace": "Arrivée",
 		"chooseLocation": "Choisissez un lieu",
 		"departurePlace": "À partir de",
 		"search": "Rechercher"
@@ -13,12 +13,12 @@
 		"signUp": "S'inscrire"
 	},
 	"rideSearch": {
-		"dateTimePickUp": "",
-		"from": "",
-		"noResults": "",
-		"numberPassengers": "",
+		"dateTimePickUp": "Date et heure de la prise en charge",
+		"from": "Départ",
+		"noResults": "Aucun résultat",
+		"numberPassengers": "Nombre de passagers",
 		"searchLocation": "Rechercher un lieu",
-		"submitSearch": "",
-		"to": ""
+		"submitSearch": "Recherchez",
+		"to": "Arrivée"
 	}
 }

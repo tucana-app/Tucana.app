@@ -87,13 +87,17 @@ body {
   font-family: "Manrope", sans-serif !important;
 }
 
-// What is this for?
 .displayMediumScreens {
   display: none;
 }
 
 .displayLargeScreens {
   display: none;
+}
+
+.displayMobileScreens.displayMediumScreens,
+.displayMobileScreens.displayLargeScreens {
+  display: block;
 }
 
 .img-cover {
@@ -113,7 +117,7 @@ body {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   .displayMobileScreens {
-    display: inline-block;
+    display: block;
   }
 
   .displayMediumScreens {
@@ -122,6 +126,11 @@ body {
 
   .displayLargeScreens {
     display: none;
+  }
+
+  .displayMobileScreens.displayMediumScreens,
+  .displayMobileScreens.displayLargeScreens {
+    display: block;
   }
 }
 
@@ -137,11 +146,16 @@ body {
   }
 
   .displayMediumScreens {
-    display: inline-block;
+    display: block;
   }
 
   .displayLargeScreens {
     display: none;
+  }
+
+  .displayMobileScreens.displayMediumScreens,
+  .displayMobileScreens.displayLargeScreens {
+    display: block;
   }
 
   .parralax {
@@ -165,7 +179,12 @@ body {
     display: none;
   }
 
-  .displayLargeScreens {
+  .displayMobileScreens.displayMediumScreens {
+    display: none;
+  }
+
+  .displayLargeScreens,
+  .displayMobileScreens.displayLargeScreens {
     display: inline-block;
   }
 
