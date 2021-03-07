@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-function Home({ t, cities, isFetchingCities }) {
+// Importing components
+import FormSearch from "../components/FormSearch";
+
+function Home({ t, isMapsApiKeyLoaded, mapsApiKey, mapsApiKeyError }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -32,7 +34,12 @@ function Home({ t, cities, isFetchingCities }) {
           </div>
           <div className="col-lg-6 col-12 text-center h-100 order-1 order-md-2">
             <div className="h-100 d-flex justify-content-center align-items-center">
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <FormSearch
+                isMapsApiKeyLoaded={isMapsApiKeyLoaded}
+                mapsApiKey={mapsApiKey}
+                mapsApiKeyError={mapsApiKeyError}
+              />
+              {/* <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Row>
                   <Form.Group md="4" controlId="validationDeparturePlace">
                     <Form.Label>
@@ -59,51 +66,7 @@ function Home({ t, cities, isFetchingCities }) {
                   <FontAwesomeIcon icon={faSearch} />{" "}
                   {t("translation:homePage.search")}
                 </Button>
-              </Form>
-
-              {/* <form className="border border-success rounded-0 p-2 p-md-3 p-lg-5">
-                <div className="form-group">
-                  <label for="date-of-bith">
-                    First &amp; Last name<span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="fullname"
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label for="date-of-bith">
-                    Date of birth<span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="date-of-birth"
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label for="email">
-                    Email<span class="text-danger">*</span>
-                  </label>
-                  <input type="email" className="form-control" required />
-                </div>
-
-                <p className="small">
-                  <span class="text-danger">*</span> : this field is required
-                </p>
-
-                <button
-                  type="submit"
-                  className="btn btn-warning btn-lg text-uppercase rounded-0 hvr-glow"
-                >
-                  Submit
-                </button>
-              </form> */}
+              </Form> */}
             </div>
           </div>
         </div>

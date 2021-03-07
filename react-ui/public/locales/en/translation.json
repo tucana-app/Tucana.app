@@ -11,5 +11,14 @@
 		"logIn": "Log In",
 		"offerRide": "Offer a ride",
 		"signUp": "Sign Up"
+	},
+	"rideSearch": {
+		"dateTimePickUp": "Date & Time of pick up",
+		"from": "From",
+		"noResults": "No results",
+		"numberPassengers": "Number of passengers",
+		"searchLocation": "Search a location",
+		"submitSearch": "Search",
+		"to": "To"
 	}
 }

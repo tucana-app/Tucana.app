@@ -11,5 +11,14 @@
 		"logIn": "",
 		"offerRide": "",
 		"signUp": ""
+	},
+	"rideSearch": {
+		"dateTimePickUp": "",
+		"from": "",
+		"noResults": "",
+		"numberPassengers": "",
+		"searchLocation": "",
+		"submitSearch": "",
+		"to": ""
 	}
 }

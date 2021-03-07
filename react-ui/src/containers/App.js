@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import i18n from "../i18n";
 
 // Loading Containers
-import Home from "../containers/Home/Home";
-import FindRide from "../containers/FindRide/FindRide";
-import OfferRide from "../containers/OfferRide/OfferRide";
-import LogIn from "../containers/LogIn/LogIn";
-import SignUp from "../containers/SignUp/SignUp";
-import Covid19 from "../containers/Covid19/Covid19";
+import Home from "../containers/Home";
+import FindRide from "../containers/FindRide";
+import OfferRide from "../containers/OfferRide";
+import LogIn from "../containers/LogIn";
+import SignUp from "../containers/SignUp";
+import Covid19 from "../containers/Covid19";
 
-import Page404 from "../containers/Page404/Page404";
+import Page404 from "../containers/Page404";
 
 // Loading Components
-import NavigationBar from "../components/NavigationBar/NavigationBar";
-import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
-import Footer from "../components/Footer/Footer";
+import NavigationBar from "../components/NavigationBar";
+import ScrollToTop from "../components/ScrollToTop";
+import Footer from "../components/Footer";
 
 // Importing custom css for the whole app
 import "../scss/app.scss";
@@ -28,8 +28,9 @@ export default class App extends Component {
     super(props);
     this.state = {
       lg: "en",
-      cities: {},
-      isFetchingCities: true,
+      isMapsApiKeyLoaded: false,
+      mapsApiKey: "",
+      mapsApiKeyError: "",
     };
   }
 
@@ -43,10 +44,30 @@ export default class App extends Component {
   // Initialize Animate On Scroll librairy
   componentDidMount() {
     AOS.init();
+
+    fetch("/get-maps-api")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isMapsApiKeyLoaded: true,
+            mapsApiKey: result.mapsApiKey,
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isMapsApiKeyLoaded: true,
+            mapsApiKeyError: error,
+          });
+        }
+      );
   }
 
   render() {
-    const { lg } = this.state;
+    const { lg, isMapsApiKeyLoaded, mapsApiKeyError, mapsApiKey } = this.state;
 
     return (
       <Suspense fallback="Loading...">
@@ -56,7 +77,11 @@ export default class App extends Component {
           <NavigationBar onClick={this.changeLanguage} lg={lg} />
           <Switch>
             <Route path="/" component={Home} exact>
-              <Home />
+              <Home
+                isMapsApiKeyLoaded={isMapsApiKeyLoaded}
+                mapsApiKey={mapsApiKey}
+                mapsApiKeyError={mapsApiKeyError}
+              />
             </Route>
             <Route path="/offer-ride" component={OfferRide} exact>
               <OfferRide />

@@ -11,5 +11,14 @@
 		"logIn": "S'identifier",
 		"offerRide": "Offrir une course",
 		"signUp": "S'inscrire"
+	},
+	"rideSearch": {
+		"dateTimePickUp": "",
+		"from": "",
+		"noResults": "",
+		"numberPassengers": "",
+		"searchLocation": "Rechercher un lieu",
+		"submitSearch": "",
+		"to": ""
 	}
 }

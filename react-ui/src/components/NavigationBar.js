@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { IndexLinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
-import DropdownLanguage from "../DropdownLanguage/DropdownLanguage";
+import DropdownLanguage from "./DropdownLanguage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,

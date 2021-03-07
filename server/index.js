@@ -6,6 +6,10 @@ const numCPUs = require('os').cpus().length;
 const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
 
+// API KEYS
+
+const GOOGLE_MAPS_API_KEY = "AIzaSyCYq3OOGykw04rEP0ur4q9kTAGW55u3RXk"
+
 // Multi-process to utilize all CPU cores.
 if (!isDev && cluster.isMaster) {
   console.error(`Node cluster master ${process.pid} is running`);
@@ -26,9 +30,9 @@ if (!isDev && cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
   // Answer API requests.
-  app.get('/api', function (req, res) {
+  app.get('/get-maps-api', function (req, res) {
     res.set('Content-Type', 'application/json');
-    res.send('{"message":"Hello from the custom server!"}');
+    res.send(`{"mapsApiKey":"${GOOGLE_MAPS_API_KEY}"}`);
   });
 
   // All remaining requests return the React app, so it can handle routing.
