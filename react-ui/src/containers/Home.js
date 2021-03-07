@@ -39,34 +39,6 @@ function Home({ t, isMapsApiKeyLoaded, mapsApiKey, mapsApiKeyError }) {
                 mapsApiKey={mapsApiKey}
                 mapsApiKeyError={mapsApiKeyError}
               />
-              {/* <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Form.Row>
-                  <Form.Group md="4" controlId="validationDeparturePlace">
-                    <Form.Label>
-                      {t("translation:homePage.departurePlace")}
-                    </Form.Label>
-                    <Form.Control
-                      required
-                      type="text"
-                      placeholder={t("translation:homePage.chooseLocation")}
-                    />
-                  </Form.Group>
-                  <Form.Group md="4" controlId="validationCustom02">
-                    <Form.Label>
-                      {t("translation:homePage.arrivalPlace")}
-                    </Form.Label>
-                    <Form.Control
-                      required
-                      type="text"
-                      placeholder={t("translation:homePage.chooseLocation")}
-                    />
-                  </Form.Group>
-                </Form.Row>
-                <Button type="submit">
-                  <FontAwesomeIcon icon={faSearch} />{" "}
-                  {t("translation:homePage.search")}
-                </Button>
-              </Form> */}
             </div>
           </div>
         </div>

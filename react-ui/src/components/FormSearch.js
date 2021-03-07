@@ -3,6 +3,8 @@ import InputSearchTo from "./InputSearchTo";
 import InputSearchFrom from "./InputSearchFrom";
 import { withTranslation } from "react-i18next";
 import { Form, Col, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class FormSearch extends Component {
   constructor(props) {
@@ -108,8 +110,9 @@ class FormSearch extends Component {
                   variant="success"
                   size="lg"
                   type="submit"
-                  className="rounded-0"
+                  className="rounded-0 hvr-grow"
                 >
+                  <FontAwesomeIcon icon={faSearch} />{" "}
                   {t("translation:rideSearch.submitSearch")}
                 </Button>
               </Col>
