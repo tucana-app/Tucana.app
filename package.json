@@ -14,7 +14,9 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
-    "express": "^4.16.4"
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "pg": "^8.5.1"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,7 @@
     "react"
   ],
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
 }
