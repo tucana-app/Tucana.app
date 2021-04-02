@@ -1,18 +1,18 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const FindRide = () => {
+const MyRides = () => {
   return (
     <>
       <Container className="text-center mx-auto">
         <Row>
           <Col>
-            <h1>FindRide</h1>
+            <h1>MyRides</h1>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p>Welcome to the FindRide page</p>
+            <p>Welcome to the MyRides page</p>
           </Col>
         </Row>
       </Container>
@@ -20,4 +20,4 @@ const FindRide = () => {
   );
 };
 
-export default FindRide;
+export default MyRides;

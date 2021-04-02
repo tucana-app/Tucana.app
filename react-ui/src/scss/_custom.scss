@@ -1,7 +1,7 @@
 @use "../colors";
 
 // Change the Navigation Bar height here
-$navbarHeight: 86px;
+// $navbarHeight: 86px;
 
 html {
   scroll-behavior: smooth;
@@ -10,7 +10,7 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   font-size: large;
-  padding-top: $navbarHeight;
+  // padding-top: $navbarHeight;
   background-color: $dark;
   color: $white;
 
@@ -106,10 +106,6 @@ body {
   width: 100%;
 }
 
-.vh-100 {
-  height: calc(100vh - #{$navbarHeight}) !important;
-}
-
 /* Extra small devices (portrait phones, less than 576px) */
 /* @media (max-width: 575px) {
 } */
@@ -185,7 +181,7 @@ body {
 
   .displayLargeScreens,
   .displayMobileScreens.displayLargeScreens {
-    display: inline-block;
+    display: block;
   }
 
   [class*="display-two-columns"] {

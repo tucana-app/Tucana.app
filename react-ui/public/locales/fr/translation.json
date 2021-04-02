@@ -3,20 +3,23 @@
 		"arrivalPlace": "Arrivée",
 		"chooseLocation": "Choisissez un lieu",
 		"departurePlace": "À partir de",
-		"search": "Rechercher"
+		"logIn": "S'identifier",
+		"search": "Rechercher",
+		"signUp": "S'inscrire"
 	},
 	"navigationbar": {
+		"dashboard": "",
 		"findRide": "Trouver une course",
-		"home": "Accueil",
-		"logIn": "S'identifier",
-		"offerRide": "Offrir une course",
-		"signUp": "S'inscrire"
+		"myAccount": "",
+		"myRides": "",
+		"offerRide": "Offrir une course"
 	},
 	"rideSearch": {
 		"dateTimePickUp": "Date et heure de la prise en charge",
+		"fieldMandatoryLabel": "",
 		"from": "Départ",
 		"noResults": "Aucun résultat",
-		"numberPassengers": "Nombre de passagers",
+		"numberPassengers": "Passagers",
 		"searchLocation": "Rechercher un lieu",
 		"submitSearch": "Recherchez",
 		"to": "Arrivée"

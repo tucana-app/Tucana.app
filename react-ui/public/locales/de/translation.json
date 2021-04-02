@@ -3,17 +3,20 @@
 		"arrivalPlace": "",
 		"chooseLocation": "",
 		"departurePlace": "",
-		"search": ""
+		"logIn": "",
+		"search": "",
+		"signUp": ""
 	},
 	"navigationbar": {
+		"dashboard": "",
 		"findRide": "",
-		"home": "Zuhause",
-		"logIn": "",
-		"offerRide": "",
-		"signUp": ""
+		"myAccount": "",
+		"myRides": "",
+		"offerRide": ""
 	},
 	"rideSearch": {
 		"dateTimePickUp": "",
+		"fieldMandatoryLabel": "",
 		"from": "",
 		"noResults": "",
 		"numberPassengers": "",

@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Page404 = () => {
   return (
     <>
-      <div className="container text-center py-5">
-        <div className="row h-100 align-items-center">
-          <div className="col-12">
+      <Container className="text-center py-5">
+        <Row className="h-100 align-items-center">
+          <Col>
             <div>
               <h1 className="display-4 text-warning">404: Page not found</h1>
             </div>
@@ -17,13 +18,13 @@ const Page404 = () => {
               <p>
                 Please come back to the{" "}
                 <Link to="/" className="text-success">
-                  <u>main page</u>
+                  <u>home page</u>
                 </Link>
               </p>
             </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

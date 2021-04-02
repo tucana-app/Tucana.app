@@ -6,8 +6,8 @@
 		"search": ""
 	},
 	"navigationbar": {
+		"dashboard": "בית",
 		"findRide": "",
-		"home": "בית",
 		"logIn": "",
 		"offerRide": "",
 		"signUp": ""

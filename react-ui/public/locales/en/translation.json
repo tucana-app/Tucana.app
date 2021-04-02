@@ -3,20 +3,23 @@
 		"arrivalPlace": "To",
 		"chooseLocation": "Choose a location",
 		"departurePlace": "From",
-		"search": "Search"
-	},
-	"navigationbar": {
-		"findRide": "Find a ride",
-		"home": "Home",
 		"logIn": "Log In",
-		"offerRide": "Offer a ride",
+		"search": "Search",
 		"signUp": "Sign Up"
 	},
+	"navigationbar": {
+		"dashboard": "Dashboard",
+		"findRide": "Find",
+		"myAccount": "My account",
+		"myRides": "My rides",
+		"offerRide": "Offer"
+	},
 	"rideSearch": {
-		"dateTimePickUp": "Date & Time of pick up",
+		"dateTimePickUp": "Date & time",
+		"fieldMandatoryLabel": "mandatory",
 		"from": "From",
 		"noResults": "No results",
-		"numberPassengers": "Number of passengers",
+		"numberPassengers": "Passengers",
 		"searchLocation": "Search a location",
 		"submitSearch": "Search",
 		"to": "To"
