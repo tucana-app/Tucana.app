@@ -42,7 +42,7 @@ class NavigationBar extends Component {
               <div className="">
                 <IndexLinkContainer to="/my-rides" href="/my-rides">
                   <Nav.Link className="font-title text-center">
-                    <FontAwesomeIcon icon={faCar} size="2x" />
+                    <FontAwesomeIcon icon={faCar} size="3x" />
                     <p className="displayLargeScreens mb-0">
                       {t("translation:navigationbar.myRides")}
                     </p>

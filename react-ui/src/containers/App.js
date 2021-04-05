@@ -17,6 +17,7 @@ import Page404 from "../containers/Page404";
 // Loading Components
 import NavigationBar from "../components/NavigationBar";
 import ScrollToTop from "../components/ScrollToTop";
+import Footer from "../components/Footer";
 
 // Importing custom css for the whole app
 import "../scss/app.scss";
@@ -101,6 +102,8 @@ export default class App extends Component {
             <Route component={Page404} />
           </Switch>
         </Router>
+
+        <Footer />
       </Suspense>
     );
   }
