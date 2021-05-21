@@ -18,7 +18,7 @@
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-xhr-backend": "^3.2.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^5.0.0",
     "react": "^16.14.0",
     "react-bootstrap": "^1.5.2",
     "react-country-flag": "^2.3.0",
@@ -28,13 +28,13 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^2.1.8",
     "react-tabs": "^3.2.1",
     "rfs": "^9.0.3"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "build": "react-scripts --max_old_space_size=4096 build",
+    "start:dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -48,5 +48,15 @@
     "not op_mini all"
   ],
   "proxy": "http://localhost:5000",
-  "devDependencies": {}
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-app": "^6.0.0",
+    "sass": "^1.32.10",
+    "sass-loader": "^7.1.0"
+  }
 }

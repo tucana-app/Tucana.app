@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { IndexLinkContainer } from "react-router-bootstrap";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
@@ -15,7 +15,6 @@ class NavigationBar extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Container>
         <Navbar bg="light" variant="light" fixed="bottom">
           <Navbar.Collapse id="navigation-bar">
             <Nav className="w-100 justify-content-around align-items-baseline">
@@ -72,7 +71,6 @@ class NavigationBar extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </Container>
     );
   }
 }

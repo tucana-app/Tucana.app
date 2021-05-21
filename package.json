@@ -1,12 +1,13 @@
 {
-  "name": "heroku-cra-node",
-  "version": "3.0.0",
-  "description": "How to use create-react-app with a custom Node API on Heroku",
+  "name": "ride.cr",
+  "version": "1.0.0",
+  "description": "Ride.CR - Carpooling in Costa Rica",
   "engines": {
     "node": "10.x"
   },
   "scripts": {
     "start": "node server",
+    "start:dev": "nodemon server",
     "build": "cd react-ui/ && npm install && npm run build"
   },
   "cacheDirectories": [
@@ -14,13 +15,17 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
-    "express": "^4.16.4",
-    "pg": "^8.5.1"
+    "eslint": "^7.24.0",
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mars/heroku-cra-node.git"
+    "url": "git+https://github.com/mars/heroku-cra-node.git"
   },
   "keywords": [
     "node",
@@ -30,6 +35,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "cors": "^2.8.5"
-  }
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
+  },
+  "bugs": {
+    "url": "https://github.com/mars/heroku-cra-node/issues"
+  },
+  "homepage": "https://github.com/mars/heroku-cra-node#readme",
+  "main": "index.js",
+  "author": ""
 }
