@@ -5,12 +5,12 @@ const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.js")[env];
+const config = require(__dirname + "/../config/db.config.js")[env];
 const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(config.use_env_variable, config);
 } else {
   sequelize = new Sequelize(
     config.database,
@@ -42,5 +42,19 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// Many users can have many role
+db.Role.belongsToMany(db.User, {
+  through: "users_roles",
+  foreignKey: "roleId",
+  otherKey: "userId",
+});
+db.User.belongsToMany(db.Role, {
+  through: "users_roles",
+  foreignKey: "userId",
+  otherKey: "roleId",
+});
+
+db.ROLES = ["user", "moderator", "admin"];
 
 module.exports = db;

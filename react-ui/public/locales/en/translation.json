@@ -10,6 +10,7 @@
 	"navigationbar": {
 		"dashboard": "Dashboard",
 		"findRide": "Find",
+		"home": "Home",
 		"myAccount": "My account",
 		"myRides": "My rides",
 		"offerRide": "Offer"

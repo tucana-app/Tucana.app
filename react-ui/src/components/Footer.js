@@ -6,19 +6,7 @@ const MyAccount = () => {
     <>
       <Container className="footer">
         <Row>
-          <Col>
-            <p> </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <p> </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <p> </p>
-          </Col>
+          <Col className="text-success text-center">&copy; Ride.Cr</Col>
         </Row>
       </Container>
     </>

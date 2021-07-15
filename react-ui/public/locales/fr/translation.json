@@ -10,6 +10,7 @@
 	"navigationbar": {
 		"dashboard": "Tableau de bord",
 		"findRide": "Trouver une course",
+		"home": "Accueil",
 		"myAccount": "Mon compte",
 		"myRides": "Mes manèges",
 		"offerRide": "Offrir une course"

@@ -2,10 +2,8 @@ const express = require("express");
 const path = require("path");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
-const logger = require("morgan");
+// const logger = require("morgan");
 const cors = require("cors");
-
-const { Sequelize } = require("sequelize");
 
 const isDev = process.env.NODE_ENV !== "production";
 const PORT = process.env.PORT || 5000;
@@ -27,38 +25,26 @@ if (!isDev && cluster.isMaster) {
 } else {
   const app = express();
 
-  app.use(
-    cors({
-      origin: "http://localhost:3000",
-    })
-  );
+  app.use(cors());
 
-  app.use(logger("dev"));
+  // app.use(logger("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  // Answer API requests.
+  require("./routes/auth.routes")(app);
+  require("./routes/user.routes")(app);
+  require("./routes/manage.routes")(app);
 
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
-  const db = require("./models");
-
-  require("./routes/routes-maps")(app);
-
-  if (isDev != "production") {
-    app.get("*", (req, res) =>
-      res.status(200).send({
-        message: "Development back-end message",
-        db_host: db.sequelize.options.host,
-      })
+  // All remaining requests return the React app, so it can handle routing.
+  app.get("*", function (request, response) {
+    response.sendFile(
+      path.resolve(__dirname, "../react-ui/build", "index.html")
     );
-  } else {
-    // All remaining requests return the React app, so it can handle routing.
-    app.get("*", function (request, response) {
-      response.sendFile(
-        path.resolve(__dirname, "../react-ui/build", "index.html")
-      );
-    });
-  }
+  });
 
   app.listen(PORT, function () {
     console.error(

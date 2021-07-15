@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import Footer from "../components/Footer";
 
 const Page404 = () => {
   return (
     <>
-      <Container className="text-center py-5">
+      <Container className="text-light text-center py-5">
         <Row className="h-100 align-items-center">
           <Col>
             <div>
@@ -25,6 +26,8 @@ const Page404 = () => {
           </Col>
         </Row>
       </Container>
+
+      <Footer />
     </>
   );
 };

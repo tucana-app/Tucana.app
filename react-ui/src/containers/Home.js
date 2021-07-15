@@ -22,7 +22,7 @@ function Home({ t }) {
               className="mb-5"
             />
             <div>
-              <IndexLinkContainer to="/login" href="/login" className="mr-3">
+              <IndexLinkContainer to="/login" href="/login" className="me-3">
                 <Button
                   className="font-title text-white rounded-0"
                   size="lg"
@@ -49,7 +49,7 @@ function Home({ t }) {
           >
             <h1 className="h1 mt-0 pt-0">Ride.CR</h1>
             <p className="lead">Share your rides in Costa Rica</p>
-            <IndexLinkContainer to="/login" href="/login" className="mr-3">
+            <IndexLinkContainer to="/login" href="/login" className="me-3">
               <Button
                 className="font-title text-white rounded-0"
                 size="lg"
@@ -70,7 +70,7 @@ function Home({ t }) {
           </Col>
           <Col lg={6} xs={{ order: 2 }} className="col-12 text-center">
             <div className="h-100 d-flex justify-content-center align-items-start align-items-md-center">
-              <FormSearch />
+              {/* <FormSearch /> */}
             </div>
           </Col>
         </Row>

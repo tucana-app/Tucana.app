@@ -1,0 +1,82 @@
+const db = require("../models");
+const config = require("../config/auth.config");
+const User = db.User;
+const Role = db.Role;
+
+const Op = db.Sequelize.Op;
+
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
+
+exports.signup = (req, res) => {
+  // Save User to Database
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+  })
+    .then((user) => {
+      user.setRoles([1]).then(() => {
+        res.send({ message: "Sign up successful" });
+      });
+    })
+    .catch((error) => {
+      res.status(500).send({ message: error.message });
+    });
+};
+
+exports.signin = (req, res) => {
+  User.findOne({
+    where: {
+      username: req.body.username,
+    },
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!",
+        });
+      }
+
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400, // 24 hours
+      });
+
+      var authorities = [];
+      user.getRoles().then((roles) => {
+        roles.map((role) => {
+          authorities.push("ROLE_" + role.name.toUpperCase());
+        });
+
+        let isModo = roles.find((role) => {
+          return role.name === "moderator";
+        });
+        let isAdmin = roles.find((role) => {
+          return role.name === "admin";
+        });
+
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: token,
+          isAdmin: isAdmin ? isAdmin.name === "admin" : false,
+          isModo: isModo ? isModo.name === "moderator" : false,
+        });
+      });
+    })
+    .catch((error) => {
+      res.status(500).send({ message: error.message });
+    });
+};

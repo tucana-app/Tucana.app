@@ -19,6 +19,8 @@ i18n
     react: {
       wait: true,
     },
+
+    // debug: process.env.NODE_ENV === "development",
   });
 
 export default i18n;

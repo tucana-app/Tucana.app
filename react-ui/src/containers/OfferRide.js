@@ -1,10 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Footer from "../components/Footer";
 
 const OfferRide = () => {
   return (
     <>
-      <Container className="text-center mx-auto">
+      <Container className="text-light text-center my-5">
         <Row>
           <Col>
             <h1>OfferRide</h1>
@@ -16,6 +17,8 @@ const OfferRide = () => {
           </Col>
         </Row>
       </Container>
+
+      <Footer />
     </>
   );
 };
