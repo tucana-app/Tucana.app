@@ -5,12 +5,7 @@ import messageTypes from "../message/messageTypes";
 
 import AuthService from "../../services/auth.service";
 
-let URL_API = "";
-const isDev = process.env.NODE_ENV !== "production";
-
-isDev
-  ? (URL_API = process.env.REACT_APP_URL_API_DEV)
-  : (URL_API = process.env.REACT_APP_URL_API);
+const URL_API = process.env.REACT_APP_URL_API;
 
 export const register = (username, email, password) => (dispatch) => {
   return AuthService.register(username, email, password).then(
