@@ -9,7 +9,7 @@
     "start": "node server",
     "dev": "nodemon server --ignore react-ui/",
     "build": "cd react-ui/ && npm install && npm run build",
-    "sequelize-reset-db": "cd server/ && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize-cli db:seed:all"
+    "sequelize-reset-db": "cd server/ && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "cacheDirectories": [
     "node_modules",

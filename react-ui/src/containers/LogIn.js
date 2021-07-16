@@ -114,10 +114,9 @@ const Login = (props) => {
               </FormBootstrap.Group>
 
               <FormBootstrap.Group>
-                <Button
-                  variant="success"
+                <button
+                  className="btn btn-success btn-block rounded-0"
                   disabled={loading}
-                  className="rounded-0"
                 >
                   {loading && (
                     <Spinner
@@ -132,7 +131,7 @@ const Login = (props) => {
                     </Spinner>
                   )}
                   <span>Login</span>
-                </Button>
+                </button>
               </FormBootstrap.Group>
 
               {message && <Alert variant="danger mt-3">{message}</Alert>}
