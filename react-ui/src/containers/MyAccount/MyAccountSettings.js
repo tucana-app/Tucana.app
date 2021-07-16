@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 
-function MyAccountInformation() {
+function MyAccountSettings() {
   return (
     <div data-aos="fade-left">
       <ListGroup variant="flush">
@@ -28,7 +28,7 @@ function MyAccountInformation() {
       <Container className="py-5 text-center">
         <Row>
           <Col>
-            <h1 className="display-4 text-success">Information</h1>
+            <h1 className="display-4 text-success">Settings</h1>
           </Col>
         </Row>
         <Row>
@@ -37,9 +37,10 @@ function MyAccountInformation() {
           </Col>
         </Row>
       </Container>
+
       <Footer />
     </div>
   );
 }
 
-export default MyAccountInformation;
+export default MyAccountSettings;

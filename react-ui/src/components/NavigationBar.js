@@ -7,7 +7,7 @@ import {
   faTachometerAlt,
   faCarAlt,
   faUser,
-  faPlusCircle,
+  faPlus,
   faSearch,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +40,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faCarAlt} size="2x" />
+              <FontAwesomeIcon icon={faCarAlt} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.myRides")}
               </p>
@@ -48,7 +48,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/offer-ride" href="/offer-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faPlusCircle} size="lg" />
+              <FontAwesomeIcon icon={faPlus} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.offerRide")}
               </p>
@@ -89,6 +89,7 @@ function NavigationBar() {
                 </Button>
               </Nav.Link>
             </IndexLinkContainer>
+
             <IndexLinkContainer to="/signup" href="/signup">
               <Nav.Link className="font-title text-center">
                 <Button

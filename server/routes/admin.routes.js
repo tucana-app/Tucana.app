@@ -1,4 +1,4 @@
-const manageController = require("../controllers").manage;
+const adminController = require("../controllers").admin;
 
 module.exports = (app) => {
   app.use(function (req, res, next) {
@@ -9,5 +9,5 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/manage/listUsers", manageController.listAll);
+  app.get("/api/admin/listUsers", adminController.listAll);
 };

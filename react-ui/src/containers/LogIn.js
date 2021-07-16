@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
-  Form as FormBootstrap,
+  Form,
   Container,
   Row,
   Col,
@@ -12,70 +12,82 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-
 import { login } from "../redux";
 
 import Footer from "../components/Footer";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <Alert variant="danger" role="alert">
-        This field is required
-      </Alert>
-    );
-  }
-};
-
 const Login = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const { isLoggedIn } = useSelector((state) => state.user);
   const { message } = useSelector((state) => state.message);
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
+  const [submited, setSubmited] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorLogin, setErrorLogin] = useState(false);
 
-  const dispatch = useDispatch();
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value,
+    });
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+    // Check and see if errors exist,
+    // and remove them from the error object:
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
+  const findFormErrors = () => {
+    const { username, password } = form;
+    const newErrors = {};
+
+    if (!username || username === "")
+      newErrors.username = "Please provide a username";
+
+    if (!password || password === "")
+      newErrors.password = "Please provide a password";
+
+    return newErrors;
   };
 
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+  const handleLogin = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+    setSubmited(true);
 
-    setLoading(true);
+    // Get the new errors
+    const newErrors = findFormErrors();
 
-    form.current.validateAll();
+    // Conditional logic:
+    if (Object.keys(newErrors).length > 0) {
+      // We got errors!
+      setErrors(newErrors);
+    } else {
+      // No errors
 
-    if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(username, password))
-        .then(() => {
-          props.history.push("/");
-          // window.location.reload();
+      // If we are not waiting for a Promise to return
+      // When we did an API call
+      setLoading(true);
+      setErrorLogin(false);
+
+      dispatch(login(form.username, form.password))
+        .then((response) => {
+          setLoading(false);
         })
-        .catch(() => {
+        .catch((error) => {
+          setErrorLogin(true);
           setLoading(false);
         });
-    } else {
-      setLoading(false);
     }
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -89,53 +101,69 @@ const Login = (props) => {
         </Row>
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-            <Form onSubmit={handleLogin} ref={form}>
-              <FormBootstrap.Group>
-                <Input
-                  type="text"
-                  className="form-control mb-3 rounded-0"
-                  name="username"
-                  value={username}
-                  placeholder="Username"
-                  onChange={onChangeUsername}
-                  validations={[required]}
-                />
-              </FormBootstrap.Group>
-              <FormBootstrap.Group>
-                <Input
-                  type="password"
-                  className="form-control mb-3 rounded-0"
-                  name="password"
-                  value={password}
-                  placeholder="Password"
-                  onChange={onChangePassword}
-                  validations={[required]}
-                />
-              </FormBootstrap.Group>
+            <Form noValidate validated={submited}>
+              <Form.Group as={Col} className="mb-3 mb-md-0">
+                <FloatingLabel label="Username" className="text-secondary mb-3">
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    className="rounded-0"
+                    isInvalid={!!errors.username}
+                    onChange={(e) => setField("username", e.target.value)}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.username}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group as={Col}>
+                <FloatingLabel label="Password" className="text-secondary mb-3">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    className="rounded-0"
+                    isInvalid={!!errors.password}
+                    onChange={(e) => setField("password", e.target.value)}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.password}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Form.Group>
 
-              <FormBootstrap.Group>
-                <button
-                  className="btn btn-success btn-block rounded-0"
-                  disabled={loading}
+              {errorLogin ? (
+                <Alert variant="danger" className="rounded-0">
+                  The username / password combination didn't work
+                </Alert>
+              ) : null}
+
+              <Form.Group>
+                <Button
+                  variant="success"
+                  className="rounded-0"
+                  onClick={handleLogin}
+                  size="lg"
+                  type="submit"
                 >
-                  {loading && (
+                  {loading ? (
                     <Spinner
                       animation="border"
                       role="status"
                       as="span"
-                      aria-hidden="false"
+                      aria-hidden="true"
                       className="align-middle me-2"
                       size="sm"
                     >
                       <span className="sr-only">Loading...</span>
                     </Spinner>
-                  )}
-                  <span>Login</span>
-                </button>
-              </FormBootstrap.Group>
-
-              {message && <Alert variant="danger mt-3">{message}</Alert>}
-              <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                  ) : null}
+                  Log In
+                </Button>
+              </Form.Group>
             </Form>
           </Col>
         </Row>

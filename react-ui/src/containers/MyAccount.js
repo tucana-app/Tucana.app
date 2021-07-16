@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
@@ -31,17 +31,17 @@ const MyAccount = () => {
   }
 
   return (
-    <div data-aos="fade-right">
+    <div data-aos="fade-left">
       <ListGroup variant="flush">
         <Link to="/" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-success text-center border border-top-0 border-start-0 border-end-0 py-4">
+          <ListGroup.Item className="bg-dark text-center border border-top-0 border-start-0 border-end-0 py-4">
             <div className="d-inline mx-auto">
               <FontAwesomeIcon
                 icon={faCar}
                 size="2x"
-                className="align-bottom me-2"
+                className="text-success align-bottom me-2"
               />
-              <span className="h3 font-title">Ride.CR</span>
+              <span className="h3 text-white font-title">Ride.CR</span>
             </div>
           </ListGroup.Item>
         </Link>
@@ -58,7 +58,7 @@ const MyAccount = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/my-settings" className="text-light text-decoration-none">
+        <Link to="/settings" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
@@ -70,7 +70,11 @@ const MyAccount = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link onClick={logOut} className="text-light text-decoration-none">
+        <div
+          onClick={logOut}
+          className="text-light text-decoration-none"
+          style={{ cursor: "pointer" }}
+        >
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
@@ -83,9 +87,9 @@ const MyAccount = () => {
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
-        </Link>
+        </div>
 
-        <hr className="w-75 bg-dark mx-auto my-5" />
+        <hr className="w-75 bg-dark mx-auto my-4" />
 
         <Link to="/help" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">

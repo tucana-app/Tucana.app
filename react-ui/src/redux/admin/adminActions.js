@@ -1,4 +1,4 @@
-import manageTypes from "./manageTypes";
+import adminTypes from "./adminTypes";
 import axios from "axios";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -7,7 +7,7 @@ const URL_API = process.env.REACT_APP_URL_API;
 
 export const getUsersListRequested = () => {
   return {
-    type: manageTypes.GET_USERS_LIST_REQUEST,
+    type: adminTypes.GET_USERS_LIST_REQUEST,
   };
 };
 
@@ -28,14 +28,14 @@ export const getUsersList = () => {
 
 export const getUsersListSuccess = (data) => {
   return {
-    type: manageTypes.GET_USERS_LIST_SUCCESS,
+    type: adminTypes.GET_USERS_LIST_SUCCESS,
     payload: data,
   };
 };
 
 export const getUsersListFail = (error) => {
   return {
-    type: manageTypes.GET_USERS_LIST_FAIL,
+    type: adminTypes.GET_USERS_LIST_FAIL,
     payload: error,
   };
 };

@@ -2,14 +2,14 @@ import { combineReducers } from "redux";
 
 import userReducer from "./user/userReducer";
 import messageReducer from "./message/messageReducer";
-import manageReducer from "./manage/manageReducer";
+import adminReducer from "./admin/adminReducer";
 import signupReducer from "./signup/signupReducer";
 import globalReducer from "./global/globalReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
   message: messageReducer,
-  manage: manageReducer,
+  admin: adminReducer,
   signup: signupReducer,
   global: globalReducer,
 });

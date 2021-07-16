@@ -1,5 +1,8 @@
-import signupTypes from "./signupTypes";
 import axios from "axios";
+
+import signupTypes from "./signupTypes";
+
+import AuthService from "../../services/auth.service";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -38,13 +41,6 @@ export const changeFormDateOfBirth = (data) => {
   };
 };
 
-export const changeFormLanguage = (data) => {
-  return {
-    type: signupTypes.CHANGE_FORM_LANGUAGE,
-    payload: data,
-  };
-};
-
 export const changeFormPhoneNumber = (data) => {
   return {
     type: signupTypes.CHANGE_FORM_PHONENUMBER,
@@ -59,24 +55,30 @@ export const checkDuplicateUsernameRequested = () => {
   };
 };
 
-export const checkDuplicateUsername = (username) => {
-  return (dispatch) => {
-    dispatch(checkDuplicateUsernameRequested());
+export const checkDuplicateUsername = (username) => (dispatch) => {
+  dispatch(checkDuplicateUsernameRequested());
 
-    axios
-      .get(URL_API + "/signup/check-duplicate-username", {
-        params: {
-          username,
-        },
-      })
-      .then((response) => {
-        dispatch(checkDuplicateUsernameSuccess(response.data));
-      })
-      .catch((error) => {
-        // console.log(error.isUsernameDuplicate);
-        dispatch(checkDuplicateUsernameFail(error));
+  return axios
+    .get(URL_API + "/signup/check-duplicate-username", {
+      params: {
+        username,
+      },
+    })
+    .then((response) => {
+      // console.log(response.data);
+      dispatch(checkDuplicateUsernameSuccess(response.data));
+
+      return Promise.resolve({
+        message: response.data.message,
+        isUsernameDuplicate: response.data.isUsernameDuplicate,
       });
-  };
+    })
+    .catch((error) => {
+      // console.log(error.isUsernameDuplicate);
+      dispatch(checkDuplicateUsernameFail(error));
+
+      return Promise.reject();
+    });
 };
 
 export const checkDuplicateUsernameSuccess = (data) => {
@@ -104,28 +106,55 @@ export const checkDuplicateEmailRequested = () => {
   };
 };
 
-export const checkDuplicateEmail = (email) => {
-  return (dispatch) => {
-    dispatch(checkDuplicateEmailRequested());
+// export const checkDuplicateEmail = (email) => {
+//   return (dispatch) => {
+//     dispatch(checkDuplicateEmailRequested());
 
-    axios
-      .get(URL_API + "/signup/check-duplicate-email", {
-        params: {
-          email,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        dispatch(checkDuplicateEmailSuccess(response.data));
-      })
-      .catch((error) => {
-        // console.log(error.isEmailDuplicate);
-        dispatch(checkDuplicateEmailFail(error));
+//     axios
+//       .get(URL_API + "/signup/check-duplicate-email", {
+//         params: {
+//           email,
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response.data);
+//         dispatch(checkDuplicateEmailSuccess(response.data));
+//       })
+//       .catch((error) => {
+//         // console.log(error.isEmailDuplicate);
+//         dispatch(checkDuplicateEmailFail(error));
+//       });
+//   };
+// };
+
+export const checkDuplicateEmail = (email) => (dispatch) => {
+  dispatch(checkDuplicateEmailRequested());
+
+  return axios
+    .get(URL_API + "/signup/check-duplicate-email", {
+      params: {
+        email,
+      },
+    })
+    .then((response) => {
+      // console.log(response.data);
+      dispatch(checkDuplicateEmailSuccess(response.data));
+
+      return Promise.resolve({
+        message: response.data.message,
+        isEmailDuplicate: response.data.isEmailDuplicate,
       });
-  };
+    })
+    .catch((error) => {
+      // console.log(error.isEmailDuplicate);
+      dispatch(checkDuplicateEmailFail(error));
+
+      return Promise.reject();
+    });
 };
 
 export const checkDuplicateEmailSuccess = (data) => {
+  // console.log(data);
   return {
     type: signupTypes.CHECK_DUPLICATE_EMAIL_SUCCESS,
     payload: {
@@ -150,24 +179,30 @@ export const checkDuplicatePhoneNumberRequested = () => {
   };
 };
 
-export const checkDuplicatePhoneNumber = (phoneNumber) => {
-  return (dispatch) => {
-    dispatch(checkDuplicatePhoneNumberRequested());
+export const checkDuplicatePhoneNumber = (phoneNumber) => (dispatch) => {
+  dispatch(checkDuplicatePhoneNumberRequested());
 
-    axios
-      .get(URL_API + "/signup/check-duplicate-phonenumber", {
-        params: {
-          phoneNumber,
-        },
-      })
-      .then((response) => {
-        dispatch(checkDuplicatePhoneNumberSuccess(response.data));
-      })
-      .catch((error) => {
-        // console.log(error.isPhoneNumberDuplicate);
-        dispatch(checkDuplicatePhoneNumberFail(error));
+  return axios
+    .get(URL_API + "/signup/check-duplicate-phonenumber", {
+      params: {
+        phoneNumber,
+      },
+    })
+    .then((response) => {
+      // console.log(response.data);
+      dispatch(checkDuplicatePhoneNumberSuccess(response.data));
+
+      return Promise.resolve({
+        message: response.data.message,
+        isPhoneNumberDuplicate: response.data.isPhoneNumberDuplicate,
       });
-  };
+    })
+    .catch((error) => {
+      // console.log(error.isPhoneNumberDuplicate);
+      dispatch(checkDuplicatePhoneNumberFail(error));
+
+      return Promise.reject();
+    });
 };
 
 export const checkDuplicatePhoneNumberSuccess = (data) => {
@@ -185,5 +220,48 @@ export const checkDuplicatePhoneNumberFail = (data) => {
   return {
     type: signupTypes.CHECK_DUPLICATE_PHONENUMBER_FAIL,
     payload: "Error checking phone number duplicates",
+  };
+};
+
+export const validateStep1 = () => {
+  return {
+    type: signupTypes.VALIDATE_STEP_1,
+  };
+};
+
+export const signupUserRequested = () => {
+  return {
+    type: signupTypes.SIGNUP_USER_REQUESTED,
+  };
+};
+
+export const signupUser = (formSignupUser) => (dispatch) => {
+  dispatch(signupUserRequested());
+
+  return AuthService.signupUser(formSignupUser).then(
+    (response) => {
+      dispatch(signupUserSuccess(response.data));
+
+      return Promise.resolve();
+    },
+    (error) => {
+      dispatch(signupUserFail(error.message));
+
+      return Promise.reject();
+    }
+  );
+};
+
+export const signupUserSuccess = (data) => {
+  return {
+    type: signupTypes.SIGNUP_USER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const signupUserFail = (data) => {
+  return {
+    type: signupTypes.SIGNUP_USER_FAIL,
+    payload: data,
   };
 };

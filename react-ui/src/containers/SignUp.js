@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -8,9 +8,9 @@ import { isEmail, isDate, isMobilePhone, isAlpha } from "validator";
 
 import * as signupActions from "../redux/signup/signupActions";
 import {
-  checkDuplicateUsername,
   checkDuplicateEmail,
   checkDuplicatePhoneNumber,
+  validateStep1,
 } from "../redux";
 
 import Footer from "../components/Footer";
@@ -19,36 +19,36 @@ import { Redirect } from "react-router-dom";
 const SignUp = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { supportedLanguagesCodes, supportedLanguagesNames } = useSelector(
-    (state) => state.global
-  );
+
+  const [loadingAPI, setLoadingAPI] = useState(false);
 
   const {
-    isLoadingCheckDuplicatedUsername,
-    checkDuplicateUsernameSuccess,
-    checkDuplicateUsernameFail,
     isLoadingCheckDuplicatedEmail,
-    checkDuplicateEmailSuccess,
-    checkDuplicateEmailFail,
+    // checkDuplicateEmailSuccess,
+    // checkDuplicateEmailFail,
     isLoadingCheckDuplicatedPhoneNumber,
-    checkDuplicatePhoneNumberSuccess,
-    checkDuplicatePhoneNumberFail,
-    isUsernameDuplicate,
+    // checkDuplicatePhoneNumberSuccess,
+    // checkDuplicatePhoneNumberFail,
     isEmailDuplicate,
     isPhoneNumberDuplicate,
+    isStep1validated,
   } = useSelector((state) => state.signup);
-
-  // When we receive the data from the server, update the errors
-  useEffect(() => {
-    findFormErrors();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isUsernameDuplicate, isEmailDuplicate, isPhoneNumberDuplicate]);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [submited, setSubmited] = useState(false);
-  const [validated, setValidated] = useState(false);
 
+  // Handle redirection in case the user is already logged in
+  // Or if the form has already be submitted successfully
+  if (isLoggedIn) {
+    return <Redirect to="/dashboard" />;
+  }
+
+  if (isStep1validated) {
+    return <Redirect to="/signup/step-2" />;
+  }
+
+  // Check for the errors in the form
   const setField = (field, value) => {
     setForm({
       ...form,
@@ -64,15 +64,8 @@ const SignUp = () => {
       });
   };
   const findFormErrors = () => {
-    const {
-      firstName,
-      lastName,
-      email,
-      username,
-      phoneNumber,
-      dateOfBirth,
-      terms,
-    } = form;
+    const { firstName, lastName, email, phoneNumber, dateOfBirth, terms } =
+      form;
     const newErrors = {};
 
     // firstName errors
@@ -98,31 +91,39 @@ const SignUp = () => {
     // email errors
     if (!email || email === "") newErrors.email = "Please provide an email";
     else if (!isEmail(email)) newErrors.email = "This is not a valid email";
-    else email && dispatch(checkDuplicateEmail(email));
+    else {
+      setLoadingAPI(true);
 
-    // username errors
-    const regex = new RegExp(
-      "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){2,18}[a-zA-Z0-9]$"
-    );
-
-    if (username && username.length > 30)
-      newErrors.username = "Your username is too long (max. 30)";
-    if (username && username.length < 4)
-      newErrors.username = "Your username is too short (min. 4 or blank)";
-    else if (username && !regex.test(username))
-      newErrors.username = "This is not a valid username";
-    else if (isUsernameDuplicate)
-      newErrors.username = "This username already exists";
-    else username && dispatch(checkDuplicateUsername(username));
+      dispatch(checkDuplicateEmail(form.email))
+        .then((response) => {
+          if (response.isEmailDuplicate) newErrors.email = response.message;
+          setLoadingAPI(false);
+        })
+        .catch(() => {
+          setLoadingAPI(false);
+        });
+    }
 
     // phoneNumber errors
     if (!phoneNumber || phoneNumber === "")
       newErrors.phoneNumber = "Please provide a phone number";
     else if (!isMobilePhone(phoneNumber))
       newErrors.phoneNumber = "This is not a valid phone number";
-    else if (isPhoneNumberDuplicate)
-      newErrors.phoneNumber = "This phone number already exists";
-    else phoneNumber && dispatch(checkDuplicatePhoneNumber(phoneNumber));
+    else {
+      setLoadingAPI(true);
+
+      dispatch(checkDuplicatePhoneNumber(form.phoneNumber))
+        .then((response) => {
+          // props.history.push("/dashboard");
+          // window.location.reload();
+          if (response.isPhoneNumberDuplicate)
+            newErrors.phoneNumber = response.message;
+          setLoadingAPI(false);
+        })
+        .catch(() => {
+          setLoadingAPI(false);
+        });
+    }
 
     // dateOfBirth errors
     if (!dateOfBirth || dateOfBirth === "")
@@ -152,36 +153,29 @@ const SignUp = () => {
     } else {
       // No errors
 
+      // If we are not waiting for a Promise to return
+      // When we did an API call
       if (
-        !isLoadingCheckDuplicatedUsername &&
-        !isUsernameDuplicate &&
         !isLoadingCheckDuplicatedEmail &&
         !isEmailDuplicate &&
         !isLoadingCheckDuplicatedPhoneNumber &&
-        !isPhoneNumberDuplicate
+        !isPhoneNumberDuplicate &&
+        !loadingAPI
       ) {
+        // If everything is okay, we fill up the Redux state
+        // and carry on to the next step
         dispatch(signupActions.changeFormEmail(form.email));
         dispatch(signupActions.changeFormFirstName(form.firstName));
         dispatch(signupActions.changeFormLastName(form.lastName));
-        dispatch(signupActions.changeFormUsername(form.username));
         dispatch(signupActions.changeFormDateOfBirth(form.dateOfBirth));
-        dispatch(signupActions.changeFormLanguage(form.language));
         dispatch(signupActions.changeFormPhoneNumber(form.phoneNumber));
 
-        setValidated(true);
+        dispatch(validateStep1());
       } else {
         return;
       }
     }
   };
-
-  if (isLoggedIn) {
-    return <Redirect to="/" />;
-  }
-
-  if (validated) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <div data-aos="fade-right">
@@ -257,20 +251,6 @@ const SignUp = () => {
 
               <Row className="mb-3">
                 <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    className="rounded-0"
-                    isInvalid={!!errors.username}
-                    onChange={(e) => setField("username", e.target.value)}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.username}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
                   <Form.Label>
                     Phone number<span className="text-danger">*</span>
                   </Form.Label>
@@ -281,15 +261,13 @@ const SignUp = () => {
                     className="rounded-0"
                     isInvalid={!!errors.phoneNumber}
                     onChange={(e) => setField("phoneNumber", e.target.value)}
+                    required
                   />
                   <Form.Control.Feedback type="invalid">
                     {errors.phoneNumber}
                   </Form.Control.Feedback>
                 </Form.Group>
-              </Row>
-
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
+                <Form.Group as={Col} xs={12} md={6}>
                   <Form.Label>
                     Date of Birth<span className="text-danger">*</span>
                   </Form.Label>
@@ -304,28 +282,6 @@ const SignUp = () => {
                   <Form.Control.Feedback type="invalid">
                     {errors.dateOfBirth}
                   </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} xs={12} md={6}>
-                  <Form.Label>Prefered language</Form.Label>
-                  <Form.Select
-                    aria-label="Select language"
-                    className="rounded-0"
-                    onChange={(e) => setField("language", e.target.value)}
-                    defaultValue={supportedLanguagesCodes[0]}
-                  >
-                    {supportedLanguagesCodes.map((language, index) => {
-                      return (
-                        <option
-                          key={language}
-                          value={language}
-                          // English will always be the first language in the list
-                          selected={index === 0 ? "selected" : false}
-                        >
-                          {supportedLanguagesNames[index]}
-                        </option>
-                      );
-                    })}
-                  </Form.Select>
                 </Form.Group>
               </Row>
 
@@ -357,17 +313,18 @@ const SignUp = () => {
                     variant="success"
                     className="rounded-0"
                     onClick={handleSubmit}
+                    type="submit"
                     disabled={
-                      isLoadingCheckDuplicatedUsername ||
                       isLoadingCheckDuplicatedEmail ||
-                      isLoadingCheckDuplicatedPhoneNumber
+                      isLoadingCheckDuplicatedPhoneNumber ||
+                      loadingAPI
                         ? true
                         : false
                     }
                   >
-                    {isLoadingCheckDuplicatedUsername ||
-                    isLoadingCheckDuplicatedEmail ||
-                    isLoadingCheckDuplicatedPhoneNumber ? (
+                    {isLoadingCheckDuplicatedEmail ||
+                    isLoadingCheckDuplicatedPhoneNumber ||
+                    loadingAPI ? (
                       <Spinner
                         animation="border"
                         role="status"

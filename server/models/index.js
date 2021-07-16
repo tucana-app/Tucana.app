@@ -43,18 +43,18 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// Many users can have many role
-db.Role.belongsToMany(db.User, {
-  through: "users_roles",
+// Many admins can have many role
+db.Role.belongsToMany(db.Admin, {
+  through: "admins_roles",
   foreignKey: "roleId",
-  otherKey: "userId",
+  otherKey: "adminId",
 });
-db.User.belongsToMany(db.Role, {
-  through: "users_roles",
-  foreignKey: "userId",
+db.Admin.belongsToMany(db.Role, {
+  through: "admins_roles",
+  foreignKey: "adminId",
   otherKey: "roleId",
 });
 
-db.ROLES = ["user", "moderator", "admin"];
+db.ROLES = ["moderator", "admin"];
 
 module.exports = db;

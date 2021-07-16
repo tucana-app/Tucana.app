@@ -4,17 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import Footer from "../components/Footer";
+import { history } from "../helpers/history";
 
-import { useHistory } from "react-router-dom";
-
-function ComingSoon() {
-  let history = useHistory();
-
+function ComingSoon(props) {
   return (
-    <div data-aos="fade-left">
+    <>
       <ListGroup variant="flush">
         <Link
+          to="#"
           onClick={() => history.goBack()}
           className="text-light text-decoration-none"
         >
@@ -35,14 +32,18 @@ function ComingSoon() {
       <Container className="py-5 text-center">
         <Row>
           <Col>
-            <h1 className="display-4 text-success">
-              This feature is soon to be released
+            <h1 className="text-success">
+              {props.pageName || "This page is under construction"}
             </h1>
+            <p className="lead">
+              Our website is still under construction.
+              <br />
+              Thank you for your understanding 🙂
+            </p>
           </Col>
         </Row>
       </Container>
-      <Footer />
-    </div>
+    </>
   );
 }
 

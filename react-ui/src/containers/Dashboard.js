@@ -1,22 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import ComingSoon from "./ComingSoon";
 import Footer from "../components/Footer";
 
 const Dashboard = () => {
   return (
-    <div data-aos="fade-right">
-      <Container className="text-light text-center my-5">
-        <Row>
-          <Col>
-            <h1>Dashboard</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <p>Welcome to the dashboard page</p>
-          </Col>
-        </Row>
-      </Container>
+    <div data-aos="fade-left">
+      <ComingSoon pageName={"Dashboard"} />
 
       <Footer />
     </div>

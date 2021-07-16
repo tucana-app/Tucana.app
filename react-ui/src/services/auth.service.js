@@ -29,8 +29,15 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+const signupUser = (formSignupUser) => {
+  return axios.post(URL_API + "/signup/signupUser", {
+    formSignupUser,
+  });
+};
+
 const exported = {
   register,
+  signupUser,
   login,
   logout,
 };

@@ -1,9 +1,6 @@
 const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.User;
-const Role = db.Role;
-
-const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -52,28 +49,11 @@ exports.signin = (req, res) => {
         expiresIn: 86400, // 24 hours
       });
 
-      var authorities = [];
-      user.getRoles().then((roles) => {
-        roles.map((role) => {
-          authorities.push("ROLE_" + role.name.toUpperCase());
-        });
-
-        let isModo = roles.find((role) => {
-          return role.name === "moderator";
-        });
-        let isAdmin = roles.find((role) => {
-          return role.name === "admin";
-        });
-
-        res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          roles: authorities,
-          accessToken: token,
-          isAdmin: isAdmin ? isAdmin.name === "admin" : false,
-          isModo: isModo ? isModo.name === "moderator" : false,
-        });
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        accessToken: token,
       });
     })
     .catch((error) => {

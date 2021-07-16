@@ -6,7 +6,6 @@ const initialState = {
   lastName: "",
   username: "",
   dateOfBirth: "",
-  language: "",
   phoneNumber: "",
 
   isLoadingCheckDuplicatedUsername: false,
@@ -24,6 +23,12 @@ const initialState = {
   isUsernameDuplicate: false,
   isEmailDuplicate: false,
   isPhoneNumberDuplicate: false,
+
+  isStep1validated: false,
+
+  isSigningUpUser: false,
+  signupUserSuccess: "",
+  signupUserFail: "",
 };
 
 const signupReducer = (state = initialState, action) => {
@@ -56,12 +61,6 @@ const signupReducer = (state = initialState, action) => {
       return {
         ...state,
         dateOfBirth: action.payload,
-      };
-
-    case signupTypes.CHANGE_FORM_LANGUAGE:
-      return {
-        ...state,
-        language: action.payload,
       };
 
     case signupTypes.CHANGE_FORM_PHONENUMBER:
@@ -110,10 +109,10 @@ const signupReducer = (state = initialState, action) => {
       return {
         ...state,
 
+        isEmailDuplicate: action.payload.isEmailDuplicate,
+
         checkDuplicateEmailSuccess: action.payload.message,
         checkDuplicateEmailFail: "",
-
-        isEmailDuplicate: action.payload.isEmailDuplicate,
 
         isLoadingCheckDuplicatedEmail: false,
       };
@@ -155,6 +154,36 @@ const signupReducer = (state = initialState, action) => {
         checkDuplicatePhoneNumberFail: action.payload,
 
         isLoadingCheckDuplicatedPhoneNumber: false,
+      };
+
+    case signupTypes.VALIDATE_STEP_1:
+      return {
+        ...state,
+
+        isStep1validated: true,
+      };
+
+    case signupTypes.SIGNUP_USER_REQUESTED:
+      return {
+        ...state,
+        isSigningUpUser: true,
+      };
+
+    case signupTypes.SIGNUP_USER_SUCCESS:
+      return {
+        ...state,
+        isSigningUpUser: false,
+        signupUserSuccess: action.payload,
+        signupUserFail: "",
+        isStep1validated: false,
+      };
+
+    case signupTypes.SIGNUP_USER_FAIL:
+      return {
+        ...state,
+        isSigningUpUser: false,
+        signupUserSuccess: "",
+        signupUserFail: action.payload,
       };
 
     default:

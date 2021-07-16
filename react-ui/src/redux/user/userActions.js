@@ -70,7 +70,7 @@ export const login = (username, password) => (dispatch) => {
         payload: message,
       });
 
-      return Promise.reject();
+      return Promise.reject(error);
     }
   );
 };
@@ -81,58 +81,4 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: userTypes.LOGOUT,
   });
-};
-
-// Change user's email
-
-export const setEmailForm = (data) => {
-  return {
-    type: userTypes.CHANGE_EMAIL_FORM,
-    payload: data,
-  };
-};
-
-export const changeEmailRequested = () => {
-  return {
-    type: userTypes.CHANGE_EMAIL_REQUEST,
-  };
-};
-
-export const changeEmail = (userId, email) => {
-  return (dispatch) => {
-    dispatch(changeEmailRequested());
-
-    axios
-      .put(URL_API + "/user/change-email", {
-        userId,
-        email,
-      })
-      .then((response) => {
-        dispatch(changeEmailSuccess(response.data, email));
-      })
-      .catch((error) => {
-        dispatch(changeEmailFail(error.message || error));
-      });
-  };
-};
-
-export const changeEmailSuccess = (message, email) => {
-  return {
-    type: userTypes.CHANGE_EMAIL_SUCCESS,
-    payload: {
-      status: true,
-      message,
-      email,
-    },
-  };
-};
-
-export const changeEmailFail = (message) => {
-  return {
-    type: userTypes.CHANGE_EMAIL_FAIL,
-    payload: {
-      status: false,
-      message,
-    },
-  };
 };

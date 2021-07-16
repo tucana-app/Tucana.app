@@ -1,5 +1,6 @@
 const db = require("../models");
 const User = db.User;
+var bcrypt = require("bcryptjs");
 
 module.exports = {
   checkDuplicateUsername(req, res) {
@@ -22,7 +23,7 @@ module.exports = {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(400).send(error);
       });
   },
@@ -76,6 +77,38 @@ module.exports = {
       .catch((error) => {
         // console.log(error);
         res.sendStatus(400).send(error);
+      });
+  },
+
+  signupUser(req, res) {
+    // Save User to Database
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      username,
+      dateOfBirth,
+      phoneNumber,
+    } = req.body.formSignupUser;
+
+    User.create({
+      firstName,
+      lastName,
+      email,
+      password: bcrypt.hashSync(password, 8),
+      username,
+      dateOfBirth,
+      phoneNumber,
+    })
+      .then((_response) => {
+        res
+          .status(200)
+          .send({ isSuccessful: true, message: "Sign up successful" });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(500).send({ isSuccessful: false, message: error.message });
       });
   },
 };

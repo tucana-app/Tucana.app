@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const Page404 = () => {
   return (
-    <div data-aos="fade-right">
+    <div data-aos="fade-left">
       <Container className="text-light text-center py-5">
         <Row className="h-100 align-items-center">
           <Col>

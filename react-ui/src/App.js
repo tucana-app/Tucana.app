@@ -9,12 +9,16 @@ import MyRides from "./containers/MyRides";
 import OfferRide from "./containers/OfferRide";
 import LogIn from "./containers/LogIn";
 import SignUp from "./containers/SignUp";
+import SignUpStep2 from "./containers/SignUp/SignUpStep2";
+import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
 import MyAccount from "./containers/MyAccount";
 import Dashboard from "./containers/Dashboard";
-import MyAccountInformation from "./containers/MyAccountInformation";
-import MyAccountSettings from "./containers/MyAccountSettings";
 import Help from "./containers/Help";
 import ComingSoon from "./containers/ComingSoon";
+
+// All pages related to user account
+import MyAccountInformation from "./containers/MyAccount/MyAccountInformation";
+import MyAccountSettings from "./containers/MyAccount/MyAccountSettings";
 
 import Page404 from "./containers/Page404";
 
@@ -50,6 +54,12 @@ function App() {
           <Route exact path="/my-rides" component={MyRides} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signup/step-2" component={SignUpStep2} />
+          <Route
+            exact
+            path="/signup/signup-success"
+            component={SignUpSuccess}
+          />
           <Route exact path="/my-account" component={MyAccount} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route
@@ -57,7 +67,7 @@ function App() {
             path="/my-information"
             component={MyAccountInformation}
           />
-          <Route exact path="/my-settings" component={MyAccountSettings} />
+          <Route exact path="/settings" component={MyAccountSettings} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
