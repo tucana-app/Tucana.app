@@ -31,6 +31,7 @@ import { history } from "./helpers/history";
 
 // Importing css for the whole app
 import "./scss/app.scss";
+import MessageFee from "./components/MessageFee";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ function App() {
       <Router history={history}>
         <ScrollToTop />
 
+        <MessageFee />
         <NavigationBar />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/offer-ride" component={OfferRide} />

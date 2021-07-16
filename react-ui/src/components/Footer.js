@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const MyAccount = () => {
+const Footer = () => {
   return (
     <Container className="footer py-3">
       <Row>
@@ -11,4 +11,4 @@ const MyAccount = () => {
   );
 };
 
-export default MyAccount;
+export default Footer;
