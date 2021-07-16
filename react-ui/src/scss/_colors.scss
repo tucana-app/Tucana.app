@@ -1,15 +1,20 @@
 // Custom colors
 
-// $brand-1: #6b8e23;
-// $brand-1: #017f36;
 $brand-1: #2ed98d;
-$brand-2: #050505;
+$brand-2: #151515;
 
-$dark: #151515;
 $grey: #545454;
 $light-grey: #a6a6a6;
-$white: #fff;
-$black: #000;
+
+// Default Bootstrap colors
+
+$primary: #0d6efd;
+$secondary: #6c757d;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
 
 // Name: Flat UI Palette v1
 // Source: https://flatuicom/palette/defo
@@ -342,14 +347,10 @@ $opacity-bg: 0.6;
   background-color: rgba($grey, 1);
 }
 
-.bg-white {
-  background-color: rgba($white, 1);
+.bg-light {
+  background-color: rgba($light, 1);
 }
 
-.bg-darker {
+.bg-dark {
   background-color: rgba($dark, 1);
-}
-
-.bg-black {
-  background-color: rgba($black, 1);
 }

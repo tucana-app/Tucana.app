@@ -24,7 +24,7 @@ function NavigationBar() {
         <Nav className="w-100 justify-content-around align-items-baseline">
           <IndexLinkContainer to="/dashboard" href="/dashboard">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faTachometerAlt} size="2x" />
+              <FontAwesomeIcon icon={faTachometerAlt} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.dashboard")}
               </p>
@@ -32,7 +32,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/find-ride" href="/find-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faSearch} size="2x" />
+              <FontAwesomeIcon icon={faSearch} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.findRide")}
               </p>
@@ -40,7 +40,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faCarAlt} size="3x" />
+              <FontAwesomeIcon icon={faCarAlt} size="2x" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.myRides")}
               </p>
@@ -48,7 +48,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/offer-ride" href="/offer-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+              <FontAwesomeIcon icon={faPlusCircle} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.offerRide")}
               </p>
@@ -56,7 +56,7 @@ function NavigationBar() {
           </IndexLinkContainer>
           <IndexLinkContainer to="/my-account" href="/my-account">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faUser} size="2x" />
+              <FontAwesomeIcon icon={faUser} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.myAccount")}
               </p>
@@ -66,12 +66,12 @@ function NavigationBar() {
       </Navbar.Collapse>
     </Navbar>
   ) : (
-    <Navbar bg="white" variant="light" fixed="bottom">
+    <Navbar bg="light" variant="light" fixed="bottom">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faHome} size="2x" />
+              <FontAwesomeIcon icon={faHome} size="lg" />
               <p className="displayLargeScreens mb-0">
                 {t("translation:navigationbar.home")}
               </p>

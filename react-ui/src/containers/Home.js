@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
 
 // Importing components
-import FormSearch from "../components/FormSearch";
+// import FormSearch from "../components/FormSearch";
 import { Button } from "react-bootstrap";
 
 function Home({ t }) {

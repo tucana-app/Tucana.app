@@ -8,6 +8,8 @@ import {
   Col,
   Spinner,
   Alert,
+  Button,
+  FloatingLabel,
 } from "react-bootstrap";
 
 import Form from "react-validation/build/form";
@@ -77,14 +79,12 @@ const Login = (props) => {
   }
 
   return (
-    <>
+    <div data-aos="fade-right">
       <Container className="my-5">
         <Row className="mb-5">
           <Col className="text-center">
-            <h1 className="text-info">Welcome back</h1>
-            <p className="lead text-white">
-              Please login to access our service
-            </p>
+            <h1 className="text-warning">Welcome back</h1>
+            <p className="lead text-white">We are happy to see you again 😊</p>
           </Col>
         </Row>
         <Row>
@@ -101,7 +101,6 @@ const Login = (props) => {
                   validations={[required]}
                 />
               </FormBootstrap.Group>
-
               <FormBootstrap.Group>
                 <Input
                   type="password"
@@ -115,9 +114,10 @@ const Login = (props) => {
               </FormBootstrap.Group>
 
               <FormBootstrap.Group>
-                <button
-                  className="btn btn-primary btn-block"
+                <Button
+                  variant="success"
                   disabled={loading}
+                  className="rounded-0"
                 >
                   {loading && (
                     <Spinner
@@ -132,7 +132,7 @@ const Login = (props) => {
                     </Spinner>
                   )}
                   <span>Login</span>
-                </button>
+                </Button>
               </FormBootstrap.Group>
 
               {message && <Alert variant="danger mt-3">{message}</Alert>}
@@ -143,7 +143,7 @@ const Login = (props) => {
       </Container>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

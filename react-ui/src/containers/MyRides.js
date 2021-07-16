@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const MyRides = () => {
   return (
-    <>
+    <div data-aos="fade-right">
       <Container className="text-light text-center my-5">
         <Row>
           <Col>
@@ -19,7 +19,7 @@ const MyRides = () => {
       </Container>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

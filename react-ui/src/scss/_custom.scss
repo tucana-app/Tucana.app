@@ -1,7 +1,7 @@
 @use "./colors";
 
 // Change the Navigation Bar height here
-$navbarHeight: 125px;
+$navbarHeight: 100px;
 
 html {
   scroll-behavior: smooth;
@@ -12,7 +12,7 @@ body {
   font-size: large;
   padding-bottom: $navbarHeight;
   background-color: $dark !important;
-  color: $white;
+  color: $light;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const Page404 = () => {
   return (
-    <>
+    <div data-aos="fade-right">
       <Container className="text-light text-center py-5">
         <Row className="h-100 align-items-center">
           <Col>
@@ -28,7 +28,7 @@ const Page404 = () => {
       </Container>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
