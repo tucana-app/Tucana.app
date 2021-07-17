@@ -20,13 +20,13 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   return currentUser ? (
-    <Navbar bg="white" variant="light" fixed="bottom">
+    <Navbar bg="white" variant="light" fixed="bottom" className="p-md-0">
       <Navbar.Collapse id="navigation-bar">
-        <Nav className="w-100 justify-content-around align-items-baseline">
+        <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/dashboard" href="/dashboard">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faTachometerAlt} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <p className="small displayMediumScreens mb-0">
                 {t("translation:navigationbar.dashboard")}
               </p>
             </Nav.Link>
@@ -34,15 +34,15 @@ function NavigationBar() {
           <IndexLinkContainer to="/find-ride" href="/find-ride">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faSearch} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <p className="small displayMediumScreens mb-0">
                 {t("translation:navigationbar.findRide")}
               </p>
             </Nav.Link>
           </IndexLinkContainer>
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faCarAlt} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <FontAwesomeIcon icon={faCarAlt} size="2x" />
+              <p className="small displayMediumScreens mb-0">
                 {t("translation:navigationbar.myRides")}
               </p>
             </Nav.Link>
@@ -50,7 +50,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/offer-ride" href="/offer-ride">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faPlus} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <p className="small displayMediumScreens mb-0">
                 {t("translation:navigationbar.offerRide")}
               </p>
             </Nav.Link>
@@ -58,7 +58,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faUser} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <p className="small displayMediumScreens mb-0">
                 {t("translation:navigationbar.myAccount")}
               </p>
             </Nav.Link>
@@ -73,7 +73,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faHome} size="lg" />
-              <p className="displayLargeScreens mb-0">
+              <p className="small displayLargeScreens mb-0">
                 {t("translation:navigationbar.home")}
               </p>
             </Nav.Link>
@@ -107,7 +107,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faBars} size="lg" />
-              <p className="displayLargeScreens mb-0">Menu</p>
+              <p className="small displayLargeScreens mb-0">Menu</p>
             </Nav.Link>
           </IndexLinkContainer>
         </Nav>

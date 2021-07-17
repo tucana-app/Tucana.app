@@ -1,32 +1,31 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import {
   Container,
   Form,
   Row,
   Col,
-  FloatingLabel,
   Button,
-  Spinner,
+  // Spinner,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRight,
   faCalendarCheck,
   faClock,
   faComment,
-  faCouch,
+  faCarAlt,
   faExclamationTriangle,
   faMapMarker,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const OfferRide = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [submited, setSubmited] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { provinces } = useSelector((state) => state.global);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -52,79 +51,100 @@ const OfferRide = () => {
             for more info.
           </p>
           <Form validated={submited}>
-            <Row className="mb-3">
-              <Col xs={12} md={6} className="mb-3 mb-md-0">
-                <p className="font-title mb-1">
+            <Row className="mb-4">
+              <Col xs={12} sm={6} className="mb-3 mb-md-0">
+                <p className="font-title text-center text-sm-start mb-1">
                   <FontAwesomeIcon
                     icon={faMapMarkerAlt}
                     className="text-success me-2"
                   />
-                  Your origin<span className="text-danger">*</span>
+                  Your origin
                 </p>
-                <div className="p-2 border rounded">
+                <div className="p-2 p-md-3 border rounded">
                   <Form.Group className="mb-3">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>
+                      City<span className="text-danger">*</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
-                      name="firstname"
+                      name="cityOrigin"
                       placeholder="City"
                       className="rounded-0"
                       required
                     />
                     <Form.Control.Feedback type="invalid">
-                      {/* {errors.firstName} */}Error occured
+                      {/* {errors.cityOrigin} */}
                     </Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Province</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="lastname"
-                      placeholder="Province"
-                      className="rounded-0"
-                      required
-                    />
+                    <Form.Label>
+                      Province
+                      <small className="text-secondary ms-2">
+                        Only if you know it
+                      </small>
+                    </Form.Label>
+
+                    <Form.Select name="provinceOrigin" className="rounded-0">
+                      <option>Select a province</option>
+                      {provinces.map((province, index) => (
+                        <option key={index} value={province}>
+                          {province}
+                        </option>
+                      ))}
+                    </Form.Select>
+
                     <Form.Control.Feedback type="invalid">
-                      {/* {errors.lastName} */}Error occured
+                      {/* {errors.provinceOrigin} */}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </div>
               </Col>
 
-              <Col xs={12} md={6}>
-                <p className="font-title mb-1">
+              <Col xs={12} sm={6}>
+                <p className="font-title text-center text-sm-start mb-1">
                   <FontAwesomeIcon
                     icon={faMapMarker}
                     className="text-danger me-2"
                   />
-                  Your destination<span className="text-danger">*</span>
+                  Your destination
                 </p>
-                <div className="p-2 border rounded">
+                <div className="p-2 p-md-3 border rounded">
                   <Form.Group className="mb-3">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>
+                      City<span className="text-danger">*</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
-                      name="lastname"
-                      placeholder="Last name"
+                      name="cityDestination"
+                      placeholder="City"
                       className="rounded-0"
                       required
                     />
                     <Form.Control.Feedback type="invalid">
-                      {/* {errors.lastName} */}Error occured
+                      {/* {errors.cityDestination} */}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group>
-                    <Form.Label>Province</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="lastname"
-                      placeholder="Last name"
+                    <Form.Label>
+                      Province
+                      <small className="text-secondary ms-2">
+                        Only if you know it
+                      </small>
+                    </Form.Label>
+                    <Form.Select
+                      name="provinceDestination"
                       className="rounded-0"
-                      required
-                    />
+                    >
+                      <option>Select a province</option>
+                      {provinces.map((province, index) => (
+                        <option key={index} value={province}>
+                          {province}
+                        </option>
+                      ))}
+                    </Form.Select>
                     <Form.Control.Feedback type="invalid">
-                      {/* {errors.lastName} */}Error occured
+                      {/* {errors.provinceDestination} */}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </div>
@@ -132,13 +152,19 @@ const OfferRide = () => {
             </Row>
 
             <Row>
-              <Form.Group as={Col} xs={12} md={4} className="mb-3 mb-md-0">
+              <Form.Group
+                as={Col}
+                xs={12}
+                sm={6}
+                md={4}
+                className="text-center text-sm-start mb-3 mb-md-0"
+              >
                 <Form.Label>
                   <FontAwesomeIcon
                     icon={faCalendarCheck}
                     className="text-success me-2"
                   />
-                  Day you're leaving<span className="text-danger">*</span>
+                  Day of the ride<span className="text-danger">*</span>
                 </Form.Label>
                 <Form.Control
                   type="date"
@@ -151,44 +177,59 @@ const OfferRide = () => {
                   {/* {errors.date} */}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} xs={12} md={4} className="mb-3 mb-md-0">
+              <Form.Group
+                as={Col}
+                xs={12}
+                sm={6}
+                md={4}
+                className="text-center text-sm-start mb-3 mb-md-0"
+              >
                 <Form.Label>
                   <FontAwesomeIcon
                     icon={faClock}
                     className="text-success me-2"
                   />
-                  Time you're leaving<span className="text-danger">*</span>
+                  Time of the ride<span className="text-danger">*</span>
                 </Form.Label>
                 <Form.Control
                   type="time"
-                  name="lastname"
+                  name="time"
                   placeholder="Time"
                   className="rounded-0"
                   required
                 />
                 <Form.Control.Feedback type="invalid">
-                  {/* {errors.lastName} */}
+                  {/* {errors.time} */}
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} xs={12} md={4} className="mb-3 mb-md-0">
+              <Form.Group
+                as={Col}
+                xs={12}
+                sm={6}
+                md={4}
+                className="text-center text-sm-start mb-3 mb-md-0"
+              >
                 <Form.Label>
                   <FontAwesomeIcon
-                    icon={faCouch}
+                    icon={faCarAlt}
                     className="text-success me-2"
                   />
                   Seats available<span className="text-danger">*</span>
                 </Form.Label>
-                <Form.Control
-                  type="number"
-                  name="seatsAvailable"
-                  placeholder="1"
-                  defaultValue="1"
+                <Form.Select
+                  aria-label="Default select example"
+                  name="provinceDestination"
                   className="rounded-0"
-                  min="1"
-                  max="6"
-                  required
-                />
+                  defaultValue="1"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </Form.Select>
                 <small className="text-secondary">1 - 6 seats</small>
                 <Form.Control.Feedback type="invalid">
                   {/* {errors.date} */}
@@ -197,7 +238,11 @@ const OfferRide = () => {
             </Row>
 
             <Row className="mb-3">
-              <Form.Group as={Col} xs={12}>
+              <Form.Group
+                as={Col}
+                xs={12}
+                className="text-center text-sm-start"
+              >
                 <Form.Label>
                   <p className="small text-secondary">
                     <FontAwesomeIcon
@@ -217,7 +262,7 @@ const OfferRide = () => {
                   as="textarea"
                   rows={2}
                   type="textarea"
-                  name="lastname"
+                  name="comment"
                   placeholder="Add any relevant info, like the name of the city next to where you go or the route you'll take"
                   className="rounded-0 mb-1"
                 />

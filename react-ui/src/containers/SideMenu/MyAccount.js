@@ -12,8 +12,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { history } from "../../helpers/history";
-
 function MyAccount() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
@@ -24,11 +22,7 @@ function MyAccount() {
   return (
     <div fluid data-aos="slide-left">
       <ListGroup variant="flush">
-        <Link
-          to="/menu"
-          onClick={() => history.goBack()}
-          className="text-light text-decoration-none"
-        >
+        <Link to="/menu" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
