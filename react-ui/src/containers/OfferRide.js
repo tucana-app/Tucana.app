@@ -86,7 +86,10 @@ const OfferRide = () => {
                     </Form.Label>
 
                     <Form.Select name="provinceOrigin" className="rounded-0">
-                      <option>Select a province</option>
+                      <option disabled selected hidden>
+                        Select a province
+                      </option>
+                      <option value="unknown">I don't know</option>
                       {provinces.map((province, index) => (
                         <option key={index} value={province}>
                           {province}
@@ -136,7 +139,10 @@ const OfferRide = () => {
                       name="provinceDestination"
                       className="rounded-0"
                     >
-                      <option>Select a province</option>
+                      <option disabled selected hidden>
+                        Select a province
+                      </option>
+                      <option value="unknown">I don't know</option>
                       {provinces.map((province, index) => (
                         <option key={index} value={province}>
                           {province}
