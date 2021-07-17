@@ -1,11 +1,7 @@
-import axios from "axios";
-
 import userTypes from "./userTypes";
 import messageTypes from "../message/messageTypes";
 
 import AuthService from "../../services/auth.service";
-
-const URL_API = process.env.REACT_APP_URL_API;
 
 export const register = (username, email, password) => (dispatch) => {
   return AuthService.register(username, email, password).then(

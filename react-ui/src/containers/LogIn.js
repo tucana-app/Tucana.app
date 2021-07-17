@@ -14,13 +14,10 @@ import {
 
 import { login } from "../redux";
 
-import Footer from "../components/Footer";
-
 const Login = (props) => {
   const dispatch = useDispatch();
 
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { message } = useSelector((state) => state.message);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [submited, setSubmited] = useState(false);
@@ -91,86 +88,82 @@ const Login = (props) => {
   }
 
   return (
-    <div data-aos="fade-right">
-      <Container className="my-5">
-        <Row className="mb-5">
-          <Col className="text-center">
-            <h1 className="text-warning">Welcome back</h1>
-            <p className="lead text-white">We are happy to see you again 😊</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-            <Form noValidate validated={submited}>
-              <Form.Group as={Col} className="mb-3 mb-md-0">
-                <FloatingLabel label="Username" className="text-secondary mb-3">
-                  <Form.Control
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    className="rounded-0"
-                    isInvalid={!!errors.username}
-                    onChange={(e) => setField("username", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.username}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
-              </Form.Group>
-              <Form.Group as={Col}>
-                <FloatingLabel label="Password" className="text-secondary mb-3">
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className="rounded-0"
-                    isInvalid={!!errors.password}
-                    onChange={(e) => setField("password", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.password}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
-              </Form.Group>
-
-              {errorLogin ? (
-                <Alert variant="danger" className="rounded-0">
-                  The username / password combination didn't work
-                </Alert>
-              ) : null}
-
-              <Form.Group>
-                <Button
-                  variant="success"
+    <Container className="my-5" data-aos="fade-left">
+      <Row className="mb-5">
+        <Col className="text-center">
+          <h1 className="text-info">Welcome back</h1>
+          <p className="lead text-white">We are happy to see you again 😊</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+          <Form noValidate validated={submited}>
+            <Form.Group as={Col} className="mb-3 mb-md-0">
+              <FloatingLabel label="Username" className="text-secondary mb-3">
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder="Username"
                   className="rounded-0"
-                  onClick={handleLogin}
-                  size="lg"
-                  type="submit"
-                >
-                  {loading ? (
-                    <Spinner
-                      animation="border"
-                      role="status"
-                      as="span"
-                      aria-hidden="true"
-                      className="align-middle me-2"
-                      size="sm"
-                    >
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                  ) : null}
-                  Log In
-                </Button>
-              </Form.Group>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+                  isInvalid={!!errors.username}
+                  onChange={(e) => setField("username", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.username}
+                </Form.Control.Feedback>
+              </FloatingLabel>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <FloatingLabel label="Password" className="text-secondary mb-3">
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="rounded-0"
+                  isInvalid={!!errors.password}
+                  onChange={(e) => setField("password", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </FloatingLabel>
+            </Form.Group>
 
-      <Footer />
-    </div>
+            {errorLogin ? (
+              <Alert variant="danger" className="rounded-0">
+                The username / password combination didn't work
+              </Alert>
+            ) : null}
+
+            <Form.Group>
+              <Button
+                variant="info"
+                className="rounded-0"
+                onClick={handleLogin}
+                size="lg"
+                type="submit"
+              >
+                {loading ? (
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    as="span"
+                    aria-hidden="true"
+                    className="align-middle me-2"
+                    size="sm"
+                  >
+                    <span className="sr-only">Loading...</span>
+                  </Spinner>
+                ) : null}
+                Log In
+              </Button>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -13,7 +13,6 @@ import {
   validateStep1,
 } from "../redux";
 
-import Footer from "../components/Footer";
 import { Redirect } from "react-router-dom";
 
 const SignUp = () => {
@@ -178,200 +177,195 @@ const SignUp = () => {
   };
 
   return (
-    <div data-aos="fade-right">
-      <Container className="my-5">
-        <Row className="mb-5">
-          <Col className="text-center">
-            <h1 className="text-success">Sign Up</h1>
-            <p className="lead text-light">
-              You need to sign up to access our service
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={10} lg={8} className="mx-auto">
-            <Form noValidate validated={submited}>
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                  <Form.Label>
-                    First name<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="firstname"
-                    placeholder="First name"
-                    className="rounded-0"
-                    isInvalid={!!errors.firstName}
-                    onChange={(e) => setField("firstName", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.firstName}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} xs={12} md={6}>
-                  <Form.Label>
-                    Last name<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="lastname"
-                    placeholder="Last name"
-                    className="rounded-0"
-                    isInvalid={!!errors.lastName}
-                    onChange={(e) => setField("lastName", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.lastName}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <Row className="mb-3">
+    <Container className="my-5" data-aos="fade-left">
+      <Row className="mb-3">
+        <Col className="text-center">
+          <h1 className="text-success">Sign Up</h1>
+          <p className="lead text-light">
+            You need to sign up to access our service
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={12} md={10} lg={8} className="mx-auto">
+          <Form noValidate validated={submited}>
+            <Row className="mb-3">
+              <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
                 <Form.Label>
-                  Email address<span className="text-danger">*</span>
+                  First name<span className="text-danger">*</span>
                 </Form.Label>
-                <Form.Group as={Col}>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    className="rounded-0"
-                    placeholder="Email"
-                    isInvalid={!!errors.email}
-                    feedback={errors.email}
-                    onChange={(e) => setField("email", e.target.value)}
+                <Form.Control
+                  type="text"
+                  name="firstname"
+                  placeholder="First name"
+                  className="rounded-0"
+                  isInvalid={!!errors.firstName}
+                  onChange={(e) => setField("firstName", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.firstName}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} xs={12} md={6}>
+                <Form.Label>
+                  Last name<span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  placeholder="Last name"
+                  className="rounded-0"
+                  isInvalid={!!errors.lastName}
+                  onChange={(e) => setField("lastName", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.lastName}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Label>
+                Email address<span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Group as={Col}>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  className="rounded-0"
+                  placeholder="Email"
+                  isInvalid={!!errors.email}
+                  feedback={errors.email}
+                  onChange={(e) => setField("email", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
+                <Form.Label>
+                  Phone number<span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="tel"
+                  name="phonenumber"
+                  placeholder="Phone number"
+                  className="rounded-0"
+                  isInvalid={!!errors.phoneNumber}
+                  onChange={(e) => setField("phoneNumber", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.phoneNumber}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} xs={12} md={6}>
+                <Form.Label>
+                  Date of Birth<span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="date"
+                  name="dateOfBirth"
+                  className="rounded-0"
+                  isInvalid={!!errors.dateOfBirth}
+                  onChange={(e) => setField("dateOfBirth", e.target.value)}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.dateOfBirth}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row className="my-4">
+              <Form.Group as={Col}>
+                <Form.Check>
+                  <Form.Check.Input
+                    type="checkbox"
+                    className="me-2"
+                    isInvalid={!!errors.terms}
+                    feedback={errors.terms}
+                    onChange={(e) => setField("terms", e.target.checked)}
                     required
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
 
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                  <Form.Label>
-                    Phone number<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="tel"
-                    name="phonenumber"
-                    placeholder="Phone number"
-                    className="rounded-0"
-                    isInvalid={!!errors.phoneNumber}
-                    onChange={(e) => setField("phoneNumber", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.phoneNumber}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} xs={12} md={6}>
-                  <Form.Label>
-                    Date of Birth<span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="dateOfBirth"
-                    className="rounded-0"
-                    isInvalid={!!errors.dateOfBirth}
-                    onChange={(e) => setField("dateOfBirth", e.target.value)}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.dateOfBirth}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+                  <Form.Check.Label>
+                    Agree to{" "}
+                    <Link to="/coming-soon" className="text-info">
+                      terms and conditions
+                    </Link>
+                  </Form.Check.Label>
+                </Form.Check>
+              </Form.Group>
+            </Row>
 
-              <Row className="my-4">
-                <Form.Group as={Col}>
-                  <Form.Check>
-                    <Form.Check.Input
-                      type="checkbox"
-                      className="me-2"
-                      isInvalid={!!errors.terms}
-                      feedback={errors.terms}
-                      onChange={(e) => setField("terms", e.target.checked)}
-                      required
-                    />
-
-                    <Form.Check.Label>
-                      Agree to{" "}
-                      <Link to="/coming-soon" className="text-info">
-                        terms and conditions
-                      </Link>
-                    </Form.Check.Label>
-                  </Form.Check>
-                </Form.Group>
-              </Row>
-
-              <Row>
-                <Form.Group as={Col}>
-                  <Button
-                    variant="success"
-                    className="rounded-0"
-                    onClick={handleSubmit}
-                    type="submit"
-                    disabled={
-                      isLoadingCheckDuplicatedEmail ||
-                      isLoadingCheckDuplicatedPhoneNumber ||
-                      loadingAPI
-                        ? true
-                        : false
-                    }
-                  >
-                    {isLoadingCheckDuplicatedEmail ||
+            <Row>
+              <Form.Group as={Col} className="text-end">
+                <Button
+                  variant="success"
+                  className="rounded-0"
+                  onClick={handleSubmit}
+                  type="submit"
+                  disabled={
+                    isLoadingCheckDuplicatedEmail ||
                     isLoadingCheckDuplicatedPhoneNumber ||
-                    loadingAPI ? (
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        as="span"
-                        aria-hidden="true"
-                        className="align-middle me-2"
-                        size="sm"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
-                    ) : null}
-                    Continue
-                    <FontAwesomeIcon
-                      icon={faArrowRight}
-                      className="align-middle ms-2"
-                    />
-                  </Button>
-                </Form.Group>
-              </Row>
+                    loadingAPI
+                      ? true
+                      : false
+                  }
+                >
+                  {isLoadingCheckDuplicatedEmail ||
+                  isLoadingCheckDuplicatedPhoneNumber ||
+                  loadingAPI ? (
+                    <Spinner
+                      animation="border"
+                      role="status"
+                      as="span"
+                      aria-hidden="true"
+                      className="align-middle me-2"
+                      size="sm"
+                    >
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
+                  ) : null}
+                  Continue
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="align-middle ms-2"
+                  />
+                </Button>
+              </Form.Group>
+            </Row>
 
-              <Row>
-                <small className="text-small text-secondary mt-5 mb-3">
-                  <span className="text-danger">*</span> These fields are
-                  mandatory
-                </small>
-                <small className="text-small text-secondary mb-3">
-                  You will type in your password at the end.{" "}
-                  <Link to="/coming-soon" className="text-secondary">
-                    Learn why
-                  </Link>
-                </small>
-                <small className="text-small text-secondary mb-3">
-                  The information you are providing will be checked later by a
-                  moderator. Please make sure they are the most acurate
-                  possible.{" "}
-                  <Link to="/coming-soon" className="text-secondary">
-                    Learn more
-                  </Link>
-                </small>
-              </Row>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-
-      <Footer />
-    </div>
+            <Row>
+              <small className="text-small text-secondary mt-5 mb-3">
+                <span className="text-danger">*</span> These fields are
+                mandatory
+              </small>
+              <small className="text-small text-secondary mb-3">
+                You will type in your password at the end.{" "}
+                <Link to="/coming-soon" className="text-secondary">
+                  Learn why
+                </Link>
+              </small>
+              <small className="text-small text-secondary mb-3">
+                The information you are providing will be checked later by a
+                moderator. Please make sure they are the most acurate possible.{" "}
+                <Link to="/coming-soon" className="text-secondary">
+                  Learn more
+                </Link>
+              </small>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

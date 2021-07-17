@@ -10,11 +10,11 @@
 @import "~@csstools/normalize.css/normalize.css";
 @import "~react-tabs/style/react-tabs";
 @import "~rfs/scss";
+@import "~react-bootstrap-selectbox/dist/index.css";
 
 // Not in use yet
 // @import "~@ttskch/select2-bootstrap4-theme/src/layout";
 // @import "~select2/src/scss/core";
-
 // Import all the SCSS rules for each components and containers
 @import "./application/NavigationBar";
 @import "./application/FindRide";

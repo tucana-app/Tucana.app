@@ -1,11 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ListGroup, Container, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-
-import { history } from "../../helpers/history";
 
 function SignUpSuccess(props) {
   const { isLoggedIn } = useSelector((state) => state.user);

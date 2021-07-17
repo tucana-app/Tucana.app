@@ -17,7 +17,6 @@ import { isStrongPassword } from "validator";
 import * as signupActions from "../../redux/signup/signupActions";
 import { checkDuplicateUsername, signupUser } from "../../redux";
 
-import Footer from "../../components/Footer";
 import { Redirect } from "react-router-dom";
 
 const SignUpStep2 = () => {
@@ -165,118 +164,114 @@ const SignUpStep2 = () => {
   }
 
   return (
-    <div data-aos="fade-right">
-      <Container className="my-5">
-        <Row className="mb-5">
-          <Col className="text-center">
-            <h1 className="text-success">Sign Up</h1>
-            <p className="lead text-light">Final step, almost there!</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={10} lg={8} className="mx-auto">
-            <p className="text-white fw-light">
-              Choose a username and a strong password
-            </p>
-            <Form noValidate validated={submited}>
-              <Row className="mb-3">
-                <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                  <Form.Label>
-                    Username<span className="text-danger">*</span>
-                  </Form.Label>
-                  <InputGroup hasValidation>
-                    <InputGroup.Text className="rounded-0 bg-success">
-                      @
-                    </InputGroup.Text>
-                    <Form.Control
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      className="rounded-0"
-                      isInvalid={!!errors.username}
-                      onChange={(e) => setField("username", e.target.value)}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.username}
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group>
-                <Form.Group as={Col} xs={12} md={6}>
-                  <Form.Label>
-                    Password<span className="text-danger">*</span>
-                  </Form.Label>
+    <Container className="my-5" data-aos="fade-right">
+      <Row className="mb-5">
+        <Col className="text-center">
+          <h1 className="text-success">Sign Up</h1>
+          <p className="lead text-light">Final step, almost there!</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={12} md={10} lg={8} className="mx-auto">
+          <p className="text-white fw-light">
+            Choose a username and a strong password
+          </p>
+          <Form noValidate validated={submited}>
+            <Row className="mb-3">
+              <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
+                <Form.Label>
+                  Username<span className="text-danger">*</span>
+                </Form.Label>
+                <InputGroup hasValidation>
+                  <InputGroup.Text className="rounded-0 bg-success">
+                    @
+                  </InputGroup.Text>
                   <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Password"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
                     className="rounded-0"
-                    isInvalid={!!errors.password}
-                    onChange={(e) => setField("password", e.target.value)}
+                    isInvalid={!!errors.username}
+                    onChange={(e) => setField("username", e.target.value)}
                     required
                   />
-                  <small className="text-secondary">
-                    Min. 8 char., 1 uppercase, 1 number &amp; 1 symbol
-                  </small>
                   <Form.Control.Feedback type="invalid">
-                    {errors.password}
+                    {errors.username}
                   </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <Row>
-                <Form.Group as={Col}>
-                  <Button
-                    variant="success"
-                    className="rounded-0"
-                    onClick={handleSubmit}
-                    disabled={
-                      isLoadingCheckDuplicatedUsername || loadingAPI
-                        ? true
-                        : false
-                    }
-                  >
-                    {isLoadingCheckDuplicatedUsername || loadingAPI ? (
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        as="span"
-                        aria-hidden="true"
-                        className="align-middle me-2"
-                        size="sm"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
-                    ) : null}
-                    Continue
-                    <FontAwesomeIcon
-                      icon={faArrowRight}
-                      className="align-middle ms-2"
-                    />
-                  </Button>
-                </Form.Group>
-              </Row>
-
-              <Row>
-                <small className="text-small text-secondary mt-5 mb-3">
-                  <span className="text-danger">*</span> These fields are
-                  mandatory
+                </InputGroup>
+              </Form.Group>
+              <Form.Group as={Col} xs={12} md={6}>
+                <Form.Label>
+                  Password<span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="rounded-0"
+                  isInvalid={!!errors.password}
+                  onChange={(e) => setField("password", e.target.value)}
+                  required
+                />
+                <small className="text-secondary">
+                  Min. 8 char., 1 uppercase, 1 number &amp; 1 symbol
                 </small>
-                <small className="text-small text-secondary mb-3">
-                  Your password is always encrypted. Therefore cannot be read by
-                  anyone, even by our team members.{" "}
-                  <Link to="/coming-soon" className="text-secondary">
-                    Learn more
-                  </Link>
-                </small>
-              </Row>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-      <Footer />
-    </div>
+            <Row>
+              <Form.Group as={Col}>
+                <Button
+                  variant="success"
+                  className="rounded-0"
+                  onClick={handleSubmit}
+                  disabled={
+                    isLoadingCheckDuplicatedUsername || loadingAPI
+                      ? true
+                      : false
+                  }
+                >
+                  {isLoadingCheckDuplicatedUsername || loadingAPI ? (
+                    <Spinner
+                      animation="border"
+                      role="status"
+                      as="span"
+                      aria-hidden="true"
+                      className="align-middle me-2"
+                      size="sm"
+                    >
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
+                  ) : null}
+                  Continue
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="align-middle ms-2"
+                  />
+                </Button>
+              </Form.Group>
+            </Row>
+
+            <Row>
+              <small className="text-small text-secondary mt-5 mb-3">
+                <span className="text-danger">*</span> These fields are
+                mandatory
+              </small>
+              <small className="text-small text-secondary mb-3">
+                Your password is always encrypted. Therefore cannot be read by
+                anyone, even by our team members.{" "}
+                <Link to="/coming-soon" className="text-secondary">
+                  Learn more
+                </Link>
+              </small>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

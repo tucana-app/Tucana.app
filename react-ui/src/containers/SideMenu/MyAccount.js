@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   Col,
   Container,
@@ -12,17 +12,20 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-import Footer from "../../components/Footer";
 import { history } from "../../helpers/history";
 
-function MyAccountInformation() {
-  const { user: currentUser } = useSelector((state) => state.user);
+function MyAccount() {
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+
+  if (!isLoggedIn) {
+    return <Redirect to="/" />;
+  }
 
   return (
-    <div data-aos="fade-left">
+    <div fluid data-aos="slide-left">
       <ListGroup variant="flush">
         <Link
-          to="#"
+          to="/menu"
           onClick={() => history.goBack()}
           className="text-light text-decoration-none"
         >
@@ -80,10 +83,8 @@ function MyAccountInformation() {
           </Col>
         </Row>
       </Container>
-
-      <Footer />
     </div>
   );
 }
 
-export default MyAccountInformation;
+export default MyAccount;

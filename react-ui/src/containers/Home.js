@@ -13,7 +13,7 @@ function Home({ t }) {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className="py-0">
         <Row className="my-5">
           <Col
             lg={6}

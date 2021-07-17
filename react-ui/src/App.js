@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
 
 // Loading Containers
+import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
 import MyRides from "./containers/MyRides";
@@ -11,19 +12,20 @@ import LogIn from "./containers/LogIn";
 import SignUp from "./containers/SignUp";
 import SignUpStep2 from "./containers/SignUp/SignUpStep2";
 import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
-import MyAccount from "./containers/MyAccount";
+import SideMenu from "./containers/SideMenu";
 import Dashboard from "./containers/Dashboard";
 import Help from "./containers/Help";
 import ComingSoon from "./containers/ComingSoon";
 
 // All pages related to user account
-import MyAccountInformation from "./containers/MyAccount/MyAccountInformation";
-import MyAccountSettings from "./containers/MyAccount/MyAccountSettings";
+import MyAccount from "./containers/SideMenu/MyAccount";
+import Settings from "./containers/SideMenu/Settings";
 
 import Page404 from "./containers/Page404";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
+import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
 import { clearMessage } from "./redux";
@@ -43,7 +45,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Suspense fallback="Loading...">
+    <Suspense fallback={<Fallback />}>
       <Router history={history}>
         <ScrollToTop />
 
@@ -63,19 +65,17 @@ function App() {
             path="/signup/signup-success"
             component={SignUpSuccess}
           />
-          <Route exact path="/my-account" component={MyAccount} />
+          <Route exact path="/menu" component={SideMenu} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route
-            exact
-            path="/my-information"
-            component={MyAccountInformation}
-          />
-          <Route exact path="/settings" component={MyAccountSettings} />
+          <Route exact path="/my-account" component={MyAccount} />
+          <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           <Route component={Page404} />
         </Switch>
+
+        <Footer />
       </Router>
     </Suspense>
   );

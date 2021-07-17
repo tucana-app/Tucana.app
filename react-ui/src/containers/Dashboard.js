@@ -1,15 +1,8 @@
 import React from "react";
 import ComingSoon from "./ComingSoon";
-import Footer from "../components/Footer";
 
 const Dashboard = () => {
-  return (
-    <div data-aos="fade-left">
-      <ComingSoon pageName={"Dashboard"} />
-
-      <Footer />
-    </div>
-  );
+  return <ComingSoon pageName={"Dashboard"} data-aos="fade-left" />;
 };
 
 export default Dashboard;

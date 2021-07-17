@@ -1,15 +1,8 @@
 import React from "react";
 import ComingSoon from "./ComingSoon";
-import Footer from "../components/Footer";
 
 const FindRide = () => {
-  return (
-    <div data-aos="fade-left">
-      <ComingSoon pageName={"Find a ride"} />
-
-      <Footer />
-    </div>
-  );
+  return <ComingSoon pageName={"Find a ride"} data-aos="fade-left" />;
 };
 
 export default FindRide;

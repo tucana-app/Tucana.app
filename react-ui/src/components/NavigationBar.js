@@ -10,6 +10,7 @@ import {
   faPlus,
   faSearch,
   faHome,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
@@ -54,7 +55,7 @@ function NavigationBar() {
               </p>
             </Nav.Link>
           </IndexLinkContainer>
-          <IndexLinkContainer to="/my-account" href="/my-account">
+          <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
               <FontAwesomeIcon icon={faUser} size="lg" />
               <p className="displayLargeScreens mb-0">
@@ -102,6 +103,13 @@ function NavigationBar() {
               </Nav.Link>
             </IndexLinkContainer>
           </div>
+
+          <IndexLinkContainer to="/menu" href="/menu">
+            <Nav.Link className="font-title text-center">
+              <FontAwesomeIcon icon={faBars} size="lg" />
+              <p className="displayLargeScreens mb-0">Menu</p>
+            </Nav.Link>
+          </IndexLinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
