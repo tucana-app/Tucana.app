@@ -7,6 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        unique: true,
       },
       driverId: {
         type: Sequelize.INTEGER,
@@ -26,11 +27,7 @@ module.exports = {
       provinceDestination: {
         type: Sequelize.STRING,
       },
-      statusRideId: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1,
-      },
-      date: {
+      dateTime: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -41,6 +38,11 @@ module.exports = {
       comment: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      RideStatusId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
       },
       createdAt: {
         allowNull: false,

@@ -16,7 +16,7 @@ export const getUsersList = () => {
     dispatch(getUsersListRequested());
 
     axios
-      .get(URL_API + "/manage/listUsers")
+      .get(URL_API + "/admin/listUsers")
       .then((response) => {
         dispatch(getUsersListSuccess(response.data));
       })

@@ -6,12 +6,18 @@ import { Router, Switch, Route } from "react-router-dom";
 import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
+
 import MyRides from "./containers/MyRides";
+import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
+import MyRidesPassenger from "./containers/MyRides/MyRidesPassenger";
+
 import OfferRide from "./containers/OfferRide";
 import LogIn from "./containers/LogIn";
+
 import SignUp from "./containers/SignUp";
 import SignUpStep2 from "./containers/SignUp/SignUpStep2";
 import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
+
 import SideMenu from "./containers/SideMenu";
 import Dashboard from "./containers/Dashboard";
 import Help from "./containers/Help";
@@ -22,6 +28,7 @@ import ComingSoon from "./containers/ComingSoon";
 // All pages related to user account
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
+import Contact from "./containers/SideMenu/Contact";
 
 import Page404 from "./containers/Page404";
 
@@ -58,8 +65,17 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/offer-ride" component={OfferRide} />
           <Route exact path="/find-ride" component={FindRide} />
+
           <Route exact path="/my-rides" component={MyRides} />
+          <Route exact path="/my-rides/driver" component={MyRidesDriver} />
+          <Route
+            exact
+            path="/my-rides/passenger"
+            component={MyRidesPassenger}
+          />
+
           <Route exact path="/login" component={LogIn} />
+
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup/step-2" component={SignUpStep2} />
           <Route
@@ -67,6 +83,7 @@ function App() {
             path="/signup/signup-success"
             component={SignUpSuccess}
           />
+
           <Route exact path="/menu" component={SideMenu} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/my-account" component={MyAccount} />
@@ -74,6 +91,7 @@ function App() {
           <Route exact path="/help" component={Help} />
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
+          <Route exact path="/contact" component={Contact} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           <Route component={Page404} />

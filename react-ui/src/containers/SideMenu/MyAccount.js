@@ -20,7 +20,7 @@ function MyAccount() {
   }
 
   return (
-    <div fluid data-aos="slide-left">
+    <div data-aos="slide-left">
       <ListGroup variant="flush">
         <Link to="/menu" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
@@ -40,7 +40,7 @@ function MyAccount() {
       <Container className="my-5">
         <Row className="mb-5">
           <Col>
-            <h1 className="text-success text-center">My information</h1>
+            <h1 className="text-success text-center">My account information</h1>
           </Col>
         </Row>
         <Row>

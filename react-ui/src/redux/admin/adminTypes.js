@@ -2,10 +2,10 @@ const GET_USERS_LIST_REQUEST = "GET_USERS_LIST_REQUEST";
 const GET_USERS_LIST_SUCCESS = "GET_USERS_LIST_SUCCESS";
 const GET_USERS_LIST_FAIL = "GET_USERS_LIST_FAIL";
 
-const manageTypes = {
+const adminTypes = {
   GET_USERS_LIST_REQUEST,
   GET_USERS_LIST_SUCCESS,
   GET_USERS_LIST_FAIL,
 };
 
-export default manageTypes;
+export default adminTypes;

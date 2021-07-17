@@ -15,14 +15,15 @@ import {
   faUserPlus,
   faDonate,
   faDownload,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import { logout } from "../redux";
 
 const SideMenu = () => {
-  const { isLoggedIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
 
   const logOut = () => {
     dispatch(logout());
@@ -141,6 +142,7 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
         <Link to="/help" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
@@ -155,6 +157,22 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
+        <Link to="/contact" className="text-light text-decoration-none">
+          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+            <div className="d-inline-flex justify-content-between w-100 py-2">
+              <span>
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="text-light me-3"
+                />{" "}
+                Contact us
+              </span>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </div>
+          </ListGroup.Item>
+        </Link>
+
         <Link to="/coming-soon" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
@@ -169,6 +187,7 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
         <Link to="/donate" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
@@ -183,6 +202,7 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
         <Link to="/coming-soon" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">

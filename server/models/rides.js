@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       provinceOrigin: DataTypes.STRING,
       cityDestination: DataTypes.STRING,
       provinceDestination: DataTypes.STRING,
-      statusRideId: DataTypes.STRING,
-      date: DataTypes.DATE,
+      dateTime: DataTypes.DATE,
       seatsAvailable: DataTypes.INTEGER,
       comment: DataTypes.STRING,
+      RideStatusId: DataTypes.INTEGER,
     },
     {
       sequelize,

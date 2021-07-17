@@ -4,32 +4,40 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("RideStatuses", [
       {
-        code: "created",
-        name: "Created",
+        code: "planned",
+        name: "Planned",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         code: "accepted",
         name: "Accepted",
-      },
-      {
-        code: "planned",
-        name: "Planned",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         code: "on_going",
         name: "On going",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         code: "done",
         name: "Done",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         code: "rated",
         name: "Rated",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         code: "canceled",
         name: "Canceled",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ]);
   },

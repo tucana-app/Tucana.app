@@ -6,7 +6,7 @@ const initialState = {
   usersListError: "",
 };
 
-const manageReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case adminTypes.GET_USERS_LIST_REQUEST:
       return {
@@ -37,4 +37,4 @@ const manageReducer = (state = initialState, action) => {
   }
 };
 
-export default manageReducer;
+export default adminReducer;

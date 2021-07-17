@@ -5,15 +5,23 @@ module.exports = {
     return queryInterface.bulkInsert("Roles", [
       {
         name: "passenger",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "driver",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "moderator",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "admin",
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ]);
   },

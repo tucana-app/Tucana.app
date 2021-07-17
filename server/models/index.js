@@ -55,6 +55,12 @@ db.Admin.belongsToMany(db.Role, {
   otherKey: "roleId",
 });
 
+// Many rides can have one status
+db.RideStatus.hasMany(db.Rides);
+db.Rides.belongsTo(db.RideStatus, {
+  foreignKey: "RideStatusId",
+});
+
 db.ROLES = ["moderator", "admin"];
 
 module.exports = db;

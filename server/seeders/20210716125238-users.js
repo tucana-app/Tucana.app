@@ -16,12 +16,23 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        firstName: "Axel",
+        lastName: "Martin",
+        username: "axelma",
+        email: "axe@martin.ba",
+        password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
+        phoneNumber: "+50612367001",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete("Users", {
-      username: "ben",
+      username: "benny",
+      username: "axelma",
     });
   },
 };
