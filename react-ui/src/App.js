@@ -15,6 +15,7 @@ import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
 import SideMenu from "./containers/SideMenu";
 import Dashboard from "./containers/Dashboard";
 import Help from "./containers/Help";
+import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import ComingSoon from "./containers/ComingSoon";
 
@@ -71,6 +72,7 @@ function App() {
           <Route exact path="/my-account" component={MyAccount} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />
+          <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 

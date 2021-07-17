@@ -162,7 +162,7 @@ const SideMenu = () => {
 
       <hr className="w-75 bg-dark mx-auto my-4" />
 
-      <Link to="/coming-soon" className="text-light text-decoration-none">
+      <Link to="/download" className="text-light text-decoration-none">
         <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
           <div className="d-inline-flex justify-content-between w-100 py-2">
             <span>
