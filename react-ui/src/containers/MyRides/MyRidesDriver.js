@@ -80,7 +80,6 @@ const MyRidesDriver = () => {
 
             {!(userRidesListData.length === 0) ? (
               <Row>
-                {console.log(userRidesListData)}
                 <Col xs={12} md={6} className="mx-auto">
                   <Accordion>
                     {userRidesListData.map((ride, index) => (
