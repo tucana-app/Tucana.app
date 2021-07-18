@@ -19,9 +19,8 @@ import { getUserRides } from "../../redux";
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { loadingRidesList, ridesListData, ridesListError } = useSelector(
-    (state) => state.ride
-  );
+  const { isLoadingUserRidesList, userRidesListData, userRidesListError } =
+    useSelector((state) => state.ride);
 
   useEffect(() => {
     dispatch(getUserRides(currentUser.id));
@@ -50,7 +49,7 @@ const MyRidesDriver = () => {
       </ListGroup>
 
       <Container className="mt-4 mb-5">
-        {loadingRidesList ? (
+        {isLoadingUserRidesList ? (
           <Row>
             <Col className="text-center">
               <Spinner
@@ -79,47 +78,50 @@ const MyRidesDriver = () => {
               </Col>
             </Row>
 
-            {!(ridesListData.length === 0) ? (
+            {!(userRidesListData.length === 0) ? (
               <Row>
+                {console.log(userRidesListData)}
                 <Col xs={12} md={6} className="mx-auto">
                   <Accordion>
-                    {ridesListData.map((ride, index) => (
+                    {userRidesListData.map((ride, index) => (
                       <Accordion.Item key={index} eventKey={index}>
                         <Accordion.Header>
                           <span className="fw-bolder">
-                            {ride.cityOrigin} - {ride.cityDestination} (
-                            {dateFormat(ride.dateTime, "dd-mm-yyyy")})
+                            {ride.Ride.cityOrigin} - {ride.Ride.cityDestination}{" "}
+                            ({dateFormat(ride.Ride.dateTime, "dd-mm-yyyy")})
                           </span>
                         </Accordion.Header>
                         <Accordion.Body className="p-0">
                           <ListGroup className="border border-success border-3 rounded">
                             <ListGroup.Item>
                               <span className="text-success">Origin:</span>{" "}
-                              {ride.cityOrigin} ({ride.provinceOrigin})
+                              {ride.Ride.cityOrigin} ({ride.Ride.provinceOrigin}
+                              )
                             </ListGroup.Item>
                             <ListGroup.Item>
                               <span className="text-danger">Destination:</span>{" "}
-                              {ride.cityDestination} ({ride.provinceDestination}
-                              )
+                              {ride.Ride.cityDestination} (
+                              {ride.Ride.provinceDestination})
                             </ListGroup.Item>
                             <ListGroup.Item>
                               Date/time:{" "}
                               {dateFormat(
-                                ride.dateTime,
+                                ride.Ride.dateTime,
                                 "dd-mm-yyyy @ HH:MM TT"
                               )}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                              Seats: {ride.seatsAvailable}
+                              Seats left: {ride.Ride.seatsLeft}/
+                              {ride.Ride.seatsAvailable}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                              Comment: {ride.comment}
+                              Comment: {ride.Ride.comment}
                             </ListGroup.Item>
                             <ListGroup.Item>
                               <span className="text-warning fw-bold">
                                 Status:
                               </span>{" "}
-                              {ride.RideStatus.name}
+                              {ride.Ride.RideStatus.name}
                             </ListGroup.Item>
                           </ListGroup>
                         </Accordion.Body>
@@ -144,7 +146,7 @@ const MyRidesDriver = () => {
             )}
           </>
         )}
-        {ridesListError ? (
+        {userRidesListError ? (
           <Row>
             <Col>
               <Alert variant="danger">

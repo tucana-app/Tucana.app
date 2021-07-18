@@ -7,17 +7,26 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {}
+    static associate(models) {
+      Rides.belongsToMany(models.User, {
+        through: "users_rides",
+        onDelete: "CASCADE",
+      });
+
+      Rides.belongsTo(models.RideStatus, {
+        onDelete: "NO ACTION",
+      });
+    }
   }
   Rides.init(
     {
-      driverId: DataTypes.INTEGER,
       cityOrigin: DataTypes.STRING,
       provinceOrigin: DataTypes.STRING,
       cityDestination: DataTypes.STRING,
       provinceDestination: DataTypes.STRING,
       dateTime: DataTypes.DATE,
       seatsAvailable: DataTypes.INTEGER,
+      seatsLeft: DataTypes.INTEGER,
       comment: DataTypes.STRING,
       RideStatusId: DataTypes.INTEGER,
     },

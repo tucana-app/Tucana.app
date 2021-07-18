@@ -9,6 +9,10 @@
     "start": "node server",
     "dev": "nodemon server --ignore react-ui/",
     "build": "cd react-ui/ && npm install && npm run build",
+    "ct-rides": "cd server && sequelize db:migrate --to 20210716224543-create-rides.js && sequelize db:seed --seed 20210717012650-ride-test.js",
+    "ct-rides-status": "cd server && sequelize db:migrate --to 20210716224640-create-ride-status.js && sequelize db:seed --seed 20210716225046-ride-status.js",
+    "rs-rides": "cd server && sequelize db:migrate:undo:all --to 20210716224543-create-rides.js && sequelize db:seed --seed 20210717012650-ride-test.js",
+    "rs-rides-status": "cd server && sequelize db:migrate:undo:all --to 20210716224640-create-ride-status.js && sequelize db:seed --seed 20210716225046-ride-status.js",
     "sequelize-reset-db": "cd server/ && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "cacheDirectories": [

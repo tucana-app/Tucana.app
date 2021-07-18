@@ -7,6 +7,7 @@ import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
 
+import Ride from "./containers/Ride";
 import MyRides from "./containers/MyRides";
 import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
 import MyRidesPassenger from "./containers/MyRides/MyRidesPassenger";
@@ -25,10 +26,11 @@ import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import ComingSoon from "./containers/ComingSoon";
 
-// All pages related to user account
+// All pages included in the side menu
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
+import Messages from "./containers/SideMenu/Messages";
 
 import Page404 from "./containers/Page404";
 
@@ -66,6 +68,7 @@ function App() {
           <Route exact path="/offer-ride" component={OfferRide} />
           <Route exact path="/find-ride" component={FindRide} />
 
+          <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/my-rides" component={MyRides} />
           <Route exact path="/my-rides/driver" component={MyRidesDriver} />
           <Route
@@ -92,6 +95,7 @@ function App() {
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/messages" component={Messages} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           <Route component={Page404} />

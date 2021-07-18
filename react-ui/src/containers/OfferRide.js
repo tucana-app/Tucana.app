@@ -180,9 +180,7 @@ const OfferRide = () => {
                           }
                           required
                         >
-                          <option disabled hidden>
-                            Select a province
-                          </option>
+                          <option>Select a province</option>
                           {provinces.map((province, index) => (
                             <option key={index} value={province}>
                               {province}
@@ -244,9 +242,7 @@ const OfferRide = () => {
                           }
                           required
                         >
-                          <option disabled hidden>
-                            Select a province
-                          </option>
+                          <option>Select a province</option>
                           {provinces.map((province, index) => (
                             <option key={index} value={province}>
                               {province}
@@ -419,11 +415,7 @@ const OfferRide = () => {
                         size="lg"
                         className="rounded-0"
                         type="submit"
-                        disabled={
-                          isSubmitting ||
-                          submitFormOfferRideSuccess ||
-                          submitFormOfferRideFail
-                        }
+                        disabled={isSubmitting || submitFormOfferRideSuccess}
                       >
                         Submit
                       </Button>

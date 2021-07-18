@@ -9,10 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         unique: true,
       },
-      driverId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       cityOrigin: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -32,6 +28,10 @@ module.exports = {
         allowNull: false,
       },
       seatsAvailable: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      seatsLeft: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

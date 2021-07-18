@@ -9,7 +9,9 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/ride/get-rides", controller.getRides);
+  app.get("/api/ride/get-user-rides", controller.getUserRides);
+
+  app.get("/api/ride/get-all-rides", controller.getAllRides);
 
   app.post("/api/ride/add-ride", controller.addRide);
 };

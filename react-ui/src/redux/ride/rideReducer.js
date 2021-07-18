@@ -1,13 +1,17 @@
 import rideTypes from "./rideTypes";
 
 const initialState = {
-  isLoadingRidesList: false,
-  ridesListData: [],
-  ridesListError: "",
+  isLoadingUserRidesList: false,
+  userRidesListData: [],
+  userRidesListError: "",
 
   isLoadingSubmitFormOfferRide: false,
   submitFormOfferRideSuccess: false,
   submitFormOfferRideFail: "",
+
+  isloadingAllRidesList: false,
+  allRidesListData: [],
+  allRidesListError: "",
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -15,24 +19,24 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.GET_USER_RIDES_REQUEST:
       return {
         ...state,
-        loadingRidesList: true,
+        isLoadingUserRidesList: true,
       };
 
     case rideTypes.GET_USER_RIDES_SUCCESS:
       return {
         ...state,
-        loadingRidesList: false,
-        ridesListData: action.payload,
+        isLoadingUserRidesList: false,
+        userRidesListData: action.payload,
         totalRidesDriverOnGoing: action.payload.length,
-        ridesListError: "",
+        userRidesListError: "",
       };
 
     case rideTypes.GET_USER_RIDES_FAIL:
       return {
         ...state,
-        loadingRidesList: false,
-        ridesListData: [],
-        ridesListError: action.payload,
+        isLoadingUserRidesList: false,
+        userRidesListData: [],
+        userRidesListError: action.payload,
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST:
@@ -55,6 +59,28 @@ const rideReducer = (state = initialState, action) => {
         isLoadingSubmitFormOfferRide: false,
         submitFormOfferRideSuccess: false,
         submitFormOfferRideFail: action.payload,
+      };
+
+    case rideTypes.GET_ALL_RIDES_REQUEST:
+      return {
+        ...state,
+        isloadingAllRidesList: true,
+      };
+
+    case rideTypes.GET_ALL_RIDES_SUCCESS:
+      return {
+        ...state,
+        isloadingAllRidesList: false,
+        allRidesListData: action.payload,
+        allRidesListError: "",
+      };
+
+    case rideTypes.GET_ALL_RIDES_FAIL:
+      return {
+        ...state,
+        isloadingAllRidesList: false,
+        allRidesListData: [],
+        allRidesListError: action.payload,
       };
 
     default:

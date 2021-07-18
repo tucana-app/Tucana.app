@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, ListGroup } from "react-bootstrap";
+import { Container, ListGroup, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
@@ -16,6 +16,7 @@ import {
   faDonate,
   faDownload,
   faEnvelope,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -45,20 +46,37 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
         {isLoggedIn ? (
-          <Link to="/my-account" className="text-light text-decoration-none">
-            <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-              <div className="d-inline-flex justify-content-between w-100 py-2">
-                <span>
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className="text-success me-3"
-                  />{" "}
-                  Information
-                </span>
-                <FontAwesomeIcon icon={faChevronRight} />
-              </div>
-            </ListGroup.Item>
-          </Link>
+          <>
+            <Link to="/my-account" className="text-light text-decoration-none">
+              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="text-success me-3"
+                    />{" "}
+                    Information
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link to="/messages" className="text-light text-decoration-none">
+              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faComment}
+                      className="text-warning me-3"
+                    />{" "}
+                    Messages <Badge bg="success">0</Badge>
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+          </>
         ) : (
           <>
             <Link to="/login" className="text-light text-decoration-none">
@@ -116,7 +134,7 @@ const SideMenu = () => {
                 <span>
                   <FontAwesomeIcon
                     icon={faPowerOff}
-                    className="text-warning me-3"
+                    className="text-danger me-3"
                   />{" "}
                   Log Out
                 </span>

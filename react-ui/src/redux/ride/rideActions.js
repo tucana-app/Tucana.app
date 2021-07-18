@@ -4,6 +4,8 @@ import dateFormat from "dateformat";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
+// Get number of on going rides for user before offering another ride
+
 // Get all the driver's ride from a user
 
 export const getUserRidesRequested = () => {
@@ -17,7 +19,7 @@ export const getUserRides = (userId) => {
     dispatch(getUserRidesRequested());
 
     axios
-      .get(URL_API + "/ride/get-rides", {
+      .get(URL_API + "/ride/get-user-rides", {
         params: {
           userId,
         },
@@ -44,8 +46,6 @@ export const getUserRidesFail = (error) => {
     payload: error,
   };
 };
-
-// Get number of on going rides for user before offering another ride
 
 export const submitFormOfferRideRequested = () => {
   return {
@@ -89,6 +89,45 @@ export const submitFormOfferRideSuccess = (data) => {
 export const submitFormOfferRideFail = (error) => {
   return {
     type: rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// Get all the driver's ride from a user
+
+export const getAllRidesRequested = () => {
+  return {
+    type: rideTypes.GET_ALL_RIDES_REQUEST,
+  };
+};
+
+export const getAllRides = () => {
+  return (dispatch) => {
+    dispatch(getAllRidesRequested());
+
+    axios
+      .get(URL_API + "/ride/get-all-rides")
+      .then((response) => {
+        // console.log(response);
+        dispatch(getAllRidesSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+        dispatch(getAllRidesFail(error));
+      });
+  };
+};
+
+export const getAllRidesSuccess = (data) => {
+  return {
+    type: rideTypes.GET_ALL_RIDES_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getAllRidesFail = (error) => {
+  return {
+    type: rideTypes.GET_ALL_RIDES_FAIL,
     payload: error,
   };
 };
