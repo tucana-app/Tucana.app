@@ -20,7 +20,12 @@ module.exports = (app) => {
   app.get("/api/ride/user-booking-ride", controller.getUserBookingRide);
 
   app.get(
-    "/api/ride/user-new-rides-requests",
-    controller.getUserNewRidesRequests
+    "/api/ride/driver-new-rides-requests",
+    controller.getDriverNewRidesRequests
+  );
+
+  app.get(
+    "/api/ride/driver-all-rides-requests",
+    controller.getDriverAllRidesRequests
   );
 };

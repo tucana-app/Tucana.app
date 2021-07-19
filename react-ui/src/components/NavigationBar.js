@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 
 function NavigationBar() {
   const { user: currentUser } = useSelector((state) => state.user);
-  const { userNewRidesRequestsData } = useSelector((state) => state.message);
+  const { driverNewRidesRequestsData } = useSelector((state) => state.message);
 
   const { t } = useTranslation();
 
@@ -57,12 +57,12 @@ function NavigationBar() {
                 <FontAwesomeIcon icon={faComment} size="lg" />
                 <p className="small d-md-screen mb-0">
                   Messages
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {userNewRidesRequestsData.count
-                      ? userNewRidesRequestsData.count
-                      : 0}
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+                  {driverNewRidesRequestsData ? (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {driverNewRidesRequestsData.count}
+                      <span className="visually-hidden">unread messages</span>
+                    </span>
+                  ) : null}
                 </p>
               </div>
             </Nav.Link>

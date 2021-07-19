@@ -152,8 +152,8 @@ function Ride() {
                 <p className="mb-0">Province:</p>
               </Col>
               <Col xs={6} sm={3} lg={2} className="mb-3">
-                <p className="text-success mb-0">{ride.provinceDestination}</p>
                 <p className="text-success mb-0">{ride.cityDestination}</p>
+                <p className="text-success mb-0">{ride.provinceDestination}</p>
               </Col>
               <Col lg={4}></Col>
 
@@ -345,19 +345,15 @@ function Ride() {
                 <Col>
                   #{index + 1} - Date booked:{" "}
                   <span className="text-success">
-                    {dateFormat(booking.Booking.createdAt, "dd/mm/yyyy")}
+                    {dateFormat(booking.createdAt, "dd/mm/yyyy")}
                   </span>
                   . Seat(s) booked:{" "}
+                  <span className="text-success">{booking.seatsBooked}</span>.
+                  Your comment:{" "}
+                  <i className="text-success">"{booking.commentPassenger}"</i>.
+                  Status:{" "}
                   <span className="text-success">
-                    {booking.Booking.seatsBooked}
-                  </span>
-                  . Your comment:{" "}
-                  <i className="text-success">
-                    "{booking.Booking.commentPassenger}"
-                  </i>
-                  . Status:{" "}
-                  <span className="text-success">
-                    {booking.Booking.BookingStatus.name}
+                    {booking.BookingStatus.name}
                   </span>
                 </Col>
               </Row>

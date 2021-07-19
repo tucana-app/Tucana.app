@@ -38,7 +38,7 @@ import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
-import { clearNotificationFeedback, getUserNewRidesRequests } from "./redux";
+import { clearNotificationFeedback, getDriverNewRidesRequests } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -53,12 +53,18 @@ function App() {
     history.listen((location) => {
       // clear message when changing location
       dispatch(clearNotificationFeedback());
-
-      // fetch new ride request
-      if (isLoggedIn) dispatch(getUserNewRidesRequests(currentUser.id));
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch]);
+
+  if (isLoggedIn) dispatch(getDriverNewRidesRequests(currentUser.id));
+
+  useEffect(() => {
+    history.listen((location) => {
+      if (isLoggedIn) dispatch(getDriverNewRidesRequests(currentUser.id));
+    });
+  }, []);
 
   return (
     <Suspense fallback={<Fallback />}>

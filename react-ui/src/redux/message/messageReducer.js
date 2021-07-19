@@ -1,59 +1,59 @@
 import messageTypes from "./messageTypes";
 
 const initialState = {
-  isLoadingRideRequests: false,
-  userRidesRequestsData: [],
-  userRidesRequestsError: "",
+  isLoadingDriverAllRidesRequests: false,
+  driverAllRidesRequestsData: [],
+  driverAllRidesRequestsError: "",
 
-  isLoadingUserRidesRequests: false,
-  userNewRidesRequestsData: {},
-  userNewRidesRequestsError: "",
+  isLoadingDriverNewRidesRequests: false,
+  driverNewRidesRequestsData: {},
+  driverNewRidesRequestsError: "",
 };
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case messageTypes.GET_USER_RIDES_REQUESTS_REQUEST:
+    case messageTypes.GET_DRIVER_RIDES_REQUESTS_REQUEST:
       return {
         ...state,
-        isLoadingRideRequest: true,
+        isLoadingDriverAllRidesRequests: true,
       };
 
-    case messageTypes.GET_USER_RIDES_REQUESTS_SUCCESS:
+    case messageTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS:
       return {
         ...state,
-        isLoadingRideRequest: false,
-        userRidesRequestsData: action.payload,
-        userRidesRequestsError: "",
+        isLoadingDriverAllRidesRequests: false,
+        driverAllRidesRequestsData: action.payload,
+        driverAllRidesRequestsError: "",
       };
 
-    case messageTypes.GET_USER_RIDES_REQUESTS_FAIL:
+    case messageTypes.GET_DRIVER_RIDES_REQUESTS_FAIL:
       return {
         ...state,
-        isLoadingRideRequest: false,
-        userRidesRequestsData: [],
-        userRidesRequestsError: action.payload,
+        isLoadingDriverAllRidesRequests: false,
+        driverAllRidesRequestsData: [],
+        driverAllRidesRequestsError: action.payload,
       };
 
-    case messageTypes.GET_USER_NEW_RIDES_REQUESTS_REQUEST:
+    case messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_REQUEST:
       return {
         ...state,
-        isLoadingRideRequest: true,
+        isLoadingDriverNewRidesRequests: true,
       };
 
-    case messageTypes.GET_USER_NEW_RIDES_REQUESTS_SUCCESS:
+    case messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_SUCCESS:
       return {
         ...state,
-        isLoadingRideRequest: false,
-        userNewRidesRequestsData: action.payload,
-        userNewRidesRequestsError: "",
+        isLoadingDriverNewRidesRequests: false,
+        driverNewRidesRequestsData: action.payload,
+        driverNewRidesRequestsError: "",
       };
 
-    case messageTypes.GET_USER_NEW_RIDES_REQUESTS_FAIL:
+    case messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_FAIL:
       return {
         ...state,
-        isLoadingRideRequest: false,
-        userNewRidesRequestsData: [],
-        userNewRidesRequestsError: action.payload,
+        isLoadingDriverNewRidesRequests: false,
+        driverNewRidesRequestsData: [],
+        driverNewRidesRequestsError: action.payload,
       };
 
     default:

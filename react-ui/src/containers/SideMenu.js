@@ -61,21 +61,6 @@ const SideMenu = () => {
                 </div>
               </ListGroup.Item>
             </Link>
-
-            <Link to="/messages" className="text-light text-decoration-none">
-              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span>
-                    <FontAwesomeIcon
-                      icon={faComment}
-                      className="text-warning me-3"
-                    />{" "}
-                    Messages <Badge bg="success">0</Badge>
-                  </span>
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </div>
-              </ListGroup.Item>
-            </Link>
           </>
         ) : (
           <>

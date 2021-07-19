@@ -5,85 +5,86 @@ const URL_API = process.env.REACT_APP_URL_API;
 
 // Get all the driver's rides requests
 
-export const getUserRidesRequestsRequested = () => {
+export const getDriverRidesRequestsRequested = () => {
   return {
-    type: messageTypes.GET_USER_RIDES_REQUESTS_REQUEST,
+    type: messageTypes.GET_DRIVER_RIDES_REQUESTS_REQUEST,
   };
 };
 
-export const getUserRidesRequests = (userId) => {
+export const getDriverRidesRequests = (userId) => {
   return (dispatch) => {
-    dispatch(getUserRidesRequestsRequested());
+    dispatch(getDriverRidesRequestsRequested());
 
     axios
-      .get(URL_API + "/ride/user-rides-requests", {
+      .get(URL_API + "/ride/driver-all-rides-requests", {
         params: {
           userId,
         },
       })
       .then((response) => {
-        // console.log(response.data)
-        dispatch(getUserRidesRequestsSuccess(response.data));
+        console.log(response.data);
+        dispatch(getDriverRidesRequestsSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error)
-        dispatch(getUserRidesRequestsFail(error));
+        dispatch(getDriverRidesRequestsFail(error));
       });
   };
 };
 
-export const getUserRidesRequestsSuccess = (data) => {
+export const getDriverRidesRequestsSuccess = (data) => {
   return {
-    type: messageTypes.GET_USER_RIDES_REQUESTS_SUCCESS,
+    type: messageTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS,
     payload: data,
   };
 };
 
-export const getUserRidesRequestsFail = (error) => {
+export const getDriverRidesRequestsFail = (error) => {
   return {
-    type: messageTypes.GET_USER_RIDES_REQUESTS_FAIL,
+    type: messageTypes.GET_DRIVER_RIDES_REQUESTS_FAIL,
     payload: error,
   };
 };
-// Get all the driver's ride from a user
 
-export const getUserNewRidesRequestsRequested = () => {
+// Get all the driver's number of new booking
+
+export const getDriverNewRidesRequestsRequested = () => {
   return {
-    type: messageTypes.GET_USER_NEW_RIDES_REQUESTS_REQUEST,
+    type: messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_REQUEST,
   };
 };
 
-export const getUserNewRidesRequests = (userId) => {
+export const getDriverNewRidesRequests = (userId) => {
   return (dispatch) => {
-    dispatch(getUserNewRidesRequestsRequested());
+    dispatch(getDriverNewRidesRequestsRequested());
 
     axios
-      .get(URL_API + "/ride/user-new-rides-requests", {
+      .get(URL_API + "/ride/driver-new-rides-requests", {
         params: {
           userId,
         },
       })
       .then((response) => {
         // console.log(response);
-        dispatch(getUserNewRidesRequestsSuccess(response.data));
+        dispatch(getDriverNewRidesRequestsSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
-        dispatch(getUserNewRidesRequestsFail(error));
+        dispatch(getDriverNewRidesRequestsFail(error));
       });
   };
 };
 
-export const getUserNewRidesRequestsSuccess = (data) => {
+export const getDriverNewRidesRequestsSuccess = (data) => {
   return {
-    type: messageTypes.GET_USER_NEW_RIDES_REQUESTS_SUCCESS,
+    type: messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_SUCCESS,
     payload: data,
   };
 };
 
-export const getUserNewRidesRequestsFail = (error) => {
+export const getDriverNewRidesRequestsFail = (error) => {
   return {
-    type: messageTypes.GET_USER_NEW_RIDES_REQUESTS_FAIL,
+    type: messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_FAIL,
     payload: error,
   };
 };

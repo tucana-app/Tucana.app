@@ -8,8 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Bookings.belongsToMany(models.User, {
-        through: "users_bookings",
+      Bookings.belongsTo(models.User, {
         onDelete: "NO ACTION",
       });
 
@@ -24,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Bookings.init(
     {
+      UserId: DataTypes.INTEGER,
       RideId: DataTypes.INTEGER,
       BookingStatusId: DataTypes.INTEGER,
       seatsBooked: DataTypes.INTEGER,

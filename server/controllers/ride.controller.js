@@ -94,28 +94,15 @@ module.exports = {
   },
 
   bookRide(req, res) {
+    console.log(req.body);
     return Bookings.create({
+      UserId: req.body.userId,
       RideId: req.body.rideId,
       seatsBooked: req.body.formValues.seatsNeeded,
     })
       .then((response) => {
-        UsersBookings.create(
-          {
-            UserId: req.body.userId,
-            BookingId: response.id,
-          },
-          { fields: ["UserId", "BookingId"] }
-        )
-          .then((response) => {
-            // console.log(response);
-            res
-              .status(201)
-              .send("You booking has been submitted to the driver");
-          })
-          .catch((error) => {
-            // console.log(error);
-            res.status(400).send("A problem occured with this request");
-          });
+        // console.log(response);
+        res.status(201).send("You booking has been submitted to the driver");
       })
       .catch((error) => {
         // console.log(error);
@@ -124,22 +111,14 @@ module.exports = {
   },
 
   getUserBookingRide(req, res) {
-    console.log(req.query);
-    UsersBookings.findAll({
+    Bookings.findAll({
       where: {
         UserId: req.query.userId,
+        RideId: req.query.rideId,
       },
       include: [
         {
-          model: Bookings,
-          where: {
-            RideId: req.query.rideId,
-          },
-          include: [
-            {
-              model: BookingStatus,
-            },
-          ],
+          model: BookingStatus,
         },
       ],
     })
@@ -153,56 +132,99 @@ module.exports = {
       });
   },
 
-  getUserNewRidesRequests(req, res) {
-    return Bookings.findAll({
+  getDriverNewRidesRequests(req, res) {
+    return Bookings.findAndCountAll({
       where: {
         BookingStatusId: 1,
+      },
+      attributes: {
+        exclude: [
+          "id",
+          "BookingStatusId",
+          "RideId",
+          "UserId",
+          "commentPassenger",
+          "commentRefused",
+          "createdAt",
+          "id",
+          "seatsBooked",
+          "updatedAt",
+        ],
       },
       include: [
         {
           model: Rides,
-          //     attributes: {
-          //       exclude: [
-          //         "cityDestination",
-          //         "cityOrigin",
-          //         "comment",
-          //         "createdAt",
-          //         "dateTime",
-          //         "provinceDestination",
-          //         "provinceOrigin",
-          //         "seatsAvailable",
-          //         "seatsLeft",
-          //         "updatedAt",
-          //         "RideStatusId",
-          //       ],
-          //     },
-          //     include: [
-          //       {
-          //         model: User,
-          //         attributes: {
-          //           exclude: [
-          //             "firstName",
-          //             "lastName",
-          //             "username",
-          //             "email",
-          //             "biography",
-          //             "password",
-          //             "phoneNumber",
-          //             "createdAt",
-          //             "updatedAt",
-          //           ],
-          //         },
-          //       },
-          //     ],
+          where: {
+            DriverId: req.query.userId,
+          },
+          attributes: {
+            exclude: [
+              "id",
+              "DriverId",
+              "cityDestination",
+              "cityOrigin",
+              "comment",
+              "createdAt",
+              "dateTime",
+              "provinceDestination",
+              "provinceOrigin",
+              "seatsAvailable",
+              "seatsLeft",
+              "updatedAt",
+              "RideStatusId",
+            ],
+          },
         },
       ],
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         res.status(200).json(response);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        res.status(400).json("A problem occured with this request");
+      });
+  },
+
+  getDriverAllRidesRequests(req, res) {
+    return Bookings.findAll({
+      where: {
+        UserId: req.query.userId,
+      },
+      include: [
+        {
+          model: Rides,
+          where: {
+            DriverId: req.query.userId,
+          },
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  "email",
+                  "biography",
+                  "password",
+                  "phoneNumber",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+            },
+          ],
+        },
+        {
+          model: BookingStatus,
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
         res.status(400).json("A problem occured with this request");
       });
   },

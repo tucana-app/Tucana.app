@@ -1,5 +1,5 @@
 import userTypes from "./userTypes";
-import messageTypes from "../message/messageTypes";
+import globalTypes from "../global/globalTypes";
 
 import AuthService from "../../services/auth.service";
 
@@ -11,7 +11,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
+        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
         payload: response.data.message,
       });
 
@@ -30,7 +30,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
+        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
         payload: message,
       });
 
@@ -66,7 +66,7 @@ export const login = (username, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
+        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
         payload: message,
       });
 
