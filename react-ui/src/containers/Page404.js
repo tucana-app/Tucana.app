@@ -4,7 +4,11 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Page404 = () => {
   return (
-    <Container className="text-light text-center py-5" data-aos="fade-left">
+    <Container
+      className="text-light text-center py-5"
+      data-aos="fade-in"
+      data-aos-duration="1000"
+    >
       <Row className="h-100 align-items-center">
         <Col>
           <div>

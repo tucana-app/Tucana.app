@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
 
 // Loading Containers
@@ -10,7 +10,7 @@ import FindRide from "./containers/FindRide";
 import Ride from "./containers/Ride";
 import MyRides from "./containers/MyRides";
 import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
-import MyRidesPassenger from "./containers/MyRides/MyRidesPassenger";
+import Bookings from "./containers/MyRides/Bookings";
 
 import OfferRide from "./containers/OfferRide";
 import LogIn from "./containers/LogIn";
@@ -20,7 +20,6 @@ import SignUpStep2 from "./containers/SignUp/SignUpStep2";
 import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
 
 import SideMenu from "./containers/SideMenu";
-import Dashboard from "./containers/Dashboard";
 import Help from "./containers/Help";
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
@@ -39,7 +38,7 @@ import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
-import { clearMessage } from "./redux";
+import { clearNotificationFeedback, getUserNewRidesRequests } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -48,12 +47,18 @@ import MessageFee from "./components/MessageFee";
 
 function App() {
   const dispatch = useDispatch();
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
   useEffect(() => {
     history.listen((location) => {
-      dispatch(clearMessage()); // clear message when changing location
+      // clear message when changing location
+      dispatch(clearNotificationFeedback());
+
+      // fetch new ride request
+      if (isLoggedIn) dispatch(getUserNewRidesRequests(currentUser.id));
     });
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, isLoggedIn]);
 
   return (
     <Suspense fallback={<Fallback />}>
@@ -71,11 +76,7 @@ function App() {
           <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/my-rides" component={MyRides} />
           <Route exact path="/my-rides/driver" component={MyRidesDriver} />
-          <Route
-            exact
-            path="/my-rides/passenger"
-            component={MyRidesPassenger}
-          />
+          <Route exact path="/my-rides/bookings" component={Bookings} />
 
           <Route exact path="/login" component={LogIn} />
 
@@ -88,7 +89,6 @@ function App() {
           />
 
           <Route exact path="/menu" component={SideMenu} />
-          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/my-account" component={MyAccount} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />

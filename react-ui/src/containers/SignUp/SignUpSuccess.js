@@ -8,7 +8,7 @@ function SignUpSuccess(props) {
   const { signupUserSuccess } = useSelector((state) => state.signup);
 
   if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/my-rides" />;
   }
 
   if (!signupUserSuccess.isSuccessful) {

@@ -40,7 +40,7 @@ const SignUp = () => {
   // Handle redirection in case the user is already logged in
   // Or if the form has already be submitted successfully
   if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/my-rides" />;
   }
 
   if (isStep1validated) {
@@ -113,7 +113,7 @@ const SignUp = () => {
 
       dispatch(checkDuplicatePhoneNumber(form.phoneNumber))
         .then((response) => {
-          // props.history.push("/dashboard");
+          // props.history.push("/my-rides");
           // window.location.reload();
           if (response.isPhoneNumberDuplicate)
             newErrors.phoneNumber = response.message;

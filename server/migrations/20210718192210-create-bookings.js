@@ -1,53 +1,32 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Rides", {
+    await queryInterface.createTable("Bookings", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        unique: true,
       },
-      DriverId: {
+      RideId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
       },
-      cityOrigin: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      provinceOrigin: {
-        type: Sequelize.STRING,
-      },
-      cityDestination: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      provinceDestination: {
-        type: Sequelize.STRING,
-      },
-      dateTime: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      seatsAvailable: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      seatsLeft: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      comment: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      RideStatusId: {
+      BookingStatusId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 1,
+      },
+      seatsBooked: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      commentPassenger: {
+        type: Sequelize.STRING,
+      },
+      commentRefused: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -60,6 +39,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Rides");
+    await queryInterface.dropTable("Bookings");
   },
 };

@@ -2,27 +2,23 @@ const db = require("../models");
 const Rides = db.Rides;
 const RideStatus = db.RideStatus;
 const User = db.User;
-const UsersRides = db.users_rides;
+const Bookings = db.Bookings;
+const UsersBookings = db.users_bookings;
+const BookingStatus = db.BookingStatus;
 
 const Op = db.Sequelize.Op;
 
 module.exports = {
   getUserRides(req, res) {
-    return UsersRides.findAll({
+    return Rides.findAll({
       where: {
-        UserId: req.query.userId,
-      },
-      attributes: {
-        exclude: ["UserId", "RideId"],
+        DriverId: req.query.userId,
       },
       include: [
         {
-          model: Rides,
+          model: RideStatus,
           attributes: {
             exclude: ["RideStatusId"],
-          },
-          include: {
-            model: RideStatus,
           },
         },
       ],
@@ -33,34 +29,13 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json(error);
+        res.status(400).json("A problem occured with this request");
       });
-
-    // Rides.findAll({
-    //   where: {
-    //     driverId: req.query.userId,
-    //   },
-    //   attributes: {
-    //     exclude: ["RideStatusId"],
-    //   },
-    //   include: [
-    //     {
-    //       model: RideStatus,
-    //     },
-    //   ],
-    // })
-    //   .then((response) => {
-    //     // console.log(response);
-    //     res.status(200).json(response);
-    //   })
-    //   .catch((error) => {
-    //     // console.log(error);
-    //     res.status(400).json(error);
-    //   });
   },
 
   addRide(req, res) {
     return Rides.create({
+      DriverId: req.body.userId,
       cityOrigin: req.body.formValues.cityOrigin,
       provinceOrigin: req.body.formValues.provinceOrigin,
       cityDestination: req.body.formValues.cityDestination,
@@ -70,26 +45,14 @@ module.exports = {
       seatsLeft: req.body.formValues.seatsAvailable,
       comment: req.body.formValues.comment,
     })
+
       .then((response) => {
-        UsersRides.create(
-          {
-            UserId: req.body.userId,
-            RideId: response.id,
-          },
-          { fields: ["UserId", "RideId"] }
-        )
-          .then((response) => {
-            // console.log(response);
-            res.status(201).send(response);
-          })
-          .catch((error) => {
-            // console.log(error);
-            res.status(400).send(error);
-          });
+        // console.log(response);
+        res.status(201).send("You ride has been successfully added");
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).send(error);
+        res.status(400).send("A problem occured with this request");
       });
   },
 
@@ -126,7 +89,121 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json(error);
+        res.status(400).json("A problem occured with this request");
+      });
+  },
+
+  bookRide(req, res) {
+    return Bookings.create({
+      RideId: req.body.rideId,
+      seatsBooked: req.body.formValues.seatsNeeded,
+    })
+      .then((response) => {
+        UsersBookings.create(
+          {
+            UserId: req.body.userId,
+            BookingId: response.id,
+          },
+          { fields: ["UserId", "BookingId"] }
+        )
+          .then((response) => {
+            // console.log(response);
+            res
+              .status(201)
+              .send("You booking has been submitted to the driver");
+          })
+          .catch((error) => {
+            // console.log(error);
+            res.status(400).send("A problem occured with this request");
+          });
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).send("A problem occured with this request");
+      });
+  },
+
+  getUserBookingRide(req, res) {
+    console.log(req.query);
+    UsersBookings.findAll({
+      where: {
+        UserId: req.query.userId,
+      },
+      include: [
+        {
+          model: Bookings,
+          where: {
+            RideId: req.query.rideId,
+          },
+          include: [
+            {
+              model: BookingStatus,
+            },
+          ],
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json("A problem occured with this request");
+      });
+  },
+
+  getUserNewRidesRequests(req, res) {
+    return Bookings.findAll({
+      where: {
+        BookingStatusId: 1,
+      },
+      include: [
+        {
+          model: Rides,
+          //     attributes: {
+          //       exclude: [
+          //         "cityDestination",
+          //         "cityOrigin",
+          //         "comment",
+          //         "createdAt",
+          //         "dateTime",
+          //         "provinceDestination",
+          //         "provinceOrigin",
+          //         "seatsAvailable",
+          //         "seatsLeft",
+          //         "updatedAt",
+          //         "RideStatusId",
+          //       ],
+          //     },
+          //     include: [
+          //       {
+          //         model: User,
+          //         attributes: {
+          //           exclude: [
+          //             "firstName",
+          //             "lastName",
+          //             "username",
+          //             "email",
+          //             "biography",
+          //             "password",
+          //             "phoneNumber",
+          //             "createdAt",
+          //             "updatedAt",
+          //           ],
+          //         },
+          //       },
+          //     ],
+        },
+      ],
+    })
+      .then((response) => {
+        console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(400).json("A problem occured with this request");
       });
   },
 };

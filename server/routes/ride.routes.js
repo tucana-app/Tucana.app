@@ -9,9 +9,18 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/ride/get-user-rides", controller.getUserRides);
+  app.get("/api/ride/user-rides", controller.getUserRides);
 
-  app.get("/api/ride/get-all-rides", controller.getAllRides);
+  app.get("/api/ride/all-rides", controller.getAllRides);
 
   app.post("/api/ride/add-ride", controller.addRide);
+
+  app.post("/api/ride/book", controller.bookRide);
+
+  app.get("/api/ride/user-booking-ride", controller.getUserBookingRide);
+
+  app.get(
+    "/api/ride/user-new-rides-requests",
+    controller.getUserNewRidesRequests
+  );
 };

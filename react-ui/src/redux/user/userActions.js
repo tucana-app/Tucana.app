@@ -11,7 +11,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_MESSAGE,
+        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
         payload: response.data.message,
       });
 
@@ -30,7 +30,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_MESSAGE,
+        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
         payload: message,
       });
 
@@ -45,6 +45,10 @@ export const login = (username, password) => (dispatch) => {
       dispatch({
         type: userTypes.LOGIN_SUCCESS,
         payload: { user: data },
+      });
+
+      dispatch({
+        type: userTypes.CHECK_USERS_MESSAGES,
       });
 
       return Promise.resolve();
@@ -62,7 +66,7 @@ export const login = (username, password) => (dispatch) => {
       });
 
       dispatch({
-        type: messageTypes.SET_MESSAGE,
+        type: messageTypes.SET_FEEDBACK_NOTIFICATION,
         payload: message,
       });
 

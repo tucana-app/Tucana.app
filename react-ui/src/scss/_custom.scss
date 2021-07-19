@@ -87,17 +87,17 @@ body {
   font-family: "Manrope", sans-serif !important;
 }
 
-.displayMediumScreens {
+.d-md-screen {
   display: none;
 }
 
-.displayLargeScreens {
+.d-lg-screen {
   display: none;
 }
 
-.displayMobileScreens.displayMediumScreens,
-.displayMobileScreens.displayLargeScreens {
-  display: block;
+.d-xs-screen.d-md-screen,
+.d-xs-screen.d-lg-screen {
+  display: revert;
 }
 
 .img-cover {
@@ -112,21 +112,21 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .displayMobileScreens {
-    display: block;
+  .d-xs-screen {
+    display: revert;
   }
 
-  .displayMediumScreens {
+  .d-md-screen {
     display: none;
   }
 
-  .displayLargeScreens {
+  .d-lg-screen {
     display: none;
   }
 
-  .displayMobileScreens.displayMediumScreens,
-  .displayMobileScreens.displayLargeScreens {
-    display: block;
+  .d-xs-screen.d-md-screen,
+  .d-xs-screen.d-lg-screen {
+    display: revert;
   }
 }
 
@@ -137,21 +137,21 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .displayMobileScreens {
+  .d-xs-screen {
     display: none;
   }
 
-  .displayMediumScreens {
-    display: block;
+  .d-md-screen {
+    display: revert;
   }
 
-  .displayLargeScreens {
+  .d-lg-screen {
     display: none;
   }
 
-  .displayMobileScreens.displayMediumScreens,
-  .displayMobileScreens.displayLargeScreens {
-    display: block;
+  .d-xs-screen.d-md-screen,
+  .d-xs-screen.d-lg-screen {
+    display: revert;
   }
 
   .parralax {
@@ -175,12 +175,12 @@ body {
     display: none;
   }
 
-  .displayMobileScreens.displayMediumScreens {
+  .d-xs-screen.d-md-screen {
     display: none;
   }
 
-  .displayLargeScreens,
-  .displayMobileScreens.displayLargeScreens {
+  .d-lg-screen,
+  .d-xs-screen.d-lg-screen {
     display: block;
   }
 

@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Row,
+  Col,
+  Button,
+  Alert,
+  Spinner,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarCheck,
@@ -21,7 +29,9 @@ import { submitFormOfferRide } from "../redux";
 const OfferRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { provinces } = useSelector((state) => state.global);
+  const { provinces, labelStringField, labelRequiredField } = useSelector(
+    (state) => state.global
+  );
   const {
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
@@ -31,9 +41,6 @@ const OfferRide = () => {
   const [alertFormSubmission, setAlertFormSubmission] = useState("");
 
   const form = useRef();
-
-  const labelStringField = "You must enter a string";
-  const labelRequiredField = "This field is required";
 
   const schema = Yup.object().shape({
     cityOrigin: Yup.string(labelStringField)
@@ -80,7 +87,7 @@ const OfferRide = () => {
           </Link>
         </div>
       );
-      form.current.reset();
+      // form.current.reset();
     } else if (submitFormOfferRideFail) {
       setAlertFormSubmission("A problem occured while adding your ride");
     }
@@ -91,7 +98,11 @@ const OfferRide = () => {
   }
 
   return (
-    <Container className="py-0 my-5" data-aos="fade-left">
+    <Container
+      className="py-0 my-5"
+      data-aos="fade-in"
+      data-aos-duration="1000"
+    >
       <Row className="mb-3">
         <Col className="text-center">
           <h1 className="text-success font-title">Offer a ride</h1>
@@ -415,8 +426,23 @@ const OfferRide = () => {
                         size="lg"
                         className="rounded-0"
                         type="submit"
-                        disabled={isSubmitting || submitFormOfferRideSuccess}
+                        disabled={
+                          isSubmitting ||
+                          isLoadingSubmitFormOfferRide ||
+                          submitFormOfferRideSuccess
+                        }
                       >
+                        {isSubmitting || isLoadingSubmitFormOfferRide ? (
+                          <Spinner
+                            animation="border"
+                            role="status"
+                            as="span"
+                            aria-hidden="true"
+                            className="align-middle me-2"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </Spinner>
+                        ) : null}
                         Submit
                       </Button>
                     </Form.Group>

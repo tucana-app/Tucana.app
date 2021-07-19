@@ -14,16 +14,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 
-import { getUserRides } from "../../redux";
+import { getUserDriverRides } from "../../redux";
 
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingUserRidesList, userRidesListData, userRidesListError } =
-    useSelector((state) => state.ride);
+  const {
+    isLoadingUserDriverRidesList,
+    userRidesListData,
+    userRidesListError,
+  } = useSelector((state) => state.ride);
 
   useEffect(() => {
-    dispatch(getUserRides(currentUser.id));
+    dispatch(getUserDriverRides(currentUser.id));
   }, []);
 
   if (!isLoggedIn) {
@@ -49,7 +52,7 @@ const MyRidesDriver = () => {
       </ListGroup>
 
       <Container className="mt-4 mb-5">
-        {isLoadingUserRidesList ? (
+        {isLoadingUserDriverRidesList ? (
           <Row>
             <Col className="text-center">
               <Spinner
@@ -86,41 +89,39 @@ const MyRidesDriver = () => {
                       <Accordion.Item key={index} eventKey={index}>
                         <Accordion.Header>
                           <span className="fw-bolder">
-                            {ride.Ride.cityOrigin} - {ride.Ride.cityDestination}{" "}
-                            ({dateFormat(ride.Ride.dateTime, "dd-mm-yyyy")})
+                            {ride.cityOrigin} - {ride.cityDestination} (
+                            {dateFormat(ride.dateTime, "dd-mm-yyyy")})
                           </span>
                         </Accordion.Header>
                         <Accordion.Body className="p-0">
                           <ListGroup className="border border-success border-3 rounded">
                             <ListGroup.Item>
                               <span className="text-success">Origin:</span>{" "}
-                              {ride.Ride.cityOrigin} ({ride.Ride.provinceOrigin}
-                              )
+                              {ride.cityOrigin} ({ride.provinceOrigin})
                             </ListGroup.Item>
                             <ListGroup.Item>
                               <span className="text-danger">Destination:</span>{" "}
-                              {ride.Ride.cityDestination} (
-                              {ride.Ride.provinceDestination})
+                              {ride.cityDestination} ({ride.provinceDestination}
+                              )
                             </ListGroup.Item>
                             <ListGroup.Item>
                               Date/time:{" "}
                               {dateFormat(
-                                ride.Ride.dateTime,
+                                ride.dateTime,
                                 "dd-mm-yyyy @ HH:MM TT"
                               )}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                              Seats left: {ride.Ride.seatsLeft}/
-                              {ride.Ride.seatsAvailable}
+                              Seats left: {ride.seatsLeft}/{ride.seatsAvailable}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                              Comment: {ride.Ride.comment}
+                              Comment: {ride.comment}
                             </ListGroup.Item>
                             <ListGroup.Item>
                               <span className="text-warning fw-bold">
                                 Status:
                               </span>{" "}
-                              {ride.Ride.RideStatus.name}
+                              {ride.RideStatus.name}
                             </ListGroup.Item>
                           </ListGroup>
                         </Accordion.Body>

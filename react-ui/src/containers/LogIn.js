@@ -9,7 +9,6 @@ import {
   Spinner,
   Alert,
   Button,
-  FloatingLabel,
 } from "react-bootstrap";
 
 import { login } from "../redux";
@@ -84,11 +83,11 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/my-rides" />;
   }
 
   return (
-    <Container className="my-5" data-aos="fade-left">
+    <Container className="my-5" data-aos="fade-in" data-aos-duration="1000">
       <Row className="mb-5">
         <Col className="text-center">
           <h1 className="text-info">Welcome back</h1>
@@ -98,37 +97,33 @@ const Login = (props) => {
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
           <Form noValidate validated={submited}>
-            <Form.Group as={Col} className="mb-3 mb-md-0">
-              <FloatingLabel label="Username" className="text-secondary mb-3">
-                <Form.Control
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  className="rounded-0"
-                  isInvalid={!!errors.username}
-                  onChange={(e) => setField("username", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.username}
-                </Form.Control.Feedback>
-              </FloatingLabel>
+            <Form.Group as={Col} className="mb-3">
+              <Form.Control
+                type="text"
+                name="username"
+                placeholder="Username"
+                className="rounded-0"
+                isInvalid={!!errors.username}
+                onChange={(e) => setField("username", e.target.value)}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.username}
+              </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col}>
-              <FloatingLabel label="Password" className="text-secondary mb-3">
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  className="rounded-0"
-                  isInvalid={!!errors.password}
-                  onChange={(e) => setField("password", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.password}
-                </Form.Control.Feedback>
-              </FloatingLabel>
+            <Form.Group as={Col} className="mb-3">
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="rounded-0"
+                isInvalid={!!errors.password}
+                onChange={(e) => setField("password", e.target.value)}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
             </Form.Group>
 
             {errorLogin ? (
@@ -142,7 +137,6 @@ const Login = (props) => {
                 variant="info"
                 className="rounded-0"
                 onClick={handleLogin}
-                size="lg"
                 type="submit"
               >
                 {loading ? (

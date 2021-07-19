@@ -1,15 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { IndexLinkContainer } from "react-router-bootstrap";
+// import { useSelector } from "react-redux";
+// import { IndexLinkContainer } from "react-router-bootstrap";
 import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
 
 // Importing components
 // import FormSearch from "../components/FormSearch";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
 function Home({ t }) {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  // const { isLoggedIn } = useSelector((state) => state.user);
 
   return (
     <>
@@ -18,7 +18,7 @@ function Home({ t }) {
           <Col className="d-block d-sm-inline-flex justify-content-center align-items-center text-center">
             <img
               src="./assets/images/logo-512.png"
-              alt="Company logo"
+              alt="Ride.CR logo"
               className="img-thumbnail img-fluid"
               style={{ width: "100px" }}
             />

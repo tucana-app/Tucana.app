@@ -152,7 +152,7 @@ const SignUpStep2 = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/my-rides" />;
   }
 
   if (!isStep1validated) {
