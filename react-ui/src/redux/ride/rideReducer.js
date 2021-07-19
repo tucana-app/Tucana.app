@@ -9,6 +9,10 @@ const initialState = {
   submitFormOfferRideSuccess: false,
   submitFormOfferRideFail: "",
 
+  isloadingRide: false,
+  rideData: [],
+  rideError: "",
+
   isloadingAllRidesList: false,
   allRidesListData: [],
   allRidesListError: "",
@@ -20,6 +24,10 @@ const initialState = {
   isloadingUserRideBookingList: false,
   userRideBookingData: [],
   userRideBookingError: "",
+
+  isLoadingDriverAllRidesRequests: false,
+  driverAllRidesRequestsData: [],
+  driverAllRidesRequestsError: "",
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -69,6 +77,28 @@ const rideReducer = (state = initialState, action) => {
         isLoadingSubmitFormOfferRide: false,
         submitFormOfferRideSuccess: false,
         submitFormOfferRideFail: action.payload,
+      };
+
+    case rideTypes.GET_RIDE_REQUEST:
+      return {
+        ...state,
+        isloadingRide: true,
+      };
+
+    case rideTypes.GET_RIDE_SUCCESS:
+      return {
+        ...state,
+        isloadingRide: false,
+        rideData: action.payload,
+        rideError: "",
+      };
+
+    case rideTypes.GET_RIDE_FAIL:
+      return {
+        ...state,
+        isloadingRide: false,
+        rideData: [],
+        rideError: action.payload,
       };
 
     case rideTypes.GET_ALL_RIDES_REQUEST:
@@ -136,6 +166,29 @@ const rideReducer = (state = initialState, action) => {
         userRideBookingData: [],
         userRideBookingError: action.payload,
       };
+
+    case rideTypes.GET_DRIVER_RIDES_REQUESTS_REQUEST:
+      return {
+        ...state,
+        isLoadingDriverAllRidesRequests: true,
+      };
+
+    case rideTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS:
+      return {
+        ...state,
+        isLoadingDriverAllRidesRequests: false,
+        driverAllRidesRequestsData: action.payload,
+        driverAllRidesRequestsError: "",
+      };
+
+    case rideTypes.GET_DRIVER_RIDES_REQUESTS_FAIL:
+      return {
+        ...state,
+        isLoadingDriverAllRidesRequests: false,
+        driverAllRidesRequestsData: [],
+        driverAllRidesRequestsError: action.payload,
+      };
+
     default:
       return state;
   }

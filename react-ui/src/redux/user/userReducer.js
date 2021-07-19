@@ -37,7 +37,6 @@ function userReducer(state = initialState, action) {
       };
     case userTypes.LOGOUT:
       return {
-        ...state,
         isLoggedIn: false,
         user: null,
       };

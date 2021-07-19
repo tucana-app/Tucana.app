@@ -12,11 +12,9 @@ import { getDriverRidesRequests } from "../../redux";
 const Bookings = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const {
-    isLoadingDriverAllRidesRequests,
-    driverAllRidesRequestsData,
-    driverAllRidesRequestsError,
-  } = useSelector((state) => state.message);
+  const { feedback } = useSelector((state) => state.global);
+  const { isLoadingDriverAllRidesRequests, driverAllRidesRequestsData } =
+    useSelector((state) => state.ride);
 
   useEffect(() => {
     if (driverAllRidesRequestsData.length === 0)
@@ -34,6 +32,15 @@ const Bookings = () => {
           <div>
             <h1 className="font-title text-success mb-0">Your bookings</h1>
             <p className="lead">Manage all the rides you have booked</p>
+            <p className="lead">
+              Total booking you've made:{" "}
+              <span className="fw-bold text-success">
+                {!(driverAllRidesRequestsData.length === 0) ||
+                !isLoadingDriverAllRidesRequests
+                  ? driverAllRidesRequestsData.length
+                  : "-"}
+              </span>
+            </p>
           </div>
         </Col>
       </Row>
@@ -54,53 +61,45 @@ const Bookings = () => {
             Fetching your rides...
           </Col>
         </Row>
+      ) : driverAllRidesRequestsData.length > 0 ? (
+        <>
+          {driverAllRidesRequestsData.map((request, index) => (
+            <Row key={index} className="border">
+              <Col>
+                <p>ID Ride: {request.RideId}</p>
+                <p>Created At: {request.createdAt}</p>
+                <p>Seat(s) booked: {request.seatsBooked}</p>
+                <p>Status: {request.BookingStatus.name}</p>
+                <p>Your comment: {request.commentPassenger}</p>
+                <p>Driver's comment: {request.commentRefused}</p>
+              </Col>
+              <Col>
+                <p>Origin: {request.Ride.cityOrigin}</p>
+                <p>Destination: {request.Ride.cityDestination}</p>
+                <p>Driver: {request.Ride.User.username}</p>
+              </Col>
+            </Row>
+          ))}
+        </>
       ) : (
         <>
-          {!(driverAllRidesRequestsData.length === 0) ? (
-            <>
-              {driverAllRidesRequestsData.map((request, index) => (
-                <Row className="border">
-                  <Col>
-                    <p>ID Ride: {request.RideId}</p>
-                    <p>Created At: {request.createdAt}</p>
-                    <p>Seat(s) booked: {request.seatsBooked}</p>
-                    <p>Status: {request.BookingStatus.name}</p>
-                    <p>Your comment: {request.commentPassenger}</p>
-                    <p>Driver's comment: {request.commentRefused}</p>
-                  </Col>
-                  <Col>
-                    <p>Origin: {request.Ride.cityOrigin}</p>
-                    <p>Destination: {request.Ride.cityDestination}</p>
-                    <p>Driver: {request.Ride.User.username}</p>
-                  </Col>
-                </Row>
-              ))}
-            </>
-          ) : (
-            <>
-              {driverAllRidesRequestsError ? (
-                <Row>
-                  <Col>
-                    <Alert variant="danger">
-                      An error occured while fetching all the rides
-                    </Alert>
-                  </Col>
-                </Row>
-              ) : null}
-              <Row>
-                <Col className="text-center">
-                  <h1 className="display-2 text-info">No rides for now</h1>
-                  <p>
-                    Offer a ride by{" "}
-                    <Link to="/offer-ride" className="text-success">
-                      clicking here
-                    </Link>
-                  </p>
-                </Col>
-              </Row>
-            </>
-          )}
+          <Row>
+            <Col className="text-center">
+              <h1 className="display-2 text-info">No rides for now</h1>
+              <p>
+                Offer a ride by{" "}
+                <Link to="/offer-ride" className="text-success">
+                  clicking here
+                </Link>
+              </p>
+            </Col>
+          </Row>
         </>
+      )}
+      {feedback.message && (
+        <Alert variant={feedback.variant} className="mt-3">
+          {feedback.message}
+        </Alert>
       )}
     </Container>
   );

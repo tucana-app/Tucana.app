@@ -3,10 +3,13 @@ const Rides = db.Rides;
 const RideStatus = db.RideStatus;
 const User = db.User;
 const Bookings = db.Bookings;
-const UsersBookings = db.users_bookings;
 const BookingStatus = db.BookingStatus;
-
 const Op = db.Sequelize.Op;
+
+const errorMessage = { message: "A problem occured with this request" };
+
+const { findPhoneNumbersInText } = require("libphonenumber-js");
+addrs = require("email-addresses");
 
 module.exports = {
   getUserRides(req, res) {
@@ -29,35 +32,84 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
   addRide(req, res) {
-    return Rides.create({
-      DriverId: req.body.userId,
-      cityOrigin: req.body.formValues.cityOrigin,
-      provinceOrigin: req.body.formValues.provinceOrigin,
-      cityDestination: req.body.formValues.cityDestination,
-      provinceDestination: req.body.formValues.provinceDestination,
-      dateTime: req.body.formValues.dateTime,
-      seatsAvailable: req.body.formValues.seatsAvailable,
-      seatsLeft: req.body.formValues.seatsAvailable,
-      comment: req.body.formValues.comment,
-    })
+    const listPhoneNumberInComment = findPhoneNumbersInText(
+      req.body.formValues.comment
+    );
 
+    const listEmailInComment = addrs.parseAddressList(
+      req.body.formValues.comment
+    );
+
+    if (listPhoneNumberInComment.length > 0)
+      res.status(401).json({
+        message: "Please do not include phone numbers in your comment",
+      });
+    else if (listEmailInComment)
+      res
+        .status(401)
+        .json({ message: "Please do not include emails in your comment" });
+    else {
+      return Rides.create({
+        DriverId: req.body.userId,
+        cityOrigin: req.body.formValues.cityOrigin,
+        provinceOrigin: req.body.formValues.provinceOrigin,
+        cityDestination: req.body.formValues.cityDestination,
+        provinceDestination: req.body.formValues.provinceDestination,
+        dateTime: req.body.formValues.dateTime,
+        seatsAvailable: req.body.formValues.seatsAvailable,
+        seatsLeft: req.body.formValues.seatsAvailable,
+        comment: req.body.formValues.comment,
+      })
+        .then((response) => {
+          // console.log(response);
+          res.status(201).send("You ride has been successfully added");
+        })
+        .catch((error) => {
+          // console.log(error);
+          res.status(400).json(errorMessage);
+        });
+    }
+  },
+
+  getRide(req, res) {
+    return Rides.findOne({
+      where: {
+        id: req.params.rideId,
+      },
+      // order: [["dateTime", "ASC"]],
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: {
+      //       exclude: [
+      //         "email",
+      //         "biography",
+      //         "password",
+      //         "phoneNumber",
+      //         "createdAt",
+      //         "updatedAt",
+      //       ],
+      //     },
+      //   },
+      // ],
+    })
       .then((response) => {
         // console.log(response);
-        res.status(201).send("You ride has been successfully added");
+        res.status(200).json(response);
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).send("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
   getAllRides(req, res) {
-    Rides.findAll({
+    return Rides.findAll({
       where: {
         seatsLeft: {
           [Op.gt]: 0,
@@ -89,12 +141,12 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
   bookRide(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     return Bookings.create({
       UserId: req.body.userId,
       RideId: req.body.rideId,
@@ -106,7 +158,7 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).send("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
@@ -128,27 +180,34 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
   getDriverNewRidesRequests(req, res) {
     return Bookings.findAndCountAll({
       where: {
-        BookingStatusId: 1,
+        [Op.and]: [
+          {
+            BookingStatusId: 1,
+            UserId: {
+              [Op.ne]: req.query.userId,
+            },
+          },
+        ],
       },
+      order: [["createdAt", "ASC"]],
       attributes: {
         exclude: [
-          "id",
-          "BookingStatusId",
           "RideId",
           "UserId",
           "commentPassenger",
           "commentRefused",
-          "createdAt",
-          "id",
-          "seatsBooked",
           "updatedAt",
+          "BookingStatusId",
+          // "id",
+          // "seatsBooked",
+          // "createdAt",
         ],
       },
       include: [
@@ -159,19 +218,32 @@ module.exports = {
           },
           attributes: {
             exclude: [
-              "id",
               "DriverId",
-              "cityDestination",
-              "cityOrigin",
               "comment",
-              "createdAt",
-              "dateTime",
-              "provinceDestination",
-              "provinceOrigin",
-              "seatsAvailable",
-              "seatsLeft",
-              "updatedAt",
               "RideStatusId",
+              "createdAt",
+              "updatedAt",
+              // "id",
+              // "cityDestination",
+              // "cityOrigin",
+              // "dateTime",
+              // "provinceDestination",
+              // "provinceOrigin",
+              // "seatsAvailable",
+              // "seatsLeft",
+            ],
+          },
+        },
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              "email",
+              "biography",
+              "password",
+              "phoneNumber",
+              "createdAt",
+              "updatedAt",
             ],
           },
         },
@@ -183,7 +255,7 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 
@@ -195,9 +267,6 @@ module.exports = {
       include: [
         {
           model: Rides,
-          where: {
-            DriverId: req.query.userId,
-          },
           include: [
             {
               model: User,
@@ -225,7 +294,7 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json("A problem occured with this request");
+        res.status(400).json(errorMessage);
       });
   },
 };

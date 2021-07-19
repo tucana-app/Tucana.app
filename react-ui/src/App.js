@@ -29,7 +29,7 @@ import ComingSoon from "./containers/ComingSoon";
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
-import Messages from "./containers/SideMenu/Messages";
+import Messages from "./containers/Messages";
 
 import Page404 from "./containers/Page404";
 
@@ -38,7 +38,7 @@ import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
-import { clearNotificationFeedback, getDriverNewRidesRequests } from "./redux";
+import { clearFeedback, getDriverNewRidesRequests } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     history.listen((location) => {
       // clear message when changing location
-      dispatch(clearNotificationFeedback());
+      dispatch(clearFeedback());
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

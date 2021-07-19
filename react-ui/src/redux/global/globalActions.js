@@ -1,10 +1,10 @@
 import globalTypes from "./globalTypes";
 
-export const setNotificationFeedback = (message) => ({
-  type: globalTypes.SET_FEEDBACK_NOTIFICATION,
+export const setfeedback = (message) => ({
+  type: globalTypes.SET_FEEDBACK,
   payload: message,
 });
 
-export const clearNotificationFeedback = () => ({
-  type: globalTypes.CLEAR_FEEDBACK_NOTIFICATION,
+export const clearFeedback = () => ({
+  type: globalTypes.CLEAR_FEEDBACK,
 });

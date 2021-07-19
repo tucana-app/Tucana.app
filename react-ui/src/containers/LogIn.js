@@ -13,15 +13,15 @@ import {
 
 import { login } from "../redux";
 
-const Login = (props) => {
+const Login = () => {
   const dispatch = useDispatch();
-
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { feedback } = useSelector((state) => state.global);
+
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [submited, setSubmited] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
 
   const setField = (field, value) => {
     setForm({
@@ -38,11 +38,11 @@ const Login = (props) => {
       });
   };
   const findFormErrors = () => {
-    const { username, password } = form;
+    const { credential, password } = form;
     const newErrors = {};
 
-    if (!username || username === "")
-      newErrors.username = "Please provide a username";
+    if (!credential || credential === "")
+      newErrors.credential = "Please provide a credential";
 
     if (!password || password === "")
       newErrors.password = "Please provide a password";
@@ -69,14 +69,12 @@ const Login = (props) => {
       // If we are not waiting for a Promise to return
       // When we did an API call
       setLoading(true);
-      setErrorLogin(false);
 
-      dispatch(login(form.username, form.password))
+      dispatch(login(form.credential, form.password))
         .then((response) => {
           setLoading(false);
         })
         .catch((error) => {
-          setErrorLogin(true);
           setLoading(false);
         });
     }
@@ -100,15 +98,15 @@ const Login = (props) => {
             <Form.Group as={Col} className="mb-3">
               <Form.Control
                 type="text"
-                name="username"
-                placeholder="Username"
+                name="credential"
+                placeholder="Email or username"
                 className="rounded-0"
-                isInvalid={!!errors.username}
-                onChange={(e) => setField("username", e.target.value)}
+                isInvalid={!!errors.credential}
+                onChange={(e) => setField("credential", e.target.value)}
                 required
               />
               <Form.Control.Feedback type="invalid">
-                {errors.username}
+                {errors.credential}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} className="mb-3">
@@ -126,11 +124,11 @@ const Login = (props) => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            {errorLogin ? (
-              <Alert variant="danger" className="rounded-0">
-                The username / password combination didn't work
+            {feedback.message && (
+              <Alert variant={feedback.variant} className="mt-3">
+                {feedback.message}
               </Alert>
-            ) : null}
+            )}
 
             <Form.Group>
               <Button

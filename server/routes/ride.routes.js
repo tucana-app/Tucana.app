@@ -9,6 +9,11 @@ module.exports = (app) => {
     next();
   });
 
+  app.get(
+    "/api/ride/driver-new-rides-requests",
+    controller.getDriverNewRidesRequests
+  );
+
   app.get("/api/ride/user-rides", controller.getUserRides);
 
   app.get("/api/ride/all-rides", controller.getAllRides);
@@ -20,12 +25,9 @@ module.exports = (app) => {
   app.get("/api/ride/user-booking-ride", controller.getUserBookingRide);
 
   app.get(
-    "/api/ride/driver-new-rides-requests",
-    controller.getDriverNewRidesRequests
-  );
-
-  app.get(
     "/api/ride/driver-all-rides-requests",
     controller.getDriverAllRidesRequests
   );
+
+  app.get("/api/ride/:rideId", controller.getRide);
 };

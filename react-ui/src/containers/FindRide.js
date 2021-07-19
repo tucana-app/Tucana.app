@@ -12,6 +12,7 @@ import { getAllRides } from "../redux";
 const FindRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { feedback } = useSelector((state) => state.global);
   const { isloadingAllRidesList, allRidesListData, allRidesListError } =
     useSelector((state) => state.ride);
 
@@ -169,15 +170,11 @@ const FindRide = () => {
             </>
           ) : (
             <>
-              {allRidesListError ? (
-                <Row>
-                  <Col>
-                    <Alert variant="danger">
-                      An error occured while fetching all the rides
-                    </Alert>
-                  </Col>
-                </Row>
-              ) : null}
+              {feedback.message && (
+                <Alert variant={feedback.variant} className="mt-3">
+                  {feedback.message}
+                </Alert>
+              )}
               <Row>
                 <Col className="text-center">
                   <h1 className="display-2 text-info">No rides for now</h1>

@@ -1,10 +1,6 @@
 import messageTypes from "./messageTypes";
 
 const initialState = {
-  isLoadingDriverAllRidesRequests: false,
-  driverAllRidesRequestsData: [],
-  driverAllRidesRequestsError: "",
-
   isLoadingDriverNewRidesRequests: false,
   driverNewRidesRequestsData: {},
   driverNewRidesRequestsError: "",
@@ -12,28 +8,6 @@ const initialState = {
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case messageTypes.GET_DRIVER_RIDES_REQUESTS_REQUEST:
-      return {
-        ...state,
-        isLoadingDriverAllRidesRequests: true,
-      };
-
-    case messageTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS:
-      return {
-        ...state,
-        isLoadingDriverAllRidesRequests: false,
-        driverAllRidesRequestsData: action.payload,
-        driverAllRidesRequestsError: "",
-      };
-
-    case messageTypes.GET_DRIVER_RIDES_REQUESTS_FAIL:
-      return {
-        ...state,
-        isLoadingDriverAllRidesRequests: false,
-        driverAllRidesRequestsData: [],
-        driverAllRidesRequestsError: action.payload,
-      };
-
     case messageTypes.GET_DRIVER_NEW_RIDES_REQUESTS_REQUEST:
       return {
         ...state,

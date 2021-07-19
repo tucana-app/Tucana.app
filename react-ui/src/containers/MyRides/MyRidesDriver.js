@@ -19,11 +19,10 @@ import { getUserDriverRides } from "../../redux";
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const {
-    isLoadingUserDriverRidesList,
-    userRidesListData,
-    userRidesListError,
-  } = useSelector((state) => state.ride);
+  const { feedback } = useSelector((state) => state.global);
+  const { isLoadingUserDriverRidesList, userRidesListData } = useSelector(
+    (state) => state.ride
+  );
 
   useEffect(() => {
     dispatch(getUserDriverRides(currentUser.id));
@@ -76,7 +75,7 @@ const MyRidesDriver = () => {
                   <h1 className="font-title text-success mb-0">
                     Rides as a driver
                   </h1>
-                  <p className="lead">All the rides you have driven</p>
+                  <p className="lead">All the rides you have submitted</p>
                 </div>
               </Col>
             </Row>
@@ -133,8 +132,7 @@ const MyRidesDriver = () => {
             ) : (
               <Row>
                 <Col className="text-center">
-                  <p>No rides for now</p>
-                  <p>-</p>
+                  <h1 className="display-2 text-info">No rides for now</h1>
                   <p>
                     Offer a ride by{" "}
                     <Link to="/offer-ride" className="text-success">
@@ -146,15 +144,12 @@ const MyRidesDriver = () => {
             )}
           </>
         )}
-        {userRidesListError ? (
-          <Row>
-            <Col>
-              <Alert variant="danger">
-                An error occured while fetching your rides
-              </Alert>
-            </Col>
-          </Row>
-        ) : null}
+
+        {feedback.message && (
+          <Alert variant={feedback.variant} className="mt-3">
+            {feedback.message}
+          </Alert>
+        )}
       </Container>
     </div>
   );

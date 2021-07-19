@@ -29,6 +29,7 @@ import { submitFormOfferRide } from "../redux";
 const OfferRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { feedback } = useSelector((state) => state.global);
   const { provinces, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
@@ -77,21 +78,21 @@ const OfferRide = () => {
     formikBag.setSubmitting(false);
   };
 
-  useEffect(() => {
-    if (submitFormOfferRideSuccess) {
-      setAlertFormSubmission(
-        <div>
-          Your ride has been added with success.{" "}
-          <Link to="/my-rides/driver" className="text-success">
-            Check it now
-          </Link>
-        </div>
-      );
-      // form.current.reset();
-    } else if (submitFormOfferRideFail) {
-      setAlertFormSubmission("A problem occured while adding your ride");
-    }
-  }, [submitFormOfferRideSuccess, submitFormOfferRideFail]);
+  // useEffect(() => {
+  //   if (submitFormOfferRideSuccess) {
+  //     setAlertFormSubmission(
+  //       <div>
+  //         Your ride has been added with success.{" "}
+  //         <Link to="/my-rides/driver" className="text-success">
+  //           Check it now
+  //         </Link>
+  //       </div>
+  //     );
+  //     // form.current.reset();
+  //   } else if (submitFormOfferRideFail) {
+  //     setAlertFormSubmission("A problem occured while adding your ride");
+  //   }
+  // }, [submitFormOfferRideSuccess, submitFormOfferRideFail]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -392,7 +393,7 @@ const OfferRide = () => {
                       as="textarea"
                       rows={2}
                       type="textarea"
-                      placeholder="Add any relevant info, like the name of the city next to where you go or the route you'll take"
+                      placeholder="Want to share the road you'll take or a precision on your destination?"
                       className="rounded-0 mb-1"
                       onChange={handleChange}
                       isInvalid={!!errors.comment}
@@ -404,19 +405,11 @@ const OfferRide = () => {
                   </Form.Group>
                 </Row>
 
-                {!!alertFormSubmission ? (
-                  <Row>
-                    <Col>
-                      <Alert
-                        variant={
-                          submitFormOfferRideSuccess ? "success" : "danger"
-                        }
-                      >
-                        {alertFormSubmission}
-                      </Alert>
-                    </Col>
-                  </Row>
-                ) : null}
+                {feedback.message && (
+                  <Alert variant={feedback.variant} className="mt-3">
+                    {feedback.message}
+                  </Alert>
+                )}
 
                 <Row>
                   <Col>

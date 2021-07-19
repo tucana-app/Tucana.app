@@ -11,7 +11,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
+        type: globalTypes.SET_FEEDBACK,
         payload: response.data.message,
       });
 
@@ -30,7 +30,7 @@ export const register = (username, email, password) => (dispatch) => {
       });
 
       dispatch({
-        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
+        type: globalTypes.SET_FEEDBACK,
         payload: message,
       });
 
@@ -39,16 +39,12 @@ export const register = (username, email, password) => (dispatch) => {
   );
 };
 
-export const login = (username, password) => (dispatch) => {
-  return AuthService.login(username, password).then(
+export const login = (credential, password) => (dispatch) => {
+  return AuthService.login(credential, password).then(
     (data) => {
       dispatch({
         type: userTypes.LOGIN_SUCCESS,
         payload: { user: data },
-      });
-
-      dispatch({
-        type: userTypes.CHECK_USERS_MESSAGES,
       });
 
       return Promise.resolve();
@@ -66,8 +62,8 @@ export const login = (username, password) => (dispatch) => {
       });
 
       dispatch({
-        type: globalTypes.SET_FEEDBACK_NOTIFICATION,
-        payload: message,
+        type: globalTypes.SET_FEEDBACK,
+        payload: { message, variant: "danger" },
       });
 
       return Promise.reject(error);

@@ -57,7 +57,15 @@ function NavigationBar() {
                 <FontAwesomeIcon icon={faComment} size="lg" />
                 <p className="small d-md-screen mb-0">
                   Messages
-                  {driverNewRidesRequestsData ? (
+                  {driverNewRidesRequestsData.count > 0 ? (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {driverNewRidesRequestsData.count}
+                      <span className="visually-hidden">unread messages</span>
+                    </span>
+                  ) : null}
+                </p>
+                <p className="small d-xs-screen mb-0">
+                  {driverNewRidesRequestsData.count > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {driverNewRidesRequestsData.count}
                       <span className="visually-hidden">unread messages</span>

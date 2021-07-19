@@ -28,8 +28,7 @@ const initialState = {
   labelStringField: "You must enter a string",
   labelRequiredField: "This field is required",
 
-  notificationFeedback: "",
-  notificationFeedbackVariant: "",
+  feedback: {},
 };
 
 function globalReducer(state = initialState, action) {
@@ -39,15 +38,15 @@ function globalReducer(state = initialState, action) {
         ...state,
       };
 
-    case globalTypes.SET_FEEDBACK_NOTIFICATION:
+    case globalTypes.SET_FEEDBACK:
       return {
         ...state,
-        notificationFeedback: action.payload.message,
+        feedback: action.payload,
         variant: action.payload.variant,
       };
 
-    case globalTypes.CLEAR_FEEDBACK_NOTIFICATION:
-      return { ...state, notificationFeedback: "", variant: "" };
+    case globalTypes.CLEAR_FEEDBACK:
+      return { ...state, feedback: {} };
 
     default:
       return state;
