@@ -1,183 +1,90 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, Container, Row, Col, Button, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { isEmail, isDate, isMobilePhone, isAlpha } from "validator";
-
-import * as signupActions from "../redux/signup/signupActions";
+import React, { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import {
-  checkDuplicateEmail,
-  checkDuplicatePhoneNumber,
-  validateStep1,
-} from "../redux";
+  Container,
+  Form,
+  Row,
+  Col,
+  Button,
+  Alert,
+  Spinner,
+} from "react-bootstrap";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
-import { Redirect } from "react-router-dom";
+import { registerUser } from "../redux";
+
+require("yup-password")(Yup); // extend yup
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, signupUserSuccessful } = useSelector(
+    (state) => state.user
+  );
+  const { feedback, labelStringField, labelRequiredField } = useSelector(
+    (state) => state.global
+  );
 
-  const [loadingAPI, setLoadingAPI] = useState(false);
+  const form = useRef();
 
-  const {
-    isLoadingCheckDuplicatedEmail,
-    // checkDuplicateEmailSuccess,
-    // checkDuplicateEmailFail,
-    isLoadingCheckDuplicatedPhoneNumber,
-    // checkDuplicatePhoneNumberSuccess,
-    // checkDuplicatePhoneNumberFail,
-    isEmailDuplicate,
-    isPhoneNumberDuplicate,
-    isStep1validated,
-  } = useSelector((state) => state.signup);
+  const schema = Yup.object().shape({
+    firstName: Yup.string(labelStringField)
+      .min(4, "Min. 4 characters")
+      .max(20, "Max. 20 characters")
+      .matches(
+        /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
+        "Please enter a valid name"
+      )
+      .required(labelRequiredField),
 
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
-  const [submited, setSubmited] = useState(false);
+    lastName: Yup.string(labelStringField)
+      .min(4, "Min. 4 characters")
+      .max(20, "Max. 20 characters")
+      .matches(
+        /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
+        "Please enter a valid name"
+      )
+      .required(labelRequiredField),
+
+    email: Yup.string(labelStringField)
+      .email("Please enter a valid email address")
+      .required(labelRequiredField),
+
+    phoneNumber: Yup.string(labelStringField)
+      .min(8, "Please enter a valid phone number")
+      .required(labelRequiredField),
+
+    username: Yup.string(labelStringField)
+      .min(4, "Min. 4 characters")
+      .max(20, "Max. 20 characters")
+      .matches(
+        /^[a-z0-9]([._-](?![._-])|[a-z0-9]){2,18}[a-z0-9]$/,
+        "Please enter a valid name"
+      )
+      .required(labelRequiredField),
+
+    password: Yup.string().password().required(labelRequiredField),
+  });
+
+  const handleSubmit = (values, formikBag) => {
+    dispatch(registerUser(values));
+
+    form.current.reset();
+    formikBag.setSubmitting(false);
+  };
 
   // Handle redirection in case the user is already logged in
-  // Or if the form has already be submitted successfully
   if (isLoggedIn) {
     return <Redirect to="/my-rides" />;
   }
 
-  if (isStep1validated) {
-    return <Redirect to="/signup/step-2" />;
+  if (signupUserSuccessful) {
+    return <Redirect to="/signup-successful" />;
   }
 
-  // Check for the errors in the form
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-
-    // Check and see if errors exist,
-    // and remove them from the error object:
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  };
-  const findFormErrors = () => {
-    const { firstName, lastName, email, phoneNumber, dateOfBirth, terms } =
-      form;
-    const newErrors = {};
-
-    // firstName errors
-    if (!firstName || firstName === "")
-      newErrors.firstName = "Please provide your first name";
-    else if (firstName.length < 4)
-      newErrors.firstName = "Your first name is too short";
-    else if (firstName.length > 30)
-      newErrors.firstName = "Your first name is too long";
-    else if (!isAlpha(firstName))
-      newErrors.firstName = "Please enter a valid name";
-
-    // lastName errors
-    if (!lastName || lastName === "")
-      newErrors.lastName = "Please provide your last name";
-    else if (lastName.length < 4)
-      newErrors.firstName = "Your last name is too short";
-    else if (lastName.length > 30)
-      newErrors.lastName = "Your last name is too long";
-    else if (!isAlpha(lastName))
-      newErrors.lastName = "Please enter a valid name";
-
-    // email errors
-    if (!email || email === "") newErrors.email = "Please provide an email";
-    else if (!isEmail(email)) newErrors.email = "This is not a valid email";
-    else {
-      setLoadingAPI(true);
-
-      dispatch(checkDuplicateEmail(form.email))
-        .then((response) => {
-          if (response.isEmailDuplicate) newErrors.email = response.message;
-          setLoadingAPI(false);
-        })
-        .catch(() => {
-          setLoadingAPI(false);
-        });
-    }
-
-    // phoneNumber errors
-    if (!phoneNumber || phoneNumber === "")
-      newErrors.phoneNumber = "Please provide a phone number";
-    else if (!isMobilePhone(phoneNumber))
-      newErrors.phoneNumber = "This is not a valid phone number";
-    else {
-      setLoadingAPI(true);
-
-      dispatch(checkDuplicatePhoneNumber(form.phoneNumber))
-        .then((response) => {
-          // props.history.push("/my-rides");
-          // window.location.reload();
-          if (response.isPhoneNumberDuplicate)
-            newErrors.phoneNumber = response.message;
-          setLoadingAPI(false);
-        })
-        .catch(() => {
-          setLoadingAPI(false);
-        });
-    }
-
-    // dateOfBirth errors
-    if (!dateOfBirth || dateOfBirth === "")
-      newErrors.dateOfBirth = "Please provide your date of birth";
-    else if (!isDate(dateOfBirth))
-      newErrors.dateOfBirth = "This is not a valid date";
-
-    // terms errors
-    if (!terms) newErrors.terms = "You need to check it first";
-
-    return newErrors;
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    setSubmited(true);
-
-    // Get the new errors
-    const newErrors = findFormErrors();
-
-    // Conditional logic:
-    if (Object.keys(newErrors).length > 0) {
-      // We got errors!
-      setErrors(newErrors);
-    } else {
-      // No errors
-
-      // If we are not waiting for a Promise to return
-      // When we did an API call
-      if (
-        !isLoadingCheckDuplicatedEmail &&
-        !isEmailDuplicate &&
-        !isLoadingCheckDuplicatedPhoneNumber &&
-        !isPhoneNumberDuplicate &&
-        !loadingAPI
-      ) {
-        // If everything is okay, we fill up the Redux state
-        // and carry on to the next step
-        dispatch(signupActions.changeFormEmail(form.email));
-        dispatch(signupActions.changeFormFirstName(form.firstName));
-        dispatch(signupActions.changeFormLastName(form.lastName));
-        dispatch(signupActions.changeFormDateOfBirth(form.dateOfBirth));
-        dispatch(signupActions.changeFormPhoneNumber(form.phoneNumber));
-
-        dispatch(validateStep1());
-      } else {
-        return;
-      }
-    }
-  };
-
   return (
-    <Container className="my-5" data-aos="fade-left">
+    <Container className="my-5" data-aos="fade-in" data-aos-duration="1000">
       <Row className="mb-3">
         <Col className="text-center">
           <h1 className="text-success">Sign Up</h1>
@@ -188,181 +95,218 @@ const SignUp = () => {
       </Row>
       <Row>
         <Col sm={12} md={10} lg={8} className="mx-auto">
-          <Form noValidate validated={submited}>
-            <Row className="mb-3">
-              <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                <Form.Label>
-                  First name<span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstname"
-                  placeholder="First name"
-                  className="rounded-0"
-                  isInvalid={!!errors.firstName}
-                  onChange={(e) => setField("firstName", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.firstName}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} xs={12} md={6}>
-                <Form.Label>
-                  Last name<span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastname"
-                  placeholder="Last name"
-                  className="rounded-0"
-                  isInvalid={!!errors.lastName}
-                  onChange={(e) => setField("lastName", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.lastName}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+          <Formik
+            validationSchema={schema}
+            onSubmit={handleSubmit}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              phoneNumber: "",
+              username: "",
+              password: "",
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              // handleBlur,
+              values,
+              touched,
+              isValid,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form noValidate onSubmit={handleSubmit} ref={form}>
+                <Row>
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group>
+                      <Form.Label>
+                        First name<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="firstName"
+                        placeholder="First name"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.firstName}
+                        isValid={touched.firstName && !errors.firstName}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.firstName}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
 
-            <Row className="mb-3">
-              <Form.Label>
-                Email address<span className="text-danger">*</span>
-              </Form.Label>
-              <Form.Group as={Col}>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  className="rounded-0"
-                  placeholder="Email"
-                  isInvalid={!!errors.email}
-                  feedback={errors.email}
-                  onChange={(e) => setField("email", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group>
+                      <Form.Label>
+                        Last name<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="lastName"
+                        placeholder="Last name"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.lastName}
+                        isValid={touched.lastName && !errors.lastName}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.lastName}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-            <Row className="mb-3">
-              <Form.Group as={Col} xs={12} md={6} className="mb-3 mb-md-0">
-                <Form.Label>
-                  Phone number<span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="tel"
-                  name="phonenumber"
-                  placeholder="Phone number"
-                  className="rounded-0"
-                  isInvalid={!!errors.phoneNumber}
-                  onChange={(e) => setField("phoneNumber", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.phoneNumber}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} xs={12} md={6}>
-                <Form.Label>
-                  Date of Birth<span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="date"
-                  name="dateOfBirth"
-                  className="rounded-0"
-                  isInvalid={!!errors.dateOfBirth}
-                  onChange={(e) => setField("dateOfBirth", e.target.value)}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.dateOfBirth}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+                <Row>
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group>
+                      <Form.Label>
+                        Email<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.email}
+                        isValid={touched.email && !errors.email}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
 
-            <Row className="my-4">
-              <Form.Group as={Col}>
-                <Form.Check>
-                  <Form.Check.Input
-                    type="checkbox"
-                    className="me-2"
-                    isInvalid={!!errors.terms}
-                    feedback={errors.terms}
-                    onChange={(e) => setField("terms", e.target.checked)}
-                    required
-                  />
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group>
+                      <Form.Label>
+                        Phone number<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="tel"
+                        name="phoneNumber"
+                        placeholder="Phone number"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.phoneNumber}
+                        isValid={touched.phoneNumber && !errors.phoneNumber}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.phoneNumber}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-                  <Form.Check.Label>
-                    Agree to{" "}
-                    <Link to="/coming-soon" className="text-info">
-                      terms and conditions
-                    </Link>
-                  </Form.Check.Label>
-                </Form.Check>
-              </Form.Group>
-            </Row>
+                <Row>
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group>
+                      <Form.Label>
+                        Username<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.username}
+                        isValid={touched.username && !errors.username}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.username}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
 
-            <Row>
-              <Form.Group as={Col} className="text-end">
-                <Button
-                  variant="success"
-                  className="rounded-0"
-                  onClick={handleSubmit}
-                  type="submit"
-                  disabled={
-                    isLoadingCheckDuplicatedEmail ||
-                    isLoadingCheckDuplicatedPhoneNumber ||
-                    loadingAPI
-                      ? true
-                      : false
-                  }
-                >
-                  {isLoadingCheckDuplicatedEmail ||
-                  isLoadingCheckDuplicatedPhoneNumber ||
-                  loadingAPI ? (
-                    <Spinner
-                      animation="border"
-                      role="status"
-                      as="span"
-                      aria-hidden="true"
-                      className="align-middle me-2"
-                      size="sm"
-                    >
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                  ) : null}
-                  Continue
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className="align-middle ms-2"
-                  />
-                </Button>
-              </Form.Group>
-            </Row>
+                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                    <Form.Group className="mb-3">
+                      <Form.Label>
+                        Password<span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.password}
+                        isValid={touched.password && !errors.password}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.password}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-            <Row>
-              <small className="text-small text-secondary mt-5 mb-3">
-                <span className="text-danger">*</span> These fields are
-                mandatory
-              </small>
-              <small className="text-small text-secondary mb-3">
-                You will type in your password at the end.{" "}
-                <Link to="/coming-soon" className="text-secondary">
-                  Learn why
-                </Link>
-              </small>
-              <small className="text-small text-secondary mb-3">
-                The information you are providing will be checked later by a
-                moderator. Please make sure they are the most acurate possible.{" "}
-                <Link to="/coming-soon" className="text-secondary">
-                  Learn more
-                </Link>
-              </small>
-            </Row>
-          </Form>
+                {feedback.message && (
+                  <Alert variant={feedback.variant} className="mt-3">
+                    {feedback.message}
+                  </Alert>
+                )}
+
+                <Row>
+                  <Col>
+                    <Form.Group className="text-end">
+                      <Button
+                        variant="success"
+                        size="lg"
+                        className="rounded-0"
+                        type="submit"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <Spinner
+                            animation="border"
+                            role="status"
+                            as="span"
+                            aria-hidden="true"
+                            className="align-middle me-2"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </Spinner>
+                        ) : null}
+                        Submit
+                      </Button>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
+          <p className="small text-secondary mb-3">
+            <span className="text-danger">*</span> These fields are mandatory
+          </p>
+          <p className="small text-secondary mb-3">
+            If you chose to sign up, you agree with our{" "}
+            <Link to="/coming-soon" className="link-secondary">
+              terms and conditions
+            </Link>
+            .
+          </p>
+          <p className="small text-secondary mb-3">
+            The information you are providing will be checked later by a
+            moderator. Please make sure they are the most acurate possible.{" "}
+            <Link to="/coming-soon" className="text-secondary">
+              Learn more
+            </Link>
+          </p>
         </Col>
       </Row>
     </Container>

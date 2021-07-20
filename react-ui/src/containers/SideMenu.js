@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, ListGroup, Badge } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
@@ -16,7 +16,6 @@ import {
   faDonate,
   faDownload,
   faEnvelope,
-  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 

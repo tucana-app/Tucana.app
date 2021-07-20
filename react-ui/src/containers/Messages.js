@@ -1,32 +1,23 @@
-import React, { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 import {
   Container,
   Row,
   Col,
   ListGroup,
-  Form,
-  Button,
-  Alert,
   Spinner,
   Badge,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faCarAlt,
-  faCar,
-  faBell,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCar, faBell } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 
 // import { getDriverNewRidesRequests } from "../redux";
 
 const Messages = () => {
-  const dispatch = useDispatch();
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  // const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingDriverNewRidesRequests, driverNewRidesRequestsData } =
     useSelector((state) => state.message);
 
@@ -71,8 +62,7 @@ const Messages = () => {
 
       {/* Display past booking for this ride by this user */}
       {isLoadingDriverNewRidesRequests ? (
-        <Container>
-          <hr className="w-75 mx-auto my-2" />
+        <Container className="my-5">
           <Row>
             <Col className="text-center">
               <Spinner
@@ -104,8 +94,8 @@ const Messages = () => {
               key={index}
             >
               <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 py-3">
-                <small className="text-secondary">
-                  {dateFormat(booking.createdAt, "dd/mm/yyyy HH:MM")}
+                <small className="text-secondary me-1">
+                  {dateFormat(booking.createdAt, "dd/mm HH:MM")}
                 </small>{" "}
                 Ride:{" "}
                 <span className="text-success">{booking.Ride.cityOrigin}</span>{" "}

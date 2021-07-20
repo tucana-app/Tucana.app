@@ -4,14 +4,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
 function SignUpSuccess(props) {
-  const { isLoggedIn } = useSelector((state) => state.user);
-  const { signupUserSuccess } = useSelector((state) => state.signup);
+  const { isLoggedIn, signupUserSuccessful } = useSelector(
+    (state) => state.user
+  );
 
   if (isLoggedIn) {
     return <Redirect to="/my-rides" />;
   }
 
-  if (!signupUserSuccess.isSuccessful) {
+  if (!signupUserSuccessful) {
     return <Redirect to="/signup" />;
   }
 

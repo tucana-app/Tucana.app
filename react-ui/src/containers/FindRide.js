@@ -11,13 +11,15 @@ import { getAllRides } from "../redux";
 
 const FindRide = () => {
   const dispatch = useDispatch();
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const { feedback } = useSelector((state) => state.global);
-  const { isloadingAllRidesList, allRidesListData, allRidesListError } =
-    useSelector((state) => state.ride);
+  const { isloadingAllRidesList, allRidesListData } = useSelector(
+    (state) => state.ride
+  );
 
   useEffect(() => {
     if (allRidesListData.length === 0) dispatch(getAllRides());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isLoggedIn) {

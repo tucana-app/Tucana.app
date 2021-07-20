@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
   faChevronRight,
-  faUser,
   faLifeRing,
   faTicketAlt,
 } from "@fortawesome/free-solid-svg-icons";

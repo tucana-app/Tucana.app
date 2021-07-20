@@ -72,7 +72,7 @@ export const submitFormOfferRide = (userId, values) => {
   return (dispatch) => {
     values = {
       ...values,
-      dateTime: new Date(`${values.date} ${values.time}:00.000-06`),
+      dateTime: new Date(`${values.date}T${values.time}`),
     };
 
     dispatch(submitFormOfferRideRequested());
@@ -109,6 +109,7 @@ export const submitFormOfferRide = (userId, values) => {
             message,
           })
         );
+
         dispatch(submitFormOfferRideFail(error));
       });
   };
@@ -229,12 +230,12 @@ export const getAllRides = () => {
       .catch((error) => {
         // console.log(error.message);
 
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
 
         dispatch(
           setfeedback({
@@ -296,12 +297,12 @@ export const submitFormBookRide = (userId, rideId, formValues) => {
       .catch((error) => {
         // console.log(error);
 
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
 
         dispatch(
           setfeedback({
@@ -354,12 +355,13 @@ export const getUserBookingRide = (userId, rideId) => {
       .catch((error) => {
         // console.log(error);
 
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
+
         dispatch(getUserBookingRideFail(error));
       });
   };
@@ -409,7 +411,6 @@ export const getDriverRidesRequests = (userId) => {
 };
 
 export const getDriverRidesRequestsSuccess = (data) => {
-  console.log(data);
   return {
     type: rideTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS,
     payload: data,

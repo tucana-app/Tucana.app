@@ -31,7 +31,8 @@
     "react-scripts": "^4.0.3",
     "react-tabs": "^3.2.1",
     "rfs": "^9.0.4",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-password": "^0.2.1"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",

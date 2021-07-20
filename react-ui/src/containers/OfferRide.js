@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -33,13 +33,8 @@ const OfferRide = () => {
   const { provinces, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
-  const {
-    isLoadingSubmitFormOfferRide,
-    submitFormOfferRideSuccess,
-    submitFormOfferRideFail,
-  } = useSelector((state) => state.ride);
-
-  const [alertFormSubmission, setAlertFormSubmission] = useState("");
+  const { isLoadingSubmitFormOfferRide, submitFormOfferRideSuccess } =
+    useSelector((state) => state.ride);
 
   const form = useRef();
 
@@ -73,26 +68,11 @@ const OfferRide = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
-    dispatch(submitFormOfferRide(currentUser.id, values));
+    dispatch(submitFormOfferRide(currentUser.id, values, form));
 
+    form.current.reset();
     formikBag.setSubmitting(false);
   };
-
-  // useEffect(() => {
-  //   if (submitFormOfferRideSuccess) {
-  //     setAlertFormSubmission(
-  //       <div>
-  //         Your ride has been added with success.{" "}
-  //         <Link to="/my-rides/driver" className="text-success">
-  //           Check it now
-  //         </Link>
-  //       </div>
-  //     );
-  //     // form.current.reset();
-  //   } else if (submitFormOfferRideFail) {
-  //     setAlertFormSubmission("A problem occured while adding your ride");
-  //   }
-  // }, [submitFormOfferRideSuccess, submitFormOfferRideFail]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;

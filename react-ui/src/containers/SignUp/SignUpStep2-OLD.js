@@ -34,7 +34,6 @@ const SignUpStep2 = () => {
     firstName,
     lastName,
     email,
-    dateOfBirth,
     phoneNumber,
     signupUserSuccess,
   } = useSelector((state) => state.signup);
@@ -141,7 +140,6 @@ const SignUpStep2 = () => {
             email,
             password: form.password,
             username: form.username,
-            dateOfBirth,
             phoneNumber,
           })
         );

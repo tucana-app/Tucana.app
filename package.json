@@ -10,6 +10,7 @@
     "dev": "nodemon server --ignore react-ui/",
     "build": "cd react-ui/ && npm install && npm run build",
     "rs-rides-status": "cd server && sequelize db:migrate:undo:all --to 20210716224640-create-ride-status.js && sequelize db:seed --seed 20210716225046-ride-status.js",
+    "rs-db": "cd server && sequelize db:migrate:undo:all",
     "rs-db-seed": "cd server && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210718204543-booking-status.js",
     "rs-db-seed-rides": "cd server && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210717012650-rides.js && sequelize db:seed --seed 20210718204543-booking-status.js",
     "rs-db-seed-all": "cd server/ && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"

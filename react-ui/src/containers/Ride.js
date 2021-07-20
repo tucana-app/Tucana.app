@@ -44,6 +44,7 @@ const Ride = () => {
   useEffect(() => {
     dispatch(getUserBookingRide(currentUser.id, rideId));
     dispatch(getRide(rideId));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isLoggedIn) {
@@ -171,6 +172,12 @@ const Ride = () => {
 
                 <hr className="w-75 mx-auto my-2" />
 
+                {feedback.message && (
+                  <Alert variant={feedback.variant} className="my-3">
+                    {feedback.message}
+                  </Alert>
+                )}
+
                 <Formik
                   validationSchema={rideData.ride.schema}
                   onSubmit={handleSubmit}
@@ -266,12 +273,6 @@ const Ride = () => {
                           </Form.Group>
                         </Col>
                       </Row>
-
-                      {feedback.message && (
-                        <Alert variant={feedback.variant} className="mt-3">
-                          {feedback.message}
-                        </Alert>
-                      )}
                     </Form>
                   )}
                 </Formik>

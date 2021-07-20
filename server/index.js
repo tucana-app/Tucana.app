@@ -34,7 +34,6 @@ if (!isDev && cluster.isMaster) {
   // Answer API requests.
   require("./routes/auth.routes")(app);
   require("./routes/admin.routes")(app);
-  require("./routes/signup.routes")(app);
   require("./routes/ride.routes")(app);
 
   // Priority serve any static files.

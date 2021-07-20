@@ -1,78 +1,112 @@
 import userTypes from "./userTypes";
-import globalTypes from "../global/globalTypes";
+import { setfeedback } from "../index";
+import axios from "axios";
 
-import AuthService from "../../services/auth.service";
+const URL_API = process.env.REACT_APP_URL_API;
 
-export const register = (username, email, password) => (dispatch) => {
-  return AuthService.register(username, email, password).then(
-    (response) => {
-      dispatch({
-        type: userTypes.REGISTER_SUCCESS,
-      });
-
-      dispatch({
-        type: globalTypes.SET_FEEDBACK,
-        payload: response.data.message,
-      });
-
-      return Promise.resolve();
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      dispatch({
-        type: userTypes.REGISTER_FAIL,
-      });
-
-      dispatch({
-        type: globalTypes.SET_FEEDBACK,
-        payload: message,
-      });
-
-      return Promise.reject();
-    }
-  );
+export const registerUserRequested = () => {
+  return {
+    type: userTypes.REGISTER_USER_REQUESTED,
+  };
 };
 
-export const login = (credential, password) => (dispatch) => {
-  return AuthService.login(credential, password).then(
-    (data) => {
-      dispatch({
-        type: userTypes.LOGIN_SUCCESS,
-        payload: { user: data },
+export const registerUser = (formSignupUser) => {
+  return (dispatch) => {
+    dispatch(registerUserRequested());
+
+    axios
+      .post(URL_API + "/auth/signup", {
+        formSignupUser,
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        dispatch(
+          setfeedback({
+            variant: "success",
+            message: response.data.message,
+          })
+        );
+
+        dispatch(registerUserSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+        dispatch(registerUserFail(error));
       });
+  };
+};
 
-      return Promise.resolve();
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+export const registerUserSuccess = (data) => {
+  return {
+    type: userTypes.REGISTER_USER_SUCCESS,
+    payload: data,
+  };
+};
 
-      dispatch({
-        type: userTypes.LOGIN_FAIL,
+export const registerUserFail = (data) => {
+  return {
+    type: userTypes.REGISTER_USER_FAIL,
+    payload: data,
+  };
+};
+
+export const login = (formLogin) => {
+  return (dispatch) => {
+    axios
+      .post(URL_API + "/auth/signin", {
+        formLogin,
+      })
+      .then((response) => {
+        if (response.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+
+        dispatch({
+          type: userTypes.LOGIN_SUCCESS,
+          payload: { user: response.data },
+        });
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+
+        dispatch({
+          type: userTypes.LOGIN_FAIL,
+        });
       });
-
-      dispatch({
-        type: globalTypes.SET_FEEDBACK,
-        payload: { message, variant: "danger" },
-      });
-
-      return Promise.reject(error);
-    }
-  );
+  };
 };
 
 export const logout = () => (dispatch) => {
-  AuthService.logout();
+  localStorage.removeItem("user");
 
   dispatch({
     type: userTypes.LOGOUT,

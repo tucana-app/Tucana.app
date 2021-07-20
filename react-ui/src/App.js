@@ -16,7 +16,7 @@ import OfferRide from "./containers/OfferRide";
 import LogIn from "./containers/LogIn";
 
 import SignUp from "./containers/SignUp";
-import SignUpStep2 from "./containers/SignUp/SignUpStep2";
+// import SignUpStep2 from "./containers/SignUp/SignUpStep2";
 import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
 
 import SideMenu from "./containers/SideMenu";
@@ -64,6 +64,7 @@ function App() {
     history.listen((location) => {
       if (isLoggedIn) dispatch(getDriverNewRidesRequests(currentUser.id));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -87,12 +88,7 @@ function App() {
           <Route exact path="/login" component={LogIn} />
 
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/signup/step-2" component={SignUpStep2} />
-          <Route
-            exact
-            path="/signup/signup-success"
-            component={SignUpSuccess}
-          />
+          <Route exact path="/signup-successful" component={SignUpSuccess} />
 
           <Route exact path="/menu" component={SideMenu} />
           <Route exact path="/my-account" component={MyAccount} />
