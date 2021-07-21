@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Badge, Container, ListGroup } from "react-bootstrap";
+import { Badge, Container, ListGroup, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
@@ -12,24 +12,46 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import { getUserRides, getUserBookings, getDriverBookings } from "../../redux";
+import {
+  getDriverRides,
+  getUserBookings,
+  getDriverBookings,
+} from "../../redux";
 
 const MyRides = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isDateInPast, countDriverBookings, countDriverRides } = useSelector(
+    (state) => state.global
+  );
   const {
-    isLoadingUserRidesList,
-    userRidesListData,
-    isLoadingUserBookings,
-    userBookingsData,
+    isLoadingDriverRides,
+    driverRidesData,
     isLoadingDriverBookings,
     driverBookingsData,
+    isLoadingUserBookings,
+    userBookingsData,
   } = useSelector((state) => state.ride);
 
+  const countUserBookings = (userBookingsData) => {
+    let count = 0;
+
+    userBookingsData.map((booking, index) => {
+      return booking.BookingStatusId === 1 &&
+        !isDateInPast(booking.Ride.dateTime, new Date())
+        ? count++
+        : null;
+    });
+
+    return count;
+  };
+
   useEffect(() => {
-    dispatch(getUserRides(currentUser.id));
-    dispatch(getUserBookings(currentUser.id));
-    dispatch(getDriverBookings(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getDriverRides(currentUser.id));
+      dispatch(getUserBookings(currentUser.id));
+      dispatch(getDriverBookings(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -51,14 +73,23 @@ const MyRides = () => {
               <span>
                 <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
                 Ride offered
-                <Badge bg="success" className="ms-2">
-                  {!isLoadingUserRidesList &&
-                  !(userRidesListData.length === 0) ? (
-                    <>{userRidesListData.length}</>
-                  ) : (
-                    0
-                  )}
-                </Badge>
+                {isLoadingDriverRides ? (
+                  <Spinner
+                    animation="grow"
+                    role="status"
+                    as="span"
+                    aria-hidden="true"
+                    className="ms-2"
+                    size="sm"
+                    variant="success"
+                  />
+                ) : driverRidesData.length > 0 ? (
+                  countDriverRides(driverRidesData) ? (
+                    <Badge bg="success" className="text-dark ms-2">
+                      {countDriverRides(driverRidesData)}
+                    </Badge>
+                  ) : null
+                ) : null}
               </span>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
@@ -74,14 +105,23 @@ const MyRides = () => {
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
                 Your booking requests
-                <Badge bg="info" className="ms-2">
-                  {!isLoadingDriverBookings &&
-                  !(driverBookingsData.length === 0) ? (
-                    <>{driverBookingsData.length}</>
-                  ) : (
-                    0
-                  )}
-                </Badge>
+                {isLoadingDriverBookings ? (
+                  <Spinner
+                    animation="grow"
+                    role="status"
+                    as="span"
+                    aria-hidden="true"
+                    className="ms-2"
+                    size="sm"
+                    variant="info"
+                  />
+                ) : driverBookingsData.length > 0 ? (
+                  countDriverBookings(driverBookingsData) ? (
+                    <Badge bg="info" className="text-dark ms-2">
+                      {countDriverBookings(driverBookingsData)}
+                    </Badge>
+                  ) : null
+                ) : null}
               </span>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
@@ -97,14 +137,23 @@ const MyRides = () => {
                   className="text-warning me-3"
                 />{" "}
                 My bookings
-                <Badge bg="warning" className="text-dark ms-2">
-                  {!isLoadingUserBookings &&
-                  !(userBookingsData.length === 0) ? (
-                    <>{userBookingsData.length}</>
-                  ) : (
-                    0
-                  )}
-                </Badge>
+                {isLoadingUserBookings ? (
+                  <Spinner
+                    animation="grow"
+                    role="status"
+                    as="span"
+                    aria-hidden="true"
+                    className="ms-2"
+                    size="sm"
+                    variant="warning"
+                  />
+                ) : userBookingsData.length > 0 ? (
+                  countUserBookings(userBookingsData) ? (
+                    <Badge bg="warning" className="text-dark ms-2">
+                      {countUserBookings(userBookingsData)}
+                    </Badge>
+                  ) : null
+                ) : null}
               </span>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>

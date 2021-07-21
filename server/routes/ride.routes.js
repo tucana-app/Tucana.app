@@ -14,6 +14,11 @@ module.exports = (app) => {
     controller.getDriverNewRidesRequests
   );
 
+  app.get(
+    "/api/ride/passenger-bookings-responses",
+    controller.getPassengerBookingsResponses
+  );
+
   app.get("/api/ride/user-rides", controller.getDriverRides);
 
   app.get("/api/ride/all-rides", controller.getAllRides);

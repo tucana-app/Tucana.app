@@ -20,9 +20,14 @@ const MyRidesBookings = () => {
   const { isLoadingDriverBookingsList, driverBookingsData } = useSelector(
     (state) => state.ride
   );
+  const { bookingStatusVariant, isDateInPast } = useSelector(
+    (state) => state.global
+  );
 
   useEffect(() => {
-    dispatch(getDriverBookings(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getDriverBookings(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -68,7 +73,7 @@ const MyRidesBookings = () => {
               </Col>
             </Row>
 
-            {!(driverBookingsData.length === 0) ? (
+            {driverBookingsData.length > 0 ? (
               <>
                 {driverBookingsData.map((booking, index) => (
                   <Row
@@ -78,26 +83,63 @@ const MyRidesBookings = () => {
                     data-aos-once="true"
                     key={index}
                   >
-                    <Col xs={6} md={4} lg={3} className="">
-                      <p className="mb-0">
-                        #{index + 1} -{" "}
-                        {dateFormat(booking.createdAt, "dd/mm/yyyy")}
+                    <Col xs={12}>
+                      <p className="">
+                        #<span className="text-success">{index + 1}</span> |{" "}
+                        {dateFormat(booking.createdAt, "dd/mm/yyyy")} |{" "}
+                        <span className="text-secondary">Ride:</span>{" "}
+                        <span className="text-success">
+                          {booking.Ride.cityOrigin}
+                        </span>{" "}
+                        to{" "}
+                        <span className="text-success">
+                          {booking.Ride.cityDestination}
+                        </span>{" "}
+                        ({dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}) |{" "}
+                        <span className="text-secondary">Passenger:</span>{" "}
+                        <span className="text-success">
+                          {booking.User.username}
+                        </span>{" "}
+                        | <span className="text-secondary">Seats booked:</span>{" "}
+                        <span className="text-success">
+                          {booking.seatsBooked}
+                        </span>{" "}
+                        ({booking.Ride.seatsLeft} /{" "}
+                        {booking.Ride.seatsAvailable} seats left) |{" "}
+                        <span className="text-secondary">Status:</span>{" "}
+                        <span
+                          className={`text-${bookingStatusVariant(
+                            booking.BookingStatusId
+                          )}`}
+                        >
+                          {booking.BookingStatus.name}
+                        </span>
                       </p>
-                      <p className="mb-0">Passenger: {booking.User.username}</p>
-                      <p className="mb-0">
-                        Seats booked: {booking.seatsBooked} (
-                        {booking.Ride.seatsLeft} / {booking.Ride.seatsAvailable}{" "}
-                        seats left)
-                      </p>
-                      <p className="mb-0">
-                        Passenger comment: {booking.commentPassenger}
-                      </p>
+                      {isDateInPast(booking.Ride.dateTime, new Date()) ? (
+                        <p className="text-center text-warning">
+                          This is a past ride
+                        </p>
+                      ) : null}
                     </Col>
 
-                    <Col xs={12} className="text-center mx-auto my-3">
+                    <Col className="text-center mt-3">
+                      <LinkContainer
+                        to={`/ride/${booking.RideId}`}
+                        className="me-3"
+                      >
+                        <Button
+                          variant="info"
+                          className="rounded-0 text-uppercase"
+                        >
+                          View ride
+                        </Button>
+                      </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button variant="success rounded-0 fw-bold text-uppercase">
-                          Manage
+                        <Button
+                          variant="success"
+                          className="rounded-0 text-uppercase"
+                        >
+                          View booking
                         </Button>
                       </LinkContainer>
                     </Col>

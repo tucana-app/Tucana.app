@@ -10,12 +10,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        code: "accepted",
-        name: "Accepted",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
         code: "on_going",
         name: "On going",
         createdAt: new Date(),

@@ -12,7 +12,9 @@ function Admin() {
   const { loadingUsers, usersData } = useSelector((state) => state.admin);
 
   useEffect(() => {
-    dispatch(getUsers(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getUsers(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,7 +39,7 @@ function Admin() {
             <>
               TOTAL: {usersData.length}
               {usersData.map((user, index) => (
-                <div>
+                <div key={index}>
                   Username: {user.username}. ({user.firstName} {user.lastName})
                 </div>
               ))}

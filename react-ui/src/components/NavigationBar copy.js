@@ -16,26 +16,9 @@ import { useTranslation } from "react-i18next";
 
 function NavigationBar() {
   const { user: currentUser } = useSelector((state) => state.user);
-  const {
-    isLoadingDriverNewRidesRequests,
-    driverNewRidesRequestsData,
-    isLoadingPassengerBookingsResponses,
-    passengerBookingsResponsesData,
-  } = useSelector((state) => state.notification);
-
-  let notifications = 0;
-
-  if (
-    !isLoadingDriverNewRidesRequests &&
-    !isLoadingPassengerBookingsResponses
-  ) {
-    const numberDriverNewRidesRequests = driverNewRidesRequestsData.count;
-    const numberPassengerBookingsResponses =
-      passengerBookingsResponsesData.count;
-
-    notifications =
-      numberDriverNewRidesRequests + numberPassengerBookingsResponses;
-  }
+  const { driverNewRidesRequestsData } = useSelector(
+    (state) => state.notification
+  );
 
   const { t } = useTranslation();
 
@@ -76,19 +59,17 @@ function NavigationBar() {
                 <FontAwesomeIcon icon={faBell} size="lg" />
                 <p className="small d-md-screen mb-0">
                   Notifications
-                  {notifications > 0 ? (
+                  {driverNewRidesRequestsData.count > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {notifications}
-                      <span className="visually-hidden">
-                        unread notification(s)
-                      </span>
+                      {driverNewRidesRequestsData.count}
+                      <span className="visually-hidden">unread messages</span>
                     </span>
                   ) : null}
                 </p>
                 <p className="small d-xs-screen mb-0">
-                  {notifications > 0 ? (
+                  {driverNewRidesRequestsData.count > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {notifications}
+                      {driverNewRidesRequestsData.count}
                       <span className="visually-hidden">unread messages</span>
                     </span>
                   ) : null}

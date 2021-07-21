@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 
 import userReducer from "./user/userReducer";
-import messageReducer from "./message/messageReducer";
+import notificationReducer from "./notification/notificationReducer";
 import adminReducer from "./admin/adminReducer";
 import globalReducer from "./global/globalReducer";
 import rideReducer from "./ride/rideReducer";
 
 const appReducer = combineReducers({
   user: userReducer,
-  message: messageReducer,
+  notification: notificationReducer,
   admin: adminReducer,
   global: globalReducer,
   ride: rideReducer,

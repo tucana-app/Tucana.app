@@ -9,7 +9,8 @@ import dateFormat from "dateformat";
 import { LinkContainer } from "react-router-bootstrap";
 
 function ManageDriverBooking({ rideId }) {
-  const { user: currentUser } = useSelector((state) => state.user);
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { bookingStatusVariant } = useSelector((state) => state.global);
   const { isloadingDriverRideBookingList, driverRideBookingData } = useSelector(
     (state) => state.ride
   );
@@ -17,7 +18,9 @@ function ManageDriverBooking({ rideId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDriverBookingRide(currentUser.id, rideId));
+    if (isLoggedIn) {
+      dispatch(getDriverBookingRide(currentUser.id, rideId));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -45,18 +48,22 @@ function ManageDriverBooking({ rideId }) {
               {driverRideBookingData.map((booking, index) => (
                 <Row key={index} className="align-items-center my-2">
                   <Col xs="auto">
-                    #{index + 1}: {dateFormat(booking.createdAt, "dd/mm/yyyy")}{" "}
-                    -{" "}
+                    #{index + 1} | {dateFormat(booking.createdAt, "dd/mm/yyyy")}{" "}
+                    |{" "}
                     <span className="text-success">{booking.seatsBooked}</span>{" "}
                     seat(s) booked by{" "}
                     <span className="text-success">
                       {booking.User.username}
-                    </span>
-                    .
+                    </span>{" "}
+                    |
                     {/* Passenger comment:{" "}
                   <i className="text-success">"{booking.commentPassenger}"</i>. */}{" "}
                     Status:{" "}
-                    <span className="text-success">
+                    <span
+                      className={`text-${bookingStatusVariant(
+                        booking.BookingStatusId
+                      )}`}
+                    >
                       {booking.BookingStatus.name}
                     </span>
                   </Col>

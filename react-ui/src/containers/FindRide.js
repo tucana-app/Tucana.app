@@ -60,7 +60,7 @@ const FindRide = () => {
         </Row>
       ) : (
         <>
-          {!(allRidesListData.length === 0) ? (
+          {allRidesListData.length > 0 ? (
             <>
               {allRidesListData.map((ride, index) => (
                 <Row

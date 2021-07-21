@@ -30,7 +30,7 @@ import SideMenu from "./containers/SideMenu/SideMenu";
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
-import Messages from "./containers/Messages";
+import Notifications from "./containers/Notifications";
 
 import Page404 from "./containers/Page404";
 
@@ -42,7 +42,7 @@ import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
-import { clearFeedback, getDriverNewRidesRequests } from "./redux";
+import { clearFeedback, getNotifications } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -53,6 +53,15 @@ function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
+  if (isLoggedIn) dispatch(getNotifications(currentUser.id));
+
+  useEffect(() => {
+    history.listen((location) => {
+      if (isLoggedIn) dispatch(getNotifications(currentUser.id));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     history.listen((location) => {
       // clear message when changing location
@@ -61,15 +70,6 @@ function App() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-
-  if (isLoggedIn) dispatch(getDriverNewRidesRequests(currentUser.id));
-
-  useEffect(() => {
-    history.listen((location) => {
-      if (isLoggedIn) dispatch(getDriverNewRidesRequests(currentUser.id));
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Suspense fallback={<Fallback />}>
@@ -103,7 +103,7 @@ function App() {
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/messages" component={Messages} />
+          <Route exact path="/messages" component={Notifications} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           {/* Admin */}

@@ -135,7 +135,7 @@ const Login = () => {
                             <span className="sr-only">Loading...</span>
                           </Spinner>
                         ) : null}
-                        Submit
+                        Login
                       </Button>
                     </Form.Group>
                   </Col>

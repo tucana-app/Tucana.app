@@ -5,18 +5,17 @@ import dateFormat from "dateformat";
 
 import { getPassengersDetails } from "../redux";
 import LoadingMessage from "./LoadingMessage";
-import FeedbackMessage from "./FeedbackMessage";
 import { Link } from "react-router-dom";
 
 const PassengersDetails = ({ rideId }) => {
   const dispatch = useDispatch();
-  const { hoursUnlockPassengersDetail, daysLockPassengersDetails } =
-    useSelector((state) => state.global);
+  const {
+    hoursUnlockPassengersDetail,
+    daysLockPassengersDetails,
+    isDateInPast,
+  } = useSelector((state) => state.global);
   const { isLoadingPassengersDetails, passengersDetailsData, rideData } =
     useSelector((state) => state.ride);
-
-  const dateInPastArrow = (firstDate, secondDate) =>
-    firstDate.setHours(0, 0, 0, 0) <= secondDate.setHours(0, 0, 0, 0);
 
   const today = new Date();
   const dateRide = new Date(rideData.ride.dateTime);
@@ -26,13 +25,11 @@ const PassengersDetails = ({ rideId }) => {
 
   // If the ride happens in the next 24h or happened within the last 7 days, unlock the passengers contact details
   const lockPassengersDetails =
-    (dateInPastArrow(dateRide, today) &&
-      diffDays > daysLockPassengersDetails) ||
+    (!isDateInPast(today, dateRide) && diffDays > daysLockPassengersDetails) ||
     diffHours > hoursUnlockPassengersDetail;
 
   useEffect(() => {
     dispatch(getPassengersDetails(rideId));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,7 +60,7 @@ const PassengersDetails = ({ rideId }) => {
               </p>
             </Col>
           </Row>
-          {dateInPastArrow(dateRide, today) ? (
+          {isDateInPast(dateRide, today) ? (
             <div className="text-warning mb-3">
               Contact details available {daysLockPassengersDetails} days after
               the ride
@@ -140,7 +137,11 @@ const PassengersDetails = ({ rideId }) => {
           )}
         </>
       ) : (
-        <FeedbackMessage />
+        <Row>
+          <Col>
+            <p className="lead">You do not have passengers for this ride yet</p>
+          </Col>
+        </Row>
       )}
     </Container>
   );

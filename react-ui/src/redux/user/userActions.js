@@ -1,4 +1,5 @@
 import userTypes from "./userTypes";
+import notificationTypes from "../notification/notificationTypes";
 import { setfeedback } from "../index";
 import axios from "axios";
 
@@ -88,6 +89,10 @@ export const login = (formLogin) => {
           type: userTypes.LOGIN_SUCCESS,
           payload: { user: response.data },
         });
+
+        dispatch({
+          type: notificationTypes.GET_DRIVER_NEW_RIDES_REQUESTS_REQUEST,
+        });
       })
       .catch((error) => {
         // console.log(error);
@@ -115,6 +120,10 @@ export const login = (formLogin) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
+
+  dispatch({
+    type: notificationTypes.RESET_NOTIFICATIONS,
+  });
 
   dispatch({
     type: userTypes.LOGOUT,

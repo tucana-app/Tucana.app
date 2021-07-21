@@ -21,6 +21,9 @@ const Ride = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { bookingStatusVariant, isDateInPast } = useSelector(
+    (state) => state.global
+  );
   const {
     isloadingRide,
     rideData,
@@ -29,8 +32,10 @@ const Ride = () => {
   } = useSelector((state) => state.ride);
 
   useEffect(() => {
-    dispatch(getRide(rideId));
-    dispatch(getUserBookingRide(currentUser.id, rideId));
+    if (isLoggedIn) {
+      dispatch(getRide(rideId));
+      dispatch(getUserBookingRide(currentUser.id, rideId));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -139,7 +144,11 @@ const Ride = () => {
                           {/* Your comment:{" "}
                   <i className="text-success">"{booking.commentPassenger}"</i>. */}{" "}
                           Status:{" "}
-                          <span className="text-success">
+                          <span
+                            className={`text-${bookingStatusVariant(
+                              booking.BookingStatusId
+                            )}`}
+                          >
                             {booking.BookingStatus.name}
                           </span>
                           <LinkContainer to={`/booking/${booking.id}`}>
@@ -162,13 +171,27 @@ const Ride = () => {
                   </Col>
                 </Row>
 
-                <FormBookRide rideId={rideId} />
+                {/* If it is not a past ride, users can book */}
+                {!isDateInPast(rideData.ride.dateTime, new Date()) ? (
+                  <FormBookRide rideId={rideId} />
+                ) : null}
               </>
             ) : (
               <>
                 <ManageDriverBooking rideId={rideId} />
 
                 <hr className="w-75 mx-auto" />
+
+                {rideData.ride.seatsLeft === 0 ? (
+                  <Row>
+                    <Col className="text-center ">
+                      <h1 className="text-info fw-light">Congratulations 🎉</h1>
+                      <p className="lead">
+                        There are no more seats avaialable for this ride!
+                      </p>
+                    </Col>
+                  </Row>
+                ) : null}
 
                 <PassengersDetails rideId={rideId} />
               </>

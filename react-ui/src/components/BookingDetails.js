@@ -5,6 +5,7 @@ import dateFormat from "dateformat";
 
 const BookingDetails = () => {
   const { bookingData } = useSelector((state) => state.ride);
+  const { bookingStatusVariant } = useSelector((state) => state.global);
 
   return (
     <Container className="my-3">
@@ -46,12 +47,16 @@ const BookingDetails = () => {
         <Col xs={6} lg={4} className="mb-0 mb-lg-3">
           <p className="mb-0">
             Status:{" "}
-            <span className="text-success">
+            <span
+              className={`text-${bookingStatusVariant(
+                bookingData.BookingStatusId
+              )}`}
+            >
               {bookingData.BookingStatus.name}
             </span>
           </p>
           <p className="mb-0">
-            Your comment: "<i>{bookingData.commentDriver}</i>"
+            Driver's comment: "<i>{bookingData.commentDriver}</i>"
           </p>
         </Col>
 

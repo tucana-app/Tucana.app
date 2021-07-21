@@ -2,11 +2,11 @@ import rideTypes from "./rideTypes";
 import axios from "axios";
 import { setfeedback } from "../index";
 import * as Yup from "yup";
-import { getDriverNewRidesRequests } from "../../redux";
+import { getNotifications } from "../../redux";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
-// Get all the driver's ride from a user
+// Get all the driver's ride
 
 export const getDriverRidesRequested = () => {
   return {
@@ -209,60 +209,60 @@ export const getRideFail = (error) => {
 
 // Get all driver's bookings
 
-export const getUserRidesRequested = () => {
-  return {
-    type: rideTypes.GET_DRIVER_BOOKINGS_REQUEST,
-  };
-};
+// export const getUserRidesRequested = () => {
+//   return {
+//     type: rideTypes.GET_DRIVER_BOOKINGS_REQUEST,
+//   };
+// };
 
-export const getUserRides = (userId) => {
-  return (dispatch) => {
-    dispatch(getUserRidesRequested());
+// export const getUserRides = (userId) => {
+//   return (dispatch) => {
+//     dispatch(getUserRidesRequested());
 
-    axios
-      .get(URL_API + "/ride/user-rides", {
-        params: {
-          userId,
-        },
-      })
-      .then((response) => {
-        // console.log(response.data);
-        dispatch(getUserRidesSuccess(response.data));
-      })
-      .catch((error) => {
-        // console.log(error);
+//     axios
+//       .get(URL_API + "/ride/user-rides", {
+//         params: {
+//           userId,
+//         },
+//       })
+//       .then((response) => {
+//         // console.log(response.data);
+//         dispatch(getUserRidesSuccess(response.data));
+//       })
+//       .catch((error) => {
+//         // console.log(error);
 
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+//         const message =
+//           (error.response &&
+//             error.response.data &&
+//             error.response.data.message) ||
+//           error.message ||
+//           error.toString();
 
-        dispatch(
-          setfeedback({
-            variant: "danger",
-            message: message,
-          })
-        );
-        dispatch(getUserRidesFail(error));
-      });
-  };
-};
+//         dispatch(
+//           setfeedback({
+//             variant: "danger",
+//             message: message,
+//           })
+//         );
+//         dispatch(getUserRidesFail(error));
+//       });
+//   };
+// };
 
-export const getUserRidesSuccess = (data) => {
-  return {
-    type: rideTypes.GET_DRIVER_BOOKINGS_SUCCESS,
-    payload: data,
-  };
-};
+// export const getUserRidesSuccess = (data) => {
+//   return {
+//     type: rideTypes.GET_DRIVER_BOOKINGS_SUCCESS,
+//     payload: data,
+//   };
+// };
 
-export const getUserRidesFail = (error) => {
-  return {
-    type: rideTypes.GET_DRIVER_BOOKINGS_FAIL,
-    payload: error,
-  };
-};
+// export const getUserRidesFail = (error) => {
+//   return {
+//     type: rideTypes.GET_DRIVER_BOOKINGS_FAIL,
+//     payload: error,
+//   };
+// };
 
 // Get a single booking
 
@@ -460,10 +460,10 @@ export const submitFormDriverResponseBooking = (formValues) => {
           })
         );
 
+        dispatch(submitFormDriverResponseBookingSuccess(response.data.message));
         dispatch(getAllRides());
         dispatch(getBooking(formValues.bookingId));
-        dispatch(getDriverNewRidesRequests(formValues.userId));
-        dispatch(submitFormDriverResponseBookingSuccess(response.data.message));
+        dispatch(getNotifications(formValues.userId));
       })
       .catch((error) => {
         // console.log(error);
@@ -717,7 +717,7 @@ export const getPassengersDetails = (rideId) => {
         },
       })
       .then((response) => {
-        // console.log(response);
+        // console.log(response.data);
         dispatch(getPassengersDetailsSuccess(response.data));
       })
       .catch((error) => {

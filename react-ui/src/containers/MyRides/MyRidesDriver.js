@@ -17,12 +17,17 @@ import { getDriverRides } from "../../redux";
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingDriverRidesList, userRidesListData } = useSelector(
+  const { rideStatusVariant, isDateInPast } = useSelector(
+    (state) => state.global
+  );
+  const { isLoadingDriverRides, driverRidesData } = useSelector(
     (state) => state.ride
   );
 
   useEffect(() => {
-    dispatch(getDriverRides(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getDriverRides(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,7 +54,7 @@ const MyRidesDriver = () => {
       </ListGroup>
 
       <Container className="mt-4 mb-5">
-        {isLoadingDriverRidesList ? (
+        {isLoadingDriverRides ? (
           <Row>
             <Col className="text-center">
               <LoadingMessage />
@@ -68,9 +73,9 @@ const MyRidesDriver = () => {
               </Col>
             </Row>
 
-            {!(userRidesListData.length === 0) ? (
+            {driverRidesData.length > 0 ? (
               <>
-                {userRidesListData.map((ride, index) => (
+                {driverRidesData.map((ride, index) => (
                   <Row
                     className="justify-content-center justify-content-md-start justify-content-lg-center align-items-center border border-start-0 border-end-0 py-3 mx-1 mx-sm-2"
                     data-aos="fade-zoom-in"
@@ -123,7 +128,11 @@ const MyRidesDriver = () => {
 
                     <Col xs={6} md={4} lg={3} className="my-3">
                       Status:{" "}
-                      <span className="text-success">
+                      <span
+                        className={`text-${rideStatusVariant(
+                          ride.RideStatus.id
+                        )}`}
+                      >
                         {ride.RideStatus.name}
                       </span>
                     </Col>
@@ -145,6 +154,12 @@ const MyRidesDriver = () => {
                       >
                         <p className="mb-0">Your comment:</p>
                         <i>"{ride.comment}"</i>
+                      </Col>
+                    ) : null}
+
+                    {isDateInPast(ride.dateTime, new Date()) ? (
+                      <Col xs={12} className="text-center text-warning">
+                        This is a past ride
                       </Col>
                     ) : null}
 
@@ -170,69 +185,6 @@ const MyRidesDriver = () => {
                     <NoRidesMessage />
                   </Col>
                 </Row>
-
-                {/* <Row>
-                <Col xs={12} md={6} className="mx-auto">
-                  <Accordion>
-                    {userRidesListData.map((ride, index) => (
-                      <Accordion.Item key={index} eventKey={index}>
-                        <Accordion.Header>
-                          <span className="fw-bolder">
-                            {ride.cityOrigin} - {ride.cityDestination} (
-                            {dateFormat(ride.dateTime, "dd-mm-yyyy")})
-                          </span>
-                        </Accordion.Header>
-                        <Accordion.Body className="p-0">
-                          <ListGroup className="border border-success border-3 rounded">
-                            <ListGroup.Item>
-                              <span className="text-success">Origin:</span>{" "}
-                              {ride.cityOrigin} ({ride.provinceOrigin})
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <span className="text-danger">Destination:</span>{" "}
-                              {ride.cityDestination} ({ride.provinceDestination}
-                              )
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Date/time:{" "}
-                              {dateFormat(
-                                ride.dateTime,
-                                "dd-mm-yyyy @ HH:MM TT"
-                              )}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Seats left: {ride.seatsLeft}/{ride.seatsAvailable}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Comment: {ride.comment}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <span className="text-warning fw-bold">
-                                Status:
-                              </span>{" "}
-                              {ride.RideStatus.name}
-                            </ListGroup.Item>
-                          </ListGroup>
-                        </Accordion.Body>
-                      </Accordion.Item>
-                    ))}
-                  </Accordion>
-                </Col>
-              </Row>
-            ) : (
-              <Row>
-              <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                <FeedbackMessage />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="text-center">
-                <NoRidesMessage />
-              </Col>
-            </Row>
-            )}
-          </>
-        )} */}
               </>
             )}
           </>

@@ -16,12 +16,17 @@ import { getUserBookings } from "../redux";
 const Bookings = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { bookingStatusVariant, isDateInPast } = useSelector(
+    (state) => state.global
+  );
   const { isLoadingUserBookings, userBookingsData } = useSelector(
     (state) => state.ride
   );
 
   useEffect(() => {
-    dispatch(getUserBookings(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getUserBookings(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -115,11 +120,21 @@ const Bookings = () => {
                 <Col xs={12}>
                   <p>
                     Status:{" "}
-                    <span className="text-success">
+                    <span
+                      className={`text-${bookingStatusVariant(
+                        booking.BookingStatusId
+                      )}`}
+                    >
                       {booking.BookingStatus.name}
                     </span>
                   </p>
                 </Col>
+
+                {isDateInPast(booking.Ride.dateTime, new Date()) ? (
+                  <Col xs={12} className="text-center text-warning mb-3">
+                    This is a past ride
+                  </Col>
+                ) : null}
 
                 <Col className="text-center">
                   <LinkContainer

@@ -1,9 +1,9 @@
 import rideTypes from "./rideTypes";
 
 const initialState = {
-  isLoadingUserRidesList: false,
-  userRidesListData: [],
-  userRidesListError: "",
+  isLoadingDriverRides: false,
+  driverRidesData: [],
+  driverRidesError: "",
 
   isLoadingSubmitFormOfferRide: false,
   submitFormOfferRideSuccess: false,
@@ -55,24 +55,24 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.GET_USER_RIDES_REQUEST:
       return {
         ...state,
-        isLoadingUserRidesList: true,
+        isLoadingDriverRides: true,
       };
 
     case rideTypes.GET_USER_RIDES_SUCCESS:
       return {
         ...state,
-        isLoadingUserRidesList: false,
-        userRidesListData: action.payload,
+        isLoadingDriverRides: false,
+        driverRidesData: action.payload,
         totalRidesDriverOnGoing: action.payload.length,
-        userRidesListError: "",
+        driverRidesError: "",
       };
 
     case rideTypes.GET_USER_RIDES_FAIL:
       return {
         ...state,
-        isLoadingUserRidesList: false,
-        userRidesListData: [],
-        userRidesListError: action.payload,
+        isLoadingDriverRides: false,
+        driverRidesData: [],
+        driverRidesError: action.payload,
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST:

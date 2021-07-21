@@ -25,8 +25,9 @@ const Booking = () => {
   const { isloadingBooking, bookingData } = useSelector((state) => state.ride);
 
   useEffect(() => {
-    dispatch(getBooking(bookingId));
-
+    if (isLoggedIn) {
+      dispatch(getBooking(bookingId));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -145,18 +146,7 @@ const Booking = () => {
                   </Row>
 
                   {/* If the booking has no seats left */}
-                  {bookingData.Ride.seatsLeft === 0 ? (
-                    <Row>
-                      <Col className="text-center ">
-                        <h1 className="text-info fw-light">
-                          Congratulations 🎉
-                        </h1>
-                        <p className="lead">
-                          There are no more seats avaialable for this ride!
-                        </p>
-                      </Col>
-                    </Row>
-                  ) : bookingData.BookingStatusId === 1 ? (
+                  {bookingData.BookingStatusId === 1 ? (
                     // If the booking is pending approval
                     <FormDriverResponseBooking bookingId={bookingId} />
                   ) : null}

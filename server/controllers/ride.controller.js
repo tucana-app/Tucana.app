@@ -170,9 +170,7 @@ module.exports = {
     return Bookings.findAll({
       where: {
         DriverId: req.query.userId,
-        BookingStatusId: 1,
       },
-      order: [["createdAt", "ASC"]],
       include: [
         {
           model: User,
@@ -428,6 +426,9 @@ module.exports = {
             seatsLeft: {
               [Op.gt]: 0,
             },
+            dateTime: {
+              [Op.gt]: new Date(),
+            },
           },
           attributes: {
             exclude: [
@@ -472,11 +473,78 @@ module.exports = {
       });
   },
 
+  getPassengerBookingsResponses(req, res) {
+    return Bookings.findAndCountAll({
+      where: {
+        UserId: req.query.userId,
+        [Op.or]: [{ BookingStatusId: 3 }, { BookingStatusId: 4 }],
+      },
+      order: [["createdAt", "ASC"]],
+      attributes: {
+        exclude: [
+          "RideId",
+          "UserId",
+          "commentPassenger",
+          "commentDriver",
+          "updatedAt",
+          "BookingStatusId",
+          // "id",
+          // "seatsBooked",
+          // "createdAt",
+        ],
+      },
+      include: [
+        {
+          model: Rides,
+          where: {
+            dateTime: {
+              [Op.gt]: new Date(),
+            },
+          },
+          attributes: {
+            exclude: [
+              "DriverId",
+              "comment",
+              "RideStatusId",
+              "createdAt",
+              "updatedAt",
+              // "id",
+              // "cityDestination",
+              // "cityOrigin",
+              // "dateTime",
+              // "provinceDestination",
+              // "provinceOrigin",
+              // "seatsAvailable",
+              // "seatsLeft",
+            ],
+          },
+          include: [
+            {
+              model: User,
+            },
+          ],
+        },
+        {
+          model: BookingStatus,
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
   getUserBookings(req, res) {
     return Bookings.findAll({
       where: {
         UserId: req.query.userId,
       },
+      order: [["BookingStatusId", "ASC"]],
       include: [
         {
           model: Rides,
@@ -516,7 +584,7 @@ module.exports = {
       where: {
         RideId: req.query.rideId,
         BookingStatusId: {
-          [Op.ne]: 4,
+          [Op.eq]: 3,
         },
       },
       order: [["createdAt", "ASC"]],
