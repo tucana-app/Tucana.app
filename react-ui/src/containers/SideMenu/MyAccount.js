@@ -1,14 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import {
-  Col,
-  Container,
-  Row,
-  Form,
-  FormControl,
-  ListGroup,
-} from "react-bootstrap";
+import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";

@@ -65,8 +65,16 @@ export const registerUserFail = (data) => {
   };
 };
 
+export const loginRequested = () => {
+  return {
+    type: userTypes.LOGIN_REQUESTED,
+  };
+};
+
 export const login = (formLogin) => {
   return (dispatch) => {
+    dispatch(loginRequested());
+
     axios
       .post(URL_API + "/auth/signin", {
         formLogin,

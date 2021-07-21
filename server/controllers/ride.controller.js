@@ -166,6 +166,45 @@ module.exports = {
       });
   },
 
+  getDriverBookings(req, res) {
+    return Bookings.findAll({
+      where: {
+        DriverId: req.query.userId,
+        BookingStatusId: 1,
+      },
+      order: [["createdAt", "ASC"]],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              "email",
+              "biography",
+              "password",
+              "phoneNumber",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+        {
+          model: Rides,
+        },
+        {
+          model: BookingStatus,
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
   getAllRides(req, res) {
     return Rides.findAll({
       where: {
@@ -230,18 +269,20 @@ module.exports = {
   driverResponseBooking(req, res) {
     const { comment, newStatus, bookingId, newSeatsAvailable, rideId } =
       req.body.formValues;
-    return Bookings.update(
-      {
-        commentDriver: comment,
-        BookingStatusId: newStatus,
-      },
-      {
-        where: {
-          id: bookingId,
+
+    // if booking accepted by driver
+    if (newStatus === 3) {
+      return Bookings.update(
+        {
+          commentDriver: comment,
+          BookingStatusId: newStatus,
         },
-      }
-    )
-      .then((response) => {
+        {
+          where: {
+            id: bookingId,
+          },
+        }
+      ).then((response) => {
         return Rides.update(
           {
             seatsLeft: newSeatsAvailable,
@@ -255,27 +296,48 @@ module.exports = {
           .then((response) => {
             // console.log(response);
 
-            // if booking accepted by driver
-            if (newStatus === 3)
-              res.status(200).send({
-                message: "You have accepted the booking, happy ride!",
+            res
+              .status(200)
+              .send({
+                message: "You have accepted the booking",
                 newStatus,
+              })
+              .catch((error) => {
+                // console.log(error);
+                res.status(400).json(error);
               });
-            // if booking refused by driver
-            if (newStatus === 4)
-              res
-                .status(200)
-                .send({ message: "You have refused this booking", newStatus });
           })
           .catch((error) => {
             // console.log(error);
             res.status(400).json(error);
           });
-      })
-      .catch((error) => {
-        // console.log(error);
-        res.status(400).json(error);
       });
+    }
+
+    // if booking refused by driver
+    if (newStatus === 4) {
+      return Bookings.update(
+        {
+          commentDriver: comment,
+          BookingStatusId: newStatus,
+        },
+        {
+          where: {
+            id: bookingId,
+          },
+        }
+      )
+        .then((response) => {
+          // console.log(response);
+          res
+            .status(200)
+            .send({ message: "You have refused this booking", newStatus });
+        })
+        .catch((error) => {
+          // console.log(error);
+          res.status(400).json(error);
+        });
+    }
   },
 
   getUserBookingRide(req, res) {
@@ -341,12 +403,8 @@ module.exports = {
   getDriverNewRidesRequests(req, res) {
     return Bookings.findAndCountAll({
       where: {
-        [Op.and]: [
-          {
-            BookingStatusId: 1,
-            DriverId: req.query.driverId,
-          },
-        ],
+        BookingStatusId: 1,
+        DriverId: req.query.driverId,
       },
       order: [["createdAt", "ASC"]],
       attributes: {
@@ -457,6 +515,9 @@ module.exports = {
     return Bookings.findAll({
       where: {
         RideId: req.query.rideId,
+        BookingStatusId: {
+          [Op.ne]: 4,
+        },
       },
       order: [["createdAt", "ASC"]],
       include: [
@@ -476,7 +537,7 @@ module.exports = {
         res.status(200).json(response);
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         res.status(400).json(errorMessage);
       });
   },

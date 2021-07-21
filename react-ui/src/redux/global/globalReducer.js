@@ -29,6 +29,9 @@ const initialState = {
   labelRequiredField: "This field is required",
 
   feedback: {},
+
+  hoursUnlockPassengersDetail: 24,
+  daysLockPassengersDetails: 7,
 };
 
 function globalReducer(state = initialState, action) {

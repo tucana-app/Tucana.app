@@ -71,9 +71,6 @@ function ManageDriverBooking({ rideId }) {
                       </Button>
                     </LinkContainer>
                   </Col>
-                  <Col xs={12}>
-                    <hr />
-                  </Col>
                 </Row>
               ))}
             </Container>

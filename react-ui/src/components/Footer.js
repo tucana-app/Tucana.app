@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container className="footer my-5">
       <Row>
-        <Col className="text-success text-center">&copy; Ride.Cr</Col>
+        <Col className="text-success text-center">&copy; Ride.CR</Col>
       </Row>
     </Container>
   );

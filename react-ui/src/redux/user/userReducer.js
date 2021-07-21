@@ -3,11 +3,19 @@ import userTypes from "./userTypes";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = user
-  ? { isLoggedIn: true, signupUserSuccessful: false, user }
-  : {
-      isLoggedIn: false,
+  ? {
+      isloadingLogin: false,
+      isLoggedIn: true,
+      user,
+      isloadingSignup: false,
       signupUserSuccessful: false,
+    }
+  : {
+      isloadingLogin: false,
+      isLoggedIn: false,
       user: null,
+      isloadingSignup: false,
+      signupUserSuccessful: false,
     };
 
 function userReducer(state = initialState, action) {
@@ -18,6 +26,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         signupUserSuccessful: false,
+        isloadingSignup: true,
       };
 
     case userTypes.REGISTER_USER_SUCCESS:
@@ -25,6 +34,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoggedIn: false,
         signupUserSuccessful: true,
+        isloadingSignup: false,
       };
 
     case userTypes.REGISTER_USER_FAIL:
@@ -32,11 +42,19 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoggedIn: false,
         signupUserSuccessful: false,
+        isloadingSignup: false,
+      };
+
+    case userTypes.LOGIN_REQUESTED:
+      return {
+        ...state,
+        isloadingLogin: true,
       };
 
     case userTypes.LOGIN_SUCCESS:
       return {
         ...state,
+        isloadingLogin: false,
         isLoggedIn: true,
         user: payload.user,
       };
@@ -44,6 +62,7 @@ function userReducer(state = initialState, action) {
     case userTypes.LOGIN_FAIL:
       return {
         ...state,
+        isloadingLogin: false,
         isLoggedIn: false,
         user: null,
       };

@@ -14,6 +14,7 @@ import FormBookRide from "../components/FormBookRide";
 
 import { getRide, getUserBookingRide } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
+import PassengersDetails from "../components/PassengersDetails";
 
 const Ride = () => {
   const { rideId } = useParams();
@@ -94,7 +95,7 @@ const Ride = () => {
               </Col>
             </Row>
 
-            {/* Display past booking for this rideData.ride.ride by this user */}
+            {/* Display past booking for this ride by this user */}
             {!(rideData.ride.DriverId === currentUser.id) ? (
               <>
                 {isloadingUserRideBookingList ? (
@@ -156,12 +157,6 @@ const Ride = () => {
                 ) : null}
 
                 <Row>
-                  <Col>
-                    <hr className="w-75 mx-auto my-4" />
-                  </Col>
-                </Row>
-
-                <Row>
                   <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
                     <FeedbackMessage />
                   </Col>
@@ -170,7 +165,13 @@ const Ride = () => {
                 <FormBookRide rideId={rideId} />
               </>
             ) : (
-              <ManageDriverBooking rideId={rideId} />
+              <>
+                <ManageDriverBooking rideId={rideId} />
+
+                <hr className="w-75 mx-auto" />
+
+                <PassengersDetails rideId={rideId} />
+              </>
             )}
           </>
         ) : null}

@@ -30,6 +30,8 @@ module.exports = (app) => {
 
   app.get("/api/ride/user-bookings", controller.getUserBookings);
 
+  app.get("/api/ride/driver-bookings", controller.getDriverBookings);
+
   app.get("/api/ride/passengers", controller.getPassengers);
 
   app.get("/api/ride/:rideId", controller.getRide);

@@ -36,10 +36,10 @@ const BookingDetails = () => {
         </Col>
         <Col xs={6} lg={4} className="mb-3">
           <p className="mb-0">
-            Date: {dateFormat(bookingData.dateTime, "dd/mm/yyyy")}
+            Date: {dateFormat(bookingData.createdAt, "dd/mm/yyyy")}
           </p>
           <p className="mb-0">
-            Time: {dateFormat(bookingData.dateTime, "HH:MM TT")}
+            Time: {dateFormat(bookingData.createdAt, "HH:MM TT")}
           </p>
         </Col>
 
@@ -55,12 +55,17 @@ const BookingDetails = () => {
           </p>
         </Col>
 
-        <Col xs={6} lg={4} className="mb-0 mb-lg-3"></Col>
-
-        <Col xs={12}>
+        <Col xs={6} lg={4} className="mb-0 mb-lg-3">
           <p className="mb-0">
-            Passenger comment: "<i>{bookingData.commentPassenger}</i>"
+            Passenger's comment: "<i>{bookingData.commentPassenger}</i>"
           </p>
+          <div className="mb-0">
+            Last updated
+            <div>
+              Date: {dateFormat(bookingData.updatedAt, "dd/mm/yyyy")}
+              <p>Time: {dateFormat(bookingData.updatedAt, "HH:MM TT")}</p>
+            </div>
+          </div>
         </Col>
       </Row>
     </Container>

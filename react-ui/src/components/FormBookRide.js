@@ -95,7 +95,7 @@ const FormBookRide = ({ rideId }) => {
                       isSubmitting || rideData.ride.DriverId === currentUser.id
                     }
                   >
-                    <option>Select an option</option>
+                    <option value="0">Select an option</option>
                     {rideData.optionsSeatsNeeded}
                   </Form.Select>
                   <Form.Control.Feedback type="invalid">

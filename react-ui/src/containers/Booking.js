@@ -135,7 +135,7 @@ const Booking = () => {
                 </Col>
               </Row>
 
-              {/* If the viewer the driver */}
+              {/* If the viewer is the driver */}
               {bookingData.DriverId === currentUser.id ? (
                 <>
                   <Row>

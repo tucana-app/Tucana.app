@@ -9,6 +9,7 @@ const Op = db.Sequelize.Op;
 
 module.exports = {
   signup(req, res) {
+    res.status(400).send("NOPE");
     const { firstName, lastName, email, password, username, phoneNumber } =
       req.body.formSignupUser;
 

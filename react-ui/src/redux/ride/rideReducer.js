@@ -1,7 +1,7 @@
 import rideTypes from "./rideTypes";
 
 const initialState = {
-  isLoadingDriverRidesList: false,
+  isLoadingUserRidesList: false,
   userRidesListData: [],
   userRidesListError: "",
 
@@ -41,6 +41,10 @@ const initialState = {
   userBookingsData: [],
   userBookingsError: "",
 
+  isLoadingDriverBookings: false,
+  driverBookingsData: [],
+  driverBookingsError: "",
+
   isLoadingPassengersDetails: false,
   passengersDetailsData: [],
   passengersDetailsError: "",
@@ -51,13 +55,13 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.GET_USER_RIDES_REQUEST:
       return {
         ...state,
-        isLoadingDriverRidesList: true,
+        isLoadingUserRidesList: true,
       };
 
     case rideTypes.GET_USER_RIDES_SUCCESS:
       return {
         ...state,
-        isLoadingDriverRidesList: false,
+        isLoadingUserRidesList: false,
         userRidesListData: action.payload,
         totalRidesDriverOnGoing: action.payload.length,
         userRidesListError: "",
@@ -66,7 +70,7 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.GET_USER_RIDES_FAIL:
       return {
         ...state,
-        isLoadingDriverRidesList: false,
+        isLoadingUserRidesList: false,
         userRidesListData: [],
         userRidesListError: action.payload,
       };
@@ -269,6 +273,28 @@ const rideReducer = (state = initialState, action) => {
         isLoadingUserBookings: false,
         userBookingsData: [],
         userBookingsError: action.payload,
+      };
+
+    case rideTypes.GET_DRIVER_BOOKINGS_REQUEST:
+      return {
+        ...state,
+        isLoadingDriverBookings: true,
+      };
+
+    case rideTypes.GET_DRIVER_BOOKINGS_SUCCESS:
+      return {
+        ...state,
+        isLoadingDriverBookings: false,
+        driverBookingsData: action.payload,
+        driverBookingsError: "",
+      };
+
+    case rideTypes.GET_DRIVER_BOOKINGS_FAIL:
+      return {
+        ...state,
+        isLoadingDriverBookings: false,
+        driverBookingsData: [],
+        driverBookingsError: action.payload,
       };
 
     case rideTypes.GET_PASSENGERS_DETAILS_REQUEST:

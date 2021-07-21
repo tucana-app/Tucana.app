@@ -63,6 +63,8 @@ export const getDriverRidesFail = (error) => {
   };
 };
 
+// Submit the form to add a new ride
+
 export const submitFormOfferRideRequested = () => {
   return {
     type: rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST,
@@ -159,7 +161,7 @@ export const getRide = (rideId) => {
         }
 
         const schema = Yup.object().shape({
-          seatsNeeded: Yup.number()
+          seatsNeeded: Yup.number("Please select a number")
             .min(1, "Min. 1 passenger required")
             .max(
               response.data.seatsLeft,
@@ -201,6 +203,63 @@ export const getRideSuccess = (data) => {
 export const getRideFail = (error) => {
   return {
     type: rideTypes.GET_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// Get all driver's bookings
+
+export const getUserRidesRequested = () => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_REQUEST,
+  };
+};
+
+export const getUserRides = (userId) => {
+  return (dispatch) => {
+    dispatch(getUserRidesRequested());
+
+    axios
+      .get(URL_API + "/ride/user-rides", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getUserRidesSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+        dispatch(getUserRidesFail(error));
+      });
+  };
+};
+
+export const getUserRidesSuccess = (data) => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getUserRidesFail = (error) => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_FAIL,
     payload: error,
   };
 };
@@ -467,14 +526,14 @@ export const getUserBookingRide = (userId, rideId) => {
       .catch((error) => {
         // console.log(error);
 
-        // const message =
-        //   (error.response &&
-        //     error.response.data &&
-        //     error.response.data.message) ||
-        //   error.message ||
-        //   error.toString();
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-        dispatch(getUserBookingRideFail(error));
+        dispatch(getUserBookingRideFail(message));
       });
   };
 };
@@ -532,6 +591,49 @@ export const getUserBookingsSuccess = (data) => {
 export const getUserBookingsFail = (error) => {
   return {
     type: rideTypes.GET_USER_BOOKINGS_FAIL,
+    payload: error,
+  };
+};
+
+// Get all the driver's rides requests
+
+export const getDriverBookingsRequested = () => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_REQUEST,
+  };
+};
+
+export const getDriverBookings = (userId) => {
+  return (dispatch) => {
+    dispatch(getDriverBookingsRequested());
+
+    axios
+      .get(URL_API + "/ride/driver-bookings", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getDriverBookingsSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error)
+        dispatch(getDriverBookingsFail(error));
+      });
+  };
+};
+
+export const getDriverBookingsSuccess = (data) => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverBookingsFail = (error) => {
+  return {
+    type: rideTypes.GET_DRIVER_BOOKINGS_FAIL,
     payload: error,
   };
 };
@@ -604,14 +706,13 @@ export const getPassengersDetailsRequested = () => {
   };
 };
 
-export const getPassengersDetails = (bookingId, rideId) => {
+export const getPassengersDetails = (rideId) => {
   return (dispatch) => {
     dispatch(getPassengersDetailsRequested());
 
     axios
       .get(URL_API + "/ride/passengers", {
         params: {
-          bookingId,
           rideId,
         },
       })

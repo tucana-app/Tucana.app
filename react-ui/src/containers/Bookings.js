@@ -1,23 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import {
-  Col,
-  Container,
-  Row,
-  ListGroup,
-  Button,
-  ButtonGroup,
-} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Col, Container, Row, ListGroup, Button } from "react-bootstrap";
+import dateFormat from "dateformat";
 
-import { getUserBookings } from "../redux";
 import LoadingMessage from "../components/LoadingMessage";
 import NoRidesMessage from "../components/NoRidesMessage";
 import FeedbackMessage from "../components/FeedbackMessage";
 import { LinkContainer } from "react-router-bootstrap";
-import dateFormat from "dateformat";
+
+import { getUserBookings } from "../redux";
 
 const Bookings = () => {
   const dispatch = useDispatch();
@@ -92,7 +86,7 @@ const Bookings = () => {
               >
                 <Col xs={12} className="text-center mb-3">
                   <Link
-                    to={`/ride/${booking.id}`}
+                    to={`/booking/${booking.id}`}
                     className="text-white text-decoration-none"
                   >
                     <u>
@@ -128,13 +122,14 @@ const Bookings = () => {
                 </Col>
 
                 <Col className="text-center">
-                  <LinkContainer to={`/ride/${booking.RideId}`}>
+                  <LinkContainer
+                    to={`/ride/${booking.RideId}`}
+                    className="me-3"
+                  >
                     <Button variant="info" className="rounded-0 text-uppercase">
                       View ride
                     </Button>
                   </LinkContainer>
-                </Col>
-                <Col>
                   <LinkContainer to={`/booking/${booking.id}`}>
                     <Button
                       variant="success"

@@ -19,7 +19,7 @@ require("yup-password")(Yup); // extend yup
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn, signupUserSuccessful } = useSelector(
+  const { isloadingSignup, isLoggedIn, signupUserSuccessful } = useSelector(
     (state) => state.user
   );
   const { feedback, labelStringField, labelRequiredField } = useSelector(
@@ -264,9 +264,9 @@ const SignUp = () => {
                         size="lg"
                         className="rounded-0"
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isloadingSignup}
                       >
-                        {isSubmitting ? (
+                        {isSubmitting || isloadingSignup ? (
                           <Spinner
                             animation="border"
                             role="status"

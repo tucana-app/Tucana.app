@@ -10,6 +10,7 @@ import FindRide from "./containers/FindRide";
 import Ride from "./containers/Ride";
 import MyRides from "./containers/MyRides/MyRides";
 import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
+import MyRidesBookings from "./containers/MyRides/MyRidesBookings";
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
 
@@ -83,6 +84,7 @@ function App() {
           <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/my-rides" component={MyRides} />
           <Route exact path="/my-rides/driver" component={MyRidesDriver} />
+          <Route exact path="/my-rides/bookings" component={MyRidesBookings} />
           <Route exact path="/bookings" component={Bookings} />
           <Route exact path="/booking/:bookingId" component={Booking} />
 

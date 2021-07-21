@@ -17,7 +17,7 @@ import { login } from "../../redux";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isloadingLogin, isLoggedIn } = useSelector((state) => state.user);
   const { feedback, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/my-rides" />;
+    return <Redirect to="/find-ride" />;
   }
 
   return (
@@ -122,9 +122,9 @@ const Login = () => {
                         size="lg"
                         className="rounded-0"
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isloadingLogin}
                       >
-                        {isSubmitting ? (
+                        {isSubmitting || isloadingLogin ? (
                           <Spinner
                             animation="border"
                             role="status"
