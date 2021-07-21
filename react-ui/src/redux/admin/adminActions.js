@@ -5,37 +5,41 @@ const URL_API = process.env.REACT_APP_URL_API;
 
 // Add a new favorite word
 
-export const getUsersListRequested = () => {
+export const getUsersRequested = () => {
   return {
-    type: adminTypes.GET_USERS_LIST_REQUEST,
+    type: adminTypes.GET_USERS_REQUEST,
   };
 };
 
-export const getUsersList = () => {
+export const getUsers = (userId) => {
   return (dispatch) => {
-    dispatch(getUsersListRequested());
+    if (userId === 1) {
+      dispatch(getUsersRequested());
 
-    axios
-      .get(URL_API + "/admin/listUsers")
-      .then((response) => {
-        dispatch(getUsersListSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(getUsersListFail(error));
-      });
+      axios
+        .get(URL_API + "/admin/list-users")
+        .then((response) => {
+          dispatch(getUsersSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(getUsersFail(error));
+        });
+    } else {
+      dispatch(getUsersFail("Not autorized"));
+    }
   };
 };
 
-export const getUsersListSuccess = (data) => {
+export const getUsersSuccess = (data) => {
   return {
-    type: adminTypes.GET_USERS_LIST_SUCCESS,
+    type: adminTypes.GET_USERS_SUCCESS,
     payload: data,
   };
 };
 
-export const getUsersListFail = (error) => {
+export const getUsersFail = (error) => {
   return {
-    type: adminTypes.GET_USERS_LIST_FAIL,
+    type: adminTypes.GET_USERS_FAIL,
     payload: error,
   };
 };

@@ -16,6 +16,7 @@ import {
   faDonate,
   faDownload,
   faEnvelope,
+  faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -23,7 +24,7 @@ import { logout } from "../../redux";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
   const logOut = () => {
     dispatch(logout());
@@ -60,6 +61,23 @@ const SideMenu = () => {
                 </div>
               </ListGroup.Item>
             </Link>
+
+            {currentUser.id === 1 ? (
+              <Link to="/secret" className="text-light text-decoration-none">
+                <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                  <div className="d-inline-flex justify-content-between w-100 py-2">
+                    <span>
+                      <FontAwesomeIcon
+                        icon={faUserShield}
+                        className="text-warning me-2"
+                      />{" "}
+                      Admin
+                    </span>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
+                </ListGroup.Item>
+              </Link>
+            ) : null}
           </>
         ) : (
           <>

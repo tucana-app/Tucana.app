@@ -9,5 +9,5 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/admin/listUsers", adminController.listAll);
+  app.get("/api/admin/list-users", adminController.listUsers);
 };

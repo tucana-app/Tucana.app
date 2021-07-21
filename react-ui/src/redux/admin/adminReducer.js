@@ -1,35 +1,33 @@
 import adminTypes from "./adminTypes";
 
 const initialState = {
-  loadingUsersList: false,
-  usersListData: [],
-  usersListError: "",
+  loadingUsers: false,
+  usersData: [],
+  usersError: "",
 };
 
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case adminTypes.GET_USERS_LIST_REQUEST:
+    case adminTypes.GET_USERS_REQUEST:
       return {
         ...state,
-        loadingUsersList: true,
-        usersListData: [],
-        usersListError: "",
+        loadingUsers: true,
       };
 
-    case adminTypes.GET_USERS_LIST_SUCCESS:
+    case adminTypes.GET_USERS_SUCCESS:
       return {
         ...state,
-        loadingUsersList: false,
-        usersListData: action.payload,
-        usersListError: "",
+        loadingUsers: false,
+        usersData: action.payload,
+        usersError: "",
       };
 
-    case adminTypes.GET_USERS_LIST_FAIL:
+    case adminTypes.GET_USERS_FAIL:
       return {
         ...state,
-        loadingUsersList: false,
-        usersListData: [],
-        usersListError: action.payload,
+        loadingUsers: false,
+        usersData: [],
+        usersError: action.payload,
       };
 
     default:

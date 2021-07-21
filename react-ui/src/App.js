@@ -34,6 +34,9 @@ import Messages from "./containers/Messages";
 
 import Page404 from "./containers/Page404";
 
+// Amind
+import Admin from "./containers/Admin/Admin";
+
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
@@ -102,6 +105,9 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/coming-soon" component={ComingSoon} />
+
+          {/* Admin */}
+          <Route exact path="/secret" component={Admin} />
 
           <Route component={Page404} />
         </Switch>
