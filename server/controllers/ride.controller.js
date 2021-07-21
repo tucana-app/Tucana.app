@@ -521,6 +521,16 @@ module.exports = {
           include: [
             {
               model: User,
+              attributes: {
+                exclude: [
+                  "email",
+                  "biography",
+                  "password",
+                  "phoneNumber",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
             },
           ],
         },
