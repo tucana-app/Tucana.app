@@ -38,10 +38,7 @@ const MyRides = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link
-          to="/my-rides/bookings"
-          className="text-light text-decoration-none"
-        >
+        <Link to="/bookings" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>

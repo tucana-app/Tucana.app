@@ -24,11 +24,12 @@ module.exports = (sequelize, DataTypes) => {
   Bookings.init(
     {
       UserId: DataTypes.INTEGER,
+      DriverId: DataTypes.INTEGER,
       RideId: DataTypes.INTEGER,
       BookingStatusId: DataTypes.INTEGER,
       seatsBooked: DataTypes.INTEGER,
       commentPassenger: DataTypes.STRING,
-      commentRefused: DataTypes.STRING,
+      commentDriver: DataTypes.STRING,
     },
     {
       sequelize,

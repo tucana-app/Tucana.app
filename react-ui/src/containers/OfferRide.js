@@ -1,15 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import {
-  Container,
-  Form,
-  Row,
-  Col,
-  Button,
-  Alert,
-  Spinner,
-} from "react-bootstrap";
+import { Container, Form, Row, Col, Button, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarCheck,
@@ -25,11 +17,11 @@ import * as Yup from "yup";
 import dateFormat from "dateformat";
 
 import { submitFormOfferRide } from "../redux";
+import FeedbackMessage from "../components/FeedbackMessage";
 
 const OfferRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { feedback } = useSelector((state) => state.global);
   const { provinces, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
@@ -70,7 +62,7 @@ const OfferRide = () => {
   const handleSubmit = (values, formikBag) => {
     dispatch(submitFormOfferRide(currentUser.id, values, form));
 
-    form.current.reset();
+    // form.current.reset();
     formikBag.setSubmitting(false);
   };
 
@@ -356,7 +348,7 @@ const OfferRide = () => {
                       <p className="small text-secondary">
                         <FontAwesomeIcon
                           icon={faExclamationTriangle}
-                          className="text-secondary me-2"
+                          className="me-2"
                         />
                         Do not share any contact info (phone, email, etc), they
                         will be shared within the platform when a booking is
@@ -385,11 +377,11 @@ const OfferRide = () => {
                   </Form.Group>
                 </Row>
 
-                {feedback.message && (
-                  <Alert variant={feedback.variant} className="mt-3">
-                    {feedback.message}
-                  </Alert>
-                )}
+                <Row>
+                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                    <FeedbackMessage />
+                  </Col>
+                </Row>
 
                 <Row>
                   <Col>

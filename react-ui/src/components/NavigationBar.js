@@ -9,8 +9,8 @@ import {
   faSearch,
   faHome,
   faBars,
-  faComment,
   faPlusCircle,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +21,7 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   return currentUser ? (
-    <Navbar bg="white" variant="light" fixed="bottom" className="p-md-0">
+    <Navbar bg="white" variant="light" fixed="bottom" className="py-3 py-sm-0">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-around align-items-center my-2">
           <IndexLinkContainer to="/my-rides" href="/my-rides">
@@ -54,9 +54,9 @@ function NavigationBar() {
           <IndexLinkContainer to="/messages" href="/messages">
             <Nav.Link className="font-title text-center">
               <div className="position-relative">
-                <FontAwesomeIcon icon={faComment} size="lg" />
+                <FontAwesomeIcon icon={faBell} size="lg" />
                 <p className="small d-md-screen mb-0">
-                  Messages
+                  Notifications
                   {driverNewRidesRequestsData.count > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {driverNewRidesRequestsData.count}

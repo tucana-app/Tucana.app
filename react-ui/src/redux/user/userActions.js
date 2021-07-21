@@ -19,7 +19,7 @@ export const registerUser = (formSignupUser) => {
         formSignupUser,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
         dispatch(
           setfeedback({

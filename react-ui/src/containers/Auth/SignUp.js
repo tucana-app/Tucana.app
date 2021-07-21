@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -13,7 +13,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { registerUser } from "../redux";
+import { registerUser } from "../../redux";
 
 require("yup-password")(Yup); // extend yup
 

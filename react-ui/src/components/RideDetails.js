@@ -1,8 +1,8 @@
-import dateFormat from "dateformat";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import dateFormat from "dateformat";
 
-const RideDetails = ({ rideData }) => {
+const RideDetails = ({ rideData, driverUsername }) => {
   return (
     <Container className="my-3">
       <Row className="align-items-center">
@@ -11,8 +11,8 @@ const RideDetails = ({ rideData }) => {
           <p className="mb-0">Province: </p>
         </Col>
         <Col xs={6} sm={3} lg={2} className="mb-3">
-          <p className="text-warning mb-0">{rideData.ride.cityOrigin}</p>
-          <p className="text-warning mb-0">{rideData.ride.provinceOrigin}</p>
+          <p className="text-warning mb-0">{rideData.cityOrigin}</p>
+          <p className="text-warning mb-0">{rideData.provinceOrigin}</p>
         </Col>
 
         <Col xs={6} sm={3} lg={2} className="mb-3">
@@ -20,38 +20,33 @@ const RideDetails = ({ rideData }) => {
           <p className="mb-0">Province:</p>
         </Col>
         <Col xs={6} sm={3} lg={2} className="mb-3">
-          <p className="text-success mb-0">{rideData.ride.cityDestination}</p>
-          <p className="text-success mb-0">
-            {rideData.ride.provinceDestination}
-          </p>
+          <p className="text-success mb-0">{rideData.cityDestination}</p>
+          <p className="text-success mb-0">{rideData.provinceDestination}</p>
         </Col>
         <Col lg={4}></Col>
 
         <Col xs={6} lg={4} className="mb-lg-3">
           <p className="mb-0">
-            Date: {dateFormat(rideData.ride.dateTime, "dd/mm/yyyy")}
+            Date: {dateFormat(rideData.dateTime, "dd/mm/yyyy")}
           </p>
           <p className="mb-0">
-            Time: {dateFormat(rideData.ride.dateTime, "HH:MM TT")}
+            Time: {dateFormat(rideData.dateTime, "HH:MM TT")}
           </p>
         </Col>
         <Col xs={6} lg={4}>
           <p className="mb-0">
-            Driver:{" "}
-            <span className="text-success">
-              {/* {rideData.ride.User.username} */}
-            </span>
+            Driver: <span className="text-success">{driverUsername}</span>
           </p>
           <p className="mb-0">
             Seats left:{" "}
-            <span className="text-success">{rideData.ride.seatsLeft}</span> /{" "}
-            {rideData.ride.seatsAvailable}
+            <span className="text-success">{rideData.seatsLeft}</span> /{" "}
+            {rideData.seatsAvailable}
           </p>
         </Col>
-        {!(rideData.ride.comment === "") ? (
+        {!(rideData.comment === "") ? (
           <Col xs={12} className="my-3 mt-lg-0">
             <p className="mb-0">Comment:</p>
-            <i>"{rideData.ride.comment}"</i>
+            <i>"{rideData.comment}"</i>
           </Col>
         ) : null}
         <Col xs={6} lg={4}>

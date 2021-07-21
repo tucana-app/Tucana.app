@@ -1,25 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Spinner,
-  Badge,
-} from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCar, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
+import LoadingMessage from "../components/LoadingMessage";
 
-// import { getDriverNewRidesRequests } from "../redux";
+import { getDriverNewRidesRequests } from "../redux";
 
 const Messages = () => {
   // const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingDriverNewRidesRequests, driverNewRidesRequestsData } =
     useSelector((state) => state.message);
+
+  useEffect(() => {
+    getDriverNewRidesRequests(currentUser.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -33,7 +32,10 @@ const Messages = () => {
             <span>
               {driverNewRidesRequestsData.count > 0 ? (
                 <>
-                  <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    className="text-warning me-3"
+                  />{" "}
                   <span>
                     New notifications
                     <Badge bg="danger" className="ms-2">
@@ -65,17 +67,7 @@ const Messages = () => {
         <Container className="my-5">
           <Row>
             <Col className="text-center">
-              <Spinner
-                animation="border"
-                role="status"
-                as="span"
-                aria-hidden="true"
-                className="align-middle me-2"
-                variant="success"
-              >
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-              Fetching your notifications
+              <LoadingMessage />
             </Col>
           </Row>
         </Container>
@@ -89,7 +81,7 @@ const Messages = () => {
 
           {driverNewRidesRequestsData.rows.map((booking, index) => (
             <Link
-              to={`/ride/${booking.Ride.id}`}
+              to={`/booking/${booking.id}`}
               className="text-light text-decoration-none"
               key={index}
             >

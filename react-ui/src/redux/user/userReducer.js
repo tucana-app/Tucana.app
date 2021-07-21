@@ -3,7 +3,7 @@ import userTypes from "./userTypes";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = user
-  ? { isLoggedIn: true, sigupSuccessful: false, user }
+  ? { isLoggedIn: true, signupUserSuccessful: false, user }
   : {
       isLoggedIn: false,
       signupUserSuccessful: false,
@@ -14,24 +14,24 @@ function userReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case userTypes.REGISTER_REQUESTED:
+    case userTypes.REGISTER_USER_REQUESTED:
       return {
         ...state,
-        signupSuccessful: false,
+        signupUserSuccessful: false,
       };
 
-    case userTypes.REGISTER_SUCCESS:
+    case userTypes.REGISTER_USER_SUCCESS:
       return {
         ...state,
         isLoggedIn: false,
-        signupSuccessful: true,
+        signupUserSuccessful: true,
       };
 
-    case userTypes.REGISTER_FAIL:
+    case userTypes.REGISTER_USER_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        signupSuccessful: false,
+        signupUserSuccessful: false,
       };
 
     case userTypes.LOGIN_SUCCESS:

@@ -1,31 +1,28 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import {
-  Col,
-  Container,
-  Row,
-  Spinner,
-  Alert,
-  ListGroup,
-  Accordion,
-} from "react-bootstrap";
+import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 
-import { getUserDriverRides } from "../../redux";
+import LoadingMessage from "../../components/LoadingMessage";
+import FeedbackMessage from "../../components/FeedbackMessage";
+import NoRidesMessage from "../../components/NoRidesMessage";
+import { LinkContainer } from "react-router-bootstrap";
+import { Button } from "react-bootstrap";
+
+import { getDriverRides } from "../../redux";
 
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { feedback } = useSelector((state) => state.global);
-  const { isLoadingUserDriverRidesList, userRidesListData } = useSelector(
+  const { isLoadingDriverRidesList, userRidesListData } = useSelector(
     (state) => state.ride
   );
 
   useEffect(() => {
-    dispatch(getUserDriverRides(currentUser.id));
+    dispatch(getDriverRides(currentUser.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,20 +49,10 @@ const MyRidesDriver = () => {
       </ListGroup>
 
       <Container className="mt-4 mb-5">
-        {isLoadingUserDriverRidesList ? (
+        {isLoadingDriverRidesList ? (
           <Row>
             <Col className="text-center">
-              <Spinner
-                animation="border"
-                role="status"
-                as="span"
-                aria-hidden="true"
-                className="align-middle me-2"
-                variant="success"
-              >
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-              Fetching your rides...
+              <LoadingMessage />
             </Col>
           </Row>
         ) : (
@@ -82,7 +69,109 @@ const MyRidesDriver = () => {
             </Row>
 
             {!(userRidesListData.length === 0) ? (
-              <Row>
+              <>
+                {userRidesListData.map((ride, index) => (
+                  <Row
+                    className="justify-content-center justify-content-md-start justify-content-lg-center align-items-center border border-start-0 border-end-0 py-3 mx-1 mx-sm-2"
+                    data-aos="fade-zoom-in"
+                    data-aos-delay={index * 150}
+                    data-aos-once="true"
+                    key={index}
+                  >
+                    <Col xs={6} sm={3} lg={2} className="mb-3">
+                      <p className="mb-0">Origin:</p>
+                      <p className="mb-0">Province: </p>
+                    </Col>
+                    <Col xs={6} sm={3} lg={2} className="mb-3">
+                      <p className="text-warning mb-0">{ride.cityOrigin}</p>
+                      <p className="text-warning mb-0">{ride.provinceOrigin}</p>
+                    </Col>
+
+                    <Col xs={6} sm={3} lg={2} className="mb-3">
+                      <p className="mb-0">Destination:</p>
+                      <p className="mb-0">Province:</p>
+                    </Col>
+                    <Col xs={6} sm={3} lg={2} className="mb-3">
+                      <p className="text-success mb-0">
+                        {ride.cityDestination}
+                      </p>
+                      <p className="text-success mb-0">
+                        {ride.provinceDestination}
+                      </p>
+                    </Col>
+
+                    <Col xs={6} md={4} lg={2} className="mb-3 mb-lg-3">
+                      <p className="mb-0">
+                        Date: {dateFormat(ride.dateTime, "dd/mm/yyyy")}
+                      </p>
+                      <p className="mb-0">
+                        Time: {dateFormat(ride.dateTime, "HH:MM TT")}
+                      </p>
+                    </Col>
+
+                    <Col xs={6} md={4} lg={3} className="">
+                      <p className="mb-0">
+                        Created:{" "}
+                        <span>{dateFormat(ride.createdAt, "dd/mm/yyyy")}</span>
+                      </p>
+                      <p className="mb-0">
+                        Seats left:{" "}
+                        <span className="text-success">{ride.seatsLeft}</span> /{" "}
+                        {ride.seatsAvailable}
+                      </p>
+                    </Col>
+
+                    <Col xs={6} md={4} lg={3} className="my-3">
+                      Status:{" "}
+                      <span className="text-success">
+                        {ride.RideStatus.name}
+                      </span>
+                    </Col>
+
+                    <Col
+                      xs={6}
+                      md={0}
+                      lg={0}
+                      xl={0}
+                      xxl={0}
+                      className="d-md-none"
+                    ></Col>
+
+                    {!(ride.comment === "") ? (
+                      <Col
+                        xs={12}
+                        xl={3}
+                        className="text-lg-center text-xl-start mt-lg-3"
+                      >
+                        <p className="mb-0">Your comment:</p>
+                        <i>"{ride.comment}"</i>
+                      </Col>
+                    ) : null}
+
+                    <Col xs={12} className="text-center mx-auto my-3">
+                      <LinkContainer to={`/ride/${ride.id}`}>
+                        <Button variant="success rounded-0 fw-bold text-uppercase">
+                          Manage
+                        </Button>
+                      </LinkContainer>
+                    </Col>
+                  </Row>
+                ))}
+              </>
+            ) : (
+              <>
+                <Row>
+                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                    <FeedbackMessage />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="text-center">
+                    <NoRidesMessage />
+                  </Col>
+                </Row>
+
+                {/* <Row>
                 <Col xs={12} md={6} className="mx-auto">
                   <Accordion>
                     {userRidesListData.map((ride, index) => (
@@ -132,24 +221,21 @@ const MyRidesDriver = () => {
               </Row>
             ) : (
               <Row>
-                <Col className="text-center">
-                  <h1 className="display-2 text-info">No rides for now</h1>
-                  <p>
-                    Offer a ride by{" "}
-                    <Link to="/offer-ride" className="text-success">
-                      clicking here
-                    </Link>
-                  </p>
-                </Col>
-              </Row>
+              <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                <FeedbackMessage />
+              </Col>
+            </Row>
+            <Row>
+              <Col className="text-center">
+                <NoRidesMessage />
+              </Col>
+            </Row>
             )}
           </>
-        )}
-
-        {feedback.message && (
-          <Alert variant={feedback.variant} className="mt-3">
-            {feedback.message}
-          </Alert>
+        )} */}
+              </>
+            )}
+          </>
         )}
       </Container>
     </div>

@@ -59,19 +59,26 @@ module.exports = {
         }
 
         var token = jwt.sign({ id: user.id }, config.secret, {
-          expiresIn: 86400, // 24 hours
+          expiresIn: 604800, // 7 days
         });
 
         res.status(200).send({
           id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
           username: user.username,
           email: user.email,
+          biography: user.biography,
+          phoneNumber: user.phoneNumber,
+          createdAt: user.createdAt,
           accessToken: token,
         });
       })
       .catch((error) => {
         // console.log(error);
-        res.status(500).send({ message: "An error occured while login" });
+        res
+          .status(500)
+          .send({ message: "It looks like we can't log you in now" });
       });
   },
 };

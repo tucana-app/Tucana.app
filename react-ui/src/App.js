@@ -8,24 +8,24 @@ import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
 
 import Ride from "./containers/Ride";
-import MyRides from "./containers/MyRides";
+import MyRides from "./containers/MyRides/MyRides";
 import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
-import Bookings from "./containers/MyRides/Bookings";
+import Bookings from "./containers/Bookings";
+import Booking from "./containers/Booking";
 
 import OfferRide from "./containers/OfferRide";
-import LogIn from "./containers/LogIn";
+import LogIn from "./containers/Auth/LogIn";
 
-import SignUp from "./containers/SignUp";
-// import SignUpStep2 from "./containers/SignUp/SignUpStep2";
-import SignUpSuccess from "./containers/SignUp/SignUpSuccess";
+import SignUp from "./containers/Auth/SignUp";
+import SignUpSuccess from "./containers/Auth/SignUpSuccess";
 
-import SideMenu from "./containers/SideMenu";
 import Help from "./containers/Help";
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import ComingSoon from "./containers/ComingSoon";
 
 // All pages included in the side menu
+import SideMenu from "./containers/SideMenu/SideMenu";
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
@@ -83,7 +83,8 @@ function App() {
           <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/my-rides" component={MyRides} />
           <Route exact path="/my-rides/driver" component={MyRidesDriver} />
-          <Route exact path="/my-rides/bookings" component={Bookings} />
+          <Route exact path="/bookings" component={Bookings} />
+          <Route exact path="/booking/:bookingId" component={Booking} />
 
           <Route exact path="/login" component={LogIn} />
 

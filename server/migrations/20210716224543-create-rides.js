@@ -42,7 +42,6 @@ module.exports = {
       },
       comment: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       RideStatusId: {
         type: Sequelize.INTEGER,

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   Container,
   Form,
@@ -13,7 +13,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { login } from "../redux";
+import { login } from "../../redux";
 
 const Login = () => {
   const dispatch = useDispatch();

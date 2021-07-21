@@ -1,49 +1,35 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Form,
-  Button,
-  Alert,
-  Spinner,
-} from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faCarAlt } from "@fortawesome/free-solid-svg-icons";
-import { Formik } from "formik";
-
-import { getRide, submitFormBookRide, getUserBookingRide } from "../redux";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import dateFormat from "dateformat";
 
 import RideDetails from "../components/RideDetails";
+import ManageDriverBooking from "../components/ManageDriverBooking";
+import FeedbackMessage from "../components/FeedbackMessage";
+import LoadingMessage from "../components/LoadingMessage";
+import FormBookRide from "../components/FormBookRide";
+
+import { getRide, getUserBookingRide } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
-import dateFormat from "dateformat";
 
 const Ride = () => {
   const { rideId } = useParams();
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { feedback } = useSelector((state) => state.global);
   const {
     isloadingRide,
-    isloadingBookingRide,
     rideData,
     isloadingUserRideBookingList,
     userRideBookingData,
   } = useSelector((state) => state.ride);
 
-  const handleSubmit = (values, formikBag) => {
-    dispatch(submitFormBookRide(currentUser.id, rideId, values));
-
-    formikBag.setSubmitting(false);
-  };
-
   useEffect(() => {
-    dispatch(getUserBookingRide(currentUser.id, rideId));
     dispatch(getRide(rideId));
+    dispatch(getUserBookingRide(currentUser.id, rideId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,17 +59,7 @@ const Ride = () => {
         {isloadingRide ? (
           <Row>
             <Col className="text-center">
-              <Spinner
-                animation="border"
-                role="status"
-                as="span"
-                aria-hidden="true"
-                className="align-middle me-2"
-                variant="success"
-              >
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-              Fetching your rides...
+              <LoadingMessage />
             </Col>
           </Row>
         ) : rideData.ride ? (
@@ -103,49 +79,50 @@ const Ride = () => {
               </Col>
             </Row>
 
-            <hr className="w-75 mx-auto my-2" />
+            <Row>
+              <Col>
+                <hr className="w-75 mx-auto my-2" />
+              </Col>
+            </Row>
 
-            <RideDetails rideData={rideData} />
+            <Row>
+              <Col>
+                <RideDetails
+                  rideData={rideData.ride}
+                  driverUsername={rideData.ride.User.username}
+                />
+              </Col>
+            </Row>
 
             {/* Display past booking for this rideData.ride.ride by this user */}
             {!(rideData.ride.DriverId === currentUser.id) ? (
               <>
                 {isloadingUserRideBookingList ? (
-                  <Container>
+                  <>
                     <hr className="w-75 mx-auto my-2" />
                     <Row>
                       <Col className="text-center">
-                        <Spinner
-                          animation="border"
-                          role="status"
-                          as="span"
-                          aria-hidden="true"
-                          className="align-middle me-2"
-                          variant="success"
-                        >
-                          <span className="sr-only">Loading...</span>
-                        </Spinner>
-                        Fetching your booking for this ride...
+                        <LoadingMessage />
                       </Col>
                     </Row>
-                  </Container>
+                  </>
                 ) : userRideBookingData.length > 0 ? (
                   // <UserBookingsList userRideBookingData={userRideBookingData} />
 
                   <Container className="my-3">
-                    {console.log(userRideBookingData)}
                     <hr className="w-75 mb-4 mx-auto" />
-
-                    <div className="d-inline-flex mb-3">
-                      <h3 className="me-2 mb-0">
-                        Your previous booking for this ride
-                      </h3>
-                      <LinkContainer to="/my-rides/bookings">
-                        <Button variant="success" className="rounded-0">
-                          Learn more
-                        </Button>
-                      </LinkContainer>
-                    </div>
+                    <Row>
+                      <Col>
+                        <h3 className="me-2 mb-0">
+                          Your previous booking(s) for this ride
+                        </h3>
+                        <p>
+                          <Link to="/bookings" className="text-success">
+                            Manage your bookings
+                          </Link>
+                        </p>
+                      </Col>
+                    </Row>
                     {userRideBookingData.map((booking, index) => (
                       <Row key={index} className="my-2">
                         <Col>
@@ -164,131 +141,36 @@ const Ride = () => {
                           <span className="text-success">
                             {booking.BookingStatus.name}
                           </span>
+                          <LinkContainer to={`/booking/${booking.id}`}>
+                            <Button
+                              variant="success"
+                              className="rounded-0 text-uppercase ms-2"
+                            >
+                              View
+                            </Button>
+                          </LinkContainer>
                         </Col>
                       </Row>
                     ))}
                   </Container>
                 ) : null}
 
-                <hr className="w-75 mx-auto my-2" />
+                <Row>
+                  <Col>
+                    <hr className="w-75 mx-auto my-4" />
+                  </Col>
+                </Row>
 
-                {feedback.message && (
-                  <Alert variant={feedback.variant} className="my-3">
-                    {feedback.message}
-                  </Alert>
-                )}
+                <Row>
+                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                    <FeedbackMessage />
+                  </Col>
+                </Row>
 
-                <Formik
-                  validationSchema={rideData.ride.schema}
-                  onSubmit={handleSubmit}
-                  initialValues={{
-                    seatsNeeded: 0,
-                  }}
-                >
-                  {({
-                    handleSubmit,
-                    handleChange,
-                    // handleBlur,
-                    values,
-                    touched,
-                    isValid,
-                    errors,
-                    isSubmitting,
-                  }) => (
-                    <Form noValidate onSubmit={handleSubmit} className="">
-                      <Row>
-                        <Col xs={8} sm={6} md={5} lg={4} className="mx-auto">
-                          <p className="lead mb-1">Book this ride</p>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col
-                          xs={8}
-                          sm={6}
-                          md={5}
-                          lg={4}
-                          className="border py-2 mx-auto"
-                        >
-                          <Form.Group className="mx-auto mb-3">
-                            <Form.Label>
-                              <FontAwesomeIcon
-                                icon={faCarAlt}
-                                className="text-success me-2"
-                              />
-                              <span className="d-xs-screen">Passengers</span>
-                              <span className="d-md-screen">
-                                Number of passenger
-                              </span>
-                              <span className="text-danger">*</span>
-                            </Form.Label>
-                            <Form.Select
-                              name="seatsNeeded"
-                              className="rounded-0"
-                              onChange={handleChange}
-                              isInvalid={!!errors.seatsNeeded}
-                              isValid={
-                                touched.seatsNeeded && !errors.seatsNeeded
-                              }
-                              disabled={
-                                isSubmitting ||
-                                rideData.ride.DriverId === currentUser.id
-                              }
-                            >
-                              <option value="0" defaultValue="0">
-                                Select an option
-                              </option>
-                              {rideData.optionsSeatsNeeded}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              {errors.seatsNeeded}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-
-                          <Form.Group className="text-end mx-auto">
-                            <span>Everything looks good? </span>
-                            <Button
-                              variant="success"
-                              size="lg"
-                              className="rounded-0 fw-bold"
-                              type="submit"
-                              disabled={
-                                isSubmitting ||
-                                isloadingBookingRide ||
-                                rideData.ride.DriverId === currentUser.id
-                              }
-                            >
-                              {isSubmitting || isloadingBookingRide ? (
-                                <Spinner
-                                  animation="border"
-                                  role="status"
-                                  as="span"
-                                  aria-hidden="true"
-                                  className="align-middle me-2"
-                                >
-                                  <span className="sr-only">Loading...</span>
-                                </Spinner>
-                              ) : null}
-                              BOOK
-                            </Button>
-                          </Form.Group>
-                        </Col>
-                      </Row>
-                    </Form>
-                  )}
-                </Formik>
+                <FormBookRide rideId={rideId} />
               </>
             ) : (
-              <>
-                <hr className="w-75 mx-auto my-2" />
-
-                <Container className="py-4">
-                  <Row>
-                    <Col className="text-center">
-                      Manage the bookings for your ride
-                    </Col>
-                  </Row>
-                </Container>
-              </>
+              <ManageDriverBooking rideId={rideId} />
             )}
           </>
         ) : null}

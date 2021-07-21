@@ -14,7 +14,7 @@ module.exports = (app) => {
     controller.getDriverNewRidesRequests
   );
 
-  app.get("/api/ride/user-rides", controller.getUserRides);
+  app.get("/api/ride/user-rides", controller.getDriverRides);
 
   app.get("/api/ride/all-rides", controller.getAllRides);
 
@@ -22,12 +22,17 @@ module.exports = (app) => {
 
   app.post("/api/ride/book", controller.bookRide);
 
+  app.put("/api/booking/driver-response", controller.driverResponseBooking);
+
   app.get("/api/ride/user-booking-ride", controller.getUserBookingRide);
 
-  app.get(
-    "/api/ride/driver-all-rides-requests",
-    controller.getDriverAllRidesRequests
-  );
+  app.get("/api/ride/driver-booking-ride", controller.getDriverBookingRide);
+
+  app.get("/api/ride/user-bookings", controller.getUserBookings);
+
+  app.get("/api/ride/passengers", controller.getPassengers);
 
   app.get("/api/ride/:rideId", controller.getRide);
+
+  app.get("/api/booking/:bookingId", controller.getBooking);
 };

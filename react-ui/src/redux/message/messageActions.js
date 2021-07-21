@@ -11,18 +11,18 @@ export const getDriverNewRidesRequestsRequested = () => {
   };
 };
 
-export const getDriverNewRidesRequests = (userId) => {
+export const getDriverNewRidesRequests = (driverId) => {
   return (dispatch) => {
     dispatch(getDriverNewRidesRequestsRequested());
 
     axios
       .get(URL_API + "/ride/driver-new-rides-requests", {
         params: {
-          userId,
+          driverId,
         },
       })
       .then((response) => {
-        // console.log(response);
+        // console.log(response.data);
         dispatch(getDriverNewRidesRequestsSuccess(response.data));
       })
       .catch((error) => {

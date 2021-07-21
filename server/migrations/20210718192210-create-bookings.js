@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      DriverId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+      },
       UserId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -24,13 +29,13 @@ module.exports = {
         defaultValue: 1,
       },
       seatsBooked: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       commentPassenger: {
         type: Sequelize.STRING,
       },
-      commentRefused: {
+      commentDriver: {
         type: Sequelize.STRING,
       },
       createdAt: {

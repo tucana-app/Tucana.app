@@ -9,10 +9,15 @@ const Op = db.Sequelize.Op;
 const errorMessage = { message: "A problem occured with this request" };
 
 const { findPhoneNumbersInText } = require("libphonenumber-js");
-addrs = require("email-addresses");
+
+function extractEmails(string) {
+  return string.match(
+    /(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gi
+  );
+}
 
 module.exports = {
-  getUserRides(req, res) {
+  getDriverRides(req, res) {
     return Rides.findAll({
       where: {
         DriverId: req.query.userId,
@@ -41,18 +46,16 @@ module.exports = {
       req.body.formValues.comment
     );
 
-    const listEmailInComment = addrs.parseAddressList(
-      req.body.formValues.comment
-    );
+    const listEmailInComment = extractEmails(req.body.formValues.comment);
 
     if (listPhoneNumberInComment.length > 0)
       res.status(401).json({
         message: "Please do not include phone numbers in your comment",
       });
-    else if (listEmailInComment)
-      res
-        .status(401)
-        .json({ message: "Please do not include emails in your comment" });
+    else if (listEmailInComment && listEmailInComment.length > 0)
+      res.status(401).json({
+        message: "Please do not include emails in your comment",
+      });
     else {
       return Rides.create({
         DriverId: req.body.userId,
@@ -67,7 +70,9 @@ module.exports = {
       })
         .then((response) => {
           // console.log(response);
-          res.status(201).send("You ride has been successfully added");
+          res
+            .status(201)
+            .json({ message: "You ride has been successfully added" });
         })
         .catch((error) => {
           // console.log(error);
@@ -81,22 +86,75 @@ module.exports = {
       where: {
         id: req.params.rideId,
       },
-      // order: [["dateTime", "ASC"]],
-      // include: [
-      //   {
-      //     model: User,
-      //     attributes: {
-      //       exclude: [
-      //         "email",
-      //         "biography",
-      //         "password",
-      //         "phoneNumber",
-      //         "createdAt",
-      //         "updatedAt",
-      //       ],
-      //     },
-      //   },
-      // ],
+      order: [["dateTime", "ASC"]],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              "email",
+              "biography",
+              "password",
+              "phoneNumber",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
+  getBooking(req, res) {
+    return Bookings.findOne({
+      where: {
+        id: req.params.bookingId,
+      },
+      order: [["createdAt", "ASC"]],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              "email",
+              "biography",
+              "password",
+              "phoneNumber",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+        {
+          model: Rides,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  "email",
+                  "biography",
+                  "password",
+                  "phoneNumber",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+            },
+          ],
+        },
+        {
+          model: BookingStatus,
+        },
+      ],
     })
       .then((response) => {
         // console.log(response);
@@ -147,18 +205,76 @@ module.exports = {
 
   bookRide(req, res) {
     // console.log(req.body);
-    return Bookings.create({
-      UserId: req.body.userId,
-      RideId: req.body.rideId,
-      seatsBooked: req.body.formValues.seatsNeeded,
-    })
+    if (req.body.formValues.seatsNeeded === 0) {
+      res.status(400).json({ message: "How many seats do you need?" });
+    } else {
+      return Bookings.create({
+        UserId: req.body.userId,
+        RideId: req.body.rideId,
+        DriverId: req.body.driverId,
+        seatsBooked: req.body.formValues.seatsNeeded,
+      })
+        .then((response) => {
+          // console.log(response);
+          res
+            .status(201)
+            .json({ message: "Your booking has been submitted to the driver" });
+        })
+        .catch((error) => {
+          // console.log(error);
+          res.status(400).json(errorMessage);
+        });
+    }
+  },
+
+  driverResponseBooking(req, res) {
+    const { comment, newStatus, bookingId, newSeatsAvailable, rideId } =
+      req.body.formValues;
+    return Bookings.update(
+      {
+        commentDriver: comment,
+        BookingStatusId: newStatus,
+      },
+      {
+        where: {
+          id: bookingId,
+        },
+      }
+    )
       .then((response) => {
-        // console.log(response);
-        res.status(201).send("You booking has been submitted to the driver");
+        return Rides.update(
+          {
+            seatsLeft: newSeatsAvailable,
+          },
+          {
+            where: {
+              id: rideId,
+            },
+          }
+        )
+          .then((response) => {
+            // console.log(response);
+
+            // if booking accepted by driver
+            if (newStatus === 3)
+              res.status(200).send({
+                message: "You have accepted the booking, happy ride!",
+                newStatus,
+              });
+            // if booking refused by driver
+            if (newStatus === 4)
+              res
+                .status(200)
+                .send({ message: "You have refused this booking", newStatus });
+          })
+          .catch((error) => {
+            // console.log(error);
+            res.status(400).json(error);
+          });
       })
       .catch((error) => {
         // console.log(error);
-        res.status(400).json(errorMessage);
+        res.status(400).json(error);
       });
   },
 
@@ -184,15 +300,51 @@ module.exports = {
       });
   },
 
+  getDriverBookingRide(req, res) {
+    Bookings.findAll({
+      where: {
+        DriverId: req.query.driverId,
+        RideId: req.query.rideId,
+      },
+      order: [["createdAt", "ASC"]],
+      include: [
+        {
+          model: BookingStatus,
+        },
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              "firstName",
+              "lastName",
+              "email",
+              "biography",
+              "password",
+              "phoneNumber",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
   getDriverNewRidesRequests(req, res) {
     return Bookings.findAndCountAll({
       where: {
         [Op.and]: [
           {
             BookingStatusId: 1,
-            UserId: {
-              [Op.ne]: req.query.userId,
-            },
+            DriverId: req.query.driverId,
           },
         ],
       },
@@ -202,7 +354,7 @@ module.exports = {
           "RideId",
           "UserId",
           "commentPassenger",
-          "commentRefused",
+          "commentDriver",
           "updatedAt",
           "BookingStatusId",
           // "id",
@@ -214,7 +366,10 @@ module.exports = {
         {
           model: Rides,
           where: {
-            DriverId: req.query.userId,
+            DriverId: req.query.driverId,
+            seatsLeft: {
+              [Op.gt]: 0,
+            },
           },
           attributes: {
             exclude: [
@@ -259,7 +414,7 @@ module.exports = {
       });
   },
 
-  getDriverAllRidesRequests(req, res) {
+  getUserBookings(req, res) {
     return Bookings.findAll({
       where: {
         UserId: req.query.userId,
@@ -285,6 +440,34 @@ module.exports = {
         },
         {
           model: BookingStatus,
+        },
+      ],
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(200).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
+  getPassengers(req, res) {
+    return Bookings.findAll({
+      where: {
+        RideId: req.query.rideId,
+      },
+      order: [["createdAt", "ASC"]],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password", "createdAt", "updatedAt"],
+          },
+        },
+        {
+          model: Rides,
         },
       ],
     })

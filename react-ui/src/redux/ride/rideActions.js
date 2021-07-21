@@ -2,20 +2,21 @@ import rideTypes from "./rideTypes";
 import axios from "axios";
 import { setfeedback } from "../index";
 import * as Yup from "yup";
+import { getDriverNewRidesRequests } from "../../redux";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
 // Get all the driver's ride from a user
 
-export const getUserDriverRidesRequested = () => {
+export const getDriverRidesRequested = () => {
   return {
     type: rideTypes.GET_USER_RIDES_REQUEST,
   };
 };
 
-export const getUserDriverRides = (userId) => {
+export const getDriverRides = (userId) => {
   return (dispatch) => {
-    dispatch(getUserDriverRidesRequested());
+    dispatch(getDriverRidesRequested());
 
     axios
       .get(URL_API + "/ride/user-rides", {
@@ -25,7 +26,7 @@ export const getUserDriverRides = (userId) => {
       })
       .then((response) => {
         // console.log(response.data);
-        dispatch(getUserDriverRidesSuccess(response.data));
+        dispatch(getDriverRidesSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -43,19 +44,19 @@ export const getUserDriverRides = (userId) => {
             message: message,
           })
         );
-        dispatch(getUserDriverRidesFail(error));
+        dispatch(getDriverRidesFail(error));
       });
   };
 };
 
-export const getUserDriverRidesSuccess = (data) => {
+export const getDriverRidesSuccess = (data) => {
   return {
     type: rideTypes.GET_USER_RIDES_SUCCESS,
     payload: data,
   };
 };
 
-export const getUserDriverRidesFail = (error) => {
+export const getDriverRidesFail = (error) => {
   return {
     type: rideTypes.GET_USER_RIDES_FAIL,
     payload: error,
@@ -88,12 +89,12 @@ export const submitFormOfferRide = (userId, values) => {
         dispatch(
           setfeedback({
             variant: "success",
-            message: response.data,
+            message: response.data.message,
           })
         );
 
         dispatch(submitFormOfferRideSuccess(response.data));
-        dispatch(getUserDriverRides(userId));
+        dispatch(getDriverRides(userId));
       })
       .catch((error) => {
         const message =
@@ -146,10 +147,6 @@ export const getRide = (rideId) => {
       .then((response) => {
         // console.log(response);
 
-        // const { labelStringField, labelRequiredField } = useSelector(
-        //   (state) => state.global
-        // );
-
         // Render the list of option for the number of seats available
         const optionsSeatsNeeded = [];
 
@@ -162,14 +159,13 @@ export const getRide = (rideId) => {
         }
 
         const schema = Yup.object().shape({
-          seatsNeeded: Yup.number("dsdas")
+          seatsNeeded: Yup.number()
             .min(1, "Min. 1 passenger required")
             .max(
               response.data.seatsLeft,
               `Max. ${response.data.seatsLeft} passengers`
             )
-            .required("NOP"),
-          comment: Yup.string("labelStringField"),
+            .required(),
         });
 
         dispatch(
@@ -205,6 +201,54 @@ export const getRideSuccess = (data) => {
 export const getRideFail = (error) => {
   return {
     type: rideTypes.GET_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// Get a single booking
+
+export const getBookingRequested = () => {
+  return {
+    type: rideTypes.GET_BOOKING_REQUEST,
+  };
+};
+
+export const getBooking = (rideId) => {
+  return (dispatch) => {
+    dispatch(getBookingRequested());
+
+    axios
+      .get(URL_API + "/booking/" + rideId)
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(getBookingSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getBookingFail(message));
+      });
+  };
+};
+
+export const getBookingSuccess = (data) => {
+  return {
+    type: rideTypes.GET_BOOKING_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getBookingFail = (error) => {
+  return {
+    type: rideTypes.GET_BOOKING_FAIL,
     payload: error,
   };
 };
@@ -269,7 +313,7 @@ export const submitFormBookRideRequested = () => {
   };
 };
 
-export const submitFormBookRide = (userId, rideId, formValues) => {
+export const submitFormBookRide = (userId, rideId, driverId, formValues) => {
   return (dispatch) => {
     dispatch(submitFormBookRideRequested());
 
@@ -277,37 +321,38 @@ export const submitFormBookRide = (userId, rideId, formValues) => {
       .post(URL_API + "/ride/book", {
         userId,
         rideId,
+        driverId,
         formValues,
       })
       .then((response) => {
-        // console.log(response);
+        // console.log(response.data);
 
         dispatch(
           setfeedback({
             variant: "success",
-            message: response.data,
+            message: response.data.message,
           })
         );
 
-        dispatch(submitFormBookRideSuccess(response));
         dispatch(getAllRides());
         dispatch(getUserBookingRide(userId, rideId));
-        dispatch(getDriverRidesRequests(userId));
+        dispatch(getUserBookings(userId));
+        dispatch(submitFormBookRideSuccess(response));
       })
       .catch((error) => {
         // console.log(error);
 
-        // const message =
-        //   (error.response &&
-        //     error.response.data &&
-        //     error.response.data.message) ||
-        //   error.message ||
-        //   error.toString();
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
         dispatch(
           setfeedback({
             variant: "danger",
-            message: error.message,
+            message: message,
           })
         );
         dispatch(submitFormBookRideFail(error));
@@ -325,6 +370,73 @@ export const submitFormBookRideSuccess = (data) => {
 export const submitFormBookRideFail = (error) => {
   return {
     type: rideTypes.SUBMIT_FORM_BOOK_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// When the driver accept or refuse the booking
+
+export const submitFormDriverResponseBookingRequested = () => {
+  return {
+    type: rideTypes.SUBMIT_FORM_DRIVER_RESPONSE_BOOKING_REQUEST,
+  };
+};
+
+export const submitFormDriverResponseBooking = (formValues) => {
+  return (dispatch) => {
+    dispatch(submitFormDriverResponseBookingRequested());
+
+    axios
+      .put(URL_API + "/booking/driver-response", { formValues })
+      .then((response) => {
+        dispatch(
+          setfeedback({
+            variant:
+              response.data.newStatus === 3
+                ? "success"
+                : response.data.newStatus === 4
+                ? "warning"
+                : null,
+            message: response.data.message,
+          })
+        );
+
+        dispatch(getAllRides());
+        dispatch(getBooking(formValues.bookingId));
+        dispatch(getDriverNewRidesRequests(formValues.userId));
+        dispatch(submitFormDriverResponseBookingSuccess(response.data.message));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+        dispatch(submitFormDriverResponseBookingFail(error));
+      });
+  };
+};
+
+export const submitFormDriverResponseBookingSuccess = (data) => {
+  return {
+    type: rideTypes.SUBMIT_FORM_DRIVER_RESPONSE_BOOKING_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitFormDriverResponseBookingFail = (error) => {
+  return {
+    type: rideTypes.SUBMIT_FORM_DRIVER_RESPONSE_BOOKING_FAIL,
     payload: error,
   };
 };
@@ -383,43 +495,162 @@ export const getUserBookingRideFail = (error) => {
 
 // Get all the driver's rides requests
 
-export const getDriverRidesRequestsRequested = () => {
+export const getUserBookingsRequested = () => {
   return {
-    type: rideTypes.GET_DRIVER_RIDES_REQUESTS_REQUEST,
+    type: rideTypes.GET_USER_BOOKINGS_REQUEST,
   };
 };
 
-export const getDriverRidesRequests = (userId) => {
+export const getUserBookings = (userId) => {
   return (dispatch) => {
-    dispatch(getDriverRidesRequestsRequested());
+    dispatch(getUserBookingsRequested());
 
     axios
-      .get(URL_API + "/ride/driver-all-rides-requests", {
+      .get(URL_API + "/ride/user-bookings", {
         params: {
           userId,
         },
       })
       .then((response) => {
         // console.log(response.data);
-        dispatch(getDriverRidesRequestsSuccess(response.data));
+        dispatch(getUserBookingsSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error)
-        dispatch(getDriverRidesRequestsFail(error));
+        dispatch(getUserBookingsFail(error));
       });
   };
 };
 
-export const getDriverRidesRequestsSuccess = (data) => {
+export const getUserBookingsSuccess = (data) => {
   return {
-    type: rideTypes.GET_DRIVER_RIDES_REQUESTS_SUCCESS,
+    type: rideTypes.GET_USER_BOOKINGS_SUCCESS,
     payload: data,
   };
 };
 
-export const getDriverRidesRequestsFail = (error) => {
+export const getUserBookingsFail = (error) => {
   return {
-    type: rideTypes.GET_DRIVER_RIDES_REQUESTS_FAIL,
+    type: rideTypes.GET_USER_BOOKINGS_FAIL,
+    payload: error,
+  };
+};
+
+// Get all the booking from one user on the ride's page
+
+export const getDriverBookingRideRequested = () => {
+  return {
+    type: rideTypes.GET_DRIVER_RIDE_BOOKING_REQUEST,
+  };
+};
+
+export const getDriverBookingRide = (driverId, rideId) => {
+  return (dispatch) => {
+    dispatch(getDriverBookingRideRequested());
+
+    axios
+      .get(URL_API + "/ride/driver-booking-ride", {
+        params: {
+          driverId,
+          rideId,
+        },
+      })
+      .then((response) => {
+        // console.log(response);
+
+        dispatch(getDriverBookingRideSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+
+        dispatch(getDriverBookingRideFail(error));
+      });
+  };
+};
+
+export const getDriverBookingRideSuccess = (data) => {
+  return {
+    type: rideTypes.GET_DRIVER_RIDE_BOOKING_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverBookingRideFail = (error) => {
+  return {
+    type: rideTypes.GET_DRIVER_RIDE_BOOKING_FAIL,
+    payload: error,
+  };
+};
+
+// Get passengers details for a single ride
+
+export const getPassengersDetailsRequested = () => {
+  return {
+    type: rideTypes.GET_PASSENGERS_DETAILS_REQUEST,
+  };
+};
+
+export const getPassengersDetails = (bookingId, rideId) => {
+  return (dispatch) => {
+    dispatch(getPassengersDetailsRequested());
+
+    axios
+      .get(URL_API + "/ride/passengers", {
+        params: {
+          bookingId,
+          rideId,
+        },
+      })
+      .then((response) => {
+        // console.log(response);
+        dispatch(getPassengersDetailsSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+
+        dispatch(getPassengersDetailsFail(error));
+      });
+  };
+};
+
+export const getPassengersDetailsSuccess = (data) => {
+  return {
+    type: rideTypes.GET_PASSENGERS_DETAILS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getPassengersDetailsFail = (error) => {
+  return {
+    type: rideTypes.GET_PASSENGERS_DETAILS_FAIL,
     payload: error,
   };
 };

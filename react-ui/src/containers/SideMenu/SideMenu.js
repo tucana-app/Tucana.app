@@ -19,7 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import { logout } from "../redux";
+import { logout } from "../../redux";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
