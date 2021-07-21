@@ -17,7 +17,7 @@ module.exports = {
       lastName,
       email,
       phoneNumber,
-      username,
+      username: username.toLowerCase(),
       password: bcrypt.hashSync(password, 8),
     })
       .then((user) => {

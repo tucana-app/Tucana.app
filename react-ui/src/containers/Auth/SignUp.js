@@ -59,8 +59,8 @@ const SignUp = () => {
       .min(4, "Min. 4 characters")
       .max(20, "Max. 20 characters")
       .matches(
-        /^[a-z0-9]([._-](?![._-])|[a-z0-9]){2,18}[a-z0-9]$/,
-        "Please enter a valid name"
+        /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){2,18}[a-zA-Z0-9]$/,
+        "Please enter a valid name (only letters and numbers)"
       )
       .required(labelRequiredField),
 
