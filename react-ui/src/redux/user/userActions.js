@@ -1,6 +1,6 @@
 import userTypes from "./userTypes";
 import notificationTypes from "../notification/notificationTypes";
-import { setfeedback } from "../index";
+import { setfeedback, sendEmailSignup } from "../index";
 import axios from "axios";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -29,6 +29,7 @@ export const registerUser = (formSignupUser) => {
           })
         );
 
+        dispatch(sendEmailSignup(formSignupUser));
         dispatch(registerUserSuccess(response.data));
       })
       .catch((error) => {

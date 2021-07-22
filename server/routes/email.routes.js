@@ -1,4 +1,4 @@
-const controller = require("../controllers").admin;
+const controller = require("../controllers").email;
 
 module.exports = (app) => {
   app.use(function (req, res, next) {
@@ -9,5 +9,5 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/admin/list-users", controller.listUsers);
+  app.post("/api/email/send-email", controller.sendEmail);
 };

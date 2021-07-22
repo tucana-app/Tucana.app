@@ -1,7 +1,7 @@
 import adminTypes from "./adminTypes";
 
 const initialState = {
-  loadingUsers: false,
+  isLoadingUsers: false,
   usersData: [],
   usersError: "",
 };
@@ -11,13 +11,13 @@ const adminReducer = (state = initialState, action) => {
     case adminTypes.GET_USERS_REQUEST:
       return {
         ...state,
-        loadingUsers: true,
+        isLoadingUsers: true,
       };
 
     case adminTypes.GET_USERS_SUCCESS:
       return {
         ...state,
-        loadingUsers: false,
+        isLoadingUsers: false,
         usersData: action.payload,
         usersError: "",
       };
@@ -25,7 +25,7 @@ const adminReducer = (state = initialState, action) => {
     case adminTypes.GET_USERS_FAIL:
       return {
         ...state,
-        loadingUsers: false,
+        isLoadingUsers: false,
         usersData: [],
         usersError: action.payload,
       };

@@ -34,6 +34,7 @@ const OfferRide = () => {
     cityOrigin: Yup.string(labelStringField)
       .min(4, "Min. 4 characters")
       .max(20, "Max. 20 characters")
+      .matches(/^[a-zA-Z0-9\u00C0-\u00FF ]*$/, "Only letters & numbers allowed")
       .required(labelRequiredField),
     provinceOrigin: Yup.mixed()
       .oneOf(provinces, "Must be a Costa Rican province")
@@ -41,15 +42,13 @@ const OfferRide = () => {
     cityDestination: Yup.string(labelStringField)
       .min(4, "Min. 4 characters")
       .max(20, "Max. 20 characters")
+      .matches(/^[a-zA-Z0-9\u00C0-\u00FF ]*$/, "Only letters & numbers allowed")
       .required(labelRequiredField),
     provinceDestination: Yup.mixed()
       .oneOf(provinces, "Must be a Costa Rican province")
       .required(labelRequiredField),
     date: Yup.date()
-      .min(
-        dateFormat(new Date(), "yyyy-mm-dd"),
-        "The date must be today or in the future"
-      )
+      .min(new Date(), "The date must be today or in the future")
       .required(labelRequiredField),
     time: Yup.string(labelStringField).required(labelRequiredField),
     seatsAvailable: Yup.number()
@@ -60,9 +59,9 @@ const OfferRide = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
-    dispatch(submitFormOfferRide(currentUser.id, values, form));
+    dispatch(submitFormOfferRide(currentUser, values));
 
-    // form.current.reset();
+    form.current.reset();
     formikBag.setSubmitting(false);
   };
 

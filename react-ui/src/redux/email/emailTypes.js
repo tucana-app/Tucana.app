@@ -1,0 +1,7 @@
+const emailTypes = {
+  SEND_EMAIL_REQUEST: "SEND_EMAIL_REQUEST",
+  SEND_EMAIL_SUCCESS: "SEND_EMAIL_SUCCESS",
+  SEND_EMAIL_FAIL: "SEND_EMAIL_FAIL",
+};
+
+export default emailTypes;

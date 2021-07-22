@@ -70,7 +70,7 @@ function NavigationBar() {
             </Nav.Link>
           </IndexLinkContainer>
 
-          <IndexLinkContainer to="/messages" href="/messages">
+          <IndexLinkContainer to="/notifications" href="/notifications">
             <Nav.Link className="font-title text-center">
               <div className="position-relative">
                 <FontAwesomeIcon icon={faBell} size="lg" />

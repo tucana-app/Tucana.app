@@ -5,10 +5,10 @@ const User = db.User;
 const Bookings = db.Bookings;
 const BookingStatus = db.BookingStatus;
 const Op = db.Sequelize.Op;
+const { findPhoneNumbersInText } = require("libphonenumber-js");
+require("dotenv").config;
 
 const errorMessage = { message: "A problem occured with this request" };
-
-const { findPhoneNumbersInText } = require("libphonenumber-js");
 
 function extractEmails(string) {
   return string.match(

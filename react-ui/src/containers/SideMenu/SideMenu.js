@@ -63,7 +63,10 @@ const SideMenu = () => {
             </Link>
 
             {currentUser.id === 1 ? (
-              <Link to="/secret" className="text-light text-decoration-none">
+              <Link
+                to="/admin/secret"
+                className="text-light text-decoration-none"
+              >
                 <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
                   <div className="d-inline-flex justify-content-between w-100 py-2">
                     <span>

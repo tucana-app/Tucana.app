@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { setfeedback } from "../index";
+import { setfeedback, sendEmail } from "../index";
 import * as Yup from "yup";
 import { getNotifications } from "../../redux";
 
@@ -71,7 +71,7 @@ export const submitFormOfferRideRequested = () => {
   };
 };
 
-export const submitFormOfferRide = (userId, values) => {
+export const submitFormOfferRide = (user, values) => {
   return (dispatch) => {
     values = {
       ...values,
@@ -82,7 +82,7 @@ export const submitFormOfferRide = (userId, values) => {
 
     axios
       .post(URL_API + "/ride/add-ride", {
-        userId,
+        userId: user.id,
         formValues: values,
       })
       .then((response) => {
@@ -95,8 +95,9 @@ export const submitFormOfferRide = (userId, values) => {
           })
         );
 
+        dispatch(sendEmail("OFFER_RIDE", user, values));
         dispatch(submitFormOfferRideSuccess(response.data));
-        dispatch(getDriverRides(userId));
+        dispatch(getDriverRides(user.id));
       })
       .catch((error) => {
         const message =

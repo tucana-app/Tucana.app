@@ -13,7 +13,7 @@ import LoadingMessage from "../components/LoadingMessage";
 
 import { getNotifications } from "../redux";
 
-const Messages = () => {
+const NotificationPage = () => {
   // const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant } = useSelector((state) => state.global);
@@ -134,7 +134,7 @@ const Messages = () => {
                 {request.Ride.seatsAvailable}{" "}
                 <span>
                   by{" "}
-                  {/* <span className="text-success">{booking.User.username}</span> */}
+                  <span className="text-success">{request.User.username}</span>
                 </span>
               </ListGroup.Item>
             </Link>
@@ -201,4 +201,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default NotificationPage;

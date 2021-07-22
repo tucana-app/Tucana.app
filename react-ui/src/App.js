@@ -30,12 +30,13 @@ import SideMenu from "./containers/SideMenu/SideMenu";
 import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
-import Notifications from "./containers/Notifications";
+import NotificationPage from "./containers/NotificationPage";
 
 import Page404 from "./containers/Page404";
 
 // Amind
 import Admin from "./containers/Admin/Admin";
+import Test from "./containers/Admin/Test";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -103,11 +104,12 @@ function App() {
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/messages" component={Notifications} />
+          <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           {/* Admin */}
-          <Route exact path="/secret" component={Admin} />
+          <Route exact path="/admin/secret" component={Admin} />
+          <Route exact path="/admin/test" component={Test} />
 
           <Route component={Page404} />
         </Switch>
