@@ -25,10 +25,6 @@ const FindRide = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isLoggedIn) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <Container
       fluid
@@ -147,23 +143,44 @@ const FindRide = () => {
                             {ride.User ? ride.User.username : null}
                           </p>
                         </Col>
-                        <Col
-                          xs={10}
-                          sm={8}
-                          md={6}
-                          lg={{ span: 4, order: 3 }}
-                          xl={{ span: 2, order: 5 }}
-                          className="mb-3 mx-auto"
-                        >
-                          <LinkContainer
-                            to={`/ride/${ride.id}`}
-                            className="w-100 mt-3"
+
+                        {!isLoggedIn ? (
+                          <Col
+                            xs={10}
+                            sm={8}
+                            md={6}
+                            lg={{ span: 4, order: 3 }}
+                            xl={{ span: 2, order: 5 }}
+                            className="mb-3 mx-auto"
                           >
-                            <Button variant="success rounded-0 fw-bold text-uppercase">
-                              View &amp; book
-                            </Button>
-                          </LinkContainer>
-                        </Col>
+                            <LinkContainer
+                              to={`/signup`}
+                              className="w-100 mt-3"
+                            >
+                              <Button variant="warning rounded-0 fw-bold text-uppercase">
+                                Signup or login
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        ) : (
+                          <Col
+                            xs={10}
+                            sm={8}
+                            md={6}
+                            lg={{ span: 4, order: 3 }}
+                            xl={{ span: 2, order: 5 }}
+                            className="mb-3 mx-auto"
+                          >
+                            <LinkContainer
+                              to={`/ride/${ride.id}`}
+                              className="w-100 mt-3"
+                            >
+                              <Button variant="success rounded-0 fw-bold text-uppercase">
+                                View &amp; book
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        )}
                       </Row>
                     </Container>
                   </Col>

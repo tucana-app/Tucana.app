@@ -3,6 +3,7 @@ import React from "react";
 // import { IndexLinkContainer } from "react-router-bootstrap";
 import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
+import FindRide from "./FindRide";
 
 // Importing components
 // import FormSearch from "../components/FormSearch";
@@ -29,15 +30,9 @@ function Home({ t }) {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col className="text-center">
-            <h1 className="font-title text-success">Welcome 👋</h1>
-            <p className="lead text-white">
-              Here you can offer or book rides to travel accross Costa Rica{" "}
-            </p>
-          </Col>
-        </Row>
       </Container>
+
+      <FindRide />
     </>
   );
 }
