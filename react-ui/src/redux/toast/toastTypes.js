@@ -1,0 +1,6 @@
+const toastTypes = {
+  SET_SHOW_LOGOUT_TOAST: "SET_SHOW_LOGOUT_TOAST",
+  SET_SHOW_LOGIN_SUCCESS_TOAST: "SET_SHOW_LOGIN_SUCCESS_TOAST",
+};
+
+export default toastTypes;

@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
+      emailConfirmed: DataTypes.BOOLEAN,
+      phoneConfirmed: DataTypes.BOOLEAN,
+      confirmEmailUUID: DataTypes.UUID,
     },
     {
       sequelize,

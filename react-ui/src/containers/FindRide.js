@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 
 import LoadingMessage from "../components/LoadingMessage";
@@ -158,7 +158,8 @@ const FindRide = () => {
                               className="w-100 mt-3"
                             >
                               <Button variant="warning rounded-0 fw-bold text-uppercase">
-                                Signup or login
+                                <FontAwesomeIcon icon={faLock} size="sm" />{" "}
+                                Signup / login to view
                               </Button>
                             </LinkContainer>
                           </Col>

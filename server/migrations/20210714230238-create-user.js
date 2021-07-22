@@ -38,6 +38,18 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      emailConfirmed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      phoneConfirmed: {
+        type: Sequelize.BOOLEAN,
+        // allowNull: false,
+      },
+      confirmEmailUUID: {
+        type: Sequelize.UUID,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

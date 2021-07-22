@@ -19,6 +19,7 @@ import LogIn from "./containers/Auth/LogIn";
 
 import SignUp from "./containers/Auth/SignUp";
 import SignUpSuccess from "./containers/Auth/SignUpSuccess";
+import SignUpConfirm from "./containers/Auth/SignUpConfirm";
 
 import Help from "./containers/Help";
 import Download from "./containers/Download";
@@ -41,7 +42,8 @@ import Test from "./containers/Admin/Test";
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+// import ScrollToTop from "./components/ScrollToTop";
+import Toasts from "./components/Toasts";
 
 import { clearFeedback, getNotifications } from "./redux";
 import { history } from "./helpers/history";
@@ -75,10 +77,11 @@ function App() {
   return (
     <Suspense fallback={<Fallback />}>
       <Router history={history}>
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
 
         <MessageFee />
         <NavigationBar />
+        <Toasts />
 
         <Switch>
           <Route exact path="/" component={Home} />
@@ -96,6 +99,11 @@ function App() {
 
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup-successful" component={SignUpSuccess} />
+          <Route
+            exact
+            path="/confirm/:confirmEmailUUID"
+            component={SignUpConfirm}
+          />
 
           <Route exact path="/menu" component={SideMenu} />
           <Route exact path="/my-account" component={MyAccount} />

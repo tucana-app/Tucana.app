@@ -1,7 +1,13 @@
-import userTypes from "./userTypes";
-import notificationTypes from "../notification/notificationTypes";
-import { setfeedback, sendEmailSignup } from "../index";
 import axios from "axios";
+import userTypes from "./userTypes";
+
+import {
+  setfeedback,
+  setShowLogoutToast,
+  setShowLoginSuccessToast,
+  getDriverNewRidesRequests,
+  resetNotifications,
+} from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -29,7 +35,7 @@ export const registerUser = (formSignupUser) => {
           })
         );
 
-        dispatch(sendEmailSignup(formSignupUser));
+        // dispatch(sendEmailSignup(formSignupUser));
         dispatch(registerUserSuccess(response.data));
       })
       .catch((error) => {
@@ -84,16 +90,14 @@ export const login = (formLogin) => {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          dispatch({
+            type: userTypes.LOGIN_SUCCESS,
+            payload: { user: response.data },
+          });
+
+          dispatch(getDriverNewRidesRequests(response.data.id));
+          dispatch(setShowLoginSuccessToast(true));
         }
-
-        dispatch({
-          type: userTypes.LOGIN_SUCCESS,
-          payload: { user: response.data },
-        });
-
-        dispatch({
-          type: notificationTypes.GET_DRIVER_NEW_RIDES_REQUESTS_REQUEST,
-        });
       })
       .catch((error) => {
         // console.log(error);
@@ -123,10 +127,9 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
 
   dispatch({
-    type: notificationTypes.RESET_NOTIFICATIONS,
-  });
-
-  dispatch({
     type: userTypes.LOGOUT,
   });
+
+  dispatch(resetNotifications());
+  dispatch(setShowLogoutToast(true));
 };

@@ -40,7 +40,7 @@ const NotificationPage = () => {
   }
 
   useEffect(() => {
-    getNotifications(currentUser.id);
+    if (isLoggedIn) getNotifications(currentUser.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,5 +1,5 @@
 const { verifySignUp } = require("../middleware");
-const authController = require("../controllers").auth;
+const controller = require("../controllers").auth;
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -13,8 +13,10 @@ module.exports = function (app) {
   app.post(
     "/api/auth/signup",
     [verifySignUp.checkDuplicate],
-    authController.signup
+    controller.signup
   );
 
-  app.post("/api/auth/signin", authController.signin);
+  app.put("/api/auth/confirm", controller.confirmEmail);
+
+  app.post("/api/auth/signin", controller.signin);
 };

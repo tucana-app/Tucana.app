@@ -1,15 +1,13 @@
 import React from "react";
-// import { useSelector } from "react-redux";
-// import { IndexLinkContainer } from "react-router-bootstrap";
 import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
 import FindRide from "./FindRide";
 
 // Importing components
-// import FormSearch from "../components/FormSearch";
 // import { Button } from "react-bootstrap";
 
 function Home({ t }) {
+  // const dispatch = useDispatch();
   // const { isLoggedIn } = useSelector((state) => state.user);
 
   return (

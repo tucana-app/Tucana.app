@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function SignUpSuccess(props) {
   const { isLoggedIn, signupUserSuccessful } = useSelector(
@@ -26,12 +26,7 @@ function SignUpSuccess(props) {
           </Col>
         </Row>
         <Row>
-          <Col>
-            You can now sign in by{" "}
-            <Link to="/login" className="text-success">
-              clicking here
-            </Link>
-          </Col>
+          <Col>Check your email inbox to confirm your email address</Col>
         </Row>
       </Container>
     </>

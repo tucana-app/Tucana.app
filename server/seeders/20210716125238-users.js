@@ -15,6 +15,9 @@ module.exports = {
         phoneNumber: "+50687907001",
         createdAt: new Date(),
         updatedAt: new Date(),
+        emailConfirmed: true,
+        phoneConfirmed: false,
+        confirmEmailUUID: uuidv4(),
       },
       {
         firstName: "Robert",
@@ -25,6 +28,9 @@ module.exports = {
         phoneNumber: "+50612367001",
         createdAt: new Date(),
         updatedAt: new Date(),
+        emailConfirmed: true,
+        phoneConfirmed: false,
+        confirmEmailUUID: uuidv4(),
       },
       {
         firstName: "Sarah",
@@ -35,6 +41,9 @@ module.exports = {
         phoneNumber: "+50611257001",
         createdAt: new Date(),
         updatedAt: new Date(),
+        emailConfirmed: true,
+        phoneConfirmed: false,
+        confirmEmailUUID: uuidv4(),
       },
       {
         firstName: "Julien",
@@ -45,6 +54,9 @@ module.exports = {
         phoneNumber: "+50656237001",
         createdAt: new Date(),
         updatedAt: new Date(),
+        emailConfirmed: true,
+        phoneConfirmed: false,
+        confirmEmailUUID: uuidv4(),
       },
     ]);
   },

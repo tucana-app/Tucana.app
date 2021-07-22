@@ -31,6 +31,7 @@
     "react-scripts": "^4.0.3",
     "react-tabs": "^3.2.1",
     "rfs": "^9.0.4",
+    "validator": "^13.6.0",
     "yup": "^0.32.9",
     "yup-password": "^0.2.1"
   },

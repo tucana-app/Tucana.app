@@ -1,4 +1,11 @@
+import emailTypes from "./emailTypes";
 import axios from "axios";
+import validator from "validator";
+
+import { setfeedback } from "../index";
+
+// const signupConfirmedTemplate = require("./templates").signupConfirmed;
+const offerRideTemplate = require("./templates").offerRide;
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -10,53 +17,91 @@ let subject = "";
 let textTemplate = "";
 let htmlTemplate = "";
 
-// Sign Up template
-const subjectSignup = "Sign up successful | Ride.CR";
-const textTemplateSignup = (formSignupUser) => {
-  const { firstName, lastName, username, email } = formSignupUser;
-
-  return `Welcome ${firstName} ${lastName} to our platform! You can now login with your username (${username}) or your email address (${email}) at ride-cr.herokuapp.com`;
+export const confirmEmailRequested = () => {
+  return {
+    type: emailTypes.CONFIRM_EMAIL_REQUEST,
+  };
 };
 
-const htmlTemplateSignup = (formSignupUser) => {
-  const { firstName, lastName, username, email } = formSignupUser;
+export const confirmEmail = (confirmEmailUUID) => {
+  return (dispatch) => {
+    dispatch(confirmEmailRequested());
 
-  return `<div><h1>Ride.CR</h1>
-  <p>Welcome to Ride.CR ${firstName} ${lastName}</p>
-  <p>You can now login with your username (${username}) or your email address (${email}) at <a href="http://ride-cr.herokuapp.com" alt="">ride-cr.herokuapp.com</a></p></div>
-  `;
+    if (validator.isUUID(confirmEmailUUID)) {
+      axios
+        .put(URL_API + "/auth/confirm", {
+          confirmEmailUUID,
+        })
+        .then((response) => {
+          let variant = "";
+
+          switch (response.data.flag) {
+            case "already_confirmed":
+              variant = "warning";
+              break;
+
+            case "confirmed_success":
+              variant = "success";
+              break;
+
+            default:
+              break;
+          }
+          dispatch(
+            setfeedback({
+              variant,
+              message: response.data.message,
+            })
+          );
+
+          dispatch(
+            confirmEmailSuccess({
+              message: response.data.message,
+            })
+          );
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          dispatch(
+            setfeedback({
+              variant: "danger",
+              message: message,
+            })
+          );
+          dispatch(confirmEmailFail(message));
+        });
+    } else {
+      const message = "Please enter a valid confirmation number in the URL";
+
+      dispatch(
+        setfeedback({
+          variant: "danger",
+          message: message,
+        })
+      );
+
+      dispatch(confirmEmailFail(message));
+    }
+  };
 };
 
-// Offer a ride template
-const textTemplateOfferRide = (user, payload) => {
-  const { cityOrigin, cityDestination, seatsAvailable } = payload;
-
-  return `Your ride from ${cityOrigin} to ${cityDestination} with ${seatsAvailable} seat(s) available is already online! You can already check it out on our platform at ride-cr.herokuapp.com/find-ride`;
+export const confirmEmailSuccess = (message) => {
+  return {
+    type: emailTypes.CONFIRM_EMAIL_SUCCESS,
+    payload: message,
+  };
 };
 
-const htmlTemplateOfferRide = (user, payload) => {
-  const { cityOrigin, cityDestination, seatsAvailable } = payload;
-
-  return `<div>
-  <p>Thank you!</p>
-  <p>Yes, you are helping the community by sharing your seats</p>
-  <p>Your ride from ${cityOrigin} to ${cityDestination} with ${seatsAvailable} seat(s) available is already online! You can check it out on our platform at <a href="http://ride-cr.herokuapp.com" alt="">ride-cr.herokuapp.com/find-ride</a></p>
-  </div>`;
-};
-
-export const sendEmailSignup = (formSignupUser) => {
-  return () => {
-    axios
-      .post(URL_API + "/email/send-email", {
-        firstName: formSignupUser.firstName,
-        lastName: formSignupUser.lastName,
-        email: formSignupUser.email,
-        subject: subjectSignup,
-        text: textTemplateSignup(formSignupUser),
-        html: htmlTemplateSignup(formSignupUser),
-      })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
+export const confirmEmailFail = (message) => {
+  return {
+    type: emailTypes.CONFIRM_EMAIL_FAIL,
+    payload: message,
   };
 };
 
@@ -66,8 +111,8 @@ export const sendEmail = (action, user, payload) => {
   switch (action) {
     case "OFFER_RIDE":
       subject = "Your ride is online | Ride.CR";
-      textTemplate = textTemplateOfferRide(user, payload);
-      htmlTemplate = htmlTemplateOfferRide(user, payload);
+      textTemplate = offerRideTemplate.textTemplateOfferRide(user, payload);
+      htmlTemplate = offerRideTemplate.htmlTemplateOfferRide(user, payload);
       break;
 
     default:

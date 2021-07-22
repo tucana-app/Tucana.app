@@ -5,6 +5,8 @@ import notificationReducer from "./notification/notificationReducer";
 import adminReducer from "./admin/adminReducer";
 import globalReducer from "./global/globalReducer";
 import rideReducer from "./ride/rideReducer";
+import emailReducer from "./email/emailReducer";
+import toastReducer from "./toast/toastReducer";
 
 const appReducer = combineReducers({
   user: userReducer,
@@ -12,6 +14,8 @@ const appReducer = combineReducers({
   admin: adminReducer,
   global: globalReducer,
   ride: rideReducer,
+  email: emailReducer,
+  toast: toastReducer,
 });
 
 const rootReducer = (state, action) => {

@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
-import { Col, Container, Row, ListGroup } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 import dateFormat from "dateformat";
 
 import LoadingMessage from "../../components/LoadingMessage";
@@ -13,6 +11,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Button } from "react-bootstrap";
 
 import { getDriverRides } from "../../redux";
+import GoBack from "../../components/GoBack";
 
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
@@ -37,21 +36,7 @@ const MyRidesDriver = () => {
 
   return (
     <div data-aos="slide-right">
-      <ListGroup variant="flush">
-        <Link to="/my-rides" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
-              <span>
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className="text-success me-3"
-                />{" "}
-                Go back
-              </span>
-            </div>
-          </ListGroup.Item>
-        </Link>
-      </ListGroup>
+      <GoBack />
 
       <Container className="mt-4 mb-5">
         {isLoadingDriverRides ? (

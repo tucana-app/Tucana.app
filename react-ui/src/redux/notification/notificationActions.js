@@ -7,21 +7,6 @@ export const getNotifications = (userId) => {
   return (dispatch) => {
     dispatch(getDriverNewRidesRequests(userId));
     dispatch(getPassengerBookingsResponses(userId));
-
-    // axios
-    //   .get(URL_API + "/ride/driver-new-rides-requests", {
-    //     params: {
-    //       userId,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     // console.log(response.data);
-    //     dispatch(getDriverNewRidesRequestsSuccess(response.data));
-    //   })
-    //   .catch((error) => {
-    //     // console.log(error);
-    //     dispatch(getDriverNewRidesRequestsFail(error));
-    //   });
   };
 };
 

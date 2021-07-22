@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Redirect, useParams } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import BookingDetails from "../components/BookingDetails";
 import RideDetails from "../components/RideDetails";
@@ -14,7 +13,7 @@ import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 import { getBooking } from "../redux";
 
 import NoBookingMessage from "../components/NoBookingMessage";
-import { LinkContainer } from "react-router-bootstrap";
+import GoBack from "../components/GoBack";
 
 const Booking = () => {
   const { bookingId } = useParams();
@@ -37,21 +36,7 @@ const Booking = () => {
 
   return (
     <div data-aos="fade-in" data-aos-duration="1000">
-      <ListGroup variant="flush">
-        <Link to="/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
-              <span>
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className="text-success me-3"
-                />{" "}
-                Go back
-              </span>
-            </div>
-          </ListGroup.Item>
-        </Link>
-      </ListGroup>
+      <GoBack />
 
       <Container className="mt-4">
         {isloadingBooking ? (

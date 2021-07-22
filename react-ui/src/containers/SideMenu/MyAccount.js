@@ -1,10 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import { Col, Container, Row, ListGroup } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 import dateFormat from "dateformat";
+import GoBack from "../../components/GoBack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 function MyAccount() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -15,21 +19,7 @@ function MyAccount() {
 
   return (
     <div data-aos="slide-left">
-      <ListGroup variant="flush">
-        <Link to="/menu" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
-              <span>
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className="text-success me-3"
-                />{" "}
-                Go back
-              </span>
-            </div>
-          </ListGroup.Item>
-        </Link>
-      </ListGroup>
+      <GoBack />
 
       <Container className="my-5">
         <Row className="mb-5">
@@ -89,6 +79,44 @@ function MyAccount() {
           </Col>
           <Col xs={12} sm={4}>
             {currentUser.biography}
+          </Col>
+        </Row>
+
+        <Row className="justify-content-center text-center text-sm-start mb-3">
+          <Col xs={12} sm={4} className="font-monospace text-secondary">
+            Email verified
+          </Col>
+          <Col xs={12} sm={4}>
+            {currentUser.emailConfirmed ? (
+              <span className="text-success">
+                <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+                Yes
+              </span>
+            ) : (
+              <span className="text-danger">
+                <FontAwesomeIcon icon={faTimesCircle} className="me-2" />
+                No
+              </span>
+            )}
+          </Col>
+        </Row>
+
+        <Row className="justify-content-center text-center text-sm-start mb-3">
+          <Col xs={12} sm={4} className="font-monospace text-secondary">
+            Phone verified
+          </Col>
+          <Col xs={12} sm={4}>
+            {currentUser.phoneConfirmed ? (
+              <span className="text-success">
+                <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+                Yes
+              </span>
+            ) : (
+              <span className="text-danger">
+                <FontAwesomeIcon icon={faTimesCircle} className="me-2" />
+                No
+              </span>
+            )}
           </Col>
         </Row>
 

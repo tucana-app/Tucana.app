@@ -198,7 +198,7 @@ module.exports = {
         res.status(200).json(response);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(400).json(errorMessage);
       });
   },
@@ -615,7 +615,7 @@ module.exports = {
         res.status(200).json(response);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(400).json(errorMessage);
       });
   },

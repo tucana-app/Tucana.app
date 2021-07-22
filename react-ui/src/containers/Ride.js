@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import dateFormat from "dateformat";
 
 import RideDetails from "../components/RideDetails";
@@ -15,6 +13,7 @@ import FormBookRide from "../components/FormBookRide";
 import { getRide, getUserBookingRide } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
 import PassengersDetails from "../components/PassengersDetails";
+import GoBack from "../components/GoBack";
 
 const Ride = () => {
   const { rideId } = useParams();
@@ -45,21 +44,7 @@ const Ride = () => {
 
   return (
     <div data-aos="fade-in" data-aos-duration="1000">
-      <ListGroup variant="flush">
-        <Link to="/find-ride" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
-              <span>
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className="text-success me-3"
-                />{" "}
-                Go back
-              </span>
-            </div>
-          </ListGroup.Item>
-        </Link>
-      </ListGroup>
+      <GoBack />
 
       <Container className="mt-4">
         {isloadingRide ? (
