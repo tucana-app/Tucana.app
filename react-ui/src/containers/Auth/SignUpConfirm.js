@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { Redirect, useParams } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import FeedbackMessage from "../../components/FeedbackMessage";
-import validator from "validator";
 
 import { confirmEmail } from "../../redux";
 import LoadingMessage from "../../components/LoadingMessage";
@@ -13,8 +12,9 @@ const SignUpConfirm = () => {
 
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingConfirmEmail, confirmEmailSuccess, confirmEmailError } =
-    useSelector((state) => state.email);
+  const { isLoadingConfirmEmail, confirmEmailError } = useSelector(
+    (state) => state.email
+  );
 
   useEffect(() => {
     dispatch(confirmEmail(confirmEmailUUID));
@@ -32,6 +32,12 @@ const SignUpConfirm = () => {
         <Col className="text-center">
           <div>
             <h1 className="display-4">Confirm your email address</h1>
+            <p>
+              You can now{" "}
+              <Link to="/login" className="link-success">
+                login here
+              </Link>
+            </p>
           </div>
         </Col>
       </Row>

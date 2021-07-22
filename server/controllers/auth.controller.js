@@ -126,35 +126,43 @@ module.exports = {
           return res.status(404).send({ message: "User Not found" });
         }
 
-        var passwordIsValid = bcrypt.compareSync(
-          req.body.formLogin.password,
-          user.password
-        );
+        if (user.emailConfirmed) {
+          var passwordIsValid = bcrypt.compareSync(
+            req.body.formLogin.password,
+            user.password
+          );
 
-        if (!passwordIsValid) {
-          return res.status(401).send({
-            accessToken: null,
-            message: "Invalid Password",
+          if (!passwordIsValid) {
+            return res.status(401).send({
+              accessToken: null,
+              message: "Invalid Password",
+            });
+          }
+
+          var token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 604800, // 7 days
+          });
+
+          res.status(200).send({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            username: user.username,
+            email: user.email,
+            biography: user.biography,
+            phoneNumber: user.phoneNumber,
+            createdAt: user.createdAt,
+            emailConfirmed: user.emailConfirmed,
+            phoneConfirmed: user.phoneConfirmed,
+            accessToken: token,
+          });
+        } else {
+          // User hasn't confirmed the email yet
+          return res.status(400).json({
+            flag: "not_confirmed",
+            message: "Email not confirmed yet",
           });
         }
-
-        var token = jwt.sign({ id: user.id }, config.secret, {
-          expiresIn: 604800, // 7 days
-        });
-
-        res.status(200).send({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          username: user.username,
-          email: user.email,
-          biography: user.biography,
-          phoneNumber: user.phoneNumber,
-          createdAt: user.createdAt,
-          emailConfirmed: user.emailConfirmed,
-          phoneConfirmed: user.phoneConfirmed,
-          accessToken: token,
-        });
       })
       .catch((error) => {
         console.log(error);

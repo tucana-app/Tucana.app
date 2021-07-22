@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   Container,
   Form,
@@ -17,7 +17,8 @@ import { login } from "../../redux";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isloadingLogin, isLoggedIn } = useSelector((state) => state.user);
+  const { isloadingLogin, isLoggedIn, loginErrorFlag, loginErrorMessage } =
+    useSelector((state) => state.user);
   const { feedback, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
@@ -110,8 +111,15 @@ const Login = () => {
                   </Col>
                 </Row>
 
-                {feedback.message && (
-                  <Alert variant={feedback.variant}>{feedback.message}</Alert>
+                {loginErrorFlag === "not_confirmed" ? (
+                  <Alert variant="warning">
+                    {loginErrorMessage}.{" "}
+                    <Link to="/coming-soon">Resend the confirmation link</Link>
+                  </Alert>
+                ) : (
+                  feedback.message && (
+                    <Alert variant={feedback.variant}>{feedback.message}</Alert>
+                  )
                 )}
 
                 <Row>

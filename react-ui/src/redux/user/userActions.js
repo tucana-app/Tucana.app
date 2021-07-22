@@ -35,7 +35,6 @@ export const registerUser = (formSignupUser) => {
           })
         );
 
-        // dispatch(sendEmailSignup(formSignupUser));
         dispatch(registerUserSuccess(response.data));
       })
       .catch((error) => {
@@ -54,7 +53,13 @@ export const registerUser = (formSignupUser) => {
             message: message,
           })
         );
-        dispatch(registerUserFail(error));
+
+        dispatch(
+          registerUserFail({
+            message,
+            flag: error.response.data.flag,
+          })
+        );
       });
   };
 };
@@ -118,6 +123,10 @@ export const login = (formLogin) => {
 
         dispatch({
           type: userTypes.LOGIN_FAIL,
+          payload: {
+            message,
+            flag: error.response.data.flag,
+          },
         });
       });
   };

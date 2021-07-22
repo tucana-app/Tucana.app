@@ -2,21 +2,26 @@ import userTypes from "./userTypes";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-const initialState = user
+let initialState = user
   ? {
-      isloadingLogin: false,
       isLoggedIn: true,
       user,
-      isloadingSignup: false,
-      signupUserSuccessful: false,
     }
   : {
-      isloadingLogin: false,
       isLoggedIn: false,
       user: null,
-      isloadingSignup: false,
-      signupUserSuccessful: false,
     };
+
+initialState = {
+  ...initialState,
+  isloadingLogin: false,
+  isloadingSignup: false,
+  signupUserSuccessful: false,
+  signupErrorFlag: "",
+  signupErrorMessage: "",
+  loginErrorFlag: "",
+  loginErrorMessage: "",
+};
 
 function userReducer(state = initialState, action) {
   const { type, payload } = action;
@@ -35,6 +40,8 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         signupUserSuccessful: true,
         isloadingSignup: false,
+        signupErrorFlag: "",
+        signupErrorMessage: "",
       };
 
     case userTypes.REGISTER_USER_FAIL:
@@ -43,6 +50,8 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         signupUserSuccessful: false,
         isloadingSignup: false,
+        signupErrorFlag: action.payload.flag,
+        signupErrorMessage: action.payload.message,
       };
 
     case userTypes.LOGIN_REQUESTED:
@@ -57,6 +66,8 @@ function userReducer(state = initialState, action) {
         isloadingLogin: false,
         isLoggedIn: true,
         user: payload.user,
+        loginErrorFlag: "",
+        loginErrorMessage: "",
       };
 
     case userTypes.LOGIN_FAIL:
@@ -65,6 +76,8 @@ function userReducer(state = initialState, action) {
         isloadingLogin: false,
         isLoggedIn: false,
         user: null,
+        loginErrorFlag: action.payload.flag,
+        loginErrorMessage: action.payload.message,
       };
 
     case userTypes.LOGOUT:

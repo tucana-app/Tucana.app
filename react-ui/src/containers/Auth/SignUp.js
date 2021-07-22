@@ -19,9 +19,13 @@ require("yup-password")(Yup); // extend yup
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const { isloadingSignup, isLoggedIn, signupUserSuccessful } = useSelector(
-    (state) => state.user
-  );
+  const {
+    isloadingSignup,
+    isLoggedIn,
+    signupUserSuccessful,
+    signupErrorFlag,
+    signupErrorMessage,
+  } = useSelector((state) => state.user);
   const { feedback, labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
@@ -248,10 +252,15 @@ const SignUp = () => {
                   </Col>
                 </Row>
 
-                {feedback.message && (
-                  <Alert variant={feedback.variant} className="mt-3">
-                    {feedback.message}
+                {signupErrorFlag === "not_confirmed" ? (
+                  <Alert variant="warning">
+                    {signupErrorMessage}.{" "}
+                    <Link to="/coming-soon">Resend the confirmation link</Link>
                   </Alert>
+                ) : (
+                  feedback.message && (
+                    <Alert variant={feedback.variant}>{feedback.message}</Alert>
+                  )
                 )}
 
                 <Row>

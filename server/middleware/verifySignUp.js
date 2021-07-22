@@ -24,9 +24,22 @@ checkDuplicate = (req, res, next) => {
       },
     }).then((user) => {
       if (user) {
-        res.status(400).send({
-          message: "Email already in use",
-        });
+        // Email already exist, maybe user hasn't confirmed
+
+        if (user.emailConfirmed) {
+          // Email already confirmed, so is already in use
+
+          res.status(400).send({
+            message: "Email already in use",
+            flag: "confirmed",
+          });
+        } else {
+          // Email already confirmed, so is already in use
+          res.status(400).send({
+            message: "Email already in use, but not confirmed yet",
+            flag: "not_confirmed",
+          });
+        }
         return;
       }
 
