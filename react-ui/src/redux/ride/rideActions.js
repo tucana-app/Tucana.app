@@ -275,7 +275,7 @@ export const getAllRides = () => {
         dispatch(getAllRidesSuccess(response.data));
       })
       .catch((error) => {
-        alert(error.response.message);
+        console.log(error.response.message);
 
         dispatch(
           setfeedback({
