@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setShowLogoutToast, setShowLoginToast } from "../redux";
 
 const toastDelay = 3000;
-const aosToastAnimation = "fade-down";
+const aosToastAnimation = "fade-left";
 
 function Toasts() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -16,22 +16,7 @@ function Toasts() {
 
   return (
     <div aria-live="polite" aria-atomic="true" className="fixed-top">
-      <ToastContainer position="top-center" className="p-3">
-        <Toast
-          show={showLogoutToast}
-          onClose={() => dispatch(setShowLogoutToast(false))}
-          className=""
-          delay={toastDelay}
-          data-aos={aosToastAnimation}
-          bg="danger"
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto">Logged out</strong>
-          </Toast.Header>
-          <Toast.Body>You are now logged out</Toast.Body>
-        </Toast>
-
+      <ToastContainer position="top-end" className="p-3">
         {isLoggedIn ? (
           <Toast
             show={showLoginToast}
@@ -50,6 +35,21 @@ function Toasts() {
             </Toast.Body>
           </Toast>
         ) : null}
+
+        <Toast
+          show={showLogoutToast}
+          onClose={() => dispatch(setShowLogoutToast(false))}
+          className=""
+          delay={toastDelay}
+          data-aos={aosToastAnimation}
+          bg="danger"
+          autohide
+        >
+          <Toast.Header>
+            <strong className="me-auto">Logged out</strong>
+          </Toast.Header>
+          <Toast.Body>You are now logged out</Toast.Body>
+        </Toast>
       </ToastContainer>
     </div>
   );

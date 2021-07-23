@@ -2,7 +2,6 @@ import React from "react";
 // import { useDispatch } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
-// import { Button } from "react-bootstrap";
 import FindRide from "./FindRide";
 
 // Importing components

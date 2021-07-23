@@ -151,22 +151,32 @@ const FindRide = () => {
                           xl={{ span: 2, order: 5 }}
                           className="mb-3 mx-auto"
                         >
-                          <LinkContainer to={`/signup`} className="w-100 mt-3">
-                            {!isLoggedIn ? (
+                          {!isLoggedIn ? (
+                            <LinkContainer to="/signup" className="w-100 mt-3">
                               <Button variant="warning rounded-0 fw-bold text-uppercase">
                                 <FontAwesomeIcon icon={faLock} size="sm" />{" "}
                                 Signup to book
                               </Button>
-                            ) : ride.User.id === currentUser.id ? (
+                            </LinkContainer>
+                          ) : ride.User.id === currentUser.id ? (
+                            <LinkContainer
+                              to={`/ride/${ride.id}`}
+                              className="w-100 mt-3"
+                            >
                               <Button variant="info rounded-0 fw-bold text-uppercase">
                                 Manage
                               </Button>
-                            ) : (
+                            </LinkContainer>
+                          ) : (
+                            <LinkContainer
+                              to={`/ride/${ride.id}`}
+                              className="w-100 mt-3"
+                            >
                               <Button variant="success rounded-0 fw-bold text-uppercase">
                                 View &amp; book
                               </Button>
-                            )}
-                          </LinkContainer>
+                            </LinkContainer>
+                          )}
                         </Col>
                       </Row>
                     </Container>
