@@ -4,7 +4,7 @@ import userTypes from "./userTypes";
 import {
   setfeedback,
   setShowLogoutToast,
-  setShowLoginSuccessToast,
+  setShowLoginToast,
   getDriverNewRidesRequests,
   resetNotifications,
 } from "../index";
@@ -95,13 +95,14 @@ export const login = (formLogin) => {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+
           dispatch({
             type: userTypes.LOGIN_SUCCESS,
             payload: { user: response.data },
           });
 
           dispatch(getDriverNewRidesRequests(response.data.id));
-          dispatch(setShowLoginSuccessToast(true));
+          dispatch(setShowLoginToast(true));
         }
       })
       .catch((error) => {
@@ -121,13 +122,13 @@ export const login = (formLogin) => {
           })
         );
 
-        dispatch({
-          type: userTypes.LOGIN_FAIL,
-          payload: {
-            message,
-            flag: error.response.data.flag,
-          },
-        });
+        // dispatch({
+        //   type: userTypes.LOGIN_FAIL,
+        //   payload: {
+        //     message,
+        //     flag: error.response.data.flag,
+        //   },
+        // });
       });
   };
 };

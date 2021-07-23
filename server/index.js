@@ -37,6 +37,8 @@ if (!isDev && cluster.isMaster) {
   require("./routes/ride.routes")(app);
   require("./routes/email.routes")(app);
 
+  require("./crons/reminders");
+
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 

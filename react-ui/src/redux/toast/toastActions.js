@@ -7,9 +7,9 @@ export const setShowLogoutToast = (bool) => {
   };
 };
 
-export const setShowLoginSuccessToast = (bool) => {
+export const setShowLoginToast = (bool) => {
   return {
-    type: toastTypes.SET_SHOW_LOGIN_SUCCESS_TOAST,
+    type: toastTypes.SET_SHOW_LOGIN_TOAST,
     payload: bool,
   };
 };

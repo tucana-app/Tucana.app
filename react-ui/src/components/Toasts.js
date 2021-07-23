@@ -2,31 +2,27 @@ import React from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setShowLogoutToast, setShowLoginSuccessToast } from "../redux";
+import { setShowLogoutToast, setShowLoginToast } from "../redux";
 
 const toastDelay = 3000;
+const aosToastAnimation = "fade-down";
 
 function Toasts() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { showLogoutToast, showLoginSuccessToast } = useSelector(
+  const { showLogoutToast, showLoginToast } = useSelector(
     (state) => state.toast
   );
 
   return (
-    <div
-      aria-live="polite"
-      aria-atomic="true"
-      className="fixed-bottom"
-      style={{ marginBottom: "20px" }}
-    >
-      <ToastContainer position="bottom-center" className="p-3">
+    <div aria-live="polite" aria-atomic="true" className="fixed-top">
+      <ToastContainer position="top-center" className="p-3">
         <Toast
           show={showLogoutToast}
           onClose={() => dispatch(setShowLogoutToast(false))}
           className=""
           delay={toastDelay}
-          data-aos="fade-up"
+          data-aos={aosToastAnimation}
           bg="danger"
           autohide
         >
@@ -38,18 +34,20 @@ function Toasts() {
 
         {isLoggedIn ? (
           <Toast
-            show={showLoginSuccessToast}
-            onClose={() => dispatch(setShowLoginSuccessToast(false))}
+            show={showLoginToast}
+            onClose={() => dispatch(setShowLoginToast(false))}
             className=""
             delay={toastDelay}
-            data-aos="fade-up"
+            data-aos={aosToastAnimation}
             bg="success"
             autohide
           >
             <Toast.Header>
               <strong className="me-auto">Logged in</strong>
             </Toast.Header>
-            <Toast.Body>Welcome back {currentUser.firstName}</Toast.Body>
+            <Toast.Body className="text-dark">
+              Welcome back {currentUser.firstName}
+            </Toast.Body>
           </Toast>
         ) : null}
       </ToastContainer>

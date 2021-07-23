@@ -4,7 +4,6 @@ import { IndexLinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCarAlt,
   faUser,
   faSearch,
   faHome,
@@ -47,13 +46,13 @@ function NavigationBar() {
       className="py-3 py-sm-2 py-md-0"
     >
       <Navbar.Collapse id="navigation-bar">
-        <Nav className="w-100 justify-content-around align-items-center my-2">
+        <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center text-decoration-none">
               <img
-                src="./assets/images/280x280_icon_noir.png"
+                src="./assets/images/logo_nav_bar.png"
                 alt="R.CR"
-                className="icon-brand-nav-bar"
+                className="icon-brand-nav-bar mb-1"
               />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.myRides")}
@@ -62,8 +61,8 @@ function NavigationBar() {
           </IndexLinkContainer>
 
           <IndexLinkContainer to="/find-ride" href="/find-ride">
-            <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faSearch} className="icon-nav-bar" />
+            <Nav.Link className="font-title text-center ps-0">
+              <FontAwesomeIcon icon={faSearch} className="icon-nav-bar " />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.findRide")}
               </p>
@@ -135,6 +134,7 @@ function NavigationBar() {
                 <Button
                   className="font-title rounded-0"
                   variant="outline-success"
+                  size="lg"
                 >
                   {t("translation:homePage.logIn")}
                 </Button>
@@ -143,7 +143,11 @@ function NavigationBar() {
 
             <IndexLinkContainer to="/signup" href="/signup">
               <Nav.Link className="font-title text-center">
-                <Button className="font-title rounded-0" variant="success">
+                <Button
+                  className="font-title rounded-0"
+                  variant="success"
+                  size="lg"
+                >
                   {t("translation:homePage.signUp")}
                 </Button>
               </Nav.Link>

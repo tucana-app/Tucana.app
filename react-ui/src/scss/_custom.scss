@@ -88,7 +88,7 @@ body {
 }
 
 .icon-nav-bar {
-  font-size: xxx-large;
+  font-size: x-large;
 }
 
 .icon-brand-nav-bar {
@@ -100,7 +100,7 @@ body {
   -moz-box-shadow: 0px 0px 10px 1px $brand-1;
   -webkit-box-shadow: 0px 0px 10px 1px $brand-1;
   -khtml-box-shadow: 0px 0px 10px 1px $brand-1;
-  border-radius: 0.3rem;
+  @extend .rounded-circle;
 }
 
 // Display breakpoint

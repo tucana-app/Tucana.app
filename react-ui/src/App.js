@@ -61,18 +61,19 @@ function App() {
   useEffect(() => {
     history.listen((location) => {
       if (isLoggedIn) dispatch(getNotifications(currentUser.id));
+      dispatch(clearFeedback());
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    history.listen((location) => {
-      // clear message when changing location
-      dispatch(clearFeedback());
-    });
+  // useEffect(() => {
+  //   history.listen((location) => {
+  //     // clear message when changing location
+  //     dispatch(clearFeedback());
+  //   });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch]);
 
   return (
     <Suspense fallback={<Fallback />}>

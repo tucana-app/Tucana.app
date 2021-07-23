@@ -1,9 +1,8 @@
-const validator = require("validator");
-
 const db = require("../models");
 const config = require("../config/auth.config");
 const emailController = require("./email.controller");
 const templates = require("./EmailTemplates/signup");
+const validator = require("validator");
 const User = db.User;
 const Op = db.Sequelize.Op;
 
@@ -161,13 +160,13 @@ module.exports = {
         } else {
           // User hasn't confirmed the email yet
           return res.status(400).json({
-            flag: "NOT_CONFIRMED",
             message: "Email not confirmed yet",
+            flag: "NOT_CONFIRMED",
           });
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(500).send({
           message: "It looks like we can't log you in now",
           flag: "GENERAL_ERROR",

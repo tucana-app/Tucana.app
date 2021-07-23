@@ -2,7 +2,7 @@ import toastTypes from "./toastTypes";
 
 const initialState = {
   showLogoutToast: false,
-  showLoginSuccessToast: false,
+  showLoginToast: false,
 };
 
 const toastReducer = (state = initialState, action) => {
@@ -13,10 +13,10 @@ const toastReducer = (state = initialState, action) => {
         showLogoutToast: action.payload,
       };
 
-    case toastTypes.SET_SHOW_LOGIN_SUCCESS_TOAST:
+    case toastTypes.SET_SHOW_LOGIN_TOAST:
       return {
         ...state,
-        showLoginSuccessToast: action.payload,
+        showLoginToast: action.payload,
       };
 
     default:
