@@ -20,7 +20,7 @@ const Booking = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isEmptyObject } = useSelector((state) => state.global);
+  const { isEmptyObject, isDateInPast } = useSelector((state) => state.global);
   const { isloadingBooking, bookingData } = useSelector((state) => state.ride);
 
   useEffect(() => {
@@ -130,8 +130,10 @@ const Booking = () => {
                     </Col>
                   </Row>
 
-                  {/* If the booking has no seats left */}
-                  {bookingData.BookingStatusId === 1 ? (
+                  {/* If and is not a past booking */}
+                  {/* and the booking is still pending approval */}
+                  {!isDateInPast(bookingData.Ride.dateTime, new Date()) &&
+                  bookingData.BookingStatusId === 1 ? (
                     // If the booking is pending approval
                     <FormDriverResponseBooking bookingId={bookingId} />
                   ) : null}

@@ -42,15 +42,15 @@ import Test from "./containers/Admin/Test";
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
-// import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
+import MessageFee from "./components/MessageFee";
 
 import { clearFeedback, getNotifications } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
 import "./scss/app.scss";
-import MessageFee from "./components/MessageFee";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,8 +77,7 @@ function App() {
   return (
     <Suspense fallback={<Fallback />}>
       <Router history={history}>
-        {/* <ScrollToTop /> */}
-
+        <ScrollToTop />
         <MessageFee />
         <NavigationBar />
         <Toasts />

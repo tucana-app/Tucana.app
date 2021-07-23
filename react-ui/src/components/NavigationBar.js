@@ -52,7 +52,7 @@ function NavigationBar() {
             <Nav.Link className="font-title text-center text-decoration-none">
               <img
                 src="./assets/images/280x280_icon_noir.png"
-                alt="Ride.CR logo"
+                alt="R.CR"
                 className="icon-brand-nav-bar"
               />
               <p className="small d-md-screen mb-0">
