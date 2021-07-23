@@ -111,7 +111,7 @@ const Login = () => {
                   </Col>
                 </Row>
 
-                {loginErrorFlag === "not_confirmed" ? (
+                {loginErrorFlag === "NOT_CONFIRMED" ? (
                   <Alert variant="warning">
                     {loginErrorMessage}.{" "}
                     <Link to="/coming-soon">Resend the confirmation link</Link>

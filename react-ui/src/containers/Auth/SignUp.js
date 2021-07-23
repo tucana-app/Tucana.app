@@ -252,7 +252,7 @@ const SignUp = () => {
                   </Col>
                 </Row>
 
-                {signupErrorFlag === "not_confirmed" ? (
+                {signupErrorFlag === "NOT_CONFIRMED" ? (
                   <Alert variant="warning">
                     {signupErrorMessage}.{" "}
                     <Link to="/coming-soon">Resend the confirmation link</Link>

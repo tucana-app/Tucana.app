@@ -31,13 +31,13 @@ checkDuplicate = (req, res, next) => {
 
           res.status(400).send({
             message: "Email already in use",
-            flag: "confirmed",
+            flag: "CONFIRMED",
           });
         } else {
           // Email already confirmed, so is already in use
           res.status(400).send({
             message: "Email already in use, but not confirmed yet",
-            flag: "not_confirmed",
+            flag: "NOT_CONFIRMED",
           });
         }
         return;

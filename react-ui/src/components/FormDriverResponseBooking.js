@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
+  faCheckCircle,
   faComment,
   faExclamationTriangle,
   faTimes,
@@ -31,7 +32,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
       newSeatsAvailable: bookingData.Ride.seatsLeft - bookingData.seatsBooked,
     };
 
-    dispatch(submitFormDriverResponseBooking(values));
+    dispatch(submitFormDriverResponseBooking(currentUser, values, bookingData));
 
     formikBag.setSubmitting(false);
   };
@@ -137,11 +138,10 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           }
                           onClick={() => setNewStatus(4)}
                         >
-                          <FontAwesomeIcon
-                            icon={faTimes}
-                            className="text-black-50 me-2"
-                          />
-                          Refuse
+                          <span className="text-white">
+                            <FontAwesomeIcon icon={faTimes} className="me-2" />
+                            Refuse
+                          </span>
                         </Button>
 
                         <Button
@@ -155,11 +155,10 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           }
                           onClick={() => setNewStatus(3)}
                         >
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            className="text-black-50 me-2"
-                          />
-                          Accept
+                          <span className="text-white">
+                            <FontAwesomeIcon icon={faCheck} className="me-2" />
+                            Accept
+                          </span>
                         </Button>
                       </Form.Group>
                     </>

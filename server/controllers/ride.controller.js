@@ -92,7 +92,6 @@ module.exports = {
           model: User,
           attributes: {
             exclude: [
-              "email",
               "biography",
               "password",
               "phoneNumber",
@@ -124,7 +123,6 @@ module.exports = {
           model: User,
           attributes: {
             exclude: [
-              "email",
               "biography",
               "password",
               "phoneNumber",
@@ -140,7 +138,6 @@ module.exports = {
               model: User,
               attributes: {
                 exclude: [
-                  "email",
                   "biography",
                   "password",
                   "phoneNumber",
@@ -241,7 +238,6 @@ module.exports = {
   },
 
   bookRide(req, res) {
-    // console.log(req.body);
     if (req.body.formValues.seatsNeeded === 0) {
       res.status(400).json({ message: "How many seats do you need?" });
     } else {
@@ -312,7 +308,7 @@ module.exports = {
       });
     }
 
-    // if booking refused by driver
+    //if booking refused by driver
     if (newStatus === 4) {
       return Bookings.update(
         {

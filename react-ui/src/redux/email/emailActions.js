@@ -4,15 +4,17 @@ import validator from "validator";
 
 import { setfeedback } from "../index";
 
-// const signupConfirmedTemplate = require("./templates").signupConfirmed;
-const offerRideTemplate = require("./templates").offerRide;
-
 const URL_API = process.env.REACT_APP_URL_API;
 
-// let firstName = "";
-// let lastName = "";
-// let email = "";
-// let username = "";
+// const signupConfirmedTemplate = require("./templates").signupConfirmed;
+const offerRideTemplate = require("./templates").offerRide;
+const bookRideByUserTemplate = require("./templates").bookRideByUser;
+const bookRideToDriverTemplate = require("./templates").bookRideToDriver;
+const acceptedByDriverTemplate = require("./templates").acceptedByDriver;
+const acceptedToUserTemplate = require("./templates").acceptedToUser;
+const refusedByDriverTemplate = require("./templates").refusedByDriver;
+const refusedToUserTemplate = require("./templates").refusedToUser;
+
 let subject = "";
 let textTemplate = "";
 let htmlTemplate = "";
@@ -36,17 +38,18 @@ export const confirmEmail = (confirmEmailUUID) => {
           let variant = "";
 
           switch (response.data.flag) {
-            case "already_confirmed":
+            case "ALREADY_CONFIRMED":
               variant = "warning";
               break;
 
-            case "confirmed_success":
+            case "CONFIRMED_SUCCESS":
               variant = "success";
               break;
 
             default:
               break;
           }
+
           dispatch(
             setfeedback({
               variant,
@@ -105,14 +108,88 @@ export const confirmEmailFail = (message) => {
   };
 };
 
-export const sendEmail = (action, user, payload) => {
-  const { firstName, lastName, email } = user;
+export const sendEmail = (action, recipient, payload) => {
+  const { firstName, lastName, email } = recipient;
 
   switch (action) {
     case "OFFER_RIDE":
-      subject = "Your ride is online | Ride.CR";
-      textTemplate = offerRideTemplate.textTemplateOfferRide(user, payload);
-      htmlTemplate = offerRideTemplate.htmlTemplateOfferRide(user, payload);
+      subject = offerRideTemplate.subject;
+      textTemplate = offerRideTemplate.textTemplate(recipient, payload);
+      htmlTemplate = offerRideTemplate.htmlTemplate(recipient, payload);
+      break;
+
+    case "BOOK_RIDE_BY_USER":
+      subject = bookRideByUserTemplate.subject;
+      textTemplate = bookRideByUserTemplate.textTemplate(recipient, {
+        formValues: payload.formValues,
+        ride: payload.ride,
+      });
+      htmlTemplate = bookRideByUserTemplate.htmlTemplate(recipient, {
+        formValues: payload.formValues,
+        ride: payload.ride,
+      });
+      break;
+
+    case "BOOK_RIDE_TO_DRIVER":
+      subject = bookRideToDriverTemplate.subject;
+      textTemplate = bookRideToDriverTemplate.textTemplate(recipient, {
+        formValues: payload.formValues,
+        ride: payload.ride,
+        passenger: payload.passenger,
+      });
+      htmlTemplate = bookRideToDriverTemplate.htmlTemplate(recipient, {
+        formValues: payload.formValues,
+        ride: payload.ride,
+        passenger: payload.passenger,
+      });
+      break;
+
+    case "ACCEPTED_BY_DRIVER":
+      subject = acceptedByDriverTemplate.subject;
+      textTemplate = acceptedByDriverTemplate.textTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      htmlTemplate = acceptedByDriverTemplate.htmlTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      break;
+
+    case "ACCEPTED_TO_USER":
+      subject = acceptedToUserTemplate.subject;
+      textTemplate = acceptedToUserTemplate.textTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      htmlTemplate = acceptedToUserTemplate.htmlTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      break;
+
+    case "REFUSED_BY_DRIVER":
+      subject = refusedByDriverTemplate.subject;
+      textTemplate = refusedByDriverTemplate.textTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      htmlTemplate = refusedByDriverTemplate.htmlTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      break;
+
+    case "REFUSED_TO_USER":
+      subject = refusedToUserTemplate.subject;
+      textTemplate = refusedToUserTemplate.textTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
+      htmlTemplate = refusedToUserTemplate.htmlTemplate(recipient, {
+        booking: payload.booking,
+        formValues: payload.formValues,
+      });
       break;
 
     default:

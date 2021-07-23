@@ -31,13 +31,13 @@ const SignUpConfirm = () => {
       <Row className="py-5 text-center">
         <Col className="text-center">
           <div>
-            <h1 className="display-4">Confirm your email address</h1>
-            <p>
+            <h1 className="display-4 mb-5">Confirm your email address</h1>
+            <h3 className="fw-light">
               You can now{" "}
               <Link to="/login" className="link-success">
                 login here
               </Link>
-            </p>
+            </h3>
           </div>
         </Col>
       </Row>

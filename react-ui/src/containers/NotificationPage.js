@@ -104,7 +104,7 @@ const NotificationPage = () => {
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
-                New bookings for your ride(s)
+                Bookings for your ride(s)
                 <Badge bg="info" className="text-dark ms-2">
                   {numberDriverNewRidesRequests}
                 </Badge>
@@ -153,7 +153,7 @@ const NotificationPage = () => {
                   icon={faTicketAlt}
                   className="text-success me-3"
                 />
-                New answers from your bookings
+                Answers from your bookings
                 <Badge bg="success" className="text-dark ms-2">
                   {numberPassengerBookingsResponses}
                 </Badge>

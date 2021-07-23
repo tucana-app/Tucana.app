@@ -11,7 +11,7 @@ import { Form, Row, Col, Spinner, Button } from "react-bootstrap";
 import { submitFormBookRide } from "../redux";
 import LoadingMessage from "./LoadingMessage";
 
-const FormBookRide = ({ rideId }) => {
+const FormBookRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const {
@@ -22,9 +22,7 @@ const FormBookRide = ({ rideId }) => {
   } = useSelector((state) => state.ride);
 
   const handleSubmit = (values, formikBag) => {
-    dispatch(
-      submitFormBookRide(currentUser.id, rideId, rideData.ride.DriverId, values)
-    );
+    dispatch(submitFormBookRide(currentUser, rideData.ride, values));
 
     formikBag.setSubmitting(false);
   };

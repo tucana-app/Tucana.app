@@ -208,63 +208,6 @@ export const getRideFail = (error) => {
   };
 };
 
-// Get all driver's bookings
-
-// export const getUserRidesRequested = () => {
-//   return {
-//     type: rideTypes.GET_DRIVER_BOOKINGS_REQUEST,
-//   };
-// };
-
-// export const getUserRides = (userId) => {
-//   return (dispatch) => {
-//     dispatch(getUserRidesRequested());
-
-//     axios
-//       .get(URL_API + "/ride/user-rides", {
-//         params: {
-//           userId,
-//         },
-//       })
-//       .then((response) => {
-//         // console.log(response.data);
-//         dispatch(getUserRidesSuccess(response.data));
-//       })
-//       .catch((error) => {
-//         // console.log(error);
-
-//         const message =
-//           (error.response &&
-//             error.response.data &&
-//             error.response.data.message) ||
-//           error.message ||
-//           error.toString();
-
-//         dispatch(
-//           setfeedback({
-//             variant: "danger",
-//             message: message,
-//           })
-//         );
-//         dispatch(getUserRidesFail(error));
-//       });
-//   };
-// };
-
-// export const getUserRidesSuccess = (data) => {
-//   return {
-//     type: rideTypes.GET_DRIVER_BOOKINGS_SUCCESS,
-//     payload: data,
-//   };
-// };
-
-// export const getUserRidesFail = (error) => {
-//   return {
-//     type: rideTypes.GET_DRIVER_BOOKINGS_FAIL,
-//     payload: error,
-//   };
-// };
-
 // Get a single booking
 
 export const getBookingRequested = () => {
@@ -366,15 +309,15 @@ export const submitFormBookRideRequested = () => {
   };
 };
 
-export const submitFormBookRide = (userId, rideId, driverId, formValues) => {
+export const submitFormBookRide = (user, ride, formValues) => {
   return (dispatch) => {
     dispatch(submitFormBookRideRequested());
 
     axios
       .post(URL_API + "/ride/book", {
-        userId,
-        rideId,
-        driverId,
+        userId: user.id,
+        rideId: ride.id,
+        driverId: ride.DriverId,
         formValues,
       })
       .then((response) => {
@@ -387,9 +330,22 @@ export const submitFormBookRide = (userId, rideId, driverId, formValues) => {
           })
         );
 
+        // Send a booking summary to the passenger
+        dispatch(sendEmail("BOOK_RIDE_BY_USER", user, { formValues, ride }));
+
+        // Notify the driver that a booking has been requested
+        dispatch(
+          sendEmail("BOOK_RIDE_TO_DRIVER", ride.User, {
+            formValues,
+            ride,
+            passenger: user,
+          })
+        );
+
+        // Refresh everything
         dispatch(getAllRides());
-        dispatch(getUserBookingRide(userId, rideId));
-        dispatch(getUserBookings(userId));
+        dispatch(getUserBookingRide(user.id, ride.id));
+        dispatch(getUserBookings(user.id));
         dispatch(submitFormBookRideSuccess(response));
       })
       .catch((error) => {
@@ -435,24 +391,69 @@ export const submitFormDriverResponseBookingRequested = () => {
   };
 };
 
-export const submitFormDriverResponseBooking = (formValues) => {
+export const submitFormDriverResponseBooking = (
+  driver,
+  formValues,
+  booking
+) => {
   return (dispatch) => {
     dispatch(submitFormDriverResponseBookingRequested());
 
     axios
       .put(URL_API + "/booking/driver-response", { formValues })
       .then((response) => {
-        dispatch(
-          setfeedback({
-            variant:
-              response.data.newStatus === 3
-                ? "success"
-                : response.data.newStatus === 4
-                ? "warning"
-                : null,
-            message: response.data.message,
-          })
-        );
+        // console.log(response.data);
+
+        if (response.data.newStatus === 3) {
+          // If ride accepted by driver
+          dispatch(
+            setfeedback({
+              variant: "success",
+              message: response.data.message,
+            })
+          );
+
+          // Notify the driver for accepting the booking
+          dispatch(
+            sendEmail("ACCEPTED_BY_DRIVER", driver, {
+              booking,
+              formValues,
+            })
+          );
+
+          // Notify the passenger that has the booking accepted
+          dispatch(
+            sendEmail("ACCEPTED_TO_USER", booking.User, {
+              booking,
+              formValues,
+            })
+          );
+        } else if (response.data.newStatus === 4) {
+          // If ride refused by driver
+
+          dispatch(
+            setfeedback({
+              variant: "warning",
+              message: response.data.message,
+            })
+          );
+
+          // Notify the driver for refusing the booking
+          dispatch(
+            sendEmail("REFUSED_BY_DRIVER", driver, {
+              booking,
+              formValues,
+            })
+          );
+
+          // Notify the passenger that has the booking refused
+          dispatch(
+            sendEmail("REFUSED_TO_USER", booking.User, {
+              booking,
+              formValues,
+            })
+          );
+        }
 
         dispatch(submitFormDriverResponseBookingSuccess(response.data.message));
         dispatch(getAllRides());
@@ -460,8 +461,6 @@ export const submitFormDriverResponseBooking = (formValues) => {
         dispatch(getNotifications(formValues.userId));
       })
       .catch((error) => {
-        // console.log(error);
-
         const message =
           (error.response &&
             error.response.data &&
@@ -469,12 +468,15 @@ export const submitFormDriverResponseBooking = (formValues) => {
           error.message ||
           error.toString();
 
+        // console.log(message);
+
         dispatch(
           setfeedback({
             variant: "danger",
             message: message,
           })
         );
+
         dispatch(submitFormDriverResponseBookingFail(error));
       });
   };

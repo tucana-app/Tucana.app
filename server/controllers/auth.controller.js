@@ -79,7 +79,7 @@ module.exports = {
                 // console.log(response);
 
                 return res.status(200).json({
-                  flag: "confirmed_success",
+                  flag: "CONFIRMED_SUCCESS",
                   message: "You're email address has been confirmed",
                 });
               })
@@ -92,7 +92,7 @@ module.exports = {
           } else {
             // Email has already been confirmed
             return res.status(200).json({
-              flag: "already_confirmed",
+              flag: "ALREADY_CONFIRMED",
               message: "Your email address has already been confirmed",
             });
           }
@@ -159,7 +159,7 @@ module.exports = {
         } else {
           // User hasn't confirmed the email yet
           return res.status(400).json({
-            flag: "not_confirmed",
+            flag: "NOT_CONFIRMED",
             message: "Email not confirmed yet",
           });
         }
