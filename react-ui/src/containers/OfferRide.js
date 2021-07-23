@@ -377,7 +377,7 @@ const OfferRide = () => {
                 </Row>
 
                 <Row>
-                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                  <Col className="mx-auto">
                     <FeedbackMessage />
                   </Col>
                 </Row>

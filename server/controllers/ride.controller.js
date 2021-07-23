@@ -5,16 +5,11 @@ const User = db.User;
 const Bookings = db.Bookings;
 const BookingStatus = db.BookingStatus;
 const Op = db.Sequelize.Op;
-const { findPhoneNumbersInText } = require("libphonenumber-js");
 require("dotenv").config;
 
-const errorMessage = { message: "A problem occured with this request" };
+const { findEmails, findPhones } = require("./functions/functions");
 
-function extractEmails(string) {
-  return string.match(
-    /(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gi
-  );
-}
+const errorMessage = { message: "A problem occured with this request" };
 
 module.exports = {
   getDriverRides(req, res) {
@@ -42,17 +37,14 @@ module.exports = {
   },
 
   addRide(req, res) {
-    const listPhoneNumberInComment = findPhoneNumbersInText(
-      req.body.formValues.comment
-    );
+    phonesFound = findPhones(req.body.formValues.comment);
+    emailsFound = findEmails(req.body.formValues.comment);
 
-    const listEmailInComment = extractEmails(req.body.formValues.comment);
-
-    if (listPhoneNumberInComment.length > 0)
+    if (phonesFound.length > 0)
       res.status(401).json({
         message: "Please do not include phone numbers in your comment",
       });
-    else if (listEmailInComment && listEmailInComment.length > 0)
+    else if (emailsFound && emailsFound.length > 0)
       res.status(401).json({
         message: "Please do not include emails in your comment",
       });

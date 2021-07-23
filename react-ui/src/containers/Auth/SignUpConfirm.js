@@ -17,7 +17,7 @@ const SignUpConfirm = () => {
   );
 
   useEffect(() => {
-    dispatch(confirmEmail(confirmEmailUUID));
+    if (!isLoggedIn) dispatch(confirmEmail(confirmEmailUUID));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

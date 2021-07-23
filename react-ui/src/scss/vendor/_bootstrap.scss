@@ -9,3 +9,7 @@ $theme-colors: (
   "light": $light,
   "dark": $dark,
 );
+
+$navbar-light-color: $dark;
+$navbar-light-hover-color: rgba($brand-1, 0.7);
+$navbar-light-active-color: $brand-1;

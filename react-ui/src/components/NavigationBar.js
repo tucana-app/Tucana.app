@@ -40,12 +40,21 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   return currentUser ? (
-    <Navbar bg="white" variant="light" fixed="bottom" className="py-3 py-sm-0">
+    <Navbar
+      bg="white"
+      variant="light"
+      fixed="bottom"
+      className="py-3 py-sm-2 py-md-0"
+    >
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-around align-items-center my-2">
           <IndexLinkContainer to="/my-rides" href="/my-rides">
-            <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faCarAlt} size="lg" />
+            <Nav.Link className="font-title text-center text-decoration-none">
+              <img
+                src="./assets/images/280x280_icon_noir.png"
+                alt="Ride.CR logo"
+                className="icon-brand-nav-bar"
+              />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.myRides")}
               </p>
@@ -54,7 +63,7 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/find-ride" href="/find-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faSearch} size="lg" />
+              <FontAwesomeIcon icon={faSearch} className="icon-nav-bar" />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.findRide")}
               </p>
@@ -63,7 +72,7 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/offer-ride" href="/offer-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faPlusCircle} size="lg" />
+              <FontAwesomeIcon icon={faPlusCircle} className="icon-nav-bar" />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.offerRide")}
               </p>
@@ -73,7 +82,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/notifications" href="/notifications">
             <Nav.Link className="font-title text-center">
               <div className="position-relative">
-                <FontAwesomeIcon icon={faBell} size="lg" />
+                <FontAwesomeIcon icon={faBell} className="icon-nav-bar" />
                 <p className="small d-md-screen mb-0">
                   Notifications
                   {notifications > 0 ? (
@@ -99,7 +108,7 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faUser} size="lg" />
+              <FontAwesomeIcon icon={faUser} className="icon-nav-bar" />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.myAccount")}
               </p>
@@ -114,7 +123,7 @@ function NavigationBar() {
         <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faHome} size="lg" />
+              <FontAwesomeIcon icon={faHome} className="icon-nav-bar" />
               <p className="small d-lg-screen mb-0">
                 {t("translation:navigationbar.home")}
               </p>
@@ -125,7 +134,6 @@ function NavigationBar() {
               <Nav.Link className="font-title text-center">
                 <Button
                   className="font-title rounded-0"
-                  size="lg"
                   variant="outline-success"
                 >
                   {t("translation:homePage.logIn")}
@@ -135,11 +143,7 @@ function NavigationBar() {
 
             <IndexLinkContainer to="/signup" href="/signup">
               <Nav.Link className="font-title text-center">
-                <Button
-                  className="font-title rounded-0"
-                  size="lg"
-                  variant="success"
-                >
+                <Button className="font-title rounded-0" variant="success">
                   {t("translation:homePage.signUp")}
                 </Button>
               </Nav.Link>
@@ -148,7 +152,7 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faBars} size="lg" />
+              <FontAwesomeIcon icon={faBars} className="icon-nav-bar" />
               <p className="small d-lg-screen mb-0">Menu</p>
             </Nav.Link>
           </IndexLinkContainer>

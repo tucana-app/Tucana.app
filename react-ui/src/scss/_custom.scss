@@ -87,17 +87,34 @@ body {
   font-family: "Manrope", sans-serif !important;
 }
 
+.icon-nav-bar {
+  font-size: xxx-large;
+}
+
+.icon-brand-nav-bar {
+  max-height: 70px;
+}
+
+.active .icon-brand-nav-bar {
+  box-shadow: 0px 0px 10px 1px $brand-1;
+  -moz-box-shadow: 0px 0px 10px 1px $brand-1;
+  -webkit-box-shadow: 0px 0px 10px 1px $brand-1;
+  -khtml-box-shadow: 0px 0px 10px 1px $brand-1;
+  border-radius: 0.3rem;
+}
+
+// Display breakpoint
+.d-xs-screen.d-md-screen,
+.d-xs-screen.d-lg-screen {
+  display: revert;
+}
+
 .d-md-screen {
   display: none;
 }
 
 .d-lg-screen {
   display: none;
-}
-
-.d-xs-screen.d-md-screen,
-.d-xs-screen.d-lg-screen {
-  display: revert;
 }
 
 .img-cover {
@@ -161,6 +178,14 @@ body {
 
   [class*="display-two-columns"] {
     height: 400px;
+  }
+
+  .icon-nav-bar {
+    font-size: x-large;
+  }
+
+  .icon-brand-nav-bar {
+    max-height: 30px;
   }
 }
 
