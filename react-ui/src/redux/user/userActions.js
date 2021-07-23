@@ -122,13 +122,13 @@ export const login = (formLogin) => {
           })
         );
 
-        // dispatch({
-        //   type: userTypes.LOGIN_FAIL,
-        //   payload: {
-        //     message,
-        //     flag: error.response.data.flag,
-        //   },
-        // });
+        dispatch({
+          type: userTypes.LOGIN_FAIL,
+          payload: {
+            message,
+            flag: error.response.data.flag,
+          },
+        });
       });
   };
 };

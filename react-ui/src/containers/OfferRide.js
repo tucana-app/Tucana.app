@@ -30,8 +30,6 @@ const OfferRide = () => {
 
   const form = useRef();
 
-  var now = new Date();
-
   const schema = Yup.object().shape({
     cityOrigin: Yup.string(labelStringField)
       .min(4, "Min. 4 characters")
@@ -52,10 +50,7 @@ const OfferRide = () => {
     date: Yup.date()
       // if the date selected is not past 00:00:01
       // (midnight and 1 second) from today
-      .min(
-        new Date(now.setHours(0, 0, 1, 0)),
-        "The date must be today or in the future"
-      )
+      .min(new Date(), "The date must be in the future")
       .required(labelRequiredField),
     time: Yup.string(labelStringField).required(labelRequiredField),
     seatsAvailable: Yup.number()
@@ -268,8 +263,7 @@ const OfferRide = () => {
                       placeholder="Date"
                       className="rounded-0"
                       min={dateFormat(new Date(), "yyyy-mm-dd")}
-                      onChange={(e) => console.log(new Date())}
-                      // onChange={handleChange}
+                      onChange={handleChange}
                       isInvalid={!!errors.date}
                       isValid={touched.date && !errors.date}
                       required

@@ -15,7 +15,7 @@ import { getAllRides } from "../redux";
 
 const FindRide = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isloadingAllRidesList, allRidesListData } = useSelector(
     (state) => state.ride
   );
@@ -143,45 +143,31 @@ const FindRide = () => {
                             {ride.User ? ride.User.username : null}
                           </p>
                         </Col>
-
-                        {!isLoggedIn ? (
-                          <Col
-                            xs={10}
-                            sm={8}
-                            md={6}
-                            lg={{ span: 4, order: 3 }}
-                            xl={{ span: 2, order: 5 }}
-                            className="mb-3 mx-auto"
-                          >
-                            <LinkContainer
-                              to={`/signup`}
-                              className="w-100 mt-3"
-                            >
+                        <Col
+                          xs={10}
+                          sm={8}
+                          md={6}
+                          lg={{ span: 4, order: 3 }}
+                          xl={{ span: 2, order: 5 }}
+                          className="mb-3 mx-auto"
+                        >
+                          <LinkContainer to={`/signup`} className="w-100 mt-3">
+                            {!isLoggedIn ? (
                               <Button variant="warning rounded-0 fw-bold text-uppercase">
                                 <FontAwesomeIcon icon={faLock} size="sm" />{" "}
-                                Signup / login to view
+                                Signup to book
                               </Button>
-                            </LinkContainer>
-                          </Col>
-                        ) : (
-                          <Col
-                            xs={10}
-                            sm={8}
-                            md={6}
-                            lg={{ span: 4, order: 3 }}
-                            xl={{ span: 2, order: 5 }}
-                            className="mb-3 mx-auto"
-                          >
-                            <LinkContainer
-                              to={`/ride/${ride.id}`}
-                              className="w-100 mt-3"
-                            >
+                            ) : ride.User.id === currentUser.id ? (
+                              <Button variant="info rounded-0 fw-bold text-uppercase">
+                                Manage
+                              </Button>
+                            ) : (
                               <Button variant="success rounded-0 fw-bold text-uppercase">
                                 View &amp; book
                               </Button>
-                            </LinkContainer>
-                          </Col>
-                        )}
+                            )}
+                          </LinkContainer>
+                        </Col>
                       </Row>
                     </Container>
                   </Col>

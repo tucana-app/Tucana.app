@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faSearch,
-  faHome,
   faBars,
   faPlusCircle,
   faBell,
@@ -122,8 +121,12 @@ function NavigationBar() {
         <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faHome} className="icon-nav-bar" />
-              <p className="small d-lg-screen mb-0">
+              <img
+                src="./assets/images/logo_nav_bar.png"
+                alt="R.CR"
+                className="icon-brand-nav-bar mb-1"
+              />
+              <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.home")}
               </p>
             </Nav.Link>
