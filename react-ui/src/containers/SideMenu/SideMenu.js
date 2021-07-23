@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCar,
   faChevronRight,
   faUser,
   faPowerOff,
@@ -39,15 +38,16 @@ const SideMenu = () => {
         <Link to="/" className="text-light text-decoration-none">
           <ListGroup.Item className="bg-dark text-center border border-top-0 border-start-0 border-end-0 py-4">
             <div className="d-inline mx-auto">
-              <FontAwesomeIcon
-                icon={faCar}
-                size="2x"
-                className="text-success align-bottom me-2"
+              <img
+                src="./assets/images/OPTI_blanc.png"
+                alt="Ride.CR logo"
+                className="img-fluid"
+                style={{ maxWidth: "200px" }}
               />
-              <span className="h3 text-white font-title">Ride.CR</span>
             </div>
           </ListGroup.Item>
         </Link>
+
         {isLoggedIn ? (
           <>
             <Link to="/my-account" className="text-light text-decoration-none">

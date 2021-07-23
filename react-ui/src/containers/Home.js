@@ -12,20 +12,19 @@ function Home({ t }) {
 
   return (
     <>
-      <Container className="py-0">
-        <Row className="my-5">
-          <Col className="d-block d-sm-inline-flex justify-content-center align-items-center text-center">
+      <Container className="my-5">
+        <Row>
+          <Col xs={10} sm={8} md={6} lg={4} className="mx-auto">
             <img
-              src="./assets/images/logo-512.png"
+              src="./assets/images/OPTI_blanc.png"
               alt="Ride.CR logo"
-              className="img-thumbnail img-fluid"
-              style={{ width: "100px" }}
+              className="img-fluid"
             />
-
-            <div className="brand ms-0 mt-3 ms-sm-3 mt-sm-0">
-              <h1 className="">Ride.CR</h1>
-              <p className="lead mb-0">Share your rides in Costa Rica</p>
-            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={10} sm={8} md={6} lg={4} className="text-center mx-auto">
+            <p className="lead mb-0">Share your rides in Costa Rica</p>
           </Col>
         </Row>
       </Container>

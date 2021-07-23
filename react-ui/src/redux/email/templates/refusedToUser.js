@@ -1,4 +1,4 @@
-const dateFormat = require("dateformat");
+// const dateFormat = require("dateformat");
 
 module.exports = {
   // User receive a notification when driver refused the booking

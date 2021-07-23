@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
-  faCheckCircle,
   faComment,
   faExclamationTriangle,
   faTimes,

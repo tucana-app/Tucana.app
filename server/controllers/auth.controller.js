@@ -123,7 +123,9 @@ module.exports = {
     })
       .then((user) => {
         if (!user) {
-          return res.status(404).send({ message: "User Not found" });
+          return res
+            .status(404)
+            .send({ message: "User Not found", flag: "GENERAL_ERROR" });
         }
 
         if (user.emailConfirmed) {
@@ -166,9 +168,10 @@ module.exports = {
       })
       .catch((error) => {
         console.log(error);
-        res
-          .status(500)
-          .send({ message: "It looks like we can't log you in now" });
+        res.status(500).send({
+          message: "It looks like we can't log you in now",
+          flag: "GENERAL_ERROR",
+        });
       });
   },
 };
