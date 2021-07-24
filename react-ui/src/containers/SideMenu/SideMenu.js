@@ -17,10 +17,14 @@ import {
   faDownload,
   faEnvelope,
   faUserShield,
+  faCar,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import { logout } from "../../redux";
+
+// Importing assets
+import logo from "../../assets/images/OPTI_blanc.png";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
@@ -39,7 +43,7 @@ const SideMenu = () => {
           <ListGroup.Item className="bg-dark text-center border border-top-0 border-start-0 border-end-0 py-4">
             <div className="d-inline mx-auto">
               <img
-                src="./assets/images/OPTI_blanc.png"
+                src={logo}
                 alt="Ride.CR logo"
                 className="img-fluid"
                 style={{ maxWidth: "200px" }}
@@ -65,25 +69,40 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
 
-            {currentUser.id === 1 ? (
+            {currentUser.Driver.verified ? (
               <Link
-                to="/admin/secret"
+                to="/my-profile/driver"
                 className="text-light text-decoration-none"
               >
                 <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
                   <div className="d-inline-flex justify-content-between w-100 py-2">
                     <span>
                       <FontAwesomeIcon
-                        icon={faUserShield}
-                        className="text-warning me-2"
+                        icon={faCar}
+                        className="text-secondary me-3"
                       />{" "}
-                      Admin
+                      My driver's profile
                     </span>
                     <FontAwesomeIcon icon={faChevronRight} />
                   </div>
                 </ListGroup.Item>
               </Link>
-            ) : null}
+            ) : (
+              <Link
+                to="/coming-soon"
+                className="text-light text-decoration-none"
+              >
+                <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                  <div className="d-inline-flex justify-content-between w-100 py-2">
+                    <span className="link-success fw-bold">
+                      <FontAwesomeIcon icon={faCar} className="me-3" /> Become a
+                      driver
+                    </span>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
+                </ListGroup.Item>
+              </Link>
+            )}
           </>
         ) : (
           <>
@@ -243,6 +262,29 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
+        <hr className="w-75 bg-dark mx-auto my-4" />
+        {currentUser.id === 1 ||
+        currentUser.id === 2 ||
+        currentUser.id === 3 ||
+        currentUser.id === 4 ? (
+          <>
+            <Link
+              to="/admin/secret"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon icon={faUserShield} className="me-2" />{" "}
+                    Admin
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+          </>
+        ) : null}
       </ListGroup>
     </Container>
   );

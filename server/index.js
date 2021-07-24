@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
-// const logger = require("morgan");
 const cors = require("cors");
 
 const isDev = process.env.NODE_ENV !== "production";
@@ -37,6 +36,7 @@ if (!isDev && cluster.isMaster) {
   require("./routes/ride.routes")(app);
   require("./routes/email.routes")(app);
 
+  // Crons
   require("./crons/reminders");
 
   // Priority serve any static files.

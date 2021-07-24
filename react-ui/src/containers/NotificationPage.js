@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 import LoadingMessage from "../components/LoadingMessage";
+import GoBack from "../components/GoBack";
 
 import { getNotifications } from "../redux";
 
@@ -23,6 +24,11 @@ const NotificationPage = () => {
     isLoadingPassengerBookingsResponses,
     passengerBookingsResponsesData,
   } = useSelector((state) => state.notification);
+
+  useEffect(() => {
+    if (isLoggedIn) getNotifications(currentUser.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let notifications = 0;
   let numberDriverNewRidesRequests = 0;
@@ -39,17 +45,14 @@ const NotificationPage = () => {
       numberDriverNewRidesRequests + numberPassengerBookingsResponses;
   }
 
-  useEffect(() => {
-    if (isLoggedIn) getNotifications(currentUser.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
 
   return (
-    <div data-aos="fade-in" data-aos-duration="1000">
+    <div data-aos="slide-left">
+      <GoBack />
+
       <ListGroup variant="flush">
         <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
           <div className="d-inline-flex justify-content-between w-100 py-3">
@@ -181,7 +184,7 @@ const NotificationPage = () => {
                 <span>
                   by{" "}
                   <span className="text-success">
-                    {booking.Ride.User.username}
+                    {booking.Ride.Driver.User.username}
                   </span>
                 </span>{" "}
                 |{" "}

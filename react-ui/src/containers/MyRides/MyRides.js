@@ -104,7 +104,7 @@ const MyRides = () => {
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
-                Your booking requests
+                Booking received
                 {isLoadingDriverBookings ? (
                   <Spinner
                     animation="grow"

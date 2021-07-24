@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "NO ACTION",
       });
 
-      Bookings.belongsTo(models.Rides, {
+      Bookings.belongsTo(models.Ride, {
         onDelete: "NO ACTION",
       });
 

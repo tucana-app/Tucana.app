@@ -4,6 +4,7 @@ const emailController = require("./email.controller");
 const templates = require("./EmailTemplates/signup");
 const validator = require("validator");
 const User = db.User;
+const Driver = db.Driver;
 const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
@@ -85,6 +86,7 @@ module.exports = {
               .catch((error) => {
                 // console.log(error);
                 return res.status(400).json({
+                  flag: "FAIL_UPDATE_CONFIRM",
                   message: "We couldn't confirm your email address",
                 });
               });
@@ -99,11 +101,13 @@ module.exports = {
         .catch((error) => {
           // console.log(error);
           return res.status(400).json({
+            flag: "FAIL_FIND_UUID",
             message: "We couldn't confirm your email address",
           });
         });
     } else {
       return res.status(401).json({
+        flag: "UNAUTHORIZED",
         message: "How did you do this API call?",
       });
     }
@@ -119,6 +123,14 @@ module.exports = {
           email: req.body.formLogin.credential.toLowerCase(),
         },
       },
+      include: [
+        {
+          model: Driver,
+          attributes: {
+            exclude: ["UserId", "createdAt", "updatedAt"],
+          },
+        },
+      ],
     })
       .then((user) => {
         if (!user) {
@@ -156,6 +168,7 @@ module.exports = {
             emailConfirmed: user.emailConfirmed,
             phoneConfirmed: user.phoneConfirmed,
             accessToken: token,
+            Driver: user.Driver,
           });
         } else {
           // User hasn't confirmed the email yet

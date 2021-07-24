@@ -83,7 +83,7 @@ const Booking = () => {
                     <Col>
                       <RideDetails
                         rideData={bookingData.Ride}
-                        driverUsername={bookingData.Ride.User.username}
+                        driverUsername={bookingData.Ride.Driver.User.username}
                       />
                     </Col>
                   </Row>

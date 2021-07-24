@@ -103,6 +103,10 @@ export const login = (formLogin) => {
 
           dispatch(getDriverNewRidesRequests(response.data.id));
           dispatch(setShowLoginToast(true));
+        } else {
+          throw new Error(
+            "There is an error in the data received from the server"
+          );
         }
       })
       .catch((error) => {
@@ -122,11 +126,14 @@ export const login = (formLogin) => {
           })
         );
 
+        // If a flag is provided, if not default is "ERROR"
+        const flag = (!!error.response && error.response.data.flag) || "ERROR";
+
         dispatch({
           type: userTypes.LOGIN_FAIL,
           payload: {
             message,
-            flag: error.response.data.flag,
+            flag,
           },
         });
       });

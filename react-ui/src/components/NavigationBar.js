@@ -8,9 +8,11 @@ import {
   faSearch,
   faBars,
   faPlusCircle,
-  faBell,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+
+import logo_nav_bar from "../assets/images/logo_nav_bar.png";
 
 function NavigationBar() {
   const { user: currentUser } = useSelector((state) => state.user);
@@ -49,7 +51,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center text-decoration-none">
               <img
-                src="./assets/images/logo_nav_bar.png"
+                src={logo_nav_bar}
                 alt="R.CR"
                 className="icon-brand-nav-bar mb-1"
               />
@@ -80,9 +82,9 @@ function NavigationBar() {
           <IndexLinkContainer to="/notifications" href="/notifications">
             <Nav.Link className="font-title text-center">
               <div className="position-relative">
-                <FontAwesomeIcon icon={faBell} className="icon-nav-bar" />
+                <FontAwesomeIcon icon={faComment} className="icon-nav-bar" />
                 <p className="small d-md-screen mb-0">
-                  Notifications
+                  Messages
                   {notifications > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {notifications}
@@ -122,7 +124,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
               <img
-                src="./assets/images/logo_nav_bar.png"
+                src={logo_nav_bar}
                 alt="R.CR"
                 className="icon-brand-nav-bar mb-1"
               />

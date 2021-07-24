@@ -9,6 +9,9 @@ import FindRide from "./FindRide";
 
 // import { setShowLoginToast } from "../redux";
 
+// Importing assets
+import logo from "../assets/images/OPTI_blanc.png";
+
 function Home({ t }) {
   // const dispatch = useDispatch();
   // const { isLoggedIn } = useSelector((state) => state.user);
@@ -18,11 +21,7 @@ function Home({ t }) {
       <Container className="my-5">
         <Row>
           <Col xs={10} sm={8} md={6} lg={4} className="mx-auto">
-            <img
-              src="./assets/images/OPTI_blanc.png"
-              alt="Ride.CR logo"
-              className="img-fluid"
-            />
+            <img src={logo} alt="Ride.CR logo" className="img-fluid" />
           </Col>
         </Row>
         <Row>

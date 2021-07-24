@@ -1,7 +1,8 @@
 const db = require("../models");
-const Rides = db.Rides;
+const Ride = db.Ride;
 const RideStatus = db.RideStatus;
 const User = db.User;
+const Driver = db.Driver;
 const Bookings = db.Bookings;
 const BookingStatus = db.BookingStatus;
 const Op = db.Sequelize.Op;
@@ -13,7 +14,7 @@ const errorMessage = { message: "A problem occured with this request" };
 
 module.exports = {
   getDriverRides(req, res) {
-    return Rides.findAll({
+    return Ride.findAll({
       where: {
         DriverId: req.query.userId,
       },
@@ -49,7 +50,7 @@ module.exports = {
         message: "Please do not include emails in your comment",
       });
     else {
-      return Rides.create({
+      return Ride.create({
         DriverId: req.body.userId,
         cityOrigin: req.body.formValues.cityOrigin,
         provinceOrigin: req.body.formValues.provinceOrigin,
@@ -74,23 +75,28 @@ module.exports = {
   },
 
   getRide(req, res) {
-    return Rides.findOne({
+    return Ride.findOne({
       where: {
         id: req.params.rideId,
       },
       order: [["dateTime", "ASC"]],
       include: [
         {
-          model: User,
-          attributes: {
-            exclude: [
-              "biography",
-              "password",
-              "phoneNumber",
-              "createdAt",
-              "updatedAt",
-            ],
-          },
+          model: Driver,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  "biography",
+                  "password",
+                  "phoneNumber",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+            },
+          ],
         },
       ],
     })
@@ -124,19 +130,25 @@ module.exports = {
           },
         },
         {
-          model: Rides,
+          model: Ride,
           include: [
             {
-              model: User,
-              attributes: {
-                exclude: [
-                  "biography",
-                  "password",
-                  "phoneNumber",
-                  "createdAt",
-                  "updatedAt",
-                ],
-              },
+              model: Driver,
+              include: [
+                {
+                  model: User,
+                  attributes: {
+                    exclude: [
+                      "email",
+                      "biography",
+                      "password",
+                      "phoneNumber",
+                      "createdAt",
+                      "updatedAt",
+                    ],
+                  },
+                },
+              ],
             },
           ],
         },
@@ -175,7 +187,7 @@ module.exports = {
           },
         },
         {
-          model: Rides,
+          model: Ride,
         },
         {
           model: BookingStatus,
@@ -193,7 +205,7 @@ module.exports = {
   },
 
   getAllRides(req, res) {
-    return Rides.findAll({
+    return Ride.findAll({
       where: {
         seatsLeft: {
           [Op.gt]: 0,
@@ -205,17 +217,21 @@ module.exports = {
       order: [["dateTime", "ASC"]],
       include: [
         {
-          model: User,
-          attributes: {
-            exclude: [
-              "email",
-              "biography",
-              "password",
-              "phoneNumber",
-              "createdAt",
-              "updatedAt",
-            ],
-          },
+          model: Driver,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  "biography",
+                  "password",
+                  "phoneNumber",
+                  "createdAt",
+                  "updatedAt",
+                ],
+              },
+            },
+          ],
         },
       ],
     })
@@ -269,7 +285,7 @@ module.exports = {
           },
         }
       ).then((response) => {
-        return Rides.update(
+        return Ride.update(
           {
             seatsLeft: newSeatsAvailable,
           },
@@ -408,7 +424,7 @@ module.exports = {
       },
       include: [
         {
-          model: Rides,
+          model: Ride,
           where: {
             DriverId: req.query.driverId,
             seatsLeft: {
@@ -483,7 +499,7 @@ module.exports = {
       },
       include: [
         {
-          model: Rides,
+          model: Ride,
           where: {
             dateTime: {
               [Op.gt]: new Date(),
@@ -508,17 +524,22 @@ module.exports = {
           },
           include: [
             {
-              model: User,
-              attributes: {
-                exclude: [
-                  "email",
-                  "biography",
-                  "password",
-                  "phoneNumber",
-                  "createdAt",
-                  "updatedAt",
-                ],
-              },
+              model: Driver,
+              include: [
+                {
+                  model: User,
+                  attributes: {
+                    exclude: [
+                      "email",
+                      "biography",
+                      "password",
+                      "phoneNumber",
+                      "createdAt",
+                      "updatedAt",
+                    ],
+                  },
+                },
+              ],
             },
           ],
         },
@@ -545,20 +566,25 @@ module.exports = {
       order: [["BookingStatusId", "ASC"]],
       include: [
         {
-          model: Rides,
+          model: Ride,
           include: [
             {
-              model: User,
-              attributes: {
-                exclude: [
-                  "email",
-                  "biography",
-                  "password",
-                  "phoneNumber",
-                  "createdAt",
-                  "updatedAt",
-                ],
-              },
+              model: Driver,
+              include: [
+                {
+                  model: User,
+                  attributes: {
+                    exclude: [
+                      "email",
+                      "biography",
+                      "password",
+                      "phoneNumber",
+                      "createdAt",
+                      "updatedAt",
+                    ],
+                  },
+                },
+              ],
             },
           ],
         },
@@ -594,7 +620,7 @@ module.exports = {
           },
         },
         {
-          model: Rides,
+          model: Ride,
         },
       ],
     })

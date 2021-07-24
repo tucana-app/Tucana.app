@@ -95,6 +95,7 @@ export const submitFormOfferRide = (user, values) => {
           })
         );
 
+        dispatch(getAllRides());
         dispatch(sendEmail("OFFER_RIDE", user, values));
         dispatch(submitFormOfferRideSuccess(response.data));
         dispatch(getDriverRides(user.id));
@@ -180,14 +181,14 @@ export const getRide = (rideId) => {
         );
       })
       .catch((error) => {
-        // console.log(error);
-
         const message =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
           error.toString();
+
+        // console.log(error);
 
         dispatch(getRideFail(message));
       });
@@ -275,7 +276,7 @@ export const getAllRides = () => {
         dispatch(getAllRidesSuccess(response.data));
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
 
         dispatch(
           setfeedback({
@@ -335,7 +336,7 @@ export const submitFormBookRide = (user, ride, formValues) => {
 
         // Notify the driver that a booking has been requested
         dispatch(
-          sendEmail("BOOK_RIDE_TO_DRIVER", ride.User, {
+          sendEmail("BOOK_RIDE_TO_DRIVER", ride.Driver.User, {
             formValues,
             ride,
             passenger: user,
@@ -364,6 +365,7 @@ export const submitFormBookRide = (user, ride, formValues) => {
             message: message,
           })
         );
+
         dispatch(submitFormBookRideFail(error));
       });
   };
@@ -571,7 +573,15 @@ export const getUserBookings = (userId) => {
         dispatch(getUserBookingsSuccess(response.data));
       })
       .catch((error) => {
-        // console.log(error)
+        // const message =
+        //   (error.response &&
+        //     error.response.data &&
+        //     error.response.data.message) ||
+        //   error.message ||
+        //   error.toString();
+
+        // console.log(message);
+
         dispatch(getUserBookingsFail(error));
       });
   };
@@ -659,14 +669,14 @@ export const getDriverBookingRide = (driverId, rideId) => {
         dispatch(getDriverBookingRideSuccess(response.data));
       })
       .catch((error) => {
-        // console.log(error);
-
         const message =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
           error.toString();
+
+        // console.log(error);
 
         dispatch(
           setfeedback({

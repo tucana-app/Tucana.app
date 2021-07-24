@@ -140,7 +140,9 @@ const FindRide = () => {
                           </p>
                           <p className="mb-0">
                             <span>Driver:</span>{" "}
-                            {ride.User ? ride.User.username : null}
+                            {ride.Driver.User
+                              ? ride.Driver.User.username
+                              : null}
                           </p>
                         </Col>
                         <Col
@@ -158,7 +160,7 @@ const FindRide = () => {
                                 Signup to book
                               </Button>
                             </LinkContainer>
-                          ) : ride.User.id === currentUser.id ? (
+                          ) : ride.Driver.User.id === currentUser.id ? (
                             <LinkContainer
                               to={`/ride/${ride.id}`}
                               className="w-100 mt-3"

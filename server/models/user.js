@@ -8,13 +8,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasMany(models.Rides, {
-        foreignKey: "DriverId",
+      User.hasMany(models.Bookings, {
         onDelete: "NO ACTION",
       });
 
-      User.hasMany(models.Bookings, {
-        onDelete: "NO ACTION",
+      User.hasOne(models.Driver, {
+        onDelete: "CASCADE",
       });
     }
   }

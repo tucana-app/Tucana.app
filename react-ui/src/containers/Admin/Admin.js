@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import GoBack from "../../components/GoBack";
 import LoadingMessage from "../../components/LoadingMessage";
 
 import { getUsers } from "../../redux";
@@ -24,34 +25,37 @@ function Admin() {
   }
 
   return (
-    <Container className="my-5">
-      <Row>
-        <Col>
-          <h1 className="display-4 text-succes text-center">Admin</h1>
-        </Col>
-      </Row>
+    <div>
+      <GoBack />
 
-      <Row>
-        <Col>
-          {isLoadingUsers ? (
-            <LoadingMessage />
-          ) : (
-            <>
-              TOTAL: {usersData.length}
-              {usersData.map((user, index) => (
-                <div key={index}>
-                  Username: {user.username}. ({user.firstName} {user.lastName})
-                </div>
-              ))}
-            </>
-          )}
-        </Col>
+      <Container className="my-5">
+        <Row>
+          <Col>
+            <h1 className="display-4 text-succes text-center">Admin</h1>
+          </Col>
+        </Row>
 
-        <Col>
-          <Link to="/admin/test">Test page</Link>
-        </Col>
-      </Row>
-    </Container>
+        <Row>
+          <Col>
+            {isLoadingUsers ? (
+              <LoadingMessage />
+            ) : (
+              <>
+                TOTAL: {usersData.length}
+                {usersData.map((user, index) => (
+                  <div key={index}>
+                    Username: {user.username}. ({user.firstName} {user.lastName}
+                    )
+                  </div>
+                ))}
+              </>
+            )}
+          </Col>
+
+          <Col>{/* <Link to="/admin/test">Test page</Link> */}</Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 

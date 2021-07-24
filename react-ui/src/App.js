@@ -6,6 +6,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
+import MessagePage from "./containers/MessagePage";
 
 import Ride from "./containers/Ride";
 import MyRides from "./containers/MyRides/MyRides";
@@ -32,7 +33,8 @@ import MyAccount from "./containers/SideMenu/MyAccount";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
-
+import MyPassengerProfile from "./containers/SideMenu/MyPassengerProfile";
+import MyDriverProfile from "./containers/SideMenu/MyDriverProfile";
 import Page404 from "./containers/Page404";
 
 // Amind
@@ -87,6 +89,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/offer-ride" component={OfferRide} />
           <Route exact path="/find-ride" component={FindRide} />
+          <Route exact path="/messages" component={MessagePage} />
 
           <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/my-rides" component={MyRides} />
@@ -107,6 +110,12 @@ function App() {
 
           <Route exact path="/menu" component={SideMenu} />
           <Route exact path="/my-account" component={MyAccount} />
+          <Route
+            exact
+            path="/my-profile/passenger"
+            component={MyPassengerProfile}
+          />
+          <Route exact path="/my-profile/driver" component={MyDriverProfile} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/download" component={Download} />
