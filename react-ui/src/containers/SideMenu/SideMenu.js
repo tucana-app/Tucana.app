@@ -5,7 +5,6 @@ import { Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
-  faUser,
   faPowerOff,
   faCog,
   faLifeRing,
@@ -18,6 +17,8 @@ import {
   faEnvelope,
   faUserShield,
   faCar,
+  faUserFriends,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -59,17 +60,35 @@ const SideMenu = () => {
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
                     <FontAwesomeIcon
-                      icon={faUser}
+                      icon={faList}
                       className="text-success me-3"
                     />{" "}
-                    Information
+                    My account
                   </span>
                   <FontAwesomeIcon icon={faChevronRight} />
                 </div>
               </ListGroup.Item>
             </Link>
 
-            {currentUser.Driver.verified ? (
+            <Link
+              to="/my-profile/passenger"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faUserFriends}
+                      className="text-light me-2"
+                    />{" "}
+                    My profile
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            {currentUser.Driver && currentUser.Driver.verified ? (
               <Link
                 to="/my-profile/driver"
                 className="text-light text-decoration-none"
@@ -264,10 +283,11 @@ const SideMenu = () => {
         </Link>
 
         <hr className="w-75 bg-dark mx-auto my-4" />
-        {currentUser.id === 1 ||
-        currentUser.id === 2 ||
-        currentUser.id === 3 ||
-        currentUser.id === 4 ? (
+        {currentUser &&
+        (currentUser.id === 1 ||
+          currentUser.id === 2 ||
+          currentUser.id === 3 ||
+          currentUser.id === 4) ? (
           <>
             <Link
               to="/admin/secret"

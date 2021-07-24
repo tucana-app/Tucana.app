@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import GoBack from "../components/GoBack";
+// import GoBack from "../components/GoBack";
 
 function ComingSoon(props) {
   return (
