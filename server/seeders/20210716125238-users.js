@@ -10,7 +10,7 @@ module.exports = {
       {
         firstName: "Benjamin",
         lastName: "Jaume",
-        username: "benny",
+        username: "ben",
         email: "ride.cr.app@gmail.com",
         password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
         phoneNumber: "+50687907001",
