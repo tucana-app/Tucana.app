@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, ListGroup } from "react-bootstrap";
+import { Badge, Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -19,6 +19,7 @@ import {
   faCar,
   faUserFriends,
   faList,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -31,6 +32,27 @@ const SideMenu = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const history = useHistory();
+  const {
+    isLoadingDriverNewRidesRequests,
+    driverNewRidesRequestsData,
+    isLoadingPassengerBookingsResponses,
+    passengerBookingsResponsesData,
+  } = useSelector((state) => state.notification);
+
+  let notifications = 0;
+  let numberDriverNewRidesRequests = 0;
+  let numberPassengerBookingsResponses = 0;
+
+  if (
+    !isLoadingDriverNewRidesRequests &&
+    !isLoadingPassengerBookingsResponses
+  ) {
+    numberDriverNewRidesRequests = driverNewRidesRequestsData.count;
+    numberPassengerBookingsResponses = passengerBookingsResponsesData.count;
+
+    notifications =
+      numberDriverNewRidesRequests + numberPassengerBookingsResponses;
+  }
 
   const logOut = () => {
     history.push("/");
@@ -65,6 +87,27 @@ const SideMenu = () => {
                     />{" "}
                     My account
                   </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link
+              to="/notifications"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <div className="position-relative">
+                    <FontAwesomeIcon
+                      icon={faBell}
+                      className="text-warning me-3"
+                    />{" "}
+                    Notifications
+                    <Badge bg="danger" className="ms-2">
+                      {notifications}
+                    </Badge>
+                  </div>
                   <FontAwesomeIcon icon={faChevronRight} />
                 </div>
               </ListGroup.Item>

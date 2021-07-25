@@ -35,6 +35,7 @@ if (!isDev && cluster.isMaster) {
   require("./routes/admin.routes")(app);
   require("./routes/ride.routes")(app);
   require("./routes/email.routes")(app);
+  require("./routes/message.routes")(app);
 
   // Crons
   require("./crons/reminders");

@@ -79,12 +79,20 @@ function NavigationBar() {
             </Nav.Link>
           </IndexLinkContainer>
 
-          <IndexLinkContainer to="/notifications" href="/notifications">
+          <IndexLinkContainer to="/messages" href="/messages">
+            <Nav.Link className="font-title text-center">
+              <FontAwesomeIcon icon={faComment} className="icon-nav-bar" />
+              <p className="small d-md-screen mb-0">Messages</p>
+            </Nav.Link>
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
               <div className="position-relative">
-                <FontAwesomeIcon icon={faComment} className="icon-nav-bar" />
+                <FontAwesomeIcon icon={faUser} className="icon-nav-bar" />
                 <p className="small d-md-screen mb-0">
-                  Messages
+                  {t("translation:navigationbar.myAccount")}
+
                   {notifications > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {notifications}
@@ -103,15 +111,6 @@ function NavigationBar() {
                   ) : null}
                 </p>
               </div>
-            </Nav.Link>
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to="/menu" href="/menu">
-            <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faUser} className="icon-nav-bar" />
-              <p className="small d-md-screen mb-0">
-                {t("translation:navigationbar.myAccount")}
-              </p>
             </Nav.Link>
           </IndexLinkContainer>
         </Nav>

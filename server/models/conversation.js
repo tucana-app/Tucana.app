@@ -1,44 +1,48 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Bookings extends Model {
+  class Conversation extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Bookings.belongsTo(models.User, {
+      Conversation.belongsTo(models.Driver, {
         onDelete: "NO ACTION",
       });
 
-      Bookings.belongsTo(models.Ride, {
+      Conversation.belongsTo(models.User, {
         onDelete: "NO ACTION",
       });
 
-      Bookings.belongsTo(models.BookingStatus, {
+      Conversation.belongsTo(models.Ride, {
         onDelete: "NO ACTION",
       });
 
-      Bookings.hasMany(models.Conversation, {
+      Conversation.belongsTo(models.Bookings, {
+        onDelete: "NO ACTION",
+      });
+
+      Conversation.hasMany(models.Messages, {
         onDelete: "NO ACTION",
       });
     }
   }
-  Bookings.init(
+  Conversation.init(
     {
-      UserId: DataTypes.INTEGER,
       DriverId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
       RideId: DataTypes.INTEGER,
-      BookingStatusId: DataTypes.INTEGER,
-      seatsBooked: DataTypes.INTEGER,
-      commentPassenger: DataTypes.STRING,
-      commentDriver: DataTypes.STRING,
+      BookingId: DataTypes.INTEGER,
+      archived: DataTypes.BOOLEAN,
+      UUID: DataTypes.UUID,
+      color: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Bookings",
+      modelName: "Conversation",
     }
   );
-  return Bookings;
+  return Conversation;
 };

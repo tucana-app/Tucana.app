@@ -4,7 +4,9 @@ import { ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-function GoBack({ history }) {
+function GoBack(props) {
+  const { history, pageName } = props;
+
   const handleGoBack = () => {
     history.goBack();
   };
@@ -15,13 +17,14 @@ function GoBack({ history }) {
         onClick={handleGoBack}
         className="bg-dark text-white border border-top-0 border-start-0 border-end-0"
       >
-        <div className="d-inline-flex justify-content-between w-100 py-3">
+        <div className="d-inline-flex justify-content-between w-100">
           <span>
             <FontAwesomeIcon
               icon={faChevronLeft}
               className="text-success me-3"
-            />{" "}
-            Go back
+              size="lg"
+            />
+            {pageName}
           </span>
         </div>
       </ListGroup.Item>

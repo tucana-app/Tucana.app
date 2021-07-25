@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       Ride.hasOne(models.Bookings, {
         onDelete: "NO ACTION",
       });
+
+      Ride.hasMany(models.Conversation, {
+        onDelete: "NO ACTION",
+      });
     }
   }
   Ride.init(

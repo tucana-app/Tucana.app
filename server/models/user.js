@@ -15,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Driver, {
         onDelete: "CASCADE",
       });
+
+      User.hasMany(models.Conversation, {
+        onDelete: "NO ACTION",
+      });
+
+      User.hasMany(models.Messages, {
+        foreignKey: "SenderId",
+        onDelete: "NO ACTION",
+      });
     }
   }
   User.init(

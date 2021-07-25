@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, withRouter } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 
 import BookingDetails from "../components/BookingDetails";
 import RideDetails from "../components/RideDetails";
@@ -15,13 +17,30 @@ import { getBooking } from "../redux";
 import NoBookingMessage from "../components/NoBookingMessage";
 import GoBack from "../components/GoBack";
 
-const Booking = () => {
+import { startConversation } from "../redux";
+
+const Booking = ({ history }) => {
   const { bookingId } = useParams();
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isEmptyObject, isDateInPast } = useSelector((state) => state.global);
   const { isloadingBooking, bookingData } = useSelector((state) => state.ride);
+  const { isLoadingStartConversation } = useSelector((state) => state.message);
+
+  const handleStartConversation = () => {
+    // 1: DriverID, 2: UserId (passenger), 3: RideId, 4: BookingId
+    dispatch(
+      startConversation(
+        bookingData.DriverId,
+        bookingData.User.id,
+        bookingData.Ride.id,
+        bookingData.id
+      )
+    );
+
+    history.push("/messages");
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -64,13 +83,11 @@ const Booking = () => {
                   </h1>
                 </Col>
               </Row>
-
               <Row>
                 <Col>
                   <hr className="w-75 mx-auto my-2" />
                 </Col>
               </Row>
-
               {bookingData.Ride.id ? (
                 <>
                   <Row>
@@ -102,25 +119,21 @@ const Booking = () => {
                   </Row>
                 </>
               ) : null}
-
               <Row>
                 <Col>
                   <hr className="w-75 mx-auto my-2" />
                 </Col>
               </Row>
-
               <Row>
                 <Col>
                   <BookingDetails />
                 </Col>
               </Row>
-
               <Row>
                 <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
                   <FeedbackMessage />
                 </Col>
               </Row>
-
               {/* If the viewer is the driver */}
               {bookingData.DriverId === currentUser.id ? (
                 <>
@@ -138,9 +151,36 @@ const Booking = () => {
                     <FormDriverResponseBooking bookingId={bookingId} />
                   ) : null}
                 </>
-              ) : // The passenger is viewing his/her booking
-              // <PassengerManageBooking />
-              null}
+              ) : // The passenger is viewing its booking
+              // and the booking is accepted
+
+              bookingData.BookingStatusId === 3 ? (
+                // If the booking is pending approval
+                <Row>
+                  <Col className="text-center">
+                    <Button
+                      onClick={handleStartConversation}
+                      variant="success"
+                      className="rounded-0"
+                      disabled={isLoadingStartConversation}
+                    >
+                      {isLoadingStartConversation ? (
+                        <Spinner
+                          animation="border"
+                          role="status"
+                          as="span"
+                          aria-hidden="true"
+                          className="me-2"
+                          size="sm"
+                        />
+                      ) : (
+                        <FontAwesomeIcon icon={faComments} className="me-2" />
+                      )}
+                      Start a conversation
+                    </Button>
+                  </Col>
+                </Row>
+              ) : null}
             </>
           ) : (
             // Viewer not the driver nor a passenger

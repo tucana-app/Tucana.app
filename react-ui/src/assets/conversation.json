@@ -1,0 +1,59 @@
+{
+  "conversation": {
+    "id": 1,
+    "DriverId": 1,
+    "UserId": 3,
+    "RideId": 8,
+    "BookingId": 4,
+    "archived": false,
+    "UUID": "5aa2aafa-a065-4c00-be09-86a8f8b1b895",
+    "color": "#397aa1",
+    "createdAt": "2021-07-25T13:28:30.417Z",
+    "updatedAt": "2021-07-25T13:28:30.417Z",
+    "Messages": [
+      {
+        "id": 1,
+        "SenderId": 1,
+        "body": "Hey, so where do you want to meet?",
+        "ConversationId": 1,
+        "MessageStatusId": 3,
+        "createdAt": "2021-07-25T13:28:30.434Z",
+        "updatedAt": "2021-07-25T13:28:30.434Z"
+      },
+      {
+        "id": 2,
+        "SenderId": 3,
+        "body": "I think next to Maxi Pali is the best for me",
+        "ConversationId": 1,
+        "MessageStatusId": 1,
+        "createdAt": "2021-07-25T13:28:30.434Z",
+        "updatedAt": "2021-07-25T13:28:30.434Z"
+      }
+    ],
+    "Driver": {
+      "id": 1,
+      "UserId": 1,
+      "verified": true,
+      "createdAt": "2021-07-25T13:28:30.408Z",
+      "updatedAt": "2021-07-25T13:28:30.408Z",
+      "User": {
+        "id": 1,
+        "firstName": "Benjamin",
+        "lastName": "Jaume",
+        "username": "ben",
+        "emailConfirmed": true,
+        "phoneConfirmed": false,
+        "confirmEmailUUID": "0f7fc300-453f-4026-ac16-8f770a8fe51f"
+      }
+    },
+    "User": {
+      "id": 3,
+      "firstName": "Flora",
+      "lastName": "Marketing",
+      "username": "flora",
+      "emailConfirmed": true,
+      "phoneConfirmed": false,
+      "confirmEmailUUID": "5121fff8-f4cd-4c8e-9c20-807dee17ec7f"
+    }
+  }
+}

@@ -15,10 +15,8 @@ const Test = () => {
 
   return (
     <Container>
-      <Row className="py-5 text-center" data-aos="slide-left">
-        <Col>
-          <FeedbackMessage />
-        </Col>
+      <Row>
+        <Col>TEST PAGE</Col>
       </Row>
     </Container>
   );

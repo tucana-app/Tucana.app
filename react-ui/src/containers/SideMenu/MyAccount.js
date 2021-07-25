@@ -23,7 +23,7 @@ function MyAccount() {
 
   return (
     <div data-aos="slide-left">
-      <GoBack />
+      <GoBack pageName="My account" />
 
       <Container className="my-5">
         <Row className="mb-5">
