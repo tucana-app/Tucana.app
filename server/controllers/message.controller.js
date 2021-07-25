@@ -1,10 +1,10 @@
 const db = require("../models");
-const Ride = db.Ride;
-const RideStatus = db.RideStatus;
+// const Ride = db.Ride;
+// const RideStatus = db.RideStatus;
 const User = db.User;
 const Driver = db.Driver;
-const Bookings = db.Bookings;
-const BookingStatus = db.BookingStatus;
+// const Bookings = db.Bookings;
+// const BookingStatus = db.BookingStatus;
 const Conversation = db.Conversation;
 const Messages = db.Messages;
 const MessageStatus = db.MessageStatus;

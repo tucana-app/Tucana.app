@@ -4,18 +4,10 @@ import { Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import LoadingMessage from "../components/LoadingMessage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 // import GoBack from "../components/GoBack";
 
-import {
-  getAllUserMessages,
-  changeConversationView,
-  resetConversationView,
-} from "../redux";
+import { getAllUserMessages, changeConversationView } from "../redux";
 import NoBookingMessage from "../components/NoBookingMessage";
 import SingleConversation from "../components/SingleConversation";
 
@@ -23,14 +15,8 @@ function ComingSoon(props) {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
-  const {
-    isLoadingAllUserMessages,
-    allUserMessagesData,
-    allUserMessagesFail,
-    isLoadingStartConversation,
-    startConversationFail,
-    currentView,
-  } = useSelector((state) => state.message);
+  const { isLoadingAllUserMessages, allUserMessagesData, currentView } =
+    useSelector((state) => state.message);
 
   const findConversation = () => {
     return allUserMessagesData.find(
@@ -82,8 +68,7 @@ function ComingSoon(props) {
                           <FontAwesomeIcon
                             icon={faUser}
                             size="2x"
-                            style={{ color: conversation.color }}
-                            className="me-3"
+                            className="text-secondary me-3"
                           />
                           {!(conversation.UserId === currentUser.id)
                             ? conversation.User.username

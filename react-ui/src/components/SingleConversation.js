@@ -1,49 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCarAlt,
-  faCheck,
-  faCheckDouble,
   faChevronLeft,
-  faExclamationTriangle,
+  faPaperPlane,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { Formik } from "formik";
 import {
-  Form,
-  Row,
-  Col,
-  Spinner,
   Button,
+  Col,
   Container,
+  Form,
+  InputGroup,
   ListGroup,
-  ButtonGroup,
-  ToastContainer,
-  Toast,
 } from "react-bootstrap";
 
 import { resetConversationView } from "../redux";
 
-import { submitFormBookRide } from "../redux";
-import LoadingMessage from "./LoadingMessage";
 import dateFormat from "dateformat";
-import { LinkContainer } from "react-router-bootstrap";
 
 const SingleConversation = ({ conversation }) => {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
-  const { messageStatusColor, messageStatusIcon } = useSelector(
-    (state) => state.message
-  );
+  const { messageStatusIcon } = useSelector((state) => state.message);
+
+  const [message, setMessage] = useState("");
 
   const receiver = !(conversation.UserId === currentUser.id)
     ? conversation.User.username
     : conversation.Driver.User.username;
 
+  const handleSubmit = () => {
+    // dispatch(sendMessage(currentUser, ))
+    console.log(message);
+  };
+
   return (
     <div>
-      <ListGroup className="mb-5" style={{ cursor: "pointer" }}>
+      <ListGroup className="sticky-top mb-5" style={{ cursor: "pointer" }}>
         <ListGroup.Item
           onClick={() => dispatch(resetConversationView())}
           className="bg-dark text-white border border-top-0 border-start-0
@@ -57,8 +51,7 @@ const SingleConversation = ({ conversation }) => {
             <FontAwesomeIcon
               icon={faUser}
               size="2x"
-              style={{ color: conversation.color }}
-              className="me-3"
+              className="text-secondary me-3"
             />
             {receiver}
           </span>
@@ -66,35 +59,78 @@ const SingleConversation = ({ conversation }) => {
       </ListGroup>
 
       <Container data-aos="slide-left">
-        {console.log(conversation.Messages)}
         <div className="imessage">
           {conversation.Messages.map((message, index) => {
             return (
-              <>
+              <span key={index}>
                 {message.SenderId === currentUser.id ? (
                   // The receiver's messages
                   <>
-                    <p className="from-them">{message.body}</p>
-                    <span className="text-secondary text-start mt-0">
+                    <p className="from-them mb-0">{message.body}</p>
+                    <p className="text-secondary text-start my-0">
                       {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
                       {messageStatusIcon(message.MessageStatusId)}
-                    </span>
+                    </p>
                   </>
                 ) : (
                   // The sender's messages
                   <>
-                    <p className="from-me">{message.body} </p>
-                    <span className="text-secondary text-end mt-0">
+                    <p className="from-me mb-0">{message.body} </p>
+                    <p className="text-secondary text-end w-100 my-0">
                       {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
                       {messageStatusIcon(message.MessageStatusId)}
-                    </span>
+                    </p>
                   </>
                 )}
-              </>
+              </span>
             );
           })}
+          <span>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+            <p className="from-them mb-0">Hello </p>
+            <p className="from-me mb-0">Hello </p>
+          </span>
         </div>
       </Container>
+
+      <Form className="message-form px-2">
+        <InputGroup className="w-75 mx-auto">
+          <Form.Control
+            name="message"
+            placeholder="Send a message"
+            className=""
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <Button
+            variant="success"
+            className="px-sm-2 px-md-3 px-lg-5"
+            onClick={handleSubmit}
+            as={Col}
+            xs={3}
+            sm={2}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </Button>
+        </InputGroup>
+      </Form>
     </div>
   );
 };

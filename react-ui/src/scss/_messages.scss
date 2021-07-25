@@ -1,24 +1,24 @@
-.imessage {
+// Source: https://codepen.io/AllThingsSmitty/pen/jommGQ
+
+.imessage span {
   background-color: $dark;
   border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 1rem;
+  margin: 0 auto 0;
   max-width: 600px;
-  padding: 0.5rem 1.5rem;
 }
 
-.imessage p {
+.imessage span p {
   border-radius: 1.15rem;
   line-height: 1.25;
-  max-width: 75%;
   padding: 0.5rem 0.875rem;
   position: relative;
   word-wrap: break-word;
 }
 
-.imessage p::before,
-.imessage p::after {
+.imessage span p::before,
+.imessage span p::after {
   bottom: -0.1rem;
   content: "";
   height: 1rem;
@@ -109,28 +109,6 @@ p[class^="from-"].emoji::before {
   margin-top: 1rem !important;
 }
 
-/* general styling */
-@font-face {
-  font-family: "SanFrancisco";
-  src: url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2")
-      format("woff2"),
-    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff")
-      format("woff");
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-weight: normal;
-  margin: 0;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 1rem;
-}
-
 // h1 {
 //   font-weight: normal;
 //   margin-bottom: 0.5rem;
@@ -151,6 +129,14 @@ body {
   margin-bottom: 1.25rem;
   max-width: 100%;
   padding: 0;
+}
+
+.message-form {
+  position: fixed;
+  right: 0;
+  bottom: $navbarHeight + 15px;
+  left: 0;
+  z-index: 1030;
 }
 
 @media screen and (max-width: 800px) {

@@ -1,7 +1,7 @@
 @use "./colors";
 
 // Change the Navigation Bar height here
-$navbarHeight: 100px;
+$navbarHeight: 75px;
 
 html {
   scroll-behavior: smooth;
@@ -181,11 +181,11 @@ body {
   }
 
   .icon-nav-bar {
-    font-size: x-large;
+    font-size: large;
   }
 
   .icon-brand-nav-bar {
-    max-height: 30px;
+    max-height: 20px;
   }
 }
 

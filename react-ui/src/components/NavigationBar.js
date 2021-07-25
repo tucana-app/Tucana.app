@@ -40,12 +40,7 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   return currentUser ? (
-    <Navbar
-      bg="white"
-      variant="light"
-      fixed="bottom"
-      className="py-3 py-sm-2 py-md-0"
-    >
+    <Navbar bg="white" variant="light" fixed="bottom" className="py-md-0">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/my-rides" href="/my-rides">
@@ -63,7 +58,11 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/find-ride" href="/find-ride">
             <Nav.Link className="font-title text-center ps-0">
-              <FontAwesomeIcon icon={faSearch} className="icon-nav-bar " />
+              <FontAwesomeIcon
+                icon={faSearch}
+                size="5x"
+                className="icon-nav-bar "
+              />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.findRide")}
               </p>

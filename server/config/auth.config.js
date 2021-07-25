@@ -1,3 +1,6 @@
+require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
+
 module.exports = {
-  secret: "ThI$istH€$ecR€tKEY",
+  secret: process.env.PASS_PHRASE,
 };
