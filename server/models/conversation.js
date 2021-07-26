@@ -37,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       BookingId: DataTypes.INTEGER,
       archived: DataTypes.BOOLEAN,
       UUID: DataTypes.UUID,
-      color: DataTypes.STRING,
     },
     {
       sequelize,

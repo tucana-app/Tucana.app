@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import dateFormat from "dateformat";
 
 import { getPassengersDetails } from "../redux";
-import LoadingMessage from "./LoadingMessage";
+import LoadingSpinner from "./LoadingSpinner";
 import { Link } from "react-router-dom";
 
 const PassengersDetails = ({ rideId }) => {
@@ -44,7 +44,7 @@ const PassengersDetails = ({ rideId }) => {
       {isLoadingPassengersDetails ? (
         <Row>
           <Col className="text-center my-3">
-            <LoadingMessage />
+            <LoadingSpinner />
           </Col>
         </Row>
       ) : passengersDetailsData.length > 0 ? (

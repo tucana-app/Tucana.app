@@ -9,7 +9,10 @@ const Conversation = db.Conversation;
 const Messages = db.Messages;
 const MessageStatus = db.MessageStatus;
 const Op = db.Sequelize.Op;
+const { convert } = require("html-to-text");
 require("dotenv").config;
+
+const { findEmails, findPhones, findLinks } = require("./functions/functions");
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -104,11 +107,13 @@ module.exports = {
               res.status(200).json({ conversation, messages });
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
               res.status(400).json(errorMessage);
             });
         } else {
-          res.status(200).json("Conversation does not exist");
+          res
+            .status(200)
+            .json({ message: "Conversation does not exist", errorCode: 2 });
         }
       })
       .catch((error) => {
@@ -117,6 +122,91 @@ module.exports = {
           errorMessage,
           errorCode: 1,
         });
+      });
+  },
+
+  sendMessage(req, res) {
+    const { senderId, receiverId, message, conversationId } = req.body;
+
+    console.log(senderId, receiverId);
+    if (message.length === 0)
+      res.status(401).json({
+        message: "Your message cannot be empty",
+      });
+
+    linksFound = findLinks(message);
+    phonesFound = findPhones(message);
+    emailsFound = findEmails(message);
+    messageConverted = convert(message);
+
+    if (linksFound && linksFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include links in your comment",
+      });
+    } else if (phonesFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include phone numbers in your comment",
+      });
+    } else if (emailsFound && emailsFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include emails in your comment",
+      });
+    } else {
+      return Messages.create({
+        SenderId: senderId,
+        ReceiverId: receiverId,
+        body: convert(message),
+        ConversationId: conversationId,
+        MessageStatusId: 1,
+      })
+        .then((response) => {
+          // console.log(response);
+          res.status(201).json({ message: "Message sent" });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(400).json(errorMessage);
+        });
+    }
+  },
+
+  getUserNewMessages(req, res) {
+    return Messages.findAndCountAll({
+      where: {
+        ReceiverId: req.query.userId,
+        MessageStatusId: 1,
+      },
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(201).json(response);
+      })
+      .catch((error) => {
+        // console.log(error);
+        res.status(400).json(errorMessage);
+      });
+  },
+
+  setMessagesSeen(req, res) {
+    console.log(req.body);
+    return Messages.update(
+      {
+        MessageStatusId: 3,
+      },
+      {
+        where: {
+          ReceiverId: req.body.viewerId,
+          ConversationId: req.body.conversationId,
+        },
+      }
+    )
+      .then((response) => {
+        // console.log(response);
+        return res.status(200).send({ message: "Success" });
+      })
+      .catch((error) => {
+        // console.log(error);
+        return res.status(400).send({ message: "Fail" });
       });
   },
 };

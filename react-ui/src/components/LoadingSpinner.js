@@ -1,7 +1,9 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
-function LoadingMessage() {
+function LoadingSpinner(props) {
+  const { size } = props;
+
   return (
     <Spinner
       animation="border"
@@ -9,11 +11,9 @@ function LoadingMessage() {
       as="span"
       aria-hidden="true"
       className="align-middle me-2"
-      variant="success"
-    >
-      <span className="sr-only">Loading...</span>
-    </Spinner>
+      size={size}
+    />
   );
 }
 
-export default LoadingMessage;
+export default LoadingSpinner;

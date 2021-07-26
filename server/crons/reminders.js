@@ -10,7 +10,7 @@ const reminder = () => {
   job.stop();
 };
 
-// Every one minute
+// Every seconds
 var job = new CronJob(
   "* * * * * *",
   reminder,

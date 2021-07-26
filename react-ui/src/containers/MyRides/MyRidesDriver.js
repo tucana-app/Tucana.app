@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import dateFormat from "dateformat";
 
-import LoadingMessage from "../../components/LoadingMessage";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
 import NoRidesMessage from "../../components/NoRidesMessage";
 import { LinkContainer } from "react-router-bootstrap";
@@ -42,7 +42,7 @@ const MyRidesDriver = () => {
         {isLoadingDriverRides ? (
           <Row>
             <Col className="text-center">
-              <LoadingMessage />
+              <LoadingSpinner />
             </Col>
           </Row>
         ) : (

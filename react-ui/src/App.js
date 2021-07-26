@@ -68,15 +68,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   history.listen((location) => {
-  //     // clear message when changing location
-  //     dispatch(clearFeedback());
-  //   });
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch]);
-
   return (
     <Suspense fallback={<Fallback />}>
       <Router history={history}>

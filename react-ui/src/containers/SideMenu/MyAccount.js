@@ -129,7 +129,7 @@ function MyAccount() {
             Driver's profile verified
           </Col>
           <Col xs={12} sm={4}>
-            {currentUser.Driver.verified ? (
+            {currentUser.Driver && currentUser.Driver.verified ? (
               <span className="text-success">
                 <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
                 Yes

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Form, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarCheck,
@@ -18,6 +18,7 @@ import dateFormat from "dateformat";
 
 import { submitFormOfferRide } from "../redux";
 import FeedbackMessage from "../components/FeedbackMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const OfferRide = () => {
   const dispatch = useDispatch();
@@ -399,15 +400,7 @@ const OfferRide = () => {
                         }
                       >
                         {isSubmitting || isLoadingSubmitFormOfferRide ? (
-                          <Spinner
-                            animation="border"
-                            role="status"
-                            as="span"
-                            aria-hidden="true"
-                            className="align-middle me-2"
-                          >
-                            <span className="sr-only">Loading...</span>
-                          </Spinner>
+                          <LoadingSpinner />
                         ) : null}
                         Submit
                       </Button>

@@ -32,9 +32,6 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false,
       },
-      color: {
-        type: Sequelize.STRING,
-      },
       archived: {
         type: Sequelize.BOOLEAN,
       },

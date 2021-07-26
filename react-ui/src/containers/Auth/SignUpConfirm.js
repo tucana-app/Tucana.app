@@ -5,7 +5,7 @@ import { Link, Redirect, useParams } from "react-router-dom";
 import FeedbackMessage from "../../components/FeedbackMessage";
 
 import { confirmEmail } from "../../redux";
-import LoadingMessage from "../../components/LoadingMessage";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const SignUpConfirm = () => {
   const { confirmEmailUUID } = useParams();
@@ -45,7 +45,7 @@ const SignUpConfirm = () => {
       <Row>
         {isLoadingConfirmEmail ? (
           <Col className="text-center">
-            <LoadingMessage />
+            <LoadingSpinner />
           </Col>
         ) : confirmEmailError ? (
           <Col>

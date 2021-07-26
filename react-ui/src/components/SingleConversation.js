@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,39 +8,59 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Button,
-  Col,
   Container,
   Form,
   InputGroup,
   ListGroup,
 } from "react-bootstrap";
 
-import { resetConversationView } from "../redux";
+import { resetConversationView, sendMessage, clearFeedback } from "../redux";
 
 import dateFormat from "dateformat";
+import LoadingSpinner from "./LoadingSpinner";
+import FeedbackMessage from "./FeedbackMessage";
 
 const SingleConversation = ({ conversation }) => {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
-  const { messageStatusIcon } = useSelector((state) => state.message);
+  const { messageStatusIcon, isLoadingSendMessage } = useSelector(
+    (state) => state.message
+  );
+  const messagesEndRef = useRef(null);
 
   const [message, setMessage] = useState("");
 
+  // Get receiver's information
   const receiver = !(conversation.UserId === currentUser.id)
     ? conversation.User.username
     : conversation.Driver.User.username;
+  const receiverId = !(conversation.UserId === currentUser.id)
+    ? conversation.User.id
+    : conversation.Driver.User.id;
 
-  const handleSubmit = () => {
-    // dispatch(sendMessage(currentUser, ))
-    console.log(message);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(sendMessage(currentUser.id, receiverId, message, conversation.id));
   };
 
   return (
     <div>
       <ListGroup className="sticky-top mb-5" style={{ cursor: "pointer" }}>
         <ListGroup.Item
-          onClick={() => dispatch(resetConversationView())}
-          className="bg-dark text-white border border-top-0 border-start-0
+          onClick={() => {
+            dispatch(clearFeedback());
+            dispatch(resetConversationView());
+          }}
+          className="bg-dark rounded-0 text-white border border-top-0 border-start-0
           border-end-0"
         >
           <span>
@@ -58,21 +78,12 @@ const SingleConversation = ({ conversation }) => {
         </ListGroup.Item>
       </ListGroup>
 
-      <Container data-aos="slide-left">
+      <Container data-aos="fade-in">
         <div className="imessage">
           {conversation.Messages.map((message, index) => {
             return (
               <span key={index}>
                 {message.SenderId === currentUser.id ? (
-                  // The receiver's messages
-                  <>
-                    <p className="from-them mb-0">{message.body}</p>
-                    <p className="text-secondary text-start my-0">
-                      {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
-                      {messageStatusIcon(message.MessageStatusId)}
-                    </p>
-                  </>
-                ) : (
                   // The sender's messages
                   <>
                     <p className="from-me mb-0">{message.body} </p>
@@ -81,37 +92,23 @@ const SingleConversation = ({ conversation }) => {
                       {messageStatusIcon(message.MessageStatusId)}
                     </p>
                   </>
+                ) : (
+                  // The receiver's messages
+                  <>
+                    <p className="from-them mb-0">{message.body}</p>
+                    <p className="text-secondary w-100 ps-0 my-0">
+                      {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
+                    </p>
+                  </>
                 )}
               </span>
             );
           })}
-          <span>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-            <p className="from-them mb-0">Hello </p>
-            <p className="from-me mb-0">Hello </p>
-          </span>
         </div>
+        <div ref={messagesEndRef} />
       </Container>
 
-      <Form className="message-form px-2">
+      <Form onSubmit={handleSubmit} className="message-form px-2">
         <InputGroup className="w-75 mx-auto">
           <Form.Control
             name="message"
@@ -120,17 +117,23 @@ const SingleConversation = ({ conversation }) => {
             onChange={(e) => setMessage(e.target.value)}
           />
           <Button
+            type="submit"
             variant="success"
             className="px-sm-2 px-md-3 px-lg-5"
-            onClick={handleSubmit}
-            as={Col}
-            xs={3}
-            sm={2}
+            disabled={isLoadingSendMessage}
           >
-            <FontAwesomeIcon icon={faPaperPlane} />
+            {isLoadingSendMessage ? (
+              <LoadingSpinner size={"sm"} />
+            ) : (
+              <FontAwesomeIcon icon={faPaperPlane} size="lg" />
+            )}
           </Button>
         </InputGroup>
       </Form>
+
+      <div className="w-50 mx-auto">
+        <FeedbackMessage />
+      </div>
     </div>
   );
 };

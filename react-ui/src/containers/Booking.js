@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch, withRouter } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import { faComments } from "@fortawesome/free-solid-svg-icons";
 import BookingDetails from "../components/BookingDetails";
 import RideDetails from "../components/RideDetails";
 import FeedbackMessage from "../components/FeedbackMessage";
-import LoadingMessage from "../components/LoadingMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 
 import { getBooking } from "../redux";
@@ -61,7 +61,7 @@ const Booking = ({ history }) => {
         {isloadingBooking ? (
           <Row>
             <Col className="text-center">
-              <LoadingMessage />
+              <LoadingSpinner />
             </Col>
           </Row>
         ) : !isEmptyObject(bookingData) ? (
@@ -165,14 +165,7 @@ const Booking = ({ history }) => {
                       disabled={isLoadingStartConversation}
                     >
                       {isLoadingStartConversation ? (
-                        <Spinner
-                          animation="border"
-                          role="status"
-                          as="span"
-                          aria-hidden="true"
-                          className="me-2"
-                          size="sm"
-                        />
+                        <LoadingSpinner />
                       ) : (
                         <FontAwesomeIcon icon={faComments} className="me-2" />
                       )}

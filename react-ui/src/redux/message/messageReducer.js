@@ -12,48 +12,47 @@ const initialState = {
   startConversationFail: "",
   currentView: 0,
 
+  isLoadingUserNewMessages: false,
+  userNewMessagesData: [],
+  userNewMessagesError: "",
+
+  isLoadingSendMessage: false,
+  showMessageResponse: "",
+
   // 1: Sent
   // 2: Received
   // 3: Seen
-
   messageStatusIcon: (status) => {
     const variant = ["secondary", "seconday", "success"];
 
-    let icon = 0;
-
     switch (status) {
       case 1:
-        icon = (
+        return (
           <FontAwesomeIcon
             icon={faCheck}
             className={`text-${variant[status - 1]}`}
           />
         );
-        break;
 
       case 2:
-        icon = (
+        return (
           <FontAwesomeIcon
             icon={faCheckDouble}
             className={`text-${variant[status - 1]}`}
           />
         );
-        break;
 
       case 3:
-        icon = (
+        return (
           <FontAwesomeIcon
             icon={faCheckDouble}
             className={`text-${variant[status - 1]}`}
           />
         );
-        break;
 
       default:
         break;
     }
-
-    return icon;
   },
 };
 
@@ -101,6 +100,41 @@ function messageReducer(state = initialState, action) {
         isLoadingStartConversation: false,
         startConversationFail: action.payload,
         currentView: 0,
+      };
+
+    case messageTypes.SEND_MESSAGE_REQUEST:
+      return {
+        ...state,
+        isLoadingSendMessage: true,
+      };
+
+    case messageTypes.SEND_MESSAGE_RESPONSE:
+      return {
+        ...state,
+        isLoadingSendMessage: false,
+        showMessageResponse: action.payload,
+      };
+
+    case messageTypes.GET_USER_NEW_MESSAGES_REQUEST:
+      return {
+        ...state,
+        isLoadingUserNewMessages: false,
+      };
+
+    case messageTypes.GET_USER_NEW_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        isLoadingUserNewMessages: true,
+        userNewMessagesData: action.payload,
+        userNewMessagesError: "",
+      };
+
+    case messageTypes.GET_USER_NEW_MESSAGES_FAIL:
+      return {
+        ...state,
+        isLoadingUserNewMessages: false,
+        userNewMessagesData: [],
+        userNewMessagesError: action.payload,
       };
 
     case messageTypes.CHANGE_CONVERSATION_VIEW:

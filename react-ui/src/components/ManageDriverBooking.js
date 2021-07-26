@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import LoadingMessage from "./LoadingMessage";
+import LoadingSpinner from "./LoadingSpinner";
 
 import { getDriverBookingRide } from "../redux";
 import FeedbackMessage from "./FeedbackMessage";
@@ -38,7 +38,7 @@ function ManageDriverBooking({ rideId }) {
       {isloadingDriverRideBookingList ? (
         <Row>
           <Col className="text-center">
-            <LoadingMessage />
+            <LoadingSpinner />
           </Col>
         </Row>
       ) : driverRideBookingData.length > 0 ? (

@@ -1,19 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import {
-  Container,
-  Form,
-  Row,
-  Col,
-  Button,
-  Alert,
-  Spinner,
-} from "react-bootstrap";
+import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { login } from "../../redux";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -133,15 +126,7 @@ const Login = () => {
                         disabled={isSubmitting || isloadingLogin}
                       >
                         {isSubmitting || isloadingLogin ? (
-                          <Spinner
-                            animation="border"
-                            role="status"
-                            as="span"
-                            aria-hidden="true"
-                            className="align-middle me-2"
-                          >
-                            <span className="sr-only">Loading...</span>
-                          </Spinner>
+                          <LoadingSpinner />
                         ) : null}
                         Login
                       </Button>

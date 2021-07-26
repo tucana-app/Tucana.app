@@ -7,7 +7,7 @@ import dateFormat from "dateformat";
 import RideDetails from "../components/RideDetails";
 import ManageDriverBooking from "../components/ManageDriverBooking";
 import FeedbackMessage from "../components/FeedbackMessage";
-import LoadingMessage from "../components/LoadingMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 import FormBookRide from "../components/FormBookRide";
 
 import { getRide, getUserBookingRide } from "../redux";
@@ -51,7 +51,7 @@ const Ride = () => {
         {isloadingRide ? (
           <Row>
             <Col className="text-center">
-              <LoadingMessage />
+              <LoadingSpinner />
             </Col>
           </Row>
         ) : rideData.ride ? (
@@ -94,7 +94,7 @@ const Ride = () => {
                     <hr className="w-75 mx-auto my-2" />
                     <Row>
                       <Col className="text-center">
-                        <LoadingMessage />
+                        <LoadingSpinner />
                       </Col>
                     </Row>
                   </>

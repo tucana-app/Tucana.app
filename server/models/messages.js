@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   Messages.init(
     {
       SenderId: DataTypes.INTEGER,
+      ReceiverId: DataTypes.INTEGER,
       body: DataTypes.STRING,
       ConversationId: DataTypes.INTEGER,
       MessageStatusId: DataTypes.INTEGER,

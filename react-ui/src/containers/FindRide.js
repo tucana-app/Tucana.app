@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 
-import LoadingMessage from "../components/LoadingMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 import FeedbackMessage from "../components/FeedbackMessage";
 import NoRidesMessage from "../components/NoRidesMessage";
 
@@ -51,7 +51,7 @@ const FindRide = () => {
       {isloadingAllRidesList ? (
         <Row>
           <Col className="text-center">
-            <LoadingMessage />
+            <LoadingSpinner />
           </Col>
         </Row>
       ) : (

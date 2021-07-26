@@ -8,9 +8,10 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { Formik } from "formik";
-import { Form, Row, Col, Spinner, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 
 import { submitFormDriverResponseBooking } from "../redux";
+import LoadingSpinner from "./LoadingSpinner";
 
 const FormDriverResponseBooking = ({ bookingId }) => {
   const dispatch = useDispatch();
@@ -113,15 +114,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
 
                   {isSubmitting || isloadingSubmitFormDriverResponseBooking ? (
                     <div className="text-center">
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        as="span"
-                        aria-hidden="true"
-                        className="text-center my-2"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
+                      <LoadingSpinner />
                     </div>
                   ) : (
                     <>

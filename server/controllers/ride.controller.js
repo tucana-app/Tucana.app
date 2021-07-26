@@ -8,7 +8,7 @@ const BookingStatus = db.BookingStatus;
 const Op = db.Sequelize.Op;
 require("dotenv").config;
 
-const { findEmails, findPhones } = require("./functions/functions");
+const { findEmails, findPhones, linksFound } = require("./functions/functions");
 
 const errorMessage = { message: "A problem occured with this request" };
 
@@ -38,18 +38,27 @@ module.exports = {
   },
 
   addRide(req, res) {
-    phonesFound = findPhones(req.body.formValues.comment);
-    emailsFound = findEmails(req.body.formValues.comment);
+    const { comment } = req.body.formValues.comment;
 
-    if (phonesFound.length > 0)
+    if (linksFound && linksFound.length > 0)
       res.status(401).json({
-        message: "Please do not include phone numbers in your comment",
+        message: "Do not include links in your comment",
       });
-    else if (emailsFound && emailsFound.length > 0)
+
+    linksFound = findLinks(comment);
+    phonesFound = findPhones(comment);
+    emailsFound = findEmails(comment);
+    messageConverted = convert(comment);
+
+    if (phonesFound.length > 0) {
       res.status(401).json({
-        message: "Please do not include emails in your comment",
+        message: "Do not include phone numbers in your comment",
       });
-    else {
+    } else if (emailsFound && emailsFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include emails in your comment",
+      });
+    } else {
       return Ride.create({
         DriverId: req.body.userId,
         cityOrigin: req.body.formValues.cityOrigin,
@@ -59,7 +68,7 @@ module.exports = {
         dateTime: req.body.formValues.dateTime,
         seatsAvailable: req.body.formValues.seatsAvailable,
         seatsLeft: req.body.formValues.seatsAvailable,
-        comment: req.body.formValues.comment,
+        comment,
       })
         .then((response) => {
           // console.log(response);
@@ -272,73 +281,96 @@ module.exports = {
     const { comment, newStatus, bookingId, newSeatsAvailable, rideId } =
       req.body.formValues;
 
-    // if booking accepted by driver
-    if (newStatus === 3) {
-      return Bookings.update(
-        {
-          commentDriver: comment,
-          BookingStatusId: newStatus,
-        },
-        {
-          where: {
-            id: bookingId,
-          },
-        }
-      ).then((response) => {
-        return Ride.update(
+    linksFound = findLinks(comment);
+    phonesFound = findPhones(comment);
+    emailsFound = findEmails(comment);
+    messageConverted = convert(comment);
+
+    if (comment.length === 0) {
+      res.status(401).json({
+        message: "Your message cannot be empty",
+      });
+    } else if (linksFound && linksFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include links in your comment",
+      });
+    } else if (phonesFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include phone numbers in your comment",
+      });
+    } else if (emailsFound && emailsFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include emails in your comment",
+      });
+    } else {
+      // if booking accepted by driver
+      if (newStatus === 3) {
+        return Bookings.update(
           {
-            seatsLeft: newSeatsAvailable,
+            commentDriver: comment,
+            BookingStatusId: newStatus,
           },
           {
             where: {
-              id: rideId,
+              id: bookingId,
+            },
+          }
+        ).then((response) => {
+          return Ride.update(
+            {
+              seatsLeft: newSeatsAvailable,
+            },
+            {
+              where: {
+                id: rideId,
+              },
+            }
+          )
+            .then((response) => {
+              // console.log(response);
+
+              res
+                .status(200)
+                .send({
+                  message: "You have accepted the booking",
+                  newStatus,
+                })
+                .catch((error) => {
+                  // console.log(error);
+                  res.status(400).json(error);
+                });
+            })
+            .catch((error) => {
+              // console.log(error);
+              res.status(400).json(error);
+            });
+        });
+      }
+
+      //if booking refused by driver
+      if (newStatus === 4) {
+        return Bookings.update(
+          {
+            commentDriver: comment,
+            BookingStatusId: newStatus,
+          },
+          {
+            where: {
+              id: bookingId,
             },
           }
         )
           .then((response) => {
             // console.log(response);
-
             res
               .status(200)
-              .send({
-                message: "You have accepted the booking",
-                newStatus,
-              })
-              .catch((error) => {
-                // console.log(error);
-                res.status(400).json(error);
-              });
+              .send({ message: "You have refused this booking", newStatus });
           })
           .catch((error) => {
             // console.log(error);
             res.status(400).json(error);
           });
-      });
-    }
-
-    //if booking refused by driver
-    if (newStatus === 4) {
-      return Bookings.update(
-        {
-          commentDriver: comment,
-          BookingStatusId: newStatus,
-        },
-        {
-          where: {
-            id: bookingId,
-          },
-        }
-      )
-        .then((response) => {
-          // console.log(response);
-          res
-            .status(200)
-            .send({ message: "You have refused this booking", newStatus });
-        })
-        .catch((error) => {
-          // console.log(error);
-          res.status(400).json(error);
-        });
+      }
     }
   },
 

@@ -6,7 +6,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import dateFormat from "dateformat";
 
-import LoadingMessage from "../components/LoadingMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 import NoRidesMessage from "../components/NoRidesMessage";
 import FeedbackMessage from "../components/FeedbackMessage";
 import { LinkContainer } from "react-router-bootstrap";
@@ -66,7 +66,7 @@ const Bookings = () => {
         {isLoadingUserBookings ? (
           <Row>
             <Col className="text-center">
-              <LoadingMessage />
+              <LoadingSpinner />
             </Col>
           </Row>
         ) : userBookingsData.length > 0 ? (

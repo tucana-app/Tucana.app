@@ -4,8 +4,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("BookingStatuses", [
       {
-        code: "sent",
-        name: "Sent to the driver",
+        code: "pending",
+        name: "Pending",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

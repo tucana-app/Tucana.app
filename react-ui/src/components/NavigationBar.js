@@ -15,27 +15,18 @@ import { useTranslation } from "react-i18next";
 import logo_nav_bar from "../assets/images/logo_nav_bar.png";
 
 function NavigationBar() {
+  // const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const {
-    isLoadingDriverNewRidesRequests,
     driverNewRidesRequestsData,
-    isLoadingPassengerBookingsResponses,
+
     passengerBookingsResponsesData,
   } = useSelector((state) => state.notification);
+  const { userNewMessagesData } = useSelector((state) => state.message);
 
-  let notifications = 0;
-
-  if (
-    !isLoadingDriverNewRidesRequests &&
-    !isLoadingPassengerBookingsResponses
-  ) {
-    const numberDriverNewRidesRequests = driverNewRidesRequestsData.count;
-    const numberPassengerBookingsResponses =
-      passengerBookingsResponsesData.count;
-
-    notifications =
-      numberDriverNewRidesRequests + numberPassengerBookingsResponses;
-  }
+  var notifications =
+    driverNewRidesRequestsData.count + passengerBookingsResponsesData.count;
+  var messages = userNewMessagesData.count;
 
   const { t } = useTranslation();
 
@@ -80,8 +71,28 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/messages" href="/messages">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faComment} className="icon-nav-bar" />
-              <p className="small d-md-screen mb-0">Messages</p>
+              <div className="position-relative">
+                <FontAwesomeIcon icon={faComment} className="icon-nav-bar" />
+                <p className="small d-md-screen mb-0">
+                  Messages
+                  {messages > 0 ? (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {messages}
+                      <span className="visually-hidden">
+                        unread notification(s)
+                      </span>
+                    </span>
+                  ) : null}
+                </p>
+                <p className="small d-xs-screen mb-0">
+                  {messages > 0 ? (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {messages}
+                      <span className="visually-hidden">unread messages</span>
+                    </span>
+                  ) : null}
+                </p>
+              </div>
             </Nav.Link>
           </IndexLinkContainer>
 
@@ -91,7 +102,6 @@ function NavigationBar() {
                 <FontAwesomeIcon icon={faUser} className="icon-nav-bar" />
                 <p className="small d-md-screen mb-0">
                   {t("translation:navigationbar.myAccount")}
-
                   {notifications > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {notifications}
@@ -105,7 +115,9 @@ function NavigationBar() {
                   {notifications > 0 ? (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {notifications}
-                      <span className="visually-hidden">unread messages</span>
+                      <span className="visually-hidden">
+                        unseen notification
+                      </span>
                     </span>
                   ) : null}
                 </p>

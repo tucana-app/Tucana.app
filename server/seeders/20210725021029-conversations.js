@@ -12,9 +12,6 @@ module.exports = {
         BookingId: 4,
         archived: false,
         UUID: uuidv4(),
-        color:
-          "#" +
-          (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -25,9 +22,6 @@ module.exports = {
         BookingId: 1,
         archived: false,
         UUID: uuidv4(),
-        color:
-          "#" +
-          (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -38,9 +32,6 @@ module.exports = {
         BookingId: 12,
         archived: false,
         UUID: uuidv4(),
-        color:
-          "#" +
-          (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6),
         createdAt: new Date(),
         updatedAt: new Date(),
       },

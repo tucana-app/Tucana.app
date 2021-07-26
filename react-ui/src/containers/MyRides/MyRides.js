@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Badge, Container, ListGroup, Spinner } from "react-bootstrap";
+import { Badge, Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCar,
@@ -17,6 +17,7 @@ import {
   getUserBookings,
   getDriverBookings,
 } from "../../redux";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const MyRides = () => {
   const dispatch = useDispatch();
@@ -74,15 +75,7 @@ const MyRides = () => {
                 <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
                 Ride offered
                 {isLoadingDriverRides ? (
-                  <Spinner
-                    animation="grow"
-                    role="status"
-                    as="span"
-                    aria-hidden="true"
-                    className="ms-2"
-                    size="sm"
-                    variant="success"
-                  />
+                  <LoadingSpinner />
                 ) : driverRidesData.length > 0 ? (
                   countDriverRides(driverRidesData) ? (
                     <Badge bg="success" className="text-dark ms-2">
@@ -106,15 +99,7 @@ const MyRides = () => {
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
                 Booking received
                 {isLoadingDriverBookings ? (
-                  <Spinner
-                    animation="grow"
-                    role="status"
-                    as="span"
-                    aria-hidden="true"
-                    className="ms-2"
-                    size="sm"
-                    variant="info"
-                  />
+                  <LoadingSpinner />
                 ) : driverBookingsData.length > 0 ? (
                   countDriverBookings(driverBookingsData) ? (
                     <Badge bg="info" className="text-dark ms-2">
@@ -138,15 +123,7 @@ const MyRides = () => {
                 />{" "}
                 My bookings
                 {isLoadingUserBookings ? (
-                  <Spinner
-                    animation="grow"
-                    role="status"
-                    as="span"
-                    aria-hidden="true"
-                    className="ms-2"
-                    size="sm"
-                    variant="warning"
-                  />
+                  <LoadingSpinner />
                 ) : userBookingsData.length > 0 ? (
                   countUserBookings(userBookingsData) ? (
                     <Badge bg="warning" className="text-dark ms-2">

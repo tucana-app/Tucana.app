@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import GoBack from "../../components/GoBack";
-import LoadingMessage from "../../components/LoadingMessage";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 import { getUsers } from "../../redux";
 
@@ -39,7 +39,7 @@ function Admin() {
         <Row>
           <Col>
             {isLoadingUsers ? (
-              <LoadingMessage />
+              <LoadingSpinner />
             ) : (
               <>
                 TOTAL: {usersData.length}

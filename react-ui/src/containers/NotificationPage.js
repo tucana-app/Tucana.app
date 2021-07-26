@@ -9,7 +9,7 @@ import {
   faTicketAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
-import LoadingMessage from "../components/LoadingMessage";
+import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
 
 import { getNotifications } from "../redux";
@@ -94,7 +94,7 @@ const NotificationPage = () => {
         <Container className="my-5">
           <Row>
             <Col className="text-center">
-              <LoadingMessage />
+              <LoadingSpinner />
             </Col>
           </Row>
         </Container>

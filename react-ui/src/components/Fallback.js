@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Fallback = () => {
   return (
@@ -7,14 +8,7 @@ const Fallback = () => {
       <Row className="h-100 align-items-center">
         <Col className="text-center">
           <div className="d-inline-flex align-items-center">
-            <Spinner
-              animation="border"
-              role="status"
-              as="span"
-              aria-hidden="true"
-              className="text-success me-3"
-              size="lg"
-            />
+            <LoadingSpinner />
             <h1 className="m-0">
               Ride<span className="text-success">.</span>CR
             </h1>

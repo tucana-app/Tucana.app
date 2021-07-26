@@ -1,5 +1,6 @@
 import notificationTypes from "./notificationTypes";
 import axios from "axios";
+import { getUserNewMessages } from "../../redux";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -7,6 +8,7 @@ export const getNotifications = (userId) => {
   return (dispatch) => {
     dispatch(getDriverNewRidesRequests(userId));
     dispatch(getPassengerBookingsResponses(userId));
+    dispatch(getUserNewMessages(userId));
   };
 };
 

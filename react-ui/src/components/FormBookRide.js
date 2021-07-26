@@ -6,10 +6,10 @@ import {
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Formik } from "formik";
-import { Form, Row, Col, Spinner, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 
 import { submitFormBookRide } from "../redux";
-import LoadingMessage from "./LoadingMessage";
+import LoadingSpinner from "./LoadingSpinner";
 
 const FormBookRide = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const FormBookRide = () => {
       {isloadingUserRideBookingList ? (
         <Row>
           <Col className="text-center">
-            <LoadingMessage />
+            <LoadingSpinner />
           </Col>
         </Row>
       ) : userRideBookingData.length > 0 ? (
@@ -115,15 +115,7 @@ const FormBookRide = () => {
                     }
                   >
                     {isSubmitting || isloadingBookingRide ? (
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        as="span"
-                        aria-hidden="true"
-                        className="align-middle me-2"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
+                      <LoadingSpinner />
                     ) : null}
                     Book
                   </Button>
