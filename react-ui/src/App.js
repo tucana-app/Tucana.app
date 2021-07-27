@@ -48,7 +48,11 @@ import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 import MessageFee from "./components/MessageFee";
 
-import { clearFeedback, getNotifications } from "./redux";
+import {
+  clearFeedback,
+  getNotifications,
+  resetConversationView,
+} from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -62,8 +66,11 @@ function App() {
 
   useEffect(() => {
     history.listen((location) => {
-      if (isLoggedIn) dispatch(getNotifications(currentUser.id));
-      dispatch(clearFeedback());
+      if (isLoggedIn) {
+        dispatch(getNotifications(currentUser.id));
+        dispatch(clearFeedback());
+        dispatch(resetConversationView(currentUser.id));
+      }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

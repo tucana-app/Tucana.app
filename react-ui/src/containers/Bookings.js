@@ -7,7 +7,7 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
-import NoRidesMessage from "../components/NoRidesMessage";
+import MessageEmpty from "../components/MessageEmpty";
 import FeedbackMessage from "../components/FeedbackMessage";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -159,7 +159,7 @@ const Bookings = () => {
             </Row>
             <Row>
               <Col className="text-center">
-                <NoRidesMessage />
+                <MessageEmpty title="rides" />
               </Col>
             </Row>
           </>

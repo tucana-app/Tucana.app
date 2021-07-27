@@ -28,6 +28,7 @@ module.exports = {
           { UserId: req.query.userId },
         ],
       },
+      order: [[Messages, "createdAt", "ASC"]],
       include: [
         {
           model: Messages,
@@ -71,6 +72,7 @@ module.exports = {
       ],
     })
       .then((conversations) => {
+        // console.log(conversations);
         res.status(200).json(conversations);
       })
       .catch((error) => {
@@ -95,25 +97,35 @@ module.exports = {
       },
     })
       .then((conversation) => {
+        // No errors
+
         // Conversation found
         if (conversation) {
-          Messages.findAndCountAll({
-            where: {
-              ConversationId: conversation.id,
-            },
+          res
+            .status(200)
+            .json({ conversationId: conversation.id, uuid: conversation.UUID });
+        } else {
+          // Conversation found
+
+          const uuid = uuidv4();
+
+          Conversation.create({
+            DriverId: driverId,
+            UserId: userId,
+            RideId: rideId,
+            BookingId: bookingId,
+            UUID: uuid,
           })
-            .then((messages) => {
-              // console.log(conversation);
-              res.status(200).json({ conversation, messages });
+            .then((conversation) => {
+              res.status(200).json({ conversationId: conversation.id, uuid });
             })
             .catch((error) => {
               // console.log(error);
-              res.status(400).json(errorMessage);
+              res.status(400).json({
+                errorMessage,
+                errorCode: 3,
+              });
             });
-        } else {
-          res
-            .status(200)
-            .json({ message: "Conversation does not exist", errorCode: 2 });
         }
       })
       .catch((error) => {
@@ -188,7 +200,6 @@ module.exports = {
   },
 
   setMessagesSeen(req, res) {
-    console.log(req.body);
     return Messages.update(
       {
         MessageStatusId: 3,
@@ -206,7 +217,7 @@ module.exports = {
       })
       .catch((error) => {
         // console.log(error);
-        return res.status(400).send({ message: "Fail" });
+        return res.status(400).send({ message: "Fail", errorCode: 1 });
       });
   },
 };

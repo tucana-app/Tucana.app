@@ -14,7 +14,7 @@ import { getRide, getUserBookingRide } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
 import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
-import NoRidesMessage from "../components/NoRidesMessage";
+import MessageEmpty from "../components/MessageEmpty";
 
 const Ride = () => {
   const { rideId } = useParams();
@@ -186,7 +186,7 @@ const Ride = () => {
         ) : (
           <Row>
             <Col className="text-center">
-              <NoRidesMessage />
+              <MessageEmpty title="ride" />
             </Col>
           </Row>
         )}

@@ -11,9 +11,9 @@ export const getUsersRequested = () => {
   };
 };
 
-export const getUsers = (userId) => {
+export const getUsers = (currentUser) => {
   return (dispatch) => {
-    if (userId === 1) {
+    if (currentUser.adminId) {
       dispatch(getUsersRequested());
 
       axios

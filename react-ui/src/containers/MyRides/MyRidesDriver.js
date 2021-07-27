@@ -6,7 +6,7 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
-import NoRidesMessage from "../../components/NoRidesMessage";
+import MessageEmpty from "../../components/MessageEmpty";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button } from "react-bootstrap";
 
@@ -167,7 +167,7 @@ const MyRidesDriver = () => {
                 </Row>
                 <Row>
                   <Col className="text-center">
-                    <NoRidesMessage />
+                    <MessageEmpty title="rides" />
                   </Col>
                 </Row>
               </>

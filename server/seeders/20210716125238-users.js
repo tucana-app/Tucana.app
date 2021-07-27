@@ -8,12 +8,12 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Users", [
       {
-        firstName: "Benjamin",
-        lastName: "Jaume",
-        username: "ben",
+        firstName: "Valentin",
+        lastName: "Palmer",
+        username: "val",
         email: "ride.cr.app@gmail.com",
         password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
-        phoneNumber: "+50687907001",
+        phoneNumber: "+50625213256",
         createdAt: new Date(),
         updatedAt: new Date(),
         emailConfirmed: true,
@@ -21,9 +21,9 @@ module.exports = {
         confirmEmailUUID: uuidv4(),
       },
       {
-        firstName: "Axel",
-        lastName: "Freeman",
-        username: "freeman",
+        firstName: "Damien",
+        lastName: "Roufre",
+        username: "damien",
         email: "benjamin.jaume@gmail.com",
         password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
         phoneNumber: "0605040302",
@@ -34,9 +34,9 @@ module.exports = {
         confirmEmailUUID: uuidv4(),
       },
       {
-        firstName: "Flora",
-        lastName: "Marketing",
-        username: "flora",
+        firstName: "Peter",
+        lastName: "Furniture",
+        username: "peter",
         email: "jorustyron@outlook.com",
         password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
         phoneNumber: "0807060504",
@@ -47,9 +47,9 @@ module.exports = {
         confirmEmailUUID: uuidv4(),
       },
       {
-        firstName: "Pascal",
-        lastName: "Atenas",
-        username: "pascal",
+        firstName: "Alan",
+        lastName: "Matera",
+        username: "alan",
         email: "jorustyron@gmail.com",
         password: bcrypt.hashSync(process.env.USER_PASSWORD, 8),
         phoneNumber: "87956231",
@@ -64,10 +64,10 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete("Users", {
-      username: "ben",
-      username: "freeman",
-      username: "flora",
-      username: "pascal",
+      username: "val",
+      username: "damien",
+      username: "peter",
+      username: "alan",
     });
   },
 };

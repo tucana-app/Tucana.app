@@ -8,10 +8,10 @@ import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 // import GoBack from "../components/GoBack";
 
 import { getAllUserMessages, changeConversationView } from "../redux";
-import NoBookingMessage from "../components/NoBookingMessage";
+import MessageEmpty from "../components/MessageEmpty";
 import SingleConversation from "../components/SingleConversation";
 
-function ComingSoon(props) {
+function ComingSoon() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
@@ -58,65 +58,77 @@ function ComingSoon(props) {
 
   return (
     <div>
-      {isLoadingAllUserMessages ? (
-        <Container>
-          <Row className="py-5">
-            <Col className="text-center">
-              <LoadingSpinner />
-            </Col>
-          </Row>
-        </Container>
-      ) : allUserMessagesData.length > 0 ? (
+      {allUserMessagesData.length > 0 ? (
         <>
           {currentView ? (
             <SingleConversation conversation={findConversation()} />
           ) : (
             <>
               <ListGroup.Item className="bg-dark text-white py-4 border border-top-0 border-end-0 border-start-0">
-                <p className="text-center w-100 mb-0">Messages</p>
+                <h1 className="text-success text-center w-100 mb-0">
+                  Messages
+                </h1>
               </ListGroup.Item>
 
-              <ListGroup variant="flush" data-aos="slide-right">
-                {allUserMessagesData.map((conversation, index) => (
-                  <span key={index}>
-                    <ListGroup.Item
-                      className="bg-dark text-white border border-top-0 border-start-0 border-end-0"
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        dispatch(
-                          changeConversationView(
-                            conversation.UUID,
-                            currentUser.id,
-                            conversation.id
+              {isLoadingAllUserMessages ? (
+                <Container>
+                  <Row className="py-5">
+                    <Col className="text-center">
+                      <LoadingSpinner />
+                    </Col>
+                  </Row>
+                </Container>
+              ) : (
+                <ListGroup variant="flush" data-aos="slide-right">
+                  {allUserMessagesData.map((conversation, index) => (
+                    <span key={index}>
+                      <ListGroup.Item
+                        className="bg-dark text-white border border-top-0 border-start-0 border-end-0"
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          dispatch(
+                            changeConversationView(
+                              conversation.UUID,
+                              currentUser.id,
+                              conversation.id
+                            )
                           )
-                        )
-                      }
-                    >
-                      <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
-                        <div className="position-relative">
-                          <FontAwesomeIcon
-                            icon={faUser}
-                            size="2x"
-                            className="text-secondary me-3"
-                          />
-                          {getSenderUsername(conversation)}
-                          {countUnreadMessages(conversation) > 0 ? (
-                            <Badge bg="danger" className="ms-2">
-                              {countUnreadMessages(conversation)}
-                            </Badge>
-                          ) : null}
+                        }
+                      >
+                        <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
+                          <div className="position-relative">
+                            <FontAwesomeIcon
+                              icon={faUser}
+                              size="2x"
+                              className="text-secondary me-3"
+                            />
+                            <span className="h2">
+                              {getSenderUsername(conversation)}
+                            </span>
+                            {countUnreadMessages(conversation) > 0 ? (
+                              <Badge bg="danger" className="ms-2">
+                                {countUnreadMessages(conversation)}
+                              </Badge>
+                            ) : null}
+                          </div>
+                          <FontAwesomeIcon icon={faChevronRight} />
                         </div>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                      </div>
-                    </ListGroup.Item>
-                  </span>
-                ))}
-              </ListGroup>
+                      </ListGroup.Item>
+                    </span>
+                  ))}
+                </ListGroup>
+              )}
             </>
           )}
         </>
       ) : (
-        <NoBookingMessage />
+        <Container className="my-5">
+          <Row>
+            <Col className="text-center">
+              <MessageEmpty title="messages" />
+            </Col>
+          </Row>
+        </Container>
       )}
     </div>
   );

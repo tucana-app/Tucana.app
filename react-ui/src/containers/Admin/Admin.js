@@ -15,13 +15,13 @@ function Admin() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getUsers(currentUser.id));
+      dispatch(getUsers(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle redirection in case the user is already logged in
-  if (!isLoggedIn || currentUser.id !== 1) {
+  if (!isLoggedIn || !currentUser.adminId) {
     return <Redirect to="/page-404" />;
   }
 
@@ -32,7 +32,7 @@ function Admin() {
       <Container className="my-5">
         <Row>
           <Col>
-            <h1 className="display-4 text-succes text-center">Admin</h1>
+            <h1 className="display-4 text-success text-center">Admin</h1>
           </Col>
         </Row>
 

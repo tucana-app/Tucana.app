@@ -14,7 +14,7 @@ import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 
 import { getBooking } from "../redux";
 
-import NoBookingMessage from "../components/NoBookingMessage";
+import MessageEmpty from "../components/MessageEmpty";
 import GoBack from "../components/GoBack";
 
 import { startConversation } from "../redux";
@@ -35,7 +35,8 @@ const Booking = ({ history }) => {
         bookingData.DriverId,
         bookingData.User.id,
         bookingData.Ride.id,
-        bookingData.id
+        bookingData.id,
+        currentUser.id
       )
     );
 
@@ -184,7 +185,7 @@ const Booking = ({ history }) => {
           <Container>
             <Row>
               <Col className="text-center">
-                <NoBookingMessage />
+                <MessageEmpty title="booking" />
               </Col>
             </Row>
           </Container>

@@ -78,7 +78,13 @@ export const startConversationRequested = () => {
   };
 };
 
-export const startConversation = (driverId, userId, rideId, bookingId) => {
+export const startConversation = (
+  driverId,
+  userId,
+  rideId,
+  bookingId,
+  viewerId
+) => {
   return (dispatch) => {
     dispatch(startConversationRequested());
 
@@ -92,7 +98,16 @@ export const startConversation = (driverId, userId, rideId, bookingId) => {
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(startConversationSuccess(response.data));
+        dispatch(getAllUserMessages(viewerId));
+
+        // receiving the UUID
+        dispatch(
+          changeConversationView(
+            response.data.uuid,
+            viewerId,
+            response.data.conversationId
+          )
+        );
       })
       .catch((error) => {
         const message =
@@ -243,7 +258,6 @@ export const changeConversationView = (uuid, viewerId, conversationId) => {
       .then((response) => {
         // console.log(response.data);
         // Message successfully set as "Seen"
-        dispatch(getAllUserMessages(viewerId));
         dispatch(getUserNewMessages(viewerId));
       })
       .catch((error) => {
@@ -261,8 +275,13 @@ export const changeConversationView = (uuid, viewerId, conversationId) => {
   };
 };
 
-export const resetConversationView = () => {
-  return {
-    type: messageTypes.RESET_CONVERSATION_VIEW,
+export const resetConversationView = (viewerId) => {
+  return (dispatch) => {
+    // Change view before making an API call
+    dispatch(getAllUserMessages(viewerId));
+
+    dispatch({
+      type: messageTypes.RESET_CONVERSATION_VIEW,
+    });
   };
 };

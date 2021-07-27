@@ -9,7 +9,7 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import FeedbackMessage from "../components/FeedbackMessage";
-import NoRidesMessage from "../components/NoRidesMessage";
+import MessageEmpty from "../components/MessageEmpty";
 
 import { getAllRides } from "../redux";
 
@@ -195,7 +195,7 @@ const FindRide = () => {
               </Row>
               <Row>
                 <Col className="text-center">
-                  <NoRidesMessage />
+                  <MessageEmpty title="rides" />
                 </Col>
               </Row>
             </>

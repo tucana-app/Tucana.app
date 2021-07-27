@@ -326,11 +326,7 @@ const SideMenu = () => {
         </Link>
 
         <hr className="w-75 bg-dark mx-auto my-4" />
-        {currentUser &&
-        (currentUser.id === 1 ||
-          currentUser.id === 2 ||
-          currentUser.id === 3 ||
-          currentUser.id === 4) ? (
+        {currentUser && currentUser.adminId ? (
           <>
             <Link
               to="/admin/secret"

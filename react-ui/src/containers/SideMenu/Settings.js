@@ -11,11 +11,7 @@ function Settings() {
         <Row>
           <Col>
             <h1 className="display-4 text-success">Settings</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <p className="text-light">Coming soon</p>
+            <p className="lead">You can adjust your settings here</p>
           </Col>
         </Row>
       </Container>

@@ -90,7 +90,6 @@ function messageReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingStartConversation: false,
-        currentView: action.payload.UUID,
         startConversationFail: "",
       };
 

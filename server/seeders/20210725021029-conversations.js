@@ -6,16 +6,6 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Conversations", [
       {
-        DriverId: 1,
-        UserId: 3,
-        RideId: 8,
-        BookingId: 4,
-        archived: false,
-        UUID: uuidv4(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
         DriverId: 4,
         UserId: 2,
         RideId: 6,

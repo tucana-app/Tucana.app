@@ -6,7 +6,7 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
-import NoBookingMessage from "../../components/NoBookingMessage";
+import MessageEmpty from "../../components/MessageEmpty";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button } from "react-bootstrap";
 
@@ -140,72 +140,9 @@ const MyRidesBookings = () => {
                 </Row>
                 <Row>
                   <Col className="text-center">
-                    <NoBookingMessage />
+                    <MessageEmpty title="bookings" />
                   </Col>
                 </Row>
-
-                {/* <Row>
-                <Col xs={12} md={6} className="mx-auto">
-                  <Accordion>
-                    {driverBookingsData.map((ride, index) => (
-                      <Accordion.Item key={index} eventKey={index}>
-                        <Accordion.Header>
-                          <span className="fw-bolder">
-                            {ride.cityOrigin} - {ride.cityDestination} (
-                            {dateFormat(ride.dateTime, "dd-mm-yyyy")})
-                          </span>
-                        </Accordion.Header>
-                        <Accordion.Body className="p-0">
-                          <ListGroup className="border border-success border-3 rounded">
-                            <ListGroup.Item>
-                              <span className="text-success">Origin:</span>{" "}
-                              {ride.cityOrigin} ({ride.provinceOrigin})
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <span className="text-danger">Destination:</span>{" "}
-                              {ride.cityDestination} ({ride.provinceDestination}
-                              )
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Date/time:{" "}
-                              {dateFormat(
-                                ride.dateTime,
-                                "dd-mm-yyyy @ HH:MM TT"
-                              )}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Seats left: {ride.seatsLeft}/{ride.seatsAvailable}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Comment: {ride.comment}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <span className="text-warning fw-bold">
-                                Status:
-                              </span>{" "}
-                              {ride.RideStatus.name}
-                            </ListGroup.Item>
-                          </ListGroup>
-                        </Accordion.Body>
-                      </Accordion.Item>
-                    ))}
-                  </Accordion>
-                </Col>
-              </Row>
-            ) : (
-              <Row>
-              <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                <FeedbackMessage />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="text-center">
-                <NoRidesMessage />
-              </Col>
-            </Row>
-            )}
-          </>
-        )} */}
               </>
             )}
           </>

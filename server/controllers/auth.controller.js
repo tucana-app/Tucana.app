@@ -5,6 +5,7 @@ const templates = require("./EmailTemplates/signup");
 const validator = require("validator");
 const User = db.User;
 const Driver = db.Driver;
+const Admin = db.Admin;
 const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
@@ -19,7 +20,7 @@ module.exports = {
 
     const confirmEmailUUID = uuidv4();
 
-    User.create({
+    return User.create({
       firstName,
       lastName,
       email,
@@ -38,11 +39,11 @@ module.exports = {
           templates.confirmSignup(confirmEmailUUID)
         );
 
-        return res.status(201).send({ message: "Sign up successful" });
+        res.status(201).send({ message: "Sign up successful" });
       })
       .catch((error) => {
         // console.log(error);
-        return res.status(500).send({ message: error.message });
+        res.status(500).send({ message: error.message });
       });
   },
 
@@ -50,7 +51,7 @@ module.exports = {
     // Check if the UUID provided over the put call is valid
     if (validator.isUUID(req.body.confirmEmailUUID)) {
       // Check first if the email has already been confirmed
-      User.findOne({
+      return User.findOne({
         where: {
           confirmEmailUUID: req.body.confirmEmailUUID,
         },
@@ -58,7 +59,7 @@ module.exports = {
         .then((user) => {
           if (!user) {
             // User does not exist anymore
-            return res
+            res
               .status(400)
               .json({ message: "This confirmation link is deprecated" });
           }
@@ -78,21 +79,21 @@ module.exports = {
               .then((response) => {
                 // console.log(response);
 
-                return res.status(200).json({
+                res.status(200).json({
                   flag: "CONFIRMED_SUCCESS",
                   message: "You're email address has been confirmed",
                 });
               })
               .catch((error) => {
                 // console.log(error);
-                return res.status(400).json({
+                res.status(400).json({
                   flag: "FAIL_UPDATE_CONFIRM",
                   message: "We couldn't confirm your email address",
                 });
               });
           } else {
             // Email has already been confirmed
-            return res.status(200).json({
+            res.status(200).json({
               flag: "ALREADY_CONFIRMED",
               message: "Your email address has already been confirmed",
             });
@@ -100,13 +101,13 @@ module.exports = {
         })
         .catch((error) => {
           // console.log(error);
-          return res.status(400).json({
+          res.status(400).json({
             flag: "FAIL_FIND_UUID",
             message: "We couldn't confirm your email address",
           });
         });
     } else {
-      return res.status(401).json({
+      res.status(401).json({
         flag: "UNAUTHORIZED",
         message: "How did you do this API call?",
       });
@@ -114,7 +115,7 @@ module.exports = {
   },
 
   signin(req, res) {
-    User.findOne({
+    return User.findOne({
       where: {
         [Op.or]: {
           username: req.body.formLogin.credential,
@@ -134,9 +135,56 @@ module.exports = {
     })
       .then((user) => {
         if (!user) {
-          return res
-            .status(404)
-            .send({ message: "User Not found", flag: "GENERAL_ERROR" });
+          return Admin.findOne({
+            where: {
+              [Op.or]: {
+                username: req.body.formLogin.credential,
+                username: req.body.formLogin.credential.toLowerCase(),
+                email: req.body.formLogin.credential,
+                email: req.body.formLogin.credential.toLowerCase(),
+              },
+            },
+          })
+            .then((admin) => {
+              if (!admin) {
+                res
+                  .status(404)
+                  .send({ message: "User Not found", flag: "GENERAL_ERROR" });
+              } else {
+                var passwordIsValid = bcrypt.compareSync(
+                  req.body.formLogin.password,
+                  admin.password
+                );
+
+                if (!passwordIsValid) {
+                  res.status(401).send({
+                    accessToken: null,
+                    message: "Invalid Password",
+                  });
+                }
+
+                var token = jwt.sign({ id: admin.id }, config.secret, {
+                  expiresIn: 604800, // 7 days
+                });
+
+                res.status(200).send({
+                  adminId: admin.id,
+                  firstName: admin.firstName,
+                  lastName: admin.lastName,
+                  username: admin.username,
+                  email: admin.email,
+                  createdAt: admin.createdAt,
+                  accessToken: token,
+                });
+              }
+            })
+            .catch((error) => {
+              // console.log(error);
+              res.status(500).send({
+                message: "It looks like we can't log you in now",
+                flag: "GENERAL_ERROR",
+              });
+            });
         }
 
         if (user.emailConfirmed) {
@@ -146,7 +194,7 @@ module.exports = {
           );
 
           if (!passwordIsValid) {
-            return res.status(401).send({
+            res.status(401).send({
               accessToken: null,
               message: "Invalid Password",
             });
@@ -172,7 +220,7 @@ module.exports = {
           });
         } else {
           // User hasn't confirmed the email yet
-          return res.status(400).json({
+          res.status(400).json({
             message: "Email not confirmed yet",
             flag: "NOT_CONFIRMED",
           });

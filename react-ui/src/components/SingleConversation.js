@@ -14,7 +14,12 @@ import {
   ListGroup,
 } from "react-bootstrap";
 
-import { resetConversationView, sendMessage, clearFeedback } from "../redux";
+import {
+  resetConversationView,
+  sendMessage,
+  clearFeedback,
+  getAllUserMessages,
+} from "../redux";
 
 import dateFormat from "dateformat";
 import LoadingSpinner from "./LoadingSpinner";
@@ -58,7 +63,8 @@ const SingleConversation = ({ conversation }) => {
         <ListGroup.Item
           onClick={() => {
             dispatch(clearFeedback());
-            dispatch(resetConversationView());
+            dispatch(getAllUserMessages(currentUser.id));
+            dispatch(resetConversationView(currentUser.id));
           }}
           className="bg-dark rounded-0 text-white border border-top-0 border-start-0
           border-end-0"
@@ -73,37 +79,49 @@ const SingleConversation = ({ conversation }) => {
               size="2x"
               className="text-secondary me-3"
             />
-            {receiver}
+            <span className="h2">{receiver}</span>
           </span>
         </ListGroup.Item>
       </ListGroup>
 
       <Container data-aos="fade-in">
-        <div className="imessage">
-          {conversation.Messages.map((message, index) => {
-            return (
-              <span key={index}>
-                {message.SenderId === currentUser.id ? (
-                  // The sender's messages
-                  <>
-                    <p className="from-me mb-0">{message.body} </p>
-                    <p className="text-secondary text-end w-100 my-0">
-                      {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
-                      {messageStatusIcon(message.MessageStatusId)}
-                    </p>
-                  </>
-                ) : (
-                  // The receiver's messages
-                  <>
-                    <p className="from-them mb-0">{message.body}</p>
-                    <p className="text-secondary w-100 ps-0 my-0">
-                      {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
-                    </p>
-                  </>
-                )}
-              </span>
-            );
-          })}
+        <div
+          className={
+            conversation.Messages.length > 0
+              ? "imessage border rounded px-3"
+              : "imessage px-3"
+          }
+        >
+          {conversation.Messages.length === 0 ? (
+            <h2 className="text-success text-center">
+              Write your first message to {receiver}
+            </h2>
+          ) : (
+            conversation.Messages.map((message, index) => {
+              return (
+                <span key={index}>
+                  {message.SenderId === currentUser.id ? (
+                    // The sender's messages
+                    <>
+                      <p className="from-me mb-0">{message.body} </p>
+                      <p className="text-secondary text-end w-100 my-0">
+                        {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
+                        {messageStatusIcon(message.MessageStatusId)}
+                      </p>
+                    </>
+                  ) : (
+                    // The receiver's messages
+                    <>
+                      <p className="from-them mb-0">{message.body}</p>
+                      <p className="text-secondary w-100 ps-0 my-0">
+                        {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
+                      </p>
+                    </>
+                  )}
+                </span>
+              );
+            })
+          )}
         </div>
         <div ref={messagesEndRef} />
       </Container>
@@ -115,12 +133,14 @@ const SingleConversation = ({ conversation }) => {
             placeholder="Send a message"
             className=""
             onChange={(e) => setMessage(e.target.value)}
+            size="lg"
           />
           <Button
             type="submit"
             variant="success"
             className="px-sm-2 px-md-3 px-lg-5"
             disabled={isLoadingSendMessage}
+            size="lg"
           >
             {isLoadingSendMessage ? (
               <LoadingSpinner size={"sm"} />
