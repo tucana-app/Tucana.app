@@ -5,12 +5,11 @@ import dateFormat from "dateformat";
 
 import { getPassengersDetails } from "../redux";
 import LoadingSpinner from "./LoadingSpinner";
-import { Link } from "react-router-dom";
 
-const PassengersDetails = ({ rideId }) => {
+const PassengersDetails = ({ rideId, booking }) => {
   const dispatch = useDispatch();
   const {
-    hoursUnlockPassengersDetail,
+    // hoursUnlockPassengersDetail,
     daysLockPassengersDetails,
     isDateInPast,
   } = useSelector((state) => state.global);
@@ -19,14 +18,23 @@ const PassengersDetails = ({ rideId }) => {
 
   const today = new Date();
   const dateRide = new Date(rideData.ride.dateTime);
-  const difference = Math.abs(dateRide - today);
-  const diffHours = Math.ceil(difference / (1000 * 60 * 60));
-  const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
+  // const difference = Math.abs(dateRide - today);
+  // const diffHours = Math.ceil(difference / (1000 * 60 * 60));
+  // const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
 
-  // If the ride happens in the next 24h or happened within the last 7 days, unlock the passengers contact details
-  const lockPassengersDetails =
-    (!isDateInPast(today, dateRide) && diffDays > daysLockPassengersDetails) ||
-    diffHours > hoursUnlockPassengersDetail;
+  // // If the ride happens in the next 24h or happened within the last 7 days, unlock the passengers contact details
+  // const lockPassengersDetails =
+  //   (!isDateInPast(today, dateRide) && diffDays > daysLockPassengersDetails) ||
+  //   diffHours > hoursUnlockPassengersDetail;
+
+  if (passengersDetailsData.length > 0) console.log(passengersDetailsData);
+
+  const totalPassengers = passengersDetailsData.reduce(
+    (accumulator, passengerDetails) =>
+      accumulator + passengerDetails.seatsBooked,
+
+    0
+  );
 
   useEffect(() => {
     dispatch(getPassengersDetails(rideId));
@@ -52,49 +60,28 @@ const PassengersDetails = ({ rideId }) => {
           <Row>
             <Col>
               <p>
-                You have{" "}
+                You have <span className="text-success">{totalPassengers}</span>{" "}
+                passenger(s) of a total of{" "}
                 <span className="text-success">
                   {passengersDetailsData.length}
                 </span>{" "}
-                passenger(s) on this ride
+                of booking(s) on this ride
               </p>
             </Col>
           </Row>
           {isDateInPast(dateRide, today) ? (
             <div className="text-warning mb-3">
-              Contact details available {daysLockPassengersDetails} days after
-              the ride
+              You can contact passengers up to {daysLockPassengersDetails} days
+              after the ride
             </div>
-          ) : null}
-          {lockPassengersDetails ? (
-            <Row>
-              <Col>
-                <p className="text-warning mb-0">
-                  You can only access your passenger's contact details{" "}
-                  {hoursUnlockPassengersDetail}h prior the ride (in{" "}
-                  {diffDays - 1} days) or {daysLockPassengersDetails} days after
-                  the ride
-                </p>
-                <p className="text-warning mb-0">
-                  Please{" "}
-                  <Link to="/contact" className="link-warning">
-                    contact us
-                  </Link>{" "}
-                  to request them now as a special request
-                </p>
-              </Col>
-            </Row>
           ) : (
             passengersDetailsData.map((passenger, index) => (
               <Row key={index} className="align-items-center">
                 <Col xs={6} lg={4} className="mb-3">
                   <p className="mb-0">
-                    Passenger:{" "}
+                    #{index + 1}: Passenger:{" "}
                     <span className="text-success">
-                      {passenger.User.firstName} {passenger.User.lastName}{" "}
-                      <span className="text-succees">
-                        ({passenger.User.username}){" "}
-                      </span>
+                      {passenger.User.username}
                     </span>
                   </p>
                   <p className="mb-0">
@@ -111,27 +98,15 @@ const PassengersDetails = ({ rideId }) => {
                   </p>
                 </Col>
 
-                {passenger.commentPassenger ? (
-                  <Col xs={12}>
+                <Col xs={6} lg={4}>
+                  {passenger.commentPassenger ? (
                     <p className="mb-0">
                       Passenger comment: "<i>{passenger.commentPassenger}</i>"
                     </p>
-                  </Col>
-                ) : null}
+                  ) : null}
 
-                <Col xs={12} className="mb-3">
-                  <p className="mb-0">Email: {passenger.User.email}</p>
-                  <p className="mb-0">
-                    Phone number: {passenger.User.phoneNumber}
-                  </p>
+                  {/* <SendMessageButton booking={booking} /> */}
                 </Col>
-
-                {/* Do not display the bottom border for the last passenger */}
-                {!(index === passengersDetailsData.length - 1) ? (
-                  <Col xs={12} className="text-center">
-                    <hr />
-                  </Col>
-                ) : null}
               </Row>
             ))
           )}

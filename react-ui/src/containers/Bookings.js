@@ -13,6 +13,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { getUserBookings } from "../redux";
 import GoBack from "../components/GoBack";
+import SendMessageButton from "../components/SendMessageButton";
 
 const Bookings = () => {
   const dispatch = useDispatch();
@@ -98,10 +99,14 @@ const Bookings = () => {
                 </Col>
 
                 <Col xs={12}>
-                  <p>
+                  <p className="mb-0">
                     Seats left: {booking.Ride.seatsLeft} /{" "}
                     {booking.Ride.seatsAvailable}
                   </p>
+                </Col>
+
+                <Col xs={12}>
+                  <p>Driver: {booking.Ride.Driver.User.username}</p>
                 </Col>
 
                 <Col xs={12}>
@@ -123,7 +128,7 @@ const Bookings = () => {
                   </Col>
                 ) : null}
 
-                <Col className="text-center">
+                <Col className="text-center mb-3">
                   <LinkContainer
                     to={`/ride/${booking.RideId}`}
                     className="me-3"
@@ -134,12 +139,19 @@ const Bookings = () => {
                   </LinkContainer>
                   <LinkContainer to={`/booking/${booking.id}`}>
                     <Button
-                      variant="success"
+                      variant="warning"
                       className="rounded-0 text-uppercase"
                     >
                       View booking
                     </Button>
                   </LinkContainer>
+                </Col>
+
+                <Col xs={12} className="text-center">
+                  {!isDateInPast(booking.Ride.dateTime, new Date()) &&
+                  booking.BookingStatusId === 3 ? (
+                    <SendMessageButton booking={booking} />
+                  ) : null}
                 </Col>
 
                 {index !== userBookingsData.length - 1 ? (

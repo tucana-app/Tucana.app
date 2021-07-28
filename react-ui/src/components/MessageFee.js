@@ -11,8 +11,8 @@ const MessageFee = () => {
       <Row>
         <Col className="mx-auto text-center">
           <small className="bg-dark text-center font-title">
-            Booking &amp; offering rides is <u>free for now</u>. Pricing will
-            come soon.{" "}
+            Booking &amp; offering rides is <u>free for now</u>. You can to set
+            prices in a later release.{" "}
             <Link to="/coming-soon" className="text-success">
               Learn more.
             </Link>

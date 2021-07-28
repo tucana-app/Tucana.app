@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments } from "@fortawesome/free-solid-svg-icons";
 
 import BookingDetails from "../components/BookingDetails";
 import RideDetails from "../components/RideDetails";
@@ -16,32 +14,15 @@ import { getBooking } from "../redux";
 
 import MessageEmpty from "../components/MessageEmpty";
 import GoBack from "../components/GoBack";
+import SendMessageButton from "../components/SendMessageButton";
 
-import { startConversation } from "../redux";
-
-const Booking = ({ history }) => {
+const Booking = () => {
   const { bookingId } = useParams();
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isEmptyObject, isDateInPast } = useSelector((state) => state.global);
   const { isloadingBooking, bookingData } = useSelector((state) => state.ride);
-  const { isLoadingStartConversation } = useSelector((state) => state.message);
-
-  const handleStartConversation = () => {
-    // 1: DriverID, 2: UserId (passenger), 3: RideId, 4: BookingId
-    dispatch(
-      startConversation(
-        bookingData.DriverId,
-        bookingData.User.id,
-        bookingData.Ride.id,
-        bookingData.id,
-        currentUser.id
-      )
-    );
-
-    history.push("/messages");
-  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -154,24 +135,15 @@ const Booking = ({ history }) => {
                 </>
               ) : // The passenger is viewing its booking
               // and the booking is accepted
+              null}
 
+              {/* // Display a "Start a conversation with {receiver}" */}
+              {!isDateInPast(bookingData.Ride.dateTime, new Date()) &&
               bookingData.BookingStatusId === 3 ? (
                 // If the booking is pending approval
                 <Row>
                   <Col className="text-center">
-                    <Button
-                      onClick={handleStartConversation}
-                      variant="success"
-                      className="rounded-0"
-                      disabled={isLoadingStartConversation}
-                    >
-                      {isLoadingStartConversation ? (
-                        <LoadingSpinner />
-                      ) : (
-                        <FontAwesomeIcon icon={faComments} className="me-2" />
-                      )}
-                      Start a conversation
-                    </Button>
+                    <SendMessageButton booking={bookingData} />
                   </Col>
                 </Row>
               ) : null}

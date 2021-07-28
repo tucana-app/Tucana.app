@@ -249,7 +249,7 @@ module.exports = {
         res.status(200).json(response);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.status(400).json(errorMessage);
       });
   },
@@ -375,7 +375,7 @@ module.exports = {
   },
 
   getUserBookingRide(req, res) {
-    Bookings.findAll({
+    return Bookings.findAll({
       where: {
         UserId: req.query.userId,
         RideId: req.query.rideId,
@@ -397,7 +397,7 @@ module.exports = {
   },
 
   getDriverBookingRide(req, res) {
-    Bookings.findAll({
+    return Bookings.findAll({
       where: {
         DriverId: req.query.driverId,
         RideId: req.query.rideId,
@@ -406,6 +406,31 @@ module.exports = {
       include: [
         {
           model: BookingStatus,
+        },
+        {
+          model: Ride,
+          include: [
+            {
+              model: Driver,
+              include: [
+                {
+                  model: User,
+                  attributes: {
+                    exclude: [
+                      "firstName",
+                      "lastName",
+                      "email",
+                      "biography",
+                      "password",
+                      "phoneNumber",
+                      "createdAt",
+                      "updatedAt",
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
           model: User,
@@ -619,6 +644,9 @@ module.exports = {
               ],
             },
           ],
+        },
+        {
+          model: User,
         },
         {
           model: BookingStatus,

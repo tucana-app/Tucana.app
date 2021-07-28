@@ -114,10 +114,11 @@ module.exports = {
             UserId: userId,
             RideId: rideId,
             BookingId: bookingId,
+            archived: false,
             UUID: uuid,
           })
             .then((conversation) => {
-              res.status(200).json({ conversationId: conversation.id, uuid });
+              res.status(201).json({ conversationId: conversation.id, uuid });
             })
             .catch((error) => {
               // console.log(error);
@@ -140,45 +141,45 @@ module.exports = {
   sendMessage(req, res) {
     const { senderId, receiverId, message, conversationId } = req.body;
 
-    console.log(senderId, receiverId);
-    if (message.length === 0)
-      res.status(401).json({
+    if (message.length === 0) {
+      res.status(400).json({
         message: "Your message cannot be empty",
       });
-
-    linksFound = findLinks(message);
-    phonesFound = findPhones(message);
-    emailsFound = findEmails(message);
-    messageConverted = convert(message);
-
-    if (linksFound && linksFound.length > 0) {
-      res.status(401).json({
-        message: "Do not include links in your comment",
-      });
-    } else if (phonesFound.length > 0) {
-      res.status(401).json({
-        message: "Do not include phone numbers in your comment",
-      });
-    } else if (emailsFound && emailsFound.length > 0) {
-      res.status(401).json({
-        message: "Do not include emails in your comment",
-      });
     } else {
-      return Messages.create({
-        SenderId: senderId,
-        ReceiverId: receiverId,
-        body: convert(message),
-        ConversationId: conversationId,
-        MessageStatusId: 1,
-      })
-        .then((response) => {
-          // console.log(response);
-          res.status(201).json({ message: "Message sent" });
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(400).json(errorMessage);
+      linksFound = findLinks(message);
+      phonesFound = findPhones(message);
+      emailsFound = findEmails(message);
+      messageConverted = convert(message);
+
+      if (linksFound && linksFound.length > 0) {
+        res.status(401).json({
+          message: "Do not include links in your comment",
         });
+      } else if (phonesFound.length > 0) {
+        res.status(401).json({
+          message: "Do not include phone numbers in your comment",
+        });
+      } else if (emailsFound && emailsFound.length > 0) {
+        res.status(401).json({
+          message: "Do not include emails in your comment",
+        });
+      } else {
+        return Messages.create({
+          SenderId: senderId,
+          ReceiverId: receiverId,
+          body: convert(message),
+          ConversationId: conversationId,
+          MessageStatusId: 1,
+        })
+          .then((response) => {
+            // console.log(response);
+            res.status(201).json({ message: "Message sent" });
+          })
+          .catch((error) => {
+            // console.log(error);
+            res.status(400).json(errorMessage);
+          });
+      }
     }
   },
 

@@ -108,6 +108,8 @@ export const startConversation = (
             response.data.conversationId
           )
         );
+
+        dispatch(startConversationSuccess());
       })
       .catch((error) => {
         const message =
@@ -124,10 +126,9 @@ export const startConversation = (
   };
 };
 
-export const startConversationSuccess = (data) => {
+export const startConversationSuccess = () => {
   return {
     type: messageTypes.START_CONVERSATION_SUCCESS,
-    payload: data,
   };
 };
 

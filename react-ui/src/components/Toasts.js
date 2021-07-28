@@ -48,7 +48,7 @@ function Toasts() {
           <Toast.Header>
             <strong className="me-auto">Logged out</strong>
           </Toast.Header>
-          <Toast.Body>You are now logged out</Toast.Body>
+          <Toast.Body>See you soon hopefully</Toast.Body>
         </Toast>
       </ToastContainer>
     </div>

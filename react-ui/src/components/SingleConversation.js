@@ -47,6 +47,8 @@ const SingleConversation = ({ conversation }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const form = useRef("");
+
   useEffect(() => {
     scrollToBottom();
   }, []);
@@ -55,6 +57,8 @@ const SingleConversation = ({ conversation }) => {
     event.preventDefault();
 
     dispatch(sendMessage(currentUser.id, receiverId, message, conversation.id));
+
+    form.current.reset();
   };
 
   return (
@@ -88,8 +92,8 @@ const SingleConversation = ({ conversation }) => {
         <div
           className={
             conversation.Messages.length > 0
-              ? "imessage border rounded px-3"
-              : "imessage px-3"
+              ? "imessage border rounded px-3 py-5"
+              : "imessage px-3 py-5"
           }
         >
           {conversation.Messages.length === 0 ? (
@@ -126,7 +130,7 @@ const SingleConversation = ({ conversation }) => {
         <div ref={messagesEndRef} />
       </Container>
 
-      <Form onSubmit={handleSubmit} className="message-form px-2">
+      <Form onSubmit={handleSubmit} className="message-form px-2" ref={form}>
         <InputGroup className="w-75 mx-auto">
           <Form.Control
             name="message"
