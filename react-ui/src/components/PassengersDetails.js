@@ -27,7 +27,7 @@ const PassengersDetails = ({ rideId, booking }) => {
   //   (!isDateInPast(today, dateRide) && diffDays > daysLockPassengersDetails) ||
   //   diffHours > hoursUnlockPassengersDetail;
 
-  if (passengersDetailsData.length > 0) console.log(passengersDetailsData);
+  // if (passengersDetailsData.length > 0) console.log(passengersDetailsData);
 
   const totalPassengers = passengersDetailsData.reduce(
     (accumulator, passengerDetails) =>
