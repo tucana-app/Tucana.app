@@ -50,6 +50,7 @@ const SignUp = () => {
 
     phoneNumber: Yup.string(labelStringField)
       .min(8, "Please enter a valid phone number")
+      .max(15, "Please enter a valid phone number")
       .required(labelRequiredField),
 
     username: Yup.string(labelStringField)

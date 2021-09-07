@@ -1,15 +1,21 @@
 var nodemailer = require("nodemailer");
 require("dotenv").config;
 
-const { findEmails, findPhones, linksFound } = require("./functions/functions");
+const { findEmails, findPhones, findLinks } = require("./functions/functions");
+const { convert } = require("html-to-text");
 
 const errorMessage = { message: "The email could't be sent" };
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "mail.privateemail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_ADDRESS,
     pass: process.env.EMAIL_PASSWORD,
+  },
+  tls: {
+    ciphers: "SSLv3",
   },
 });
 
@@ -49,15 +55,15 @@ module.exports = {
 
     if (linksFound && linksFound.length > 0) {
       res.status(401).json({
-        message: "Do not include links in your comment",
+        message: "Do not include links",
       });
     } else if (phonesFound.length > 0) {
       res.status(401).json({
-        message: "Do not include phone numbers in your comment",
+        message: "Do not include phone numbers",
       });
     } else if (emailsFound && emailsFound.length > 0) {
       res.status(401).json({
-        message: "Do not include emails in your comment",
+        message: "Do not include emails",
       });
     } else {
       var mailOptions = {

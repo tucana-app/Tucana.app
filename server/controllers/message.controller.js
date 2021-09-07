@@ -167,7 +167,7 @@ module.exports = {
         return Messages.create({
           SenderId: senderId,
           ReceiverId: receiverId,
-          body: convert(message),
+          body: messageConverted,
           ConversationId: conversationId,
           MessageStatusId: 1,
         })
