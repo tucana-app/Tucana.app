@@ -53,7 +53,7 @@ if (!isDev && cluster.isMaster) {
     return next();
   };
 
-  // !isDev ? app.use(forceSsl) : null;
+  !isDev ? app.use(forceSsl) : null;
 
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function (request, response) {
