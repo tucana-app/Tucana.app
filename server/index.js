@@ -29,6 +29,7 @@ if (!isDev && cluster.isMaster) {
   // app.use(logger("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  !isDev ? app.use(forceSsl) : null;
 
   // Answer API requests.
   require("./routes/auth.routes")(app);
@@ -42,6 +43,13 @@ if (!isDev && cluster.isMaster) {
 
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
+
+  var forceSsl = function (req, res, next) {
+    if (req.headers["x-forwarded-proto"] !== "https") {
+      return res.redirect(["https://", req.get("Host"), req.url].join(""));
+    }
+    return next();
+  };
 
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function (request, response) {
