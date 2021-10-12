@@ -43,18 +43,6 @@ if (!isDev && cluster.isMaster) {
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
-  // Force HTTP to HTTPS
-  var forceSsl = function (req, res, next) {
-    if (req.headers["x-forwarded-proto"] !== "https") {
-      return res.redirect(["https://", req.get("Host"), req.url].join(""));
-    } else {
-      console.log("\n\nOULALA\n\n");
-    }
-    return next();
-  };
-
-  !isDev ? app.use(forceSsl) : null;
-
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function (request, response) {
     response.sendFile(

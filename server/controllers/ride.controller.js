@@ -8,7 +8,8 @@ const BookingStatus = db.BookingStatus;
 const Op = db.Sequelize.Op;
 require("dotenv").config;
 
-const { findEmails, findPhones, linksFound } = require("./functions/functions");
+const { findEmails, findPhones, findLinks } = require("./functions/functions");
+const { convert } = require("html-to-text");
 
 const errorMessage = { message: "A problem occured with this request" };
 
@@ -38,19 +39,18 @@ module.exports = {
   },
 
   addRide(req, res) {
-    const { comment } = req.body.formValues.comment;
-
-    if (linksFound && linksFound.length > 0)
-      res.status(401).json({
-        message: "Do not include links in your comment",
-      });
+    const { comment } = req.body.formValues;
 
     linksFound = findLinks(comment);
     phonesFound = findPhones(comment);
     emailsFound = findEmails(comment);
     messageConverted = convert(comment);
 
-    if (phonesFound.length > 0) {
+    if (linksFound && linksFound.length > 0) {
+      res.status(401).json({
+        message: "Do not include links in your comment",
+      });
+    } else if (phonesFound.length > 0) {
       res.status(401).json({
         message: "Do not include phone numbers in your comment",
       });
@@ -77,7 +77,7 @@ module.exports = {
             .json({ message: "You ride has been successfully added" });
         })
         .catch((error) => {
-          // console.log(error);
+          console.log(error);
           res.status(400).json(errorMessage);
         });
     }
