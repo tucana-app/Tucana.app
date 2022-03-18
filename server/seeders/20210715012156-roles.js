@@ -4,12 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Roles", [
       {
-        name: "passenger",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        name: "driver",
+        name: "admin",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -19,7 +14,12 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "admin",
+        name: "support",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "sales",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

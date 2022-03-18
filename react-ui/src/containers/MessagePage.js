@@ -83,8 +83,7 @@ function ComingSoon() {
                   {allUserMessagesData.map((conversation, index) => (
                     <span key={index}>
                       <ListGroup.Item
-                        className="bg-dark text-white border border-top-0 border-start-0 border-end-0"
-                        style={{ cursor: "pointer" }}
+                        className="bg-dark text-white cursor-pointer border border-top-0 border-start-0 border-end-0"
                         onClick={() =>
                           dispatch(
                             changeConversationView(

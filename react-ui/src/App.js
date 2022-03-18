@@ -37,9 +37,12 @@ import MyPassengerProfile from "./containers/SideMenu/MyPassengerProfile";
 import MyDriverProfile from "./containers/SideMenu/MyDriverProfile";
 import Page404 from "./containers/Page404";
 
-// Amind
-import Admin from "./containers/Admin/Admin";
-import Test from "./containers/Admin/Test";
+// Admin
+import AdminDashboard from "./containers/Admin/AdminDashboard";
+import AdminUsers from "./containers/Admin/AdminUsers";
+import AdminSingleUser from "./containers/Admin/AdminSingleUser";
+import AdminUsersConversations from "./containers/Admin/AdminUsersConversations";
+// import AdminTest from "./containers/Admin/AdminTest";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -123,8 +126,15 @@ function App() {
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           {/* Admin */}
-          <Route exact path="/admin/secret" component={Admin} />
-          <Route exact path="/admin/test" component={Test} />
+          <Route exact path="/admin/dashboard" component={AdminDashboard} />
+          <Route exact path="/admin/users" component={AdminUsers} />
+          <Route exact path="/admin/single-user" component={AdminSingleUser} />
+          <Route
+            exact
+            path="/admin/users-conversations"
+            component={AdminUsersConversations}
+          />
+          {/* <Route exact path="/admin/test" component={AdminTest} /> */}
 
           <Route component={Page404} />
         </Switch>

@@ -9,5 +9,7 @@ module.exports = (app) => {
     next();
   });
 
-  app.get("/api/admin/list-users", controller.listUsers);
+  app.get("/api/admin/list-users", controller.adminListUsers);
+
+  app.get("/api/admin/users-conversations", controller.adminUsersConversations);
 };

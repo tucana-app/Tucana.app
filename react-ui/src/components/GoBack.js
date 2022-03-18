@@ -14,8 +14,7 @@ function GoBack(props) {
   return (
     <ListGroup
       variant="flush"
-      style={{ cursor: "pointer" }}
-      className="border border-top-0 border-start-0 border-end-0 py-2"
+      className="cursor-pointer border border-top-0 border-start-0 border-end-0 py-2"
     >
       <ListGroup.Item onClick={handleGoBack} className="bg-dark text-white ">
         <div className="d-inline-flex justify-content-between w-100">

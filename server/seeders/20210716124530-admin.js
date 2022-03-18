@@ -24,6 +24,24 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        firstName: process.env.SUPPORT_FIRSTNAME,
+        lastName: process.env.SUPPORT_LASTNAME,
+        username: process.env.SUPPORT_USERNAME,
+        email: process.env.SUPPORT_EMAIL,
+        password: bcrypt.hashSync(process.env.SUPPORT_PASSWORD, 8),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: process.env.SALES_FIRSTNAME,
+        lastName: process.env.SALES_LASTNAME,
+        username: process.env.SALES_USERNAME,
+        email: process.env.SALES_EMAIL,
+        password: bcrypt.hashSync(process.env.SALES_PASSWORD, 8),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
@@ -33,6 +51,8 @@ module.exports = {
         [Sequelize.Op.in]: [
           process.env.ADMIN_USERNAME,
           process.env.MODO_USERNAME,
+          process.env.SUPPORT_USERNAME,
+          process.env.SALES_USERNAME,
         ],
       },
     });

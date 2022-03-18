@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 // import FeedbackMessage from "../../components/FeedbackMessage";
 
-const Test = () => {
+const AdminTest = () => {
   // const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
@@ -22,4 +22,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default AdminTest;

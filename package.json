@@ -12,7 +12,7 @@
     "rs-db": "cd server && sequelize db:migrate:undo:all",
     "rs-db-seed": "cd server && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210718204543-booking-status.js",
     "rs-db-seed-rides": "cd server && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210717012650-rides.js && sequelize db:seed --seed 20210718204543-booking-status.js",
-    "rs-db-seed-all": "cd server/ && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "rs-db-seed-all": "cd server && npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "cacheDirectories": [
     "node_modules",
@@ -48,10 +48,10 @@
     "url": "git+https://github.com/BenjaminJaume/Ride.CR.git"
   },
   "keywords": [
-    "node",
-    "heroku",
-    "create-react-app",
-    "react"
+    "carpool",
+    "costa rica",
+    "ride",
+    "share"
   ],
   "license": "MIT",
   "devDependencies": {

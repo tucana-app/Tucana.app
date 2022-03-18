@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { getUsers } from "../../redux";
+import { admin_getUsers } from "../../redux";
 
-function Admin() {
+function AdminSingleUser() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingUsers, usersData } = useSelector((state) => state.admin);
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getUsers(currentUser));
+      dispatch(admin_getUsers(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -32,32 +32,12 @@ function Admin() {
       <Container className="my-5">
         <Row>
           <Col>
-            <h1 className="display-4 text-success text-center">Admin</h1>
+            <h1 className="display-4 text-success text-center">Single User</h1>
           </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            {isLoadingUsers ? (
-              <LoadingSpinner />
-            ) : (
-              <>
-                TOTAL: {usersData.length}
-                {usersData.map((user, index) => (
-                  <div key={index}>
-                    Username: {user.username}. ({user.firstName} {user.lastName}
-                    )
-                  </div>
-                ))}
-              </>
-            )}
-          </Col>
-
-          <Col>{/* <Link to="/admin/test">Test page</Link> */}</Col>
         </Row>
       </Container>
     </div>
   );
 }
 
-export default Admin;
+export default AdminSingleUser;

@@ -63,7 +63,7 @@ const SingleConversation = ({ conversation }) => {
 
   return (
     <div>
-      <ListGroup className="sticky-top mb-5" style={{ cursor: "pointer" }}>
+      <ListGroup className="cursor-pointer sticky-top mb-5">
         <ListGroup.Item
           onClick={() => {
             dispatch(clearFeedback());
