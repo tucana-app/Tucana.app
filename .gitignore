@@ -129,6 +129,6 @@ tmp/
 temp/
 
 # Others
-help_heroku.md
+heroku.md
 
 # End of https://www.toptal.com/developers/gitignore/api/node
