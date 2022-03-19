@@ -17,6 +17,7 @@ function AdminUsers() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingUsers, usersData } = useSelector((state) => state.admin);
+  const { formatDate } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -47,6 +48,7 @@ function AdminUsers() {
               <LoadingSpinner />
             ) : (
               <>
+                <p>TOTAL: {usersData.length}</p>
                 <Table striped bordered hover variant="dark">
                   <thead>
                     <tr>
@@ -58,6 +60,7 @@ function AdminUsers() {
                       <th>Email confirmed</th>
                       <th>Phone</th>
                       <th>Phone confirmed</th>
+                      <th>Since</th>
                     </tr>
                   </thead>
                   {usersData.map((user, index) => (
@@ -67,7 +70,14 @@ function AdminUsers() {
                         <td>{user.firstName}</td>
                         <td>{user.lastName}</td>
                         <td>{user.username}</td>
-                        <td>{user.email}</td>
+                        <td>
+                          <a
+                            href={`mailto:${user.email}`}
+                            className="text-white"
+                          >
+                            {user.email}
+                          </a>
+                        </td>
                         <td>
                           {user.emailConfirmed ? (
                             <span className="text-success">
@@ -107,11 +117,11 @@ function AdminUsers() {
                             </span>
                           )}
                         </td>
+                        <td>{formatDate(user.createdAt)}</td>
                       </tr>
                     </tbody>
                   ))}
                 </Table>
-                TOTAL: {usersData.length}
               </>
             )}
           </Col>

@@ -89,6 +89,17 @@ const initialState = {
 
     return count;
   },
+
+  // Format date
+  // Input: raw timestamp
+  // Output: DD/MM/YYY
+  formatDate: (timestamp) => {
+    var day = timestamp.slice(8, 10);
+    var month = timestamp.slice(5, 7);
+    var year = timestamp.slice(0, 4);
+
+    return `${day}/${month}/${year}`;
+  },
 };
 
 function globalReducer(state = initialState, action) {
