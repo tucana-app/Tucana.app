@@ -10,7 +10,7 @@ import FindRide from "./FindRide";
 // import { setShowLoginToast } from "../redux";
 
 // Importing assets
-import logo from "../assets/images/OPTI_blanc.png";
+import logo from "../assets/images/OPTI_noir.png";
 
 function Home({ t }) {
   // const dispatch = useDispatch();

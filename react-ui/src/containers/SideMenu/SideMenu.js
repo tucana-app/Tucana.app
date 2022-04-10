@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../redux";
 
 // Importing assets
-import logo from "../../assets/images/OPTI_blanc.png";
+import logo from "../../assets/images/OPTI_noir.png";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
@@ -62,8 +62,8 @@ const SideMenu = () => {
   return (
     <Container fluid className="p-0" data-aos="slide-right">
       <ListGroup variant="flush">
-        <Link to="/" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-center border border-top-0 border-start-0 border-end-0 py-4">
+        <Link to="/" className="text-decoration-none">
+          <ListGroup.Item className="text-center border border-top-0 border-start-0 border-end-0 py-4">
             <div className="d-inline mx-auto">
               <img
                 src={logo}
@@ -77,8 +77,8 @@ const SideMenu = () => {
 
         {isLoggedIn ? (
           <>
-            <Link to="/my-account" className="text-light text-decoration-none">
-              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+            <Link to="/my-account" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
                     <FontAwesomeIcon
@@ -92,11 +92,8 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
 
-            <Link
-              to="/notifications"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+            <Link to="/notifications" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <div className="position-relative">
                     <FontAwesomeIcon
@@ -113,18 +110,12 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
 
-            <Link
-              to="/my-profile/passenger"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+            <Link to="/my-profile/passenger" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
-                    <FontAwesomeIcon
-                      icon={faUserFriends}
-                      className="text-light me-2"
-                    />{" "}
-                    My profile
+                    <FontAwesomeIcon icon={faUserFriends} className="me-2" /> My
+                    profile
                   </span>
                   <FontAwesomeIcon icon={faChevronRight} />
                 </div>
@@ -132,11 +123,8 @@ const SideMenu = () => {
             </Link>
 
             {currentUser.Driver && currentUser.Driver.verified ? (
-              <Link
-                to="/my-profile/driver"
-                className="text-light text-decoration-none"
-              >
-                <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+              <Link to="/my-profile/driver" className="text-decoration-none">
+                <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                   <div className="d-inline-flex justify-content-between w-100 py-2">
                     <span>
                       <FontAwesomeIcon
@@ -150,11 +138,8 @@ const SideMenu = () => {
                 </ListGroup.Item>
               </Link>
             ) : (
-              <Link
-                to="/coming-soon"
-                className="text-light text-decoration-none"
-              >
-                <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+              <Link to="/coming-soon" className="text-decoration-none">
+                <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                   <div className="d-inline-flex justify-content-between w-100 py-2">
                     <span className="link-success fw-bold">
                       <FontAwesomeIcon icon={faCar} className="me-3" /> Become a
@@ -168,8 +153,8 @@ const SideMenu = () => {
           </>
         ) : (
           <>
-            <Link to="/login" className="text-light text-decoration-none">
-              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+            <Link to="/login" className="text-decoration-none">
+              <ListGroup.Item className="border border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
                     <FontAwesomeIcon
@@ -183,8 +168,8 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
 
-            <Link to="/signup" className="text-light text-decoration-none">
-              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+            <Link to="/signup" className="text-decoration-none">
+              <ListGroup.Item className="border border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
                     <FontAwesomeIcon
@@ -200,8 +185,8 @@ const SideMenu = () => {
           </>
         )}
 
-        <Link to="/settings" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <Link to="/settings" className="text-decoration-none">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon icon={faCog} className="text-info me-3" />{" "}
@@ -213,11 +198,8 @@ const SideMenu = () => {
         </Link>
 
         {isLoggedIn ? (
-          <div
-            onClick={logOut}
-            className="text-light text-decoration-none cursor-pointer"
-          >
-            <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+          <div onClick={logOut} className="text-decoration-none cursor-pointer">
+            <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
               <div className="d-inline-flex justify-content-between w-100 py-2">
                 <span>
                   <FontAwesomeIcon
@@ -232,10 +214,10 @@ const SideMenu = () => {
           </div>
         ) : null}
 
-        <hr className="w-75 bg-dark mx-auto my-4" />
+        <hr className="w-75 mx-auto my-4" />
 
-        <Link to="/download" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+        <Link to="/download" className="text-decoration-none">
+          <ListGroup.Item className="border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -249,8 +231,8 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/help" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+        <Link to="/help" className="text-decoration-none">
+          <ListGroup.Item className="border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -264,23 +246,20 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/contact" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <Link to="/contact" className="text-decoration-none">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className="text-light me-3"
-                />{" "}
-                Contact us
+                <FontAwesomeIcon icon={faEnvelope} className="me-3" /> Contact
+                us
               </span>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
         </Link>
 
-        <Link to="/coming-soon" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <Link to="/coming-soon" className="text-decoration-none">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -294,8 +273,8 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/donate" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <Link to="/donate" className="text-decoration-none">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -309,8 +288,8 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/coming-soon" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <Link to="/coming-soon" className="text-decoration-none">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -324,14 +303,11 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <hr className="w-75 bg-dark mx-auto my-4" />
+        <hr className="w-75 mx-auto my-4" />
         {currentUser && currentUser.adminId ? (
           <>
-            <Link
-              to="/admin/dashboard"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+            <Link to="/admin/dashboard" className="text-decoration-none">
+              <ListGroup.Item className="border border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
                     <FontAwesomeIcon icon={faUserShield} className="me-2" />{" "}

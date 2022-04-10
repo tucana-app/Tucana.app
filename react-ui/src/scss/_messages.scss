@@ -1,7 +1,7 @@
 // Source: https://codepen.io/AllThingsSmitty/pen/jommGQ
 
 .imessage span {
-  background-color: $dark;
+  // background-color: $dark;
   display: flex;
   flex-direction: column;
   margin: 0 auto 0;
@@ -27,7 +27,7 @@
 p.from-me {
   align-self: flex-end;
   background-color: #248bf5;
-  color: $dark;
+  // color: $dark;
 }
 
 p.from-me::before {
@@ -38,7 +38,7 @@ p.from-me::before {
 }
 
 p.from-me::after {
-  background-color: $dark;
+  background-color: $white;
   border-bottom-left-radius: 0.5rem;
   right: -40px;
   transform: translate(-30px, -2px);
@@ -76,7 +76,7 @@ p.from-them:before {
 }
 
 p.from-them::after {
-  background-color: $dark;
+  background-color: $white;
   border-bottom-right-radius: 0.5rem;
   left: 20px;
   transform: translate(-30px, -2px);

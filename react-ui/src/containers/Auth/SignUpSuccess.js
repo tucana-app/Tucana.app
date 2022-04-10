@@ -22,7 +22,7 @@ function SignUpSuccess(props) {
         <Row className="mb-5">
           <Col>
             <h1 className="text-success">Sign up successful!</h1>
-            <p className="lead text-white">Welcome to our platform 🎉</p>
+            <p className="lead">Welcome to our platform 🎉</p>
           </Col>
         </Row>
         <Row>

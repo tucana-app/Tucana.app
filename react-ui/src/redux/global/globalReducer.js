@@ -45,8 +45,9 @@ const initialState = {
   // Status 2: Seen
   // Status 3: Accepted
   // Status 4: Rejected
+  // Status 5: Canceled
   bookingStatusVariant: (status) => {
-    const variant = ["warning", "info", "success", "danger"];
+    const variant = ["warning", "info", "success", "danger", "warning"];
     return variant[status - 1];
   },
 
@@ -88,17 +89,6 @@ const initialState = {
     });
 
     return count;
-  },
-
-  // Format date
-  // Input: raw timestamp
-  // Output: DD/MM/YYY
-  formatDate: (timestamp) => {
-    var day = timestamp.slice(8, 10);
-    var month = timestamp.slice(5, 7);
-    var year = timestamp.slice(0, 4);
-
-    return `${day}/${month}/${year}`;
   },
 };
 

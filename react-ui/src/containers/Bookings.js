@@ -80,7 +80,7 @@ const Bookings = () => {
                 <Col xs={12} className="text-center mb-3">
                   <Link
                     to={`/booking/${booking.id}`}
-                    className="text-white text-decoration-none"
+                    className="text-decoration-none"
                   >
                     <u>
                       #{index + 1} - {booking.Ride.cityOrigin}{" "}

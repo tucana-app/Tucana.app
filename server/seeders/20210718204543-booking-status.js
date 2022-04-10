@@ -27,6 +27,12 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        code: "canceled",
+        name: "Canceled",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

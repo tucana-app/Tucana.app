@@ -64,7 +64,7 @@ function ComingSoon() {
             <SingleConversation conversation={findConversation()} />
           ) : (
             <>
-              <ListGroup.Item className="bg-dark text-white py-4 border border-top-0 border-end-0 border-start-0">
+              <ListGroup.Item className="py-4 border border-top-0 border-end-0 border-start-0">
                 <h1 className="text-success text-center w-100 mb-0">
                   Messages
                 </h1>
@@ -83,7 +83,7 @@ function ComingSoon() {
                   {allUserMessagesData.map((conversation, index) => (
                     <span key={index}>
                       <ListGroup.Item
-                        className="bg-dark text-white cursor-pointer border border-top-0 border-start-0 border-end-0"
+                        className="cursor-pointer border border-top-0 border-start-0 border-end-0"
                         onClick={() =>
                           dispatch(
                             changeConversationView(

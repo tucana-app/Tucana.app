@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "NO ACTION",
       });
 
-      Conversation.hasMany(models.Messages, {
+      Conversation.hasMany(models.Message, {
         onDelete: "NO ACTION",
       });
     }

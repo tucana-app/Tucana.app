@@ -10,6 +10,7 @@ import {
   faCheckCircle,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import dateFormat from "dateformat";
 
 import { admin_getUsers } from "../../redux";
 
@@ -17,10 +18,9 @@ function AdminUsers() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingUsers, usersData } = useSelector((state) => state.admin);
-  const { formatDate } = useSelector((state) => state.global);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && currentUser.adminId) {
       dispatch(admin_getUsers(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +61,7 @@ function AdminUsers() {
                       <th>Phone</th>
                       <th>Phone confirmed</th>
                       <th>Since</th>
+                      <th></th>
                     </tr>
                   </thead>
                   {usersData.map((user, index) => (
@@ -71,12 +72,7 @@ function AdminUsers() {
                         <td>{user.lastName}</td>
                         <td>{user.username}</td>
                         <td>
-                          <a
-                            href={`mailto:${user.email}`}
-                            className="text-white"
-                          >
-                            {user.email}
-                          </a>
+                          <a href={`mailto:${user.email}`}>{user.email}</a>
                         </td>
                         <td>
                           {user.emailConfirmed ? (
@@ -117,7 +113,8 @@ function AdminUsers() {
                             </span>
                           )}
                         </td>
-                        <td>{formatDate(user.createdAt)}</td>
+                        <td>{dateFormat(user.createdAt, "dd/mm/yyyy")}</td>
+                        <td>View</td>
                       </tr>
                     </tbody>
                   ))}

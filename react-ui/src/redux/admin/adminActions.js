@@ -44,43 +44,178 @@ export const admin_getUsersFail = (error) => {
   };
 };
 
-// An admin is requesting the list of all conversations
+// Admin is requesting the list of all rides
 
-export const admin_getUsersConversationsRequested = () => {
+export const admin_getRidesRequested = () => {
   return {
-    type: adminTypes.ADMIN_GET_USERS_CONVERSATIONS_REQUEST,
+    type: adminTypes.ADMIN_GET_RIDES_REQUEST,
   };
 };
 
-export const admin_getUsersConversations = (currentUser) => {
+export const admin_getRides = (currentUser) => {
   return (dispatch) => {
     if (currentUser.adminId) {
-      dispatch(admin_getUsersConversationsRequested());
+      dispatch(admin_getRidesRequested());
 
       axios
-        .get(URL_API + "/admin/users-conversations")
+        .get(URL_API + "/admin/list-rides")
         .then((response) => {
-          dispatch(admin_getUsersConversationsSuccess(response.data));
+          dispatch(admin_getRidesSuccess(response.data));
         })
         .catch((error) => {
-          dispatch(admin_getUsersConversationsFail(error));
+          dispatch(admin_getRidesFail(error));
         });
     } else {
-      dispatch(admin_getUsersConversationsFail("Not autorized"));
+      dispatch(admin_getRidesFail("Not autorized"));
     }
   };
 };
 
-export const admin_getUsersConversationsSuccess = (data) => {
+export const admin_getRidesSuccess = (data) => {
   return {
-    type: adminTypes.ADMIN_GET_USERS_CONVERSATIONS_SUCCESS,
+    type: adminTypes.ADMIN_GET_RIDES_SUCCESS,
     payload: data,
   };
 };
 
-export const admin_getUsersConversationsFail = (error) => {
+export const admin_getRidesFail = (error) => {
   return {
-    type: adminTypes.ADMIN_GET_USERS_CONVERSATIONS_FAIL,
+    type: adminTypes.ADMIN_GET_RIDES_FAIL,
+    payload: error,
+  };
+};
+
+// Admin is requesting the details of a single ride
+
+export const admin_getSingleRideRequested = () => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_REQUEST,
+  };
+};
+
+export const admin_getSingleRide = (currentUser, rideId) => {
+  return (dispatch) => {
+    if (currentUser.adminId) {
+      dispatch(admin_getSingleRideRequested());
+
+      axios
+        .get(URL_API + "/admin/single-ride", {
+          params: {
+            rideId,
+          },
+        })
+        .then((response) => {
+          dispatch(admin_getSingleRideSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(admin_getSingleRideFail(error));
+        });
+    } else {
+      dispatch(admin_getSingleRideFail("Not autorized"));
+    }
+  };
+};
+
+export const admin_getSingleRideSuccess = (data) => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const admin_getSingleRideFail = (error) => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// Admin is requesting
+
+export const admin_getSingleRideAllBookingsRequested = () => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_ALL_BOOKINGS_REQUEST,
+  };
+};
+
+export const admin_getSingleRideAllBookings = (currentUser, rideId) => {
+  return (dispatch) => {
+    if (currentUser.adminId) {
+      dispatch(admin_getSingleRideAllBookingsRequested());
+
+      axios
+        .get(URL_API + "/admin/single-ride-all-bookings", {
+          params: {
+            rideId,
+          },
+        })
+        .then((response) => {
+          dispatch(admin_getSingleRideAllBookingsSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(admin_getSingleRideAllBookingsFail(error));
+        });
+    } else {
+      dispatch(admin_getSingleRideAllBookingsFail("Not autorized"));
+    }
+  };
+};
+
+export const admin_getSingleRideAllBookingsSuccess = (data) => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_ALL_BOOKINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const admin_getSingleRideAllBookingsFail = (error) => {
+  return {
+    type: adminTypes.ADMIN_GET_SINGLE_RIDE_ALL_BOOKINGS_FAIL,
+    payload: error,
+  };
+};
+
+// Admin is requesting
+
+export const admin_sendTestEmailRequested = () => {
+  return {
+    type: adminTypes.ADMIN_SEND_TEST_EMAIL_REQUEST,
+  };
+};
+
+export const admin_sendTestEmail = (currentUser, email) => {
+  return (dispatch) => {
+    if (currentUser.adminId) {
+      dispatch(admin_sendTestEmailRequested());
+
+      axios
+        .get(URL_API + "/admin/send-test-email", {
+          params: {
+            email,
+          },
+        })
+        .then((response) => {
+          dispatch(admin_sendTestEmailSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(admin_sendTestEmailFail(error));
+        });
+    } else {
+      dispatch(admin_sendTestEmailFail("Not autorized"));
+    }
+  };
+};
+
+export const admin_sendTestEmailSuccess = (data) => {
+  return {
+    type: adminTypes.ADMIN_SEND_TEST_EMAIL_SUCCESS,
+    payload: data,
+  };
+};
+
+export const admin_sendTestEmailFail = (error) => {
+  return {
+    type: adminTypes.ADMIN_SEND_TEST_EMAIL_FAIL,
     payload: error,
   };
 };

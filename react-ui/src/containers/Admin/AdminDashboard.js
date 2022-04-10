@@ -36,11 +36,20 @@ function AdminDashboard() {
             </LinkContainer>
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-3">
           <Col>
-            <LinkContainer to={`/admin/users-conversations`}>
+            <LinkContainer to={`/admin/rides`}>
               <Button variant="warning" className="rounded-0">
-                Conversations
+                Rides
+              </Button>
+            </LinkContainer>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+            <LinkContainer to={`/admin/email`}>
+              <Button variant="primary" className="rounded-0">
+                Email
               </Button>
             </LinkContainer>
           </Col>

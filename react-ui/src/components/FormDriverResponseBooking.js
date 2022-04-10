@@ -130,7 +130,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           }
                           onClick={() => setNewStatus(4)}
                         >
-                          <span className="text-white">
+                          <span>
                             <FontAwesomeIcon icon={faTimes} className="me-2" />
                             Refuse
                           </span>
@@ -147,7 +147,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           }
                           onClick={() => setNewStatus(3)}
                         >
-                          <span className="text-white">
+                          <span>
                             <FontAwesomeIcon icon={faCheck} className="me-2" />
                             Accept
                           </span>

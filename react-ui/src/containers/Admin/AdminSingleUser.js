@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
-import { Container, Col, Row, Table } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import GoBack from "../../components/GoBack";
-import LoadingSpinner from "../../components/LoadingSpinner";
+// import LoadingSpinner from "../../components/LoadingSpinner";
 
 import { admin_getUsers } from "../../redux";
 
 function AdminSingleUser() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingUsers, usersData } = useSelector((state) => state.admin);
+  // const { isLoadingUsers, usersData } = useSelector((state) => state.admin);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && currentUser.adminId) {
       dispatch(admin_getUsers(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

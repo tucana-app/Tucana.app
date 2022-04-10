@@ -70,7 +70,7 @@ const SingleConversation = ({ conversation }) => {
             dispatch(getAllUserMessages(currentUser.id));
             dispatch(resetConversationView(currentUser.id));
           }}
-          className="bg-dark rounded-0 text-white border border-top-0 border-start-0
+          className="rounded-0 border border-top-0 border-start-0
           border-end-0"
         >
           <span>

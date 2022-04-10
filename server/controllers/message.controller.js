@@ -6,7 +6,7 @@ const Driver = db.Driver;
 // const Bookings = db.Bookings;
 // const BookingStatus = db.BookingStatus;
 const Conversation = db.Conversation;
-const Messages = db.Messages;
+const Message = db.Message;
 const MessageStatus = db.MessageStatus;
 const Op = db.Sequelize.Op;
 const { convert } = require("html-to-text");
@@ -28,10 +28,10 @@ module.exports = {
           { UserId: req.query.userId },
         ],
       },
-      order: [[Messages, "createdAt", "ASC"]],
+      order: [[Message, "createdAt", "ASC"]],
       include: [
         {
-          model: Messages,
+          model: Message,
           include: [
             {
               model: MessageStatus,
@@ -164,7 +164,7 @@ module.exports = {
           message: "Do not include emails in your comment",
         });
       } else {
-        return Messages.create({
+        return Message.create({
           SenderId: senderId,
           ReceiverId: receiverId,
           body: messageConverted,
@@ -184,7 +184,7 @@ module.exports = {
   },
 
   getUserNewMessages(req, res) {
-    return Messages.findAndCountAll({
+    return Message.findAndCountAll({
       where: {
         ReceiverId: req.query.userId,
         MessageStatusId: 1,
@@ -201,7 +201,7 @@ module.exports = {
   },
 
   setMessagesSeen(req, res) {
-    return Messages.update(
+    return Message.update(
       {
         MessageStatusId: 3,
       },

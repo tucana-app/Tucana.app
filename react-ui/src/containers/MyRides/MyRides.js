@@ -69,7 +69,7 @@ const MyRides = () => {
     >
       <ListGroup variant="flush">
         <Link to="/my-rides/driver" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
                 <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
@@ -93,7 +93,7 @@ const MyRides = () => {
           to="/my-rides/bookings"
           className="text-light text-decoration-none"
         >
-          <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
@@ -114,7 +114,7 @@ const MyRides = () => {
         </Link>
 
         <Link to="/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+          <ListGroup.Item className="border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
                 <FontAwesomeIcon
@@ -138,7 +138,7 @@ const MyRides = () => {
         </Link>
 
         <Link to="/help" className="text-light text-decoration-none">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 ">
+          <ListGroup.Item className="border border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-3">
               <span>
                 <FontAwesomeIcon

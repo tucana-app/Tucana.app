@@ -41,8 +41,9 @@ import Page404 from "./containers/Page404";
 import AdminDashboard from "./containers/Admin/AdminDashboard";
 import AdminUsers from "./containers/Admin/AdminUsers";
 import AdminSingleUser from "./containers/Admin/AdminSingleUser";
-import AdminUsersConversations from "./containers/Admin/AdminUsersConversations";
-// import AdminTest from "./containers/Admin/AdminTest";
+import AdminRides from "./containers/Admin/AdminRides";
+import AdminSingleRide from "./containers/Admin/AdminSingleRide";
+import AdminEmail from "./containers/Admin/AdminEmail";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -129,12 +130,9 @@ function App() {
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
           <Route exact path="/admin/users" component={AdminUsers} />
           <Route exact path="/admin/single-user" component={AdminSingleUser} />
-          <Route
-            exact
-            path="/admin/users-conversations"
-            component={AdminUsersConversations}
-          />
-          {/* <Route exact path="/admin/test" component={AdminTest} /> */}
+          <Route exact path="/admin/rides" component={AdminRides} />
+          <Route exact path="/admin/ride/:rideId" component={AdminSingleRide} />
+          <Route exact path="/admin/email" component={AdminEmail} />
 
           <Route component={Page404} />
         </Switch>

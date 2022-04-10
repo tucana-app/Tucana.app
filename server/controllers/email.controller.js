@@ -31,11 +31,11 @@ module.exports = {
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        console.log(error);
-        // return res.status(400).json(errorMessage);
+        // console.log(error);
+        return res.status(400).json(errorMessage);
       } else {
-        console.log("Email sent: " + info.response);
-        // return res.status(200).json({ message: "Email sent" });
+        // console.log("Email sent: " + info.response);
+        return res.status(200).json({ message: "Email sent" });
       }
     });
   },
@@ -79,7 +79,7 @@ module.exports = {
           // console.log(error);
           return res.status(400).json(errorMessage);
         } else {
-          // console.log("Email sent: " + info.response);
+          // console.log("Email sent: " + info);
           return res.status(200).json({ message: "Email sent" });
         }
       });

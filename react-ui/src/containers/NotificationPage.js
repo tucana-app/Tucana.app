@@ -54,7 +54,7 @@ const NotificationPage = () => {
       <GoBack />
 
       <ListGroup variant="flush">
-        <ListGroup.Item className="bg-dark text-white border border-top-0 border-start-0 border-end-0 ">
+        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
           <div className="d-inline-flex justify-content-between w-100 py-3">
             <span>
               {notifications > 0 ? (
@@ -103,7 +103,7 @@ const NotificationPage = () => {
       {!isLoadingDriverNewRidesRequests &&
       driverNewRidesRequestsData.count > 0 ? (
         <ListGroup variant="flush">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0">
+          <ListGroup.Item className="border border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
@@ -121,7 +121,7 @@ const NotificationPage = () => {
               className="text-light text-decoration-none"
               key={index}
             >
-              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 py-3">
+              <ListGroup.Item className="border border-start-0 border-end-0 py-3">
                 <small className="text-secondary me-1">
                   {dateFormat(request.createdAt, "dd/mm HH:MM")}
                 </small>{" "}
@@ -149,7 +149,7 @@ const NotificationPage = () => {
       {!isLoadingPassengerBookingsResponses &&
       passengerBookingsResponsesData.count > 0 ? (
         <ListGroup variant="flush">
-          <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0">
+          <ListGroup.Item className="border border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
@@ -170,7 +170,7 @@ const NotificationPage = () => {
               className="text-light text-decoration-none"
               key={index}
             >
-              <ListGroup.Item className="bg-dark text-white border border-start-0 border-end-0 py-3">
+              <ListGroup.Item className="border border-start-0 border-end-0 py-3">
                 <small className="text-secondary me-1">
                   {dateFormat(booking.createdAt, "dd/mm HH:MM")}
                 </small>{" "}

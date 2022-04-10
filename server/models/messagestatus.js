@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      MessageStatus.hasOne(models.Messages);
+      MessageStatus.hasOne(models.Message);
     }
   }
   MessageStatus.init(

@@ -11,5 +11,14 @@ module.exports = (app) => {
 
   app.get("/api/admin/list-users", controller.adminListUsers);
 
-  app.get("/api/admin/users-conversations", controller.adminUsersConversations);
+  app.get("/api/admin/list-rides", controller.adminListRides);
+
+  app.get("/api/admin/single-ride", controller.adminSingleRide);
+
+  app.get(
+    "/api/admin/single-ride-all-bookings",
+    controller.adminSingleRideAllBookings
+  );
+
+  app.get("/api/admin/send-test-email", controller.adminSendTestEmail);
 };
