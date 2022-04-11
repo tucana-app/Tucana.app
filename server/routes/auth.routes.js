@@ -19,4 +19,16 @@ module.exports = function (app) {
   app.put("/api/auth/confirm", controller.confirmEmail);
 
   app.post("/api/auth/signin", controller.signin);
+
+  app.get(
+    "/api/auth/send-email-forgot-password",
+    controller.sendForgotPasswordEmail
+  );
+
+  app.get(
+    "/api/auth/check-deprecated-link-reset-password",
+    controller.checkDeprecatedLinkResetPassword
+  );
+
+  app.put("/api/auth/reset-password", controller.resetPassword);
 };

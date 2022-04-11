@@ -49,8 +49,13 @@ const SignUp = () => {
       .required(labelRequiredField),
 
     phoneNumber: Yup.string(labelStringField)
+      .matches(
+        /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
+        "Please enter a valid phone number"
+      )
       .min(8, "Please enter a valid phone number")
       .max(15, "Please enter a valid phone number")
+
       .required(labelRequiredField),
 
     username: Yup.string(labelStringField)

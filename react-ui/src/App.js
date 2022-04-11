@@ -17,6 +17,8 @@ import Booking from "./containers/Booking";
 
 import OfferRide from "./containers/OfferRide";
 import LogIn from "./containers/Auth/LogIn";
+import ForgotPassword from "./containers/Auth/ForgotPassword";
+import CreateNewPassword from "./containers/Auth/CreateNewPassword";
 
 import SignUp from "./containers/Auth/SignUp";
 import SignUpSuccess from "./containers/Auth/SignUpSuccess";
@@ -101,6 +103,12 @@ function App() {
           <Route exact path="/booking/:bookingId" component={Booking} />
 
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/forgot-password" component={ForgotPassword} />
+          <Route
+            exact
+            path="/create-new-password/:uuid"
+            component={CreateNewPassword}
+          />
 
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup-successful" component={SignUpSuccess} />

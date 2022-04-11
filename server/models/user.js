@@ -42,7 +42,6 @@ module.exports = (sequelize, DataTypes) => {
       phoneNumber: DataTypes.STRING,
       emailConfirmed: DataTypes.BOOLEAN,
       phoneConfirmed: DataTypes.BOOLEAN,
-      confirmEmailUUID: DataTypes.UUID,
       // SettingsId: DataTypes.INTEGER,
     },
     {

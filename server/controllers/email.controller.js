@@ -85,4 +85,44 @@ module.exports = {
       });
     }
   },
+
+  sendEmailForgotPassword(user, template) {
+    var mailOptions = {
+      from: `Ride.CR <${process.env.EMAIL_ADDRESS}>`,
+      to: `${user.firstName} ${user.lastName} <${user.email}>`,
+      subject: template.subject,
+      text: template.text,
+      html: template.html,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        // console.log(error);
+        return res.status(400).json(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+        return res.status(200).json({ message: "Email sent" });
+      }
+    });
+  },
+
+  sendEmailResetPasswordSuccess(user, template) {
+    var mailOptions = {
+      from: `Ride.CR <${process.env.EMAIL_ADDRESS}>`,
+      to: `${user.firstName} ${user.lastName} <${user.email}>`,
+      subject: template.subject,
+      text: template.text,
+      html: template.html,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        // console.log(error);
+        return res.status(400).json(error);
+      } else {
+        // console.log("Email sent: " + info.response);
+        return res.status(200).json({ message: "Email sent" });
+      }
+    });
+  },
 };

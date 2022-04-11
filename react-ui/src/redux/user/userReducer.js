@@ -21,6 +21,18 @@ initialState = {
   signupErrorMessage: "",
   loginErrorFlag: "",
   loginErrorMessage: "",
+
+  isLoadingSendEmailForgotPassword: false,
+  sendEmailForgotPasswordData: [],
+  sendEmailForgotPasswordError: "",
+
+  isLoadingCheckDeprecatedLinkResetPassword: false,
+  checkDeprecatedLinkResetPasswordData: {},
+  checkDeprecatedLinkResetPasswordError: "",
+
+  isLoadingResetPassword: false,
+  resetPasswordData: {},
+  resetPasswordError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -84,6 +96,78 @@ function userReducer(state = initialState, action) {
       return {
         isLoggedIn: false,
         user: null,
+      };
+
+    // Forgot password
+
+    case userTypes.SEND_EMAIL_FORGOT_PASSWORD_REQUESTED:
+      return {
+        ...state,
+        isLoadingSendEmailForgotPassword: true,
+      };
+
+    case userTypes.SEND_EMAIL_FORGOT_PASSWORD_DATA:
+      return {
+        ...state,
+        isLoadingSendEmailForgotPassword: false,
+        sendEmailForgotPasswordData: action.payload,
+        sendEmailForgotPasswordError: "",
+      };
+
+    case userTypes.SEND_EMAIL_FORGOT_PASSWORD_ERROR:
+      return {
+        ...state,
+        isLoadingSendEmailForgotPassword: false,
+        sendEmailForgotPasswordData: [],
+        sendEmailForgotPasswordError: action.payload,
+      };
+
+    // Check deprecated link reset password
+
+    case userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_REQUESTED:
+      return {
+        ...state,
+        isLoadingCheckDeprecatedLinkResetPassword: true,
+      };
+
+    case userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_DATA:
+      return {
+        ...state,
+        isLoadingCheckDeprecatedLinkResetPassword: false,
+        checkDeprecatedLinkResetPasswordData: action.payload,
+        checkDeprecatedLinkResetPasswordError: "",
+      };
+
+    case userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        isLoadingCheckDeprecatedLinkResetPassword: false,
+        checkDeprecatedLinkResetPasswordData: {},
+        checkDeprecatedLinkResetPasswordError: action.payload,
+      };
+
+    // Reset password
+
+    case userTypes.RESET_PASSWORD_REQUESTED:
+      return {
+        ...state,
+        isLoadingResetPassword: true,
+      };
+
+    case userTypes.RESET_PASSWORD_DATA:
+      return {
+        ...state,
+        isLoadingResetPassword: false,
+        resetPasswordData: action.payload,
+        resetPasswordError: "",
+      };
+
+    case userTypes.RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        isLoadingResetPassword: false,
+        resetPasswordData: [],
+        resetPasswordError: action.payload,
       };
 
     default:

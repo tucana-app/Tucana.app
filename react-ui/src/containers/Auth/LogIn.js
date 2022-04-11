@@ -63,13 +63,11 @@ const Login = () => {
                 <Row>
                   <Col xs={12} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        Username or Email<span className="text-danger">*</span>
-                      </Form.Label>
+                      <Form.Label>Email or Username</Form.Label>
                       <Form.Control
                         type="text"
                         name="credential"
-                        placeholder="Username or Email"
+                        placeholder="Email or Username"
                         className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.credential}
@@ -82,11 +80,9 @@ const Login = () => {
                     </Form.Group>
                   </Col>
 
-                  <Col xs={12} className="mb-3 mb-md-4">
+                  <Col xs={12} className="mb-2">
                     <Form.Group>
-                      <Form.Label>
-                        Password<span className="text-danger">*</span>
-                      </Form.Label>
+                      <Form.Label>Password</Form.Label>
                       <Form.Control
                         type="password"
                         name="password"
@@ -101,6 +97,12 @@ const Login = () => {
                         {errors.password}
                       </Form.Control.Feedback>
                     </Form.Group>
+                  </Col>
+
+                  <Col className="text-end mb-3 mb-md-4">
+                    <Link to="/forgot-password" className="text-end">
+                      Forgot your password?
+                    </Link>
                   </Col>
                 </Row>
 

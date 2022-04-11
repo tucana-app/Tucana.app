@@ -45,10 +45,6 @@ module.exports = {
       },
       phoneConfirmed: {
         type: Sequelize.BOOLEAN,
-        // allowNull: false,
-      },
-      confirmEmailUUID: {
-        type: Sequelize.UUID,
         allowNull: false,
       },
       // SettingsId: {

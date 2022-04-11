@@ -27,7 +27,7 @@ const SignUpConfirm = () => {
   }
 
   return (
-    <Container data-aos="fade-in" data-aos-delay="2000">
+    <Container data-aos="fade-in">
       <Row className="py-5 text-center">
         <Col className="text-center">
           <div>
@@ -46,12 +46,6 @@ const SignUpConfirm = () => {
         {isLoadingConfirmEmail ? (
           <Col className="text-center">
             <LoadingSpinner />
-          </Col>
-        ) : confirmEmailError ? (
-          <Col>
-            <p className="text-danger text-center">
-              A problem occured while confirming your email address{" "}
-            </p>
           </Col>
         ) : null}
       </Row>

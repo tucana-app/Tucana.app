@@ -26,12 +26,7 @@ const FindRide = () => {
   }, []);
 
   return (
-    <Container
-      fluid
-      className="mt-4"
-      data-aos="fade-in"
-      data-aos-duration="1000"
-    >
+    <Container fluid className="mt-4" data-aos="fade-in">
       <Row className="justify-content-center mb-4">
         <Col className="text-center">
           <div>
@@ -61,9 +56,6 @@ const FindRide = () => {
               {allRidesListData.map((ride, index) => (
                 <Row
                   className="border border-start-0 border-end-0 py-3 mx-1 mx-sm-2 mx-md-5"
-                  data-aos="fade-zoom-in"
-                  data-aos-delay={index * 150}
-                  data-aos-once="true"
                   key={index}
                 >
                   <Col>

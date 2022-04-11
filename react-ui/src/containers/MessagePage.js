@@ -5,7 +5,7 @@ import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
-// import GoBack from "../components/GoBack";
+import GoBack from "../components/GoBack";
 
 import { getAllUserMessages, changeConversationView } from "../redux";
 import MessageEmpty from "../components/MessageEmpty";
@@ -57,79 +57,83 @@ function ComingSoon() {
   }
 
   return (
-    <div>
-      {allUserMessagesData.length > 0 ? (
-        <>
-          {currentView ? (
-            <SingleConversation conversation={findConversation()} />
-          ) : (
-            <>
-              <ListGroup.Item className="py-4 border border-top-0 border-end-0 border-start-0">
-                <h1 className="text-success text-center w-100 mb-0">
-                  Messages
-                </h1>
-              </ListGroup.Item>
+    <>
+      <GoBack />
 
-              {isLoadingAllUserMessages ? (
-                <Container>
-                  <Row className="py-5">
-                    <Col className="text-center">
-                      <LoadingSpinner />
-                    </Col>
-                  </Row>
-                </Container>
-              ) : (
-                <ListGroup variant="flush" data-aos="slide-right">
-                  {allUserMessagesData.map((conversation, index) => (
-                    <span key={index}>
-                      <ListGroup.Item
-                        className="cursor-pointer border border-top-0 border-start-0 border-end-0"
-                        onClick={() =>
-                          dispatch(
-                            changeConversationView(
-                              conversation.UUID,
-                              currentUser.id,
-                              conversation.id
+      <div>
+        {allUserMessagesData.length > 0 ? (
+          <>
+            {currentView ? (
+              <SingleConversation conversation={findConversation()} />
+            ) : (
+              <>
+                <ListGroup.Item className="py-4 border border-top-0 border-end-0 border-start-0">
+                  <h1 className="text-success text-center w-100 mb-0">
+                    Messages
+                  </h1>
+                </ListGroup.Item>
+
+                {isLoadingAllUserMessages ? (
+                  <Container>
+                    <Row className="py-5">
+                      <Col className="text-center">
+                        <LoadingSpinner />
+                      </Col>
+                    </Row>
+                  </Container>
+                ) : (
+                  <ListGroup variant="flush" data-aos="slide-right">
+                    {allUserMessagesData.map((conversation, index) => (
+                      <span key={index}>
+                        <ListGroup.Item
+                          className="cursor-pointer border border-top-0 border-start-0 border-end-0"
+                          onClick={() =>
+                            dispatch(
+                              changeConversationView(
+                                conversation.UUID,
+                                currentUser.id,
+                                conversation.id
+                              )
                             )
-                          )
-                        }
-                      >
-                        <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
-                          <div className="position-relative">
-                            <FontAwesomeIcon
-                              icon={faUser}
-                              size="2x"
-                              className="text-secondary me-3"
-                            />
-                            <span className="h2">
-                              {getSenderUsername(conversation)}
-                            </span>
-                            {countUnreadMessages(conversation) > 0 ? (
-                              <Badge bg="danger" className="ms-2">
-                                {countUnreadMessages(conversation)}
-                              </Badge>
-                            ) : null}
+                          }
+                        >
+                          <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
+                            <div className="position-relative">
+                              <FontAwesomeIcon
+                                icon={faUser}
+                                size="2x"
+                                className="text-secondary me-3"
+                              />
+                              <span className="h2">
+                                {getSenderUsername(conversation)}
+                              </span>
+                              {countUnreadMessages(conversation) > 0 ? (
+                                <Badge bg="danger" className="ms-2">
+                                  {countUnreadMessages(conversation)}
+                                </Badge>
+                              ) : null}
+                            </div>
+                            <FontAwesomeIcon icon={faChevronRight} />
                           </div>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </div>
-                      </ListGroup.Item>
-                    </span>
-                  ))}
-                </ListGroup>
-              )}
-            </>
-          )}
-        </>
-      ) : (
-        <Container className="my-5">
-          <Row>
-            <Col className="text-center">
-              <MessageEmpty title="messages" />
-            </Col>
-          </Row>
-        </Container>
-      )}
-    </div>
+                        </ListGroup.Item>
+                      </span>
+                    ))}
+                  </ListGroup>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <Container className="my-5">
+            <Row>
+              <Col className="text-center">
+                <MessageEmpty title="messages" />
+              </Col>
+            </Row>
+          </Container>
+        )}
+      </div>
+    </>
   );
 }
 

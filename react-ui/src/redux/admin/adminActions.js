@@ -130,7 +130,7 @@ export const admin_getSingleRideFail = (error) => {
   };
 };
 
-// Admin is requesting
+// Admin is requesting to view all bookings for a single ride
 
 export const admin_getSingleRideAllBookingsRequested = () => {
   return {
@@ -175,7 +175,7 @@ export const admin_getSingleRideAllBookingsFail = (error) => {
   };
 };
 
-// Admin is requesting
+// Admin is requesting to send a test email
 
 export const admin_sendTestEmailRequested = () => {
   return {
