@@ -22,12 +22,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        code: "rated",
-        name: "Rated",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
         code: "canceled",
         name: "Canceled",
         createdAt: new Date(),

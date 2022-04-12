@@ -125,21 +125,24 @@ export const login = (formLogin) => {
           error.message ||
           error.toString();
 
-        dispatch(
-          setfeedback({
-            variant: "danger",
-            message: message,
-          })
-        );
-
         // If a flag is provided, if not default is "ERROR"
         const flag = (!!error.response && error.response.data.flag) || "ERROR";
+
+        if (flag !== "NOT_CONFIRMED") {
+          dispatch(
+            setfeedback({
+              variant: "danger",
+              message,
+            })
+          );
+        }
 
         dispatch({
           type: userTypes.LOGIN_FAIL,
           payload: {
             message,
             flag,
+            userId: error.response.data.userId || null,
           },
         });
       });
@@ -332,6 +335,66 @@ export const resetPasswordSuccess = (data) => {
 export const resetPasswordFail = (error) => {
   return {
     type: userTypes.RESET_PASSWORD_ERROR,
+    payload: error,
+  };
+};
+
+// Resend confirmation link
+
+export const resendConfirmationLinkRequested = () => {
+  return {
+    type: userTypes.RESEND_CONFIRMATION_LINK_REQUESTED,
+  };
+};
+
+export const resendConfirmationLink = (userId) => {
+  return (dispatch) => {
+    dispatch(resendConfirmationLinkRequested());
+
+    axios
+      .post(URL_API + "/auth/resend-confirmation-link", {
+        userId,
+      })
+      .then((response) => {
+        dispatch(resendConfirmationLinkSuccess(response.data));
+
+        dispatch(
+          setfeedback({
+            variant: "success",
+            message: response.data.message,
+          })
+        );
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message,
+          })
+        );
+
+        dispatch(resendConfirmationLinkFail(message));
+      });
+  };
+};
+
+export const resendConfirmationLinkSuccess = (data) => {
+  return {
+    type: userTypes.RESEND_CONFIRMATION_LINK_DATA,
+    payload: data,
+  };
+};
+
+export const resendConfirmationLinkFail = (error) => {
+  return {
+    type: userTypes.RESEND_CONFIRMATION_LINK_ERROR,
     payload: error,
   };
 };

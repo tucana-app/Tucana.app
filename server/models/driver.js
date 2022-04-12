@@ -19,11 +19,16 @@ module.exports = (sequelize, DataTypes) => {
       Driver.hasMany(models.Conversation, {
         onDelete: "NO ACTION",
       });
+
+      Driver.belongsTo(models.Admin, {
+        onDelete: "NO ACTION",
+      });
     }
   }
   Driver.init(
     {
       UserId: DataTypes.INTEGER,
+      AdminId: DataTypes.BOOLEAN,
       verified: DataTypes.BOOLEAN,
     },
     {

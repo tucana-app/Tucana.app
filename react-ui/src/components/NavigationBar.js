@@ -33,7 +33,7 @@ function NavigationBar() {
   return currentUser ? (
     <Navbar bg="white" variant="light" fixed="bottom" className="py-md-0">
       <Navbar.Collapse id="navigation-bar">
-        <Nav className="w-100 justify-content-around align-items-center">
+        <Nav className="w-100 justify-content-evenly align-items-center">
           <IndexLinkContainer to="/my-rides" href="/my-rides">
             <Nav.Link className="font-title text-center text-decoration-none">
               <img

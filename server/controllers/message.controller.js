@@ -1,4 +1,6 @@
 const db = require("../models");
+const emailController = require("./email.controller");
+const templateNewMessage = require("./EmailTemplates/newMessage");
 // const Ride = db.Ride;
 // const RideStatus = db.RideStatus;
 const User = db.User;
@@ -90,7 +92,7 @@ module.exports = {
     return Conversation.findOne({
       where: {
         [Op.or]: [
-          // Look for one of the combinaise for driver/user
+          // Look for one of the combinaison for driver/user
           { [Op.and]: [{ DriverId: driverId }, { UserId: userId }] },
           { [Op.and]: [{ DriverId: userId }, { UserId: driverId }] },
         ],
@@ -174,6 +176,24 @@ module.exports = {
           .then((response) => {
             // console.log(response);
             res.status(201).json({ message: "Message sent" });
+
+            // Find the receiver of the message
+            return User.findOne({
+              where: {
+                id: receiverId,
+              },
+            })
+              .then((user) => {
+                emailController.sendEmailBasic(
+                  user,
+                  templateNewMessage.newMessage()
+                );
+              })
+              .catch((error) => {
+                // Couldn't find user
+                console.log(error);
+                res.status(400).json(errorMessage);
+              });
           })
           .catch((error) => {
             // console.log(error);

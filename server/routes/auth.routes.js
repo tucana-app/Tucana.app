@@ -31,4 +31,9 @@ module.exports = function (app) {
   );
 
   app.put("/api/auth/reset-password", controller.resetPassword);
+
+  app.post(
+    "/api/auth/resend-confirmation-link",
+    controller.resendConfirmationLink
+  );
 };

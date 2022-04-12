@@ -12,9 +12,7 @@ const SignUpConfirm = () => {
 
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingConfirmEmail, confirmEmailError } = useSelector(
-    (state) => state.email
-  );
+  const { isLoadingConfirmEmail } = useSelector((state) => state.email);
 
   useEffect(() => {
     if (!isLoggedIn) dispatch(confirmEmail(confirmEmailUUID));

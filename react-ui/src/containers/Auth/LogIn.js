@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { login } from "../../redux";
+import { clearFeedback, login, resendConfirmationLink } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import FeedbackMessage from "../../components/FeedbackMessage";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isloadingLogin, isLoggedIn, loginErrorFlag, loginErrorMessage } =
-    useSelector((state) => state.user);
-  const { feedback, labelStringField, labelRequiredField } = useSelector(
+  const { isloadingLogin, isLoggedIn, loginErrorData } = useSelector(
+    (state) => state.user
+  );
+  const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
+
+  const [showAlertConfirmEmail, setShowAlertConfirmEmail] = useState(false);
 
   const schema = Yup.object().shape({
     credential: Yup.string(labelStringField).required(labelRequiredField),
@@ -23,9 +27,18 @@ const Login = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
+    dispatch(clearFeedback());
     dispatch(login(values));
     formikBag.setSubmitting(false);
   };
+
+  useEffect(() => {
+    if (loginErrorData) {
+      loginErrorData.flag === "NOT_CONFIRMED"
+        ? setShowAlertConfirmEmail(true)
+        : setShowAlertConfirmEmail(false);
+    }
+  }, [loginErrorData]);
 
   if (isLoggedIn) {
     return <Redirect to="/find-ride" />;
@@ -106,16 +119,28 @@ const Login = () => {
                   </Col>
                 </Row>
 
-                {loginErrorFlag === "NOT_CONFIRMED" ? (
-                  <Alert variant="warning">
-                    {loginErrorMessage}.{" "}
-                    <Link to="/coming-soon">Resend the confirmation link</Link>
-                  </Alert>
-                ) : (
-                  feedback.message && (
-                    <Alert variant={feedback.variant}>{feedback.message}</Alert>
-                  )
-                )}
+                <FeedbackMessage />
+
+                {loginErrorData ? (
+                  loginErrorData.flag === "NOT_CONFIRMED" ? (
+                    <>
+                      <Alert variant="warning" show={showAlertConfirmEmail}>
+                        {loginErrorData.message}.{" "}
+                        <u
+                          className="cursor-pointer text-primary"
+                          onClick={() => {
+                            dispatch(
+                              resendConfirmationLink(loginErrorData.userId)
+                            );
+                            setShowAlertConfirmEmail(false);
+                          }}
+                        >
+                          Resend the confirmation link
+                        </u>
+                      </Alert>
+                    </>
+                  ) : null
+                ) : null}
 
                 <Row>
                   <Col>

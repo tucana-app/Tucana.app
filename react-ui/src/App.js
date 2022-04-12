@@ -76,6 +76,8 @@ function App() {
         dispatch(getNotifications(currentUser.id));
         dispatch(clearFeedback());
         dispatch(resetConversationView(currentUser.id));
+      } else {
+        dispatch(clearFeedback());
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -55,10 +55,9 @@ const initialState = {
   // Status 1: Planned,
   // Status 2: On going,
   // Status 3: Done,
-  // Status 4: Rated,
-  // Status 5: Canceled,
+  // Status 4: Canceled,
   rideStatusVariant: (status) => {
-    const variant = ["warning", "info", "success", "info", "danger"];
+    const variant = ["warning", "info", "success", "danger"];
     return variant[status - 1];
   },
 

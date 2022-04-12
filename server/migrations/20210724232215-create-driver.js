@@ -18,6 +18,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      AdminId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

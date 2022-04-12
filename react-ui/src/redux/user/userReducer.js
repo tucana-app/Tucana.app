@@ -19,8 +19,7 @@ initialState = {
   signupUserSuccessful: false,
   signupErrorFlag: "",
   signupErrorMessage: "",
-  loginErrorFlag: "",
-  loginErrorMessage: "",
+  loginErrorData: "",
 
   isLoadingSendEmailForgotPassword: false,
   sendEmailForgotPasswordData: [],
@@ -33,6 +32,10 @@ initialState = {
   isLoadingResetPassword: false,
   resetPasswordData: {},
   resetPasswordError: "",
+
+  isLoadingResendConfirmationLink: false,
+  resendConfirmationLinkData: {},
+  resendConfirmationLinkError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -78,8 +81,7 @@ function userReducer(state = initialState, action) {
         isloadingLogin: false,
         isLoggedIn: true,
         user: payload.user,
-        loginErrorFlag: "",
-        loginErrorMessage: "",
+        loginErrorData: "",
       };
 
     case userTypes.LOGIN_FAIL:
@@ -88,8 +90,7 @@ function userReducer(state = initialState, action) {
         isloadingLogin: false,
         isLoggedIn: false,
         user: null,
-        loginErrorFlag: action.payload.flag,
-        loginErrorMessage: action.payload.message,
+        loginErrorData: action.payload,
       };
 
     case userTypes.LOGOUT:
@@ -168,6 +169,31 @@ function userReducer(state = initialState, action) {
         isLoadingResetPassword: false,
         resetPasswordData: [],
         resetPasswordError: action.payload,
+      };
+
+    // Resend the account confirmation link
+
+    case userTypes.RESEND_CONFIRMATION_LINK_REQUESTED:
+      return {
+        ...state,
+        isLoadingResendConfirmationLink: true,
+        loginErrorData: "",
+      };
+
+    case userTypes.RESEND_CONFIRMATION_LINK_DATA:
+      return {
+        ...state,
+        isLoadingResendConfirmationLink: false,
+        resendConfirmationLinkData: action.payload,
+        resendConfirmationLinkError: "",
+      };
+
+    case userTypes.RESEND_CONFIRMATION_LINK_ERROR:
+      return {
+        ...state,
+        isLoadingResendConfirmationLink: false,
+        resendConfirmationLinkData: [],
+        resendConfirmationLinkError: action.payload,
       };
 
     default:

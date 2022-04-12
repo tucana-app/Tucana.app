@@ -38,7 +38,7 @@ module.exports = {
           UUID: uuidv4(),
         })
           .then((confirmEmailLine) => {
-            emailController.sendEmailSignup(
+            emailController.sendEmailBasic(
               user,
               templateSignup.confirmSignup(confirmEmailLine.UUID)
             );
@@ -191,7 +191,7 @@ module.exports = {
                 );
 
                 if (!passwordIsValid) {
-                  res.status(401).send({
+                  return res.status(401).send({
                     accessToken: null,
                     message: "Invalid Password",
                   });
@@ -219,16 +219,14 @@ module.exports = {
                 flag: "GENERAL_ERROR",
               });
             });
-        }
-
-        if (user.emailConfirmed) {
+        } else {
           var passwordIsValid = bcrypt.compareSync(
             req.body.formLogin.password,
             user.password
           );
 
           if (!passwordIsValid) {
-            res.status(401).send({
+            return res.status(401).send({
               accessToken: null,
               message: "Invalid Password",
             });
@@ -237,27 +235,29 @@ module.exports = {
           var token = jwt.sign({ id: user.id }, config.secret, {
             expiresIn: 604800, // 7 days
           });
-
-          res.status(200).send({
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            username: user.username,
-            email: user.email,
-            biography: user.biography,
-            phoneNumber: user.phoneNumber,
-            createdAt: user.createdAt,
-            emailConfirmed: user.emailConfirmed,
-            phoneConfirmed: user.phoneConfirmed,
-            accessToken: token,
-            Driver: user.Driver,
-          });
-        } else {
-          // User hasn't confirmed the email yet
-          res.status(400).json({
-            message: "Email not confirmed yet",
-            flag: "NOT_CONFIRMED",
-          });
+          if (user.emailConfirmed) {
+            res.status(200).send({
+              id: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              username: user.username,
+              email: user.email,
+              biography: user.biography,
+              phoneNumber: user.phoneNumber,
+              createdAt: user.createdAt,
+              emailConfirmed: user.emailConfirmed,
+              phoneConfirmed: user.phoneConfirmed,
+              accessToken: token,
+              Driver: user.Driver,
+            });
+          } else {
+            // User hasn't confirmed the email yet
+            res.status(403).json({
+              message: "Email not confirmed yet",
+              flag: "NOT_CONFIRMED",
+              userId: user.id,
+            });
+          }
         }
       })
       .catch((error) => {
@@ -313,7 +313,7 @@ module.exports = {
                     }
                   )
                     .then((response) => {
-                      emailController.sendEmailForgotPassword(
+                      emailController.sendEmailBasic(
                         user,
                         templateForgotPassword.forgotPassword(line.UUID)
                       );
@@ -338,7 +338,7 @@ module.exports = {
                   UUID: uuidv4(),
                 })
                   .then((newLine) => {
-                    emailController.sendEmailForgotPassword(
+                    emailController.sendEmailBasic(
                       user,
                       templateForgotPassword.forgotPassword(newLine.UUID)
                     );
@@ -427,7 +427,7 @@ module.exports = {
                       },
                     })
                       .then((user) => {
-                        emailController.sendEmailResetPasswordSuccess(
+                        emailController.sendEmailBasic(
                           user,
                           templateResetPasswordSuccess.resetPasswordSuccess(
                             user
@@ -440,7 +440,7 @@ module.exports = {
                         });
                       })
                       .catch((error) => {
-                        console.log(error);
+                        // console.log(error);
                         res.status(400).json({
                           message: "There is an error with this request",
                           flag: "DB_ERROR",
@@ -448,7 +448,7 @@ module.exports = {
                       });
                   })
                   .catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                     res.status(400).json({
                       message: "There is an error with this request",
                       flag: "DB_ERROR",
@@ -456,7 +456,7 @@ module.exports = {
                   });
               })
               .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 res.status(400).json({
                   message: "There is an error with this request",
                   flag: "DB_ERROR",
@@ -477,5 +477,60 @@ module.exports = {
         message: "How did you do this API call?",
       });
     }
+  },
+
+  resendConfirmationLink(req, res) {
+    const { userId } = req.body;
+
+    return User.findOne({
+      where: {
+        id: userId,
+      },
+    })
+      .then((user) => {
+        if (user) {
+          return ConfirmEmail.findOne({
+            where: {
+              UserId: user.id,
+            },
+          })
+            .then((confirmation) => {
+              if (!confirmation) {
+                res.status(404).send({
+                  message: "We couldn't send the confirmation link",
+                  flag: "NO_CONFIRMATION",
+                });
+              } else {
+                emailController.sendEmailBasic(
+                  user,
+                  templateSignup.confirmSignup(confirmation.UUID)
+                );
+
+                res.status(200).send({
+                  message:
+                    "We have resent you the confirmation link over email",
+                  flag: "SUCCESS",
+                });
+              }
+            })
+            .catch((error) => {
+              res.status(404).send({
+                message: "We couldn't send the confirmation link",
+                flag: "ERROR_DB",
+              });
+            });
+        } else {
+          res.status(404).send({
+            message: "We couldn't send the confirmation link",
+            flag: "USER_NOT_FOUND",
+          });
+        }
+      })
+      .catch((error) => {
+        res.status(400).json({
+          message: "We couldn't send the confirmation link",
+          flag: "GENERAL_ERROR",
+        });
+      });
   },
 };

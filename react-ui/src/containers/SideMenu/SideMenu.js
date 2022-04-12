@@ -214,7 +214,7 @@ const SideMenu = () => {
           </div>
         ) : null}
 
-        <hr className="w-75 mx-auto my-4" />
+        <hr className="w-75 text-white mx-auto my-4" />
 
         <Link to="/download" className="text-decoration-none">
           <ListGroup.Item className="border border-start-0 border-end-0 ">
@@ -303,7 +303,8 @@ const SideMenu = () => {
           </ListGroup.Item>
         </Link>
 
-        <hr className="w-75 mx-auto my-4" />
+        <hr className="w-75 text-white mx-auto my-4" />
+
         {currentUser && currentUser.adminId ? (
           <>
             <Link to="/admin/dashboard" className="text-decoration-none">

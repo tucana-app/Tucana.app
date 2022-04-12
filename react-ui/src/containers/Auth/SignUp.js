@@ -5,7 +5,7 @@ import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { registerUser } from "../../redux";
+import { clearFeedback, registerUser } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 require("yup-password")(Yup); // extend yup
@@ -71,6 +71,7 @@ const SignUp = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
+    dispatch(clearFeedback());
     dispatch(registerUser(values));
 
     form.current.reset();
