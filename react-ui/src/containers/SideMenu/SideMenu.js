@@ -20,15 +20,16 @@ import {
   faUserFriends,
   faBell,
   faUserCircle,
-  faCheckCircle,
-  faTimesCircle,
+  // faCheckCircle,
+  // faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import dateFormat from "dateformat";
 
 import { logout } from "../../redux";
 
 // Importing assets
-// import logo from "../../assets/images/OPTI_noir.png";
+import logo from "../../assets/images/OPTI_noir.png";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
@@ -64,21 +65,30 @@ const SideMenu = () => {
   return (
     <Container fluid className="p-0" data-aos="slide-right">
       <ListGroup variant="flush">
-        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-          <div className="text-center py-2">
-            <Link to="/my-profile/passenger" className="text-decoration-none">
-              <FontAwesomeIcon
-                icon={faUserCircle}
-                className="text-secondary mb-1"
-                size={"5x"}
-              />
-            </Link>
-            <p>
-              {currentUser.firstName} {currentUser.lastName}
-            </p>
+        {isLoggedIn ? (
+          <>
+            <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+              <div className="text-center py-2">
+                <Link
+                  to="/my-profile/passenger"
+                  className="text-decoration-none"
+                >
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    className="text-secondary mb-1"
+                    size={"5x"}
+                  />
+                </Link>
+                <p>
+                  {currentUser.firstName} {currentUser.lastName}
+                </p>
 
-            {/* Driver's profile verified? */}
-            <p className="lead mb-0">
+                <p className="small text-secondary mb-0">
+                  Member since {dateFormat(currentUser.createdAt, "yyyy")}
+                </p>
+
+                {/* Driver's profile verified? */}
+                {/* <p className="lead mb-0">
               {currentUser.Driver && currentUser.Driver.verified ? (
                 <span>
                   <FontAwesomeIcon
@@ -96,9 +106,9 @@ const SideMenu = () => {
                   Driver's profile unverified
                 </span>
               )}
-            </p>
-            {/* Phone number verified? */}
-            {/* <p className="lead">
+            </p> */}
+                {/* Phone number verified? */}
+                {/* <p className="lead">
               {currentUser.phoneNumber && currentUser.phoneConfirmed ? (
                 <span>
                   <FontAwesomeIcon
@@ -117,11 +127,9 @@ const SideMenu = () => {
                 </span>
               )}
             </p> */}
-          </div>
-        </ListGroup.Item>
+              </div>
+            </ListGroup.Item>
 
-        {isLoggedIn ? (
-          <>
             <Link to="/my-profile/passenger" className="text-decoration-none">
               <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
@@ -195,6 +203,19 @@ const SideMenu = () => {
           </>
         ) : (
           <>
+            <Link to="/" className="text-decoration-none">
+              <ListGroup.Item className="text-center border border-top-0 border-start-0 border-end-0 py-4">
+                <div className="d-inline mx-auto">
+                  <img
+                    src={logo}
+                    alt="Ride.CR logo"
+                    className="img-fluid"
+                    style={{ maxWidth: "200px" }}
+                  />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
             <Link to="/login" className="text-decoration-none">
               <ListGroup.Item className="border border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
