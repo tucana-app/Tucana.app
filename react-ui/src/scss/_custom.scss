@@ -126,6 +126,28 @@ body {
   cursor: pointer;
 }
 
+.tabRating {
+  @extend .border-0;
+
+  .nav-item {
+    @extend .col;
+    @extend .border-0;
+
+    .nav-link {
+      @extend .w-100;
+      @extend .mx-auto;
+      @extend .border-top-0;
+      @extend .border-start-0;
+      @extend .border-end-0;
+    }
+
+    .active {
+      @extend .border-3;
+      @extend .border-success;
+    }
+  }
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 /* @media (max-width: 575px) {
 } */

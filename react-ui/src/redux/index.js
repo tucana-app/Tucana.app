@@ -6,3 +6,4 @@ export * from "./email/emailActions";
 export * from "./notification/notificationActions";
 export * from "./toast/toastActions";
 export * from "./message/messageActions";
+export * from "./rating/ratingActions";

@@ -28,25 +28,12 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      DriverRatingId: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-      },
       value: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
       comment: {
         type: Sequelize.STRING,
-      },
-      AdminId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-      },
-      verified: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

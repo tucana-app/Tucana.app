@@ -18,15 +18,17 @@ import {
   faUserShield,
   faCar,
   faUserFriends,
-  faList,
   faBell,
+  faUserCircle,
+  faCheckCircle,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import { logout } from "../../redux";
 
 // Importing assets
-import logo from "../../assets/images/OPTI_noir.png";
+// import logo from "../../assets/images/OPTI_noir.png";
 
 const SideMenu = () => {
   const dispatch = useDispatch();
@@ -62,54 +64,64 @@ const SideMenu = () => {
   return (
     <Container fluid className="p-0" data-aos="slide-right">
       <ListGroup variant="flush">
-        <Link to="/" className="text-decoration-none">
-          <ListGroup.Item className="text-center border border-top-0 border-start-0 border-end-0 py-4">
-            <div className="d-inline mx-auto">
-              <img
-                src={logo}
-                alt="Ride.CR logo"
-                className="img-fluid"
-                style={{ maxWidth: "200px" }}
+        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+          <div className="text-center py-2">
+            <Link to="/my-profile/passenger" className="text-decoration-none">
+              <FontAwesomeIcon
+                icon={faUserCircle}
+                className="text-secondary mb-1"
+                size={"5x"}
               />
-            </div>
-          </ListGroup.Item>
-        </Link>
+            </Link>
+            <p>
+              {currentUser.firstName} {currentUser.lastName}
+            </p>
+
+            {/* Driver's profile verified? */}
+            <p className="lead mb-0">
+              {currentUser.Driver && currentUser.Driver.verified ? (
+                <span>
+                  <FontAwesomeIcon
+                    icon={faCheckCircle}
+                    className="text-success me-2"
+                  />
+                  Driver's profile verified
+                </span>
+              ) : (
+                <span>
+                  <FontAwesomeIcon
+                    icon={faTimesCircle}
+                    className="text-danger me-2"
+                  />
+                  Driver's profile unverified
+                </span>
+              )}
+            </p>
+            {/* Phone number verified? */}
+            {/* <p className="lead">
+              {currentUser.phoneNumber && currentUser.phoneConfirmed ? (
+                <span>
+                  <FontAwesomeIcon
+                    icon={faCheckCircle}
+                    className="text-success me-2"
+                  />
+                  Phone number verified
+                </span>
+              ) : (
+                <span>
+                  <FontAwesomeIcon
+                    icon={faTimesCircle}
+                    className="text-danger me-2"
+                  />
+                  Phone number not verified
+                </span>
+              )}
+            </p> */}
+          </div>
+        </ListGroup.Item>
 
         {isLoggedIn ? (
           <>
-            <Link to="/my-account" className="text-decoration-none">
-              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span>
-                    <FontAwesomeIcon
-                      icon={faList}
-                      className="text-success me-3"
-                    />{" "}
-                    My account
-                  </span>
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link to="/notifications" className="text-decoration-none">
-              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <div className="position-relative">
-                    <FontAwesomeIcon
-                      icon={faBell}
-                      className="text-warning me-3"
-                    />{" "}
-                    Notifications
-                    <Badge bg="danger" className="ms-2">
-                      {notifications}
-                    </Badge>
-                  </div>
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
             <Link to="/my-profile/passenger" className="text-decoration-none">
               <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
@@ -150,6 +162,36 @@ const SideMenu = () => {
                 </ListGroup.Item>
               </Link>
             )}
+
+            <Link to="/notifications" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <div className="position-relative">
+                    <FontAwesomeIcon
+                      icon={faBell}
+                      className="text-warning me-3"
+                    />{" "}
+                    Notifications
+                    <Badge bg="danger" className="ms-2">
+                      {notifications}
+                    </Badge>
+                  </div>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link to="/settings" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon icon={faCog} className="text-info me-3" />{" "}
+                    Settings
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
           </>
         ) : (
           <>
@@ -184,18 +226,6 @@ const SideMenu = () => {
             </Link>
           </>
         )}
-
-        <Link to="/settings" className="text-decoration-none">
-          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-2">
-              <span>
-                <FontAwesomeIcon icon={faCog} className="text-info me-3" />{" "}
-                Settings
-              </span>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </div>
-          </ListGroup.Item>
-        </Link>
 
         {isLoggedIn ? (
           <div onClick={logOut} className="text-decoration-none cursor-pointer">
@@ -232,7 +262,7 @@ const SideMenu = () => {
         </Link>
 
         <Link to="/help" className="text-decoration-none">
-          <ListGroup.Item className="border border-start-0 border-end-0 ">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon

@@ -13,6 +13,7 @@ import { LinkContainer } from "react-router-bootstrap";
 function AdminRides() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { rideStatusVariant } = useSelector((state) => state.global);
   const { isLoadingRides, ridesData } = useSelector((state) => state.admin);
 
   useEffect(() => {
@@ -73,7 +74,15 @@ function AdminRides() {
                         <td>
                           {ride.seatsLeft}/{ride.seatsAvailable}
                         </td>
-                        <td>{ride.RideStatus.name}</td>
+                        <td>
+                          <span
+                            className={`text-${rideStatusVariant(
+                              ride.RideStatus.id
+                            )}`}
+                          >
+                            {ride.RideStatus.name}
+                          </span>
+                        </td>
                         <td>
                           <LinkContainer to={`/admin/ride/${ride.id}`}>
                             <Button variant="success" className="rounded-0">

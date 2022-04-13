@@ -24,10 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       DriverRating.belongsTo(models.Bookings, {
         onDelete: "NO ACTION",
       });
-
-      DriverRating.hasOne(models.PassengerRating, {
-        onDelete: "NO ACTION",
-      });
     }
   }
   DriverRating.init(
@@ -36,11 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       DriverId: DataTypes.INTEGER,
       RideId: DataTypes.INTEGER,
       BookingId: DataTypes.INTEGER,
-      PassengerRatingId: DataTypes.INTEGER,
       value: DataTypes.INTEGER,
       comment: DataTypes.STRING,
-      AdminId: DataTypes.INTEGER,
-      verified: DataTypes.BOOLEAN,
     },
     {
       sequelize,

@@ -9,6 +9,7 @@ const Ride = db.Ride;
 const PassengerRating = db.PassengerRating;
 const DriverRating = db.DriverRating;
 const Bookings = db.Bookings;
+const emailReminderRating = db.emailReminderRating;
 const Op = db.Sequelize.Op;
 // const checkRideStatus = require("./checkRideStatus");
 
@@ -43,28 +44,29 @@ const checkRideStatus = () => {
       if (rides) {
         // Mapping through the rides we found
         rides.map((ride, index) => {
-          // If no booking were made on the ride, we simply update the ride to "Done"
-          if (ride.seatsAvailable === ride.seatsLeft) {
-            return Ride.update(
-              {
-                RideStatusId: 4,
+          // We update the ride to "Done"
+          Ride.update(
+            {
+              RideStatusId: 3,
+            },
+            {
+              where: {
+                id: ride.id,
               },
-              {
-                where: {
-                  id: ride.id,
-                },
-              }
-            )
-              .then((update) => {
-                // All good here
-                console.log(messageCronStop);
-              })
-              .catch((error) => {
-                // An error occured
-                console.log(error);
-                console.log(messageCronStop);
-              });
-          } else {
+            }
+          )
+            .then((update) => {
+              // All good here
+              console.log(messageCronStop);
+            })
+            .catch((error) => {
+              // An error occured
+              console.log(error);
+              console.log(messageCronStop);
+            });
+
+          // If no booking were made on the ride
+          if (ride.seatsAvailable !== ride.seatsLeft) {
             // The ride has had bookings, next step is to get the booking accepted (3)
             return Bookings.findAll({
               where: {
@@ -76,7 +78,7 @@ const checkRideStatus = () => {
                 // console.log(bookings);
 
                 // If no bookings, a problem happens
-                if (!booking) {
+                if (!bookings) {
                   console.log("No bookings found");
                   console.log(messageCronStop);
                 } else {
@@ -96,28 +98,65 @@ const checkRideStatus = () => {
                           // JOB DONE
                           console.log(messageCronStop);
                         } else {
-                          // Send email reminder to the passenger
+                          // Check if we already have sent an email
+                          return emailReminderRating
+                            .findOne({
+                              where: {
+                                UserId: booking.UserId,
+                                RideId: booking.RideId,
+                                BookingId: booking.id,
+                              },
+                            })
+                            .then((reminder) => {
+                              if (!reminder) {
+                                // The reminder hasn't been sent yet
+                                // Send email reminder to the passenger
 
-                          return User.findOne({
-                            where: {
-                              id: booking.UserId,
-                            },
-                          })
-                            .then((user) => {
-                              if (user) {
-                                // Send the reminder email
-                                emailController.sendEmailBasic(
-                                  user,
-                                  templateReminderRatingToPassenger.reminderRatingToPassenger(
-                                    {
-                                      user,
-                                      ride,
-                                      booking,
+                                return User.findOne({
+                                  where: {
+                                    id: booking.UserId,
+                                  },
+                                })
+                                  .then((user) => {
+                                    if (user) {
+                                      // Send the reminder email
+                                      emailController.sendEmailBasic(
+                                        user,
+                                        templateReminderRatingToPassenger.reminderRatingToPassenger(
+                                          {
+                                            user,
+                                            ride,
+                                            booking,
+                                          }
+                                        )
+                                      );
+
+                                      // Creating the reminder
+                                      return emailReminderRating
+                                        .create({
+                                          UserId: booking.UserId,
+                                          RideId: booking.RideId,
+                                          BookingId: booking.id,
+                                        })
+                                        .then((response) => {
+                                          // All done here | Next is driver
+                                        })
+                                        .catch((error) => {
+                                          // An error occured
+                                          console.log(error);
+                                          console.log(messageCronStop);
+                                        });
+                                    } else {
+                                      console.log(messageCronStop);
                                     }
-                                  )
-                                );
-                                console.log(messageCronStop);
+                                  })
+                                  .catch((error) => {
+                                    // An error occured
+                                    console.log(error);
+                                    console.log(messageCronStop);
+                                  });
                               } else {
+                                // A reminder has already being sent out to the passenger
                                 console.log(messageCronStop);
                               }
                             })
@@ -139,7 +178,7 @@ const checkRideStatus = () => {
                       where: {
                         BookingId: booking.id,
                         RideId: booking.RideId,
-                        DriverId: booking.UserId,
+                        DriverId: booking.DriverId,
                       },
                     })
                       .then((driverRating) => {
@@ -148,29 +187,66 @@ const checkRideStatus = () => {
                           // JOB DONE
                           console.log(messageCronStop);
                         } else {
-                          // Send email reminder to the driver
+                          // Check if we already have sent an email
+                          return emailReminderRating
+                            .findOne({
+                              where: {
+                                UserId: booking.DriverId,
+                                RideId: booking.RideId,
+                                BookingId: booking.id,
+                              },
+                            })
+                            .then((reminder) => {
+                              if (!reminder) {
+                                // The reminder hasn't been sent yet
+                                // Send email reminder to the driver
 
-                          return User.findOne({
-                            where: {
-                              id: booking.DriverId,
-                            },
-                          })
-                            .then((user) => {
-                              if (user) {
-                                // Send the reminder email
-                                emailController.sendEmailBasic(
-                                  user,
-                                  templateReminderRatingToDriver.reminderRatingToDriver(
-                                    {
-                                      user,
-                                      ride,
-                                      booking,
+                                return User.findOne({
+                                  where: {
+                                    id: booking.DriverId,
+                                  },
+                                })
+                                  .then((user) => {
+                                    if (user) {
+                                      // Send the reminder email
+                                      emailController.sendEmailBasic(
+                                        user,
+                                        templateReminderRatingToDriver.reminderRatingToDriver(
+                                          {
+                                            user,
+                                            ride,
+                                            booking,
+                                          }
+                                        )
+                                      );
+
+                                      // Creating the reminder
+                                      return emailReminderRating
+                                        .create({
+                                          UserId: booking.DriverId,
+                                          RideId: booking.RideId,
+                                          BookingId: booking.id,
+                                        })
+                                        .then((response) => {
+                                          // Done
+                                          console.log(messageCronStop);
+                                        })
+                                        .catch((error) => {
+                                          // An error occured
+                                          console.log(error);
+                                          console.log(messageCronStop);
+                                        });
+                                    } else {
+                                      console.log(messageCronStop);
                                     }
-                                  )
-                                );
-
-                                console.log(messageCronStop);
+                                  })
+                                  .catch((error) => {
+                                    // An error occured
+                                    console.log(error);
+                                    console.log(messageCronStop);
+                                  });
                               } else {
+                                // A reminder has already being sent out to the driver
                                 console.log(messageCronStop);
                               }
                             })
@@ -204,19 +280,18 @@ const checkRideStatus = () => {
       console.log(messageCronStop);
     });
 };
-// Command to stop the cron
-// job.stop()
 
 // Start the CRONs
-// var job = new CronJob(
-//   "* * * * * *",
-//   checkRideStatus,
-//   null,
-//   true,
-//   "America/Costa_Rica"
-// );
+// Every hour
+var job = new CronJob(
+  "0 0 0-23 * * *",
+  checkRideStatus,
+  null,
+  true,
+  "America/Costa_Rica"
+);
 
-// job.start();
+job.start();
 
 // Let it execute only once
 // setTimeout(() => {

@@ -20,7 +20,7 @@ function ComingSoon(props) {
             <p className="lead">
               Our website is still under construction.
               <br />
-              Thank you for your understanding 🙂
+              Thank you for your understanding
             </p>
           </Col>
         </Row>

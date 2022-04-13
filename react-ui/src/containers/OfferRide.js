@@ -86,7 +86,7 @@ const OfferRide = () => {
       </Row>
       <Row>
         <Col xs={12} sm={10} lg={8} xl={6} className="mx-auto">
-          <p className="text-light">
+          <p>
             Please fill up the submit form. Visit{" "}
             <Link to="/coming-soon" className="text-success">
               this link

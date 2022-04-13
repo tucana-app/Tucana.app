@@ -49,7 +49,7 @@ const Login = () => {
       <Row className="mb-4">
         <Col className="text-center">
           <h1 className="text-info">Welcome back</h1>
-          <p className="lead">We are happy to see you again 😊</p>
+          <p className="lead">We are happy to see you again</p>
         </Col>
       </Row>
       <Row>

@@ -1,39 +1,27 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("DriverRatings", {
+    await queryInterface.createTable("emailReminderRatings", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      PassengerId: {
+      UserId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
-      },
-      DriverId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
       },
       RideId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
+        allowNull: false,
       },
       BookingId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
-      },
-      value: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-      },
-      comment: {
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("DriverRatings");
+    await queryInterface.dropTable("emailReminderRatings");
   },
 };

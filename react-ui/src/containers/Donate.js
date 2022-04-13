@@ -13,8 +13,8 @@ const Donate = () => {
     <>
       <GoBack />
 
-      <Container>
-        <Row className="py-5 text-center" data-aos="slide-left">
+      <Container data-aos="slide-left">
+        <Row className="py-5 text-center">
           <Col>
             <h1 className="text-success">Donate</h1>
             <p className="lead">

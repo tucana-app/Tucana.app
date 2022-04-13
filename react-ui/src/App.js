@@ -31,7 +31,8 @@ import ComingSoon from "./containers/ComingSoon";
 
 // All pages included in the side menu
 import SideMenu from "./containers/SideMenu/SideMenu";
-import MyAccount from "./containers/SideMenu/MyAccount";
+import RatingsPassenger from "./containers/SideMenu/RatingsPassenger";
+import RatingsDriver from "./containers/SideMenu/RatingsDriver";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
@@ -49,7 +50,7 @@ import AdminEmail from "./containers/Admin/AdminEmail";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 import MessageFee from "./components/MessageFee";
@@ -73,8 +74,8 @@ function App() {
   useEffect(() => {
     history.listen((location) => {
       if (isLoggedIn) {
-        dispatch(getNotifications(currentUser.id));
         dispatch(clearFeedback());
+        dispatch(getNotifications(currentUser.id));
         dispatch(resetConversationView(currentUser.id));
       } else {
         dispatch(clearFeedback());
@@ -121,7 +122,16 @@ function App() {
           />
 
           <Route exact path="/menu" component={SideMenu} />
-          <Route exact path="/my-account" component={MyAccount} />
+          <Route
+            exact
+            path="/my-profile/passenger/ratings"
+            component={RatingsPassenger}
+          />
+          <Route
+            exact
+            path="/my-profile/driver/ratings"
+            component={RatingsDriver}
+          />
           <Route
             exact
             path="/my-profile/passenger"
@@ -147,7 +157,7 @@ function App() {
           <Route component={Page404} />
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </Suspense>
   );

@@ -17,11 +17,8 @@ import logo_nav_bar from "../assets/images/logo_nav_bar.png";
 function NavigationBar() {
   // const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
-  const {
-    driverNewRidesRequestsData,
-
-    passengerBookingsResponsesData,
-  } = useSelector((state) => state.notification);
+  const { driverNewRidesRequestsData, passengerBookingsResponsesData } =
+    useSelector((state) => state.notification);
   const { userNewMessagesData } = useSelector((state) => state.message);
 
   var notifications =
