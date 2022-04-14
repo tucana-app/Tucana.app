@@ -173,7 +173,7 @@ const Ride = () => {
                     <Col className="text-center ">
                       <h1 className="text-info fw-light">Congratulations 🎉</h1>
                       <p className="lead">
-                        There are no more seats avaialable for this ride!
+                        There are no more seats available for this ride!
                       </p>
                     </Col>
                   </Row>

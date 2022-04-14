@@ -33,6 +33,8 @@ import ComingSoon from "./containers/ComingSoon";
 import SideMenu from "./containers/SideMenu/SideMenu";
 import RatingsPassenger from "./containers/SideMenu/RatingsPassenger";
 import RatingsDriver from "./containers/SideMenu/RatingsDriver";
+import Ratings from "./containers/SideMenu/Ratings";
+import NewRating from "./containers/SideMenu/NewRating";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
@@ -57,7 +59,7 @@ import MessageFee from "./components/MessageFee";
 
 import {
   clearFeedback,
-  getNotifications,
+  // getNotifications,
   resetConversationView,
 } from "./redux";
 import { history } from "./helpers/history";
@@ -69,13 +71,13 @@ function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
-  if (isLoggedIn) dispatch(getNotifications(currentUser.id));
+  // if (isLoggedIn) dispatch(getNotifications(currentUser.id));
 
   useEffect(() => {
     history.listen((location) => {
       if (isLoggedIn) {
         dispatch(clearFeedback());
-        dispatch(getNotifications(currentUser.id));
+        // dispatch(getNotifications(currentUser.id));
         dispatch(resetConversationView(currentUser.id));
       } else {
         dispatch(clearFeedback());
@@ -131,6 +133,12 @@ function App() {
             exact
             path="/my-profile/driver/ratings"
             component={RatingsDriver}
+          />
+          <Route exact path="/ratings" component={Ratings} />
+          <Route
+            exact
+            path="/ratings/new-rating/:rideId"
+            component={NewRating}
           />
           <Route
             exact

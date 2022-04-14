@@ -20,6 +20,7 @@ import {
   faUserFriends,
   faBell,
   faUserCircle,
+  faStar,
   // faCheckCircle,
   // faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
@@ -53,8 +54,13 @@ const SideMenu = () => {
     numberDriverNewRidesRequests = driverNewRidesRequestsData.count;
     numberPassengerBookingsResponses = passengerBookingsResponsesData.count;
 
-    notifications =
-      numberDriverNewRidesRequests + numberPassengerBookingsResponses;
+    if (
+      numberPassengerBookingsResponses &&
+      numberDriverNewRidesRequests !== undefined
+    ) {
+      notifications =
+        numberDriverNewRidesRequests + numberPassengerBookingsResponses;
+    }
   }
 
   const logOut = () => {
@@ -177,13 +183,28 @@ const SideMenu = () => {
                   <div className="position-relative">
                     <FontAwesomeIcon
                       icon={faBell}
-                      className="text-warning me-3"
+                      className="text-success me-3"
                     />{" "}
                     Notifications
-                    <Badge bg="danger" className="ms-2">
+                    <Badge bg="danger" className="align-text-top ms-2">
                       {notifications}
                     </Badge>
                   </div>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link to="/ratings" className="text-decoration-none">
+              <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      className="text-warning me-3"
+                    />{" "}
+                    Ratings
+                  </span>
                   <FontAwesomeIcon icon={faChevronRight} />
                 </div>
               </ListGroup.Item>

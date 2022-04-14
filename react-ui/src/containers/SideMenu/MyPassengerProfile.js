@@ -59,7 +59,7 @@ function MyPassengerProfile(props) {
           </Col>
           <Col xs={12} sm={4}>
             <h4>
-              <span className="text-secondary">?</span> / 5
+              <span className="text-secondary">-</span> / 5
             </h4>
           </Col>
         </Row>

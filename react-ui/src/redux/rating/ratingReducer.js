@@ -16,6 +16,22 @@ const initialState = {
   isLoadingGetRatingsGivenDriver: false,
   getRatingsGivenDriverData: [],
   getRatingsGivenDriverFail: "",
+
+  isLoadingGetRatingsToDoPassenger: false,
+  getRatingsToDoPassengerData: [],
+  getRatingsToDoPassengerFail: "",
+
+  isLoadingGetRatingsToDoDriver: false,
+  getRatingsToDoDriverData: [],
+  getRatingsToDoDriverFail: "",
+
+  isLoadingSubmitPassengerRatingForm: false,
+  submitPassengerRatingFormData: [],
+  submitPassengerRatingFormFail: "",
+
+  isLoadingSubmitDriverRatingForm: false,
+  submitDriverRatingFormData: [],
+  submitDriverRatingFormFail: "",
 };
 
 function ratingReducer(state = initialState, action) {
@@ -47,23 +63,23 @@ function ratingReducer(state = initialState, action) {
     case ratingTypes.GET_RATINGS_GIVEN_PASSENGER_REQUEST:
       return {
         ...state,
-        isLoadingGetRatingsReceivedPassenger: true,
+        isLoadingGetRatingsGivenPassenger: true,
       };
 
     case ratingTypes.GET_RATINGS_GIVEN_PASSENGER_SUCCESS:
       return {
         ...state,
-        isLoadingGetRatingsReceivedPassenger: false,
-        getRatingsReceivedPassengerData: action.payload,
-        getRatingsReceivedPassengerFail: "",
+        isLoadingGetRatingsGivenPassenger: false,
+        getRatingsGivenPassengerData: action.payload,
+        getRatingsGivenPassengerFail: "",
       };
 
     case ratingTypes.GET_RATINGS_GIVEN_PASSENGER_FAIL:
       return {
         ...state,
-        isLoadingGetRatingsReceivedPassenger: false,
-        getRatingsReceivedPassengerData: [],
-        getRatingsReceivedPassengerFail: action.payload,
+        isLoadingGetRatingsGivenPassenger: false,
+        getRatingsGivenPassengerData: [],
+        getRatingsGivenPassengerFail: action.payload,
       };
 
     // Get driver's ratings received
@@ -112,53 +128,97 @@ function ratingReducer(state = initialState, action) {
         getRatingsGivenDriverFail: action.payload,
       };
 
-    // Get user's driver ratings
+    // Get passenger's ratings to do
+    case ratingTypes.GET_RATINGS_TO_DO_PASSENGER_REQUEST:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoPassenger: true,
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_DRIVER_REQUEST:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsDriver: true,
-    //   };
+    case ratingTypes.GET_RATINGS_TO_DO_PASSENGER_SUCCESS:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoPassenger: false,
+        getRatingsToDoPassengerData: action.payload,
+        getRatingsToDoPassengerFail: "",
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_DRIVER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsDriver: false,
-    //     getUserRatingsDriverData: action.payload,
-    //     getUserRatingsDriverFail: "",
-    //   };
+    case ratingTypes.GET_RATINGS_TO_DO_PASSENGER_FAIL:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoPassenger: false,
+        getRatingsToDoPassengerData: [],
+        getRatingsToDoPassengerFail: action.payload,
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_DRIVER_FAIL:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsDriver: false,
-    //     getUserRatingsDriverData: [],
-    //     getUserRatingsDriverFail: action.payload,
-    //   };
+    // Get driver's ratings to do
+    case ratingTypes.GET_RATINGS_TO_DO_DRIVER_REQUEST:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoDriver: true,
+      };
 
-    // // Get user's ratings to be done
+    case ratingTypes.GET_RATINGS_TO_DO_DRIVER_SUCCESS:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoDriver: false,
+        getRatingsToDoDriverData: action.payload,
+        getRatingsToDoDriverFail: "",
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_REQUEST:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsToDoPassenger: true,
-    //   };
+    case ratingTypes.GET_RATINGS_TO_DO_DRIVER_FAIL:
+      return {
+        ...state,
+        isLoadingGetRatingsToDoDriver: false,
+        getRatingsToDoDriverData: [],
+        getRatingsToDoDriverFail: action.payload,
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsToDoPassenger: false,
-    //     getUserRatingsToDoPassengerData: action.payload,
-    //     getUserRatingsToDoPassengerFail: "",
-    //   };
+    // Submit the passenger rating's form
+    case ratingTypes.SUBMIT_PASSENGER_RATING_FORM_REQUEST:
+      return {
+        ...state,
+        isLoadingSubmitPassengerRatingForm: true,
+      };
 
-    // case ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_FAIL:
-    //   return {
-    //     ...state,
-    //     isLoadingGetUserRatingsToDoPassenger: false,
-    //     getUserRatingsToDoPassengerData: [],
-    //     getUserRatingsToDoPassengerFail: action.payload,
-    //   };
+    case ratingTypes.SUBMIT_PASSENGER_RATING_FORM_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitPassengerRatingForm: false,
+        submitPassengerRatingFormData: action.payload,
+        submitPassengerRatingFormFail: "",
+      };
+
+    case ratingTypes.SUBMIT_PASSENGER_RATING_FORM_FAIL:
+      return {
+        ...state,
+        isLoadingSubmitPassengerRatingForm: false,
+        submitPassengerRatingFormData: [],
+        submitPassengerRatingFormFail: action.payload,
+      };
+
+    // Submit the driver rating's form
+    case ratingTypes.SUBMIT_DRIVER_RATING_FORM_REQUEST:
+      return {
+        ...state,
+        isLoadingSubmitDriverRatingForm: true,
+      };
+
+    case ratingTypes.SUBMIT_DRIVER_RATING_FORM_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitDriverRatingForm: false,
+        submitDriverRatingFormData: action.payload,
+        submitDriverRatingFormFail: "",
+      };
+
+    case ratingTypes.SUBMIT_DRIVER_RATING_FORM_FAIL:
+      return {
+        ...state,
+        isLoadingSubmitDriverRatingForm: false,
+        submitDriverRatingFormData: [],
+        submitDriverRatingFormFail: action.payload,
+      };
 
     default:
       return state;

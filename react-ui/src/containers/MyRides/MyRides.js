@@ -68,9 +68,48 @@ const MyRides = () => {
       data-aos-duration="1000"
     >
       <ListGroup variant="flush">
+        <ListGroup.Item className="border-0">
+          <p className="lead py-2 mb-0">Passenger</p>
+        </ListGroup.Item>
+
+        <Link to="/bookings" className="text-light text-decoration-none">
+          <ListGroup.Item className="border border-start-0 border-end-0 ">
+            <div className="d-inline-flex justify-content-between w-100 py-2">
+              <span>
+                <FontAwesomeIcon
+                  icon={faTicketAlt}
+                  className="text-warning me-3"
+                />{" "}
+                My bookings
+                {isLoadingUserBookings ? (
+                  <LoadingSpinner />
+                ) : userBookingsData.length > 0 ? (
+                  countUserBookings(userBookingsData) ? (
+                    <Badge
+                      bg="warning"
+                      className="text-dark align-text-top ms-2"
+                    >
+                      {countUserBookings(userBookingsData)}
+                    </Badge>
+                  ) : null
+                ) : null}
+              </span>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </div>
+          </ListGroup.Item>
+        </Link>
+
+        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
+          <p className="py-2 mb-0"></p>
+        </ListGroup.Item>
+
+        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
+          <p className="lead py-2 mb-0">Driver</p>
+        </ListGroup.Item>
+
         <Link to="/my-rides/driver" className="text-light text-decoration-none">
-          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
+          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
+            <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
                 Ride offered
@@ -78,7 +117,10 @@ const MyRides = () => {
                   <LoadingSpinner />
                 ) : driverRidesData.length > 0 ? (
                   countDriverRides(driverRidesData) ? (
-                    <Badge bg="success" className="text-dark ms-2">
+                    <Badge
+                      bg="success"
+                      className="text-dark align-text-top ms-2"
+                    >
                       {countDriverRides(driverRidesData)}
                     </Badge>
                   ) : null
@@ -94,7 +136,7 @@ const MyRides = () => {
           className="text-light text-decoration-none"
         >
           <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
+            <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
                 Booking received
@@ -102,7 +144,7 @@ const MyRides = () => {
                   <LoadingSpinner />
                 ) : driverBookingsData.length > 0 ? (
                   countDriverBookings(driverBookingsData) ? (
-                    <Badge bg="info" className="text-dark ms-2">
+                    <Badge bg="info" className="text-dark align-text-top ms-2">
                       {countDriverBookings(driverBookingsData)}
                     </Badge>
                   ) : null
@@ -113,33 +155,13 @@ const MyRides = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link to="/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="border border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
-              <span>
-                <FontAwesomeIcon
-                  icon={faTicketAlt}
-                  className="text-warning me-3"
-                />{" "}
-                My bookings
-                {isLoadingUserBookings ? (
-                  <LoadingSpinner />
-                ) : userBookingsData.length > 0 ? (
-                  countUserBookings(userBookingsData) ? (
-                    <Badge bg="warning" className="text-dark ms-2">
-                      {countUserBookings(userBookingsData)}
-                    </Badge>
-                  ) : null
-                ) : null}
-              </span>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </div>
-          </ListGroup.Item>
-        </Link>
+        <ListGroup.Item className="border-0">
+          <p className="py-2 mb-0"></p>
+        </ListGroup.Item>
 
         <Link to="/help" className="text-light text-decoration-none">
           <ListGroup.Item className="border border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-3">
+            <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 <FontAwesomeIcon
                   icon={faLifeRing}

@@ -108,7 +108,10 @@ function ComingSoon() {
                                 {getSenderUsername(conversation)}
                               </span>
                               {countUnreadMessages(conversation) > 0 ? (
-                                <Badge bg="danger" className="ms-2">
+                                <Badge
+                                  bg="danger"
+                                  className="align-text-top ms-2"
+                                >
                                   {countUnreadMessages(conversation)}
                                 </Badge>
                               ) : null}

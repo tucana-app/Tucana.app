@@ -65,7 +65,7 @@ const NotificationPage = () => {
                   />{" "}
                   <span>
                     New notifications
-                    <Badge bg="danger" className="ms-2">
+                    <Badge bg="danger" className="align-text-top ms-2">
                       {notifications}
                     </Badge>
                   </span>
@@ -78,7 +78,7 @@ const NotificationPage = () => {
                   />{" "}
                   <span>
                     No new notifications
-                    <Badge bg="danger" className="ms-2">
+                    <Badge bg="danger" className="align-text-top ms-2">
                       0
                     </Badge>
                   </span>
@@ -108,7 +108,7 @@ const NotificationPage = () => {
               <span>
                 <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
                 Bookings for your ride(s)
-                <Badge bg="info" className="text-dark ms-2">
+                <Badge bg="info" className="text-dark align-text-top ms-2">
                   {numberDriverNewRidesRequests}
                 </Badge>
               </span>
@@ -157,7 +157,7 @@ const NotificationPage = () => {
                   className="text-success me-3"
                 />
                 Answers from your bookings
-                <Badge bg="success" className="text-dark ms-2">
+                <Badge bg="success" className="text-dark align-text-top ms-2">
                   {numberPassengerBookingsResponses}
                 </Badge>
               </span>

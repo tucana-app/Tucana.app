@@ -283,15 +283,15 @@ const checkRideStatus = () => {
 
 // Start the CRONs
 // Every hour
-var job = new CronJob(
-  "0 0 0-23 * * *",
-  checkRideStatus,
-  null,
-  true,
-  "America/Costa_Rica"
-);
+// var job = new CronJob(
+//   "0 0 0-23 * * *",
+//   checkRideStatus,
+//   null,
+//   true,
+//   "America/Costa_Rica"
+// );
 
-job.start();
+// job.start();
 
 // Let it execute only once
 // setTimeout(() => {

@@ -212,54 +212,216 @@ export const getRatingsGivenDriverFail = (error) => {
   };
 };
 
-// // Get user's ratings to do
+// Get passenger's ratings to do
 
-// export const getUserRatingsToDoPassengerRequested = () => {
-//   return {
-//     type: ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_REQUEST,
-//   };
-// };
+export const getRatingsToDoPassengerRequested = () => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_PASSENGER_REQUEST,
+  };
+};
 
-// export const getUserRatingsToDoPassenger = (userId) => {
-//   return (dispatch) => {
-//     dispatch(getUserRatingsToDoPassengerRequested());
+export const getRatingsToDoPassenger = (userId) => {
+  return (dispatch) => {
+    dispatch(getRatingsToDoPassengerRequested());
 
-//     axios
-//       .get(URL_API + "/rating/get-user-ratings-to-do-passenger", {
-//         params: {
-//           userId,
-//         },
-//       })
-//       .then((response) => {
-//         // console.log(response.data);
+    axios
+      .get(URL_API + "/rating/get-ratings-to-do-passenger", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
 
-//         dispatch(getUserRatingsToDoPassengerSuccess(response.data));
-//       })
-//       .catch((error) => {
-//         const message =
-//           (error.response &&
-//             error.response.data &&
-//             error.response.data.message) ||
-//           error.message ||
-//           error.toString();
+        dispatch(getRatingsToDoPassengerSuccess(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-//         // console.log(error);
-//         dispatch(setfeedback({ message, variant: "danger" }));
-//         dispatch(getUserRatingsToDoPassengerFail(message));
-//       });
-//   };
-// };
+        // console.log(error);
+        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(getRatingsToDoPassengerFail(message));
+      });
+  };
+};
 
-// export const getUserRatingsToDoPassengerSuccess = (data) => {
-//   return {
-//     type: ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_SUCCESS,
-//     payload: data,
-//   };
-// };
+export const getRatingsToDoPassengerSuccess = (data) => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_PASSENGER_SUCCESS,
+    payload: data,
+  };
+};
 
-// export const getUserRatingsToDoPassengerFail = (error) => {
-//   return {
-//     type: ratingTypes.GET_USER_RATINGS_TO_DO_PASSENGER_FAIL,
-//     payload: error,
-//   };
-// };
+export const getRatingsToDoPassengerFail = (error) => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_PASSENGER_FAIL,
+    payload: error,
+  };
+};
+
+// Get driver's ratings to do
+
+export const getRatingsToDoDriverRequested = () => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_DRIVER_REQUEST,
+  };
+};
+
+export const getRatingsToDoDriver = (userId) => {
+  return (dispatch) => {
+    dispatch(getRatingsToDoDriverRequested());
+
+    axios
+      .get(URL_API + "/rating/get-ratings-to-do-driver", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(getRatingsToDoDriverSuccess(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        // console.log(error);
+        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(getRatingsToDoDriverFail(message));
+      });
+  };
+};
+
+export const getRatingsToDoDriverSuccess = (data) => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_DRIVER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getRatingsToDoDriverFail = (error) => {
+  return {
+    type: ratingTypes.GET_RATINGS_TO_DO_DRIVER_FAIL,
+    payload: error,
+  };
+};
+
+// Submit passenger rating's form
+
+export const submitPassengerRatingFormRequested = () => {
+  return {
+    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_REQUEST,
+  };
+};
+
+export const submitPassengerRatingForm = (ride, note, comment) => {
+  return (dispatch) => {
+    dispatch(submitPassengerRatingFormRequested());
+
+    axios
+      .post(URL_API + "/rating/submit-passenger-rating-form", {
+        ride,
+        note,
+        comment,
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(submitPassengerRatingFormSuccess(response.data));
+        dispatch(
+          setfeedback({ message: response.data.message, variant: "success" })
+        );
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        // console.log(error);
+        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(submitPassengerRatingFormFail(message));
+      });
+  };
+};
+
+export const submitPassengerRatingFormSuccess = (data) => {
+  return {
+    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitPassengerRatingFormFail = (error) => {
+  return {
+    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_FAIL,
+    payload: error,
+  };
+};
+
+// Submit driver rating's form
+
+export const submitDriverRatingFormRequested = () => {
+  return {
+    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_REQUEST,
+  };
+};
+
+export const submitDriverRatingForm = (ride, note, comment) => {
+  return (dispatch) => {
+    dispatch(submitDriverRatingFormRequested());
+
+    axios
+      .post(URL_API + "/rating/submit-driver-rating-form", {
+        ride,
+        note,
+        comment,
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(submitDriverRatingFormSuccess(response.data));
+        dispatch(
+          setfeedback({ message: response.data.message, variant: "success" })
+        );
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        // console.log(error);
+        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(submitDriverRatingFormFail(message));
+      });
+  };
+};
+
+export const submitDriverRatingFormSuccess = (data) => {
+  return {
+    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitDriverRatingFormFail = (error) => {
+  return {
+    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_FAIL,
+    payload: error,
+  };
+};

@@ -29,8 +29,23 @@ module.exports = (app) => {
     controller.getRatingsGivenDriver
   );
 
-  // app.get(
-  //   "/api/rating/get-user-ratings-to-do-passenger",
-  //   controller.getUserRatingsToDoPassenger
-  // );
+  app.get(
+    "/api/rating/get-ratings-to-do-passenger",
+    controller.getRatingsToDoPassenger
+  );
+
+  app.get(
+    "/api/rating/get-ratings-to-do-driver",
+    controller.getRatingsToDoDriver
+  );
+
+  app.post(
+    "/api/rating/submit-passenger-rating-form",
+    controller.addRatingFromPassenger
+  );
+
+  app.post(
+    "/api/rating/submit-driver-rating-form",
+    controller.addRatingFromDriver
+  );
 };

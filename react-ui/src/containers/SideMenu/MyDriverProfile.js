@@ -15,7 +15,7 @@ function MyDriverProfile(props) {
     return <Redirect to="/" />;
   }
   return (
-    <div data-aos="fade-left">
+    <div data-aos="slide-left">
       <GoBack />
 
       <Container className="py-5 text-center">
@@ -31,7 +31,7 @@ function MyDriverProfile(props) {
           </Col>
           <Col xs={12} sm={4}>
             <h4>
-              <span className="text-secondary">?</span> / 5
+              <span className="text-secondary">-</span> / 5
             </h4>
           </Col>
         </Row>
