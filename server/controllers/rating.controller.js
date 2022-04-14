@@ -15,127 +15,16 @@ module.exports = {
     const { userId } = req.query;
     let ratingsToDoPassenger = [];
 
-    Bookings.findAll({
-      where: {
-        UserId: userId,
-        BookingStatusId: 3, // accepted
-      },
-    })
-      .then((bookings) => {
-        // console.log(bookings);
-
-        // If some bookings have been found
-        if (bookings) {
-          bookings.map((booking, index) => {
-            return Ride.findOne({
-              where: {
-                id: booking.RideId,
-                RideStatusId: 3, // done
-              },
-              include: [
-                {
-                  model: Bookings,
-                  include: [
-                    {
-                      model: User,
-                      attributes: {
-                        exclude: [
-                          "biography",
-                          "password",
-                          "phoneNumber",
-                          "createdAt",
-                          "updatedAt",
-                        ],
-                      },
-                    },
-                  ],
-                },
-                {
-                  model: Driver,
-                  include: [
-                    {
-                      model: User,
-                      attributes: {
-                        exclude: [
-                          "biography",
-                          "password",
-                          "phoneNumber",
-                          "createdAt",
-                          "updatedAt",
-                        ],
-                      },
-                    },
-                  ],
-                },
-              ],
-            })
-              .then((ride) => {
-                // If the ride is done
-                if (ride) {
-                  // Look for past ratings now
-                  return DriverRating.findOne({
-                    where: {
-                      RideId: ride.id,
-                      PassengerId: userId,
-                    },
-                  })
-                    .then((rating) => {
-                      if (!rating) {
-                        // Rating needs to be done
-                        ratingsToDoPassenger.push(ride);
-
-                        // if (bookings.length - 1 === index) {
-                        //   return res.status(200).json(ratingsToDoPassenger);
-                        // }
-                      }
-                    })
-                    .catch((error) => {
-                      // Error
-                      // console.log(error)
-                    });
-                } else {
-                  // No ride done found for this booking
-                  //  res.status(200).json([]);
-                }
-              })
-              .catch((error) => {
-                // console.log(error)
-                // res.status(400).json(errorMessage);
-              });
-          });
-        } else {
-          // No booking accepted found for that user
-          res.status(200).json([]);
-        }
-      })
-      .catch((error) => {
-        // console.log(error);
-        res.status(400).json(errorMessage);
+    (async function () {
+      let bookings = await Bookings.findAll({
+        where: {
+          UserId: userId,
+          BookingStatusId: 3, // accepted
+        },
       });
 
-    // Not good at all! To fix...
-    // I can't wait for ALL the promises to stop
-    // Then send the array. So I am using a trick
-    setTimeout(() => {
-      return res.status(200).json(ratingsToDoPassenger);
-    }, 1000);
-  },
-
-  async getRatingsToDoDriver(req, res) {
-    const { userId } = req.query;
-    let ratingsToDoDriver = [];
-
-    Bookings.findAll({
-      where: {
-        DriverId: userId,
-        BookingStatusId: 3, // accepted
-      },
-    })
-      .then((bookings) => {
-        // console.log(bookings);
-
-        // If some bookings have been found
-        if (bookings) {
+      if (bookings.length) {
+        await Promise.all(
           bookings.map((booking) => {
             return Ride.findOne({
               where: {
@@ -178,57 +67,116 @@ module.exports = {
                   ],
                 },
               ],
-            })
-              .then((ride) => {
-                // If the ride is done
-                if (ride) {
-                  // Look for past ratings now
-                  PassengerRating.findOne({
-                    where: {
-                      RideId: ride.id,
-                      DriverId: userId,
-                    },
-                  })
-                    .then((rating) => {
-                      if (!rating) {
-                        // Rating needs to be done
-                        ratingsToDoDriver.push(ride);
+            }).then((ride) => {
+              // If the ride is done
+              if (ride) {
+                // Look for past ratings now
+                return DriverRating.findOne({
+                  where: {
+                    RideId: ride.id,
+                    PassengerId: userId,
+                  },
+                }).then((rating) => {
+                  if (!rating) {
+                    // Rating needs to be done
+                    ratingsToDoPassenger.push(ride);
+                  }
+                });
+              }
+            });
+          })
+        ).catch((error) => res.status(400).json([]));
 
-                        // if (bookings.length - 1 === index) {
-                        //   return res.status(200).json(ratingsToDoDriver);
-                        // }
-                      }
-                    })
-                    .catch((error) => {
-                      // console.log(error)
-                      // res.status(400).json(errorMessage);
-                    });
-                } else {
-                  // No ride done found for this booking
-                  // res.status(200).json([]);
-                }
-              })
-              .catch((error) => {
-                // console.log(error)
-                // res.status(400).json(errorMessage);
-              });
-          });
-        } else {
-          // No booking accepted found for that user
-          res.status(200).json([]);
-        }
-      })
-      .catch((error) => {
-        // console.log(error);
-        res.status(400).json(errorMessage);
+        return res.status(200).json(ratingsToDoPassenger);
+      } else {
+        console.log("No bookings");
+        return res.status(200).json(ratingsToDoPassenger);
+      }
+    })();
+  },
+
+  getRatingsToDoDriver(req, res) {
+    const { userId } = req.query;
+    let ratingsToDoDriver = [];
+
+    (async function () {
+      let bookings = await Bookings.findAll({
+        where: {
+          DriverId: userId,
+          BookingStatusId: 3, // accepted
+        },
       });
 
-    // Not good at all! To fix...
-    // I can't wait for ALL the promises to stop
-    // Then send the array. So I am using a trick
-    setTimeout(() => {
-      return res.status(200).json(ratingsToDoDriver);
-    }, 1000);
+      if (bookings.length) {
+        await Promise.all(
+          bookings.map((booking) => {
+            return Ride.findOne({
+              where: {
+                id: booking.RideId,
+                RideStatusId: 3, // done
+              },
+              include: [
+                {
+                  model: Bookings,
+                  include: [
+                    {
+                      model: User,
+                      attributes: {
+                        exclude: [
+                          "biography",
+                          "password",
+                          "phoneNumber",
+                          "createdAt",
+                          "updatedAt",
+                        ],
+                      },
+                    },
+                  ],
+                },
+                {
+                  model: Driver,
+                  include: [
+                    {
+                      model: User,
+                      attributes: {
+                        exclude: [
+                          "biography",
+                          "password",
+                          "phoneNumber",
+                          "createdAt",
+                          "updatedAt",
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            }).then((ride) => {
+              // If the ride is done
+              if (ride) {
+                // Look for past ratings now
+                return PassengerRating.findOne({
+                  where: {
+                    RideId: ride.id,
+                    DriverId: userId,
+                  },
+                }).then((rating) => {
+                  if (!rating) {
+                    // Rating needs to be done
+                    ratingsToDoDriver.push(ride);
+                  }
+                });
+              }
+            });
+          })
+        ).catch((error) => res.status(400).json([]));
+
+        return res.status(200).json(ratingsToDoDriver);
+      } else {
+        console.log("No bookings");
+        return res.status(200).json(ratingsToDoDriver);
+      }
+    })();
   },
 
   getRatingsReceivedPassenger(req, res) {
