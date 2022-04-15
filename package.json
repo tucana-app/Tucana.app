@@ -1,61 +1,70 @@
 {
   "name": "ride.cr",
-  "version": "1.0.0",
-  "description": "Ride.CR - Carpooling in Costa Rica",
-  "engines": {
-    "node": "10.x"
+  "version": "0.5.0",
+  "description": "Ride.CR - Share your rides in Costa Rica",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.21.1",
+    "@csstools/normalize.css": "^11.0.1",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.0.2",
+    "dateformat": "^4.5.1",
+    "formik": "^2.2.9",
+    "i18next": "^19.9.2",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "i18next-xhr-backend": "^3.2.2",
+    "node-sass": "^5.0.0",
+    "react": "^16.14.0",
+    "react-bootstrap": "^2.0.0-beta.2",
+    "react-country-flag": "^2.3.1",
+    "react-dom": "^16.14.0",
+    "react-i18next": "^11.11.2",
+    "react-redux": "^7.2.4",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "react-tabs": "^3.2.1",
+    "react-validation": "^3.0.7",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "redux-devtools-extension": "^2.13.9",
+    "rfs": "^9.0.4",
+    "validator": "^13.6.0",
+    "yup": "^0.32.9",
+    "yup-password": "^0.2.1"
   },
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
-    "rs-db": "sequelize db:migrate:undo:all",
-    "rs-db-seed": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210718204543-booking-status.js",
-    "rs-db-seed-rides": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20210716125238-users.js && sequelize db:seed --seed 20210716225046-ride-status.js && sequelize db:seed --seed 20210717012650-rides.js && sequelize db:seed --seed 20210718204543-booking-status.js",
-    "rs-db-seed-all": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "dev": "react-scripts start",
+    "build": "react-scripts build"
   },
-  "cacheDirectories": [
-    "node_modules",
-    "react-ui/node_modules"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
   ],
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "cron": "^1.8.2",
-    "dateformat": "^4.5.1",
-    "dotenv": "^8.6.0",
-    "eslint": "^7.30.0",
-    "express": "^4.17.1",
-    "heroku-ssl-redirect": "^0.1.1",
-    "html-to-text": "^8.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "libphonenumber-js": "^1.9.22",
-    "nodemailer": "^6.6.3",
-    "pg": "^8.6.0",
-    "pg-hstore": "^2.3.4",
-    "redux": "^4.1.0",
-    "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0",
-    "uuid": "^8.3.2",
-    "validator": "^13.6.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BenjaminJaume/Ride.CR.git"
-  },
-  "keywords": [
-    "carpool",
-    "costa rica",
-    "ride",
-    "share"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  },
-  "bugs": {
-    "url": "https://github.com/BenjaminJaume/Ride.CR/issues"
-  },
-  "homepage": "https://github.com/BenjaminJaume/Ride.CR#readme",
+  "proxy": "http://localhost:5000",
   "main": "index.js",
-  "author": ""
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-app": "^6.0.0",
+    "sass": "^1.35.2",
+    "sass-loader": "^7.1.0"
+  }
 }
