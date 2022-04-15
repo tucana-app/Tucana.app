@@ -4,6 +4,7 @@ const DriverRating = db.DriverRating;
 const User = db.User;
 const Driver = db.Driver;
 const Ride = db.Ride;
+const RideFeedback = db.RideFeedback;
 const Bookings = db.Bookings;
 const Op = db.Sequelize.Op;
 require("dotenv").config;
@@ -11,7 +12,7 @@ require("dotenv").config;
 const errorMessage = { message: "A problem occured with this request" };
 
 module.exports = {
-  getRatingsToDoPassenger(req, res) {
+  getRatingsToDoAsPassenger(req, res) {
     const { userId } = req.query;
     let ratingsToDoPassenger = [];
 
@@ -71,15 +72,26 @@ module.exports = {
               // If the ride is done
               if (ride) {
                 // Look for past ratings now
-                return DriverRating.findOne({
+
+                return RideFeedback.findOne({
                   where: {
                     RideId: ride.id,
-                    PassengerId: userId,
+                    UserId: userId,
+                    rideHappened: true,
                   },
-                }).then((rating) => {
-                  if (!rating) {
-                    // Rating needs to be done
-                    ratingsToDoPassenger.push(ride);
+                }).then((feedback) => {
+                  if (feedback) {
+                    return DriverRating.findOne({
+                      where: {
+                        RideId: ride.id,
+                        UserId: userId,
+                      },
+                    }).then((rating) => {
+                      if (!rating) {
+                        // Rating needs to be done
+                        ratingsToDoPassenger.push(ride);
+                      }
+                    });
                   }
                 });
               }
@@ -95,7 +107,7 @@ module.exports = {
     })();
   },
 
-  getRatingsToDoDriver(req, res) {
+  getRatingsToDoAsDriver(req, res) {
     const { userId } = req.query;
     let ratingsToDoDriver = [];
 
@@ -154,16 +166,27 @@ module.exports = {
             }).then((ride) => {
               // If the ride is done
               if (ride) {
-                // Look for past ratings now
-                return PassengerRating.findOne({
+                // Look if the ride has been confirmed
+                return RideFeedback.findOne({
                   where: {
                     RideId: ride.id,
-                    DriverId: userId,
+                    UserId: userId,
+                    rideHappened: true,
                   },
-                }).then((rating) => {
-                  if (!rating) {
-                    // Rating needs to be done
-                    ratingsToDoDriver.push(ride);
+                }).then((feedback) => {
+                  if (feedback) {
+                    // Look for past ratings now
+                    return PassengerRating.findOne({
+                      where: {
+                        RideId: ride.id,
+                        DriverId: userId,
+                      },
+                    }).then((rating) => {
+                      if (!rating) {
+                        // Rating needs to be done
+                        ratingsToDoDriver.push(ride);
+                      }
+                    });
                   }
                 });
               }
@@ -182,7 +205,7 @@ module.exports = {
   getRatingsReceivedPassenger(req, res) {
     return PassengerRating.findAll({
       where: {
-        PassengerId: req.query.userId,
+        UserId: req.query.userId,
       },
     })
       .then((ratings) => {
@@ -198,7 +221,7 @@ module.exports = {
   getRatingsGivenPassenger(req, res) {
     return DriverRating.findAll({
       where: {
-        PassengerId: req.query.userId,
+        UserId: req.query.userId,
       },
     })
       .then((ratings) => {
@@ -247,7 +270,7 @@ module.exports = {
     const { ride, note, comment } = req.body;
 
     return DriverRating.create({
-      PassengerId: ride.Booking.User.id,
+      UserId: ride.Booking.User.id,
       DriverId: ride.DriverId,
       RideId: ride.id,
       BookingId: ride.Booking.id,
@@ -271,7 +294,7 @@ module.exports = {
     const { ride, note, comment } = req.body;
 
     return PassengerRating.create({
-      PassengerId: ride.Booking.User.id,
+      UserId: ride.Booking.User.id,
       DriverId: ride.DriverId,
       RideId: ride.id,
       BookingId: ride.Booking.id,

@@ -85,9 +85,10 @@ const SideMenu = () => {
                     size={"5x"}
                   />
                 </Link>
-                <p>
+                <p className="h3 mb-0">
                   {currentUser.firstName} {currentUser.lastName}
                 </p>
+                <p className="lead">{currentUser.email}</p>
 
                 <p className="small text-secondary mb-0">
                   Member since {dateFormat(currentUser.createdAt, "yyyy")}

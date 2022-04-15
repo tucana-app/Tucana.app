@@ -63,7 +63,7 @@ function ComingSoon() {
       <div>
         {allUserMessagesData.length > 0 ? (
           <>
-            {currentView ? (
+            {currentView && findConversation() !== undefined ? (
               <SingleConversation conversation={findConversation()} />
             ) : (
               <>

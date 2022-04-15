@@ -48,6 +48,14 @@ const initialState = {
   isLoadingPassengersDetails: false,
   passengersDetailsData: [],
   passengersDetailsError: "",
+
+  isLoadingRidesToConfirm: false,
+  ridesToConfirmData: [],
+  ridesToFeedbackError: "",
+
+  isloadingSubmitFormConfirmRide: false,
+  submitFormConfirmRideData: [],
+  submitFormConfirmRideError: "",
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -317,6 +325,50 @@ const rideReducer = (state = initialState, action) => {
         isLoadingPassengersDetails: false,
         passengersDetailsData: [],
         passengersDetailsError: action.payload,
+      };
+
+    case rideTypes.GET_RIDES_TO_CONFIRM_REQUEST:
+      return {
+        ...state,
+        isLoadingRidesToConfirm: true,
+      };
+
+    case rideTypes.GET_RIDES_TO_CONFIRM_SUCCESS:
+      return {
+        ...state,
+        isLoadingRidesToConfirm: false,
+        ridesToConfirmData: action.payload,
+        ridesToFeedbackError: "",
+      };
+
+    case rideTypes.GET_RIDES_TO_CONFIRM_FAIL:
+      return {
+        ...state,
+        isLoadingRidesToConfirm: false,
+        ridesToConfirmData: [],
+        ridesToFeedbackError: action.payload,
+      };
+
+    case rideTypes.SUBMIT_FORM_CONFIRM_RIDE_REQUEST:
+      return {
+        ...state,
+        isloadingSubmitFormConfirmRide: true,
+      };
+
+    case rideTypes.SUBMIT_FORM_CONFIRM_RIDE_SUCCESS:
+      return {
+        ...state,
+        isloadingSubmitFormConfirmRide: false,
+        submitFormConfirmRideData: action.payload,
+        submitFormConfirmRideError: "",
+      };
+
+    case rideTypes.SUBMIT_FORM_CONFIRM_RIDE_FAIL:
+      return {
+        ...state,
+        isloadingSubmitFormConfirmRide: false,
+        submitFormConfirmRideData: [],
+        submitFormConfirmRideError: action.payload,
       };
 
     default:

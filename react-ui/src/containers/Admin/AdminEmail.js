@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Col, Row, Button, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ function AdminEmail() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingSendTestEmail, sendTestEmailData, sendTestEmailError } =
     useSelector((state) => state.admin);
+
+  const [emailAddress, setEmailAddress] = useState("info@ride.cr");
 
   useEffect(() => {
     if (isLoggedIn && currentUser.adminId) {
@@ -37,22 +39,40 @@ function AdminEmail() {
           </Col>
         </Row>
 
+        <Row className="mb-3">
+          <Col>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Type your email address here"
+                className="rounded-0"
+                onChange={(e) => setEmailAddress(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
         <Row>
-          <Button
-            variant="success"
-            size="lg"
-            className="rounded-0"
-            type="submit"
-            disabled={isLoadingSendTestEmail}
-            onClick={() =>
-              dispatch(admin_sendTestEmail(currentUser, "info@ride.cr"))
-            }
-          >
-            <>
-              {isLoadingSendTestEmail ? <LoadingSpinner /> : <></>}
-              Send to "info@ride.cr"
-            </>
-          </Button>
+          <Col className="text-center">
+            <Button
+              variant="success"
+              size="lg"
+              className="rounded-0"
+              type="submit"
+              disabled={isLoadingSendTestEmail}
+              onClick={() =>
+                dispatch(admin_sendTestEmail(currentUser, emailAddress))
+              }
+            >
+              <>
+                {isLoadingSendTestEmail ? <LoadingSpinner /> : <></>}
+                Send to "{emailAddress}"
+              </>
+            </Button>
+          </Col>
         </Row>
 
         <Row className="mt-5">

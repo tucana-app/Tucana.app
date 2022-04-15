@@ -31,12 +31,12 @@ module.exports = (app) => {
 
   app.get(
     "/api/rating/get-ratings-to-do-passenger",
-    controller.getRatingsToDoPassenger
+    controller.getRatingsToDoAsPassenger
   );
 
   app.get(
     "/api/rating/get-ratings-to-do-driver",
-    controller.getRatingsToDoDriver
+    controller.getRatingsToDoAsDriver
   );
 
   app.post(

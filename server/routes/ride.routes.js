@@ -39,6 +39,10 @@ module.exports = (app) => {
 
   app.get("/api/ride/passengers", controller.getPassengers);
 
+  app.get("/api/ride/rides-to-confirm", controller.getRidesToConfirm);
+
+  app.post("/api/ride/form-confirm-ride", controller.confirmRide);
+
   app.get("/api/ride/:rideId", controller.getRide);
 
   app.get("/api/booking/:bookingId", controller.getBooking);

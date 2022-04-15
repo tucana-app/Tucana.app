@@ -12,7 +12,7 @@ import GoBack from "../../components/GoBack";
 
 import { getRatingsToDoDriver, getRatingsToDoPassenger } from "../../redux";
 
-function Ratings(props) {
+function Ratings() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
@@ -72,7 +72,8 @@ function Ratings(props) {
 
       {isLoadingGetRatingsToDoPassenger || isLoadingGetRatingsToDoDriver ? (
         <LoadingSpinner />
-      ) : (
+      ) : getRatingsToDoPassengerData.length ||
+        getRatingsToDoDriverData.length ? (
         <ListGroup variant="flush" className="pt-4">
           <ListGroup.Item className="border-0">
             <p className="lead mb-0">Ratings to do</p>
@@ -122,7 +123,7 @@ function Ratings(props) {
             </Link>
           ))}
         </ListGroup>
-      )}
+      ) : null}
     </div>
   );
 }

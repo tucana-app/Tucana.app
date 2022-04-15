@@ -20,6 +20,14 @@ const initialState = {
   isLoadingSendTestEmail: false,
   sendTestEmailData: [],
   sendTestEmailError: "",
+
+  isLoadingPassengersRatings: false,
+  passengersRatingsData: [],
+  passengersRatingsError: "",
+
+  isLoadingDriversRatings: false,
+  driversRatingsData: [],
+  driversRatingsError: "",
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -132,6 +140,50 @@ const adminReducer = (state = initialState, action) => {
         isLoadingSendTestEmail: false,
         sendTestEmailData: [],
         sendTestEmailError: action.payload,
+      };
+
+    case adminTypes.ADMIN_GET_PASSENGERS_RATINGS_REQUEST:
+      return {
+        ...state,
+        isLoadingPassengersRatings: true,
+      };
+
+    case adminTypes.ADMIN_GET_PASSENGERS_RATINGS_SUCCESS:
+      return {
+        ...state,
+        isLoadingPassengersRatings: false,
+        passengersRatingsData: action.payload,
+        passengersRatingsError: "",
+      };
+
+    case adminTypes.ADMIN_GET_PASSENGERS_RATINGS_FAIL:
+      return {
+        ...state,
+        isLoadingPassengersRatings: false,
+        passengersRatingsData: [],
+        passengersRatingsError: action.payload,
+      };
+
+    case adminTypes.ADMIN_GET_DRIVERS_RATINGS_REQUEST:
+      return {
+        ...state,
+        isLoadingDriversRatings: true,
+      };
+
+    case adminTypes.ADMIN_GET_DRIVERS_RATINGS_SUCCESS:
+      return {
+        ...state,
+        isLoadingDriversRatings: false,
+        driversRatingsData: action.payload,
+        driversRatingsError: "",
+      };
+
+    case adminTypes.ADMIN_GET_DRIVERS_RATINGS_FAIL:
+      return {
+        ...state,
+        isLoadingDriversRatings: false,
+        driversRatingsData: [],
+        driversRatingsError: action.payload,
       };
 
     default:

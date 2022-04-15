@@ -1,5 +1,6 @@
 const db = require("../models");
 const Ride = db.Ride;
+const RideFeedback = db.RideFeedback;
 const RideStatus = db.RideStatus;
 const User = db.User;
 const Driver = db.Driver;
@@ -691,6 +692,119 @@ module.exports = {
       .catch((error) => {
         // console.log(error);
         res.status(400).json(errorMessage);
+      });
+  },
+
+  getRidesToConfirm(req, res) {
+    const { userId } = req.query;
+    let ridesToFeedback = [];
+
+    (async function () {
+      let bookings = await Bookings.findAll({
+        where: {
+          [Op.or]: {
+            UserId: userId,
+            DriverId: userId,
+          },
+          BookingStatusId: 3, // accepted
+        },
+      });
+
+      if (bookings.length) {
+        await Promise.all(
+          bookings.map((booking) => {
+            return Ride.findOne({
+              where: {
+                id: booking.RideId,
+                RideStatusId: 3, // done
+              },
+              include: [
+                {
+                  model: Bookings,
+                  include: [
+                    {
+                      model: User,
+                      attributes: {
+                        exclude: [
+                          "biography",
+                          "password",
+                          "phoneNumber",
+                          "createdAt",
+                          "updatedAt",
+                        ],
+                      },
+                    },
+                  ],
+                },
+                {
+                  model: Driver,
+                  include: [
+                    {
+                      model: User,
+                      attributes: {
+                        exclude: [
+                          "biography",
+                          "password",
+                          "phoneNumber",
+                          "createdAt",
+                          "updatedAt",
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            }).then((ride) => {
+              // If the ride is done
+              if (ride) {
+                // A feedback need to be given
+                return RideFeedback.findOne({
+                  where: {
+                    UserId: userId,
+                    RideId: ride.id,
+                    BookingId: booking.id,
+                  },
+                }).then((feedback) => {
+                  if (!feedback) {
+                    // Feedback missing
+                    ridesToFeedback.push(ride);
+                  }
+                });
+              }
+            });
+          })
+        ).catch((error) => res.status(400).json([]));
+
+        return res.status(200).json(ridesToFeedback);
+      } else {
+        console.log("No bookings");
+        return res.status(200).json(ridesToFeedback);
+      }
+    })();
+  },
+
+  confirmRide(req, res) {
+    const { ride, userId, isRideHappened } = req.body;
+
+    return RideFeedback.create({
+      UserId: userId,
+      RideId: ride.id,
+      BookingId: ride.Booking.id,
+      DriverId: ride.DriverId,
+      rideHappened: isRideHappened,
+    })
+      .then((response) => {
+        // console.log(response);
+        res.status(201).json({
+          message: "Thank you for submitting your answer",
+          flag: "SUCCESS",
+        });
+      })
+      .catch((error) => {
+        // console.log(error);
+        res
+          .status(400)
+          .json({ message: "We couldn't confirm the ride", flag: "ERROR" });
       });
   },
 };

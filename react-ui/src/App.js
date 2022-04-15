@@ -29,6 +29,8 @@ import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import ComingSoon from "./containers/ComingSoon";
 
+import Page404 from "./containers/Page404";
+
 // All pages included in the side menu
 import SideMenu from "./containers/SideMenu/SideMenu";
 import RatingsPassenger from "./containers/SideMenu/RatingsPassenger";
@@ -40,7 +42,7 @@ import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
 import MyPassengerProfile from "./containers/SideMenu/MyPassengerProfile";
 import MyDriverProfile from "./containers/SideMenu/MyDriverProfile";
-import Page404 from "./containers/Page404";
+import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
 
 // Admin
 import AdminDashboard from "./containers/Admin/AdminDashboard";
@@ -49,10 +51,11 @@ import AdminSingleUser from "./containers/Admin/AdminSingleUser";
 import AdminRides from "./containers/Admin/AdminRides";
 import AdminSingleRide from "./containers/Admin/AdminSingleRide";
 import AdminEmail from "./containers/Admin/AdminEmail";
+import AdminRatings from "./containers/Admin/AdminRatings";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 import MessageFee from "./components/MessageFee";
@@ -145,6 +148,11 @@ function App() {
             path="/my-profile/passenger"
             component={MyPassengerProfile}
           />
+          <Route
+            exact
+            path="/rides/rides-to-confirm"
+            component={RidesToConfirm}
+          />
           <Route exact path="/my-profile/driver" component={MyDriverProfile} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />
@@ -161,11 +169,12 @@ function App() {
           <Route exact path="/admin/rides" component={AdminRides} />
           <Route exact path="/admin/ride/:rideId" component={AdminSingleRide} />
           <Route exact path="/admin/email" component={AdminEmail} />
+          <Route exact path="/admin/ratings" component={AdminRatings} />
 
           <Route component={Page404} />
         </Switch>
 
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </Suspense>
   );

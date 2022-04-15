@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       AdminId: DataTypes.INTEGER,
       PassengerRatingId: DataTypes.INTEGER,
-      Verified: DataTypes.BOOLEAN,
-      Comment: DataTypes.STRING,
+      accepted: DataTypes.BOOLEAN,
+      comment: DataTypes.STRING,
     },
     {
       sequelize,

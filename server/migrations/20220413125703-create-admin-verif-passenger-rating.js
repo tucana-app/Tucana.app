@@ -18,11 +18,11 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
-      Verified: {
+      accepted: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
-      Comment: {
+      comment: {
         type: Sequelize.STRING,
       },
       createdAt: {

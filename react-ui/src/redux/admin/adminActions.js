@@ -219,3 +219,85 @@ export const admin_sendTestEmailFail = (error) => {
     payload: error,
   };
 };
+
+// Admin is requesting all passenger's ratings
+
+export const admin_getPassengersRatingsRequested = () => {
+  return {
+    type: adminTypes.ADMIN_GET_PASSENGERS_RATINGS_REQUEST,
+  };
+};
+
+export const admin_getPassengersRatings = (currentUser) => {
+  return (dispatch) => {
+    if (currentUser.adminId) {
+      dispatch(admin_getPassengersRatingsRequested());
+
+      axios
+        .get(URL_API + "/admin/get-passengers-ratings")
+        .then((response) => {
+          dispatch(admin_getPassengersRatingsSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(admin_getPassengersRatingsFail(error));
+        });
+    } else {
+      dispatch(admin_getPassengersRatingsFail("Not autorized"));
+    }
+  };
+};
+
+export const admin_getPassengersRatingsSuccess = (data) => {
+  return {
+    type: adminTypes.ADMIN_GET_PASSENGERS_RATINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const admin_getPassengersRatingsFail = (error) => {
+  return {
+    type: adminTypes.ADMIN_GET_PASSENGERS_RATINGS_FAIL,
+    payload: error,
+  };
+};
+
+// Admin is requesting all driver's ratings
+
+export const admin_getDriversRatingsRequested = () => {
+  return {
+    type: adminTypes.ADMIN_GET_DRIVERS_RATINGS_REQUEST,
+  };
+};
+
+export const admin_getDriversRatings = (currentUser) => {
+  return (dispatch) => {
+    if (currentUser.adminId) {
+      dispatch(admin_getDriversRatingsRequested());
+
+      axios
+        .get(URL_API + "/admin/get-drivers-ratings")
+        .then((response) => {
+          dispatch(admin_getDriversRatingsSuccess(response.data));
+        })
+        .catch((error) => {
+          dispatch(admin_getDriversRatingsFail(error));
+        });
+    } else {
+      dispatch(admin_getDriversRatingsFail("Not autorized"));
+    }
+  };
+};
+
+export const admin_getDriversRatingsSuccess = (data) => {
+  return {
+    type: adminTypes.ADMIN_GET_DRIVERS_RATINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const admin_getDriversRatingsFail = (error) => {
+  return {
+    type: adminTypes.ADMIN_GET_DRIVERS_RATINGS_FAIL,
+    payload: error,
+  };
+};

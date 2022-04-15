@@ -761,3 +761,112 @@ export const getPassengersDetailsFail = (error) => {
     payload: error,
   };
 };
+
+// Get all the rides that the user has to provide
+// a feedback whether the ride happened of not
+
+export const getRidesToConfirmRequested = () => {
+  return {
+    type: rideTypes.GET_RIDES_TO_CONFIRM_REQUEST,
+  };
+};
+
+export const getRidesToConfirm = (userId) => {
+  return (dispatch) => {
+    dispatch(getRidesToConfirmRequested());
+
+    axios
+      .get(URL_API + "/ride/rides-to-confirm", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getRidesToConfirmSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setfeedback({
+            variant: "danger",
+            message: message,
+          })
+        );
+
+        dispatch(getRidesToConfirmFail(error));
+      });
+  };
+};
+
+export const getRidesToConfirmSuccess = (data) => {
+  return {
+    type: rideTypes.GET_RIDES_TO_CONFIRM_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getRidesToConfirmFail = (error) => {
+  return {
+    type: rideTypes.GET_RIDES_TO_CONFIRM_FAIL,
+    payload: error,
+  };
+};
+
+// Submit the form to confirm a ride
+
+export const submitFormConfirmRideRequested = () => {
+  return {
+    type: rideTypes.SUBMIT_FORM_CONFIRM_RIDE_REQUEST,
+  };
+};
+
+export const submitFormConfirmRide = (user, ride, isRideHappened) => {
+  return (dispatch) => {
+    dispatch(submitFormConfirmRideRequested());
+
+    axios
+      .post(URL_API + "/ride/form-confirm-ride", {
+        userId: user.id,
+        ride: ride,
+        isRideHappened,
+      })
+      .then((response) => {
+        // console.log(response.message);
+
+        dispatch(submitFormConfirmRideSuccess(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(submitFormConfirmRideFail(message));
+      });
+  };
+};
+
+export const submitFormConfirmRideSuccess = (data) => {
+  return {
+    type: rideTypes.SUBMIT_FORM_CONFIRM_RIDE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitFormConfirmRideFail = (error) => {
+  return {
+    type: rideTypes.SUBMIT_FORM_CONFIRM_RIDE_FAIL,
+    payload: error,
+  };
+};

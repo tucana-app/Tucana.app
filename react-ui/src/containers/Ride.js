@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 
 import RideDetails from "../components/RideDetails";
@@ -10,11 +11,12 @@ import FeedbackMessage from "../components/FeedbackMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormBookRide from "../components/FormBookRide";
 
-import { getRide, getUserBookingRide } from "../redux";
-import { LinkContainer } from "react-router-bootstrap";
 import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
 import MessageEmpty from "../components/MessageEmpty";
+import FormConfirmRide from "../components/FormConfirmRide";
+
+import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
 
 const Ride = () => {
   const { rideId } = useParams();
@@ -29,15 +31,22 @@ const Ride = () => {
     rideData,
     isloadingUserRideBookingList,
     userRideBookingData,
+    isLoadingRidesToConfirm,
+    ridesToConfirmData,
   } = useSelector((state) => state.ride);
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getRide(rideId));
       dispatch(getUserBookingRide(currentUser.id, rideId));
+      dispatch(getRidesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const rideToConfirm = () => {
+    return ridesToConfirmData.find((ride) => ride.id === parseInt(rideId));
+  };
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -99,10 +108,23 @@ const Ride = () => {
                     </Row>
                   </>
                 ) : userRideBookingData.length > 0 ? (
-                  // <UserBookingsList userRideBookingData={userRideBookingData} />
-
                   <Container className="my-3">
                     <hr className="w-75 mb-4 mx-auto" />
+
+                    {!isLoadingRidesToConfirm && rideToConfirm() ? (
+                      <>
+                        <Row>
+                          <Col>
+                            <h3 className="text-center">Review the ride</h3>
+                          </Col>
+                        </Row>
+
+                        <FormConfirmRide ride={rideToConfirm()} />
+
+                        <hr className="w-75 my-4 mx-auto" />
+                      </>
+                    ) : null}
+
                     <Row>
                       <Col>
                         <h3 className="me-2 mb-0">
@@ -157,13 +179,29 @@ const Ride = () => {
                   </Col>
                 </Row>
 
-                {/* If it is not a past ride, users can book */}
-                {!isDateInPast(rideData.ride.dateTime, new Date()) ? (
+                {/* If it is not a past ride, and if there are still */}
+                {/* seats left, users can book */}
+                {!isDateInPast(new Date(rideData.ride.dateTime), new Date()) &&
+                rideData.ride.seatsLeft > 0 ? (
                   <FormBookRide rideId={rideId} />
                 ) : null}
               </>
             ) : (
               <>
+                {!isLoadingRidesToConfirm && rideToConfirm() ? (
+                  <>
+                    <hr className="w-75 my-4 mx-auto" />
+
+                    <Row>
+                      <Col>
+                        <h3 className="text-center">Review the ride</h3>
+                      </Col>
+                    </Row>
+
+                    <FormConfirmRide ride={rideToConfirm()} />
+                  </>
+                ) : null}
+
                 <ManageDriverBooking rideId={rideId} />
 
                 <hr className="w-75 mx-auto" />

@@ -4,7 +4,8 @@ const isDateInPast = (firstDate, secondDate) => {
   let first = new Date(firstDate);
   let second = new Date(secondDate);
 
-  return first.setHours(0, 0, 0, 0) <= second.setHours(0, 0, 0, 0);
+  return first <= second;
+  // return first.setHours(0, 0, 0, 0) <= second.setHours(0, 0, 0, 0);
 };
 
 const initialState = {

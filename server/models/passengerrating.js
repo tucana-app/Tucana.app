@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       PassengerRating.belongsTo(models.User, {
-        foreignKey: "PassengerId",
         onDelete: "NO ACTION",
       });
 
@@ -28,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   PassengerRating.init(
     {
-      PassengerId: DataTypes.INTEGER,
+      UserId: DataTypes.INTEGER,
       DriverId: DataTypes.INTEGER,
       RideId: DataTypes.INTEGER,
       BookingId: DataTypes.INTEGER,

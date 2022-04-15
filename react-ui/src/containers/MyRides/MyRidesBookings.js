@@ -63,9 +63,6 @@ const MyRidesBookings = () => {
                 {driverBookingsData.map((booking, index) => (
                   <Row
                     className="justify-content-center justify-content-md-start justify-content-lg-center align-items-center border border-start-0 border-end-0 py-3 mx-1 mx-sm-2"
-                    data-aos="fade-zoom-in"
-                    data-aos-delay={index * 150}
-                    data-aos-once="true"
                     key={index}
                   >
                     <Col xs={12}>

@@ -42,7 +42,7 @@ function Toasts() {
           className=""
           delay={toastDelay}
           data-aos={aosToastAnimation}
-          bg="danger"
+          bg="warning"
           autohide
         >
           <Toast.Header>

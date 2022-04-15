@@ -9,6 +9,7 @@ import {
   faInbox,
   faLifeRing,
   faTicketAlt,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -16,7 +17,9 @@ import {
   getDriverRides,
   getUserBookings,
   getDriverBookings,
+  getRidesToConfirm,
 } from "../../redux";
+
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 const MyRides = () => {
@@ -32,6 +35,8 @@ const MyRides = () => {
     driverBookingsData,
     isLoadingUserBookings,
     userBookingsData,
+    isLoadingRidesToConfirm,
+    ridesToConfirmData,
   } = useSelector((state) => state.ride);
 
   const countUserBookings = (userBookingsData) => {
@@ -52,6 +57,7 @@ const MyRides = () => {
       dispatch(getDriverRides(currentUser.id));
       dispatch(getUserBookings(currentUser.id));
       dispatch(getDriverBookings(currentUser.id));
+      dispatch(getRidesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -61,13 +67,42 @@ const MyRides = () => {
   }
 
   return (
-    <Container
-      fluid
-      className="p-0"
-      data-aos="fade-in"
-      data-aos-duration="1000"
-    >
+    <Container fluid className="p-0">
       <ListGroup variant="flush">
+        {isLoadingRidesToConfirm ? (
+          <LoadingSpinner />
+        ) : ridesToConfirmData.length ? (
+          <>
+            <Link
+              to="/rides/rides-to-confirm"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="border border-start-0 border-end-0 ">
+                <div className="d-inline-flex justify-content-between w-100 py-2">
+                  <span className="fw-bold">
+                    <FontAwesomeIcon
+                      icon={faClock}
+                      className="text-warning me-3"
+                    />{" "}
+                    Rides to confirm
+                    <Badge
+                      bg="warning"
+                      className="text-dark align-text-top ms-2"
+                    >
+                      {ridesToConfirmData.length}
+                    </Badge>
+                  </span>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
+              <p className="py-2 mb-0"></p>
+            </ListGroup.Item>
+          </>
+        ) : null}
+
         <ListGroup.Item className="border-0">
           <p className="lead py-2 mb-0">Passenger</p>
         </ListGroup.Item>
@@ -78,17 +113,14 @@ const MyRides = () => {
               <span>
                 <FontAwesomeIcon
                   icon={faTicketAlt}
-                  className="text-warning me-3"
+                  className="text-primary me-3"
                 />{" "}
                 My bookings
                 {isLoadingUserBookings ? (
                   <LoadingSpinner />
                 ) : userBookingsData.length > 0 ? (
                   countUserBookings(userBookingsData) ? (
-                    <Badge
-                      bg="warning"
-                      className="text-dark align-text-top ms-2"
-                    >
+                    <Badge bg="primary" className="align-text-top ms-2">
                       {countUserBookings(userBookingsData)}
                     </Badge>
                   ) : null
