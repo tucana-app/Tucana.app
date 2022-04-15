@@ -3,6 +3,7 @@ const path = require("path");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 const cors = require("cors");
+const sslRedirect = require("heroku-ssl-redirect").default;
 
 const isDev = process.env.NODE_ENV !== "production";
 const PORT = process.env.PORT || 5000;
@@ -12,7 +13,7 @@ if (!isDev && cluster.isMaster) {
   console.error(`Node cluster master ${process.pid} is running`);
 
   // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
+  for (let i = 0; i < numCPUs.cpus().length; i++) {
     cluster.fork();
   }
 
@@ -24,6 +25,7 @@ if (!isDev && cluster.isMaster) {
 } else {
   const app = express();
 
+  app.use(sslRedirect());
   app.use(cors());
 
   // app.use(logger("dev"));
