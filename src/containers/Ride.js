@@ -1,0 +1,388 @@
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useParams } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown,
+  faChevronRight,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import dateFormat from "dateformat";
+
+import ManageDriverBooking from "../components/ManageDriverBooking";
+import LoadingSpinner from "../components/LoadingSpinner";
+import FormBookRide from "../components/FormBookRide";
+
+import PassengersDetails from "../components/PassengersDetails";
+import GoBack from "../components/GoBack";
+import MessageEmpty from "../components/MessageEmpty";
+import FormConfirmRide from "../components/FormConfirmRide";
+
+import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
+
+const Ride = () => {
+  const { rideId } = useParams();
+
+  const dispatch = useDispatch();
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { rideStatusVariant, bookingStatusVariant, isDateInPast } = useSelector(
+    (state) => state.global
+  );
+  const {
+    isloadingRide,
+    rideData,
+    isloadingUserRideBookingList,
+    userRideBookingData,
+    isLoadingRidesToConfirm,
+    ridesToConfirmData,
+  } = useSelector((state) => state.ride);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getRide(rideId));
+      dispatch(getUserBookingRide(currentUser.id, rideId));
+      dispatch(getRidesToConfirm(currentUser.id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const rideToConfirm = () => {
+    return ridesToConfirmData.find((ride) => ride.id === parseInt(rideId));
+  };
+
+  if (!isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
+  return (
+    <div>
+      <GoBack />
+
+      <Container className="mt-4">
+        {isloadingRide ? (
+          <Row>
+            <Col className="text-center">
+              <LoadingSpinner />
+            </Col>
+          </Row>
+        ) : rideData.ride ? (
+          <div data-aos="fade-in">
+            <Row>
+              <Col>
+                <h1 className="text-center">Ride</h1>
+              </Col>
+            </Row>
+            <Row className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                className="border shadow-sm rounded mx-auto"
+              >
+                <Container className="p-3">
+                  <Row className="mb-2">
+                    <Col className="text-center">
+                      <p className="mb-0">
+                        {dateFormat(rideData.ride.dateTime, "dd/mm/yyyy")}
+                      </p>
+                      <p className="fw-bold text-success mb-0">
+                        {dateFormat(rideData.ride.dateTime, "hh:mm")}
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="text-center">
+                      <h2 className="fw-bold mb-0">
+                        {rideData.ride.cityOrigin}
+                      </h2>
+                      <p className="small mb-0">
+                        {rideData.ride.provinceOrigin}
+                      </p>
+
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="text-success"
+                      />
+
+                      <h2 className="fw-bold mb-0">
+                        {rideData.ride.cityDestination}
+                      </h2>
+                      <p className="small mb-0">
+                        {rideData.ride.provinceDestination}
+                      </p>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            {!isLoadingRidesToConfirm && rideToConfirm() ? (
+              <Row className="mb-2 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="border border-2 border-warning shadow-sm rounded mx-auto"
+                >
+                  <Container className="py-3">
+                    <Row>
+                      <Col>
+                        <h3 className="text-center">Review the ride</h3>
+                        <FormConfirmRide ride={rideToConfirm()} />
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
+            ) : null}
+
+            <Row className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                className="border shadow-sm rounded mx-auto"
+              >
+                <Container className="p-3">
+                  <Row className="align-items-center">
+                    <Col xs={6} className="text-center">
+                      <p className="mb-0">Seats available:</p>
+                      <p className="mb-0">
+                        <span className="text-success">
+                          {rideData.ride.seatsLeft}
+                        </span>{" "}
+                        / {rideData.ride.seatsAvailable}
+                      </p>
+                    </Col>
+                    <Col xs={6} className="text-center">
+                      <p className="mb-0">
+                        Status:{" "}
+                        <span
+                          className={`text-${rideStatusVariant(
+                            rideData.ride.RideStatus.id
+                          )}`}
+                        >
+                          {rideData.ride.RideStatus.name}
+                        </span>
+                      </p>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                className="border shadow-sm rounded mx-auto"
+              >
+                <Container className="p-3">
+                  <LinkContainer to="/coming-soon" className="cursor-pointer">
+                    <Row className="align-items-center">
+                      <Col xs={3}>
+                        <FontAwesomeIcon
+                          icon={faCircle}
+                          className="text-secondary me-2"
+                          size="3x"
+                        />
+                      </Col>
+                      <Col xs={6} className="text-start">
+                        <p className="mb-0">
+                          {rideData.ride.Driver.User.username}
+                        </p>
+                        <p className="mb-0">
+                          <FontAwesomeIcon
+                            icon={faStar}
+                            className="text-warning"
+                            size={"sm"}
+                          />{" "}
+                          <span>-</span>
+                        </p>
+                      </Col>
+                      <Col className="text-end">
+                        <FontAwesomeIcon icon={faChevronRight} />
+                      </Col>
+                    </Row>
+                  </LinkContainer>
+                  <Row>
+                    <Col>
+                      {!(rideData.ride.comment === "") ? (
+                        <>
+                          <hr className="mt-2" />
+                          <p className="mb-0">
+                            Comment: {rideData.ride.comment}
+                          </p>
+                        </>
+                      ) : null}
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            {/* Display past booking for this ride by this user */}
+            {!(rideData.ride.DriverId === currentUser.id) ? (
+              <>
+                {!isloadingUserRideBookingList &&
+                userRideBookingData.length > 0 ? (
+                  <Row className="mb-2 mx-1 mx-sm-0">
+                    <Col
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      className="border shadow-sm rounded mx-auto py-3"
+                    >
+                      <Container fluid className="px-0">
+                        <Row>
+                          <Col>
+                            <p className="lead mb-0">Previous bookings</p>
+                          </Col>
+                        </Row>
+
+                        {userRideBookingData.map((booking, index) => (
+                          <LinkContainer
+                            to={`/booking/${booking.id}`}
+                            className="cursor-pointer"
+                            key={index}
+                          >
+                            <Row>
+                              <Col xs={11}>
+                                {index + 1}) Seats:{" "}
+                                <span className="text-success">
+                                  {booking.seatsBooked}
+                                </span>{" "}
+                                ({dateFormat(booking.createdAt, "dd/mm")}) |
+                                Status:{" "}
+                                <span
+                                  className={`text-${bookingStatusVariant(
+                                    booking.BookingStatusId
+                                  )}`}
+                                >
+                                  {booking.BookingStatus.name}
+                                </span>
+                              </Col>
+                              <Col xs={1} className="text-start ps-0">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                              </Col>
+                            </Row>
+                          </LinkContainer>
+                        ))}
+                      </Container>
+                    </Col>
+                  </Row>
+                ) : null}
+
+                {/* If it is not a past ride, and if there are still */}
+                {/* seats left, users can book */}
+                {!isDateInPast(new Date(rideData.ride.dateTime), new Date()) &&
+                rideData.ride.seatsLeft > 0 ? (
+                  <Row className="mb-2 mx-1 mx-sm-0">
+                    <Col
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      className="border shadow-sm rounded mx-auto"
+                    >
+                      <Container fluid className="py-3">
+                        <FormBookRide rideId={rideId} />
+                      </Container>
+                    </Col>
+                  </Row>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <Row className="mb-2 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    className="border shadow-sm rounded mx-auto"
+                  >
+                    <Container fluid className="py-3">
+                      <Row>
+                        <Col>
+                          <p className="lead mb-0">
+                            Manage your booking request(s)
+                          </p>
+                        </Col>
+                      </Row>
+
+                      <ManageDriverBooking rideId={rideId} />
+                    </Container>
+                  </Col>
+                </Row>
+
+                {!isDateInPast(new Date(rideData.ride.dateTime), new Date()) &&
+                rideData.ride.seatsLeft === 0 ? (
+                  <Row className="mb-2 mx-1 mx-sm-0">
+                    <Col
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      className="border shadow-sm rounded mx-auto"
+                    >
+                      <Container fluid className="py-3">
+                        <Row>
+                          <Col className="text-center ">
+                            <h1 className="text-info fw-light">
+                              Congratulations 🎉
+                            </h1>
+                            <p className="lead">
+                              There are no more seats available for this ride!
+                            </p>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Col>
+                  </Row>
+                ) : null}
+
+                <Row className="mb-2 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    className="border shadow-sm rounded mx-auto"
+                  >
+                    <Container fluid className="py-3">
+                      <Row>
+                        <Col>
+                          <p className="lead mb-0">Passengers details</p>
+                        </Col>
+                      </Row>
+
+                      <PassengersDetails rideId={rideId} />
+                    </Container>
+                  </Col>
+                </Row>
+              </>
+            )}
+          </div>
+        ) : (
+          <Row>
+            <Col className="text-center">
+              <MessageEmpty title="ride" />
+            </Col>
+          </Row>
+        )}
+      </Container>
+    </div>
+  );
+};
+
+export default Ride;

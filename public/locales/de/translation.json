@@ -1,0 +1,28 @@
+{
+  "homePage": {
+    "arrivalPlace": "",
+    "chooseLocation": "",
+    "departurePlace": "",
+    "logIn": "",
+    "search": "",
+    "signUp": ""
+  },
+  "navigationbar": {
+    "dashboard": "",
+    "findRide": "",
+    "home": "",
+    "myAccount": "",
+    "myRides": "",
+    "offerRide": ""
+  },
+  "rideSearch": {
+    "dateTimePickUp": "",
+    "fieldMandatoryLabel": "",
+    "from": "",
+    "noResults": "",
+    "seatsAvailable": "",
+    "searchLocation": "",
+    "submitSearch": "",
+    "to": ""
+  }
+}

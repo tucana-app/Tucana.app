@@ -1,0 +1,20 @@
+// Importing the custom fonts and custom colors
+@import "./colors";
+@import "./fonts";
+
+// Import all CSS librairies and its default variables
+@import "./vendor/bootstrap"; // To customize Bootstrap CSS
+@import "~bootstrap/scss/bootstrap";
+@import "~aos/src/sass/aos";
+@import "~animate.css/animate.min";
+@import "~@csstools/normalize.css/normalize.css";
+@import "~react-tabs/style/react-tabs";
+@import "~rfs/scss";
+@import "~hover.css/scss/hover.scss";
+// @import "~react-bootstrap-selectbox/dist/index.css";
+
+// Import all the SCSS rules for each components and containers
+@import "./application/NavigationBar";
+@import "./application/FindRide";
+@import "./custom";
+@import "./messages";
