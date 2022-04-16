@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./i18n";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import HttpsRedirect from "react-https-redirect";
 
 // Loading Redux
 import { Provider } from "react-redux";
@@ -13,9 +14,11 @@ AOS.init();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <HttpsRedirect>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </HttpsRedirect>
   </React.StrictMode>,
   document.getElementById("root")
 );

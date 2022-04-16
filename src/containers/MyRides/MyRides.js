@@ -3,14 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Badge, Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCar,
-  faChevronRight,
-  faInbox,
-  faLifeRing,
-  faTicketAlt,
-  faClock,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import {
@@ -69,95 +62,75 @@ const MyRides = () => {
   return (
     <Container fluid className="p-0">
       <ListGroup variant="flush">
-        {isLoadingRidesToConfirm ? (
-          <LoadingSpinner />
-        ) : ridesToConfirmData.length ? (
-          <>
+        {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+          <div data-aos="fade-up">
             <Link
               to="/rides/rides-to-confirm"
               className="text-light text-decoration-none"
             >
-              <ListGroup.Item className="border border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span className="fw-bold">
-                    <FontAwesomeIcon
-                      icon={faClock}
-                      className="text-warning me-3"
-                    />{" "}
-                    Rides to confirm
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <div>
+                    <span className="fw-bold">Rides to confirm</span>
                     <Badge
                       bg="warning"
-                      className="text-dark align-text-top ms-2"
+                      className="text-dark align-text-top ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
                     >
                       {ridesToConfirmData.length}
                     </Badge>
-                  </span>
+                  </div>
                   <FontAwesomeIcon icon={faChevronRight} />
                 </div>
               </ListGroup.Item>
             </Link>
 
-            <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
-              <p className="py-2 mb-0"></p>
-            </ListGroup.Item>
-          </>
+            <hr className="my-2" />
+          </div>
         ) : null}
-
-        <ListGroup.Item className="border-0">
-          <p className="lead py-2 mb-0">Passenger</p>
-        </ListGroup.Item>
-
         <Link to="/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="border border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-2">
-              <span>
-                <FontAwesomeIcon
-                  icon={faTicketAlt}
-                  className="text-primary me-3"
-                />{" "}
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <div>
                 My bookings
-                {isLoadingUserBookings ? (
-                  <LoadingSpinner />
-                ) : userBookingsData.length > 0 ? (
+                {userBookingsData.length > 0 ? (
                   countUserBookings(userBookingsData) ? (
                     <Badge bg="primary" className="align-text-top ms-2">
-                      {countUserBookings(userBookingsData)}
+                      {isLoadingUserBookings ? (
+                        <LoadingSpinner size="sm" />
+                      ) : (
+                        countUserBookings(userBookingsData)
+                      )}
                     </Badge>
                   ) : null
                 ) : null}
-              </span>
+              </div>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
         </Link>
 
-        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
-          <p className="py-2 mb-0"></p>
-        </ListGroup.Item>
-
-        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
-          <p className="lead py-2 mb-0">Driver</p>
-        </ListGroup.Item>
+        <hr className="my-2" />
 
         <Link to="/my-rides/driver" className="text-light text-decoration-none">
-          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0">
-            <div className="d-inline-flex justify-content-between w-100 py-2">
-              <span>
-                <FontAwesomeIcon icon={faCar} className="text-success me-3" />{" "}
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <div>
                 Ride offered
-                {isLoadingDriverRides ? (
-                  <LoadingSpinner />
-                ) : driverRidesData.length > 0 ? (
+                {driverRidesData.length > 0 ? (
                   countDriverRides(driverRidesData) ? (
                     <Badge
                       bg="success"
                       className="text-dark align-text-top ms-2"
                     >
-                      {countDriverRides(driverRidesData)}
+                      {isLoadingDriverRides ? (
+                        <LoadingSpinner size="sm" />
+                      ) : (
+                        countDriverRides(driverRidesData)
+                      )}
                     </Badge>
                   ) : null
                 ) : null}
-              </span>
+              </div>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
@@ -167,44 +140,39 @@ const MyRides = () => {
           to="/my-rides/bookings"
           className="text-light text-decoration-none"
         >
-          <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-2">
-              <span>
-                <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
+          <ListGroup.Item className="border-0 ">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <div>
                 Booking received
-                {isLoadingDriverBookings ? (
-                  <LoadingSpinner />
-                ) : driverBookingsData.length > 0 ? (
+                {driverBookingsData.length > 0 ? (
                   countDriverBookings(driverBookingsData) ? (
                     <Badge bg="info" className="text-dark align-text-top ms-2">
-                      {countDriverBookings(driverBookingsData)}
+                      {isLoadingDriverBookings ? (
+                        <LoadingSpinner size="sm" />
+                      ) : (
+                        countDriverBookings(driverBookingsData)
+                      )}
                     </Badge>
                   ) : null
                 ) : null}
-              </span>
+              </div>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
         </Link>
 
-        <ListGroup.Item className="border-0">
-          <p className="py-2 mb-0"></p>
-        </ListGroup.Item>
+        <hr className="my-2" />
 
         <Link to="/help" className="text-light text-decoration-none">
-          <ListGroup.Item className="border border-start-0 border-end-0 ">
-            <div className="d-inline-flex justify-content-between w-100 py-2">
-              <span>
-                <FontAwesomeIcon
-                  icon={faLifeRing}
-                  className="text-danger me-3"
-                />{" "}
-                Help
-              </span>
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              Help
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
           </ListGroup.Item>
         </Link>
+
+        <hr className="my-2" />
       </ListGroup>
     </Container>
   );

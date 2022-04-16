@@ -10,7 +10,7 @@ function LoadingSpinner(props) {
       role="status"
       as="span"
       aria-hidden="true"
-      className="align-middle me-2"
+      className="align-middle"
       size={size}
     />
   );
