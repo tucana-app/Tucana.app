@@ -81,19 +81,18 @@ const OfferRide = () => {
       <Row className="mb-3">
         <Col className="text-center">
           <h1 className="text-success font-title">Offer a ride</h1>
-          <p className="lead">Thank you for helping the community!</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12} sm={10} lg={8} xl={6} className="mx-auto">
-          <p>
-            Please fill up the submit form. Visit{" "}
+          <p className="lead mb-0">Thank you for helping the community!</p>
+          <p className="text-center">
+            Visit{" "}
             <Link to="/coming-soon" className="text-success">
               this link
             </Link>{" "}
             for more info.
           </p>
-
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} sm={10} lg={8} xl={6} className="mx-auto">
           <Formik
             validationSchema={schema}
             onSubmit={handleSubmit}
@@ -126,7 +125,7 @@ const OfferRide = () => {
                         icon={faMapMarkerAlt}
                         className="text-success me-2"
                       />
-                      Your origin
+                      Origin
                     </p>
                     <div className="p-2 p-md-3 border rounded">
                       <Form.Group className="mb-3">
@@ -187,7 +186,7 @@ const OfferRide = () => {
                         icon={faMapMarker}
                         className="text-danger me-2"
                       />
-                      Your destination
+                      Destination
                     </p>
                     <div className="p-2 p-md-3 border rounded">
                       <Form.Group className="mb-3">

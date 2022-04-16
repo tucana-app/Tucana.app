@@ -117,7 +117,7 @@ const FormBookRide = () => {
                     {isSubmitting || isloadingBookingRide ? (
                       <LoadingSpinner />
                     ) : null}
-                    Book
+                    <span className="ms-2">Book</span>
                   </Button>
                 </Form.Group>
               </Col>

@@ -61,7 +61,7 @@ const PassengersDetails = ({ rideId, booking }) => {
             <Col>
               <p>
                 You have <span className="text-success">{totalPassengers}</span>{" "}
-                passenger(s) of a total of{" "}
+                passenger(s) for a total of{" "}
                 <span className="text-success">
                   {passengersDetailsData.length}
                 </span>{" "}

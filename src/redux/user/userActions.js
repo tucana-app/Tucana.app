@@ -1,6 +1,5 @@
 import axios from "axios";
 import userTypes from "./userTypes";
-import bcrypt from "bcryptjs";
 
 import {
   setfeedback,
@@ -276,11 +275,9 @@ export const resetPassword = (formValues, uuid) => {
     dispatch(resetPasswordRequested());
 
     if (formValues.password1 === formValues.password2) {
-      const hashedPassword = bcrypt.hashSync(formValues.password1, 10);
-
       axios
         .put(URL_API + "/auth/reset-password", {
-          hashedPassword,
+          password: formValues.password1,
           uuid,
         })
         .then((response) => {

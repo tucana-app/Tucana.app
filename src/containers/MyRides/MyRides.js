@@ -61,7 +61,7 @@ const MyRides = () => {
 
   return (
     <Container fluid className="p-0">
-      <ListGroup variant="flush">
+      <ListGroup variant="flush" className="pt-2">
         {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
           <div data-aos="fade-up">
             <Link
@@ -74,7 +74,7 @@ const MyRides = () => {
                     <span className="fw-bold">Rides to confirm</span>
                     <Badge
                       bg="warning"
-                      className="text-dark align-text-top ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
+                      className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
                     >
                       {ridesToConfirmData.length}
                     </Badge>
@@ -94,7 +94,7 @@ const MyRides = () => {
                 My bookings
                 {userBookingsData.length > 0 ? (
                   countUserBookings(userBookingsData) ? (
-                    <Badge bg="primary" className="align-text-top ms-2">
+                    <Badge bg="primary" className="ms-2">
                       {isLoadingUserBookings ? (
                         <LoadingSpinner size="sm" />
                       ) : (
@@ -118,10 +118,7 @@ const MyRides = () => {
                 Ride offered
                 {driverRidesData.length > 0 ? (
                   countDriverRides(driverRidesData) ? (
-                    <Badge
-                      bg="success"
-                      className="text-dark align-text-top ms-2"
-                    >
+                    <Badge bg="success" className="text-dark ms-2">
                       {isLoadingDriverRides ? (
                         <LoadingSpinner size="sm" />
                       ) : (
@@ -146,7 +143,7 @@ const MyRides = () => {
                 Booking received
                 {driverBookingsData.length > 0 ? (
                   countDriverBookings(driverBookingsData) ? (
-                    <Badge bg="info" className="text-dark align-text-top ms-2">
+                    <Badge bg="info" className="text-dark ms-2">
                       {isLoadingDriverBookings ? (
                         <LoadingSpinner size="sm" />
                       ) : (

@@ -3,8 +3,12 @@ import { useSelector } from "react-redux";
 import { IndexLinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faComments, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlusSquare,
+  faComments,
+  faUser,
+} from "@fortawesome/free-regular-svg-icons";
 import { useTranslation } from "react-i18next";
 
 import logo_nav_bar from "../assets/images/logo_nav_bar.png";
@@ -29,7 +33,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/find-ride" href="/find-ride">
             <Nav.Link className="font-title text-center ps-0">
               <FontAwesomeIcon
-                icon={faSearch}
+                icon={faMagnifyingGlass}
                 size="5x"
                 className="icon-nav-bar"
               />
@@ -41,7 +45,7 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/offer-ride" href="/offer-ride">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faPlus} className="icon-nav-bar" />
+              <FontAwesomeIcon icon={faPlusSquare} className="icon-nav-bar" />
               <p className="small d-md-screen mb-0">
                 {t("translation:navigationbar.offerRide")}
               </p>
