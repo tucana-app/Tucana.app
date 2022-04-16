@@ -55,15 +55,26 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "carpool",
+    "costa rica",
+    "ride",
+    "share"
+  ],
+  "author": "Ride.CR",
+  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-react-app": "^6.0.0",
     "sass": "^1.35.2",
     "sass-loader": "^7.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ridecr/Ride.CR.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ridecr/Ride.CR/issues"
   }
 }
