@@ -18,7 +18,7 @@ const BookingDetails = () => {
         <Col xs={6} lg={4} className="mb-3">
           <p className="mb-0">
             Passenger:{" "}
-            <span className="text-success">{bookingData.User.username}</span>
+            <span className="text-success">{bookingData.User.firstName}</span>
           </p>
           <p className="mb-0">
             Seats booked:{" "}

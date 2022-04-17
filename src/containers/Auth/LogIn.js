@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -48,12 +49,12 @@ const Login = () => {
     <Container className="my-5" data-aos="fade-in">
       <Row className="mb-4">
         <Col className="text-center">
-          <h1 className="text-info">Welcome back</h1>
+          <h1 className="text-success">Welcome back</h1>
           <p className="lead">We are happy to see you again</p>
         </Col>
       </Row>
       <Row>
-        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+        <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
           <Formik
             validationSchema={schema}
             onSubmit={handleSubmit}
@@ -143,8 +144,17 @@ const Login = () => {
                 ) : null}
 
                 <Row>
-                  <Col>
-                    <Form.Group className="text-end">
+                  <Col className="d-inline-flex justify-content-end">
+                    <LinkContainer to="/signup">
+                      <Button
+                        variant="outline-success"
+                        className="rounded-0 me-5"
+                        size="lg"
+                      >
+                        Sign Up
+                      </Button>
+                    </LinkContainer>
+                    <Form.Group>
                       <Button
                         variant="success"
                         size="lg"

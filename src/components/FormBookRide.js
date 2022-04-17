@@ -29,102 +29,94 @@ const FormBookRide = () => {
 
   return (
     <>
-      {isloadingUserRideBookingList ? (
-        <Row>
-          <Col className="text-center">
-            <LoadingSpinner />
-          </Col>
-        </Row>
-      ) : userRideBookingData.length > 0 ? (
+      {!isloadingUserRideBookingList && userRideBookingData.length > 0 ? (
         <Row>
           <Col className="mx-auto">
-            <p className="small text-warning">
+            <p className="small text-warning mb-0">
               <FontAwesomeIcon icon={faExclamationTriangle} className="me-2" />
-              You already have booking(s) for this ride. You don't have to book
-              another one to notify the driver, but you can make another booking
-              if you need to add more people
+              You already have booking(s) for this ride
             </p>
           </Col>
         </Row>
       ) : null}
 
-      <Formik
-        validationSchema={rideData.schema}
-        onSubmit={handleSubmit}
-        initialValues={{
-          seatsNeeded: 0,
-        }}
-      >
-        {({
-          handleSubmit,
-          handleChange,
-          // handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
-          isSubmitting,
-        }) => (
-          <Form noValidate onSubmit={handleSubmit} className="">
-            <Row>
-              <Col className="mx-auto">
-                <p className="lead mb-1">Book this ride</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="border py-2 mx-auto">
-                <Form.Group className="mx-auto mb-3">
-                  <Form.Label>
-                    <FontAwesomeIcon
-                      icon={faCarAlt}
-                      className="text-success me-2"
-                    />
-                    <span className="d-xs-screen">Passengers</span>
-                    <span className="d-md-screen">Number of passenger</span>
-                    <span className="text-danger">*</span>
-                  </Form.Label>
-                  <Form.Select
-                    name="seatsNeeded"
-                    className="rounded-0"
-                    onChange={handleChange}
-                    isInvalid={!!errors.seatsNeeded}
-                    isValid={touched.seatsNeeded && !errors.seatsNeeded}
-                    disabled={
-                      isSubmitting || rideData.ride.DriverId === currentUser.id
-                    }
-                  >
-                    <option value="0">Select an option</option>
-                    {rideData.optionsSeatsNeeded}
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.seatsNeeded}
-                  </Form.Control.Feedback>
-                </Form.Group>
+      <Row>
+        <Col>
+          <Formik
+            validationSchema={rideData.schema}
+            onSubmit={handleSubmit}
+            initialValues={{
+              seatsNeeded: 0,
+            }}
+          >
+            {({
+              handleSubmit,
+              handleChange,
+              // handleBlur,
+              values,
+              touched,
+              isValid,
+              errors,
+              isSubmitting,
+            }) => (
+              <Form noValidate onSubmit={handleSubmit} className="">
+                <Row>
+                  <Col className="py-2 mx-auto">
+                    <Form.Group className="mx-auto mb-3">
+                      <Form.Label>
+                        <FontAwesomeIcon
+                          icon={faCarAlt}
+                          className="text-success me-2"
+                        />
+                        <span className="d-xs-screen">Passengers</span>
+                        <span className="d-md-screen">Number of passenger</span>
+                        <span className="text-danger">*</span>
+                      </Form.Label>
+                      <Form.Select
+                        name="seatsNeeded"
+                        className="rounded-0"
+                        onChange={handleChange}
+                        isInvalid={!!errors.seatsNeeded}
+                        isValid={touched.seatsNeeded && !errors.seatsNeeded}
+                        disabled={
+                          isSubmitting ||
+                          rideData.ride.DriverId === currentUser.id
+                        }
+                      >
+                        <option value="0">Select an option</option>
+                        {rideData.optionsSeatsNeeded}
+                      </Form.Select>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.seatsNeeded}
+                      </Form.Control.Feedback>
+                    </Form.Group>
 
-                <Form.Group className="text-end mx-auto">
-                  <span>Everything looks good? </span>
-                  <Button
-                    variant="success"
-                    size="lg"
-                    className="rounded-0 text-uppercase fw-bold"
-                    type="submit"
-                    disabled={
-                      isSubmitting ||
-                      isloadingBookingRide ||
-                      rideData.ride.DriverId === currentUser.id
-                    }
-                  >
-                    {isSubmitting || isloadingBookingRide ? (
-                      <LoadingSpinner />
-                    ) : null}
-                    <span className="ms-2">Book</span>
-                  </Button>
-                </Form.Group>
-              </Col>
-            </Row>
-          </Form>
-        )}
-      </Formik>
+                    <Form.Group className="text-end mx-auto">
+                      <span>Everything looks good? </span>
+                      <Button
+                        variant="success"
+                        size="lg"
+                        className="rounded-0"
+                        type="submit"
+                        disabled={
+                          isSubmitting ||
+                          isloadingBookingRide ||
+                          rideData.ride.DriverId === currentUser.id
+                        }
+                      >
+                        {isSubmitting || isloadingBookingRide ? (
+                          <LoadingSpinner />
+                        ) : null}
+                        Book
+                      </Button>
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Form>
+            )}
+          </Formik>
+        </Col>
+      </Row>
     </>
   );
 };

@@ -54,7 +54,7 @@ const Booking = () => {
                   <h1 className="display-4 font-title">
                     Booking #{bookingData.id}:{" "}
                     <span className="text-success">
-                      {bookingData.User ? bookingData.User.username : null}
+                      {bookingData.User ? bookingData.User.firstName : null}
                     </span>{" "}
                     booked{" "}
                     <span className="text-success">
