@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 
 import dateFormat from "dateformat";
 
@@ -37,7 +36,7 @@ function ManagePassengerBooking({ rideId }) {
                   </span>
                 </Col>
                 <Col xs={1} className="text-start ps-0">
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </Col>
               </Row>
             </LinkContainer>

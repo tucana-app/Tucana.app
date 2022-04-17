@@ -4,12 +4,9 @@ import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown,
-  faChevronRight,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faStar } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
@@ -195,7 +192,7 @@ const Ride = () => {
                         to="/coming-soon"
                         className="cursor-pointer"
                       >
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-3">
                           <Col xs={3} md={2} className="text-end pe-0">
                             <FontAwesomeIcon
                               icon={faCircle}
@@ -213,14 +210,24 @@ const Ride = () => {
                                 className="text-warning"
                                 size={"sm"}
                               />{" "}
-                              <span>- / 5 | - ratings</span>
+                              <span>-/5 | - ratings</span>
                             </p>
                           </Col>
                           <Col className="text-end">
-                            <FontAwesomeIcon icon={faChevronRight} />
+                            <ChevronRightIcon
+                              size={24}
+                              verticalAlign="middle"
+                            />
                           </Col>
                         </Row>
                       </LinkContainer>
+                      <Row>
+                        <Col>
+                          <p className="link-success mb-0">
+                            Contact {rideData.ride.Driver.User.firstName}
+                          </p>
+                        </Col>
+                      </Row>
                       <Row>
                         <Col>
                           {!(rideData.ride.comment === "") ? (

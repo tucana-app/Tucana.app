@@ -6,7 +6,7 @@ function LoadingSpinner(props) {
 
   return (
     <Spinner
-      animation="border"
+      animation="grow"
       role="status"
       as="span"
       aria-hidden="true"

@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -95,7 +96,7 @@ function Ratings() {
                     {ride.cityOrigin} - {ride.cityDestination} (
                     {dateFormat(ride.dateTime, "dd/mm/yyyy")})
                   </span>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -117,7 +118,7 @@ function Ratings() {
                     {ride.cityOrigin} - {ride.cityDestination} (
                     {dateFormat(ride.dateTime, "dd/mm/yyyy")})
                   </span>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>

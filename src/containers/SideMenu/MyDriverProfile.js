@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 
@@ -40,8 +39,7 @@ function MyDriverProfile(props) {
           <Col>
             <LinkContainer to="/my-profile/driver/ratings">
               <Button variant="warning" size={"lg"} className="rounded-0">
-                Ratings{" "}
-                <FontAwesomeIcon icon={faChevronRight} className="ms-2" />
+                Ratings <ChevronRightIcon size={24} verticalAlign="middle" />
               </Button>
             </LinkContainer>
           </Col>

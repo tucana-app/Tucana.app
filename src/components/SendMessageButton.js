@@ -41,13 +41,7 @@ function SendMessageButton({ booking }) {
         ) : (
           <FontAwesomeIcon icon={faComment} />
         )}
-        <span className="d-md-screen ms-2">
-          Message
-          {/* to{" "}
-          {booking.UserId === currentUser.id
-            ? booking.Ride.Driver.User.firstName
-            : booking.User.firstName} */}
-        </span>
+        <span className="d-md-screen ms-2">Contact</span>
       </Button>
     </>
   );

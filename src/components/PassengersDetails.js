@@ -93,7 +93,7 @@ const PassengersDetails = ({ rideId, booking }) => {
       ) : (
         <Row>
           <Col>
-            <p className="lead">You do not have passengers for this ride yet</p>
+            <p className="mb-0">You do not have passengers for this ride yet</p>
           </Col>
         </Row>
       )}

@@ -8,8 +8,8 @@ import {
   faCheckCircle,
   faTimesCircle,
   faUserCircle,
-  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
@@ -59,7 +59,7 @@ function MyPassengerProfile(props) {
           </Col>
           <Col xs={12} sm={4}>
             <h4>
-              <span className="text-secondary">-</span> / 5
+              <span className="text-secondary">-</span>/5
             </h4>
           </Col>
         </Row>
@@ -67,55 +67,54 @@ function MyPassengerProfile(props) {
         <Row className="text-center mb-5">
           <Col>
             <LinkContainer to="/my-profile/passenger/ratings">
-              <Button variant="warning" size={"lg"} className="rounded-0">
-                Ratings{" "}
-                <FontAwesomeIcon icon={faChevronRight} className="ms-2" />
+              <Button variant="warning" size={"lg"}>
+                Ratings <ChevronRightIcon size={24} verticalAlign="middle" />
               </Button>
             </LinkContainer>
           </Col>
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Username</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             <span>{currentUser.username}</span>
           </Col>
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Email</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             <span>{currentUser.email}</span>
           </Col>
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Phone number</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             <span>{currentUser.phoneNumber}</span>
           </Col>
         </Row>
 
         {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Biography</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             <span>{currentUser.biography}</span>
           </Col>
         </Row> */}
 
         {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Phone verified</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             {currentUser.phoneConfirmed ? (
               <span className="text-success">
                 <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
@@ -131,10 +130,10 @@ function MyPassengerProfile(props) {
         </Row> */}
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Driver's profile verified</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             {currentUser.Driver && currentUser.Driver.verified ? (
               <span className="text-success">
                 <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
@@ -150,10 +149,10 @@ function MyPassengerProfile(props) {
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-5">
-          <Col xs={12} sm={4} className="text-md-end">
+          <Col className="text-end">
             <span className="text-secondary">Member since</span>
           </Col>
-          <Col xs={12} sm={4}>
+          <Col className="text-start">
             {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
           </Col>
         </Row>

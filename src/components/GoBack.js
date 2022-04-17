@@ -19,7 +19,7 @@ function GoBack(props) {
         <div className="d-inline-flex justify-content-between w-100">
           <span>
             <ChevronLeftIcon
-              size={28}
+              size={24}
               verticalAlign="middle"
               className="text-success"
             />

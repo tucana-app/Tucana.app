@@ -11,7 +11,8 @@ import {
   Badge,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -78,7 +79,7 @@ function RatingsPassenger() {
                     {getRatingsToDoPassengerData.length}
                   </Badge>
                 </span>
-                <FontAwesomeIcon icon={faChevronRight} />
+                <ChevronRightIcon size={24} verticalAlign="middle" />
               </div>
             </ListGroup.Item>
           </Link>

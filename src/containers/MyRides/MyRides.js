@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Badge, Container, ListGroup } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
 
 import {
@@ -79,7 +78,7 @@ const MyRides = () => {
                       {ridesToConfirmData.length}
                     </Badge>
                   </div>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -104,7 +103,7 @@ const MyRides = () => {
                   ) : null
                 ) : null}
               </div>
-              <FontAwesomeIcon icon={faChevronRight} />
+              <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
         </Link>
@@ -128,7 +127,7 @@ const MyRides = () => {
                   ) : null
                 ) : null}
               </div>
-              <FontAwesomeIcon icon={faChevronRight} />
+              <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
         </Link>
@@ -153,7 +152,7 @@ const MyRides = () => {
                   ) : null
                 ) : null}
               </div>
-              <FontAwesomeIcon icon={faChevronRight} />
+              <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
         </Link>
@@ -164,7 +163,7 @@ const MyRides = () => {
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               Help
-              <FontAwesomeIcon icon={faChevronRight} />
+              <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
         </Link>

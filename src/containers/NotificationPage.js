@@ -3,11 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faInbox,
-  faTicketAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 import dateFormat from "dateformat";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
@@ -38,8 +34,14 @@ const NotificationPage = () => {
     !isLoadingDriverNewRidesRequests &&
     !isLoadingPassengerBookingsResponses
   ) {
-    numberDriverNewRidesRequests = driverNewRidesRequestsData.count;
-    numberPassengerBookingsResponses = passengerBookingsResponsesData.count;
+    numberDriverNewRidesRequests =
+      driverNewRidesRequestsData.count === undefined
+        ? 0
+        : driverNewRidesRequestsData.count;
+    numberPassengerBookingsResponses =
+      passengerBookingsResponsesData.count === undefined
+        ? 0
+        : passengerBookingsResponsesData.count;
 
     notifications =
       numberDriverNewRidesRequests + numberPassengerBookingsResponses;
@@ -55,36 +57,12 @@ const NotificationPage = () => {
 
       <ListGroup variant="flush">
         <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
-          <div className="d-inline-flex justify-content-between w-100 py-3">
-            <span>
-              {notifications > 0 ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faBell}
-                    className="text-warning me-3"
-                  />{" "}
-                  <span>
-                    New notifications
-                    <Badge bg="danger" className="align-text-top ms-2">
-                      {notifications}
-                    </Badge>
-                  </span>
-                </>
-              ) : (
-                <>
-                  <FontAwesomeIcon
-                    icon={faBell}
-                    className="text-warning me-3"
-                  />{" "}
-                  <span>
-                    No new notifications
-                    <Badge bg="danger" className="align-text-top ms-2">
-                      0
-                    </Badge>
-                  </span>
-                </>
-              )}
-            </span>
+          <div className="py-3">
+            <FontAwesomeIcon icon={faBell} className="text-warning me-3" />{" "}
+            Notifications
+            <Badge bg="danger" className="align-text-top ms-2">
+              {notifications}
+            </Badge>
           </div>
         </ListGroup.Item>
       </ListGroup>
@@ -106,7 +84,6 @@ const NotificationPage = () => {
           <ListGroup.Item className="border border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
-                <FontAwesomeIcon icon={faInbox} className="text-info me-3" />{" "}
                 Bookings for your ride(s)
                 <Badge bg="info" className="text-dark align-text-top ms-2">
                   {numberDriverNewRidesRequests}
@@ -152,10 +129,6 @@ const NotificationPage = () => {
           <ListGroup.Item className="border border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
-                <FontAwesomeIcon
-                  icon={faTicketAlt}
-                  className="text-success me-3"
-                />
                 Answers from your bookings
                 <Badge bg="success" className="text-dark align-text-top ms-2">
                   {numberPassengerBookingsResponses}

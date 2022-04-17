@@ -1,11 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Badge, Container, ListGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faDonate } from "@fortawesome/free-solid-svg-icons";
-import { PersonIcon } from "@primer/octicons-react";
-import { Link } from "react-router-dom";
+import { faDonate } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRightIcon, PersonIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import { logout } from "../../redux";
@@ -124,7 +123,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">My profile</p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -137,7 +136,7 @@ const SideMenu = () => {
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                         <p className="mb-0">My driver's profile</p>
-                        <FontAwesomeIcon icon={faChevronRight} />
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
                   </Link>
@@ -148,7 +147,7 @@ const SideMenu = () => {
                         <p className="link-success fw-bold mb-0">
                           Become a driver
                         </p>
-                        <FontAwesomeIcon icon={faChevronRight} />
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
                   </Link>
@@ -158,7 +157,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Ratings</p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -167,7 +166,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Settings</p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -183,7 +182,7 @@ const SideMenu = () => {
                           {notifications}
                         </Badge>
                       </p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -209,10 +208,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Login</p>
-                      <FontAwesomeIcon
-                        icon={faChevronRight}
-                        className="align-bottom"
-                      />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -221,7 +217,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Signup</p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -235,7 +231,7 @@ const SideMenu = () => {
                     Donate{" "}
                     <FontAwesomeIcon icon={faDonate} className="text-success" />
                   </p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -244,7 +240,7 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Download the App</p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -255,7 +251,7 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Help</p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -263,7 +259,7 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Contact us</p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -274,7 +270,7 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Legal</p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
@@ -300,7 +296,7 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Admin</p>
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
@@ -326,7 +322,7 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Admin</p>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
