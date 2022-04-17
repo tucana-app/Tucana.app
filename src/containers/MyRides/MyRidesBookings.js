@@ -80,7 +80,7 @@ const MyRidesBookings = () => {
                         ({dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}) |{" "}
                         <span className="text-secondary">Passenger:</span>{" "}
                         <span className="text-success">
-                          {booking.User.firstName}
+                          {booking.User.username}
                         </span>{" "}
                         | <span className="text-secondary">Seats booked:</span>{" "}
                         <span className="text-success">

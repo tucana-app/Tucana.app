@@ -13,7 +13,6 @@ import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import dateFormat from "dateformat";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
-import ManagePassengerBooking from "../components/ManagePassengerBooking";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormBookRide from "../components/FormBookRide";
 
@@ -29,7 +28,7 @@ const Ride = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { rideStatusVariant, isDateInPast } = useSelector(
+  const { rideStatusVariant, bookingStatusVariant, isDateInPast } = useSelector(
     (state) => state.global
   );
   const {
@@ -44,8 +43,8 @@ const Ride = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getRide(rideId));
-      dispatch(getRidesToConfirm(currentUser.id));
       dispatch(getUserBookingRide(currentUser.id, rideId));
+      dispatch(getRidesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -84,7 +83,7 @@ const Ride = () => {
                 lg={6}
                 className="border shadow-sm rounded mx-auto"
               >
-                <Container className="py-3 px-2">
+                <Container className="p-3">
                   <Row className="mb-2">
                     <Col className="text-center">
                       <p className="mb-0">
@@ -130,14 +129,13 @@ const Ride = () => {
                   lg={6}
                   className="border border-2 border-warning shadow-sm rounded mx-auto"
                 >
-                  <Container className="py-3 px-2">
+                  <Container className="py-3">
                     <Row>
                       <Col>
                         <h3 className="text-center">Review the ride</h3>
+                        <FormConfirmRide ride={rideToConfirm()} />
                       </Col>
                     </Row>
-
-                    <FormConfirmRide ride={rideToConfirm()} />
                   </Container>
                 </Col>
               </Row>
@@ -151,7 +149,7 @@ const Ride = () => {
                 lg={6}
                 className="border shadow-sm rounded mx-auto"
               >
-                <Container className="py-3 px-2">
+                <Container className="p-3">
                   <Row className="align-items-center">
                     <Col xs={6} className="text-center">
                       <p className="mb-0">Seats available:</p>
@@ -179,64 +177,63 @@ const Ride = () => {
               </Col>
             </Row>
 
+            {rideData.ride.Driver.User.id !== currentUser.id ? (
+              <Row className="mb-2 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="border shadow-sm rounded mx-auto"
+                >
+                  <Container className="p-3">
+                    <LinkContainer to="/coming-soon" className="cursor-pointer">
+                      <Row className="align-items-center">
+                        <Col xs={3}>
+                          <FontAwesomeIcon
+                            icon={faCircle}
+                            className="text-secondary me-2"
+                            size="3x"
+                          />
+                        </Col>
+                        <Col xs={6} className="text-start">
+                          <p className="mb-0">
+                            {rideData.ride.Driver.User.username}
+                          </p>
+                          <p className="mb-0">
+                            <FontAwesomeIcon
+                              icon={faStar}
+                              className="text-warning"
+                              size={"sm"}
+                            />{" "}
+                            <span>-</span>
+                          </p>
+                        </Col>
+                        <Col className="text-end">
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Col>
+                      </Row>
+                    </LinkContainer>
+                    <Row>
+                      <Col>
+                        {!(rideData.ride.comment === "") ? (
+                          <>
+                            <hr className="mt-2" />
+                            <p className="mb-0">
+                              Comment: {rideData.ride.comment}
+                            </p>
+                          </>
+                        ) : null}
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
+            ) : null}
+
             {/* Display past booking for this ride by this user */}
             {!(rideData.ride.DriverId === currentUser.id) ? (
               <>
-                <Row className="mb-2 mx-1 mx-sm-0">
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    className="border shadow-sm rounded mx-auto"
-                  >
-                    <Container className="py-3 px-2">
-                      <LinkContainer
-                        to="/coming-soon"
-                        className="cursor-pointer"
-                      >
-                        <Row className="align-items-center">
-                          <Col xs={3} md={2} className="text-end pe-0">
-                            <FontAwesomeIcon
-                              icon={faCircle}
-                              className="text-secondary"
-                              size="3x"
-                            />
-                          </Col>
-                          <Col xs={6} className="text-start">
-                            <p className="mb-0">
-                              {rideData.ride.Driver.User.firstName}
-                            </p>
-                            <p className="mb-0">
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                                size={"sm"}
-                              />{" "}
-                              <span>- / 5 | - ratings</span>
-                            </p>
-                          </Col>
-                          <Col className="text-end">
-                            <FontAwesomeIcon icon={faChevronRight} />
-                          </Col>
-                        </Row>
-                      </LinkContainer>
-                      <Row>
-                        <Col>
-                          {!(rideData.ride.comment === "") ? (
-                            <>
-                              <hr className="mt-2" />
-                              <p className="mb-0">
-                                Comment: {rideData.ride.comment}
-                              </p>
-                            </>
-                          ) : null}
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Col>
-                </Row>
-
                 {!isloadingUserRideBookingList &&
                 userRideBookingData.length > 0 ? (
                   <Row className="mb-2 mx-1 mx-sm-0">
@@ -245,16 +242,43 @@ const Ride = () => {
                       sm={10}
                       md={8}
                       lg={6}
-                      className="border shadow-sm rounded mx-auto"
+                      className="border shadow-sm rounded mx-auto py-3"
                     >
-                      <Container className="py-3 px-2">
+                      <Container fluid className="px-0">
                         <Row>
                           <Col>
-                            <p className="lead">Previous bookings</p>
+                            <p className="lead mb-0">Previous bookings</p>
                           </Col>
                         </Row>
 
-                        <ManagePassengerBooking rideId={rideId} />
+                        {userRideBookingData.map((booking, index) => (
+                          <LinkContainer
+                            to={`/booking/${booking.id}`}
+                            className="cursor-pointer"
+                            key={index}
+                          >
+                            <Row>
+                              <Col xs={11}>
+                                {index + 1}) Seats:{" "}
+                                <span className="text-success">
+                                  {booking.seatsBooked}
+                                </span>{" "}
+                                ({dateFormat(booking.createdAt, "dd/mm")}) |
+                                Status:{" "}
+                                <span
+                                  className={`text-${bookingStatusVariant(
+                                    booking.BookingStatusId
+                                  )}`}
+                                >
+                                  {booking.BookingStatus.name}
+                                </span>
+                              </Col>
+                              <Col xs={1} className="text-start ps-0">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                              </Col>
+                            </Row>
+                          </LinkContainer>
+                        ))}
                       </Container>
                     </Col>
                   </Row>
@@ -272,13 +296,7 @@ const Ride = () => {
                       lg={6}
                       className="border shadow-sm rounded mx-auto"
                     >
-                      <Container className="py-3 px-2">
-                        <Row>
-                          <Col>
-                            <p className="lead">Book this ride</p>
-                          </Col>
-                        </Row>
-
+                      <Container fluid className="py-3">
                         <FormBookRide rideId={rideId} />
                       </Container>
                     </Col>
@@ -295,10 +313,12 @@ const Ride = () => {
                     lg={6}
                     className="border shadow-sm rounded mx-auto"
                   >
-                    <Container className="py-3 px-2">
+                    <Container fluid className="py-3">
                       <Row>
                         <Col>
-                          <p className="lead">Manage your booking requests</p>
+                          <p className="lead mb-0">
+                            Manage your booking request(s)
+                          </p>
                         </Col>
                       </Row>
 
@@ -315,16 +335,16 @@ const Ride = () => {
                       sm={10}
                       md={8}
                       lg={6}
-                      className="border border-success shadow-sm rounded mx-auto"
+                      className="border shadow-sm rounded mx-auto"
                     >
-                      <Container fluid className="p-2">
+                      <Container fluid className="py-3">
                         <Row>
                           <Col className="text-center ">
-                            <h1 className="text-success fw-light mb-0">
-                              Congratulations
+                            <h1 className="text-info fw-light">
+                              Congratulations 🎉
                             </h1>
-                            <p className="fw-light mb-0">
-                              All the seats have been booked
+                            <p className="lead">
+                              There are no more seats available for this ride!
                             </p>
                           </Col>
                         </Row>
@@ -341,7 +361,7 @@ const Ride = () => {
                     lg={6}
                     className="border shadow-sm rounded mx-auto"
                   >
-                    <Container className="py-3 px-2">
+                    <Container fluid className="py-3">
                       <Row>
                         <Col>
                           <p className="lead mb-0">Passengers details</p>

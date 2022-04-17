@@ -81,7 +81,7 @@ function AdminSingleRide() {
                         {singleRideData.cityDestination} (
                         {singleRideData.provinceDestination})
                       </td>
-                      <td>{singleRideData.Driver.User.firstName}</td>
+                      <td>{singleRideData.Driver.User.username}</td>
                       <td>
                         {dateFormat(
                           singleRideData.dateTime,

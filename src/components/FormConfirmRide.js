@@ -10,6 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import LoadingSpinner from "./LoadingSpinner";
+
 import { submitFormConfirmRide } from "../redux";
 
 const FormConfirmRide = ({ ride }) => {
@@ -35,10 +37,13 @@ const FormConfirmRide = ({ ride }) => {
 
   return (
     <>
-      {!isloadingSubmitFormConfirmRide &&
-      submittedNo &&
-      (submitFormConfirmRideError !== "" ||
-        submitFormConfirmRideData.flag !== "SUCCESS") ? (
+      {isloadingSubmitFormConfirmRide ? (
+        <div className="text-center">
+          <LoadingSpinner />
+        </div>
+      ) : submittedNo &&
+        (submitFormConfirmRideError !== "" ||
+          submitFormConfirmRideData.flag !== "SUCCESS") ? (
         <Row>
           <Col className="text-center mx-auto">
             <p className="lead text-center mb-1">
@@ -47,8 +52,8 @@ const FormConfirmRide = ({ ride }) => {
 
             <Button
               variant="warning"
+              className="rounded-0"
               type="submit"
-              className="me-2"
               onClick={() => {
                 setSubmitted(false);
                 setSubmittedNo(false);
@@ -60,7 +65,12 @@ const FormConfirmRide = ({ ride }) => {
               </span>
             </Button>
 
-            <Button variant="danger" type="submit" onClick={handleSubmitNo}>
+            <Button
+              variant="danger"
+              className="rounded-0"
+              type="submit"
+              onClick={handleSubmitNo}
+            >
               <span>
                 <FontAwesomeIcon icon={faTimes} className="me-2" />
                 The ride didn't take place
@@ -72,17 +82,17 @@ const FormConfirmRide = ({ ride }) => {
         submitFormConfirmRideData.flag !== "SUCCESS" ? (
         <div className="py-2">
           <Row>
-            <Col className="mx-auto">
+            <Col xs={8} sm={6} md={5} lg={4} className="mx-auto">
               <p className="lead text-center mb-1">Do you confirm the ride?</p>
             </Col>
           </Row>
           <Row>
-            <Col className="text-center mx-auto">
+            <Col xs={8} sm={6} md={5} lg={4} className="text-center mx-auto">
               <Button
                 variant="danger"
                 size="lg"
+                className="rounded-0"
                 type="submit"
-                className="me-2"
                 disabled={submitted || isloadingSubmitFormConfirmRide}
                 onClick={() => setSubmittedNo(true)}
               >
@@ -95,6 +105,7 @@ const FormConfirmRide = ({ ride }) => {
               <Button
                 variant="success"
                 size="lg"
+                className="rounded-0"
                 type="submit"
                 disabled={submitted || isloadingSubmitFormConfirmRide}
                 onClick={handleSubmitYes}

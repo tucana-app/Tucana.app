@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import LoadingSpinner from "./LoadingSpinner";
 
 import { getDriverBookingRide } from "../redux";
+import FeedbackMessage from "./FeedbackMessage";
 import dateFormat from "dateformat";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -26,38 +26,65 @@ function ManageDriverBooking({ rideId }) {
 
   return (
     <>
-      {!isloadingDriverRideBookingList && driverRideBookingData.length > 0 ? (
-        <>
-          {driverRideBookingData.map((booking, index) => (
-            <LinkContainer
-              to={`/booking/${booking.id}`}
-              className="cursor-pointer"
-              key={index}
-            >
-              <Row className="align-items-center mb-2">
-                <Col xs={11}>
-                  {dateFormat(booking.createdAt, "dd/mm")}: Seats:{" "}
-                  <span className="text-success">{booking.seatsBooked}</span> |
-                  Status:{" "}
-                  <span
-                    className={`text-${bookingStatusVariant(
-                      booking.BookingStatusId
-                    )}`}
+      {isloadingDriverRideBookingList ? (
+        <Row>
+          <Col className="text-center">
+            <LoadingSpinner />
+          </Col>
+        </Row>
+      ) : driverRideBookingData.length > 0 ? (
+        <Row>
+          <Col>
+            <Container>
+              {driverRideBookingData.map((booking, index) => (
+                <Row key={index} className="align-items-center my-2">
+                  <Col xs="auto">
+                    #{index + 1} | {dateFormat(booking.createdAt, "dd/mm/yyyy")}{" "}
+                    |{" "}
+                    <span className="text-success">{booking.seatsBooked}</span>{" "}
+                    seat(s) booked by{" "}
+                    <span className="text-success">
+                      {booking.User.username}
+                    </span>{" "}
+                    |
+                    {/* Passenger comment:{" "}
+                  <i className="text-success">"{booking.commentPassenger}"</i>. */}{" "}
+                    Status:{" "}
+                    <span
+                      className={`text-${bookingStatusVariant(
+                        booking.BookingStatusId
+                      )}`}
+                    >
+                      {booking.BookingStatus.name}
+                    </span>
+                  </Col>
+                  <Col
+                    xs={12}
+                    sm="auto"
+                    className="text-center mx-auto mx-lg-0"
                   >
-                    {booking.BookingStatus.name}
-                  </span>{" "}
-                  | <span>By: {booking.User.firstName}</span>
-                </Col>
-                <Col xs={1} className="text-start ps-0">
-                  <FontAwesomeIcon icon={faChevronRight} />
-                </Col>
-              </Row>
-            </LinkContainer>
-          ))}
-        </>
+                    <LinkContainer to={`/booking/${booking.id}`}>
+                      <Button variant="success" className="rounded-0">
+                        Manage
+                      </Button>
+                    </LinkContainer>
+                  </Col>
+                </Row>
+              ))}
+            </Container>
+          </Col>
+        </Row>
       ) : (
-        <p className="mb-0">You do not have any bookings for this ride yet</p>
+        <Row>
+          <Col className="text-center">
+            <p className="lead">
+              You do not have any bookings for this ride yet
+            </p>
+          </Col>
+        </Row>
       )}
+
+      <FeedbackMessage />
     </>
   );
 }

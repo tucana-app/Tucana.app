@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IndexLinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Navbar, Nav, Button, Container, Row, Col } from "react-bootstrap";
 import {
-  faPlus,
-  faBars,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
-import { faComments, faUser } from "@fortawesome/free-regular-svg-icons";
+  SearchIcon,
+  PlusCircleIcon,
+  CommentDiscussionIcon,
+  PersonIcon,
+  ZapIcon,
+  ThreeBarsIcon,
+  HomeIcon,
+} from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
-
-import logo_nav_bar from "../assets/images/logo_nav_bar.png";
 
 function NavigationBar() {
   // const dispatch = useDispatch();
@@ -27,99 +27,119 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   return currentUser ? (
-    <Navbar bg="white" variant="light" fixed="bottom" className="py-md-0">
+    <Navbar bg="white" variant="light" fixed="bottom" className="pt-0">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-evenly align-items-center">
-          <IndexLinkContainer to="/find-ride" href="/find-ride">
-            <Nav.Link className="font-title text-center ps-0">
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                size="5x"
-                className="icon-nav-bar"
-              />
-              <p className="small d-md-screen mb-0">
-                {t("translation:navigationbar.findRide")}
-              </p>
-            </Nav.Link>
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to="/offer-ride" href="/offer-ride">
-            <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faPlus} className="icon-nav-bar" />
-              <p className="small d-md-screen mb-0">
-                {t("translation:navigationbar.offerRide")}
-              </p>
-            </Nav.Link>
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to="/my-rides" href="/my-rides">
-            <Nav.Link className="font-title text-center text-decoration-none">
-              <img
-                src={logo_nav_bar}
-                alt="R.CR"
-                className="icon-brand-nav-bar mb-1"
-              />
-              <p className="small d-md-screen mb-0">
-                {t("translation:navigationbar.myRides")}
-              </p>
-            </Nav.Link>
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to="/messages" href="/messages">
-            <Nav.Link className="font-title text-center">
-              <div className="position-relative">
-                <FontAwesomeIcon icon={faComments} className="icon-nav-bar" />
-                <p className="small d-md-screen mb-0">
-                  Messages
-                  {messages > 0 ? (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {messages}
-                      <span className="visually-hidden">
-                        unread notification(s)
-                      </span>
-                    </span>
-                  ) : null}
-                </p>
-                <p className="small d-xs-screen mb-0">
-                  {messages > 0 ? (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {messages}
-                      <span className="visually-hidden">unread messages</span>
-                    </span>
-                  ) : null}
-                </p>
-              </div>
-            </Nav.Link>
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to="/menu" href="/menu">
-            <Nav.Link className="font-title text-center">
-              <div className="position-relative">
-                <FontAwesomeIcon icon={faUser} className="icon-nav-bar" />
-                <p className="small d-md-screen mb-0">
-                  {t("translation:navigationbar.myAccount")}
-                  {notifications > 0 ? (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {notifications}
-                      <span className="visually-hidden">
-                        unread notification(s)
-                      </span>
-                    </span>
-                  ) : null}
-                </p>
-                <p className="small d-xs-screen mb-0">
-                  {notifications > 0 ? (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {notifications}
-                      <span className="visually-hidden">
-                        unseen notification
-                      </span>
-                    </span>
-                  ) : null}
-                </p>
-              </div>
-            </Nav.Link>
-          </IndexLinkContainer>
+          <Container>
+            <Row className="justify-content-center">
+              <Col xs={2} className="text-center mx-auto">
+                <IndexLinkContainer
+                  to="/find-ride"
+                  href="/find-ride"
+                  className="px-0"
+                >
+                  <Nav.Link className="font-title text-center">
+                    <SearchIcon size={24} className="mb-1" />
+                    <p className="text-icon-nav-bar mb-0">
+                      {t("translation:navigationbar.findRide")}
+                    </p>
+                  </Nav.Link>
+                </IndexLinkContainer>
+              </Col>
+              <Col xs={2} className="text-center mx-auto">
+                <IndexLinkContainer
+                  to="/offer-ride"
+                  href="/offer-ride"
+                  className="px-0"
+                >
+                  <Nav.Link className="font-title text-center">
+                    <PlusCircleIcon size={24} className="mb-1" />
+                    <p className="text-icon-nav-bar mb-0">
+                      {t("translation:navigationbar.offerRide")}
+                    </p>
+                  </Nav.Link>
+                </IndexLinkContainer>
+              </Col>
+              <Col xs={2} className="text-center mx-auto">
+                <IndexLinkContainer
+                  to="/my-rides"
+                  href="/my-rides"
+                  className="px-0"
+                >
+                  <Nav.Link className="font-title text-center text-decoration-none">
+                    <ZapIcon size={24} className="mb-1" />
+                    <p className="text-icon-nav-bar mb-0">
+                      {t("translation:navigationbar.myRides")}
+                    </p>
+                  </Nav.Link>
+                </IndexLinkContainer>
+              </Col>
+              <Col xs={2} className="text-center mx-auto">
+                <IndexLinkContainer
+                  to="/messages"
+                  href="/messages"
+                  className="px-0"
+                >
+                  <Nav.Link className="font-title">
+                    <div className="position-relative">
+                      <CommentDiscussionIcon size={24} className="mb-1" />
+                      <p className="text-icon-nav-bar mb-0">
+                        Messages
+                        {messages > 0 ? (
+                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {messages}
+                            <span className="visually-hidden">
+                              unread notification(s)
+                            </span>
+                          </span>
+                        ) : null}
+                      </p>
+                      <p className="text-icon-nav-bar d-xs-screen mb-0">
+                        {messages > 0 ? (
+                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {messages}
+                            <span className="visually-hidden">
+                              unread messages
+                            </span>
+                          </span>
+                        ) : null}
+                      </p>
+                    </div>
+                  </Nav.Link>
+                </IndexLinkContainer>
+              </Col>
+              <Col xs={2} className="text-center mx-auto">
+                <IndexLinkContainer to="/menu" href="/menu" className="px-0">
+                  <Nav.Link className="font-title">
+                    <div className="position-relative">
+                      <PersonIcon size={24} className="mb-1" />
+                      <p className="text-icon-nav-bar mb-0">
+                        {t("translation:navigationbar.myAccount")}
+                        {notifications > 0 ? (
+                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {notifications}
+                            <span className="visually-hidden">
+                              unread notification(s)
+                            </span>
+                          </span>
+                        ) : null}
+                      </p>
+                      <p className="text-icon-nav-bar d-xs-screen mb-0">
+                        {notifications > 0 ? (
+                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {notifications}
+                            <span className="visually-hidden">
+                              unseen notification
+                            </span>
+                          </span>
+                        ) : null}
+                      </p>
+                    </div>
+                  </Nav.Link>
+                </IndexLinkContainer>
+              </Col>
+            </Row>
+          </Container>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -129,12 +149,8 @@ function NavigationBar() {
         <Nav className="w-100 justify-content-around align-items-center">
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
-              <img
-                src={logo_nav_bar}
-                alt="R.CR"
-                className="icon-brand-nav-bar mb-1"
-              />
-              <p className="small d-md-screen mb-0">
+              <HomeIcon size={24} />
+              <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
                 {t("translation:navigationbar.home")}
               </p>
             </Nav.Link>
@@ -143,7 +159,7 @@ function NavigationBar() {
             <IndexLinkContainer to="/login" href="/login">
               <Nav.Link className="font-title text-center">
                 <Button
-                  className="font-title rounded-0"
+                  className="font-title"
                   variant="outline-success"
                   size="lg"
                 >
@@ -154,11 +170,7 @@ function NavigationBar() {
 
             <IndexLinkContainer to="/signup" href="/signup">
               <Nav.Link className="font-title text-center">
-                <Button
-                  className="font-title rounded-0"
-                  variant="success"
-                  size="lg"
-                >
+                <Button className="font-title" variant="success" size="lg">
                   {t("translation:homePage.signUp")}
                 </Button>
               </Nav.Link>
@@ -167,8 +179,8 @@ function NavigationBar() {
 
           <IndexLinkContainer to="/menu" href="/menu">
             <Nav.Link className="font-title text-center">
-              <FontAwesomeIcon icon={faBars} className="icon-nav-bar" />
-              <p className="small d-lg-screen mb-0">Menu</p>
+              <ThreeBarsIcon size={24} />
+              <p className="text-icon-nav-bar d-lg-screen mb-0">Menu</p>
             </Nav.Link>
           </IndexLinkContainer>
         </Nav>

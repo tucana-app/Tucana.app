@@ -8,7 +8,7 @@ module.exports = {
     const { booking } = payload;
 
     return `You have accepted the booking of "${
-      booking.User.firstName
+      booking.User.username
     }" on your ride from ${booking.Ride.cityOrigin} to ${
       booking.Ride.cityDestination
     } (${dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")})`;
@@ -18,7 +18,7 @@ module.exports = {
     const { booking } = payload;
 
     return `You have accepted the booking of "${
-      booking.User.firstName
+      booking.User.username
     }" on your ride from ${booking.Ride.cityOrigin} to ${
       booking.Ride.cityDestination
     } (${dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")})`;

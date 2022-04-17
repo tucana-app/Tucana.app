@@ -106,7 +106,7 @@ const Bookings = () => {
                 </Col>
 
                 <Col xs={12}>
-                  <p>Driver: {booking.Ride.Driver.User.firstName}</p>
+                  <p>Driver: {booking.Ride.Driver.User.username}</p>
                 </Col>
 
                 <Col xs={12}>

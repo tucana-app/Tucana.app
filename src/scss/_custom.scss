@@ -86,22 +86,6 @@ body {
   font-family: "Manrope", sans-serif !important;
 }
 
-.icon-nav-bar {
-  font-size: x-large;
-}
-
-.icon-brand-nav-bar {
-  max-height: 70px;
-}
-
-.active .icon-brand-nav-bar {
-  // box-shadow: 0px 0px 20px 5px $brand-1;
-  // -moz-box-shadow: 0px 0px 20px 5px $brand-1;
-  // -webkit-box-shadow: 0px 0px 20px 5px $brand-1;
-  // -khtml-box-shadow: 0px 0px 20px 5px $brand-1;
-  // @extend .rounded-circle;
-}
-
 // Display breakpoint
 .d-xs-screen.d-md-screen,
 .d-xs-screen.d-lg-screen {
@@ -146,6 +130,10 @@ body {
       @extend .border-success;
     }
   }
+}
+
+.text-icon-nav-bar {
+  font-size: 0.6em;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

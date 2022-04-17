@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faPaperPlane,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
 import {
   Button,
   Container,
@@ -13,6 +7,11 @@ import {
   InputGroup,
   ListGroup,
 } from "react-bootstrap";
+import {
+  PaperAirplaneIcon,
+  PersonIcon,
+  ChevronLeftIcon,
+} from "@primer/octicons-react";
 
 import {
   resetConversationView,
@@ -37,8 +36,8 @@ const SingleConversation = ({ conversation }) => {
 
   // Get receiver's information
   const receiver = !(conversation.UserId === currentUser.id)
-    ? conversation.User.firstName
-    : conversation.Driver.User.firstName;
+    ? conversation.User.username
+    : conversation.Driver.User.username;
   const receiverId = !(conversation.UserId === currentUser.id)
     ? conversation.User.id
     : conversation.Driver.User.id;
@@ -71,18 +70,11 @@ const SingleConversation = ({ conversation }) => {
             dispatch(resetConversationView(currentUser.id));
           }}
           className="rounded-0 border border-top-0 border-start-0
-          border-end-0"
+          border-end-0 py-3"
         >
           <span>
-            <FontAwesomeIcon
-              icon={faChevronLeft}
-              className="text-success me-3"
-            />
-            <FontAwesomeIcon
-              icon={faUser}
-              size="2x"
-              className="text-secondary me-3"
-            />
+            <ChevronLeftIcon size={28} className="text-success" />
+            <PersonIcon size={24} className="mb-1 me-2" />
             <span className="h2">{receiver}</span>
           </span>
         </ListGroup.Item>
@@ -96,42 +88,38 @@ const SingleConversation = ({ conversation }) => {
               : "imessage px-3 py-5"
           }
         >
-          {conversation.Messages.length === 0 ? (
-            <h2 className="text-success text-center">
-              Write your first message to {receiver}
-            </h2>
-          ) : (
-            conversation.Messages.map((message, index) => {
-              return (
-                <span key={index}>
-                  {message.SenderId === currentUser.id ? (
-                    // The sender's messages
-                    <>
-                      <p className="from-me mb-0">{message.body} </p>
-                      <p className="text-secondary text-end w-100 my-0">
-                        {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
-                        {messageStatusIcon(message.MessageStatusId)}
-                      </p>
-                    </>
-                  ) : (
-                    // The receiver's messages
-                    <>
-                      <p className="from-them mb-0">{message.body}</p>
-                      <p className="text-secondary w-100 ps-0 my-0">
-                        {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
-                      </p>
-                    </>
-                  )}
-                </span>
-              );
-            })
-          )}
+          {conversation.Messages.length > 0
+            ? conversation.Messages.map((message, index) => {
+                return (
+                  <span key={index}>
+                    {message.SenderId === currentUser.id ? (
+                      // The sender's messages
+                      <>
+                        <p className="from-me mb-0">{message.body} </p>
+                        <p className="text-secondary text-end w-100 my-0">
+                          {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
+                          {messageStatusIcon(message.MessageStatusId)}
+                        </p>
+                      </>
+                    ) : (
+                      // The receiver's messages
+                      <>
+                        <p className="from-them mb-0">{message.body}</p>
+                        <p className="text-secondary w-100 ps-0 my-0">
+                          {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
+                        </p>
+                      </>
+                    )}
+                  </span>
+                );
+              })
+            : null}
         </div>
         <div ref={messagesEndRef} />
       </Container>
 
       <Form onSubmit={handleSubmit} className="message-form px-2" ref={form}>
-        <InputGroup className="w-75 mx-auto">
+        <InputGroup className="mx-auto">
           <Form.Control
             name="message"
             placeholder="Send a message"
@@ -149,7 +137,7 @@ const SingleConversation = ({ conversation }) => {
             {isLoadingSendMessage ? (
               <LoadingSpinner size={"sm"} />
             ) : (
-              <FontAwesomeIcon icon={faPaperPlane} size="lg" />
+              <PaperAirplaneIcon verticalAlign="middle" />
             )}
           </Button>
         </InputGroup>

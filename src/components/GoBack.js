@@ -1,8 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { ChevronLeftIcon } from "@primer/octicons-react";
 
 function GoBack(props) {
   const { history, pageName } = props;
@@ -19,10 +18,10 @@ function GoBack(props) {
       <ListGroup.Item onClick={handleGoBack}>
         <div className="d-inline-flex justify-content-between w-100">
           <span>
-            <FontAwesomeIcon
-              icon={faChevronLeft}
-              className="text-success me-3"
-              size="lg"
+            <ChevronLeftIcon
+              size={28}
+              verticalAlign="middle"
+              className="text-success"
             />
             {pageName}
           </span>

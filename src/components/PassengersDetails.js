@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import dateFormat from "dateformat";
 
-import SendMessageButton from "../components/SendMessageButton";
-
 import { getPassengersDetails } from "../redux";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PassengersDetails = ({ rideId, booking }) => {
   const dispatch = useDispatch();
@@ -38,30 +37,55 @@ const PassengersDetails = ({ rideId, booking }) => {
 
   return (
     <>
-      {!isLoadingPassengersDetails && passengersDetailsData.length > 0 ? (
+      {isLoadingPassengersDetails ? (
+        <Row>
+          <Col className="text-center my-3">
+            <LoadingSpinner />
+          </Col>
+        </Row>
+      ) : passengersDetailsData.length > 0 ? (
         <>
           <Row>
             <Col>
               <p>
-                <span className="text-success">{totalPassengers}</span>{" "}
-                passenger{totalPassengers > 1 ? "s" : null} with{" "}
+                You have <span className="text-success">{totalPassengers}</span>{" "}
+                passenger(s) for a total of{" "}
                 <span className="text-success">
                   {passengersDetailsData.length}
                 </span>{" "}
-                bookings
+                of booking(s) on this ride
               </p>
             </Col>
           </Row>
-
           {passengersDetailsData.map((passenger, index) => (
-            <Row key={index} className="align-items-center mb-2">
-              <Col xs={10} md={8}>
-                {dateFormat(passenger.createdAt, "dd/mm")}: Seats:{" "}
-                <span className="text-success">{passenger.seatsBooked}</span> |{" "}
-                <span>By: {passenger.User.firstName}</span>
+            <Row key={index} className="align-items-center">
+              <Col xs={6} lg={4} className="mb-3">
+                <p className="mb-0">
+                  #{index + 1}: Passenger:{" "}
+                  <span className="text-success">
+                    {passenger.User.username}
+                  </span>
+                </p>
+                <p className="mb-0">
+                  Seats booked:{" "}
+                  <span className="text-success">{passenger.seatsBooked}</span>{" "}
+                  {/* / {passenger.Ride.seatsAvailable} */}
+                </p>
               </Col>
-              <Col xs={2} md={4} className="text-end ps-0">
-                <SendMessageButton booking={passenger} />
+              <Col xs={6} lg={4} className="mb-3">
+                <p className="mb-0">
+                  Booking date: {dateFormat(passenger.dateTime, "dd/mm/yyyy")}
+                </p>
+              </Col>
+
+              <Col xs={6} lg={4}>
+                {passenger.commentPassenger ? (
+                  <p className="mb-0">
+                    Passenger comment: "<i>{passenger.commentPassenger}</i>"
+                  </p>
+                ) : null}
+
+                {/* <SendMessageButton booking={booking} /> */}
               </Col>
             </Row>
           ))}
@@ -69,7 +93,7 @@ const PassengersDetails = ({ rideId, booking }) => {
       ) : (
         <Row>
           <Col>
-            <p className="mb-0">You do not have passengers for this ride yet</p>
+            <p className="lead">You do not have passengers for this ride yet</p>
           </Col>
         </Row>
       )}

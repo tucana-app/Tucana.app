@@ -3,15 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarCheck,
-  faClock,
-  faComment,
-  faCarAlt,
-  faExclamationTriangle,
-  faMapMarker,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import dateFormat from "dateformat";
@@ -117,10 +109,6 @@ const OfferRide = () => {
                 <Row className="mb-4">
                   <Col xs={12} sm={6} className="mb-3 mb-md-0">
                     <p className="font-title text-center text-sm-start mb-1">
-                      <FontAwesomeIcon
-                        icon={faMapMarkerAlt}
-                        className="text-success me-2"
-                      />
                       Origin
                     </p>
                     <div className="p-2 p-md-3 border rounded">
@@ -178,10 +166,6 @@ const OfferRide = () => {
 
                   <Col xs={12} sm={6}>
                     <p className="font-title text-center text-sm-start mb-1">
-                      <FontAwesomeIcon
-                        icon={faMapMarker}
-                        className="text-danger me-2"
-                      />
                       Destination
                     </p>
                     <div className="p-2 p-md-3 border rounded">
@@ -247,10 +231,6 @@ const OfferRide = () => {
                     className="text-center text-sm-start mb-3 mb-md-0"
                   >
                     <Form.Label>
-                      <FontAwesomeIcon
-                        icon={faCalendarCheck}
-                        className="text-success me-2"
-                      />
                       Day of the ride<span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -276,10 +256,6 @@ const OfferRide = () => {
                     className="text-center text-sm-start mb-3 mb-md-0"
                   >
                     <Form.Label>
-                      <FontAwesomeIcon
-                        icon={faClock}
-                        className="text-success me-2"
-                      />
                       Time of the ride<span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Control
@@ -307,10 +283,6 @@ const OfferRide = () => {
                     className="text-center text-sm-start mb-3 mb-md-0"
                   >
                     <Form.Label>
-                      <FontAwesomeIcon
-                        icon={faCarAlt}
-                        className="text-success me-2"
-                      />
                       Seats available<span className="text-danger">*</span>
                     </Form.Label>
                     <Form.Select
@@ -351,10 +323,6 @@ const OfferRide = () => {
                         will be shared within the platform when a booking is
                         made.
                       </p>
-                      <FontAwesomeIcon
-                        icon={faComment}
-                        className="text-success me-2"
-                      />
                       Comment
                     </Form.Label>
                     <Form.Control

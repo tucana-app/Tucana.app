@@ -38,6 +38,9 @@ const initialState = {
 
   feedback: {},
 
+  hoursUnlockPassengersDetail: 24,
+  daysLockPassengersDetails: 2,
+
   // Booking status
   // Status 1: Sent
   // Status 2: Seen
