@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { startConversation } from "../redux";
 import LoadingSpinner from "./LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { faComment } from "@fortawesome/free-regular-svg-icons";
 
 function SendMessageButton({ booking }) {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function SendMessageButton({ booking }) {
         {isLoadingStartConversation ? (
           <LoadingSpinner />
         ) : (
-          <FontAwesomeIcon icon={faComments} />
+          <FontAwesomeIcon icon={faComment} />
         )}
         <span className="d-md-screen ms-2">
           Message

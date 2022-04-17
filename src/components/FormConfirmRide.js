@@ -10,8 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import LoadingSpinner from "./LoadingSpinner";
-
 import { submitFormConfirmRide } from "../redux";
 
 const FormConfirmRide = ({ ride }) => {

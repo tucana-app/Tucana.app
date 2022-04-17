@@ -45,6 +45,7 @@ const Ride = () => {
     if (isLoggedIn) {
       dispatch(getRide(rideId));
       dispatch(getRidesToConfirm(currentUser.id));
+      dispatch(getUserBookingRide(currentUser.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
