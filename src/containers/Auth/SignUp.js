@@ -92,7 +92,7 @@ const SignUp = () => {
       <Row className="mb-3">
         <Col className="text-center">
           <h1 className="text-success">Sign Up</h1>
-          <p className="lead text-light">Sign up to access the plateform</p>
+          <p className="lead">Sign up to access the plateform</p>
         </Col>
       </Row>
       <Row>

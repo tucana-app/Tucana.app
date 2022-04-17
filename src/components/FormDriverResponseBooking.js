@@ -69,9 +69,10 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                     icon={faExclamationTriangle}
                     className="me-2"
                   />
-                  "{bookingData.User.username}" booked {bookingData.seatsBooked}{" "}
-                  seats but there are only {bookingData.Ride.seatsLeft} seats
-                  left, you cannot accept or refuse this booking.
+                  "{bookingData.User.firstName}" booked{" "}
+                  {bookingData.seatsBooked} seats but there are{" "}
+                  {bookingData.Ride.seatsLeft} seats left, you cannot accept or
+                  refuse this booking.
                 </p>
               ) : (
                 <>

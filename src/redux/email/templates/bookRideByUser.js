@@ -9,7 +9,7 @@ module.exports = {
 
     return `You have made a booking request for ${
       formValues.seatsNeeded
-    } seats on the ride from "${ride.Driver.User.username}" from ${
+    } seats on the ride from "${ride.Driver.User.firstName}" from ${
       ride.cityDestination
     } to ${ride.cityOrigin} on the ${dateFormat(
       ride.dateTime,
@@ -26,12 +26,12 @@ module.exports = {
     const { formValues, ride } = payload;
 
     return `<div>
-  <p>The booking request has been sent to "${ride.Driver.User.username}"</p>
+  <p>The booking request has been sent to "${ride.Driver.User.firstName}"</p>
   <p>Now you just have to wait for a reply if the booking is confirmed</p>
   <div>
     <h3>Booking details</h3>
     <p>${formValues.seatsNeeded} seats on the ride by "${
-      ride.Driver.User.username
+      ride.Driver.User.firstName
     }" from ${ride.cityDestination} to ${ride.cityOrigin} on the ${dateFormat(
       ride.dateTime,
       "dd/mm/yyyy"

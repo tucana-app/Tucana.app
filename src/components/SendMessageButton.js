@@ -30,25 +30,26 @@ function SendMessageButton({ booking }) {
   };
 
   return (
-    <div>
-      {/* {console.log(booking)} */}
+    <>
       <Button
         onClick={handleStartConversation}
         variant="success"
-        className="rounded-0 text-uppercase"
         disabled={isLoadingStartConversation}
       >
         {isLoadingStartConversation ? (
           <LoadingSpinner />
         ) : (
-          <FontAwesomeIcon icon={faComments} className="me-2" />
+          <FontAwesomeIcon icon={faComments} />
         )}
-        Send a message to{" "}
-        {booking.UserId === currentUser.id
-          ? booking.Ride.Driver.User.username
-          : booking.User.username}
+        <span className="d-md-screen ms-2">
+          Message
+          {/* to{" "}
+          {booking.UserId === currentUser.id
+            ? booking.Ride.Driver.User.firstName
+            : booking.User.firstName} */}
+        </span>
       </Button>
-    </div>
+    </>
   );
 }
 

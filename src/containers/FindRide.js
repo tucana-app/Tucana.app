@@ -56,7 +56,7 @@ const FindRide = () => {
                       className="border shadow-sm rounded hvr-grow pb-3 mx-auto"
                     >
                       <LinkContainer
-                        to={`/ride/${ride.id}`}
+                        to={!isLoggedIn ? "/login" : `/ride/${ride.id}`}
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
@@ -111,7 +111,7 @@ const FindRide = () => {
                             </Col>
                             <Col xs={5} className="ps-0">
                               <p className="mb-0">
-                                {ride.Driver.User.username}
+                                {ride.Driver.User.firstName}
                               </p>
                               <p className="mb-0">
                                 <FontAwesomeIcon
@@ -124,7 +124,7 @@ const FindRide = () => {
                             </Col>
                             <Col xs={4} className="text-end mx-auto">
                               {!isLoggedIn ? (
-                                <LinkContainer to="/signup">
+                                <LinkContainer to="/login">
                                   <Button
                                     variant="warning"
                                     className="rounded-0"

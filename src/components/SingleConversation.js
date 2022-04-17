@@ -37,8 +37,8 @@ const SingleConversation = ({ conversation }) => {
 
   // Get receiver's information
   const receiver = !(conversation.UserId === currentUser.id)
-    ? conversation.User.username
-    : conversation.Driver.User.username;
+    ? conversation.User.firstName
+    : conversation.Driver.User.firstName;
   const receiverId = !(conversation.UserId === currentUser.id)
     ? conversation.User.id
     : conversation.Driver.User.id;

@@ -1,34 +1,23 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-import { getDriverBookingRide } from "../redux";
 import dateFormat from "dateformat";
-import { LinkContainer } from "react-router-bootstrap";
 
-function ManageDriverBooking({ rideId }) {
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+function ManagePassengerBooking({ rideId }) {
   const { bookingStatusVariant } = useSelector((state) => state.global);
-  const { isloadingDriverRideBookingList, driverRideBookingData } = useSelector(
+  const { isloadingUserRideBookingList, userRideBookingData } = useSelector(
     (state) => state.ride
   );
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getDriverBookingRide(currentUser.id, rideId));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
-      {!isloadingDriverRideBookingList && driverRideBookingData.length > 0 ? (
+      {!isloadingUserRideBookingList && userRideBookingData.length > 0 ? (
         <>
-          {driverRideBookingData.map((booking, index) => (
+          {userRideBookingData.map((booking, index) => (
             <LinkContainer
               to={`/booking/${booking.id}`}
               className="cursor-pointer"
@@ -45,8 +34,7 @@ function ManageDriverBooking({ rideId }) {
                     )}`}
                   >
                     {booking.BookingStatus.name}
-                  </span>{" "}
-                  | <span>By: {booking.User.firstName}</span>
+                  </span>
                 </Col>
                 <Col xs={1} className="text-start ps-0">
                   <FontAwesomeIcon icon={faChevronRight} />
@@ -55,11 +43,9 @@ function ManageDriverBooking({ rideId }) {
             </LinkContainer>
           ))}
         </>
-      ) : (
-        <p className="mb-0">You do not have any bookings for this ride yet</p>
-      )}
+      ) : null}
     </>
   );
 }
 
-export default ManageDriverBooking;
+export default ManagePassengerBooking;

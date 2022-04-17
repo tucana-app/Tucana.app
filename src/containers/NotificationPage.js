@@ -137,7 +137,7 @@ const NotificationPage = () => {
                 {request.Ride.seatsAvailable}{" "}
                 <span>
                   by{" "}
-                  <span className="text-success">{request.User.username}</span>
+                  <span className="text-success">{request.User.firstName}</span>
                 </span>
               </ListGroup.Item>
             </Link>
@@ -184,7 +184,7 @@ const NotificationPage = () => {
                 <span>
                   by{" "}
                   <span className="text-success">
-                    {booking.Ride.Driver.User.username}
+                    {booking.Ride.Driver.User.firstName}
                   </span>
                 </span>{" "}
                 |{" "}

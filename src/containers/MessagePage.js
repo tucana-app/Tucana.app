@@ -26,9 +26,9 @@ function ComingSoon() {
 
   const getSenderUsername = (conversation) => {
     if (!(conversation.UserId === currentUser.id)) {
-      return conversation.User.username;
+      return conversation.User.firstName;
     } else {
-      return conversation.Driver.User.username;
+      return conversation.Driver.User.firstName;
     }
   };
 
