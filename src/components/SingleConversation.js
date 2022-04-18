@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
   Container,
+  Row,
+  Col,
   Form,
   InputGroup,
   ListGroup,
@@ -120,28 +122,34 @@ const SingleConversation = ({ conversation }) => {
       </Container>
 
       <Form onSubmit={handleSubmit} className="message-form px-2" ref={form}>
-        <InputGroup className="mx-auto">
-          <Form.Control
-            name="message"
-            placeholder="Send a message"
-            className=""
-            onChange={(e) => setMessage(e.target.value)}
-            size="lg"
-          />
-          <Button
-            type="submit"
-            variant="success"
-            className="px-sm-2 px-md-3 px-lg-5"
-            disabled={isLoadingSendMessage}
-            size="lg"
-          >
-            {isLoadingSendMessage ? (
-              <LoadingSpinner size={"sm"} />
-            ) : (
-              <PaperAirplaneIcon verticalAlign="middle" />
-            )}
-          </Button>
-        </InputGroup>
+        <Container>
+          <Row>
+            <Col xs={12} sm={10} md={8} lg={8} className="mx-auto">
+              <InputGroup className="mx-auto">
+                <Form.Control
+                  name="message"
+                  placeholder="Send a message"
+                  className=""
+                  onChange={(e) => setMessage(e.target.value)}
+                  size="lg"
+                />
+                <Button
+                  type="submit"
+                  variant="success"
+                  className="px-sm-2 px-md-3 px-lg-5"
+                  disabled={isLoadingSendMessage}
+                  size="lg"
+                >
+                  {isLoadingSendMessage ? (
+                    <LoadingSpinner size={"sm"} />
+                  ) : (
+                    <PaperAirplaneIcon verticalAlign="middle" />
+                  )}
+                </Button>
+              </InputGroup>
+            </Col>
+          </Row>
+        </Container>
       </Form>
 
       <div className="w-50 mx-auto">

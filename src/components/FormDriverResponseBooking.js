@@ -40,6 +40,8 @@ const FormDriverResponseBooking = ({ bookingId }) => {
   return (
     <Formik
       validationSchema={bookingData.schema}
+      validateOnChange={false}
+      validateOnBlur={false}
       onSubmit={handleSubmit}
       initialValues={{
         comment: "",
@@ -57,12 +59,12 @@ const FormDriverResponseBooking = ({ bookingId }) => {
       }) => (
         <Form noValidate onSubmit={handleSubmit} className="">
           <Row>
-            <Col xs={8} sm={6} md={5} lg={4} className="mx-auto">
-              <p className="lead mb-1">Manage this ride</p>
+            <Col className="mx-auto">
+              <p className="lead mb-1">Manage this booking</p>
             </Col>
           </Row>
           <Row>
-            <Col xs={8} sm={6} md={5} lg={4} className="border py-2 mx-auto">
+            <Col className="py-2 mx-auto">
               {bookingData.seatsBooked > bookingData.Ride.seatsLeft ? (
                 <p className="text-warning mb-0">
                   <FontAwesomeIcon
@@ -83,9 +85,9 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           icon={faExclamationTriangle}
                           className="me-2"
                         />
-                        Do not share any contact info (phone, email, etc), they
-                        will be shared within the platform when a booking is
-                        made.
+                        Do not share any contact info (phone, email, links,
+                        etc.), they will be shared within the platform before
+                        the ride.
                       </p>
                       <FontAwesomeIcon
                         icon={faComment}
@@ -100,7 +102,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                       rows={2}
                       type="textarea"
                       placeholder="Give your passenger more details about the booking or the ride"
-                      className="rounded-0 mb-1"
+                      className="mb-1"
                       onChange={handleChange}
                       isInvalid={!!errors.comment}
                       isValid={touched.comment && !errors.comment}
@@ -123,13 +125,13 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         <Button
                           variant="danger"
                           size="lg"
-                          className="rounded-0"
                           type="submit"
                           disabled={
                             isSubmitting ||
                             bookingData.seatsBooked > bookingData.Ride.seatsLeft
                           }
                           onClick={() => setNewStatus(4)}
+                          className="me-2"
                         >
                           <span>
                             <FontAwesomeIcon icon={faTimes} className="me-2" />
@@ -140,7 +142,6 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         <Button
                           variant="success"
                           size="lg"
-                          className="rounded-0"
                           type="submit"
                           disabled={
                             isSubmitting ||

@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { setfeedback, sendEmail } from "../index";
+import { setfeedback, sendEmail, setShowToast } from "../index";
 import * as Yup from "yup";
 import { getNotifications } from "../../redux";
 
@@ -407,11 +407,12 @@ export const submitFormDriverResponseBooking = (
         // console.log(response.data);
 
         if (response.data.newStatus === 3) {
-          // If ride accepted by driver
           dispatch(
-            setfeedback({
+            setShowToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "You have accepted the booking",
               variant: "success",
-              message: response.data.message,
             })
           );
 

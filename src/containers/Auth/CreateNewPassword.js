@@ -91,6 +91,8 @@ const CreateNewPassword = () => {
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
               <Formik
                 validationSchema={schema}
+                validateOnChange={false}
+                validateOnBlur={false}
                 onSubmit={handleSubmit}
                 initialValues={{
                   password1: "",
@@ -116,7 +118,6 @@ const CreateNewPassword = () => {
                             type="password"
                             name="password1"
                             placeholder="Password"
-                            className="rounded-0"
                             onChange={handleChange}
                             isInvalid={!!errors.password1}
                             isValid={touched.password1 && !errors.password1}
@@ -142,7 +143,6 @@ const CreateNewPassword = () => {
                             type="password"
                             name="password2"
                             placeholder="Password"
-                            className="rounded-0"
                             onChange={handleChange}
                             disabled={
                               resetPasswordData.flag ===
@@ -163,7 +163,6 @@ const CreateNewPassword = () => {
                           <Button
                             variant="success"
                             size="lg"
-                            className="rounded-0"
                             type="submit"
                             disabled={
                               isSubmitting ||
@@ -224,9 +223,7 @@ const CreateNewPassword = () => {
 
         <Modal.Footer>
           <LinkContainer to="/login">
-            <Button variant="success" className="rounded-0">
-              Login
-            </Button>
+            <Button variant="success">Login</Button>
           </LinkContainer>
         </Modal.Footer>
       </Modal>

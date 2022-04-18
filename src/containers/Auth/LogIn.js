@@ -57,6 +57,8 @@ const Login = () => {
         <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
           <Formik
             validationSchema={schema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={handleSubmit}
             initialValues={{
               credential: "",
@@ -82,7 +84,6 @@ const Login = () => {
                         type="text"
                         name="credential"
                         placeholder="Email or Username"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.credential}
                         isValid={touched.credential && !errors.credential}
@@ -101,7 +102,6 @@ const Login = () => {
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
@@ -148,7 +148,7 @@ const Login = () => {
                     <LinkContainer to="/signup">
                       <Button
                         variant="outline-success"
-                        className="rounded-0 me-5"
+                        className="me-5"
                         size="lg"
                       >
                         Sign Up
@@ -158,7 +158,6 @@ const Login = () => {
                       <Button
                         variant="success"
                         size="lg"
-                        className="rounded-0"
                         type="submit"
                         disabled={isSubmitting || isloadingLogin}
                       >

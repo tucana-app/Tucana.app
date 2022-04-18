@@ -83,6 +83,8 @@ const OfferRide = () => {
         <Col xs={12} sm={10} lg={8} xl={6} className="mx-auto">
           <Formik
             validationSchema={schema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={handleSubmit}
             initialValues={{
               cityOrigin: "",
@@ -120,7 +122,6 @@ const OfferRide = () => {
                           type="text"
                           name="cityOrigin"
                           placeholder="City"
-                          className="rounded-0"
                           onChange={handleChange}
                           isInvalid={!!errors.cityOrigin}
                           isValid={touched.cityOrigin && !errors.cityOrigin}
@@ -141,7 +142,6 @@ const OfferRide = () => {
 
                         <Form.Select
                           name="provinceOrigin"
-                          className="rounded-0"
                           onChange={handleChange}
                           isInvalid={!!errors.provinceOrigin}
                           isValid={
@@ -177,7 +177,6 @@ const OfferRide = () => {
                           type="text"
                           name="cityDestination"
                           placeholder="City"
-                          className="rounded-0"
                           onChange={handleChange}
                           isInvalid={!!errors.cityDestination}
                           isValid={
@@ -198,7 +197,6 @@ const OfferRide = () => {
                         </Form.Label>
                         <Form.Select
                           name="provinceDestination"
-                          className="rounded-0"
                           onChange={handleChange}
                           isInvalid={!!errors.provinceDestination}
                           isValid={
@@ -237,7 +235,6 @@ const OfferRide = () => {
                       type="date"
                       name="date"
                       placeholder="Date"
-                      className="rounded-0"
                       min={dateFormat(new Date(), "yyyy-mm-dd")}
                       onChange={handleChange}
                       isInvalid={!!errors.date}
@@ -262,7 +259,6 @@ const OfferRide = () => {
                       type="time"
                       name="time"
                       placeholder="Time"
-                      className="rounded-0"
                       min="00:00"
                       max="23:59"
                       onChange={handleChange}
@@ -287,7 +283,6 @@ const OfferRide = () => {
                     </Form.Label>
                     <Form.Select
                       name="seatsAvailable"
-                      className="rounded-0"
                       defaultValue="1"
                       onChange={handleChange}
                       isInvalid={!!errors.seatsAvailable}
@@ -331,7 +326,7 @@ const OfferRide = () => {
                       rows={2}
                       type="textarea"
                       placeholder="Want to share the road you'll take or a precision on your destination?"
-                      className="rounded-0 mb-1"
+                      className="mb-1"
                       onChange={handleChange}
                       isInvalid={!!errors.comment}
                       isValid={touched.comment && !errors.comment}
@@ -354,7 +349,6 @@ const OfferRide = () => {
                       <Button
                         variant="success"
                         size="lg"
-                        className="rounded-0"
                         type="submit"
                         disabled={
                           isSubmitting ||

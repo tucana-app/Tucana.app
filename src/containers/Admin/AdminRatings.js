@@ -102,7 +102,7 @@ function AdminRatings() {
                               <LinkContainer
                                 to={`/admin/ride/${rating.rating.Ride.id}`}
                               >
-                                <Button variant="success" className="rounded-0">
+                                <Button variant="success">
                                   {rating.rating.Ride.id}
                                 </Button>
                               </LinkContainer>
@@ -111,7 +111,7 @@ function AdminRatings() {
                               <LinkContainer
                                 to={`/admin/booking/${rating.rating.Booking.id}`}
                               >
-                                <Button variant="info" className="rounded-0">
+                                <Button variant="info">
                                   {rating.rating.Booking.id}
                                 </Button>
                               </LinkContainer>
@@ -197,7 +197,7 @@ function AdminRatings() {
                               <LinkContainer
                                 to={`/admin/ride/${rating.rating.Ride.id}`}
                               >
-                                <Button variant="success" className="rounded-0">
+                                <Button variant="success">
                                   {rating.rating.Ride.id}
                                 </Button>
                               </LinkContainer>
@@ -206,7 +206,7 @@ function AdminRatings() {
                               <LinkContainer
                                 to={`/admin/booking/${rating.rating.Booking.id}`}
                               >
-                                <Button variant="info" className="rounded-0">
+                                <Button variant="info">
                                   {rating.rating.Booking.id}
                                 </Button>
                               </LinkContainer>

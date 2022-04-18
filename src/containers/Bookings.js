@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row, Button, Collapse } from "react-bootstrap";
+import { ArrowRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
-import FeedbackMessage from "../components/FeedbackMessage";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { getUserBookings } from "../redux";
@@ -45,22 +43,8 @@ const Bookings = () => {
           <Col className="text-center">
             <div>
               <h1 className="font-title text-success mb-0">Your bookings</h1>
-              <p className="lead">See all the bookings you have made</p>
-              <p className="lead">
-                Total booking you've made:{" "}
-                <span className="fw-bold text-success">
-                  {!(userBookingsData.length === 0) || !isLoadingUserBookings
-                    ? userBookingsData.length
-                    : "-"}
-                </span>
-              </p>
+              <p className="lead">All the bookings you have made</p>
             </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <hr className="w-75 mx-auto my-3" />
           </Col>
         </Row>
 
@@ -71,116 +55,89 @@ const Bookings = () => {
             </Col>
           </Row>
         ) : userBookingsData.length > 0 ? (
-          <>
-            {userBookingsData.map((booking, index) => (
-              <Row
-                key={index}
-                className="justify-content-center align-items-center text-center"
+          userBookingsData.map((booking, index) => (
+            <Row key={index} className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                className="border shadow-sm rounded mx-auto"
               >
-                <Col xs={12} className="text-center mb-3">
-                  <Link
-                    to={`/booking/${booking.id}`}
-                    className="text-decoration-none"
-                  >
-                    <u>
-                      #{index + 1} - {booking.Ride.cityOrigin}{" "}
-                      <FontAwesomeIcon icon={faArrowRight} size="sm" />{" "}
-                      {booking.Ride.cityDestination} -{" "}
-                      {dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}
-                    </u>
-                  </Link>
-                </Col>
-
-                <Col xs={12}>
-                  <p className="mb-0">
-                    Seats booked:{" "}
-                    <span className="text-success">{booking.seatsBooked}</span>
-                  </p>
-                </Col>
-
-                <Col xs={12}>
-                  <p className="mb-0">
-                    Seats left: {booking.Ride.seatsLeft} /{" "}
-                    {booking.Ride.seatsAvailable}
-                  </p>
-                </Col>
-
-                <Col xs={12}>
-                  <p>Driver: {booking.Ride.Driver.User.firstName}</p>
-                </Col>
-
-                <Col xs={12}>
-                  <p>
-                    Status:{" "}
-                    <span
-                      className={`text-${bookingStatusVariant(
-                        booking.BookingStatusId
-                      )}`}
-                    >
-                      {booking.BookingStatus.name}
-                    </span>
-                  </p>
-                </Col>
-
-                {isDateInPast(booking.Ride.dateTime, new Date()) ? (
-                  <Col xs={12} className="text-center text-warning mb-3">
-                    This is a past ride
-                  </Col>
-                ) : null}
-
-                <Col className="text-center mb-3">
-                  <LinkContainer
-                    to={`/ride/${booking.RideId}`}
-                    className="me-3"
-                  >
-                    <Button variant="info" className="rounded-0 text-uppercase">
-                      View ride
-                    </Button>
-                  </LinkContainer>
-                  <LinkContainer to={`/booking/${booking.id}`}>
-                    <Button
-                      variant="warning"
-                      className="rounded-0 text-uppercase"
-                    >
-                      View booking
-                    </Button>
-                  </LinkContainer>
-                </Col>
-
-                <Col xs={12} className="text-center">
-                  {!isDateInPast(booking.Ride.dateTime, new Date()) &&
-                  booking.BookingStatusId === 3 ? (
-                    <SendMessageButton
-                      type="button"
-                      driverId={booking.DriverId}
-                      userId={booking.UserId}
-                      receiverName={booking.Ride.Driver.User.firstName}
-                      rideId={booking.Ride}
-                    />
-                  ) : null}
-                </Col>
-
-                {index !== userBookingsData.length - 1 ? (
-                  <Col xs={12} className="text-center">
-                    <hr className="w-75 mx-auto my-4" />
-                  </Col>
-                ) : null}
-              </Row>
-            ))}
-          </>
+                <Container className="py-3 px-2">
+                  <Row className="mb-3">
+                    <Col>
+                      <h4 className="text-center">
+                        {dateFormat(booking.createdAt, "dd/mm/yyyy")}
+                      </h4>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col className="text-center">
+                      <p className="mb-0">
+                        <span className="fw-bold">
+                          {booking.Ride.cityOrigin}
+                        </span>
+                        <ArrowRightIcon
+                          size={24}
+                          className="text-success ms-1"
+                        />{" "}
+                        <span className="fw-bold">
+                          {booking.Ride.cityDestination}
+                        </span>
+                      </p>
+                      <p
+                        className={
+                          isDateInPast(booking.Ride.dateTime, new Date())
+                            ? "text-warning"
+                            : null
+                        }
+                      >
+                        ({dateFormat(booking.Ride.dateTime, "dd/mm/yy")})
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-3">
+                    <Col xs={6} className="text-center">
+                      <h4>
+                        Seats:{" "}
+                        <span className="text-success">
+                          {booking.seatsBooked}
+                        </span>
+                      </h4>
+                    </Col>
+                    <Col xs={6} className="text-center">
+                      <h4>
+                        Status:{" "}
+                        <span
+                          className={`text-${bookingStatusVariant(
+                            booking.BookingStatus.id
+                          )}`}
+                        >
+                          {booking.BookingStatus.name}
+                        </span>
+                      </h4>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="text-center">
+                      <LinkContainer to={`/booking/${booking.id}`}>
+                        <Button variant="success" className="hvr-grow">
+                          More
+                        </Button>
+                      </LinkContainer>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+          ))
         ) : (
-          <>
-            <Row>
-              <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                <FeedbackMessage />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="text-center">
-                <MessageEmpty title="rides" />
-              </Col>
-            </Row>
-          </>
+          <Row>
+            <Col className="text-center">
+              <MessageEmpty title="rides" />
+            </Col>
+          </Row>
         )}
       </Container>
     </div>

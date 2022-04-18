@@ -30,36 +30,28 @@ function AdminDashboard() {
         <Row className="mb-3">
           <Col>
             <LinkContainer to={`/admin/users`}>
-              <Button variant="success" className="rounded-0">
-                Users
-              </Button>
+              <Button variant="success">Users</Button>
             </LinkContainer>
           </Col>
         </Row>
         <Row className="mb-3">
           <Col>
             <LinkContainer to={`/admin/rides`}>
-              <Button variant="warning" className="rounded-0">
-                Rides
-              </Button>
+              <Button variant="warning">Rides</Button>
             </LinkContainer>
           </Col>
         </Row>
         <Row className="mb-3">
           <Col>
             <LinkContainer to={`/admin/ratings`}>
-              <Button variant="secondary" className="rounded-0">
-                Ratings
-              </Button>
+              <Button variant="secondary">Ratings</Button>
             </LinkContainer>
           </Col>
         </Row>
         <Row className="mb-3">
           <Col>
             <LinkContainer to={`/admin/email`}>
-              <Button variant="primary" className="rounded-0">
-                Email
-              </Button>
+              <Button variant="primary">Email</Button>
             </LinkContainer>
           </Col>
         </Row>

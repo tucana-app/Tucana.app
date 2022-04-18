@@ -85,9 +85,7 @@ function AdminRides() {
                         </td>
                         <td>
                           <LinkContainer to={`/admin/ride/${ride.id}`}>
-                            <Button variant="success" className="rounded-0">
-                              View
-                            </Button>
+                            <Button variant="success">View</Button>
                           </LinkContainer>
                         </td>
                       </tr>

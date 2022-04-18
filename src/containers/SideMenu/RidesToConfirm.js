@@ -74,9 +74,7 @@ function RidesToConfirm() {
             <Col className="text-center">
               <p className="lead">No rides to confirm.</p>
               <LinkContainer to="/my-rides">
-                <Button variant="success" className="rounded-0">
-                  Go back to your rides
-                </Button>
+                <Button variant="success">Go back to your rides</Button>
               </LinkContainer>
             </Col>
           </Row>

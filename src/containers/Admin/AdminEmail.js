@@ -47,7 +47,6 @@ function AdminEmail() {
                 type="email"
                 name="email"
                 placeholder="Type your email address here"
-                className="rounded-0"
                 onChange={(e) => setEmailAddress(e.target.value)}
                 required
               />
@@ -60,7 +59,6 @@ function AdminEmail() {
             <Button
               variant="success"
               size="lg"
-              className="rounded-0"
               type="submit"
               disabled={isLoadingSendTestEmail}
               onClick={() =>

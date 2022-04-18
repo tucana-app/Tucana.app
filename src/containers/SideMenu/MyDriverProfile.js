@@ -38,7 +38,7 @@ function MyDriverProfile(props) {
         <Row className="text-center mb-5">
           <Col>
             <LinkContainer to="/my-profile/driver/ratings">
-              <Button variant="warning" size={"lg"} className="rounded-0">
+              <Button variant="warning" size={"lg"}>
                 Ratings <ChevronRightIcon size={24} verticalAlign="middle" />
               </Button>
             </LinkContainer>

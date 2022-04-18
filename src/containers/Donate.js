@@ -32,7 +32,7 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="warning" className="rounded-0">
+              <Button variant="warning">
                 <FontAwesomeIcon icon={faBitcoin} className="me-2" />
                 Giveth.io
               </Button>
@@ -43,7 +43,7 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="success" className="rounded-0">
+              <Button variant="success">
                 <FontAwesomeIcon icon={faDollarSign} className="me-2" />
                 PayPal (donation)
               </Button>
@@ -53,11 +53,7 @@ const Donate = () => {
         <Row>
           <Col className="text-center">
             <a href="http://ridecr.atwebpages.com" target={"blank"}>
-              <Button
-                variant="outline-success"
-                className="rounded-0"
-                size={"lg"}
-              >
+              <Button variant="outline-success" size={"lg"}>
                 <FontAwesomeIcon icon={faHandHoldingUsd} className="me-2" />
                 Crowdfunding website
               </Button>

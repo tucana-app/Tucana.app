@@ -195,7 +195,7 @@ const NewRating = () => {
                 <Button
                   variant="success"
                   onClick={handleSubmitPassengerRatingForm}
-                  className="rounded-0 text-uppercase"
+                  className="text-uppercase"
                   disabled={submitPassengerRatingFormData.flag === "SUCCESS"}
                 >
                   {isLoadingSubmitPassengerRatingForm ? (
@@ -316,7 +316,6 @@ const NewRating = () => {
                 <Button
                   variant="success"
                   onClick={handleSubmitDriverRatingForm}
-                  className="rounded-0 text-uppercase"
                   disabled={submitDriverRatingFormData.flag === "SUCCESS"}
                 >
                   {isLoadingSubmitDriverRatingForm ? <LoadingSpinner /> : null}{" "}

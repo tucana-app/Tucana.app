@@ -52,6 +52,8 @@ const ForgotPassword = () => {
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <Formik
               validationSchema={schema}
+              validateOnChange={false}
+              validateOnBlur={false}
               onSubmit={handleSubmit}
               initialValues={{
                 email: "",
@@ -76,7 +78,6 @@ const ForgotPassword = () => {
                           type="email"
                           name="email"
                           placeholder="Type your email address here"
-                          className="rounded-0"
                           onChange={handleChange}
                           isInvalid={!!errors.email}
                           isValid={touched.email && !errors.email}
@@ -93,7 +94,6 @@ const ForgotPassword = () => {
                         <Button
                           variant="success"
                           size="lg"
-                          className="rounded-0"
                           type="submit"
                           disabled={
                             isSubmitting || isLoadingSendEmailForgotPassword

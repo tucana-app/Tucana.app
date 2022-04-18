@@ -147,7 +147,10 @@ const MyRidesDriver = () => {
 
                     <Col xs={12} className="text-center mx-auto my-3">
                       <LinkContainer to={`/ride/${ride.id}`}>
-                        <Button variant="success rounded-0 fw-bold text-uppercase">
+                        <Button
+                          variant="success"
+                          className="fw-bold text-uppercase"
+                        >
                           Manage
                         </Button>
                       </LinkContainer>

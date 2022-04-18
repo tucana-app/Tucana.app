@@ -99,6 +99,8 @@ const SignUp = () => {
         <Col sm={12} md={10} lg={8} className="mx-auto">
           <Formik
             validationSchema={schema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={handleSubmit}
             initialValues={{
               firstName: "",
@@ -130,7 +132,6 @@ const SignUp = () => {
                         type="text"
                         name="firstName"
                         placeholder="First name"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.firstName}
                         isValid={touched.firstName && !errors.firstName}
@@ -151,7 +152,6 @@ const SignUp = () => {
                         type="text"
                         name="lastName"
                         placeholder="Last name"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.lastName}
                         isValid={touched.lastName && !errors.lastName}
@@ -174,7 +174,6 @@ const SignUp = () => {
                         type="email"
                         name="email"
                         placeholder="Email"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.email}
                         isValid={touched.email && !errors.email}
@@ -195,7 +194,6 @@ const SignUp = () => {
                         type="tel"
                         name="phoneNumber"
                         placeholder="Phone number"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.phoneNumber}
                         isValid={touched.phoneNumber && !errors.phoneNumber}
@@ -218,7 +216,6 @@ const SignUp = () => {
                         type="text"
                         name="username"
                         placeholder="Username"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.username}
                         isValid={touched.username && !errors.username}
@@ -239,7 +236,6 @@ const SignUp = () => {
                         type="password"
                         name="password"
                         placeholder="Password"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
@@ -269,7 +265,6 @@ const SignUp = () => {
                       <Button
                         variant="success"
                         size="lg"
-                        className="rounded-0"
                         type="submit"
                         disabled={isSubmitting || isloadingSignup}
                       >

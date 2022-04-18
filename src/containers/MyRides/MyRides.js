@@ -62,7 +62,7 @@ const MyRides = () => {
     <Container fluid className="p-0">
       <ListGroup variant="flush" className="pt-2">
         {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
-          <div data-aos="fade-up">
+          <div>
             <Link
               to="/rides/rides-to-confirm"
               className="text-light text-decoration-none"
@@ -114,7 +114,7 @@ const MyRides = () => {
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               <div>
-                Ride offered
+                Rides offered
                 {driverRidesData.length > 0 ? (
                   countDriverRides(driverRidesData) ? (
                     <Badge bg="success" className="text-dark ms-2">
@@ -139,7 +139,7 @@ const MyRides = () => {
           <ListGroup.Item className="border-0 ">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               <div>
-                Booking received
+                Bookings received
                 {driverBookingsData.length > 0 ? (
                   countDriverBookings(driverBookingsData) ? (
                     <Badge bg="info" className="text-dark ms-2">

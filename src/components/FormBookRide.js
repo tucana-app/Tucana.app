@@ -44,6 +44,8 @@ const FormBookRide = () => {
         <Col>
           <Formik
             validationSchema={rideData.schema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={handleSubmit}
             initialValues={{
               seatsNeeded: 0,
@@ -74,7 +76,6 @@ const FormBookRide = () => {
                       </Form.Label>
                       <Form.Select
                         name="seatsNeeded"
-                        className="rounded-0"
                         onChange={handleChange}
                         isInvalid={!!errors.seatsNeeded}
                         isValid={touched.seatsNeeded && !errors.seatsNeeded}
@@ -92,11 +93,9 @@ const FormBookRide = () => {
                     </Form.Group>
 
                     <Form.Group className="text-end mx-auto">
-                      <span>Everything looks good? </span>
                       <Button
                         variant="success"
                         size="lg"
-                        className="rounded-0"
                         type="submit"
                         disabled={
                           isSubmitting ||

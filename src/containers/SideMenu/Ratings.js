@@ -52,7 +52,7 @@ function Ratings() {
             <p className="lead">Passenger</p>
 
             <LinkContainer to="/my-profile/passenger/ratings">
-              <Button variant="info" className="rounded-0" size={"lg"}>
+              <Button variant="info" size={"lg"}>
                 Ratings as a passenger
               </Button>
             </LinkContainer>
@@ -63,7 +63,7 @@ function Ratings() {
             <p className="lead">Driver</p>
 
             <LinkContainer to="/my-profile/driver/ratings">
-              <Button variant="warning" className="rounded-0" size={"lg"}>
+              <Button variant="warning" size={"lg"}>
                 Ratings as a driver
               </Button>
             </LinkContainer>

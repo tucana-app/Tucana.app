@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faStar } from "@fortawesome/free-solid-svg-icons";
-import { faCircle } from "@fortawesome/free-regular-svg-icons";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import {
+  ChevronRightIcon,
+  ArrowDownIcon,
+  StarFillIcon,
+  CircleIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
@@ -102,10 +104,7 @@ const Ride = () => {
                         {rideData.ride.provinceOrigin}
                       </p>
 
-                      <FontAwesomeIcon
-                        icon={faArrowDown}
-                        className="text-success"
-                      />
+                      <ArrowDownIcon size={24} className="text-success" />
 
                       <h2 className="fw-bold mb-0">
                         {rideData.ride.cityDestination}
@@ -195,22 +194,19 @@ const Ride = () => {
                       >
                         <Row className="align-items-center mb-3">
                           <Col xs={3} md={2} className="text-end pe-0">
-                            <FontAwesomeIcon
-                              icon={faCircle}
-                              className="text-secondary"
-                              size="3x"
-                            />
+                            <CircleIcon size={56} className="text-secondary" />
                           </Col>
                           <Col xs={6} className="text-start">
                             <p className="mb-0">
                               {rideData.ride.Driver.User.firstName}
                             </p>
                             <p className="mb-0">
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-warning"
-                                size={"sm"}
-                              />{" "}
+                              <StarFillIcon
+                                size={18}
+                                verticalAlign="middle"
+                                className="text-warning me-2"
+                              />
+
                               <span>-/5 | - ratings</span>
                             </p>
                           </Col>

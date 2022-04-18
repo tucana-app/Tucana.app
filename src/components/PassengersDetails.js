@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
-import dateFormat from "dateformat";
 
 import { getPassengersDetails } from "../redux";
-import LoadingSpinner from "./LoadingSpinner";
 import SendMessageButton from "./SendMessageButton";
 
 const PassengersDetails = ({ rideId, booking }) => {
@@ -38,59 +36,38 @@ const PassengersDetails = ({ rideId, booking }) => {
 
   return (
     <>
-      {isLoadingPassengersDetails ? (
-        <Row>
-          <Col className="text-center my-3">
-            <LoadingSpinner />
-          </Col>
-        </Row>
-      ) : passengersDetailsData.length > 0 ? (
+      {!isLoadingPassengersDetails && passengersDetailsData.length > 0 ? (
         <>
           <Row>
             <Col>
               <p>
-                You have <span className="text-success">{totalPassengers}</span>{" "}
-                passenger(s) for a total of{" "}
+                Total: <span className="text-success">{totalPassengers}</span>{" "}
+                passenger(s) with{" "}
                 <span className="text-success">
                   {passengersDetailsData.length}
                 </span>{" "}
-                of booking(s) on this ride
+                booking(s)
               </p>
             </Col>
           </Row>
           {passengersDetailsData.map((booking, index) => (
-            <Row key={index} className="align-items-center">
-              <Col xs={6} lg={4} className="mb-3">
-                <p className="mb-0">
-                  #{index + 1}: Passenger:{" "}
-                  <span className="text-success">{booking.User.username}</span>
-                </p>
-                <p className="mb-0">
-                  Seats booked:{" "}
+            <Row key={index} className="mb-2">
+              <Col className="d-inline-flex align-items-center">
+                <p className="flex-grow-1 mb-0">
+                  Passenger:{" "}
+                  <span className="text-success">{booking.User.firstName}</span>{" "}
+                  | Seats:{" "}
                   <span className="text-success">{booking.seatsBooked}</span>{" "}
-                  {/* / {booking.Ride.seatsAvailable} */}
                 </p>
-              </Col>
-              <Col xs={6} lg={4} className="mb-3">
-                <p className="mb-0">
-                  Booking date: {dateFormat(booking.dateTime, "dd/mm/yyyy")}
-                </p>
-              </Col>
-
-              <Col xs={6} lg={4}>
-                {booking.commentPassenger ? (
-                  <p className="mb-0">
-                    Passenger comment: "<i>{booking.commentPassenger}</i>"
-                  </p>
-                ) : null}
-
-                <SendMessageButton
-                  type="link"
-                  driverId={booking.DriverId}
-                  userId={booking.UserId}
-                  receiverName={booking.User.firstName}
-                  rideId={booking.Ride}
-                />
+                <div className="text-end">
+                  <SendMessageButton
+                    type="button"
+                    driverId={booking.DriverId}
+                    userId={booking.UserId}
+                    receiverName={booking.User.firstName}
+                    rideId={booking.Ride}
+                  />
+                </div>
               </Col>
             </Row>
           ))}

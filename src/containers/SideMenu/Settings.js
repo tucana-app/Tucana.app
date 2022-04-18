@@ -33,7 +33,7 @@ function Settings() {
           <Col className="text-center">
             <Button
               variant="outline-primary"
-              className="rounded-0 mb-3"
+              className="mb-3"
               onClick={() => setShowModalRequestData(true)}
             >
               Request my data
@@ -45,7 +45,6 @@ function Settings() {
           <Col className="text-center">
             <Button
               variant="outline-danger"
-              className="rounded-0"
               onClick={() => setShowModalRemoveAccount(true)}
             >
               Remove my account
