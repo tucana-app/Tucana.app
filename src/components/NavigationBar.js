@@ -11,7 +11,6 @@ import {
   ThreeBarsIcon,
   HomeIcon,
 } from "@primer/octicons-react";
-import { useTranslation } from "react-i18next";
 
 function NavigationBar() {
   // const dispatch = useDispatch();
@@ -23,8 +22,6 @@ function NavigationBar() {
   var notifications =
     driverNewRidesRequestsData.count + passengerBookingsResponsesData.count;
   var messages = userNewMessagesData.count;
-
-  const { t } = useTranslation();
 
   return currentUser ? (
     <Navbar bg="white" variant="light" fixed="bottom" className="pt-0">
@@ -40,9 +37,7 @@ function NavigationBar() {
                 >
                   <Nav.Link className="font-title text-center">
                     <SearchIcon size={24} className="mb-1" />
-                    <p className="text-icon-nav-bar mb-0">
-                      {t("translation:navigationbar.findRide")}
-                    </p>
+                    <p className="text-icon-nav-bar mb-0">Find</p>
                   </Nav.Link>
                 </IndexLinkContainer>
               </Col>
@@ -54,9 +49,7 @@ function NavigationBar() {
                 >
                   <Nav.Link className="font-title text-center">
                     <PlusCircleIcon size={24} className="mb-1" />
-                    <p className="text-icon-nav-bar mb-0">
-                      {t("translation:navigationbar.offerRide")}
-                    </p>
+                    <p className="text-icon-nav-bar mb-0">Offer</p>
                   </Nav.Link>
                 </IndexLinkContainer>
               </Col>
@@ -68,9 +61,7 @@ function NavigationBar() {
                 >
                   <Nav.Link className="font-title text-center text-decoration-none">
                     <ZapIcon size={24} className="mb-1" />
-                    <p className="text-icon-nav-bar mb-0">
-                      {t("translation:navigationbar.myRides")}
-                    </p>
+                    <p className="text-icon-nav-bar mb-0">Rides</p>
                   </Nav.Link>
                 </IndexLinkContainer>
               </Col>
@@ -114,7 +105,7 @@ function NavigationBar() {
                     <div className="position-relative">
                       <PersonIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("translation:navigationbar.myAccount")}
+                        Account
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {notifications}
@@ -150,9 +141,7 @@ function NavigationBar() {
           <IndexLinkContainer to="/" href="/">
             <Nav.Link className="font-title text-center">
               <HomeIcon size={24} />
-              <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                {t("translation:navigationbar.home")}
-              </p>
+              <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">Home</p>
             </Nav.Link>
           </IndexLinkContainer>
           <div className="d-inline-flex">
@@ -163,7 +152,7 @@ function NavigationBar() {
                   variant="outline-success"
                   size="lg"
                 >
-                  {t("translation:homePage.logIn")}
+                  Log In
                 </Button>
               </Nav.Link>
             </IndexLinkContainer>
@@ -171,7 +160,7 @@ function NavigationBar() {
             <IndexLinkContainer to="/signup" href="/signup">
               <Nav.Link className="font-title text-center">
                 <Button className="font-title" variant="success" size="lg">
-                  {t("translation:homePage.signUp")}
+                  Sign Up
                 </Button>
               </Nav.Link>
             </IndexLinkContainer>

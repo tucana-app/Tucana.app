@@ -45,7 +45,7 @@ const Donate = () => {
             >
               <Button variant="success">
                 <FontAwesomeIcon icon={faDollarSign} className="me-2" />
-                PayPal (donation)
+                PayPal
               </Button>
             </a>
           </Col>

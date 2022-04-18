@@ -1,24 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
+import { ArrowDownIcon } from "@primer/octicons-react";
 
+import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
 import MessageEmpty from "../../components/MessageEmpty";
-import { LinkContainer } from "react-router-bootstrap";
-import { Button } from "react-bootstrap";
 
 import { getDriverRides } from "../../redux";
-import GoBack from "../../components/GoBack";
 
 const MyRidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { rideStatusVariant, isDateInPast } = useSelector(
-    (state) => state.global
-  );
   const { isLoadingDriverRides, driverRidesData } = useSelector(
     (state) => state.ride
   );
@@ -61,98 +58,71 @@ const MyRidesDriver = () => {
             {driverRidesData.length > 0 ? (
               <>
                 {driverRidesData.map((ride, index) => (
-                  <Row
-                    className="justify-content-center justify-content-md-start justify-content-lg-center align-items-center border border-start-0 border-end-0 py-3 mx-1 mx-sm-2"
-                    key={index}
-                  >
-                    <Col xs={6} sm={3} lg={2} className="mb-3">
-                      <p className="mb-0">Origin:</p>
-                      <p className="mb-0">Province: </p>
-                    </Col>
-                    <Col xs={6} sm={3} lg={2} className="mb-3">
-                      <p className="text-warning mb-0">{ride.cityOrigin}</p>
-                      <p className="text-warning mb-0">{ride.provinceOrigin}</p>
-                    </Col>
-
-                    <Col xs={6} sm={3} lg={2} className="mb-3">
-                      <p className="mb-0">Destination:</p>
-                      <p className="mb-0">Province:</p>
-                    </Col>
-                    <Col xs={6} sm={3} lg={2} className="mb-3">
-                      <p className="text-success mb-0">
-                        {ride.cityDestination}
-                      </p>
-                      <p className="text-success mb-0">
-                        {ride.provinceDestination}
-                      </p>
-                    </Col>
-
-                    <Col xs={6} md={4} lg={2} className="mb-3 mb-lg-3">
-                      <p className="mb-0">
-                        Date: {dateFormat(ride.dateTime, "dd/mm/yyyy")}
-                      </p>
-                      <p className="mb-0">
-                        Time: {dateFormat(ride.dateTime, "HH:MM TT")}
-                      </p>
-                    </Col>
-
-                    <Col xs={6} md={4} lg={3} className="">
-                      <p className="mb-0">
-                        Created:{" "}
-                        <span>{dateFormat(ride.createdAt, "dd/mm/yyyy")}</span>
-                      </p>
-                      <p className="mb-0">
-                        Seats left:{" "}
-                        <span className="text-success">{ride.seatsLeft}</span> /{" "}
-                        {ride.seatsAvailable}
-                      </p>
-                    </Col>
-
-                    <Col xs={6} md={4} lg={3} className="my-3">
-                      Status:{" "}
-                      <span
-                        className={`text-${rideStatusVariant(
-                          ride.RideStatus.id
-                        )}`}
-                      >
-                        {ride.RideStatus.name}
-                      </span>
-                    </Col>
-
+                  <Row key={index} className="mb-3 mx-1 mx-sm-0">
                     <Col
-                      xs={6}
-                      md={0}
-                      lg={0}
-                      xl={0}
-                      xxl={0}
-                      className="d-md-none"
-                    ></Col>
-
-                    {!(ride.comment === "") ? (
-                      <Col
-                        xs={12}
-                        xl={3}
-                        className="text-lg-center text-xl-start mt-lg-3"
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      className="border shadow-sm rounded pb-3 mx-auto"
+                    >
+                      <LinkContainer
+                        to={`/ride/${ride.id}`}
+                        className="cursor-pointer"
                       >
-                        <p className="mb-0">Your comment:</p>
-                        <i>"{ride.comment}"</i>
-                      </Col>
-                    ) : null}
+                        <Container className="p-2">
+                          <Row className="mb-2">
+                            <Col className="text-center">
+                              {dateFormat(ride.dateTime, "dd/mm/yyyy")}
+                            </Col>
+                          </Row>
+                          <Row className="mb-4">
+                            <Col xs={2}>
+                              <p className="text-end mb-0">
+                                {dateFormat(ride.dateTime, "hh:mm TT")}
+                              </p>
+                            </Col>
+                            <Col xs={7}>
+                              <p className="fw-bold mb-0">{ride.cityOrigin}</p>
+                              <p className="small mb-0">
+                                {ride.provinceOrigin}
+                              </p>
 
-                    {isDateInPast(ride.dateTime, new Date()) ? (
-                      <Col xs={12} className="text-center text-warning">
-                        This is a past ride
-                      </Col>
-                    ) : null}
+                              <ArrowDownIcon
+                                size={24}
+                                className="text-success"
+                              />
 
-                    <Col xs={12} className="text-center mx-auto my-3">
-                      <LinkContainer to={`/ride/${ride.id}`}>
-                        <Button
-                          variant="success"
-                          className="fw-bold text-uppercase"
-                        >
-                          Manage
-                        </Button>
+                              <p className="fw-bold mb-0">
+                                {ride.cityDestination}
+                              </p>
+                              <p className="small mb-0">
+                                {ride.provinceDestination}
+                              </p>
+                            </Col>
+                            <Col xs={3} className="text-center mx-auto">
+                              <p className="mb-0">Seats</p>
+                              <p>
+                                <span className="text-success">
+                                  {ride.seatsLeft}
+                                </span>
+                                /{ride.seatsAvailable}
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col className="text-center">
+                              <LinkContainer to={`/ride/${ride.id}`}>
+                                <Button
+                                  variant="success"
+                                  className="hvr-grow me-2"
+                                >
+                                  See ride
+                                </Button>
+                              </LinkContainer>
+                            </Col>
+                          </Row>
+                        </Container>
                       </LinkContainer>
                     </Col>
                   </Row>

@@ -17,14 +17,12 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 const MyRides = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isDateInPast, countDriverBookings, countDriverRides } = useSelector(
+  const { isDateInPast, countDriverRides } = useSelector(
     (state) => state.global
   );
   const {
     isLoadingDriverRides,
     driverRidesData,
-    isLoadingDriverBookings,
-    driverBookingsData,
     isLoadingUserBookings,
     userBookingsData,
     isLoadingRidesToConfirm,
@@ -132,7 +130,7 @@ const MyRides = () => {
           </ListGroup.Item>
         </Link>
 
-        <Link
+        {/* <Link
           to="/my-rides/bookings"
           className="text-light text-decoration-none"
         >
@@ -155,11 +153,11 @@ const MyRides = () => {
               <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
-        </Link>
+        </Link> */}
 
         <hr className="my-2" />
 
-        <Link to="/help" className="text-light text-decoration-none">
+        <Link to="/help" className="text-light text-decoration-none mt-4">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               Help
@@ -167,8 +165,6 @@ const MyRides = () => {
             </div>
           </ListGroup.Item>
         </Link>
-
-        <hr className="my-2" />
       </ListGroup>
     </Container>
   );

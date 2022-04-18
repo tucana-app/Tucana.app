@@ -70,7 +70,9 @@ function AdminRides() {
                           {ride.cityDestination} ({ride.provinceDestination})
                         </td>
                         <td>{ride.Driver.User.username}</td>
-                        <td>{dateFormat(ride.dateTime, "dd/mm/yyyy HH:MM")}</td>
+                        <td>
+                          {dateFormat(ride.dateTime, "dd/mm/yyyy hh:mm TT")}
+                        </td>
                         <td>
                           {ride.seatsLeft}/{ride.seatsAvailable}
                         </td>

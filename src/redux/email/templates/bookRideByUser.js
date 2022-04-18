@@ -16,7 +16,7 @@ module.exports = {
       "dd/mm/yyyy"
     )} at ${dateFormat(
       ride.dateTime,
-      "HH:MM"
+      "hh:mm TT"
     )}. You can check the ride again here: ${
       process.env.REACT_APP_URL_CLIENT
     }/ride/${ride.id}`;
@@ -35,7 +35,7 @@ module.exports = {
     }" from ${ride.cityDestination} to ${ride.cityOrigin} on the ${dateFormat(
       ride.dateTime,
       "dd/mm/yyyy"
-    )} at ${dateFormat(ride.dateTime, "HH:MM")}</p>
+    )} at ${dateFormat(ride.dateTime, "hh:mm TT")}</p>
   </div>
   `;
   },

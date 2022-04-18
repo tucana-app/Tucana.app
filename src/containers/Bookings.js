@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
-import { Col, Container, Row, Button, Collapse } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import { ArrowRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -11,7 +11,6 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import { getUserBookings } from "../redux";
 import GoBack from "../components/GoBack";
-import SendMessageButton from "../components/SendMessageButton";
 
 const Bookings = () => {
   const dispatch = useDispatch();
@@ -121,9 +120,14 @@ const Bookings = () => {
                   </Row>
                   <Row>
                     <Col className="text-center">
+                      <LinkContainer to={`/ride/${booking.RideId}`}>
+                        <Button variant="light" className="hvr-grow me-2">
+                          See ride
+                        </Button>
+                      </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
                         <Button variant="success" className="hvr-grow">
-                          More
+                          See booking
                         </Button>
                       </LinkContainer>
                     </Col>

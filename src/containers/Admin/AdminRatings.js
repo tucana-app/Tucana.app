@@ -216,7 +216,7 @@ function AdminRatings() {
                             <td>
                               {dateFormat(
                                 rating.rating.Ride.dateTime,
-                                "dd/mm/yyyy hh:mm"
+                                "dd/mm/yyyy hh:mm TT"
                               )}
                             </td>
                             <td>

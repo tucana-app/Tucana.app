@@ -91,7 +91,7 @@ const Ride = () => {
                         {dateFormat(rideData.ride.dateTime, "dd/mm/yyyy")}
                       </p>
                       <p className="fw-bold text-success mb-0">
-                        {dateFormat(rideData.ride.dateTime, "hh:mm")}
+                        {dateFormat(rideData.ride.dateTime, "hh:mm TT")}
                       </p>
                     </Col>
                   </Row>

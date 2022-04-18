@@ -195,7 +195,6 @@ const NewRating = () => {
                 <Button
                   variant="success"
                   onClick={handleSubmitPassengerRatingForm}
-                  className="text-uppercase"
                   disabled={submitPassengerRatingFormData.flag === "SUCCESS"}
                 >
                   {isLoadingSubmitPassengerRatingForm ? (

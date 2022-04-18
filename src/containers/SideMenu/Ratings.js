@@ -40,41 +40,40 @@ function Ratings() {
       <GoBack />
 
       <Container className="pt-5">
-        <Row>
+        <Row className="mb-4">
           <Col>
             <h1 className="text-success text-center">Ratings</h1>
           </Col>
         </Row>
 
         <Row>
-          <Col xs={12} md={6} className="text-center mb-4 mb-md-0">
+          <Col xs={6} className="text-center mb-4 mb-md-0">
             <h2 className="text-info mb-0">- / 5</h2>
             <p className="lead">Passenger</p>
 
             <LinkContainer to="/my-profile/passenger/ratings">
               <Button variant="info" size={"lg"}>
-                Ratings as a passenger
+                Ratings
               </Button>
             </LinkContainer>
           </Col>
 
-          <Col xs={12} md={6} className="text-center">
+          <Col xs={6} className="text-center">
             <h2 className="text-warning mb-0">- / 5</h2>
             <p className="lead">Driver</p>
 
             <LinkContainer to="/my-profile/driver/ratings">
               <Button variant="warning" size={"lg"}>
-                Ratings as a driver
+                Ratings
               </Button>
             </LinkContainer>
           </Col>
         </Row>
       </Container>
 
-      {isLoadingGetRatingsToDoPassenger || isLoadingGetRatingsToDoDriver ? (
-        <LoadingSpinner />
-      ) : getRatingsToDoPassengerData.length ||
-        getRatingsToDoDriverData.length ? (
+      {(!isLoadingGetRatingsToDoPassenger || !isLoadingGetRatingsToDoDriver) &&
+      (getRatingsToDoPassengerData.length ||
+        getRatingsToDoDriverData.length) ? (
         <ListGroup variant="flush" className="pt-4">
           <ListGroup.Item className="border-0">
             <p className="lead mb-0">Ratings to do</p>

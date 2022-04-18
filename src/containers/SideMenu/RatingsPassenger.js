@@ -100,16 +100,7 @@ function RatingsPassenger() {
                 </Col>
               </Row>
             </Container>
-          ) : (
-            <Container>
-              <Row>
-                <Col>
-                  All your ratings received:{" "}
-                  {JSON.stringify(getRatingsReceivedPassengerData)}
-                </Col>
-              </Row>
-            </Container>
-          )}
+          ) : null}
         </Tab>
         <Tab eventKey="given" title="Given">
           {isLoadingGetRatingsGivenPassenger ? (
@@ -124,16 +115,7 @@ function RatingsPassenger() {
                 </Col>
               </Row>
             </Container>
-          ) : (
-            <Container>
-              <Row>
-                <Col>
-                  All your ratings given:{" "}
-                  {JSON.stringify(getRatingsGivenPassengerData)}
-                </Col>
-              </Row>
-            </Container>
-          )}
+          ) : null}
         </Tab>
       </Tabs>
 

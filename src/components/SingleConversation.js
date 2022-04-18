@@ -58,7 +58,7 @@ const SingleConversation = ({ conversation }) => {
     event.preventDefault();
 
     dispatch(sendMessage(currentUser.id, receiverId, message, conversation.id));
-
+    scrollToBottom();
     form.current.reset();
   };
 
@@ -99,7 +99,7 @@ const SingleConversation = ({ conversation }) => {
                       <>
                         <p className="from-me mb-0">{message.body} </p>
                         <p className="small text-secondary text-end w-100 mt-1 pe-0 py-0">
-                          {dateFormat(message.createdAt, "dd/mm/yy HH:MM")}{" "}
+                          {dateFormat(message.createdAt, "dd/mm/yy hh:mm TT")}{" "}
                           {messageStatusIcon(message.MessageStatusId)}
                         </p>
                       </>
@@ -109,7 +109,7 @@ const SingleConversation = ({ conversation }) => {
                         <p className="from-them mb-0">{message.body}</p>
                         {/* <p className="small text-secondary w-100 ps-0 my-0"> */}
                         <p className="small text-secondary w-100 mt-1 ps-0 py-0">
-                          {dateFormat(message.createdAt, "dd/mm/yy HH:MM")}
+                          {dateFormat(message.createdAt, "dd/mm/yy hh:mm TT")}
                         </p>
                       </>
                     )}

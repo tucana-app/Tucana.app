@@ -1,5 +1,4 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
 import { Container, Row, Col } from "react-bootstrap";
 import FindRide from "./FindRide";
 
@@ -26,4 +25,4 @@ function Home({ t }) {
     </>
   );
 }
-export default withTranslation()(Home);
+export default Home;

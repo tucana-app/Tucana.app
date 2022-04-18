@@ -18,6 +18,7 @@ i18n
     // react-i18next options
     react: {
       wait: true,
+      useSuspense: false,
     },
 
     // debug: process.env.NODE_ENV === "development",

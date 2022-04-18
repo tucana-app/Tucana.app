@@ -140,45 +140,53 @@ export const sendMessageRequested = () => {
   };
 };
 
-export const sendMessage = (senderId, receiverId, message, conversationId) => {
+export const sendMessage = (
+  senderId,
+  receiverId,
+  message,
+  conversationId,
+  messagesEndRef
+) => {
   return (dispatch) => {
-    dispatch(sendMessageRequested());
+    if (message.length !== 0) {
+      dispatch(sendMessageRequested());
 
-    axios
-      .post(URL_API + "/message/send-message", {
-        senderId,
-        receiverId,
-        message,
-        conversationId,
-      })
-      .then((response) => {
-        // console.log(response.data);
+      axios
+        .post(URL_API + "/message/send-message", {
+          senderId,
+          receiverId,
+          message,
+          conversationId,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-        dispatch(
-          setShowToast({
-            show: true,
-            headerText: "Success",
-            bodyText: "Message sent",
-            variant: "success",
-          })
-        );
-        dispatch(sendMessageResponse(message));
-        dispatch(getAllUserMessages(senderId));
-      })
-      .catch((error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+          dispatch(
+            setShowToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "Message sent",
+              variant: "success",
+            })
+          );
+          dispatch(sendMessageResponse(message));
+          dispatch(getAllUserMessages(senderId));
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-        // console.log(error);
+          // console.log(error);
 
-        dispatch(setfeedback({ message, variant: "danger" }));
+          dispatch(setfeedback({ message, variant: "danger" }));
 
-        dispatch(sendMessageResponse(message));
-      });
+          dispatch(sendMessageResponse(message));
+        });
+    }
   };
 };
 

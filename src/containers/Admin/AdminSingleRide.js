@@ -85,7 +85,7 @@ function AdminSingleRide() {
                       <td>
                         {dateFormat(
                           singleRideData.dateTime,
-                          "dd/mm/yyyy HH:MM"
+                          "dd/mm/yyyy hh:mm TT"
                         )}
                       </td>
                       <td>

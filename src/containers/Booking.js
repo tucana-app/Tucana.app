@@ -230,7 +230,7 @@ const Booking = () => {
                           {dateFormat(bookingData.Ride.dateTime, "dd/mm/yyyy")}
                         </p>
                         <p className="fw-bold text-success mb-0">
-                          {dateFormat(bookingData.Ride.dateTime, "hh:mm")}
+                          {dateFormat(bookingData.Ride.dateTime, "hh:mm TT")}
                         </p>
                       </Col>
                     </Row>

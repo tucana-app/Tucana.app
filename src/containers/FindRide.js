@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faStar, faLock } from "@fortawesome/free-solid-svg-icons";
-import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import {
+  CircleIcon,
+  StarFillIcon,
+  LockIcon,
+  ArrowDownIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -68,7 +71,7 @@ const FindRide = () => {
                           <Row className="mb-4">
                             <Col xs={2}>
                               <p className="text-end mb-0">
-                                {dateFormat(ride.dateTime, "hh:mm")}
+                                {dateFormat(ride.dateTime, "hh:mm TT")}
                               </p>
                             </Col>
                             <Col xs={7}>
@@ -77,8 +80,8 @@ const FindRide = () => {
                                 {ride.provinceOrigin}
                               </p>
 
-                              <FontAwesomeIcon
-                                icon={faArrowDown}
+                              <ArrowDownIcon
+                                size={24}
                                 className="text-success"
                               />
 
@@ -102,10 +105,9 @@ const FindRide = () => {
                           <Row className="align-items-center">
                             <Col xs={3} className="pe-0">
                               <p className="text-end mb-0">
-                                <FontAwesomeIcon
-                                  icon={faCircle}
+                                <CircleIcon
+                                  size={56}
                                   className="text-secondary me-2"
-                                  size="3x"
                                 />
                               </p>
                             </Col>
@@ -114,10 +116,10 @@ const FindRide = () => {
                                 {ride.Driver.User.firstName}
                               </p>
                               <p className="mb-0">
-                                <FontAwesomeIcon
-                                  icon={faStar}
+                                <StarFillIcon
+                                  size={18}
+                                  verticalAlign="middle"
                                   className="text-warning"
-                                  size={"sm"}
                                 />{" "}
                                 <span>-</span>
                               </p>
@@ -126,7 +128,11 @@ const FindRide = () => {
                               {!isLoggedIn ? (
                                 <LinkContainer to="/login">
                                   <Button variant="warning">
-                                    <FontAwesomeIcon icon={faLock} size="sm" />{" "}
+                                    <LockIcon
+                                      size={18}
+                                      verticalAlign="middle"
+                                      className="mb-1"
+                                    />{" "}
                                     Login
                                   </Button>
                                 </LinkContainer>

@@ -100,16 +100,7 @@ function RatingsDriver() {
                 </Col>
               </Row>
             </Container>
-          ) : (
-            <Container>
-              <Row>
-                <Col>
-                  All your ratings received:{" "}
-                  {JSON.stringify(getRatingsReceivedDriverData)}
-                </Col>
-              </Row>
-            </Container>
-          )}
+          ) : null}
         </Tab>
         <Tab eventKey="given" title="Given">
           {isLoadingGetRatingsGivenDriver ? (
@@ -124,16 +115,7 @@ function RatingsDriver() {
                 </Col>
               </Row>
             </Container>
-          ) : (
-            <Container>
-              <Row>
-                <Col>
-                  All your ratings given:{" "}
-                  {JSON.stringify(getRatingsGivenDriverData)}
-                </Col>
-              </Row>
-            </Container>
-          )}
+          ) : null}
         </Tab>
       </Tabs>
 
