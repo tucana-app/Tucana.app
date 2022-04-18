@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 
+import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
 import MessageEmpty from "../../components/MessageEmpty";
-import { LinkContainer } from "react-router-bootstrap";
-import { Button } from "react-bootstrap";
+import SendMessageButton from "../../components/SendMessageButton";
 
 import { getDriverBookings } from "../../redux";
-import GoBack from "../../components/GoBack";
 
 const MyRidesBookings = () => {
   const dispatch = useDispatch();
@@ -109,21 +109,20 @@ const MyRidesBookings = () => {
                         to={`/ride/${booking.RideId}`}
                         className="me-3"
                       >
-                        <Button
-                          variant="info"
-                          className="rounded-0 text-uppercase"
-                        >
-                          View ride
-                        </Button>
+                        <Button variant="info">View ride</Button>
                       </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button
-                          variant="success"
-                          className="rounded-0 text-uppercase"
-                        >
-                          View booking
-                        </Button>
+                        <Button variant="success">View booking</Button>
                       </LinkContainer>
+                    </Col>
+                    <Col>
+                      <SendMessageButton
+                        type="button"
+                        driverId={booking.DriverId}
+                        userId={booking.UserId}
+                        receiverName={booking.User.firstName}
+                        rideId={booking.Ride}
+                      />
                     </Col>
                   </Row>
                 ))}

@@ -5,9 +5,11 @@ import dateFormat from "dateformat";
 
 import { getPassengersDetails } from "../redux";
 import LoadingSpinner from "./LoadingSpinner";
+import SendMessageButton from "./SendMessageButton";
 
 const PassengersDetails = ({ rideId, booking }) => {
   const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.user);
   const { isLoadingPassengersDetails, passengersDetailsData } = useSelector(
     (state) => state.ride
   );
@@ -57,35 +59,39 @@ const PassengersDetails = ({ rideId, booking }) => {
               </p>
             </Col>
           </Row>
-          {passengersDetailsData.map((passenger, index) => (
+          {passengersDetailsData.map((booking, index) => (
             <Row key={index} className="align-items-center">
               <Col xs={6} lg={4} className="mb-3">
                 <p className="mb-0">
                   #{index + 1}: Passenger:{" "}
-                  <span className="text-success">
-                    {passenger.User.username}
-                  </span>
+                  <span className="text-success">{booking.User.username}</span>
                 </p>
                 <p className="mb-0">
                   Seats booked:{" "}
-                  <span className="text-success">{passenger.seatsBooked}</span>{" "}
-                  {/* / {passenger.Ride.seatsAvailable} */}
+                  <span className="text-success">{booking.seatsBooked}</span>{" "}
+                  {/* / {booking.Ride.seatsAvailable} */}
                 </p>
               </Col>
               <Col xs={6} lg={4} className="mb-3">
                 <p className="mb-0">
-                  Booking date: {dateFormat(passenger.dateTime, "dd/mm/yyyy")}
+                  Booking date: {dateFormat(booking.dateTime, "dd/mm/yyyy")}
                 </p>
               </Col>
 
               <Col xs={6} lg={4}>
-                {passenger.commentPassenger ? (
+                {booking.commentPassenger ? (
                   <p className="mb-0">
-                    Passenger comment: "<i>{passenger.commentPassenger}</i>"
+                    Passenger comment: "<i>{booking.commentPassenger}</i>"
                   </p>
                 ) : null}
 
-                {/* <SendMessageButton booking={booking} /> */}
+                <SendMessageButton
+                  type="link"
+                  driverId={booking.DriverId}
+                  userId={booking.UserId}
+                  receiverName={booking.User.firstName}
+                  rideId={booking.Ride}
+                />
               </Col>
             </Row>
           ))}

@@ -78,13 +78,7 @@ export const startConversationRequested = () => {
   };
 };
 
-export const startConversation = (
-  driverId,
-  userId,
-  rideId,
-  bookingId,
-  viewerId
-) => {
+export const startConversation = (driverId, userId, rideId) => {
   return (dispatch) => {
     dispatch(startConversationRequested());
 
@@ -93,18 +87,17 @@ export const startConversation = (
         driverId,
         userId,
         rideId,
-        bookingId,
       })
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(getAllUserMessages(viewerId));
+        dispatch(getAllUserMessages(userId));
 
-        // receiving the UUID
+        // The response is the UUID of the conversation
         dispatch(
           changeConversationView(
             response.data.uuid,
-            viewerId,
+            userId,
             response.data.conversationId
           )
         );
@@ -260,18 +253,6 @@ export const changeConversationView = (uuid, viewerId, conversationId) => {
         // console.log(response.data);
         // Message successfully set as "Seen"
         dispatch(getUserNewMessages(viewerId));
-      })
-      .catch((error) => {
-        // A problem happened while setting the message as "Seen"
-        //
-        // const message =
-        //   (error.response &&
-        //     error.response.data &&
-        //     error.response.data.message) ||
-        //   error.message ||
-        //   error.toString();
-        //
-        // console.log(message);
       });
   };
 };

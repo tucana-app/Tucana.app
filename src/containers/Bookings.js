@@ -150,7 +150,13 @@ const Bookings = () => {
                 <Col xs={12} className="text-center">
                   {!isDateInPast(booking.Ride.dateTime, new Date()) &&
                   booking.BookingStatusId === 3 ? (
-                    <SendMessageButton booking={booking} />
+                    <SendMessageButton
+                      type="button"
+                      driverId={booking.DriverId}
+                      userId={booking.UserId}
+                      receiverName={booking.Ride.Driver.User.firstName}
+                      rideId={booking.Ride}
+                    />
                   ) : null}
                 </Col>
 

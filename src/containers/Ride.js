@@ -18,6 +18,7 @@ import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
 import MessageEmpty from "../components/MessageEmpty";
 import FormConfirmRide from "../components/FormConfirmRide";
+import SendMessageButton from "../components/SendMessageButton";
 
 import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
 
@@ -223,16 +224,20 @@ const Ride = () => {
                       </LinkContainer>
                       <Row>
                         <Col>
-                          <p className="link-success mb-0">
-                            Contact {rideData.ride.Driver.User.firstName}
-                          </p>
+                          <SendMessageButton
+                            type="link"
+                            driverId={rideData.ride.DriverId}
+                            userId={currentUser.id}
+                            receiverName={rideData.ride.Driver.User.firstName}
+                            rideId={rideData.ride}
+                          />
                         </Col>
                       </Row>
                       <Row>
                         <Col>
                           {!(rideData.ride.comment === "") ? (
                             <>
-                              <hr className="mt-2" />
+                              <hr />
                               <p className="mb-0">
                                 Comment: {rideData.ride.comment}
                               </p>

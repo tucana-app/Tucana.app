@@ -6,7 +6,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { PersonIcon, ChevronRightIcon } from "@primer/octicons-react";
 
 import { getAllUserMessages, changeConversationView } from "../redux";
-import MessageEmpty from "../components/MessageEmpty";
 import SingleConversation from "../components/SingleConversation";
 
 function ComingSoon() {
@@ -107,15 +106,7 @@ function ComingSoon() {
                 ) : null
               )}
             </ListGroup>
-          ) : (
-            <Container className="my-5">
-              <Row>
-                <Col className="text-center">
-                  <MessageEmpty title="messages" />
-                </Col>
-              </Row>
-            </Container>
-          )}
+          ) : null}
         </>
       )}
     </>

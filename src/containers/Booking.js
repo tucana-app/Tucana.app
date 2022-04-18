@@ -127,16 +127,17 @@ const Booking = () => {
               // and the booking is accepted
               null}
 
-              {/* // Display a "Start a conversation with {receiver}" */}
-              {!isDateInPast(bookingData.Ride.dateTime, new Date()) &&
-              bookingData.BookingStatusId === 3 ? (
-                // If the booking is pending approval
-                <Row>
-                  <Col className="text-center">
-                    <SendMessageButton booking={bookingData} />
-                  </Col>
-                </Row>
-              ) : null}
+              <Row>
+                <Col className="text-center">
+                  <SendMessageButton
+                    type="link"
+                    driverId={bookingData.DriverId}
+                    userId={bookingData.UserId}
+                    receiverName={bookingData.Ride.Driver.User.firstName}
+                    rideId={bookingData.Ride}
+                  />
+                </Col>
+              </Row>
             </>
           ) : (
             // Viewer not the driver nor a passenger
