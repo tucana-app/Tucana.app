@@ -51,7 +51,31 @@ const SideMenu = () => {
   return (
     <Container fluid className="p-0" data-aos="slide-right">
       <ListGroup variant="flush">
-        {currentUser && !currentUser.adminId ? (
+        {currentUser && currentUser.adminId ? (
+          <>
+            <Link to="/" className="text-decoration-none">
+              <ListGroup.Item className="text-center border-0 py-4">
+                <div className="d-inline mx-auto">
+                  <img
+                    src={logo}
+                    alt="Ride.CR logo"
+                    className="img-fluid"
+                    style={{ maxWidth: "200px" }}
+                  />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link to="/admin/dashboard" className="text-decoration-none">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">Admin</p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+          </>
+        ) : (
           <>
             {isLoggedIn ? (
               <>
@@ -70,47 +94,6 @@ const SideMenu = () => {
                       Member since{" "}
                       {dateFormat(currentUser.createdAt, "mm/yyyy")}
                     </p>
-
-                    {/* Driver's profile verified? */}
-                    {/* <p className="lead mb-0">
-              {currentUser.Driver && currentUser.Driver.verified ? (
-                <span>
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    className="text-success me-2"
-                  />
-                  Driver's profile verified
-                </span>
-              ) : (
-                <span>
-                  <FontAwesomeIcon
-                    icon={faTimesCircle}
-                    className="text-danger me-2"
-                  />
-                  Driver's profile unverified
-                </span>
-              )}
-            </p> */}
-                    {/* Phone number verified? */}
-                    {/* <p className="lead">
-              {currentUser.phoneNumber && currentUser.phoneConfirmed ? (
-                <span>
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    className="text-success me-2"
-                  />
-                  Phone number verified
-                </span>
-              ) : (
-                <span>
-                  <FontAwesomeIcon
-                    icon={faTimesCircle}
-                    className="text-danger me-2"
-                  />
-                  Phone number not verified
-                </span>
-              )}
-            </p> */}
                   </div>
                 </ListGroup.Item>
 
@@ -223,7 +206,9 @@ const SideMenu = () => {
                 </Link>
               </>
             )}
+
             <hr className="my-2" />
+
             <Link to="/donate" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -302,30 +287,6 @@ const SideMenu = () => {
                 </Link>
               </>
             ) : null}
-          </>
-        ) : (
-          <>
-            <Link to="/" className="text-decoration-none">
-              <ListGroup.Item className="text-center border-0 py-4">
-                <div className="d-inline mx-auto">
-                  <img
-                    src={logo}
-                    alt="Ride.CR logo"
-                    className="img-fluid"
-                    style={{ maxWidth: "200px" }}
-                  />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link to="/admin/dashboard" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Admin</p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
           </>
         )}
 
