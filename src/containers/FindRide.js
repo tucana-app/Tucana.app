@@ -125,28 +125,18 @@ const FindRide = () => {
                             <Col xs={4} className="text-end mx-auto">
                               {!isLoggedIn ? (
                                 <LinkContainer to="/login">
-                                  <Button
-                                    variant="warning"
-                                    className="rounded-0"
-                                  >
+                                  <Button variant="warning">
                                     <FontAwesomeIcon icon={faLock} size="sm" />{" "}
                                     Login
                                   </Button>
                                 </LinkContainer>
                               ) : ride.Driver.User.id === currentUser.id ? (
                                 <LinkContainer to={`/ride/${ride.id}`}>
-                                  <Button variant="info" className="rounded-0">
-                                    Manage
-                                  </Button>
+                                  <Button variant="info">Manage</Button>
                                 </LinkContainer>
                               ) : (
                                 <LinkContainer to={`/ride/${ride.id}`}>
-                                  <Button
-                                    variant="success"
-                                    className="rounded-0"
-                                  >
-                                    More
-                                  </Button>
+                                  <Button variant="success">More</Button>
                                 </LinkContainer>
                               )}
                             </Col>

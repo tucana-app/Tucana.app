@@ -39,7 +39,7 @@ const FormConfirmRide = ({ ride }) => {
       submittedNo &&
       (submitFormConfirmRideError !== "" ||
         submitFormConfirmRideData.flag !== "SUCCESS") ? (
-        <Row>
+        <Row data-aos="fade-in">
           <Col className="text-center mx-auto">
             <p className="lead text-center mb-1">
               You said that the ride didn't happend. Do you confirm that?
@@ -70,7 +70,7 @@ const FormConfirmRide = ({ ride }) => {
         </Row>
       ) : submitFormConfirmRideError === "" &&
         submitFormConfirmRideData.flag !== "SUCCESS" ? (
-        <div className="py-2">
+        <div className="py-2" data-aos="fade-in">
           <Row>
             <Col className="mx-auto">
               <p className="lead text-center mb-1">Do you confirm the ride?</p>

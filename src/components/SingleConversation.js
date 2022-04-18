@@ -62,7 +62,7 @@ const SingleConversation = ({ conversation }) => {
 
   return (
     <div>
-      <ListGroup className="cursor-pointer sticky-top mb-5">
+      <ListGroup className="cursor-pointer sticky-top mb-3">
         <ListGroup.Item
           onClick={() => {
             dispatch(clearFeedback());
@@ -84,8 +84,8 @@ const SingleConversation = ({ conversation }) => {
         <div
           className={
             conversation.Messages.length > 0
-              ? "imessage border rounded px-3 py-5"
-              : "imessage px-3 py-5"
+              ? "imessage rounded px-3 pb-3"
+              : "imessage px-3"
           }
         >
           {conversation.Messages.length > 0
@@ -96,8 +96,8 @@ const SingleConversation = ({ conversation }) => {
                       // The sender's messages
                       <>
                         <p className="from-me mb-0">{message.body} </p>
-                        <p className="text-secondary text-end w-100 my-0">
-                          {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}{" "}
+                        <p className="small text-secondary text-end w-100 mt-1 pe-0 py-0">
+                          {dateFormat(message.createdAt, "dd/mm/yy HH:MM")}{" "}
                           {messageStatusIcon(message.MessageStatusId)}
                         </p>
                       </>
@@ -105,8 +105,9 @@ const SingleConversation = ({ conversation }) => {
                       // The receiver's messages
                       <>
                         <p className="from-them mb-0">{message.body}</p>
-                        <p className="text-secondary w-100 ps-0 my-0">
-                          {dateFormat(message.createdAt, "dd/mm/yyyy HH:MM")}
+                        {/* <p className="small text-secondary w-100 ps-0 my-0"> */}
+                        <p className="small text-secondary w-100 mt-1 ps-0 py-0">
+                          {dateFormat(message.createdAt, "dd/mm/yy HH:MM")}
                         </p>
                       </>
                     )}

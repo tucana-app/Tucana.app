@@ -1,6 +1,6 @@
 import messageTypes from "./messageTypes";
 import axios from "axios";
-import { setfeedback } from "../global/globalActions";
+import { setfeedback, setShowToast } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -155,9 +155,13 @@ export const sendMessage = (senderId, receiverId, message, conversationId) => {
         // console.log(response.data);
 
         dispatch(
-          setfeedback({ message: response.data.message, variant: "success" })
+          setShowToast({
+            show: true,
+            headerText: "Success",
+            bodyText: "Message sent",
+            variant: "success",
+          })
         );
-
         dispatch(sendMessageResponse(message));
         dispatch(getAllUserMessages(senderId));
       })

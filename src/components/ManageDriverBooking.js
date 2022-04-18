@@ -36,16 +36,15 @@ function ManageDriverBooking({ rideId }) {
               <Row className="align-items-center mb-2">
                 <Col xs={11}>
                   {dateFormat(booking.createdAt, "dd/mm")}: Seats:{" "}
-                  <span className="text-success">{booking.seatsBooked}</span> |
-                  Status:{" "}
+                  <span className="text-success">{booking.seatsBooked}</span> |{" "}
+                  <span>By: {booking.User.firstName}</span> | Status:{" "}
                   <span
                     className={`text-${bookingStatusVariant(
                       booking.BookingStatusId
                     )}`}
                   >
                     {booking.BookingStatus.name}
-                  </span>{" "}
-                  | <span>By: {booking.User.firstName}</span>
+                  </span>
                 </Col>
                 <Col xs={1} className="text-start ps-0">
                   <ChevronRightIcon size={24} verticalAlign="middle" />

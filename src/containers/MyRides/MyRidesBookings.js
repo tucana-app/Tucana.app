@@ -9,7 +9,6 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
 import MessageEmpty from "../../components/MessageEmpty";
-import SendMessageButton from "../../components/SendMessageButton";
 
 import { getDriverBookings } from "../../redux";
 
@@ -104,25 +103,16 @@ const MyRidesBookings = () => {
                       ) : null}
                     </Col>
 
-                    <Col className="text-center mt-3">
+                    <Col xs={12} className="text-center mb-2">
                       <LinkContainer
                         to={`/ride/${booking.RideId}`}
                         className="me-3"
                       >
-                        <Button variant="info">View ride</Button>
+                        <Button variant="light">See ride</Button>
                       </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button variant="success">View booking</Button>
+                        <Button variant="light">See booking</Button>
                       </LinkContainer>
-                    </Col>
-                    <Col>
-                      <SendMessageButton
-                        type="button"
-                        driverId={booking.DriverId}
-                        userId={booking.UserId}
-                        receiverName={booking.User.firstName}
-                        rideId={booking.Ride}
-                      />
                     </Col>
                   </Row>
                 ))}

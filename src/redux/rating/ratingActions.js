@@ -1,6 +1,6 @@
 import ratingTypes from "./ratingTypes";
 import axios from "axios";
-import { setfeedback } from "../global/globalActions";
+import { setfeedback } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 

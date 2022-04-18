@@ -95,7 +95,6 @@ function App() {
         <ScrollToTop />
         <MessageFee />
         <NavigationBar />
-        <Toasts />
 
         <Switch>
           <Route exact path="/" component={Home} />
@@ -175,6 +174,7 @@ function App() {
         </Switch>
 
         <Footer />
+        <Toasts />
       </Router>
     </Suspense>
   );

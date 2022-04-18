@@ -9,7 +9,6 @@ import SendMessageButton from "./SendMessageButton";
 
 const PassengersDetails = ({ rideId, booking }) => {
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.user);
   const { isLoadingPassengersDetails, passengersDetailsData } = useSelector(
     (state) => state.ride
   );

@@ -2,53 +2,34 @@ import React from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setShowLogoutToast, setShowLoginToast } from "../redux";
+import { setShowToast } from "../redux";
 
 const toastDelay = 3000;
-const aosToastAnimation = "fade-left";
 
 function Toasts() {
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { showLogoutToast, showLoginToast } = useSelector(
+  const { show, headerText, bodyText, variant } = useSelector(
     (state) => state.toast
   );
 
   return (
-    <div aria-live="polite" aria-atomic="true" className="fixed-top">
-      <ToastContainer position="top-end" className="p-3">
-        {isLoggedIn ? (
-          <Toast
-            show={showLoginToast}
-            onClose={() => dispatch(setShowLoginToast(false))}
-            className=""
-            delay={toastDelay}
-            data-aos={aosToastAnimation}
-            bg="success"
-            autohide
-          >
-            <Toast.Header>
-              <strong className="me-auto">Logged in</strong>
-            </Toast.Header>
-            <Toast.Body className="text-dark">
-              Welcome back {currentUser.firstName}
-            </Toast.Body>
-          </Toast>
-        ) : null}
-
+    <div aria-live="polite" aria-atomic="true">
+      <ToastContainer
+        position="top-center"
+        className="position-fixed pt-2"
+        style={{ zIndex: 9999 }}
+      >
         <Toast
-          show={showLogoutToast}
-          onClose={() => dispatch(setShowLogoutToast(false))}
-          className=""
+          show={show}
+          onClose={() => dispatch(setShowToast({ show: false }))}
           delay={toastDelay}
-          data-aos={aosToastAnimation}
-          bg="warning"
+          bg={variant}
           autohide
         >
           <Toast.Header>
-            <strong className="me-auto">Logged out</strong>
+            <strong className="me-auto">{headerText}</strong>
           </Toast.Header>
-          <Toast.Body>We hope to see you soon</Toast.Body>
+          <Toast.Body className="text-dark">{bodyText}</Toast.Body>
         </Toast>
       </ToastContainer>
     </div>

@@ -3,8 +3,7 @@ import userTypes from "./userTypes";
 
 import {
   setfeedback,
-  setShowLogoutToast,
-  setShowLoginToast,
+  setShowToast,
   getDriverNewRidesRequests,
   resetNotifications,
 } from "../index";
@@ -104,7 +103,14 @@ export const login = (formLogin) => {
           });
 
           dispatch(getDriverNewRidesRequests(response.data.id));
-          dispatch(setShowLoginToast(true));
+          dispatch(
+            setShowToast({
+              show: true,
+              headerText: "Logged in",
+              bodyText: `Welcome back ${response.data.firstName}`,
+              variant: "success",
+            })
+          );
         } else {
           dispatch(
             setfeedback({
@@ -156,7 +162,14 @@ export const logout = () => (dispatch) => {
   });
 
   dispatch(resetNotifications());
-  dispatch(setShowLogoutToast(true));
+  dispatch(
+    setShowToast({
+      show: true,
+      headerText: "Logged out",
+      bodyText: "We hope to see you soon",
+      variant: "warning",
+    })
+  );
 };
 
 // Handle sending email for a forgotten password
