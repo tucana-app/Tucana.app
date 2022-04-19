@@ -55,6 +55,13 @@ function AdminDashboard() {
             </LinkContainer>
           </Col>
         </Row>
+        <Row className="mb-3">
+          <Col>
+            <LinkContainer to={`/admin/maps`}>
+              <Button variant="light">Google Maps</Button>
+            </LinkContainer>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

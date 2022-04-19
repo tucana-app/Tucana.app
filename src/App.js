@@ -52,6 +52,7 @@ import AdminRides from "./containers/Admin/AdminRides";
 import AdminSingleRide from "./containers/Admin/AdminSingleRide";
 import AdminEmail from "./containers/Admin/AdminEmail";
 import AdminRatings from "./containers/Admin/AdminRatings";
+import AdminGoogleMaps from "./containers/Admin/AdminGoogleMaps";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -169,6 +170,7 @@ function App() {
           <Route exact path="/admin/ride/:rideId" component={AdminSingleRide} />
           <Route exact path="/admin/email" component={AdminEmail} />
           <Route exact path="/admin/ratings" component={AdminRatings} />
+          <Route exact path="/admin/maps" component={AdminGoogleMaps} />
 
           <Route component={Page404} />
         </Switch>
