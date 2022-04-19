@@ -38,7 +38,7 @@ function AdminGoogleMaps() {
     <div>
       <GoBack />
 
-      <Container className="py-5">
+      <Container>
         <Row>
           <Col className="text-center">
             <LocationSearchInput />
