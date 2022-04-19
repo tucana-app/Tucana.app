@@ -8,7 +8,6 @@ import { ChevronRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import { LinkContainer } from "react-router-bootstrap";
 
-import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
 import { getRatingsToDoDriver, getRatingsToDoPassenger } from "../../redux";

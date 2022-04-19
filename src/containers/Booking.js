@@ -97,7 +97,8 @@ const Booking = () => {
                           <span className="text-success">
                             {bookingData.Ride.cityDestination}
                           </span>{" "}
-                          on the {dateFormat(bookingData.createdAt, "dd/mm/yy")}
+                          on the{" "}
+                          {dateFormat(bookingData.Ride.dateTime, "dd/mm/yy")}
                         </p>
                         <p className="mb-0">
                           Status:{" "}
