@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -13,21 +13,12 @@ function AdminGoogleMaps() {
     (state) => state.global
   );
 
-  const distance = useRef(0);
-
   useEffect(() => {
     if (isLoggedIn && currentUser.adminId) {
       // dispatch(admin_sendTestEmail(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    distance.current = distanceLatLng(
-      { lat: 9.248746, lng: -83.789015 },
-      LatLng
-    );
-  }, [LatLng, distanceLatLng]);
 
   // Handle redirection in case the user is already logged in
   if (!isLoggedIn || !currentUser.adminId) {
@@ -38,7 +29,7 @@ function AdminGoogleMaps() {
     <div>
       <GoBack />
 
-      <Container>
+      <Container className="py-5">
         <Row>
           <Col className="text-center">
             <LocationSearchInput />
@@ -46,6 +37,7 @@ function AdminGoogleMaps() {
           <Col>
             {!isEmptyObject(result) ? (
               <div>
+                {console.log(result)}
                 <p>City: {result.address_components[0].long_name}</p>
                 <p>
                   Province:{" "}
@@ -54,7 +46,14 @@ function AdminGoogleMaps() {
                     ""
                   )}
                 </p>
-                <p>Distance: {distance.current.toFixed(2)} km</p>
+                <p>
+                  Distance:{" "}
+                  {distanceLatLng(
+                    { lat: 9.248746, lng: -83.789015 },
+                    LatLng
+                  ).toFixed(2)}{" "}
+                  km
+                </p>
                 <p>
                   LatLng: {LatLng.lat}, {LatLng.lng}
                 </p>

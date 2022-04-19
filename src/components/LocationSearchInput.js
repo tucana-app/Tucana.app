@@ -26,7 +26,6 @@ function LocationSearchInput() {
         return getLatLng(results[0]);
       })
       .then((latLng) => {
-        console.log(latLng);
         dispatch(setLatLng(latLng));
       })
       .catch((error) => console.error("Error", error));
