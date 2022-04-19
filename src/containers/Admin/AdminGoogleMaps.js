@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import GoBack from "../../components/GoBack";
 import LocationSearchInput from "../../components/LocationSearchInput";
