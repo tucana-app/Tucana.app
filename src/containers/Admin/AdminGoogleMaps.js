@@ -32,6 +32,7 @@ function AdminGoogleMaps() {
             <LocationSearchInput />
           </Col>
         </Row>
+        .
       </Container>
     </div>
   );
