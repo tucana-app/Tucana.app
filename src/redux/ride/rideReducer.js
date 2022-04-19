@@ -56,6 +56,9 @@ const initialState = {
   isloadingSubmitFormConfirmRide: false,
   submitFormConfirmRideData: [],
   submitFormConfirmRideError: "",
+
+  LatLng: { lat: 0, lng: 0 },
+  result: {},
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -369,6 +372,18 @@ const rideReducer = (state = initialState, action) => {
         isloadingSubmitFormConfirmRide: false,
         submitFormConfirmRideData: [],
         submitFormConfirmRideError: action.payload,
+      };
+
+    case rideTypes.SET_RESULT:
+      return {
+        ...state,
+        result: action.payload,
+      };
+
+    case rideTypes.SET_LAT_LNG:
+      return {
+        ...state,
+        LatLng: action.payload,
       };
 
     default:
