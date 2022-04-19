@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
@@ -24,7 +25,14 @@ function AdminGoogleMaps() {
     <div>
       <GoBack />
 
-      <LocationSearchInput />
+      <p>Google Maps autocomple</p>
+      <Container>
+        <Row>
+          <Col className="text-center">
+            <LocationSearchInput />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
