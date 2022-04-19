@@ -264,18 +264,16 @@ const SideMenu = () => {
 
             {currentUser && currentUser.adminId ? (
               <>
-                <Link to="/" className="text-decoration-none">
-                  <ListGroup.Item className="text-center border-0 py-4">
-                    <div className="d-inline mx-auto">
-                      <img
-                        src={logo}
-                        alt="Ride.CR logo"
-                        className="img-fluid"
-                        style={{ maxWidth: "200px" }}
-                      />
-                    </div>
-                  </ListGroup.Item>
-                </Link>
+                <ListGroup.Item className="text-center border-0 py-4">
+                  <div className="d-inline mx-auto">
+                    <img
+                      src={logo}
+                      alt="Ride.CR logo"
+                      className="img-fluid"
+                      style={{ maxWidth: "200px" }}
+                    />
+                  </div>
+                </ListGroup.Item>
 
                 <Link to="/admin/dashboard" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
