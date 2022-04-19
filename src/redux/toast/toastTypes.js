@@ -1,5 +1,5 @@
 const toastTypes = {
-  SET_SHOW_TOAST: "SET_SHOW_TOAST",
+  SET_TOAST: "SET_TOAST",
 };
 
 export default toastTypes;

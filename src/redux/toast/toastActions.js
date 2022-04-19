@@ -1,8 +1,8 @@
 import toastTypes from "./toastTypes";
 
-export const setShowToast = (data) => {
+export const setToast = (data) => {
   return {
-    type: toastTypes.SET_SHOW_TOAST,
+    type: toastTypes.SET_TOAST,
     payload: data,
   };
 };

@@ -9,7 +9,7 @@ const initialState = {
 
 const toastReducer = (state = initialState, action) => {
   switch (action.type) {
-    case toastTypes.SET_SHOW_TOAST:
+    case toastTypes.SET_TOAST:
       return {
         ...state,
         show: action.payload.show,

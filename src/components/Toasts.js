@@ -2,7 +2,7 @@ import React from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setShowToast } from "../redux";
+import { setToast } from "../redux";
 
 const toastDelay = 3000;
 
@@ -21,7 +21,7 @@ function Toasts() {
       >
         <Toast
           show={show}
-          onClose={() => dispatch(setShowToast({ show: false }))}
+          onClose={() => dispatch(setToast({ show: false }))}
           delay={toastDelay}
           bg={variant}
           autohide

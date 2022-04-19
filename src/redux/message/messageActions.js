@@ -1,6 +1,6 @@
 import messageTypes from "./messageTypes";
 import axios from "axios";
-import { setfeedback, setShowToast } from "../index";
+import { setfeedback, setToast } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -162,7 +162,7 @@ export const sendMessage = (
           // console.log(response.data);
 
           dispatch(
-            setShowToast({
+            setToast({
               show: true,
               headerText: "Success",
               bodyText: "Message sent",

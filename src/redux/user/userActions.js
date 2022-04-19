@@ -3,7 +3,7 @@ import userTypes from "./userTypes";
 
 import {
   setfeedback,
-  setShowToast,
+  setToast,
   getDriverNewRidesRequests,
   resetNotifications,
 } from "../index";
@@ -104,7 +104,7 @@ export const login = (formLogin) => {
 
           dispatch(getDriverNewRidesRequests(response.data.id));
           dispatch(
-            setShowToast({
+            setToast({
               show: true,
               headerText: "Logged in",
               bodyText: `Welcome back ${response.data.firstName}`,
@@ -163,7 +163,7 @@ export const logout = () => (dispatch) => {
 
   dispatch(resetNotifications());
   dispatch(
-    setShowToast({
+    setToast({
       show: true,
       headerText: "Logged out",
       bodyText: "We hope to see you soon",

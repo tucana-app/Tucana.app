@@ -9,6 +9,7 @@ import {
   faTimesCircle,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { StarFillIcon } from "@primer/octicons-react";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -54,12 +55,17 @@ function MyPassengerProfile(props) {
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
-          <Col xs={12} sm={4} className="text-md-end">
-            <h4 className="text-secondary">Rating</h4>
-          </Col>
           <Col xs={12} sm={4}>
             <h4>
-              <span className="text-secondary">-</span>/5
+              <span className="text-secondary">
+                <StarFillIcon
+                  size={24}
+                  verticalAlign="middle"
+                  className="text-warning me-2"
+                />
+                -
+              </span>
+              /5
             </h4>
           </Col>
         </Row>

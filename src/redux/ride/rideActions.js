@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { setfeedback, sendEmail, setShowToast } from "../index";
+import { setfeedback, sendEmail, setToast } from "../index";
 import * as Yup from "yup";
 import { getNotifications } from "../../redux";
 
@@ -408,7 +408,7 @@ export const submitFormDriverResponseBooking = (
 
         if (response.data.newStatus === 3) {
           dispatch(
-            setShowToast({
+            setToast({
               show: true,
               headerText: "Success",
               bodyText: "You have accepted the booking",
