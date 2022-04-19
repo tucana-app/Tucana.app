@@ -25,14 +25,12 @@ function AdminGoogleMaps() {
     <div>
       <GoBack />
 
-      <p>Google Maps autocomple</p>
       <Container>
         <Row>
           <Col className="text-center">
             <LocationSearchInput />
           </Col>
         </Row>
-        .
       </Container>
     </div>
   );
