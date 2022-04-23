@@ -50,13 +50,6 @@ function AdminDashboard() {
         </Row>
         <Row className="mb-3">
           <Col>
-            <LinkContainer to={`/admin/email`}>
-              <Button variant="primary">Email</Button>
-            </LinkContainer>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
             <LinkContainer to={`/admin/maps`}>
               <Button variant="light">Google Maps</Button>
             </LinkContainer>

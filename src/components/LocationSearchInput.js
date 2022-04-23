@@ -5,11 +5,14 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
-import { setResult, setLatLng } from "../redux";
+import { setOrigin, setDestination } from "../redux";
 
-function LocationSearchInput() {
+function LocationSearchInput(props) {
+  const { location } = props;
+
   const dispatch = useDispatch();
   const [address, setAddress] = useState("");
+  const [result, setResult] = useState({});
 
   const searchOptions = {
     componentRestrictions: { country: ["cr"] },
@@ -22,11 +25,22 @@ function LocationSearchInput() {
   const handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => {
-        dispatch(setResult(results[0]));
+        setResult(results[0]);
         return getLatLng(results[0]);
       })
       .then((latLng) => {
-        dispatch(setLatLng(latLng));
+        switch (location) {
+          case "origin":
+            dispatch(setOrigin({ address, result, latLng }));
+            break;
+
+          case "destination":
+            dispatch(setDestination({ address, result, latLng }));
+            break;
+
+          default:
+            break;
+        }
       })
       .catch((error) => console.error("Error", error));
   };

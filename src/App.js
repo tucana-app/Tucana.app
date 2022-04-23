@@ -50,7 +50,6 @@ import AdminUsers from "./containers/Admin/AdminUsers";
 import AdminSingleUser from "./containers/Admin/AdminSingleUser";
 import AdminRides from "./containers/Admin/AdminRides";
 import AdminSingleRide from "./containers/Admin/AdminSingleRide";
-import AdminEmail from "./containers/Admin/AdminEmail";
 import AdminRatings from "./containers/Admin/AdminRatings";
 import AdminGoogleMaps from "./containers/Admin/AdminGoogleMaps";
 
@@ -168,7 +167,6 @@ function App() {
           <Route exact path="/admin/single-user" component={AdminSingleUser} />
           <Route exact path="/admin/rides" component={AdminRides} />
           <Route exact path="/admin/ride/:rideId" component={AdminSingleRide} />
-          <Route exact path="/admin/email" component={AdminEmail} />
           <Route exact path="/admin/ratings" component={AdminRatings} />
           <Route exact path="/admin/maps" component={AdminGoogleMaps} />
 

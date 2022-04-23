@@ -82,7 +82,7 @@ export const submitFormOfferRide = (user, values) => {
 
     axios
       .post(URL_API + "/ride/add-ride", {
-        userId: user.id,
+        user,
         formValues: values,
       })
       .then((response) => {
@@ -96,7 +96,6 @@ export const submitFormOfferRide = (user, values) => {
         );
 
         dispatch(getAllRides());
-        dispatch(sendEmail("OFFER_RIDE", user, values));
         dispatch(submitFormOfferRideSuccess(response.data));
         dispatch(getDriverRides(user.id));
       })
@@ -872,28 +871,18 @@ export const submitFormConfirmRideFail = (error) => {
   };
 };
 
-// #####################################################
-// TEST
-// #####################################################
-// #####################################################
-// TEST
-// #####################################################
-export const setResult = (result) => {
+// Ride: set origin with Google Maps
+export const setOrigin = (origin) => {
   return {
-    type: rideTypes.SET_RESULT,
-    payload: result,
+    type: rideTypes.SET_ORIGIN,
+    payload: origin,
   };
 };
 
-export const setLatLng = (LatLng) => {
+// Ride: set destination with Google Maps
+export const setDestination = (destination) => {
   return {
-    type: rideTypes.SET_LAT_LNG,
-    payload: LatLng,
+    type: rideTypes.SET_DESTINATION,
+    payload: destination,
   };
 };
-// #####################################################
-// TEST
-// #####################################################
-// #####################################################
-// TEST
-// #####################################################

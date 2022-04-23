@@ -175,51 +175,6 @@ export const admin_getSingleRideAllBookingsFail = (error) => {
   };
 };
 
-// Admin is requesting to send a test email
-
-export const admin_sendTestEmailRequested = () => {
-  return {
-    type: adminTypes.ADMIN_SEND_TEST_EMAIL_REQUEST,
-  };
-};
-
-export const admin_sendTestEmail = (currentUser, email) => {
-  return (dispatch) => {
-    if (currentUser.adminId) {
-      dispatch(admin_sendTestEmailRequested());
-
-      axios
-        .get(URL_API + "/admin/send-test-email", {
-          params: {
-            email,
-          },
-        })
-        .then((response) => {
-          dispatch(admin_sendTestEmailSuccess(response.data));
-        })
-        .catch((error) => {
-          dispatch(admin_sendTestEmailFail(error));
-        });
-    } else {
-      dispatch(admin_sendTestEmailFail("Not autorized"));
-    }
-  };
-};
-
-export const admin_sendTestEmailSuccess = (data) => {
-  return {
-    type: adminTypes.ADMIN_SEND_TEST_EMAIL_SUCCESS,
-    payload: data,
-  };
-};
-
-export const admin_sendTestEmailFail = (error) => {
-  return {
-    type: adminTypes.ADMIN_SEND_TEST_EMAIL_FAIL,
-    payload: error,
-  };
-};
-
 // Admin is requesting all passenger's ratings
 
 export const admin_getPassengersRatingsRequested = () => {

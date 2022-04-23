@@ -13,6 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@googlemaps/js-api-loader": "^1.14.0",
     "@primer/octicons-react": "^17.0.0",
+    "@react-google-maps/api": "^2.8.1",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "axios": "^0.21.1",
