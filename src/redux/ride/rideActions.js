@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { setfeedback, sendEmail, setToast } from "../index";
+import { setfeedback, setToast } from "../index";
 import * as Yup from "yup";
 import { getNotifications } from "../../redux";
 
@@ -315,9 +315,8 @@ export const submitFormBookRide = (user, ride, formValues) => {
 
     axios
       .post(URL_API + "/ride/book", {
-        userId: user.id,
-        rideId: ride.id,
-        driverId: ride.DriverId,
+        passenger: user,
+        ride,
         formValues,
       })
       .then((response) => {
@@ -327,18 +326,6 @@ export const submitFormBookRide = (user, ride, formValues) => {
           setfeedback({
             variant: "success",
             message: response.data.message,
-          })
-        );
-
-        // Send a booking summary to the passenger
-        dispatch(sendEmail("BOOK_RIDE_BY_USER", user, { formValues, ride }));
-
-        // Notify the driver that a booking has been requested
-        dispatch(
-          sendEmail("BOOK_RIDE_TO_DRIVER", ride.Driver.User, {
-            formValues,
-            ride,
-            passenger: user,
           })
         );
 
@@ -401,7 +388,7 @@ export const submitFormDriverResponseBooking = (
     dispatch(submitFormDriverResponseBookingRequested());
 
     axios
-      .put(URL_API + "/booking/driver-response", { formValues })
+      .put(URL_API + "/booking/driver-response", { booking, formValues })
       .then((response) => {
         // console.log(response.data);
 
@@ -414,22 +401,6 @@ export const submitFormDriverResponseBooking = (
               variant: "success",
             })
           );
-
-          // Notify the driver for accepting the booking
-          dispatch(
-            sendEmail("ACCEPTED_BY_DRIVER", driver, {
-              booking,
-              formValues,
-            })
-          );
-
-          // Notify the passenger that has the booking accepted
-          dispatch(
-            sendEmail("ACCEPTED_TO_USER", booking.User, {
-              booking,
-              formValues,
-            })
-          );
         } else if (response.data.newStatus === 4) {
           // If ride refused by driver
 
@@ -437,22 +408,6 @@ export const submitFormDriverResponseBooking = (
             setfeedback({
               variant: "warning",
               message: response.data.message,
-            })
-          );
-
-          // Notify the driver for refusing the booking
-          dispatch(
-            sendEmail("REFUSED_BY_DRIVER", driver, {
-              booking,
-              formValues,
-            })
-          );
-
-          // Notify the passenger that has the booking refused
-          dispatch(
-            sendEmail("REFUSED_TO_USER", booking.User, {
-              booking,
-              formValues,
             })
           );
         }

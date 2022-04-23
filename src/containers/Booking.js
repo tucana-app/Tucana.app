@@ -110,15 +110,17 @@ const Booking = () => {
                             {bookingData.BookingStatus.name}
                           </span>
                         </p>
-                        {bookingData.commentPassenger !== null ? (
+                        {bookingData.commentPassenger !== "" &&
+                        bookingData.commentPassenger !== null ? (
                           <>
                             <p className="mt-3 mb-0">Passenger comment: </p>
                             <p>"{bookingData.commentPassenger}"</p>
                           </>
                         ) : null}
-                        {bookingData.commentPassenger !== null ? (
+                        {bookingData.commentDriver !== "" &&
+                        bookingData.commentDriver !== null ? (
                           <>
-                            <p className="mb-0">Driver comment: </p>
+                            <p className="mt-3 mb-0">Driver comment: </p>
                             <p className="mb-0">
                               "{bookingData.commentDriver}"
                             </p>
@@ -162,59 +164,67 @@ const Booking = () => {
                 </Row>
               ) : null}
 
-              <Row className="mb-4 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  className="border shadow-sm rounded mx-auto"
-                >
-                  <Container className="py-3 px-2">
-                    <LinkContainer to="/coming-soon" className="cursor-pointer">
-                      <Row className="align-items-center">
-                        <Col xs={3} md={2} className="text-end pe-0">
-                          <CircleIcon size={56} className="text-secondary" />
-                        </Col>
-                        <Col xs={6} className="text-start">
-                          <p className="mb-0">
-                            {bookingData.Ride.Driver.User.firstName}
-                          </p>
-                          <p className="mb-0">
-                            <StarFillIcon
-                              size={18}
+              {currentUser.id !== bookingData.DriverId ? (
+                <Row className="mb-4 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    className="border shadow-sm rounded mx-auto"
+                  >
+                    <Container className="py-3 px-2">
+                      <LinkContainer
+                        to="/coming-soon"
+                        className="cursor-pointer"
+                      >
+                        <Row className="align-items-center">
+                          <Col xs={3} md={2} className="text-end pe-0">
+                            <CircleIcon size={56} className="text-secondary" />
+                          </Col>
+                          <Col xs={6} className="text-start">
+                            <p className="mb-0">
+                              {bookingData.Ride.Driver.User.firstName}
+                            </p>
+                            <p className="mb-0">
+                              <StarFillIcon
+                                size={18}
+                                verticalAlign="middle"
+                                className="text-warning me-2"
+                              />
+
+                              <span>-/5 | - ratings</span>
+                            </p>
+                          </Col>
+                          <Col className="text-end">
+                            <ChevronRightIcon
+                              size={24}
                               verticalAlign="middle"
-                              className="text-warning me-2"
                             />
+                          </Col>
+                        </Row>
+                      </LinkContainer>
+                      {currentUser.id === bookingData.User.id ? (
+                        <Row className="mt-3">
+                          <Col>
+                            <SendMessageButton
+                              type="link"
+                              driverId={bookingData.Ride.DriverId}
+                              userId={currentUser.id}
+                              receiverName={
+                                bookingData.Ride.Driver.User.firstName
+                              }
+                              rideId={bookingData.Ride}
+                            />
+                          </Col>
+                        </Row>
+                      ) : null}
+                    </Container>
+                  </Col>
+                </Row>
+              ) : null}
 
-                            <span>-/5 | - ratings</span>
-                          </p>
-                        </Col>
-                        <Col className="text-end">
-                          <ChevronRightIcon size={24} verticalAlign="middle" />
-                        </Col>
-                      </Row>
-                    </LinkContainer>
-                    {currentUser.id === bookingData.User.id ? (
-                      <Row className="mt-3">
-                        <Col>
-                          <SendMessageButton
-                            type="link"
-                            driverId={bookingData.Ride.DriverId}
-                            userId={currentUser.id}
-                            receiverName={
-                              bookingData.Ride.Driver.User.firstName
-                            }
-                            rideId={bookingData.Ride}
-                          />
-                        </Col>
-                      </Row>
-                    ) : null}
-                  </Container>
-                </Col>
-              </Row>
-
-              <h2 className="text-success text-center">Ride details</h2>
+              <h2 className="text-success text-center mt-3">Ride details</h2>
 
               <Row className="mb-2 mx-1 mx-sm-0">
                 <Col

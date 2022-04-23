@@ -1,5 +1,6 @@
 import axios from "axios";
 import userTypes from "./userTypes";
+import validator from "validator";
 
 import {
   setfeedback,
@@ -74,6 +75,97 @@ export const registerUserFail = (data) => {
   return {
     type: userTypes.REGISTER_USER_FAIL,
     payload: data,
+  };
+};
+
+// Confirm user
+
+export const confirmEmailRequested = () => {
+  return {
+    type: userTypes.CONFIRM_EMAIL_REQUEST,
+  };
+};
+
+export const confirmEmail = (uuid) => {
+  return (dispatch) => {
+    dispatch(confirmEmailRequested());
+
+    if (validator.isUUID(uuid)) {
+      axios
+        .put(URL_API + "/auth/confirm", {
+          uuid,
+        })
+        .then((response) => {
+          let variant = "";
+
+          switch (response.data.flag) {
+            case "ALREADY_CONFIRMED":
+              variant = "warning";
+              break;
+
+            case "CONFIRMED_SUCCESS":
+              variant = "success";
+              break;
+
+            default:
+              break;
+          }
+
+          dispatch(
+            setfeedback({
+              variant,
+              message: response.data.message,
+            })
+          );
+
+          dispatch(
+            confirmEmailSuccess({
+              message: response.data.message,
+            })
+          );
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          dispatch(
+            setfeedback({
+              variant: "danger",
+              message: message,
+            })
+          );
+          dispatch(confirmEmailFail(message));
+        });
+    } else {
+      const message = "Please enter a valid confirmation number in the URL";
+
+      dispatch(
+        setfeedback({
+          variant: "danger",
+          message: message,
+        })
+      );
+
+      dispatch(confirmEmailFail(message));
+    }
+  };
+};
+
+export const confirmEmailSuccess = (message) => {
+  return {
+    type: userTypes.CONFIRM_EMAIL_SUCCESS,
+    payload: message,
+  };
+};
+
+export const confirmEmailFail = (message) => {
+  return {
+    type: userTypes.CONFIRM_EMAIL_FAIL,
+    payload: message,
   };
 };
 

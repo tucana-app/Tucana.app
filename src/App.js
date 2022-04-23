@@ -119,11 +119,7 @@ function App() {
 
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signup-successful" component={SignUpSuccess} />
-          <Route
-            exact
-            path="/confirm/:confirmEmailUUID"
-            component={SignUpConfirm}
-          />
+          <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
           <Route exact path="/menu" component={SideMenu} />
           <Route

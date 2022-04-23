@@ -8,14 +8,14 @@ import { confirmEmail } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 const SignUpConfirm = () => {
-  const { confirmEmailUUID } = useParams();
+  const { uuid } = useParams();
 
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingConfirmEmail } = useSelector((state) => state.email);
+  const { isLoadingConfirmEmail } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!isLoggedIn) dispatch(confirmEmail(confirmEmailUUID));
+    if (!isLoggedIn) dispatch(confirmEmail(uuid));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
