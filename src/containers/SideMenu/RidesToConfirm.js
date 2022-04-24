@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -55,10 +53,11 @@ function RidesToConfirm() {
               <ListGroup.Item className="border border-start-0 border-end-0 ">
                 <div className="d-inline-flex justify-content-between w-100 py-2">
                   <span>
-                    <FontAwesomeIcon
-                      icon={faCircle}
-                      className="text-danger me-3"
-                    />{" "}
+                    <CircleIcon
+                      size={12}
+                      verticalAlign="middle"
+                      className="text-danger me-2"
+                    />
                     {ride.cityOrigin} - {ride.cityDestination} (
                     {dateFormat(ride.dateTime, "dd/mm/yyyy")})
                   </span>

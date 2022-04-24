@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { LinkContainer } from "react-router-bootstrap";
 
 import GoBack from "../../components/GoBack";
+import { CheckIcon } from "@primer/octicons-react";
 
 function Settings() {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -60,7 +59,7 @@ function Settings() {
       >
         <Modal.Header closeButton>
           <Modal.Title className="text-dark">
-            <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+            <CheckIcon size={24} className="me-2" />
             Confirm
           </Modal.Title>
         </Modal.Header>
@@ -83,7 +82,7 @@ function Settings() {
       >
         <Modal.Header closeButton>
           <Modal.Title className="text-dark">
-            <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+            <CheckIcon size={24} className="me-2" />
             Confirm
           </Modal.Title>
         </Modal.Header>

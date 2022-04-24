@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
-import FeedbackMessage from "../../components/FeedbackMessage";
+import { LinkContainer } from "react-router-bootstrap";
+import { CheckIcon } from "@primer/octicons-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { LinkContainer } from "react-router-bootstrap";
+
+import LoadingSpinner from "../../components/LoadingSpinner";
+import FeedbackMessage from "../../components/FeedbackMessage";
 
 import { resetPassword, checkDeprecatedLinkResetPassword } from "../../redux";
-import LoadingSpinner from "../../components/LoadingSpinner";
 
 require("yup-password")(Yup); // extend yup
 
@@ -204,7 +204,7 @@ const CreateNewPassword = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title className="text-dark">
-            <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+            <CheckIcon size={24} className="me-2" />
             Success
           </Modal.Title>
         </Modal.Header>

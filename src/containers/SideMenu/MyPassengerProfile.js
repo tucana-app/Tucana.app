@@ -3,14 +3,13 @@ import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCheckCircle,
-  faTimesCircle,
-  faUserCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { StarFillIcon } from "@primer/octicons-react";
-import { ChevronRightIcon } from "@primer/octicons-react";
+  ChevronRightIcon,
+  StarFillIcon,
+  CircleIcon,
+  CheckIcon,
+  XIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
@@ -27,19 +26,15 @@ function MyPassengerProfile(props) {
       <GoBack />
 
       <Container className="pt-5 text-center">
-        <Row>
+        <Row className="mb-3">
           <Col>
             <h1 className="text-success">Your profile</h1>
           </Col>
         </Row>
 
-        <Row className="py-3">
+        <Row>
           <Col className="text-center">
-            <FontAwesomeIcon
-              icon={faUserCircle}
-              className="text-secondary mb-1"
-              size={"6x"}
-            />
+            <CircleIcon size={78} className="text-secondary" />
           </Col>
         </Row>
 
@@ -55,15 +50,10 @@ function MyPassengerProfile(props) {
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
-          <Col xs={12} sm={4}>
+          <Col xs={12} sm={4} className="text-center">
             <h4>
               <span className="text-secondary">
-                <StarFillIcon
-                  size={24}
-                  verticalAlign="middle"
-                  className="text-warning me-2"
-                />
-                -
+                <StarFillIcon size={24} className="text-warning me-2" />-
               </span>
               /5
             </h4>
@@ -74,7 +64,7 @@ function MyPassengerProfile(props) {
           <Col>
             <LinkContainer to="/my-profile/passenger/ratings">
               <Button variant="warning" size={"lg"}>
-                Ratings <ChevronRightIcon size={24} verticalAlign="middle" />
+                Ratings <ChevronRightIcon size={24} />
               </Button>
             </LinkContainer>
           </Col>
@@ -123,12 +113,12 @@ function MyPassengerProfile(props) {
           <Col className="text-start">
             {currentUser.phoneConfirmed ? (
               <span className="text-success">
-                <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+                        <CheckIcon size={24} className="me-2" />
                 Yes
               </span>
             ) : (
               <span className="text-danger">
-                <FontAwesomeIcon icon={faTimesCircle} className="me-2" />
+                        <XIcon size={24} className="me-2" />
                 No
               </span>
             )}
@@ -142,12 +132,12 @@ function MyPassengerProfile(props) {
           <Col className="text-start">
             {currentUser.Driver && currentUser.Driver.verified ? (
               <span className="text-success">
-                <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
+                <CheckIcon size={24} className="me-2" />
                 Yes
               </span>
             ) : (
               <span className="text-danger">
-                <FontAwesomeIcon icon={faTimesCircle} className="me-2" />
+                <XIcon size={24} className="me-2" />
                 No
               </span>
             )}

@@ -1,22 +1,18 @@
 import React, { useEffect } from "react";
 import { Container, Col, Row, Table, Button, Tabs, Tab } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { Redirect } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { CheckIcon, XIcon } from "@primer/octicons-react";
+import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import dateFormat from "dateformat";
 
 import {
   admin_getPassengersRatings,
   admin_getDriversRatings,
 } from "../../redux";
-import { LinkContainer } from "react-router-bootstrap";
 
 function AdminRatings() {
   const dispatch = useDispatch();
@@ -128,18 +124,12 @@ function AdminRatings() {
                               {rating.AdminVerif &&
                               rating.AdminVerif.accepted === true ? (
                                 <span className="text-success">
-                                  <FontAwesomeIcon
-                                    icon={faCheckCircle}
-                                    className="me-2"
-                                  />
+                                  <CheckIcon size={24} className="me-2" />
                                   Yes
                                 </span>
                               ) : (
                                 <span className="text-danger">
-                                  <FontAwesomeIcon
-                                    icon={faTimesCircle}
-                                    className="me-2"
-                                  />
+                                  <XIcon size={24} className="me-2" />
                                   No
                                 </span>
                               )}
@@ -223,18 +213,12 @@ function AdminRatings() {
                               {rating.AdminVerif &&
                               rating.AdminVerif.accepted === true ? (
                                 <span className="text-success">
-                                  <FontAwesomeIcon
-                                    icon={faCheckCircle}
-                                    className="me-2"
-                                  />
+                                  <CheckIcon size={24} className="me-2" />
                                   Yes
                                 </span>
                               ) : (
                                 <span className="text-danger">
-                                  <FontAwesomeIcon
-                                    icon={faTimesCircle}
-                                    className="me-2"
-                                  />
+                                  <XIcon size={24} className="me-2" />
                                   No
                                 </span>
                               )}

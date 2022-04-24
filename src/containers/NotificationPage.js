@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { BellIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
+
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
 
@@ -58,7 +58,7 @@ const NotificationPage = () => {
       <ListGroup variant="flush">
         <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
           <div className="py-3">
-            <FontAwesomeIcon icon={faBell} className="text-warning me-3" />{" "}
+            <BellIcon size={24} className="text-warning me-2" />
             Notifications
             <Badge bg="danger" className="align-text-top ms-2">
               {notifications}

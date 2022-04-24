@@ -1,5 +1,8 @@
-import { faCheck, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  CheckCircleFillIcon,
+  CheckCircleIcon,
+  CheckIcon,
+} from "@primer/octicons-react";
 import messageTypes from "./messageTypes";
 
 const initialState = {
@@ -28,24 +31,21 @@ const initialState = {
     switch (status) {
       case 1:
         return (
-          <FontAwesomeIcon
-            icon={faCheck}
-            className={`text-${variant[status - 1]}`}
-          />
+          <CheckIcon size={24} className={`text-${variant[status - 1]}`} />
         );
 
       case 2:
         return (
-          <FontAwesomeIcon
-            icon={faCheckDouble}
+          <CheckCircleIcon
+            size={24}
             className={`text-${variant[status - 1]}`}
           />
         );
 
       case 3:
         return (
-          <FontAwesomeIcon
-            icon={faCheckDouble}
+          <CheckCircleFillIcon
+            size={24}
             className={`text-${variant[status - 1]}`}
           />
         );

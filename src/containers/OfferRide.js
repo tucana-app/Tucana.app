@@ -2,11 +2,10 @@ import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import dateFormat from "dateformat";
+import { AlertIcon } from "@primer/octicons-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import dateFormat from "dateformat";
 
 import { submitFormOfferRide } from "../redux";
 import FeedbackMessage from "../components/FeedbackMessage";
@@ -310,10 +309,7 @@ const OfferRide = () => {
                   >
                     <Form.Label>
                       <p className="small text-secondary">
-                        <FontAwesomeIcon
-                          icon={faExclamationTriangle}
-                          className="me-2"
-                        />
+                        <AlertIcon size={24} className="me-2" />
                         Do not share any contact info (phone, email, etc), they
                         will be shared within the platform when a booking is
                         made.

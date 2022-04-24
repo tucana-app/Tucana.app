@@ -1,15 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCarAlt,
-  faExclamationTriangle,
-} from "@fortawesome/free-solid-svg-icons";
 import { Formik } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { AlertIcon } from "@primer/octicons-react";
+
+import LoadingSpinner from "./LoadingSpinner";
 
 import { submitFormBookRide } from "../redux";
-import LoadingSpinner from "./LoadingSpinner";
 
 const FormBookRide = () => {
   const dispatch = useDispatch();
@@ -33,7 +30,7 @@ const FormBookRide = () => {
         <Row>
           <Col className="mx-auto">
             <p className="small text-warning mb-0">
-              <FontAwesomeIcon icon={faExclamationTriangle} className="me-2" />
+              <AlertIcon size={24} className="me-2" />
               You already have booking(s) for this ride
             </p>
           </Col>
@@ -66,10 +63,6 @@ const FormBookRide = () => {
                   <Col className="py-2 mx-auto">
                     <Form.Group className="mx-auto mb-3">
                       <Form.Label>
-                        <FontAwesomeIcon
-                          icon={faCarAlt}
-                          className="text-success me-2"
-                        />
                         <span className="d-xs-screen">Passengers</span>
                         <span className="d-md-screen">Number of passenger</span>
                         <span className="text-danger">*</span>

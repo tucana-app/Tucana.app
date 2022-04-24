@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faComment,
-  faExclamationTriangle,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { Formik } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import {
+  AlertIcon,
+  CheckIcon,
+  CommentIcon,
+  XIcon,
+} from "@primer/octicons-react";
+import { Formik } from "formik";
+
+import LoadingSpinner from "./LoadingSpinner";
 
 import { submitFormDriverResponseBooking } from "../redux";
-import LoadingSpinner from "./LoadingSpinner";
 
 const FormDriverResponseBooking = ({ bookingId }) => {
   const dispatch = useDispatch();
@@ -67,32 +67,22 @@ const FormDriverResponseBooking = ({ bookingId }) => {
             <Col className="py-2 mx-auto">
               {bookingData.seatsBooked > bookingData.Ride.seatsLeft ? (
                 <p className="text-warning mb-0">
-                  <FontAwesomeIcon
-                    icon={faExclamationTriangle}
-                    className="me-2"
-                  />
-                  "{bookingData.User.firstName}" booked{" "}
-                  {bookingData.seatsBooked} seats but there are{" "}
-                  {bookingData.Ride.seatsLeft} seats left, you cannot accept or
-                  refuse this booking.
+                  <AlertIcon size={24} className="me-2" />"
+                  {bookingData.User.firstName}" booked {bookingData.seatsBooked}{" "}
+                  seats but there are {bookingData.Ride.seatsLeft} seats left,
+                  you cannot accept or refuse this booking.
                 </p>
               ) : (
                 <>
                   <Form.Group className="mb-3">
                     <Form.Label>
                       <p className="small text-secondary">
-                        <FontAwesomeIcon
-                          icon={faExclamationTriangle}
-                          className="me-2"
-                        />
+                        <AlertIcon size={24} className="me-2" />
                         Do not share any contact info (phone, email, links,
                         etc.), they will be shared within the platform before
                         the ride.
                       </p>
-                      <FontAwesomeIcon
-                        icon={faComment}
-                        className="text-success me-2"
-                      />
+                      <CommentIcon size={24} className="text-success me-2" />
                       Comment{" "}
                       <span className="text-secondary">Not mandatory</span>
                     </Form.Label>
@@ -134,7 +124,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           className="me-2"
                         >
                           <span>
-                            <FontAwesomeIcon icon={faTimes} className="me-2" />
+                            <XIcon size={24} className="me-2" />
                             Refuse
                           </span>
                         </Button>
@@ -150,7 +140,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                           onClick={() => setNewStatus(3)}
                         >
                           <span>
-                            <FontAwesomeIcon icon={faCheck} className="me-2" />
+                            <CheckIcon size={24} className="me-2" />
                             Accept
                           </span>
                         </Button>

@@ -1,11 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDollarSign,
-  faHandHoldingUsd,
-} from "@fortawesome/free-solid-svg-icons";
-import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import GoBack from "../components/GoBack";
 
 const Donate = () => {
@@ -32,10 +26,7 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="warning">
-                <FontAwesomeIcon icon={faBitcoin} className="me-2" />
-                Giveth.io
-              </Button>
+              <Button variant="warning">Giveth.io</Button>
             </a>
 
             <a
@@ -43,10 +34,7 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="success">
-                <FontAwesomeIcon icon={faDollarSign} className="me-2" />
-                PayPal
-              </Button>
+              <Button variant="success">PayPal</Button>
             </a>
           </Col>
         </Row>
@@ -54,7 +42,6 @@ const Donate = () => {
           <Col className="text-center">
             <a href="http://ridecr.atwebpages.com" target={"blank"}>
               <Button variant="outline-success" size={"lg"}>
-                <FontAwesomeIcon icon={faHandHoldingUsd} className="me-2" />
                 Crowdfunding website
               </Button>
             </a>

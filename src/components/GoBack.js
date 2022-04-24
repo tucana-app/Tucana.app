@@ -18,11 +18,7 @@ function GoBack(props) {
       <ListGroup.Item onClick={handleGoBack}>
         <div className="d-inline-flex justify-content-between w-100">
           <span>
-            <ChevronLeftIcon
-              size={24}
-              verticalAlign="middle"
-              className="text-success"
-            />
+            <ChevronLeftIcon size={24} className="text-success" />
             {pageName}
           </span>
         </div>

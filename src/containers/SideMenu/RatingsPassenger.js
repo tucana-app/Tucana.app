@@ -10,9 +10,7 @@ import {
   ListGroup,
   Badge,
 } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -70,10 +68,11 @@ function RatingsPassenger() {
             <ListGroup.Item className="border border-start-0 border-end-0 ">
               <div className="d-inline-flex justify-content-between w-100 py-2">
                 <span>
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    className="text-success me-3"
-                  />{" "}
+                  <CircleIcon
+                    size={12}
+                    verticalAlign="middle"
+                    className="text-danger me-2"
+                  />
                   Ratings to do
                   <Badge bg="danger" className="align-text-top ms-2">
                     {getRatingsToDoPassengerData.length}

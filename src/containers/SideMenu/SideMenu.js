@@ -2,8 +2,6 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Badge, Container, ListGroup } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDonate } from "@fortawesome/free-solid-svg-icons";
 import { ChevronRightIcon, PersonIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -212,10 +210,7 @@ const SideMenu = () => {
             <Link to="/donate" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">
-                    Donate{" "}
-                    <FontAwesomeIcon icon={faDonate} className="text-success" />
-                  </p>
+                  <p className="mb-0">Donate </p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>

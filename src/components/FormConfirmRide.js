@@ -3,12 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
-  faArrowLeft,
-  faCheck,
-  faStar,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  ArrowLeftIcon,
+  XIcon,
+  CheckIcon,
+  StarFillIcon,
+} from "@primer/octicons-react";
 
 import { submitFormConfirmRide } from "../redux";
 
@@ -55,14 +54,14 @@ const FormConfirmRide = ({ ride }) => {
               }}
             >
               <span>
-                <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
+                <ArrowLeftIcon size={24} className="me-2" />
                 Go back
               </span>
             </Button>
 
             <Button variant="danger" type="submit" onClick={handleSubmitNo}>
               <span>
-                <FontAwesomeIcon icon={faTimes} className="me-2" />
+                <XIcon size={24} className="me-2" />
                 The ride didn't take place
               </span>
             </Button>
@@ -87,7 +86,7 @@ const FormConfirmRide = ({ ride }) => {
                 onClick={() => setSubmittedNo(true)}
               >
                 <span>
-                  <FontAwesomeIcon icon={faTimes} className="me-2" />
+                  <XIcon size={24} className="me-2" />
                   No
                 </span>
               </Button>
@@ -100,7 +99,7 @@ const FormConfirmRide = ({ ride }) => {
                 onClick={handleSubmitYes}
               >
                 <span>
-                  <FontAwesomeIcon icon={faCheck} className="me-2" />
+                  <CheckIcon size={24} className="me-2" />
                   Yes
                 </span>
               </Button>
@@ -118,7 +117,7 @@ const FormConfirmRide = ({ ride }) => {
             <p className="mb-0">
               You can now rate the other person:{" "}
               <Link to="/ratings" className="link-primary">
-                <FontAwesomeIcon icon={faStar} className="text-warning me-2" />
+                <StarFillIcon size={24} className="text-warning me-2" />
                 Ratings
               </Link>{" "}
             </p>

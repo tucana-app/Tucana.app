@@ -2,15 +2,11 @@ import React, { useEffect } from "react";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import dateFormat from "dateformat";
+import { CheckIcon, XIcon } from "@primer/octicons-react";
+
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import dateFormat from "dateformat";
 
 import { admin_getUsers } from "../../redux";
 
@@ -77,18 +73,12 @@ function AdminUsers() {
                         <td>
                           {user.emailConfirmed ? (
                             <span className="text-success">
-                              <FontAwesomeIcon
-                                icon={faCheckCircle}
-                                className="me-2"
-                              />
+                              <CheckIcon size={24} className="me-2" />
                               Yes
                             </span>
                           ) : (
                             <span className="text-danger">
-                              <FontAwesomeIcon
-                                icon={faTimesCircle}
-                                className="me-2"
-                              />
+                              <XIcon size={24} className="me-2" />
                               No
                             </span>
                           )}
@@ -97,18 +87,12 @@ function AdminUsers() {
                         <td>
                           {user.phoneConfirmed ? (
                             <span className="text-success">
-                              <FontAwesomeIcon
-                                icon={faCheckCircle}
-                                className="me-2"
-                              />
+                              <CheckIcon size={24} className="me-2" />
                               Yes
                             </span>
                           ) : (
                             <span className="text-danger">
-                              <FontAwesomeIcon
-                                icon={faTimesCircle}
-                                className="me-2"
-                              />
+                              <XIcon size={24} className="me-2" />
                               No
                             </span>
                           )}

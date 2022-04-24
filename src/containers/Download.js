@@ -1,7 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAndroid, faApple } from "@fortawesome/free-brands-svg-icons";
 import GoBack from "../components/GoBack";
 
 const Download = () => {
@@ -33,10 +31,6 @@ const Download = () => {
                 rel="noreferrer"
                 className="text-success"
               >
-                <FontAwesomeIcon
-                  icon={faAndroid}
-                  className="text-success me-2"
-                />
                 For Android &amp; Google Chrome (desktop)
               </a>
             </p>
@@ -48,7 +42,6 @@ const Download = () => {
                 rel="noreferrer"
                 className="text-success"
               >
-                <FontAwesomeIcon icon={faApple} className="text-success me-2" />
                 For iOS / iPhoneOS / iPadOS
               </a>
             </p>
