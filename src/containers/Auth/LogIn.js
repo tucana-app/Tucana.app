@@ -6,9 +6,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { clearFeedback, login, resendConfirmationLink } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import FeedbackMessage from "../../components/FeedbackMessage";
+
+import { clearFeedback, login, resendConfirmationLink } from "../../redux";
 
 const Login = () => {
   const dispatch = useDispatch();

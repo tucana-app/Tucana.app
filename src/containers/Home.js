@@ -5,7 +5,7 @@ import FindRide from "./FindRide";
 // Importing assets
 import logo from "../assets/images/OPTI_noir.png";
 
-function Home({ t }) {
+function Home() {
   return (
     <>
       <Container className="my-5">

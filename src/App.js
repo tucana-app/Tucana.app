@@ -44,15 +44,6 @@ import MyPassengerProfile from "./containers/SideMenu/MyPassengerProfile";
 import MyDriverProfile from "./containers/SideMenu/MyDriverProfile";
 import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
 
-// Admin
-import AdminDashboard from "./containers/Admin/AdminDashboard";
-import AdminUsers from "./containers/Admin/AdminUsers";
-import AdminSingleUser from "./containers/Admin/AdminSingleUser";
-import AdminRides from "./containers/Admin/AdminRides";
-import AdminSingleRide from "./containers/Admin/AdminSingleRide";
-import AdminRatings from "./containers/Admin/AdminRatings";
-import AdminGoogleMaps from "./containers/Admin/AdminGoogleMaps";
-
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
@@ -156,15 +147,6 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/coming-soon" component={ComingSoon} />
-
-          {/* Admin */}
-          <Route exact path="/admin/dashboard" component={AdminDashboard} />
-          <Route exact path="/admin/users" component={AdminUsers} />
-          <Route exact path="/admin/single-user" component={AdminSingleUser} />
-          <Route exact path="/admin/rides" component={AdminRides} />
-          <Route exact path="/admin/ride/:rideId" component={AdminSingleRide} />
-          <Route exact path="/admin/ratings" component={AdminRatings} />
-          <Route exact path="/admin/maps" component={AdminGoogleMaps} />
 
           <Route component={Page404} />
         </Switch>

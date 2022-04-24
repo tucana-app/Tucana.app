@@ -14,7 +14,7 @@ import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 
-function MyPassengerProfile(props) {
+function MyPassengerProfile() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
   if (!isLoggedIn) {

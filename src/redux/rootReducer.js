@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 
 import userReducer from "./user/userReducer";
 import notificationReducer from "./notification/notificationReducer";
-import adminReducer from "./admin/adminReducer";
 import globalReducer from "./global/globalReducer";
 import rideReducer from "./ride/rideReducer";
 import toastReducer from "./toast/toastReducer";
@@ -12,7 +11,6 @@ import ratingReducer from "./rating/ratingReducer";
 const appReducer = combineReducers({
   user: userReducer,
   notification: notificationReducer,
-  admin: adminReducer,
   global: globalReducer,
   ride: rideReducer,
   toast: toastReducer,
