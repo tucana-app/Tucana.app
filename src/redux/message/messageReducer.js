@@ -20,7 +20,6 @@ const initialState = {
   userNewMessagesError: "",
 
   isLoadingSendMessage: false,
-  showMessageResponse: "",
 
   // 1: Sent
   // 2: Received
@@ -107,11 +106,10 @@ function messageReducer(state = initialState, action) {
         isLoadingSendMessage: true,
       };
 
-    case messageTypes.SEND_MESSAGE_RESPONSE:
+    case messageTypes.SEND_MESSAGE_END:
       return {
         ...state,
         isLoadingSendMessage: false,
-        showMessageResponse: action.payload,
       };
 
     case messageTypes.GET_USER_NEW_MESSAGES_REQUEST:

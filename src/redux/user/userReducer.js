@@ -36,6 +36,17 @@ initialState = {
   isLoadingResendConfirmationLink: false,
   resendConfirmationLinkData: {},
   resendConfirmationLinkError: "",
+
+  isLoadingGetSubmissionsBecomeDriver: false,
+  getSubmissionsBecomeDriverData: [],
+  getSubmissionsBecomeDriverError: "",
+
+  isLoadingSubmitFormBecomeDriver: false,
+  submitFormBecomeDriverSuccess: false,
+  submitFormBecomeDriverError: "",
+
+  isLoadingUpdateDriverState: false,
+  updateDriverStateError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -194,6 +205,84 @@ function userReducer(state = initialState, action) {
         isLoadingResendConfirmationLink: false,
         resendConfirmationLinkData: [],
         resendConfirmationLinkError: action.payload,
+      };
+
+    // Get the submissions for become a driver form
+
+    case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_REQUESTED:
+      return {
+        ...state,
+        isLoadingGetSubmissionsBecomeDriver: true,
+      };
+
+    case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_DATA:
+      return {
+        ...state,
+        isLoadingGetSubmissionsBecomeDriver: false,
+        getSubmissionsBecomeDriverData: action.payload,
+        getSubmissionsBecomeDriverError: "",
+      };
+
+    case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_ERROR:
+      return {
+        ...state,
+        isLoadingGetSubmissionsBecomeDriver: false,
+        getSubmissionsBecomeDriverData: [],
+        getSubmissionsBecomeDriverError: action.payload,
+      };
+
+    // Submit the form to become a driver
+
+    case userTypes.SUBMIT_FORM_BECOME_DRIVER_REQUESTED:
+      return {
+        ...state,
+        isLoadingSubmitFormBecomeDriver: true,
+        loginErrorData: "",
+      };
+
+    case userTypes.SUBMIT_FORM_BECOME_DRIVER_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitFormBecomeDriver: false,
+        submitFormBecomeDriverSuccess: true,
+        submitFormBecomeDriverError: "",
+      };
+
+    case userTypes.SUBMIT_FORM_BECOME_DRIVER_ERROR:
+      return {
+        ...state,
+        isLoadingSubmitFormBecomeDriver: false,
+        submitFormBecomeDriverSuccess: false,
+        submitFormBecomeDriverError: action.payload,
+      };
+
+    // Update the driver's state
+
+    case userTypes.UPDATE_DRIVER_STATE_REQUESTED:
+      return {
+        ...state,
+        isLoadingUpdateDriverState: true,
+        loginErrorData: "",
+      };
+
+    case userTypes.UPDATE_DRIVER_STATE_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdateDriverState: false,
+        user: {
+          ...user,
+          Driver: {
+            id: action.payload.id,
+          },
+        },
+        updateDriverStateError: "",
+      };
+
+    case userTypes.UPDATE_DRIVER_STATE_ERROR:
+      return {
+        ...state,
+        isLoadingUpdateDriverState: false,
+        updateDriverStateError: action.payload,
       };
 
     default:

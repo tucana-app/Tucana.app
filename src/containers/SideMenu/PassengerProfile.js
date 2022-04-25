@@ -7,14 +7,12 @@ import {
   ChevronRightIcon,
   StarFillIcon,
   CircleIcon,
-  CheckIcon,
-  XIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 
-function MyPassengerProfile() {
+function PassengerProfile() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
   if (!isLoggedIn) {
@@ -26,12 +24,6 @@ function MyPassengerProfile() {
       <GoBack />
 
       <Container className="pt-5 text-center">
-        <Row className="mb-3">
-          <Col>
-            <h1 className="text-success">Your profile</h1>
-          </Col>
-        </Row>
-
         <Row>
           <Col className="text-center">
             <CircleIcon size={78} className="text-secondary" />
@@ -53,7 +45,7 @@ function MyPassengerProfile() {
           <Col xs={12} sm={4} className="text-center">
             <h4>
               <span className="text-secondary">
-                <StarFillIcon size={24} className="text-warning me-2" />-
+                <StarFillIcon size={24} className="text-warning me-2 mb-1" />-
               </span>
               /5
             </h4>
@@ -62,7 +54,7 @@ function MyPassengerProfile() {
 
         <Row className="text-center mb-5">
           <Col>
-            <LinkContainer to="/my-profile/passenger/ratings">
+            <LinkContainer to="/profile/passenger/ratings">
               <Button variant="warning" size={"lg"}>
                 Ratings <ChevronRightIcon size={24} />
               </Button>
@@ -125,25 +117,6 @@ function MyPassengerProfile() {
           </Col>
         </Row> */}
 
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
-            <span className="text-secondary">Driver's profile verified</span>
-          </Col>
-          <Col className="text-start">
-            {currentUser.Driver && currentUser.Driver.verified ? (
-              <span className="text-success">
-                <CheckIcon size={24} className="me-2" />
-                Yes
-              </span>
-            ) : (
-              <span className="text-danger">
-                <XIcon size={24} className="me-2" />
-                No
-              </span>
-            )}
-          </Col>
-        </Row>
-
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-5">
           <Col className="text-end">
             <span className="text-secondary">Member since</span>
@@ -157,4 +130,4 @@ function MyPassengerProfile() {
   );
 }
 
-export default MyPassengerProfile;
+export default PassengerProfile;

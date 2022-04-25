@@ -1,8 +1,7 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { setfeedback, setToast } from "../index";
+import { getNotifications, setfeedback, setToast } from "../index";
 import * as Yup from "yup";
-import { getNotifications } from "../../redux";
 
 const URL_API = process.env.REACT_APP_URL_API;
 

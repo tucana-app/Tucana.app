@@ -9,7 +9,7 @@ function SignUpSuccess(props) {
   );
 
   if (isLoggedIn) {
-    return <Redirect to="/my-rides" />;
+    return <Redirect to="/rides" />;
   }
 
   if (!signupUserSuccessful) {

@@ -10,11 +10,11 @@ import {
   getUserBookings,
   getDriverBookings,
   getRidesToConfirm,
-} from "../../redux";
+} from "../redux";
 
-import LoadingSpinner from "../../components/LoadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
-const MyRides = () => {
+const Rides = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isDateInPast, countDriverRides } = useSelector(
@@ -27,12 +27,27 @@ const MyRides = () => {
     userBookingsData,
     isLoadingRidesToConfirm,
     ridesToConfirmData,
+    isLoadingDriverBookings,
+    driverBookingsData,
   } = useSelector((state) => state.ride);
 
   const countUserBookings = (userBookingsData) => {
     let count = 0;
 
     userBookingsData.map((booking, index) => {
+      return booking.BookingStatusId === 1 &&
+        !isDateInPast(booking.Ride.dateTime, new Date())
+        ? count++
+        : null;
+    });
+
+    return count;
+  };
+
+  const countDriverBookings = (driverBookingsData) => {
+    let count = 0;
+
+    driverBookingsData.map((booking, index) => {
       return booking.BookingStatusId === 1 &&
         !isDateInPast(booking.Ride.dateTime, new Date())
         ? count++
@@ -88,7 +103,7 @@ const MyRides = () => {
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               <div>
-                My bookings
+                Bookings
                 {userBookingsData.length > 0 ? (
                   countUserBookings(userBookingsData) ? (
                     <Badge bg="primary" className="ms-2">
@@ -108,7 +123,7 @@ const MyRides = () => {
 
         <hr className="my-2" />
 
-        <Link to="/my-rides/driver" className="text-light text-decoration-none">
+        <Link to="/rides/driver" className="text-light text-decoration-none">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               <div>
@@ -130,10 +145,7 @@ const MyRides = () => {
           </ListGroup.Item>
         </Link>
 
-        {/* <Link
-          to="/my-rides/bookings"
-          className="text-light text-decoration-none"
-        >
+        <Link to="/rides/bookings" className="text-light text-decoration-none">
           <ListGroup.Item className="border-0 ">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
               <div>
@@ -153,7 +165,7 @@ const MyRides = () => {
               <ChevronRightIcon size={24} verticalAlign="middle" />
             </div>
           </ListGroup.Item>
-        </Link> */}
+        </Link>
 
         <hr className="my-2" />
 
@@ -170,4 +182,4 @@ const MyRides = () => {
   );
 };
 
-export default MyRides;
+export default Rides;

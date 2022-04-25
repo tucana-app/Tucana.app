@@ -3,33 +3,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
 
 // Loading Containers
+import LogIn from "./containers/User/LogIn";
+import ForgotPassword from "./containers/User/ForgotPassword";
+import CreateNewPassword from "./containers/User/CreateNewPassword";
+import SignUp from "./containers/User/SignUp";
+import SignUpSuccess from "./containers/User/SignUpSuccess";
+import SignUpConfirm from "./containers/User/SignUpConfirm";
+
 import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import FindRide from "./containers/FindRide";
 import MessagePage from "./containers/MessagePage";
 
 import Ride from "./containers/Ride";
-import MyRides from "./containers/MyRides/MyRides";
-import MyRidesDriver from "./containers/MyRides/MyRidesDriver";
-import MyRidesBookings from "./containers/MyRides/MyRidesBookings";
+import Rides from "./containers/Rides";
+import RidesDriver from "./containers/Rides/RidesDriver";
+import RidesBookings from "./containers/Rides/RidesBookings";
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
-
 import OfferRide from "./containers/OfferRide";
-import LogIn from "./containers/Auth/LogIn";
-import ForgotPassword from "./containers/Auth/ForgotPassword";
-import CreateNewPassword from "./containers/Auth/CreateNewPassword";
 
-import SignUp from "./containers/Auth/SignUp";
-import SignUpSuccess from "./containers/Auth/SignUpSuccess";
-import SignUpConfirm from "./containers/Auth/SignUpConfirm";
-
-import Help from "./containers/Help";
-import Download from "./containers/Download";
-import Donate from "./containers/Donate";
-import ComingSoon from "./containers/ComingSoon";
-
-import Page404 from "./containers/Page404";
+import BecomeDriver from "./containers/BecomeDriver";
 
 // All pages included in the side menu
 import SideMenu from "./containers/SideMenu/SideMenu";
@@ -40,9 +34,15 @@ import NewRating from "./containers/SideMenu/NewRating";
 import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
-import MyPassengerProfile from "./containers/SideMenu/MyPassengerProfile";
-import MyDriverProfile from "./containers/SideMenu/MyDriverProfile";
+import PassengerProfile from "./containers/SideMenu/PassengerProfile";
+import DriverProfile from "./containers/SideMenu/DriverProfile";
 import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
+import Download from "./containers/Download";
+import Donate from "./containers/Donate";
+
+import Help from "./containers/Help";
+import Page404 from "./containers/Page404";
+import ComingSoon from "./containers/ComingSoon";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -89,16 +89,6 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/offer-ride" component={OfferRide} />
-          <Route exact path="/find-ride" component={FindRide} />
-          <Route exact path="/messages" component={MessagePage} />
-
-          <Route exact path="/ride/:rideId" component={Ride} />
-          <Route exact path="/my-rides" component={MyRides} />
-          <Route exact path="/my-rides/driver" component={MyRidesDriver} />
-          <Route exact path="/my-rides/bookings" component={MyRidesBookings} />
-          <Route exact path="/bookings" component={Bookings} />
-          <Route exact path="/booking/:bookingId" component={Booking} />
 
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/forgot-password" component={ForgotPassword} />
@@ -112,15 +102,27 @@ function App() {
           <Route exact path="/signup-successful" component={SignUpSuccess} />
           <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
+          <Route exact path="/offer-ride" component={OfferRide} />
+          <Route exact path="/find-ride" component={FindRide} />
+          <Route exact path="/messages" component={MessagePage} />
+          <Route exact path="/become-driver" component={BecomeDriver} />
+
+          <Route exact path="/ride/:rideId" component={Ride} />
+          <Route exact path="/rides" component={Rides} />
+          <Route exact path="/rides/driver" component={RidesDriver} />
+          <Route exact path="/rides/bookings" component={RidesBookings} />
+          <Route exact path="/bookings" component={Bookings} />
+          <Route exact path="/booking/:bookingId" component={Booking} />
+
           <Route exact path="/menu" component={SideMenu} />
           <Route
             exact
-            path="/my-profile/passenger/ratings"
+            path="/profile/passenger/ratings"
             component={RatingsPassenger}
           />
           <Route
             exact
-            path="/my-profile/driver/ratings"
+            path="/profile/driver/ratings"
             component={RatingsDriver}
           />
           <Route exact path="/ratings" component={Ratings} />
@@ -129,23 +131,20 @@ function App() {
             path="/ratings/new-rating/:rideId"
             component={NewRating}
           />
-          <Route
-            exact
-            path="/my-profile/passenger"
-            component={MyPassengerProfile}
-          />
+          <Route exact path="/profile/passenger" component={PassengerProfile} />
           <Route
             exact
             path="/rides/rides-to-confirm"
             component={RidesToConfirm}
           />
-          <Route exact path="/my-profile/driver" component={MyDriverProfile} />
+          <Route exact path="/profile/driver" component={DriverProfile} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/notifications" component={NotificationPage} />
+
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           <Route component={Page404} />

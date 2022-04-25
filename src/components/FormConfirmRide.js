@@ -41,7 +41,7 @@ const FormConfirmRide = ({ ride }) => {
         <Row data-aos="fade-in">
           <Col className="text-center mx-auto">
             <p className="lead text-center mb-1">
-              You said that the ride didn't happend. Do you confirm that?
+              Please confirm that the ride didn't take place
             </p>
 
             <Button
@@ -61,15 +61,14 @@ const FormConfirmRide = ({ ride }) => {
 
             <Button variant="danger" type="submit" onClick={handleSubmitNo}>
               <span>
-                <XIcon size={24} className="me-2" />
-                The ride didn't take place
+                <XIcon size={24} className="me-2" />I confirm
               </span>
             </Button>
           </Col>
         </Row>
       ) : submitFormConfirmRideError === "" &&
         submitFormConfirmRideData.flag !== "SUCCESS" ? (
-        <div className="py-2" data-aos="fade-in">
+        <div data-aos="fade-in">
           <Row>
             <Col className="mx-auto">
               <p className="lead text-center mb-1">Do you confirm the ride?</p>
@@ -79,7 +78,6 @@ const FormConfirmRide = ({ ride }) => {
             <Col className="text-center mx-auto">
               <Button
                 variant="danger"
-                size="lg"
                 type="submit"
                 className="me-2"
                 disabled={submitted || isloadingSubmitFormConfirmRide}
@@ -93,7 +91,6 @@ const FormConfirmRide = ({ ride }) => {
 
               <Button
                 variant="success"
-                size="lg"
                 type="submit"
                 disabled={submitted || isloadingSubmitFormConfirmRide}
                 onClick={handleSubmitYes}

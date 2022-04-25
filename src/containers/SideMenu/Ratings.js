@@ -48,7 +48,7 @@ function Ratings() {
             <h2 className="text-info mb-0">- / 5</h2>
             <p className="lead">Passenger</p>
 
-            <LinkContainer to="/my-profile/passenger/ratings">
+            <LinkContainer to="/profile/passenger/ratings">
               <Button variant="info" size={"lg"}>
                 Ratings
               </Button>
@@ -59,7 +59,7 @@ function Ratings() {
             <h2 className="text-warning mb-0">- / 5</h2>
             <p className="lead">Driver</p>
 
-            <LinkContainer to="/my-profile/driver/ratings">
+            <LinkContainer to="/profile/driver/ratings">
               <Button variant="warning" size={"lg"}>
                 Ratings
               </Button>

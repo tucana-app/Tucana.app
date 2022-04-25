@@ -22,7 +22,7 @@ export const registerUser = (formSignupUser) => {
     dispatch(registerUserRequested());
 
     axios
-      .post(URL_API + "/auth/signup", {
+      .post(URL_API + "/user/signup", {
         formSignupUser,
       })
       .then((response) => {
@@ -92,7 +92,7 @@ export const confirmEmail = (uuid) => {
 
     if (validator.isUUID(uuid)) {
       axios
-        .put(URL_API + "/auth/confirm", {
+        .put(URL_API + "/user/confirm", {
           uuid,
         })
         .then((response) => {
@@ -182,7 +182,7 @@ export const login = (formLogin) => {
     dispatch(loginRequested());
 
     axios
-      .post(URL_API + "/auth/signin", {
+      .post(URL_API + "/user/signin", {
         formLogin,
       })
       .then((response) => {
@@ -277,7 +277,7 @@ export const submitEmailForgotPassword = (formValue) => {
     dispatch(submitEmailForgotPasswordRequested());
 
     axios
-      .get(URL_API + "/auth/send-email-forgot-password", {
+      .get(URL_API + "/user/send-email-forgot-password", {
         params: {
           email: formValue.email,
         },
@@ -328,47 +328,6 @@ export const submitEmailForgotPasswordFail = (error) => {
 
 // Handle resetting password
 
-export const checkDeprecatedLinkResetPasswordRequested = () => {
-  return {
-    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_REQUESTED,
-  };
-};
-
-export const checkDeprecatedLinkResetPassword = (uuid) => {
-  return (dispatch) => {
-    dispatch(checkDeprecatedLinkResetPasswordRequested());
-
-    axios
-      .get(URL_API + "/auth/check-deprecated-link-reset-password", {
-        params: {
-          uuid,
-        },
-      })
-      .then((response) => {
-        dispatch(checkDeprecatedLinkResetPasswordSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(checkDeprecatedLinkResetPasswordFail(error.response.data));
-      });
-  };
-};
-
-export const checkDeprecatedLinkResetPasswordSuccess = (data) => {
-  return {
-    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_DATA,
-    payload: data,
-  };
-};
-
-export const checkDeprecatedLinkResetPasswordFail = (error) => {
-  return {
-    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_ERROR,
-    payload: error,
-  };
-};
-
-// Handle resetting password
-
 export const resetPasswordRequested = () => {
   return {
     type: userTypes.RESET_PASSWORD_REQUESTED,
@@ -381,7 +340,7 @@ export const resetPassword = (formValues, uuid) => {
 
     if (formValues.password1 === formValues.password2) {
       axios
-        .put(URL_API + "/auth/reset-password", {
+        .put(URL_API + "/user/reset-password", {
           password: formValues.password1,
           uuid,
         })
@@ -410,7 +369,7 @@ export const resetPassword = (formValues, uuid) => {
             })
           );
 
-          dispatch(resetPasswordFail(error.response.data.message));
+          dispatch(resetPasswordFail(message));
         });
     } else {
       const message = "The passwords must match";
@@ -454,7 +413,7 @@ export const resendConfirmationLink = (userId) => {
     dispatch(resendConfirmationLinkRequested());
 
     axios
-      .post(URL_API + "/auth/resend-confirmation-link", {
+      .post(URL_API + "/user/resend-confirmation-link", {
         userId,
       })
       .then((response) => {
@@ -497,6 +456,162 @@ export const resendConfirmationLinkSuccess = (data) => {
 export const resendConfirmationLinkFail = (error) => {
   return {
     type: userTypes.RESEND_CONFIRMATION_LINK_ERROR,
+    payload: error,
+  };
+};
+
+// Get submissions for become a driver form
+
+export const getSubmissionsBecomeDriverRequested = () => {
+  return {
+    type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_REQUESTED,
+  };
+};
+
+export const getSubmissionsBecomeDriver = (userId) => {
+  return (dispatch) => {
+    dispatch(getSubmissionsBecomeDriverRequested());
+
+    axios
+      .get(URL_API + "/user/submissions-become-driver", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        dispatch(getSubmissionsBecomeDriverData(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getSubmissionsBecomeDriverFail(message));
+      });
+  };
+};
+
+export const getSubmissionsBecomeDriverData = (data) => {
+  return {
+    type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_DATA,
+    payload: data,
+  };
+};
+
+export const getSubmissionsBecomeDriverFail = (error) => {
+  return {
+    type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_ERROR,
+    payload: error,
+  };
+};
+
+// Submit form to become a driver
+
+export const submitFormBecomeDriverRequested = () => {
+  return {
+    type: userTypes.SUBMIT_FORM_BECOME_DRIVER_REQUESTED,
+  };
+};
+
+export const submitFormBecomeDriver = (userId) => {
+  return (dispatch) => {
+    dispatch(submitFormBecomeDriverRequested());
+
+    axios
+      .post(URL_API + "/user/submit-become-driver", {
+        userId,
+      })
+      .then((response) => {
+        dispatch(submitFormBecomeDriverSuccess(response.data));
+        dispatch(getSubmissionsBecomeDriver(userId));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "A problem happened",
+            bodyText: message,
+            variant: "warning",
+          })
+        );
+
+        dispatch(submitFormBecomeDriverFail(message));
+      });
+  };
+};
+
+export const submitFormBecomeDriverSuccess = (driver) => {
+  return {
+    type: userTypes.SUBMIT_FORM_BECOME_DRIVER_SUCCESS,
+    payload: driver,
+  };
+};
+
+export const submitFormBecomeDriverFail = (error) => {
+  return {
+    type: userTypes.SUBMIT_FORM_BECOME_DRIVER_ERROR,
+    payload: error,
+  };
+};
+
+// Submit form to become a driver
+
+export const updateDriverStateRequested = () => {
+  return {
+    type: userTypes.UPDATE_DRIVER_STATE_REQUESTED,
+  };
+};
+
+export const updateDriverState = (userId) => {
+  return (dispatch) => {
+    dispatch(updateDriverStateRequested());
+
+    axios
+      .get(URL_API + "/user/driver-state", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        if (response.data === "") {
+          dispatch(updateDriverStateSuccess(null));
+        } else {
+          dispatch(updateDriverStateSuccess(response.data));
+        }
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(updateDriverStateFail(message));
+      });
+  };
+};
+
+export const updateDriverStateSuccess = (driver) => {
+  return {
+    type: userTypes.UPDATE_DRIVER_STATE_SUCCESS,
+    payload: driver,
+  };
+};
+
+export const updateDriverStateFail = (error) => {
+  return {
+    type: userTypes.UPDATE_DRIVER_STATE_ERROR,
     payload: error,
   };
 };

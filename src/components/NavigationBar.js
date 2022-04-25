@@ -54,11 +54,7 @@ function NavigationBar() {
                 </IndexLinkContainer>
               </Col>
               <Col xs={2} className="text-center mx-auto">
-                <IndexLinkContainer
-                  to="/my-rides"
-                  href="/my-rides"
-                  className="px-0"
-                >
+                <IndexLinkContainer to="/rides" href="/rides" className="px-0">
                   <Nav.Link className="font-title text-center text-decoration-none">
                     <ZapIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">Rides</p>

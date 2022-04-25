@@ -1,6 +1,6 @@
 import notificationTypes from "./notificationTypes";
 import axios from "axios";
-import { getUserNewMessages } from "../../redux";
+import { getUserNewMessages } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 

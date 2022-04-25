@@ -13,7 +13,7 @@ import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverRides } from "../../redux";
 
-const MyRidesDriver = () => {
+const RidesDriver = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingDriverRides, driverRidesData } = useSelector(
@@ -48,7 +48,7 @@ const MyRidesDriver = () => {
               <Col>
                 <div className="text-center mb-4">
                   <h1 className="font-title text-success mb-0">
-                    Rides as a driver
+                    Rides offered
                   </h1>
                   <p className="lead">All the rides you have submitted</p>
                 </div>
@@ -149,4 +149,4 @@ const MyRidesDriver = () => {
   );
 };
 
-export default MyRidesDriver;
+export default RidesDriver;

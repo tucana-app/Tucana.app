@@ -1,6 +1,6 @@
 import messageTypes from "./messageTypes";
 import axios from "axios";
-import { setfeedback, setToast } from "../index";
+import { parseText, setfeedback, setToast } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -140,60 +140,58 @@ export const sendMessageRequested = () => {
   };
 };
 
-export const sendMessage = (
-  senderId,
-  receiverId,
-  message,
-  conversationId,
-  messagesEndRef
-) => {
+export const sendMessage = (senderId, receiverId, message, conversationId) => {
   return (dispatch) => {
     if (message.length !== 0) {
       dispatch(sendMessageRequested());
 
-      axios
-        .post(URL_API + "/message/send-message", {
-          senderId,
-          receiverId,
-          message,
-          conversationId,
-        })
-        .then((response) => {
-          // console.log(response.data);
+      const parsingResult = parseText(message);
 
-          dispatch(
-            setToast({
-              show: true,
-              headerText: "Success",
-              bodyText: "Message sent",
-              variant: "success",
-            })
-          );
-          dispatch(sendMessageResponse(message));
-          dispatch(getAllUserMessages(senderId));
-        })
-        .catch((error) => {
-          const message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      if (parsingResult.value === 0) {
+        axios
+          .post(URL_API + "/message/send-message", {
+            senderId,
+            receiverId,
+            message,
+            conversationId,
+          })
+          .then((response) => {
+            // console.log(response.data);
 
-          // console.log(error);
+            dispatch(
+              setToast({
+                show: true,
+                headerText: "Success",
+                bodyText: "Message sent",
+                variant: "success",
+              })
+            );
+            dispatch(sendMessageEnd());
+            dispatch(getAllUserMessages(senderId));
+          })
+          .catch((error) => {
+            // console.log(error)
+            dispatch(sendMessageEnd());
+          });
+      } else {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Warning",
+            bodyText: parsingResult.message,
+            variant: "warning",
+          })
+        );
 
-          dispatch(setfeedback({ message, variant: "danger" }));
-
-          dispatch(sendMessageResponse(message));
-        });
+        dispatch(sendMessageEnd());
+      }
     }
   };
 };
 
-export const sendMessageResponse = (response) => {
+export const sendMessageEnd = () => {
   return {
-    type: messageTypes.SEND_MESSAGE_RESPONSE,
-    payload: response.message,
+    type: messageTypes.SEND_MESSAGE_END,
   };
 };
 

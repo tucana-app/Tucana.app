@@ -60,14 +60,6 @@ const Booking = () => {
           currentUser.id === bookingData.User.id ||
           currentUser.id === bookingData.DriverId ? (
             <div data-aos="fade-in">
-              <Row>
-                <Col className="text-center">
-                  <h1 className="mb-0">Booking</h1>
-                </Col>
-              </Row>
-
-              <hr className="my-4" />
-
               <h2 className="text-success text-center">Booking details</h2>
 
               <Row className="mb-2 mx-1 mx-sm-0">
@@ -93,7 +85,7 @@ const Booking = () => {
                           <span className="text-success">
                             {bookingData.seatsBooked}
                           </span>{" "}
-                          seat{bookingData.seatsBooked > 0 ? "s" : null} to{" "}
+                          seat{bookingData.seatsBooked > 1 ? "s" : null} to{" "}
                           <span className="text-success">
                             {bookingData.Ride.cityDestination}
                           </span>{" "}

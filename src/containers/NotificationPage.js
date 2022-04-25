@@ -56,7 +56,7 @@ const NotificationPage = () => {
       <GoBack />
 
       <ListGroup variant="flush">
-        <ListGroup.Item className="border border-top-0 border-start-0 border-end-0 ">
+        <ListGroup.Item className="border-0 mt-3">
           <div className="py-3">
             <BellIcon size={24} className="text-warning me-2" />
             Notifications
