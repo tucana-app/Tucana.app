@@ -40,11 +40,11 @@ const BecomeDriver = () => {
     return found === undefined ? false : true;
   };
 
-  const isFoundReviewed = () => {
+  const isFoundPending = () => {
     let found = 0;
     if (getSubmissionsBecomeDriverData !== undefined) {
       found = getSubmissionsBecomeDriverData.find(
-        (submission) => submission.admin_VerifDriverInfos.length > 0
+        (submission) => submission.admin_VerifDriverInfos.length === 0
       );
     }
 
@@ -115,9 +115,7 @@ const BecomeDriver = () => {
                 Thank you for applying. A moderator will review your submission
               </Alert>
             ) : !isLoadingGetSubmissionsBecomeDriver ? (
-              !isFoundAccepted() &&
-              !isFoundReviewed() &&
-              getSubmissionsBecomeDriverData.length === 0 ? (
+              !isFoundAccepted() && !isFoundPending() ? (
                 <Button
                   onClick={handleSubmit}
                   variant="success"
