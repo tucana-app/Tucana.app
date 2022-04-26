@@ -400,6 +400,47 @@ export const resetPasswordFail = (error) => {
   };
 };
 
+// Handle resetting password
+
+export const checkDeprecatedLinkResetPasswordRequested = () => {
+  return {
+    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_REQUESTED,
+  };
+};
+
+export const checkDeprecatedLinkResetPassword = (uuid) => {
+  return (dispatch) => {
+    dispatch(checkDeprecatedLinkResetPasswordRequested());
+
+    axios
+      .get(URL_API + "/user/check-deprecated-link-reset-password", {
+        params: {
+          uuid,
+        },
+      })
+      .then((response) => {
+        dispatch(checkDeprecatedLinkResetPasswordSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(checkDeprecatedLinkResetPasswordFail(error.response.data));
+      });
+  };
+};
+
+export const checkDeprecatedLinkResetPasswordSuccess = (data) => {
+  return {
+    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_DATA,
+    payload: data,
+  };
+};
+
+export const checkDeprecatedLinkResetPasswordFail = (error) => {
+  return {
+    type: userTypes.CHECK_DEPRECATED_LINK_RESET_PASSWORD_ERROR,
+    payload: error,
+  };
+};
+
 // Resend confirmation link
 
 export const resendConfirmationLinkRequested = () => {
