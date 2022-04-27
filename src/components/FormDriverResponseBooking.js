@@ -32,7 +32,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
       newSeatsAvailable: bookingData.Ride.seatsLeft - bookingData.seatsBooked,
     };
 
-    dispatch(submitFormDriverResponseBooking(currentUser, values, bookingData));
+    dispatch(submitFormDriverResponseBooking(values, bookingData));
 
     formikBag.setSubmitting(false);
   };

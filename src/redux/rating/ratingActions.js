@@ -1,6 +1,6 @@
 import ratingTypes from "./ratingTypes";
 import axios from "axios";
-import { setfeedback } from "../index";
+import { parseText, setToast, setfeedback } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -328,32 +328,47 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
   return (dispatch) => {
     dispatch(submitPassengerRatingFormRequested());
 
-    axios
-      .post(URL_API + "/rating/submit-passenger-rating-form", {
-        ride,
-        note,
-        comment,
-      })
-      .then((response) => {
-        // console.log(response.data);
+    const parsingResult = parseText(comment);
 
-        dispatch(submitPassengerRatingFormSuccess(response.data));
-        dispatch(
-          setfeedback({ message: response.data.message, variant: "success" })
-        );
-      })
-      .catch((error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    if (parsingResult.value === 0) {
+      axios
+        .post(URL_API + "/rating/submit-passenger-rating-form", {
+          ride,
+          note,
+          comment,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-        // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
-        dispatch(submitPassengerRatingFormFail(message));
-      });
+          dispatch(submitPassengerRatingFormSuccess(response.data));
+          dispatch(
+            setfeedback({ message: response.data.message, variant: "success" })
+          );
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          // console.log(error);
+          dispatch(setfeedback({ message, variant: "danger" }));
+          dispatch(submitPassengerRatingFormFail(message));
+        });
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Warning",
+          bodyText: parsingResult.message,
+          variant: "warning",
+        })
+      );
+
+      dispatch(submitPassengerRatingFormFail(parsingResult.message));
+    }
   };
 };
 
@@ -383,32 +398,47 @@ export const submitDriverRatingForm = (ride, note, comment) => {
   return (dispatch) => {
     dispatch(submitDriverRatingFormRequested());
 
-    axios
-      .post(URL_API + "/rating/submit-driver-rating-form", {
-        ride,
-        note,
-        comment,
-      })
-      .then((response) => {
-        // console.log(response.data);
+    const parsingResult = parseText(comment);
 
-        dispatch(submitDriverRatingFormSuccess(response.data));
-        dispatch(
-          setfeedback({ message: response.data.message, variant: "success" })
-        );
-      })
-      .catch((error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    if (parsingResult.value === 0) {
+      axios
+        .post(URL_API + "/rating/submit-driver-rating-form", {
+          ride,
+          note,
+          comment,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-        // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
-        dispatch(submitDriverRatingFormFail(message));
-      });
+          dispatch(submitDriverRatingFormSuccess(response.data));
+          dispatch(
+            setfeedback({ message: response.data.message, variant: "success" })
+          );
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          // console.log(error);
+          dispatch(setfeedback({ message, variant: "danger" }));
+          dispatch(submitDriverRatingFormFail(message));
+        });
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Warning",
+          bodyText: parsingResult.message,
+          variant: "warning",
+        })
+      );
+
+      dispatch(submitDriverRatingFormFail(parsingResult.message));
+    }
   };
 };
 

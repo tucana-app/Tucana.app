@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { getNotifications, setfeedback, setToast } from "../index";
+import { parseText, getNotifications, setfeedback, setToast } from "../index";
 import * as Yup from "yup";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -79,42 +79,57 @@ export const submitFormOfferRide = (user, values) => {
 
     dispatch(submitFormOfferRideRequested());
 
-    axios
-      .post(URL_API + "/ride/add-ride", {
-        user,
-        formValues: values,
-      })
-      .then((response) => {
-        // console.log(response.message);
+    const parsingResult = parseText(values.comment);
 
-        dispatch(
-          setfeedback({
-            variant: "success",
-            message: response.data.message,
-          })
-        );
+    if (parsingResult.value === 0) {
+      axios
+        .post(URL_API + "/ride/add-ride", {
+          user,
+          formValues: values,
+        })
+        .then((response) => {
+          // console.log(response.message);
 
-        dispatch(getAllRides());
-        dispatch(submitFormOfferRideSuccess(response.data));
-        dispatch(getDriverRides(user.id));
-      })
-      .catch((error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+          dispatch(
+            setfeedback({
+              variant: "success",
+              message: response.data.message,
+            })
+          );
 
-        dispatch(
-          setfeedback({
-            variant: "danger",
-            message,
-          })
-        );
+          dispatch(getAllRides());
+          dispatch(submitFormOfferRideSuccess(response.data));
+          dispatch(getDriverRides(user.id));
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-        dispatch(submitFormOfferRideFail(error));
-      });
+          dispatch(
+            setfeedback({
+              variant: "danger",
+              message,
+            })
+          );
+
+          dispatch(submitFormOfferRideFail(error));
+        });
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Warning",
+          bodyText: parsingResult.message,
+          variant: "warning",
+        })
+      );
+
+      dispatch(submitFormOfferRideFail(parsingResult.message));
+    }
   };
 };
 
@@ -378,63 +393,76 @@ export const submitFormDriverResponseBookingRequested = () => {
   };
 };
 
-export const submitFormDriverResponseBooking = (
-  driver,
-  formValues,
-  booking
-) => {
+export const submitFormDriverResponseBooking = (formValues, booking) => {
   return (dispatch) => {
     dispatch(submitFormDriverResponseBookingRequested());
 
-    axios
-      .put(URL_API + "/booking/driver-response", { booking, formValues })
-      .then((response) => {
-        // console.log(response.data);
+    const parsingResult = parseText(formValues.comment);
 
-        if (response.data.newStatus === 3) {
+    if (parsingResult.value === 0) {
+      axios
+        .put(URL_API + "/booking/driver-response", { booking, formValues })
+        .then((response) => {
+          // console.log(response.data);
+
+          if (response.data.newStatus === 3) {
+            dispatch(
+              setToast({
+                show: true,
+                headerText: "Success",
+                bodyText: "You have accepted the booking",
+                variant: "success",
+              })
+            );
+          } else if (response.data.newStatus === 4) {
+            // If ride refused by driver
+
+            dispatch(
+              setfeedback({
+                variant: "warning",
+                message: response.data.message,
+              })
+            );
+          }
+
           dispatch(
-            setToast({
-              show: true,
-              headerText: "Success",
-              bodyText: "You have accepted the booking",
-              variant: "success",
-            })
+            submitFormDriverResponseBookingSuccess(response.data.message)
           );
-        } else if (response.data.newStatus === 4) {
-          // If ride refused by driver
+          dispatch(getAllRides());
+          dispatch(getBooking(formValues.bookingId));
+          dispatch(getNotifications(formValues.userId));
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          // console.log(message);
 
           dispatch(
             setfeedback({
-              variant: "warning",
-              message: response.data.message,
+              variant: "danger",
+              message: message,
             })
           );
-        }
 
-        dispatch(submitFormDriverResponseBookingSuccess(response.data.message));
-        dispatch(getAllRides());
-        dispatch(getBooking(formValues.bookingId));
-        dispatch(getNotifications(formValues.userId));
-      })
-      .catch((error) => {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+          dispatch(submitFormDriverResponseBookingFail(error));
+        });
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Warning",
+          bodyText: parsingResult.message,
+          variant: "warning",
+        })
+      );
 
-        // console.log(message);
-
-        dispatch(
-          setfeedback({
-            variant: "danger",
-            message: message,
-          })
-        );
-
-        dispatch(submitFormDriverResponseBookingFail(error));
-      });
+      dispatch(submitFormDriverResponseBookingFail(parsingResult.message));
+    }
   };
 };
 
