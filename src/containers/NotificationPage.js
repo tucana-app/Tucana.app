@@ -52,7 +52,7 @@ const NotificationPage = () => {
   }
 
   return (
-    <div data-aos="slide-left">
+    <div data-aos="fade-in">
       <GoBack />
 
       <ListGroup variant="flush">

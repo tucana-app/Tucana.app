@@ -34,7 +34,7 @@ const Bookings = () => {
   }
 
   return (
-    <div data-aos="slide-right">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="mt-4">
@@ -121,14 +121,12 @@ const Bookings = () => {
                   <Row>
                     <Col className="text-center">
                       <LinkContainer to={`/ride/${booking.RideId}`}>
-                        <Button variant="light" className="hvr-grow me-2">
+                        <Button variant="light" className="me-2">
                           See ride
                         </Button>
                       </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button variant="success" className="hvr-grow">
-                          See booking
-                        </Button>
+                        <Button variant="success">See booking</Button>
                       </LinkContainer>
                     </Col>
                   </Row>

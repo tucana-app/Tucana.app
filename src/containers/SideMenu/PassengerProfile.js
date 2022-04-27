@@ -20,7 +20,7 @@ function PassengerProfile() {
   }
 
   return (
-    <div data-aos="slide-left">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="pt-5 text-center">

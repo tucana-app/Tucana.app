@@ -63,7 +63,7 @@ const BecomeDriver = () => {
   }
 
   return (
-    <div data-aos="slide-left">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="py-0 my-5" data-aos="fade-in">

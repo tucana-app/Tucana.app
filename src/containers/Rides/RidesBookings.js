@@ -34,7 +34,7 @@ const RidesBookings = () => {
   }
 
   return (
-    <div data-aos="slide-right">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="mt-4 mb-5">
@@ -61,7 +61,8 @@ const RidesBookings = () => {
               <>
                 {driverBookingsData.map((booking, index) =>
                   !isDateInPast(booking.Ride.dateTime, new Date()) &&
-                  booking.BookingStatusId < 3 ? (
+                  booking.BookingStatusId < 3 &&
+                  booking.Ride.seatsLeft > 0 ? (
                     <Row key={index} className="mb-2 mx-1 mx-sm-0">
                       <Col
                         xs={12}

@@ -35,7 +35,7 @@ const Rides = () => {
     let count = 0;
 
     userBookingsData.map((booking, index) => {
-      return booking.BookingStatusId === 1 &&
+      return booking.BookingStatusId === 3 &&
         !isDateInPast(booking.Ride.dateTime, new Date())
         ? count++
         : null;
@@ -49,7 +49,8 @@ const Rides = () => {
 
     driverBookingsData.map((booking, index) => {
       return booking.BookingStatusId === 1 &&
-        !isDateInPast(booking.Ride.dateTime, new Date())
+        !isDateInPast(booking.Ride.dateTime, new Date()) &&
+        booking.Ride.seatsLeft > 0
         ? count++
         : null;
     });

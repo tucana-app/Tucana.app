@@ -48,7 +48,7 @@ function RatingsDriver() {
   }
 
   return (
-    <div data-aos="slide-left">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container fluid>

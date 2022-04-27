@@ -2,7 +2,11 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Badge, Container, ListGroup } from "react-bootstrap";
-import { ChevronRightIcon, PersonIcon } from "@primer/octicons-react";
+import {
+  ChevronRightIcon,
+  LinkExternalIcon,
+  PersonIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import { logout } from "../../redux";
@@ -47,7 +51,7 @@ const SideMenu = () => {
   };
 
   return (
-    <Container fluid className="p-0" data-aos="slide-right">
+    <Container fluid className="p-0" data-aos="fade-in">
       <ListGroup variant="flush">
         {isLoggedIn ? (
           <>
@@ -197,6 +201,14 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+        <Link to="/map" className="text-decoration-none">
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <p className="mb-0">Map</p>
+              <ChevronRightIcon size={24} verticalAlign="middle" />
+            </div>
+          </ListGroup.Item>
+        </Link>
         <Link to="/contact" className="text-decoration-none">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -205,6 +217,19 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+        <a
+          href="https://ridecr.atwebpages.com"
+          target={"_blank"}
+          rel="noreferrer"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <p className="mb-0">About us</p>
+              <LinkExternalIcon size={24} verticalAlign="middle" />
+            </div>
+          </ListGroup.Item>
+        </a>
 
         <hr className="my-2" />
 

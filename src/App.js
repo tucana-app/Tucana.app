@@ -39,6 +39,7 @@ import DriverProfile from "./containers/SideMenu/DriverProfile";
 import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
+import Map from "./containers/Map";
 
 import Help from "./containers/Help";
 import Page404 from "./containers/Page404";
@@ -143,6 +144,7 @@ function App() {
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/map" component={Map} />
           <Route exact path="/notifications" component={NotificationPage} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />

@@ -32,7 +32,7 @@ const RidesDriver = () => {
   }
 
   return (
-    <div data-aos="slide-right">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="mt-4 mb-5">
@@ -113,10 +113,7 @@ const RidesDriver = () => {
                           <Row>
                             <Col className="text-center">
                               <LinkContainer to={`/ride/${ride.id}`}>
-                                <Button
-                                  variant="success"
-                                  className="hvr-grow me-2"
-                                >
+                                <Button variant="success" className="me-2">
                                   See ride
                                 </Button>
                               </LinkContainer>

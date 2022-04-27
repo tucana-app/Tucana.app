@@ -56,7 +56,7 @@ const FindRide = () => {
                       sm={10}
                       md={8}
                       lg={6}
-                      className="border shadow-sm rounded hvr-grow pb-3 mx-auto"
+                      className="border shadow-sm rounded pb-3 mx-auto"
                     >
                       <LinkContainer
                         to={!isLoggedIn ? "/login" : `/ride/${ride.id}`}

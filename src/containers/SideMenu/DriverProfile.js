@@ -14,7 +14,7 @@ function DriverProfile(props) {
     return <Redirect to="/" />;
   }
   return (
-    <div data-aos="slide-left">
+    <div data-aos="fade-in">
       <GoBack />
 
       <Container className="py-5 text-center">

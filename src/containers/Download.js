@@ -7,7 +7,7 @@ const Download = () => {
     <>
       <GoBack />
 
-      <Container className="py-5 text-center" data-aos="slide-left">
+      <Container className="py-5 text-center" data-aos="fade-in">
         <Row className="mb-5">
           <Col>
             <h1 className="text-success font-title">Download the app</h1>

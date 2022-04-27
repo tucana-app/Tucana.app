@@ -258,7 +258,7 @@ const Ride = () => {
                       <Container className="py-3 px-2">
                         <Row>
                           <Col>
-                            <p className="lead">Previous bookings</p>
+                            <p className="lead">Bookings</p>
                           </Col>
                         </Row>
 

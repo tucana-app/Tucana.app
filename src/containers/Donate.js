@@ -7,7 +7,7 @@ const Donate = () => {
     <>
       <GoBack />
 
-      <Container data-aos="slide-left">
+      <Container data-aos="fade-in">
         <Row className="py-5 text-center">
           <Col>
             <h1 className="text-success">Donate</h1>
