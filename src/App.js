@@ -37,6 +37,9 @@ import NotificationPage from "./containers/NotificationPage";
 import PassengerProfile from "./containers/SideMenu/PassengerProfile";
 import DriverProfile from "./containers/SideMenu/DriverProfile";
 import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
+import Legal from "./containers/SideMenu/Legal";
+import Report from "./containers/SideMenu/Report";
+
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import Map from "./containers/Map";
@@ -140,12 +143,14 @@ function App() {
           />
           <Route exact path="/profile/driver" component={DriverProfile} />
           <Route exact path="/settings" component={Settings} />
+          <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/map" component={Map} />
-          <Route exact path="/notifications" component={NotificationPage} />
+          <Route exact path="/legal" component={Legal} />
+          <Route exact path="/report" component={Report} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 
