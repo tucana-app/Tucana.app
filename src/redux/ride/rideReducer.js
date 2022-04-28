@@ -57,16 +57,10 @@ const initialState = {
   submitFormConfirmRideData: [],
   submitFormConfirmRideError: "",
 
-  origin: {
-    address: "",
-    latLng: { lat: 0, lng: 0 },
-    result: {},
-  },
-  destination: {
-    address: "",
-    latLng: { lat: 0, lng: 0 },
-    result: {},
-  },
+  submitFormFindRideRequested: false,
+  findRideProvinceOrigin: "",
+  findRideProvinceDestination: "",
+  findRideDate: "",
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -382,24 +376,22 @@ const rideReducer = (state = initialState, action) => {
         submitFormConfirmRideError: action.payload,
       };
 
-    case rideTypes.SET_ORIGIN:
+    case rideTypes.SUBMIT_FORM_FIND_RIDE_REQUESTED:
       return {
         ...state,
-        origin: {
-          address: action.payload.address,
-          latLng: action.payload.latLng,
-          result: action.payload.result,
-        },
+        submitFormFindRideRequested: true,
+        findRideProvinceOrigin: action.payload.provinceOrigin,
+        findRideProvinceDestination: action.payload.provinceDestination,
+        findRideDate: action.payload.date,
       };
 
-    case rideTypes.SET_DESTINATION:
+    case rideTypes.RESET_FORM_FIND_RIDE:
       return {
         ...state,
-        destination: {
-          address: action.payload.address,
-          latLng: action.payload.latLng,
-          result: action.payload.result,
-        },
+        submitFormFindRideRequested: false,
+        findRideProvinceOrigin: "",
+        findRideProvinceDestination: "",
+        findRideDate: "",
       };
 
     default:

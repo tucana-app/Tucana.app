@@ -244,6 +244,7 @@ const OfferRide = () => {
                       {errors.date}
                     </Form.Control.Feedback>
                   </Form.Group>
+
                   <Form.Group
                     as={Col}
                     xs={12}

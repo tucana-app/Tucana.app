@@ -7,42 +7,21 @@ import {
   StarFillIcon,
   LockIcon,
   ArrowDownIcon,
-  ArrowRightIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
+import FeedbackMessage from "../components/FeedbackMessage";
 import MessageEmpty from "../components/MessageEmpty";
-import FormFilterRides from "../components/FormFilterRides";
 
-import { getAllRides, resetFormFindRide } from "../redux";
+import { getAllRides } from "../redux";
 
 const FindRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const {
-    isloadingAllRidesList,
-    allRidesListData,
-    submitFormFindRideRequested,
-    findRideProvinceOrigin,
-    findRideProvinceDestination,
-    findRideDate,
-  } = useSelector((state) => state.ride);
-
-  var filteredRides =
-    allRidesListData.length > 0 &&
-    allRidesListData.filter((ride) => {
-      return new Date(ride.dateTime).setHours(0, 0, 0, 0) ===
-        new Date(
-          findRideDate.slice(0, 4),
-          findRideDate.slice(5, 7) - 1,
-          findRideDate.slice(8, 10)
-        ).setHours(0, 0, 0, 0) &&
-        ride.provinceOrigin === findRideProvinceOrigin &&
-        ride.provinceDestination === findRideProvinceDestination
-        ? ride
-        : null;
-    });
+  const { isloadingAllRidesList, allRidesListData } = useSelector(
+    (state) => state.ride
+  );
 
   useEffect(() => {
     if (allRidesListData.length === 0) dispatch(getAllRides());
@@ -59,53 +38,18 @@ const FindRide = () => {
             </div>
           </Col>
         </Row>
-        {submitFormFindRideRequested ? (
-          <>
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                className="border shadow-sm rounded mx-auto"
-              >
-                <Container className="p-2">
-                  <Row className="align-items-center">
-                    <Col className="">
-                      <p className="text-secondary small mb-0">Filters</p>
-                      <p className="mb-0">
-                        {findRideProvinceOrigin}{" "}
-                        <ArrowRightIcon size={24} className="text-success" />{" "}
-                        {findRideProvinceDestination}
-                      </p>
-                      <p className="mb-0">
-                        {findRideDate.slice(8, 10)}/{findRideDate.slice(5, 7)}/
-                        {findRideDate.slice(0, 4)}
-                      </p>
-                    </Col>
-                    <Col xs={"auto"}>
-                      <Button
-                        onClick={() => dispatch(resetFormFindRide())}
-                        variant="warning"
-                        className="mb-0"
-                      >
-                        Reset
-                      </Button>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
 
-            {isloadingAllRidesList ? (
-              <Row>
-                <Col className="text-center">
-                  <LoadingSpinner />
-                </Col>
-              </Row>
-            ) : allRidesListData.length > 0 ? (
+        {isloadingAllRidesList ? (
+          <Row>
+            <Col className="text-center">
+              <LoadingSpinner />
+            </Col>
+          </Row>
+        ) : (
+          <>
+            {allRidesListData.length > 0 ? (
               <>
-                {filteredRides.map((ride, index) => (
+                {allRidesListData.map((ride, index) => (
                   <Row key={index} className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -210,31 +154,20 @@ const FindRide = () => {
                 ))}
               </>
             ) : (
-              <Row>
-                <Col className="text-center">
-                  <MessageEmpty title="rides" />
-                </Col>
-              </Row>
-            )}
-          </>
-        ) : (
-          <Row>
-            <Col
-              xs={12}
-              sm={10}
-              md={8}
-              lg={6}
-              className="border border-success shadow-sm rounded mx-auto"
-            >
-              <Container className="py-3 px-2">
-                <Row className="align-items-center">
-                  <Col>
-                    <FormFilterRides />
+              <>
+                <Row>
+                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                    <FeedbackMessage />
                   </Col>
                 </Row>
-              </Container>
-            </Col>
-          </Row>
+                <Row>
+                  <Col className="text-center">
+                    <MessageEmpty title="rides" />
+                  </Col>
+                </Row>
+              </>
+            )}
+          </>
         )}
       </Container>
     </>

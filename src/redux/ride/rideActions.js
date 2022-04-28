@@ -853,18 +853,17 @@ export const submitFormConfirmRideFail = (error) => {
   };
 };
 
-// Ride: set origin with Google Maps
-export const setOrigin = (origin) => {
+// Form find a ride
+export const submitFormFindRide = (values) => {
   return {
-    type: rideTypes.SET_ORIGIN,
-    payload: origin,
+    type: rideTypes.SUBMIT_FORM_FIND_RIDE_REQUESTED,
+    payload: values,
   };
 };
 
-// Ride: set destination with Google Maps
-export const setDestination = (destination) => {
+// Reset form find a ride
+export const resetFormFindRide = () => {
   return {
-    type: rideTypes.SET_DESTINATION,
-    payload: destination,
+    type: rideTypes.RESET_FORM_FIND_RIDE,
   };
 };
