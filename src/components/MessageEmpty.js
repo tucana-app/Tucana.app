@@ -8,13 +8,13 @@ function MessageEmpty(props) {
       <h1 className="font-title mb-4">No {title} found</h1>
       <p className="lead mb-0">
         Book your next ride by{" "}
-        <Link to="/find-ride" className="text-success">
+        <Link to="/find" className="text-success">
           clicking here
         </Link>
       </p>
       <p className="lead">
         Or offer a ride by{" "}
-        <Link to="/offer-ride" className="text-warning">
+        <Link to="/offer" className="text-warning">
           clicking here
         </Link>
       </p>

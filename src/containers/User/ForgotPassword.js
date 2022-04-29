@@ -31,7 +31,7 @@ const ForgotPassword = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/find-ride" />;
+    return <Redirect to="/find" />;
   }
 
   return (

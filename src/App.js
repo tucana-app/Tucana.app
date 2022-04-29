@@ -107,8 +107,8 @@ function App() {
           <Route exact path="/signup-successful" component={SignUpSuccess} />
           <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
-          <Route exact path="/offer-ride" component={OfferRide} />
-          <Route exact path="/find-ride" component={FindRide} />
+          <Route exact path="/offer" component={OfferRide} />
+          <Route exact path="/find" component={FindRide} />
           <Route exact path="/messages" component={MessagePage} />
           <Route exact path="/become-driver" component={BecomeDriver} />
 

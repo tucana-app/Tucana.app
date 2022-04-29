@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
+import ReactCountryFlag from "react-country-flag";
 
 import GoBack from "../../components/GoBack";
 import { CheckIcon } from "@primer/octicons-react";
 
 function Settings() {
+  const { t, i18n } = useTranslation();
   const { isLoggedIn } = useSelector((state) => state.user);
 
   const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
@@ -57,11 +59,15 @@ function Settings() {
 
         <Row>
           <Col className="text-center">
+            <p>
+              {t("languagePage.current")}: {t("global.language")}
+            </p>
             <Button
               onClick={() => changeLanguage("en")}
               variant="outline-success"
               className="me-2"
             >
+              <ReactCountryFlag countryCode="US" className="ms-2" svg />
               English
             </Button>
             <Button
@@ -69,12 +75,14 @@ function Settings() {
               variant="outline-success"
               className="me-2"
             >
+              <ReactCountryFlag countryCode="CR" className="ms-2" svg />
               Español
             </Button>
             <Button
               onClick={() => changeLanguage("fr")}
               variant="outline-success"
             >
+              <ReactCountryFlag countryCode="FR" className="ms-2" svg />
               Français
             </Button>
           </Col>

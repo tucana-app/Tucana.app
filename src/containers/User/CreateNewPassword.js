@@ -58,7 +58,7 @@ const CreateNewPassword = () => {
 
   // Handle redirection in case the user is already logged in
   if (isLoggedIn) {
-    return <Redirect to="/find-ride" />;
+    return <Redirect to="/find" />;
   }
 
   return (

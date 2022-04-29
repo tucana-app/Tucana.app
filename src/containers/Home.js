@@ -11,7 +11,7 @@ function Home() {
   const { isLoggedIn } = useSelector((state) => state.user);
 
   if (isLoggedIn) {
-    return <Redirect to="/find-ride" />;
+    return <Redirect to="/find" />;
   }
 
   return (

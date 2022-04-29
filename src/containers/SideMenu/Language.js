@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import i18n from "../../i18n";
 import { useTranslation } from "react-i18next";
+import ReactCountryFlag from "react-country-flag";
 
 import GoBack from "../../components/GoBack";
 
 function Language() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -33,6 +33,7 @@ function Language() {
               variant="outline-success"
               className="me-2"
             >
+              <ReactCountryFlag countryCode="US" className="me-2 mb-1" svg />
               English
             </Button>
             <Button
@@ -40,12 +41,14 @@ function Language() {
               variant="outline-success"
               className="me-2"
             >
+              <ReactCountryFlag countryCode="CR" className="me-2 mb-1" svg />
               Español
             </Button>
             <Button
               onClick={() => changeLanguage("fr")}
               variant="outline-success"
             >
+              <ReactCountryFlag countryCode="FR" className="me-2 mb-1" svg />
               Français
             </Button>
           </Col>

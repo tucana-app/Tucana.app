@@ -32,11 +32,7 @@ function NavigationBar() {
           <Container>
             <Row className="justify-content-center">
               <Col xs={2} className="text-center mx-auto">
-                <IndexLinkContainer
-                  to="/find-ride"
-                  href="/find-ride"
-                  className="px-0"
-                >
+                <IndexLinkContainer to="/find" href="/find" className="px-0">
                   <Nav.Link className="font-title text-center">
                     <SearchIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">
@@ -46,11 +42,7 @@ function NavigationBar() {
                 </IndexLinkContainer>
               </Col>
               <Col xs={2} className="text-center mx-auto">
-                <IndexLinkContainer
-                  to="/offer-ride"
-                  href="/offer-ride"
-                  className="px-0"
-                >
+                <IndexLinkContainer to="/offer" href="/offer" className="px-0">
                   <Nav.Link className="font-title text-center">
                     <PlusCircleIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">

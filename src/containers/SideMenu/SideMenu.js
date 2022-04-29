@@ -8,6 +8,8 @@ import {
   PersonIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
+import ReactCountryFlag from "react-country-flag";
+import { useTranslation } from "react-i18next";
 
 import { logout } from "../../redux";
 
@@ -15,6 +17,8 @@ import { logout } from "../../redux";
 import logo from "../../assets/images/OPTI_noir.png";
 
 const SideMenu = () => {
+  const { t, i18n } = useTranslation();
+
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const history = useHistory();
@@ -180,7 +184,7 @@ const SideMenu = () => {
             <Link to="/login" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Login</p>
+                  <p className="mb-0">Log In</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -189,7 +193,7 @@ const SideMenu = () => {
             <Link to="/signup" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Signup</p>
+                  <p className="mb-0">Sign Up</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -242,6 +246,47 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
+        <Link to="/language" className="text-decoration-none">
+          <ListGroup.Item className="border-0">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+              <div className="mb-0">
+                {i18n.language === "en" ? (
+                  <>
+                    <ReactCountryFlag
+                      countryCode="US"
+                      className="me-2 mb-1"
+                      svg
+                    />
+                    {t("global.language")}
+                  </>
+                ) : null}
+                {i18n.language === "es" ? (
+                  <>
+                    <ReactCountryFlag
+                      countryCode="CR"
+                      className="me-2 mb-1"
+                      svg
+                    />
+                    {t("global.language")}
+                  </>
+                ) : null}
+                {i18n.language === "fr" ? (
+                  <>
+                    <ReactCountryFlag
+                      countryCode="FR"
+                      className="me-2 mb-1"
+                      svg
+                    />
+                    {t("global.language")}
+                  </>
+                ) : null}
+              </div>
+              <ChevronRightIcon size={24} verticalAlign="middle" />
+            </div>
+          </ListGroup.Item>
+        </Link>
+
         <Link to="/map" className="text-decoration-none">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -250,6 +295,7 @@ const SideMenu = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
         <Link to="/contact" className="text-decoration-none">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
