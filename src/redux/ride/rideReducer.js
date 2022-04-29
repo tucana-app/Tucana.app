@@ -380,8 +380,8 @@ const rideReducer = (state = initialState, action) => {
       return {
         ...state,
         submitFormFindRideRequested: true,
-        findRideProvinceOrigin: action.payload.provinceOrigin,
-        findRideProvinceDestination: action.payload.provinceDestination,
+        findRideProvinceOrigin: action.payload.origin.province,
+        findRideProvinceDestination: action.payload.destination.province,
         findRideDate: action.payload.date,
       };
 

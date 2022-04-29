@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import {
   ChevronRightIcon,
@@ -95,23 +95,36 @@ const Ride = () => {
                       </p>
                     </Col>
                   </Row>
-                  <Row>
+                  <Row className="mb-3">
                     <Col className="text-center">
                       <h2 className="fw-bold mb-0">
-                        {rideData.ride.cityOrigin}
+                        {rideData.ride.origin.city}
                       </h2>
                       <p className="small mb-0">
-                        {rideData.ride.provinceOrigin}
+                        {rideData.ride.origin.province}
                       </p>
 
                       <ArrowDownIcon size={24} className="text-success" />
 
                       <h2 className="fw-bold mb-0">
-                        {rideData.ride.cityDestination}
+                        {rideData.ride.destination.city}
                       </h2>
                       <p className="small mb-0">
-                        {rideData.ride.provinceDestination}
+                        {rideData.ride.destination.province}
                       </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col className="text-center">
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&origin=${rideData.ride.origin.address}&destination=${rideData.ride.destination.address}&travelmode=driving`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="outline-success" size={"sm"}>
+                          Google Maps
+                        </Button>
+                      </a>
                     </Col>
                   </Row>
                 </Container>

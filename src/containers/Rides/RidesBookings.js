@@ -85,11 +85,11 @@ const RidesBookings = () => {
                                 </span>{" "}
                                 seat(s) from{" "}
                                 <span className="text-success">
-                                  {booking.Ride.cityOrigin}
+                                  {booking.Ride.origin.city}
                                 </span>{" "}
                                 to{" "}
                                 <span className="text-success">
-                                  {booking.Ride.cityDestination}
+                                  {booking.Ride.destination.city}
                                 </span>
                               </p>
                             </Col>

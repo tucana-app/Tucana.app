@@ -103,10 +103,10 @@ const NotificationPage = () => {
                   {dateFormat(request.createdAt, "dd/mm hh:mm TT")}
                 </small>{" "}
                 Ride:{" "}
-                <span className="text-success">{request.Ride.cityOrigin}</span>{" "}
+                <span className="text-success">{request.Ride.origin.city}</span>{" "}
                 to{" "}
                 <span className="text-success">
-                  {request.Ride.cityDestination}
+                  {request.Ride.destination.city}
                 </span>{" "}
                 ({dateFormat(request.Ride.dateTime, "dd/mm/yyyy")}) - Seats
                 booked:{" "}
@@ -148,10 +148,10 @@ const NotificationPage = () => {
                   {dateFormat(booking.createdAt, "dd/mm hh:mm TT")}
                 </small>{" "}
                 Ride:{" "}
-                <span className="text-success">{booking.Ride.cityOrigin}</span>{" "}
+                <span className="text-success">{booking.Ride.origin.city}</span>{" "}
                 to{" "}
                 <span className="text-success">
-                  {booking.Ride.cityDestination}
+                  {booking.Ride.destination.city}
                 </span>{" "}
                 ({dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}){" "}
                 <span>

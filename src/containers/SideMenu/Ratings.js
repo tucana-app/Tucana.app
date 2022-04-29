@@ -90,7 +90,7 @@ function Ratings() {
                       verticalAlign="middle"
                       className="text-danger me-2"
                     />
-                    {ride.cityOrigin} - {ride.cityDestination} (
+                    {ride.origin.city} - {ride.destination.city} (
                     {dateFormat(ride.dateTime, "dd/mm/yyyy")})
                   </span>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
@@ -113,7 +113,7 @@ function Ratings() {
                       verticalAlign="middle"
                       className="text-danger me-2"
                     />{" "}
-                    {ride.cityOrigin} - {ride.cityDestination} (
+                    {ride.origin.city} - {ride.destination.city} (
                     {dateFormat(ride.dateTime, "dd/mm/yyyy")})
                   </span>
                   <ChevronRightIcon size={24} verticalAlign="middle" />

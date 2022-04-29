@@ -75,14 +75,14 @@ const Bookings = () => {
                     <Col className="text-center">
                       <p className="mb-0">
                         <span className="fw-bold">
-                          {booking.Ride.cityOrigin}
+                          {booking.Ride.origin.city}
                         </span>
                         <ArrowRightIcon
                           size={24}
                           className="text-success ms-1"
                         />{" "}
                         <span className="fw-bold">
-                          {booking.Ride.cityDestination}
+                          {booking.Ride.destination.city}
                         </span>
                       </p>
                       <p

@@ -87,7 +87,7 @@ const Booking = () => {
                           </span>{" "}
                           seat{bookingData.seatsBooked > 1 ? "s" : null} to{" "}
                           <span className="text-success">
-                            {bookingData.Ride.cityDestination}
+                            {bookingData.Ride.destination.city}
                           </span>{" "}
                           on the{" "}
                           {dateFormat(bookingData.Ride.dateTime, "dd/mm/yy")}
@@ -240,19 +240,19 @@ const Booking = () => {
                     <Row>
                       <Col className="text-center">
                         <h2 className="fw-bold mb-0">
-                          {bookingData.Ride.cityOrigin}
+                          {bookingData.Ride.origin.city}
                         </h2>
                         <p className="small mb-0">
-                          {bookingData.Ride.provinceOrigin}
+                          {bookingData.Ride.origin.province}
                         </p>
 
                         <ArrowDownIcon size={24} className="text-success" />
 
                         <h2 className="fw-bold mb-0">
-                          {bookingData.Ride.cityDestination}
+                          {bookingData.Ride.destination.city}
                         </h2>
                         <p className="small mb-0">
-                          {bookingData.Ride.provinceDestination}
+                          {bookingData.Ride.destination.province}
                         </p>
                       </Col>
                     </Row>

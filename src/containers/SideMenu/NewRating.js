@@ -97,7 +97,7 @@ const NewRating = () => {
                   <p className="lead mb-0">Ride:</p>
                 </Link>
                 <p className="mb-0">
-                  {ridePassenger.cityOrigin} - {ridePassenger.cityDestination}
+                  {ridePassenger.origin.city} - {ridePassenger.destination.city}
                 </p>
                 <p>Date: {dateFormat(ridePassenger.dateTime, "dd/mm/yyyy")}</p>
               </Col>
@@ -359,7 +359,7 @@ const NewRating = () => {
                   <p className="lead mb-0">Ride:</p>
                 </Link>
                 <p className="mb-0">
-                  {rideDriver.cityOrigin} - {rideDriver.cityDestination}
+                  {rideDriver.origin.city} - {rideDriver.destination.city}
                 </p>
                 <p>Date: {dateFormat(rideDriver.dateTime, "dd/mm/yyyy")}</p>
               </Col>

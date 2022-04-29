@@ -83,9 +83,9 @@ const RidesDriver = () => {
                               </p>
                             </Col>
                             <Col xs={7}>
-                              <p className="fw-bold mb-0">{ride.cityOrigin}</p>
+                              <p className="fw-bold mb-0">{ride.origin.city}</p>
                               <p className="small mb-0">
-                                {ride.provinceOrigin}
+                                {ride.origin.province}
                               </p>
 
                               <ArrowDownIcon
@@ -94,10 +94,10 @@ const RidesDriver = () => {
                               />
 
                               <p className="fw-bold mb-0">
-                                {ride.cityDestination}
+                                {ride.destination.city}
                               </p>
                               <p className="small mb-0">
-                                {ride.provinceDestination}
+                                {ride.destination.province}
                               </p>
                             </Col>
                             <Col xs={3} className="text-center mx-auto">

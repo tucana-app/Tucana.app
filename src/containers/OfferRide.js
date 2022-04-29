@@ -122,12 +122,12 @@ const OfferRide = () => {
                           name="cityOrigin"
                           placeholder="City"
                           onChange={handleChange}
-                          isInvalid={!!errors.cityOrigin}
-                          isValid={touched.cityOrigin && !errors.cityOrigin}
+                          isInvalid={!!errors.origin.city}
+                          isValid={touched.origin.city && !errors.origin.city}
                           required
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.cityOrigin}
+                          {errors.origin.city}
                         </Form.Control.Feedback>
                       </Form.Group>
 
@@ -142,9 +142,9 @@ const OfferRide = () => {
                         <Form.Select
                           name="provinceOrigin"
                           onChange={handleChange}
-                          isInvalid={!!errors.provinceOrigin}
+                          isInvalid={!!errors.origin.province}
                           isValid={
-                            touched.provinceOrigin && !errors.provinceOrigin
+                            touched.origin.province && !errors.origin.province
                           }
                           required
                         >
@@ -157,7 +157,7 @@ const OfferRide = () => {
                         </Form.Select>
 
                         <Form.Control.Feedback type="invalid">
-                          {errors.provinceOrigin}
+                          {errors.origin.province}
                         </Form.Control.Feedback>
                       </Form.Group>
                     </div>
@@ -177,14 +177,14 @@ const OfferRide = () => {
                           name="cityDestination"
                           placeholder="City"
                           onChange={handleChange}
-                          isInvalid={!!errors.cityDestination}
+                          isInvalid={!!errors.destination.city}
                           isValid={
-                            touched.cityDestination && !errors.cityDestination
+                            touched.destination.city && !errors.destination.city
                           }
                           required
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.cityDestination}
+                          {errors.destination.city}
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group>
@@ -197,10 +197,10 @@ const OfferRide = () => {
                         <Form.Select
                           name="provinceDestination"
                           onChange={handleChange}
-                          isInvalid={!!errors.provinceDestination}
+                          isInvalid={!!errors.destination.province}
                           isValid={
-                            touched.provinceDestination &&
-                            !errors.provinceDestination
+                            touched.destination.province &&
+                            !errors.destination.province
                           }
                           required
                         >
@@ -212,7 +212,7 @@ const OfferRide = () => {
                           ))}
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
-                          {errors.provinceDestination}
+                          {errors.destination.province}
                         </Form.Control.Feedback>
                       </Form.Group>
                     </div>
