@@ -1,28 +1,20 @@
 {
-  "homePage": {
-    "arrivalPlace": "",
-    "chooseLocation": "",
-    "departurePlace": "",
-    "logIn": "",
-    "search": "",
-    "signUp": ""
-  },
-  "navigationbar": {
-    "dashboard": "",
-    "findRide": "",
-    "home": "",
-    "myAccount": "",
-    "myRides": "",
-    "offerRide": ""
-  },
-  "rideSearch": {
-    "dateTimePickUp": "",
-    "fieldMandatoryLabel": "",
-    "from": "",
-    "noResults": "",
-    "seatsAvailable": "",
-    "searchLocation": "",
-    "submitSearch": "",
-    "to": ""
-  }
+	"global": {
+		"language": "Español"
+	},
+	"languagePage": {
+		"current": "Idioma actual"
+	},
+	"navigationBar": {
+		"account": "Cuenta",
+		"find": "Encuentre",
+		"home": "Inicio",
+		"logIn": "Ingresar",
+		"menu": "Menú",
+		"messages": "Mensajes",
+		"offer": "Ofrecer",
+		"offerRide": "oferta",
+		"rides": "Rides",
+		"signUp": "Inscríbete"
+	}
 }

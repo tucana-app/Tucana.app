@@ -1,28 +1,20 @@
 {
-  "homePage": {
-    "arrivalPlace": "To",
-    "chooseLocation": "Choose a location",
-    "departurePlace": "From",
-    "logIn": "Log In",
-    "search": "Search",
-    "signUp": "Sign Up"
-  },
-  "navigationbar": {
-    "dashboard": "Dashboard",
-    "findRide": "Find",
-    "home": "Home",
-    "myAccount": "Account",
-    "myRides": "Rides",
-    "offerRide": "Offer"
-  },
-  "rideSearch": {
-    "dateTimePickUp": "Date & time",
-    "fieldMandatoryLabel": "mandatory",
-    "from": "From",
-    "noResults": "No results",
-    "seatsAvailable": "Passengers",
-    "searchLocation": "Search a location",
-    "submitSearch": "Search",
-    "to": "To"
-  }
+	"global": {
+		"language": "English"
+	},
+	"languagePage": {
+		"current": "Current language"
+	},
+	"navigationBar": {
+		"account": "Account",
+		"find": "Find",
+		"home": "Home",
+		"logIn": "Log In",
+		"menu": "Menu",
+		"messages": "Messages",
+		"offer": "Offer",
+		"offerRide": "Offer",
+		"rides": "Rides",
+		"signUp": "Sign Up"
+	}
 }

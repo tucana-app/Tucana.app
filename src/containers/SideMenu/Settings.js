@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import i18n from "../../i18n";
 
 import GoBack from "../../components/GoBack";
 import { CheckIcon } from "@primer/octicons-react";
@@ -12,6 +13,10 @@ function Settings() {
 
   const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
   const [showModalRequestData, setShowModalRequestData] = useState(false);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -28,11 +33,10 @@ function Settings() {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="mb-3">
           <Col className="text-center">
             <Button
               variant="outline-primary"
-              className="mb-3"
               onClick={() => setShowModalRequestData(true)}
             >
               Request my data
@@ -40,13 +44,38 @@ function Settings() {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="mb-3">
           <Col className="text-center">
             <Button
               variant="outline-danger"
               onClick={() => setShowModalRemoveAccount(true)}
             >
               Remove my account
+            </Button>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="text-center">
+            <Button
+              onClick={() => changeLanguage("en")}
+              variant="outline-success"
+              className="me-2"
+            >
+              English
+            </Button>
+            <Button
+              onClick={() => changeLanguage("es")}
+              variant="outline-success"
+              className="me-2"
+            >
+              Español
+            </Button>
+            <Button
+              onClick={() => changeLanguage("fr")}
+              variant="outline-success"
+            >
+              Français
             </Button>
           </Col>
         </Row>

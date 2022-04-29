@@ -39,6 +39,7 @@ import DriverProfile from "./containers/SideMenu/DriverProfile";
 import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
 import Legal from "./containers/SideMenu/Legal";
 import Report from "./containers/SideMenu/Report";
+import Language from "./containers/SideMenu/Language";
 
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
@@ -151,6 +152,7 @@ function App() {
           <Route exact path="/map" component={Map} />
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/report" component={Report} />
+          <Route exact path="/language" component={Language} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 

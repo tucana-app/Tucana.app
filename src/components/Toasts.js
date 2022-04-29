@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setToast } from "../redux";
 
-const toastDelay = 3000;
+const toastDelay = 2000;
 
 function Toasts() {
   const dispatch = useDispatch();
