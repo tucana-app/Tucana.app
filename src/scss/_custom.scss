@@ -136,6 +136,12 @@ body {
   font-size: 0.6em;
 }
 
+.hvr-highlight {
+  &:hover {
+    @extend .text-success;
+  }
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 /* @media (max-width: 575px) {
 } */

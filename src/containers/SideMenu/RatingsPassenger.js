@@ -61,7 +61,11 @@ function RatingsPassenger() {
       </Container>
 
       {isLoadingGetRatingsToDoPassenger ? (
-        <LoadingSpinner />
+        <Row>
+          <Col className="text-center">
+            <LoadingSpinner />
+          </Col>
+        </Row>
       ) : getRatingsToDoPassengerData.length ? (
         <ListGroup variant="flush" className="mb-2">
           <Link to="/ratings" className="text-decoration-none">

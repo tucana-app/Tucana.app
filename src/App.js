@@ -21,7 +21,7 @@ import RidesDriver from "./containers/Rides/RidesDriver";
 import RidesBookings from "./containers/Rides/RidesBookings";
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
-import OfferRide from "./containers/OfferRide";
+import Offer from "./containers/Offer";
 
 import BecomeDriver from "./containers/BecomeDriver";
 
@@ -107,7 +107,7 @@ function App() {
           <Route exact path="/signup-successful" component={SignUpSuccess} />
           <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
-          <Route exact path="/offer" component={OfferRide} />
+          <Route exact path="/offer" component={Offer} />
           <Route exact path="/find" component={FindRide} />
           <Route exact path="/messages" component={MessagePage} />
           <Route exact path="/become-driver" component={BecomeDriver} />

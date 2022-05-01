@@ -37,6 +37,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "rfs": "^9.0.4",
+    "use-places-autocomplete": "^2.0.0",
     "validator": "^13.6.0",
     "yup": "^0.32.9",
     "yup-password": "^0.2.1"

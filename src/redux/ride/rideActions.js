@@ -867,3 +867,43 @@ export const resetFormFindRide = () => {
     type: rideTypes.RESET_FORM_FIND_RIDE,
   };
 };
+
+// Form search city
+// Set search address origin
+export const setSearchAddress = (address) => {
+  return {
+    type: rideTypes.SET_SEARCH_ADDRESS,
+    payload: address,
+  };
+};
+
+// Set origin with Google Maps
+export const setLocation = (location) => {
+  return {
+    type: rideTypes.SET_LOCATION,
+    payload: location,
+  };
+};
+
+// Set origin with Google Maps
+export const setOrigin = (origin) => {
+  return {
+    type: rideTypes.SET_ORIGIN,
+    payload: origin,
+  };
+};
+
+// Set origin with Google Maps
+export const setDestination = (destination) => {
+  return {
+    type: rideTypes.SET_DESTINATION,
+    payload: destination,
+  };
+};
+
+// Reset search
+export const resetSearch = () => {
+  return {
+    type: rideTypes.RESET_SEARCH,
+  };
+};

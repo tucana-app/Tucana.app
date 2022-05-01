@@ -61,6 +61,32 @@ const initialState = {
   findRideProvinceOrigin: "",
   findRideProvinceDestination: "",
   findRideDate: "",
+
+  searchAddress: "",
+
+  location: {
+    city: "",
+    province: "",
+    address: "",
+    latLng: { lat: 0, lng: 0 },
+    details: {},
+  },
+
+  origin: {
+    city: "",
+    province: "",
+    address: "",
+    latLng: { lat: 0, lng: 0 },
+    details: {},
+  },
+
+  destination: {
+    city: "",
+    province: "",
+    address: "",
+    latLng: { lat: 0, lng: 0 },
+    details: {},
+  },
 };
 
 const rideReducer = (state = initialState, action) => {
@@ -392,6 +418,78 @@ const rideReducer = (state = initialState, action) => {
         findRideProvinceOrigin: "",
         findRideProvinceDestination: "",
         findRideDate: "",
+      };
+
+    // Form search for a city
+    case rideTypes.SET_SEARCH_ADDRESS:
+      return {
+        ...state,
+        searchAddress: action.payload,
+      };
+
+    case rideTypes.SET_LOCATION:
+      return {
+        ...state,
+        location: {
+          city: action.payload.city,
+          province: action.payload.province,
+          address: action.payload.address,
+          latLng: action.payload.latLng,
+          details: action.payload.details,
+        },
+      };
+
+    case rideTypes.SET_ORIGIN:
+      return {
+        ...state,
+        searchAddress: "",
+        location: {
+          city: "",
+          province: "",
+          address: "",
+          latLng: { lat: 0, lng: 0 },
+          details: {},
+        },
+        origin: {
+          city: action.payload.city,
+          province: action.payload.province,
+          address: action.payload.address,
+          latLng: action.payload.latLng,
+          details: action.payload.details,
+        },
+      };
+
+    case rideTypes.SET_DESTINATION:
+      return {
+        ...state,
+        searchAddress: "",
+        location: {
+          city: "",
+          province: "",
+          address: "",
+          latLng: { lat: 0, lng: 0 },
+          details: {},
+        },
+        destination: {
+          city: action.payload.city,
+          province: action.payload.province,
+          address: action.payload.address,
+          latLng: action.payload.latLng,
+          details: action.payload.details,
+        },
+      };
+
+    case rideTypes.RESET_SEARCH:
+      return {
+        ...state,
+        searchAddress: "",
+        location: {
+          city: "",
+          province: "",
+          address: "",
+          latLng: { lat: 0, lng: 0 },
+          details: {},
+        },
       };
 
     default:

@@ -61,7 +61,11 @@ function RatingsDriver() {
       </Container>
 
       {isLoadingGetRatingsToDoDriver ? (
-        <LoadingSpinner />
+        <Row>
+          <Col className="text-center">
+            <LoadingSpinner />
+          </Col>
+        </Row>
       ) : getRatingsToDoDriverData.length ? (
         <ListGroup variant="flush" className="mb-2">
           <Link to="/ratings" className="text-decoration-none">

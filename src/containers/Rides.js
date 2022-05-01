@@ -75,31 +75,6 @@ const Rides = () => {
   return (
     <Container fluid className="p-0">
       <ListGroup variant="flush" className="pt-2">
-        {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
-          <div>
-            <Link
-              to="/rides/rides-to-confirm"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <div>
-                    <span className="fw-bold">Rides to confirm</span>
-                    <Badge
-                      bg="warning"
-                      className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
-                    >
-                      {ridesToConfirmData.length}
-                    </Badge>
-                  </div>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <hr className="my-2" />
-          </div>
-        ) : null}
         <Link to="/bookings" className="text-light text-decoration-none">
           <ListGroup.Item className="border-0">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -167,6 +142,32 @@ const Rides = () => {
             </div>
           </ListGroup.Item>
         </Link>
+
+        {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+          <div>
+            <hr className="my-2" />
+
+            <Link
+              to="/rides/rides-to-confirm"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <div>
+                    <span className="fw-bold">Rides to confirm</span>
+                    <Badge
+                      bg="warning"
+                      className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
+                    >
+                      {ridesToConfirmData.length}
+                    </Badge>
+                  </div>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+          </div>
+        ) : null}
 
         <hr className="my-2" />
 
