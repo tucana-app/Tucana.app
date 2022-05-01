@@ -100,7 +100,7 @@ const NotificationPage = () => {
             >
               <ListGroup.Item className="border border-start-0 border-end-0 py-3">
                 <small className="text-secondary me-1">
-                  {dateFormat(request.createdAt, "dd/mm hh:mm TT")}
+                  {dateFormat(request.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
                 Ride:{" "}
                 <span className="text-success">{request.Ride.origin.city}</span>{" "}
@@ -145,7 +145,7 @@ const NotificationPage = () => {
             >
               <ListGroup.Item className="border border-start-0 border-end-0 py-3">
                 <small className="text-secondary me-1">
-                  {dateFormat(booking.createdAt, "dd/mm hh:mm TT")}
+                  {dateFormat(booking.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
                 Ride:{" "}
                 <span className="text-success">{booking.Ride.origin.city}</span>{" "}

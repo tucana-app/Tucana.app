@@ -71,7 +71,7 @@ const FindRide = () => {
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
-                    <Col className="">
+                    <Col>
                       <p className="text-secondary small mb-0">Filters</p>
                       <p className="mb-0">
                         {findRideProvinceOrigin}{" "}
@@ -127,7 +127,7 @@ const FindRide = () => {
                           <Row className="mb-4">
                             <Col xs={2}>
                               <p className="text-end mb-0">
-                                {dateFormat(ride.dateTime, "hh:mm TT")}
+                                {dateFormat(ride.dateTime, "hh:MM TT")}
                               </p>
                             </Col>
                             <Col xs={7}>
@@ -218,7 +218,7 @@ const FindRide = () => {
             )}
           </>
         ) : (
-          <Row>
+          <Row className="mb-2 mx-1 mx-sm-0">
             <Col
               xs={12}
               sm={10}

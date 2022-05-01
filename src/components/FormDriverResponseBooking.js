@@ -57,7 +57,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
         errors,
         isSubmitting,
       }) => (
-        <Form noValidate onSubmit={handleSubmit} className="">
+        <Form noValidate onSubmit={handleSubmit}>
           <Row>
             <Col className="mx-auto">
               <p className="lead mb-1">Manage this booking</p>

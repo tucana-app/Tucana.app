@@ -74,7 +74,7 @@ const RidesBookings = () => {
                         <Container className="py-3 px-2">
                           <Row className="align-items-center">
                             <Col>
-                              <p className="">
+                              <p>
                                 {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
                                 <span className="text-success">
                                   {booking.User.firstName}

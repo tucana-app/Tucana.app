@@ -79,7 +79,7 @@ const RidesDriver = () => {
                           <Row className="mb-4">
                             <Col xs={2}>
                               <p className="text-end mb-0">
-                                {dateFormat(ride.dateTime, "hh:mm TT")}
+                                {dateFormat(ride.dateTime, "hh:MM TT")}
                               </p>
                             </Col>
                             <Col xs={7}>

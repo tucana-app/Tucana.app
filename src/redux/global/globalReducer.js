@@ -23,6 +23,8 @@ const initialState = {
     "San José",
   ],
 
+  seatsMax: 6,
+
   isEmptyObject: (obj) => {
     // because Object.keys(new Date()).length === 0;
     // we have to do some additional check

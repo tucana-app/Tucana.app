@@ -64,7 +64,7 @@ const FormFilterRides = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form noValidate onSubmit={handleSubmit} className="">
+              <Form noValidate onSubmit={handleSubmit}>
                 <Row className="py-2">
                   <Col>
                     <Form.Group>

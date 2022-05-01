@@ -70,34 +70,37 @@ export const submitFormOfferRideRequested = () => {
   };
 };
 
-export const submitFormOfferRide = (user, values) => {
+export const submitFormOfferRide = (user, formOfferRide) => {
   return (dispatch) => {
-    values = {
-      ...values,
-      dateTime: new Date(`${values.date}T${values.time}`),
-    };
-
     dispatch(submitFormOfferRideRequested());
 
-    const parsingResult = parseText(values.comment);
+    const parsingResult = parseText(formOfferRide.comment);
 
     if (parsingResult.value === 0) {
+      formOfferRide = {
+        ...formOfferRide,
+        dateTime: new Date(`${formOfferRide.date}T${formOfferRide.time}`),
+      };
+
       axios
         .post(URL_API + "/ride/add-ride", {
           user,
-          formValues: values,
+          formOfferRide,
         })
         .then((response) => {
           // console.log(response.message);
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "Your ride is now online",
               variant: "success",
-              message: response.data.message,
             })
           );
 
           dispatch(getAllRides());
+          dispatch(resetFormOfferRide());
           dispatch(submitFormOfferRideSuccess(response.data));
           dispatch(getDriverRides(user.id));
         })
@@ -110,9 +113,11 @@ export const submitFormOfferRide = (user, values) => {
             error.toString();
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
               variant: "danger",
-              message,
             })
           );
 
@@ -869,7 +874,7 @@ export const resetFormFindRide = () => {
 };
 
 // Form search city
-// Set search address origin
+// Set search address
 export const setSearchAddress = (address) => {
   return {
     type: rideTypes.SET_SEARCH_ADDRESS,
@@ -877,7 +882,7 @@ export const setSearchAddress = (address) => {
   };
 };
 
-// Set origin with Google Maps
+// Set location with Google Maps
 export const setLocation = (location) => {
   return {
     type: rideTypes.SET_LOCATION,
@@ -885,25 +890,82 @@ export const setLocation = (location) => {
   };
 };
 
-// Set origin with Google Maps
-export const setOrigin = (origin) => {
-  return {
-    type: rideTypes.SET_ORIGIN,
-    payload: origin,
-  };
-};
-
-// Set origin with Google Maps
-export const setDestination = (destination) => {
-  return {
-    type: rideTypes.SET_DESTINATION,
-    payload: destination,
-  };
-};
-
 // Reset search
 export const resetSearch = () => {
   return {
     type: rideTypes.RESET_SEARCH,
+  };
+};
+
+// Set origin with Google Maps
+export const setOrigin = (origin) => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.SET_RIDE_ORIGIN,
+      payload: origin,
+    });
+  };
+};
+
+// Set destination with Google Maps
+export const setDestination = (destination) => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.SET_RIDE_DESTINATION,
+      payload: destination,
+    });
+  };
+};
+
+// Set destination with Google Maps
+export const setRideDate = (date) => {
+  return {
+    type: rideTypes.SET_RIDE_DATE,
+    payload: date,
+  };
+};
+
+// Set destination with Google Maps
+export const setRideTime = (time) => {
+  return {
+    type: rideTypes.SET_RIDE_TIME,
+    payload: time,
+  };
+};
+
+// Set destination with Google Maps
+export const setRideSeats = (seats) => {
+  return {
+    type: rideTypes.SET_RIDE_SEATS,
+    payload: seats,
+  };
+};
+
+// Set destination with Google Maps
+export const setRideComment = (comment) => {
+  return {
+    type: rideTypes.SET_RIDE_COMMENT,
+    payload: comment,
+  };
+};
+
+// Set destination with Google Maps
+export const resetFormOfferRide = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_FORM_OFFER_RIDE,
+    });
   };
 };

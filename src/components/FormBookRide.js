@@ -58,7 +58,7 @@ const FormBookRide = () => {
               errors,
               isSubmitting,
             }) => (
-              <Form noValidate onSubmit={handleSubmit} className="">
+              <Form noValidate onSubmit={handleSubmit}>
                 <Row>
                   <Col className="py-2 mx-auto">
                     <Form.Group className="mx-auto mb-3">

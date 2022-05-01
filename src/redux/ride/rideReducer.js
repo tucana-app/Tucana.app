@@ -72,20 +72,26 @@ const initialState = {
     details: {},
   },
 
-  origin: {
-    city: "",
-    province: "",
-    address: "",
-    latLng: { lat: 0, lng: 0 },
-    details: {},
-  },
+  formOfferRide: {
+    origin: {
+      city: "",
+      province: "",
+      address: "",
+      latLng: { lat: 0, lng: 0 },
+      details: {},
+    },
 
-  destination: {
-    city: "",
-    province: "",
-    address: "",
-    latLng: { lat: 0, lng: 0 },
-    details: {},
+    destination: {
+      city: "",
+      province: "",
+      address: "",
+      latLng: { lat: 0, lng: 0 },
+      details: {},
+    },
+    date: "",
+    time: "",
+    seats: 0,
+    comment: "",
   },
 };
 
@@ -439,46 +445,6 @@ const rideReducer = (state = initialState, action) => {
         },
       };
 
-    case rideTypes.SET_ORIGIN:
-      return {
-        ...state,
-        searchAddress: "",
-        location: {
-          city: "",
-          province: "",
-          address: "",
-          latLng: { lat: 0, lng: 0 },
-          details: {},
-        },
-        origin: {
-          city: action.payload.city,
-          province: action.payload.province,
-          address: action.payload.address,
-          latLng: action.payload.latLng,
-          details: action.payload.details,
-        },
-      };
-
-    case rideTypes.SET_DESTINATION:
-      return {
-        ...state,
-        searchAddress: "",
-        location: {
-          city: "",
-          province: "",
-          address: "",
-          latLng: { lat: 0, lng: 0 },
-          details: {},
-        },
-        destination: {
-          city: action.payload.city,
-          province: action.payload.province,
-          address: action.payload.address,
-          latLng: action.payload.latLng,
-          details: action.payload.details,
-        },
-      };
-
     case rideTypes.RESET_SEARCH:
       return {
         ...state,
@@ -489,6 +455,98 @@ const rideReducer = (state = initialState, action) => {
           address: "",
           latLng: { lat: 0, lng: 0 },
           details: {},
+        },
+      };
+
+    case rideTypes.SET_RIDE_ORIGIN:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          origin: {
+            city: action.payload.city,
+            province: action.payload.province,
+            address: action.payload.address,
+            latLng: action.payload.latLng,
+            details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.SET_RIDE_DESTINATION:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          destination: {
+            city: action.payload.city,
+            province: action.payload.province,
+            address: action.payload.address,
+            latLng: action.payload.latLng,
+            details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.SET_RIDE_DATE:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          date: action.payload,
+        },
+      };
+
+    case rideTypes.SET_RIDE_TIME:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          time: action.payload,
+        },
+      };
+
+    case rideTypes.SET_RIDE_SEATS:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          seats: action.payload,
+        },
+      };
+
+    case rideTypes.SET_RIDE_COMMENT:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          comment: action.payload,
+        },
+      };
+
+    case rideTypes.RESET_FORM_OFFER_RIDE:
+      return {
+        ...state,
+        formOfferRide: {
+          origin: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
+          },
+
+          destination: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
+          },
+          date: "",
+          time: "",
+          seats: 0,
+          comment: "",
         },
       };
 

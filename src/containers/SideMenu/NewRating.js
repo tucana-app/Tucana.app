@@ -119,7 +119,6 @@ const NewRating = () => {
                   type="text"
                   name="message"
                   placeholder="Type your comment here"
-                  className=""
                   onChange={(e) => setComment(e.target.value)}
                   disabled={submitPassengerRatingFormData.flag === "SUCCESS"}
                 />
@@ -381,7 +380,6 @@ const NewRating = () => {
                   type="text"
                   name="message"
                   placeholder="Type your comment here"
-                  className=""
                   onChange={(e) => setComment(e.target.value)}
                   disabled={submitDriverRatingFormData.flag === "SUCCESS"}
                 />

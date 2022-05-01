@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
+import { Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import dateFormat from "dateformat";
 import {
@@ -9,10 +10,17 @@ import {
   ArrowRightIcon,
   LinkExternalIcon,
 } from "@primer/octicons-react";
-import { Formik } from "formik";
-import * as Yup from "yup";
 
-import { setOrigin, setDestination, submitFormOfferRide } from "../redux";
+import {
+  setOrigin,
+  setDestination,
+  setRideDate,
+  setRideTime,
+  setRideSeats,
+  setRideComment,
+  submitFormOfferRide,
+  setToast,
+} from "../redux";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LocationSearchInput from "../components/LocationSearchInput";
 
@@ -21,69 +29,24 @@ const Offer = () => {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
     location,
-    origin,
-    destination,
+    formOfferRide,
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
   } = useSelector((state) => state.ride);
-  const { provinces, labelStringField, labelRequiredField, distanceLatLng } =
-    useSelector((state) => state.global);
+  const { seatsMax, distanceLatLng } = useSelector((state) => state.global);
 
+  const [date, setDate] = useState(formOfferRide.date);
+  const [time, setTime] = useState(formOfferRide.time);
+  const [seats, setSeats] = useState(formOfferRide.seats);
+  const [comment, setComment] = useState(formOfferRide.comment);
+
+  // Steps
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
   const [stepThree, setStepThree] = useState(false);
   const [stepFour, setStepFour] = useState(false);
-
-  const handleClickStepOne = () => {
-    setStepOne(false);
-    setStepTwo(true);
-    if (location.city !== "") {
-      dispatch(setOrigin(location));
-    } else if (origin.city !== "") {
-      dispatch(setOrigin(origin));
-    }
-  };
-
-  const handleBackToStepOne = () => {
-    setStepOne(true);
-    setStepTwo(false);
-  };
-
-  const handleClickStepTwo = () => {
-    setStepTwo(false);
-    setStepThree(true);
-    if (location.city !== "") {
-      dispatch(setDestination(location));
-    } else if (destination.city !== "") {
-      dispatch(setDestination(destination));
-    }
-  };
-
-  const handleBackToStepTwo = () => {
-    setStepTwo(true);
-    setStepThree(false);
-  };
-
-  const handleClickStepThree = () => {
-    setStepThree(false);
-    setStepFour(true);
-    // dispatch(setDestination(location));
-  };
-
-  const handleBackToStepThree = () => {
-    setStepThree(true);
-    setStepFour(false);
-    // dispatch(setDestination(location));
-  };
-
-  const handleClickStepFour = () => {
-    setStepFour(false);
-  };
-
-  const handleBackToStepFour = () => {
-    setStepFour(true);
-    // dispatch(setDestination(location));
-  };
+  const [stepVerify, setStepVerify] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const backButton = (handleBackToStep) => {
     return (
@@ -100,41 +63,131 @@ const Offer = () => {
     );
   };
 
-  const form = useRef();
+  const handleClickStepOne = () => {
+    if (location.city !== "" || formOfferRide.origin.city !== "") {
+      setStepOne(false);
+      setStepTwo(true);
+      if (location.city !== "") {
+        dispatch(setOrigin(location));
+      } else if (formOfferRide.origin.city !== "") {
+        dispatch(setOrigin(formOfferRide.origin));
+      }
+    }
+  };
 
-  const schema = Yup.object().shape({
-    cityOrigin: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
-      .matches(/^[a-zA-Z0-9\u00C0-\u00FF ]*$/, "Only letters & numbers allowed")
-      .required(labelRequiredField),
-    provinceOrigin: Yup.mixed()
-      .oneOf(provinces, "Must be a Costa Rican province")
-      .required(labelRequiredField),
-    cityDestination: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
-      .matches(/^[a-zA-Z0-9\u00C0-\u00FF ]*$/, "Only letters & numbers allowed")
-      .required(labelRequiredField),
-    provinceDestination: Yup.mixed()
-      .oneOf(provinces, "Must be a Costa Rican province")
-      .required(labelRequiredField),
-    date: Yup.date()
-      // if the date selected is not past 00:00:01
-      // (midnight and 1 second) from today
-      .min(new Date(), "The date must be in the future")
-      .required(labelRequiredField),
-    time: Yup.string(labelStringField).required(labelRequiredField),
-    seatsAvailable: Yup.number()
-      .required(labelRequiredField)
-      .min(1, "Min. 1 passenger required")
-      .max(6, "Max. 6 passengers"),
-    comment: Yup.string(labelStringField),
-  });
+  const handleBackToStepOne = () => {
+    setStepOne(true);
+    setStepTwo(false);
+  };
+
+  const handleClickStepTwo = () => {
+    if (location.city !== "" || formOfferRide.destination.city !== "") {
+      setStepTwo(false);
+      setStepThree(true);
+      if (location.city !== "") {
+        dispatch(setDestination(location));
+      } else if (formOfferRide.destination.city !== "") {
+        dispatch(setDestination(formOfferRide.destination));
+      }
+    }
+  };
+
+  const handleBackToStepTwo = () => {
+    setStepTwo(true);
+    setStepThree(false);
+  };
+
+  const handleClickStepThree = () => {
+    if (date !== "" && time !== "" && seats !== 0) {
+      if (
+        new Date(
+          date.slice(0, 4),
+          date.slice(5, 7) - 1,
+          date.slice(8, 10),
+          time.slice(0, 2),
+          time.slice(3, 5)
+        ) <= new Date()
+      ) {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: "The date needs to be in the future",
+            variant: "warning",
+          })
+        );
+      } else if (isNaN(seats) || seats <= 0 || seats > seatsMax) {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText:
+              "You need to choose the amount of seats you have available",
+            variant: "warning",
+          })
+        );
+      } else {
+        setStepThree(false);
+        setStepFour(true);
+      }
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: "Please fill up all the information",
+          variant: "warning",
+        })
+      );
+    }
+  };
+
+  const handleBackToStepThree = () => {
+    setStepThree(true);
+    setStepFour(false);
+  };
+
+  const handleClickStepFour = () => {
+    setStepFour(false);
+    setStepVerify(true);
+  };
+
+  const handleBackToStepFour = () => {
+    setStepFour(true);
+  };
+
+  // Handlers
+  const handleChangeDate = (e) => {
+    setDate(e.target.value);
+    dispatch(setRideDate(e.target.value));
+  };
+
+  const handleChangeTime = (e) => {
+    setTime(e.target.value);
+    dispatch(setRideTime(e.target.value));
+  };
+
+  const handleChangeSeats = (e) => {
+    setSeats(e.target.value);
+    dispatch(setRideSeats(e.target.value));
+  };
+
+  const handleChangeComment = (e) => {
+    setComment(e.target.value);
+    dispatch(setRideComment(e.target.value));
+  };
 
   const handleSubmit = () => {
-    setStepFour(false);
-    dispatch(submitFormOfferRide(currentUser));
+    setStepVerify(false);
+    setSubmitted(true);
+    dispatch(submitFormOfferRide(currentUser, formOfferRide));
+  };
+
+  var seatsMaxList = [];
+  const makeSeatsMaxList = () => {
+    for (var i = 1; i <= seatsMax; i++) {
+      seatsMaxList.push(i);
+    }
   };
 
   if (!isLoggedIn) {
@@ -150,80 +203,94 @@ const Offer = () => {
               <p className="text-secondary mb-0">
                 Step <span className="text-success">1</span> / 4
               </p>
-              <h2 className="">Where are you leaving from?</h2>
+              <h2>Where are you leaving from?</h2>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+            <Col xs={10} md={8} lg={6} className="mx-auto">
               <LocationSearchInput />
             </Col>
           </Row>
           {location.city !== "" ? (
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                className="text-center mx-auto"
-              >
-                <h3 className="fw-light mt-3">Selected:</h3>
-                <p>
-                  City: <strong>{location.city}</strong>,{" "}
-                  <small>{location.province}</small>
-                </p>
-                <p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="me-2"
-                  >
-                    <Button variant="outline-success">
-                      Verify
-                      <LinkExternalIcon size={24} className="ms-2" />
-                    </Button>
-                  </a>
+            <>
+              <Row>
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="text-center mx-auto"
+                >
+                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <p>
+                    City: <strong>{location.city}</strong>,{" "}
+                    <small>{location.province}</small>
+                  </p>
+                  <p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="me-2"
+                    >
+                      <Button variant="outline-success">
+                        Verify
+                        <LinkExternalIcon size={24} className="ms-2" />
+                      </Button>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+
+              <Row className="mt-5">
+                <Col className="text-end">
                   <Button onClick={handleClickStepOne} variant="success">
                     Next
                     <ArrowRightIcon size={24} className="ms-2" />
                   </Button>
-                </p>
-              </Col>
-            </Row>
-          ) : origin.city !== "" ? (
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                className="text-center mx-auto"
-              >
-                <h3 className="fw-light mt-3">Selected:</h3>
-                <p>
-                  City: <strong>{origin.city}</strong>,{" "}
-                  <small>{origin.province}</small>
-                </p>
-                <p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${origin.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="me-2"
-                  >
-                    <Button variant="outline-success">
-                      Verify
-                      <LinkExternalIcon size={24} className="ms-2" />
-                    </Button>
-                  </a>
+                </Col>
+              </Row>
+            </>
+          ) : formOfferRide.origin.city !== "" ? (
+            <>
+              <Row>
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="text-center mx-auto"
+                >
+                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <p>
+                    City: <strong>{formOfferRide.origin.city}</strong>,{" "}
+                    <small>{formOfferRide.origin.province}</small>
+                  </p>
+                  <p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${formOfferRide.origin.address}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="me-2"
+                    >
+                      <Button variant="outline-success">
+                        Verify
+                        <LinkExternalIcon size={24} className="ms-2" />
+                      </Button>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+
+              <Row className="mt-5">
+                <Col className="text-end">
                   <Button onClick={handleClickStepOne} variant="success">
                     Next
                     <ArrowRightIcon size={24} className="ms-2" />
                   </Button>
-                </p>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </>
           ) : null}
         </>
       ) : stepTwo ? (
@@ -235,80 +302,94 @@ const Offer = () => {
               <p className="text-secondary mb-0">
                 Step <span className="text-success">2</span> / 4
               </p>
-              <h2 className="">Where are you heading to?</h2>
+              <h2>Where are you heading to?</h2>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+            <Col xs={10} md={8} lg={6} className="mx-auto">
               <LocationSearchInput />
             </Col>
           </Row>
           {location.city !== "" ? (
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                className="text-center mx-auto"
-              >
-                <h3 className="fw-light mt-3">Selected:</h3>
-                <p>
-                  City: <strong>{location.city}</strong>,{" "}
-                  <small>{location.province}</small>
-                </p>
-                <p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="me-2"
-                  >
-                    <Button variant="outline-success">
-                      Verify
-                      <LinkExternalIcon size={24} className="ms-2" />
-                    </Button>
-                  </a>
+            <>
+              <Row>
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="text-center mx-auto"
+                >
+                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <p>
+                    City: <strong>{location.city}</strong>,{" "}
+                    <small>{location.province}</small>
+                  </p>
+                  <p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="me-2"
+                    >
+                      <Button variant="outline-success">
+                        Verify
+                        <LinkExternalIcon size={24} className="ms-2" />
+                      </Button>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+
+              <Row className="mt-5">
+                <Col className="text-end">
                   <Button onClick={handleClickStepTwo} variant="success">
                     Next
                     <ArrowRightIcon size={24} className="ms-2" />
                   </Button>
-                </p>
-              </Col>
-            </Row>
-          ) : destination.city !== "" ? (
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                className="text-center mx-auto"
-              >
-                <h3 className="fw-light mt-3">Selected:</h3>
-                <p>
-                  City: <strong>{destination.city}</strong>,{" "}
-                  <small>{destination.province}</small>
-                </p>
-                <p>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${destination.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="me-2"
-                  >
-                    <Button variant="outline-success">
-                      Verify
-                      <LinkExternalIcon size={24} className="ms-2" />
-                    </Button>
-                  </a>
+                </Col>
+              </Row>
+            </>
+          ) : formOfferRide.destination.city !== "" ? (
+            <>
+              <Row>
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  className="text-center mx-auto"
+                >
+                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <p>
+                    City: <strong>{formOfferRide.destination.city}</strong>,{" "}
+                    <small>{formOfferRide.destination.province}</small>
+                  </p>
+                  <p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${formOfferRide.destination.address}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="me-2"
+                    >
+                      <Button variant="outline-success">
+                        Verify
+                        <LinkExternalIcon size={24} className="ms-2" />
+                      </Button>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+
+              <Row className="mt-5">
+                <Col className="text-end">
                   <Button onClick={handleClickStepTwo} variant="success">
                     Next
                     <ArrowRightIcon size={24} className="ms-2" />
                   </Button>
-                </p>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </>
           ) : null}
         </>
       ) : stepThree ? (
@@ -320,14 +401,91 @@ const Offer = () => {
               <p className="text-secondary mb-0">
                 Step <span className="text-success">3</span> / 4
               </p>
-              <h2 className="">Day | Time | Seats</h2>
+              <h2>Details about your ride</h2>
             </Col>
           </Row>
 
-          <Button onClick={handleClickStepThree} variant="success">
-            Next
-            <ArrowRightIcon size={24} className="ms-2" />
-          </Button>
+          <Row className="mb-4">
+            <Form.Group
+              as={Col}
+              xs={12}
+              sm={6}
+              md={4}
+              className="text-center mx-auto"
+            >
+              <Form.Label>
+                Day<span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Control
+                type="date"
+                name="date"
+                value={date}
+                min={dateFormat(new Date(), "yyyy-mm-dd")}
+                onChange={handleChangeDate}
+                required
+              />
+            </Form.Group>
+          </Row>
+          <Row className="mb-4">
+            <Form.Group
+              as={Col}
+              xs={12}
+              sm={6}
+              md={4}
+              className="text-center mx-auto"
+            >
+              <Form.Label>
+                Time<span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Control
+                type="time"
+                name="time"
+                value={time}
+                min="00:00"
+                max="23:59"
+                onChange={handleChangeTime}
+                required
+              />
+            </Form.Group>
+          </Row>
+          <Row className="mb-4">
+            {makeSeatsMaxList()}
+
+            <Form.Group
+              as={Col}
+              xs={12}
+              sm={6}
+              md={4}
+              className="text-center mx-auto"
+            >
+              <Form.Label>
+                Seats<span className="text-danger">*</span>
+              </Form.Label>
+
+              <Form.Select
+                name="seats"
+                onChange={handleChangeSeats}
+                value={seats}
+                required
+              >
+                <option>Select a number</option>
+                {seatsMaxList.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </Row>
+
+          <Row className="mt-5">
+            <Col className="text-end">
+              <Button onClick={handleClickStepThree} variant="success">
+                Next
+                <ArrowRightIcon size={24} className="ms-2" />
+              </Button>
+            </Col>
+          </Row>
         </>
       ) : stepFour ? (
         <>
@@ -338,44 +496,155 @@ const Offer = () => {
               <p className="text-secondary mb-0">
                 Step <span className="text-success">4</span> / 4
               </p>
-              <h2 className="">Comment | Submit</h2>
+              <h2>Any comments?</h2>
             </Col>
           </Row>
 
-          <Button onClick={handleClickStepFour} variant="success">
-            Next
-            <ArrowRightIcon size={24} className="ms-2" />
-          </Button>
+          <Row>
+            <Form.Group
+              as={Col}
+              xs={12}
+              sm={6}
+              md={4}
+              className="text-center mx-auto"
+            >
+              <Form.Control
+                name="comment"
+                as="textarea"
+                rows={2}
+                type="textarea"
+                value={comment}
+                placeholder="Want to share the road you'll take or a precision on your destination?"
+                className="mb-3"
+                onChange={handleChangeComment}
+              />
+              <Form.Label>
+                <p className="small text-secondary">
+                  <AlertIcon size={24} className="text-warning me-2" />
+                  Do not share any contact info (phone, email, etc), they will
+                  be shared within the platform when a booking is made.
+                </p>
+              </Form.Label>
+            </Form.Group>
+          </Row>
+
+          <Row className="mt-5">
+            <Col className="text-end">
+              <Button onClick={handleClickStepFour} variant="success">
+                Next
+                <ArrowRightIcon size={24} className="ms-2" />
+              </Button>
+            </Col>
+          </Row>
         </>
-      ) : (
+      ) : stepVerify ? (
         <>
           {backButton(handleBackToStepFour)}
 
           <Row className="pt-5 mb-3">
             <Col className="text-center">
-              <p className="text-secondary mb-0">Verify info</p>
+              <p className="text-secondary mb-0">Double check</p>
+              <h2>Summary</h2>
+            </Col>
+          </Row>
+
+          <Row className="justify-content-center mb-3">
+            <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
+              <p className="mb-0">Origin:</p>
+              <h4>
+                <strong>{formOfferRide.origin.city}</strong>,{" "}
+                <small>{formOfferRide.origin.province}</small>
+              </h4>
+            </Col>
+            <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
+              <p className="mb-0">Destination:</p>
+              <h4>
+                <strong>{formOfferRide.destination.city}</strong>,{" "}
+                <small>{formOfferRide.destination.province}</small>
+              </h4>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="text-center">
+              <p className="mb-1">
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline-success">
+                    Preview on Google Maps
+                    <LinkExternalIcon size={24} className="ms-2" />
+                  </Button>
+                </a>
+              </p>
+
+              <p>
+                ~{" "}
+                {distanceLatLng(
+                  formOfferRide.origin.latLng,
+                  formOfferRide.destination.latLng
+                )}{" "}
+                km
+              </p>
+            </Col>
+          </Row>
+
+          <Row className="justify-content-center mb-md-3">
+            <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
+              <p className="mb-0">Date:</p>
+              <h4>{dateFormat(formOfferRide.date, "dd/mm/yyyy")}</h4>
+            </Col>
+
+            <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
+              <p className="mb-0">Time:</p>
+              <h4>
+                {dateFormat(
+                  `${formOfferRide.date} ${formOfferRide.time}`,
+                  "hh:MM TT"
+                )}
+              </h4>
             </Col>
           </Row>
 
           <Row>
-            <Col>
-              <p>
-                City origin: {origin.city}, {origin.province}
-              </p>
-              <p>
-                City destination: {destination.city}, {destination.province}
-              </p>
-              <p>
-                Distance: {distanceLatLng(origin.latLng, destination.latLng)} km
-              </p>
+            <Col className="text-center">
+              <p className="mb-0">Comment:</p>
+              <h4>{formOfferRide.comment}</h4>
             </Col>
           </Row>
 
-          <Button onClick={handleSubmit} variant="success">
-            Submit
-          </Button>
+          <Row className="mt-5">
+            <Col className="text-end">
+              <Button onClick={handleSubmit} size={"lg"} variant="success">
+                Submit
+              </Button>
+            </Col>
+          </Row>
         </>
-      )}
+      ) : submitted ? (
+        <>
+          {isLoadingSubmitFormOfferRide ? (
+            <Row>
+              <Col className="text-center">
+                <LoadingSpinner />
+              </Col>
+            </Row>
+          ) : submitFormOfferRideSuccess ? (
+            <Row className="mt-5">
+              <Col className="text-center">
+                <h1 className="text-success">Congratulations</h1>
+                <p>
+                  Your ride is now online, check it out{" "}
+                  <LinkContainer to="/rides/driver" className="cursor-pointer">
+                    <u className="link-primary">here</u>
+                  </LinkContainer>
+                </p>
+              </Col>
+            </Row>
+          ) : null}
+        </>
+      ) : null}
     </Container>
   );
 };
