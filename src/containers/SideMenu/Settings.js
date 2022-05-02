@@ -67,7 +67,7 @@ function Settings() {
               variant="outline-success"
               className="me-2"
             >
-              <ReactCountryFlag countryCode="US" className="ms-2" svg />
+              <ReactCountryFlag countryCode="US" className="mb-1 me-2" svg />
               English
             </Button>
             <Button
@@ -75,14 +75,14 @@ function Settings() {
               variant="outline-success"
               className="me-2"
             >
-              <ReactCountryFlag countryCode="CR" className="ms-2" svg />
+              <ReactCountryFlag countryCode="CR" className="mb-1 me-2" svg />
               Español
             </Button>
             <Button
               onClick={() => changeLanguage("fr")}
               variant="outline-success"
             >
-              <ReactCountryFlag countryCode="FR" className="ms-2" svg />
+              <ReactCountryFlag countryCode="FR" className="mb-1 me-2" svg />
               Français
             </Button>
           </Col>

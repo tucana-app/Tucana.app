@@ -564,6 +564,7 @@ const Offer = () => {
               </h4>
             </Col>
           </Row>
+
           <Row>
             <Col className="text-center">
               <p className="mb-1">
@@ -600,9 +601,16 @@ const Offer = () => {
               <p className="mb-0">Time:</p>
               <h4>
                 {dateFormat(
-                  `${formOfferRide.date} ${formOfferRide.time}`,
+                  new Date(
+                    formOfferRide.date.slice(0, 4),
+                    formOfferRide.date.slice(5, 7) - 1,
+                    formOfferRide.date.slice(8, 10),
+                    formOfferRide.time.slice(0, 2),
+                    formOfferRide.time.slice(3, 5)
+                  ),
                   "hh:MM TT"
                 )}
+                {/* {formOfferRide.time} */}
               </h4>
             </Col>
           </Row>
