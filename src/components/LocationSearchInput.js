@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormControl,
-  InputGroup,
-  Row,
-} from "react-bootstrap";
+import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -40,7 +32,9 @@ function LocationSearchInput(props) {
   });
 
   const handleSubmit = () => {
-    setValue(searchAddress);
+    if (searchAddress !== "") {
+      setValue(searchAddress);
+    }
   };
 
   const handleReset = () => {
@@ -121,7 +115,7 @@ function LocationSearchInput(props) {
         <li
           key={place_id}
           onClick={handleSelect(suggestion)}
-          className="hvr-highlight cursor-pointer mb-0"
+          className="hvr-highlight cursor-pointer py-1"
         >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
@@ -151,10 +145,10 @@ function LocationSearchInput(props) {
       </div>
 
       {status === "OK" ? (
-        <ul>
+        <>
           <p className="small text-secondary mt-2">Search results:</p>
-          {renderSuggestions()}
-        </ul>
+          <ul>{renderSuggestions()}</ul>
+        </>
       ) : null}
     </>
   );

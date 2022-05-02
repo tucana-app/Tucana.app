@@ -12,7 +12,7 @@ import SignUpConfirm from "./containers/User/SignUpConfirm";
 
 import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
-import FindRide from "./containers/FindRide";
+import Find from "./containers/Find";
 import MessagePage from "./containers/MessagePage";
 
 import Ride from "./containers/Ride";
@@ -108,7 +108,7 @@ function App() {
           <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
           <Route exact path="/offer" component={Offer} />
-          <Route exact path="/find" component={FindRide} />
+          <Route exact path="/find" component={Find} />
           <Route exact path="/messages" component={MessagePage} />
           <Route exact path="/become-driver" component={BecomeDriver} />
 

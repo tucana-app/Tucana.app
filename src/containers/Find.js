@@ -17,7 +17,7 @@ import FormFilterRides from "../components/FormFilterRides";
 
 import { getAllRides, resetFormFindRide } from "../redux";
 
-const FindRide = () => {
+const Find = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
@@ -241,4 +241,4 @@ const FindRide = () => {
   );
 };
 
-export default FindRide;
+export default Find;
