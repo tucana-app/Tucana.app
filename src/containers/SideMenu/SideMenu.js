@@ -57,7 +57,7 @@ const SideMenu = () => {
   return (
     <Container fluid data-aos="fade-in">
       <Row>
-        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <ListGroup variant="flush">
             {isLoggedIn ? (
               <>
