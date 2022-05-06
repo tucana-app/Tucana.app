@@ -62,6 +62,80 @@ export const getDriverRidesFail = (error) => {
   };
 };
 
+// Form add new ride
+// Set origin with Google Maps
+export const setOrigin = (origin) => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.SET_RIDE_ORIGIN,
+      payload: origin,
+    });
+  };
+};
+
+// Set destination with Google Maps
+export const setDestination = (destination) => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.SET_RIDE_DESTINATION,
+      payload: destination,
+    });
+  };
+};
+
+// Set date
+export const setRideDate = (date) => {
+  return {
+    type: rideTypes.SET_RIDE_DATE,
+    payload: date,
+  };
+};
+
+// Set time
+export const setRideTime = (time) => {
+  return {
+    type: rideTypes.SET_RIDE_TIME,
+    payload: time,
+  };
+};
+
+// Set seats
+export const setRideSeats = (seats) => {
+  return {
+    type: rideTypes.SET_RIDE_SEATS,
+    payload: seats,
+  };
+};
+
+// Set comment
+export const setRideComment = (comment) => {
+  return {
+    type: rideTypes.SET_RIDE_COMMENT,
+    payload: comment,
+  };
+};
+
+// Reset form
+export const resetFormOfferRide = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_FORM_OFFER_RIDE,
+    });
+  };
+};
+
 // Submit the form to add a new ride
 
 export const submitFormOfferRideRequested = () => {
@@ -99,7 +173,6 @@ export const submitFormOfferRide = (user, formOfferRide) => {
             })
           );
 
-          dispatch(getAllRides());
           dispatch(resetFormOfferRide());
           dispatch(submitFormOfferRideSuccess(response.data));
           dispatch(getDriverRides(user.id));
@@ -275,23 +348,68 @@ export const getBookingFail = (error) => {
   };
 };
 
-// Get all the driver's ride from a user
+// Search a ride
+// Set origin with Google Maps
+export const setSearchOrigin = (origin) => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
 
-export const getAllRidesRequested = () => {
-  return {
-    type: rideTypes.GET_ALL_RIDES_REQUEST,
+    dispatch({
+      type: rideTypes.SET_SEARCH_ORIGIN,
+      payload: origin,
+    });
   };
 };
 
-export const getAllRides = () => {
+// Set destination with Google Maps
+export const setSearchDestination = (destination) => {
   return (dispatch) => {
-    dispatch(getAllRidesRequested());
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.SET_SEARCH_DESTINATION,
+      payload: destination,
+    });
+  };
+};
+
+// Set search date
+export const setSearchDate = (date) => {
+  return {
+    type: rideTypes.SET_SEARCH_DATE,
+    payload: date,
+  };
+};
+
+// Get all the driver's ride from a user
+
+export const getFilteredRidesRequested = () => {
+  return {
+    type: rideTypes.GET_FILTERED_RIDES_REQUEST,
+  };
+};
+
+export const getFilteredRides = (date) => {
+  return (dispatch) => {
+    dispatch(getFilteredRidesRequested());
+
+    // console.log(
+    //   new Date(date.slice(0, 4), date.slice(5, 7) - 1, date.slice(8, 10))
+    // );
 
     axios
-      .get(URL_API + "/ride/all-rides")
+      .get(URL_API + "/ride/filtered-rides", {
+        params: {
+          date,
+        },
+      })
       .then((response) => {
         // console.log(response);
-        dispatch(getAllRidesSuccess(response.data));
+        dispatch(getFilteredRidesSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -303,24 +421,32 @@ export const getAllRides = () => {
           })
         );
 
-        dispatch(getAllRidesFail(error));
+        dispatch(getFilteredRidesFail(error));
       });
   };
 };
 
-export const getAllRidesSuccess = (data) => {
+export const getFilteredRidesSuccess = (data) => {
   return {
-    type: rideTypes.GET_ALL_RIDES_SUCCESS,
+    type: rideTypes.GET_FILTERED_RIDES_SUCCESS,
     payload: data,
   };
 };
 
-export const getAllRidesFail = (error) => {
+export const getFilteredRidesFail = (error) => {
   return {
-    type: rideTypes.GET_ALL_RIDES_FAIL,
+    type: rideTypes.GET_FILTERED_RIDES_FAIL,
     payload: error,
   };
 };
+
+export const resetSearchForm = () => {
+  return {
+    type: rideTypes.RESET_SEARCH_FORM,
+  };
+};
+
+//
 
 export const submitFormBookRideRequested = () => {
   return {
@@ -349,7 +475,6 @@ export const submitFormBookRide = (user, ride, formValues) => {
         );
 
         // Refresh everything
-        dispatch(getAllRides());
         dispatch(getUserBookingRide(user.id, ride.id));
         dispatch(getUserBookings(user.id));
         dispatch(submitFormBookRideSuccess(response));
@@ -433,7 +558,6 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
           dispatch(
             submitFormDriverResponseBookingSuccess(response.data.message)
           );
-          dispatch(getAllRides());
           dispatch(getBooking(formValues.bookingId));
           dispatch(getNotifications(formValues.userId));
         })
@@ -858,22 +982,7 @@ export const submitFormConfirmRideFail = (error) => {
   };
 };
 
-// Form find a ride
-export const submitFormFindRide = (values) => {
-  return {
-    type: rideTypes.SUBMIT_FORM_FIND_RIDE_REQUESTED,
-    payload: values,
-  };
-};
-
-// Reset form find a ride
-export const resetFormFindRide = () => {
-  return {
-    type: rideTypes.RESET_FORM_FIND_RIDE,
-  };
-};
-
-// Form search city
+// Input search city
 // Set search address
 export const setSearchAddress = (address) => {
   return {
@@ -894,78 +1003,5 @@ export const setLocation = (location) => {
 export const resetSearch = () => {
   return {
     type: rideTypes.RESET_SEARCH,
-  };
-};
-
-// Set origin with Google Maps
-export const setOrigin = (origin) => {
-  return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
-      type: rideTypes.SET_RIDE_ORIGIN,
-      payload: origin,
-    });
-  };
-};
-
-// Set destination with Google Maps
-export const setDestination = (destination) => {
-  return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
-      type: rideTypes.SET_RIDE_DESTINATION,
-      payload: destination,
-    });
-  };
-};
-
-// Set destination with Google Maps
-export const setRideDate = (date) => {
-  return {
-    type: rideTypes.SET_RIDE_DATE,
-    payload: date,
-  };
-};
-
-// Set destination with Google Maps
-export const setRideTime = (time) => {
-  return {
-    type: rideTypes.SET_RIDE_TIME,
-    payload: time,
-  };
-};
-
-// Set destination with Google Maps
-export const setRideSeats = (seats) => {
-  return {
-    type: rideTypes.SET_RIDE_SEATS,
-    payload: seats,
-  };
-};
-
-// Set destination with Google Maps
-export const setRideComment = (comment) => {
-  return {
-    type: rideTypes.SET_RIDE_COMMENT,
-    payload: comment,
-  };
-};
-
-// Set destination with Google Maps
-export const resetFormOfferRide = () => {
-  return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
-      type: rideTypes.RESET_FORM_OFFER_RIDE,
-    });
   };
 };

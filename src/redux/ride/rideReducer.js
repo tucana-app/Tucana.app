@@ -17,9 +17,9 @@ const initialState = {
   bookingData: {},
   bookingError: "",
 
-  isloadingAllRidesList: false,
-  allRidesListData: [],
-  allRidesListError: "",
+  isloadingFilteredRides: false,
+  filteredRidesData: [],
+  filteredRidesError: "",
 
   isloadingBookingRide: false,
   submitBookingRideSuccess: false,
@@ -57,10 +57,7 @@ const initialState = {
   submitFormConfirmRideData: [],
   submitFormConfirmRideError: "",
 
-  submitFormFindRideRequested: false,
-  findRideProvinceOrigin: "",
-  findRideProvinceDestination: "",
-  findRideDate: "",
+  isFormSearchRideSubmitted: false,
 
   searchAddress: "",
 
@@ -92,6 +89,25 @@ const initialState = {
     time: "",
     seats: 0,
     comment: "",
+  },
+
+  formSearchRide: {
+    origin: {
+      city: "",
+      province: "",
+      address: "",
+      latLng: { lat: 0, lng: 0 },
+      details: {},
+    },
+
+    destination: {
+      city: "",
+      province: "",
+      address: "",
+      latLng: { lat: 0, lng: 0 },
+      details: {},
+    },
+    date: "",
   },
 };
 
@@ -188,28 +204,36 @@ const rideReducer = (state = initialState, action) => {
         bookingError: action.payload,
       };
 
-    case rideTypes.GET_ALL_RIDES_REQUEST:
+    case rideTypes.GET_FILTERED_RIDES_REQUEST:
       return {
         ...state,
-        isloadingAllRidesList: true,
+        isloadingFilteredRides: true,
+        isFormSearchRideSubmitted: true,
       };
 
-    case rideTypes.GET_ALL_RIDES_SUCCESS:
+    case rideTypes.GET_FILTERED_RIDES_SUCCESS:
       return {
         ...state,
-        isloadingAllRidesList: false,
-        allRidesListData: action.payload,
-        allRidesListError: "",
+        isloadingFilteredRides: false,
+        filteredRidesData: action.payload,
+        filteredRidesError: "",
       };
 
-    case rideTypes.GET_ALL_RIDES_FAIL:
+    case rideTypes.GET_FILTERED_RIDES_FAIL:
       return {
         ...state,
-        isloadingAllRidesList: false,
-        allRidesListData: [],
-        allRidesListError: action.payload,
+        isloadingFilteredRides: false,
+        filteredRidesData: [],
+        filteredRidesError: action.payload,
       };
 
+    case rideTypes.RESET_SEARCH_FORM:
+      return {
+        ...state,
+        isFormSearchRideSubmitted: false,
+      };
+
+    //
     case rideTypes.SUBMIT_FORM_BOOK_RIDE_REQUEST:
       return {
         ...state,
@@ -408,24 +432,6 @@ const rideReducer = (state = initialState, action) => {
         submitFormConfirmRideError: action.payload,
       };
 
-    case rideTypes.SUBMIT_FORM_FIND_RIDE_REQUESTED:
-      return {
-        ...state,
-        submitFormFindRideRequested: true,
-        findRideProvinceOrigin: action.payload.origin.province,
-        findRideProvinceDestination: action.payload.destination.province,
-        findRideDate: action.payload.date,
-      };
-
-    case rideTypes.RESET_FORM_FIND_RIDE:
-      return {
-        ...state,
-        submitFormFindRideRequested: false,
-        findRideProvinceOrigin: "",
-        findRideProvinceDestination: "",
-        findRideDate: "",
-      };
-
     // Form search for a city
     case rideTypes.SET_SEARCH_ADDRESS:
       return {
@@ -547,6 +553,47 @@ const rideReducer = (state = initialState, action) => {
           time: "",
           seats: 0,
           comment: "",
+        },
+      };
+
+    // Search a ride
+
+    case rideTypes.SET_SEARCH_ORIGIN:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          origin: {
+            city: action.payload.city,
+            province: action.payload.province,
+            address: action.payload.address,
+            latLng: action.payload.latLng,
+            details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.SET_SEARCH_DESTINATION:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          destination: {
+            city: action.payload.city,
+            province: action.payload.province,
+            address: action.payload.address,
+            latLng: action.payload.latLng,
+            details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.SET_SEARCH_DATE:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          date: action.payload,
         },
       };
 

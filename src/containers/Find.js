@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
@@ -15,39 +15,33 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormFilterRides from "../components/FormFilterRides";
 
-import { getAllRides, resetFormFindRide } from "../redux";
+import { resetSearchForm } from "../redux";
 
 const Find = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { distanceLatLng } = useSelector((state) => state.global);
   const {
-    isloadingAllRidesList,
-    allRidesListData,
-    submitFormFindRideRequested,
-    findRideProvinceOrigin,
-    findRideProvinceDestination,
-    findRideDate,
+    isloadingFilteredRides,
+    filteredRidesData,
+    isFormSearchRideSubmitted,
+    formSearchRide,
   } = useSelector((state) => state.ride);
 
-  var filteredRides =
-    allRidesListData.length > 0 &&
-    allRidesListData.filter((ride) => {
-      return new Date(ride.dateTime).setHours(0, 0, 0, 0) ===
-        new Date(
-          findRideDate.slice(0, 4),
-          findRideDate.slice(5, 7) - 1,
-          findRideDate.slice(8, 10)
-        ).setHours(0, 0, 0, 0) &&
-        ride.origin.province === findRideProvinceOrigin &&
-        ride.destination.province === findRideProvinceDestination
-        ? ride
-        : null;
-    });
-
-  useEffect(() => {
-    if (allRidesListData.length === 0) dispatch(getAllRides());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // var filteredRides =
+  //   filteredRidesData.length > 0 &&
+  //   filteredRidesData.filter((ride) => {
+  //     return new Date(ride.dateTime).setHours(0, 0, 0, 0) ===
+  //       new Date(
+  //         formSearchRide.date.slice(0, 4),
+  //         formSearchRide.date.slice(5, 7) - 1,
+  //         formSearchRide.date.slice(8, 10)
+  //       ).setHours(0, 0, 0, 0) &&
+  //       ride.origin.province === formSearchRide.origin &&
+  //       ride.destination.province === formSearchRide.destination
+  //       ? ride
+  //       : null;
+  //   });
 
   return (
     <>
@@ -59,7 +53,7 @@ const Find = () => {
             </div>
           </Col>
         </Row>
-        {submitFormFindRideRequested ? (
+        {isFormSearchRideSubmitted ? (
           <>
             <Row className="mb-3 mx-1 mx-sm-0">
               <Col
@@ -74,22 +68,23 @@ const Find = () => {
                     <Col>
                       <p className="text-secondary small mb-0">Filters</p>
                       <p className="mb-0">
-                        {findRideProvinceOrigin}{" "}
+                        {formSearchRide.origin.city}{" "}
                         <ArrowRightIcon size={24} className="text-success" />{" "}
-                        {findRideProvinceDestination}
+                        {formSearchRide.destination.city}
                       </p>
                       <p className="mb-0">
-                        {findRideDate.slice(8, 10)}/{findRideDate.slice(5, 7)}/
-                        {findRideDate.slice(0, 4)}
+                        {formSearchRide.date.slice(8, 10)}/
+                        {formSearchRide.date.slice(5, 7)}/
+                        {formSearchRide.date.slice(0, 4)}
                       </p>
                     </Col>
                     <Col xs={"auto"}>
                       <Button
-                        onClick={() => dispatch(resetFormFindRide())}
+                        onClick={() => dispatch(resetSearchForm())}
                         variant="warning"
                         className="mb-0"
                       >
-                        Reset
+                        Change
                       </Button>
                     </Col>
                   </Row>
@@ -97,15 +92,15 @@ const Find = () => {
               </Col>
             </Row>
 
-            {isloadingAllRidesList ? (
+            {isloadingFilteredRides ? (
               <Row>
                 <Col className="text-center">
                   <LoadingSpinner />
                 </Col>
               </Row>
-            ) : allRidesListData.length > 0 ? (
+            ) : filteredRidesData.length > 0 ? (
               <>
-                {filteredRides.map((ride, index) => (
+                {filteredRidesData.map((ride, index) => (
                   <Row key={index} className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -135,6 +130,15 @@ const Find = () => {
                               <p className="small mb-0">
                                 {ride.origin.province}
                               </p>
+                              <p className="small mb-0">
+                                <span className="text-warning">
+                                  {distanceLatLng(
+                                    ride.origin.latLng,
+                                    formSearchRide.origin.latLng
+                                  )}
+                                </span>{" "}
+                                km away
+                              </p>
 
                               <ArrowDownIcon
                                 size={24}
@@ -146,6 +150,15 @@ const Find = () => {
                               </p>
                               <p className="small mb-0">
                                 {ride.destination.province}
+                              </p>
+                              <p className="small mb-0">
+                                <span className="text-warning">
+                                  {distanceLatLng(
+                                    ride.destination.latLng,
+                                    formSearchRide.destination.latLng
+                                  )}
+                                </span>{" "}
+                                km away
                               </p>
                             </Col>
                             <Col xs={3} className="text-center mx-auto">
@@ -227,11 +240,7 @@ const Find = () => {
               className="border border-success shadow-sm rounded mx-auto"
             >
               <Container className="py-3 px-2">
-                <Row className="align-items-center">
-                  <Col>
-                    <FormFilterRides />
-                  </Col>
-                </Row>
+                <FormFilterRides />
               </Container>
             </Col>
           </Row>
