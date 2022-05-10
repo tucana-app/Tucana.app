@@ -13,3 +13,31 @@ $theme-colors: (
 $navbar-light-color: $dark;
 $navbar-light-hover-color: rgba($brand-1, 0.7);
 $navbar-light-active-color: $brand-1;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "viewport-height": (
+      property: height,
+      class: vh,
+      values: (
+        100: calc(100vh - #{$navbarHeight} - #{$topBannerHeight}),
+      ),
+    ),
+    "min-viewport-height": (
+      property: min-height,
+      class: min-vh,
+      values: (
+        100: calc(100vh - #{$navbarHeight} - #{$topBannerHeight}),
+      ),
+    ),
+  )
+);
+
+$btn-border-radius: $border-radius-pill;
+$btn-border-radius-sm: $border-radius-pill;
+$btn-border-radius-lg: $border-radius-pill;

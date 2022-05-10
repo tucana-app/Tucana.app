@@ -1,7 +1,9 @@
 @use "./colors";
 
-// Change the Navigation Bar height here
-$navbarHeight: 75px;
+$navbarHeight: 72px;
+$topBannerHeight: 27px;
+
+// height: calc(100vh - #{$navbarHeight} - #{$topBannerHeight});
 
 html {
   scroll-behavior: smooth;
@@ -140,6 +142,20 @@ body {
   &:hover {
     @extend .text-success;
   }
+}
+
+#container-find-ride {
+  background-image: url("../assets/images/mountain-landscape.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  max-width: none;
+  @extend .min-vh-100;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px $black;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

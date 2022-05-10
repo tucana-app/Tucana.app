@@ -18,7 +18,7 @@ import {
   setToast,
 } from "../redux";
 
-const FormFilterRides = () => {
+const FormSearchRides = () => {
   const dispatch = useDispatch();
 
   const {
@@ -116,6 +116,7 @@ const FormFilterRides = () => {
           <p className="mb-0">From:</p>
           {stepOne ? (
             <>
+              <LocationSearchInput />
               {location.city !== "" ? (
                 <>
                   <h3 className="fw-light mt-3">Selected:</h3>
@@ -123,7 +124,7 @@ const FormFilterRides = () => {
                     City: <strong>{location.city}</strong>,{" "}
                     <small>{location.province}</small>
                   </p>
-                  <p>
+                  <p className="text-end">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
                       target="_blank"
@@ -145,9 +146,28 @@ const FormFilterRides = () => {
                     </Button>
                   </p>
                 </>
-              ) : (
-                <LocationSearchInput />
-              )}
+              ) : formSearchRide.origin.city !== "" ? (
+                <Container className="px-0">
+                  <Row>
+                    <Col xs={8} className="text-start pe-0">
+                      <p className="mb-0">
+                        <strong>{formSearchRide.origin.city}</strong>,{" "}
+                        <small>{formSearchRide.origin.province}</small>
+                      </p>
+                    </Col>
+                    <Col xs={4} className="text-end ps-0">
+                      <Button
+                        size={"sm"}
+                        onClick={handleEditOne}
+                        variant="outline-warning"
+                      >
+                        <PencilIcon size={24} className="me-2" />
+                        Edit
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              ) : null}
             </>
           ) : formSearchRide.origin.city !== "" ? (
             <Container className="px-0">
@@ -187,7 +207,7 @@ const FormFilterRides = () => {
                     City: <strong>{location.city}</strong>,{" "}
                     <small>{location.province}</small>
                   </p>
-                  <p>
+                  <p className="text-end">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
                       target="_blank"
@@ -216,7 +236,7 @@ const FormFilterRides = () => {
                     City: <strong>{formSearchRide.destination.city}</strong>,{" "}
                     <small>{formSearchRide.destination.province}</small>
                   </p>
-                  <p>
+                  <p className="text-end">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${formSearchRide.destination.address}`}
                       target="_blank"
@@ -286,7 +306,7 @@ const FormFilterRides = () => {
       <Row className="py-2">
         <Col className="text-end">
           <Button onClick={handleSubmit} variant="success" type="submit">
-            Find
+            Search
           </Button>
         </Col>
       </Row>
@@ -294,4 +314,4 @@ const FormFilterRides = () => {
   );
 };
 
-export default FormFilterRides;
+export default FormSearchRides;

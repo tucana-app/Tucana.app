@@ -5,7 +5,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 // Importing assets
 import logo from "../assets/images/OPTI_noir.png";
-import carpooling from "../assets/images/carpooling.png";
+import carpooling from "../assets/images/undraw_off_road.png";
 
 function Home() {
   const { isLoggedIn } = useSelector((state) => state.user);

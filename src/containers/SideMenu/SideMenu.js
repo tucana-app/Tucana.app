@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
+  CircleIcon,
   LinkExternalIcon,
-  PersonIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
@@ -67,7 +67,7 @@ const SideMenu = () => {
                       to="/profile/passenger"
                       className="text-decoration-none"
                     >
-                      <PersonIcon size={86} className="link-dark" />
+                      <CircleIcon size={78} className="text-secondary" />
                     </Link>
                     <p className="h3 mb-0">{currentUser.firstName}</p>
                     <p className="lead">{currentUser.email}</p>

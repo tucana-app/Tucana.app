@@ -134,6 +134,7 @@ function LocationSearchInput(props) {
             required
             aria-label="Search"
             onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
+            className="rounded-pill rounded-end"
           />
           <Button onClick={handleSubmit} variant="success">
             <SearchIcon size={24} />
@@ -146,7 +147,7 @@ function LocationSearchInput(props) {
 
       {status === "OK" ? (
         <>
-          <p className="small text-secondary mt-2">Search results:</p>
+          <p className="small text-secondary mt-2 mb-0">Search results:</p>
           <ul>{renderSuggestions()}</ul>
         </>
       ) : null}

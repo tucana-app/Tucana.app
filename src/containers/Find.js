@@ -13,7 +13,9 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
-import FormFilterRides from "../components/FormFilterRides";
+import FormSearchRides from "../components/FormSearchRides";
+
+import background from "../assets/images/mountain-landscape.jpg";
 
 import { resetSearchForm } from "../redux";
 
@@ -45,11 +47,17 @@ const Find = () => {
 
   return (
     <>
-      <Container className="mt-4" data-aos="fade-in">
+      <Container
+        className="py-5 mx-0"
+        // data-aos="fade-in"
+        id="container-find-ride"
+      >
         <Row className="justify-content-center mb-4">
           <Col className="text-center">
             <div>
-              <h1 className="font-title text-success mb-0">Find a ride</h1>
+              <h1 className="display-5 text-success text-shadow fw-bold mb-0">
+                Find your next trip across Costa Rica
+              </h1>
             </div>
           </Col>
         </Row>
@@ -61,12 +69,11 @@ const Find = () => {
                 sm={10}
                 md={8}
                 lg={6}
-                className="border shadow-sm rounded mx-auto"
+                className="border shadow-sm rounded bg-light mx-auto"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
                     <Col>
-                      <p className="text-secondary small mb-0">Filters</p>
                       <p className="mb-0">
                         {formSearchRide.origin.city}{" "}
                         <ArrowRightIcon size={24} className="text-success" />{" "}
@@ -107,7 +114,7 @@ const Find = () => {
                       sm={10}
                       md={8}
                       lg={6}
-                      className="border shadow-sm rounded pb-3 mx-auto"
+                      className="border shadow-sm rounded bg-white pb-3 mx-auto"
                     >
                       <LinkContainer
                         to={!isLoggedIn ? "/login" : `/ride/${ride.id}`}
@@ -237,10 +244,10 @@ const Find = () => {
               sm={10}
               md={8}
               lg={6}
-              className="border border-success shadow-sm rounded mx-auto"
+              className="border border-success shadow-sm rounded bg-white mx-auto"
             >
               <Container className="py-3 px-2">
-                <FormFilterRides />
+                <FormSearchRides />
               </Container>
             </Col>
           </Row>

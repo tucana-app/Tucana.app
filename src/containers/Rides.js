@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Badge, Container, ListGroup } from "react-bootstrap";
+import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,8 @@ import {
   getDriverBookings,
   getRidesToConfirm,
 } from "../redux";
+
+import car from "../assets/images/undraw_Order_ride.png";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -73,113 +75,127 @@ const Rides = () => {
   }
 
   return (
-    <Container fluid className="p-0">
-      <ListGroup variant="flush" className="pt-2">
-        <Link to="/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="border-0">
-            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-              <div>
-                Bookings
-                {userBookingsData.length > 0 ? (
-                  countUserBookings(userBookingsData) ? (
-                    <Badge bg="primary" className="ms-2">
-                      {isLoadingUserBookings ? (
-                        <LoadingSpinner size="sm" />
-                      ) : (
-                        countUserBookings(userBookingsData)
-                      )}
-                    </Badge>
-                  ) : null
-                ) : null}
-              </div>
-              <ChevronRightIcon size={24} verticalAlign="middle" />
-            </div>
-          </ListGroup.Item>
-        </Link>
-
-        <hr className="my-2" />
-
-        <Link to="/rides/driver" className="text-light text-decoration-none">
-          <ListGroup.Item className="border-0">
-            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-              <div>
-                Rides offered
-                {driverRidesData.length > 0 ? (
-                  countDriverRides(driverRidesData) ? (
-                    <Badge bg="success" className="text-dark ms-2">
-                      {isLoadingDriverRides ? (
-                        <LoadingSpinner size="sm" />
-                      ) : (
-                        countDriverRides(driverRidesData)
-                      )}
-                    </Badge>
-                  ) : null
-                ) : null}
-              </div>
-              <ChevronRightIcon size={24} verticalAlign="middle" />
-            </div>
-          </ListGroup.Item>
-        </Link>
-
-        <Link to="/rides/bookings" className="text-light text-decoration-none">
-          <ListGroup.Item className="border-0 ">
-            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-              <div>
-                Bookings received
-                {driverBookingsData.length > 0 ? (
-                  countDriverBookings(driverBookingsData) ? (
-                    <Badge bg="info" className="text-dark ms-2">
-                      {isLoadingDriverBookings ? (
-                        <LoadingSpinner size="sm" />
-                      ) : (
-                        countDriverBookings(driverBookingsData)
-                      )}
-                    </Badge>
-                  ) : null
-                ) : null}
-              </div>
-              <ChevronRightIcon size={24} verticalAlign="middle" />
-            </div>
-          </ListGroup.Item>
-        </Link>
-
-        {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
-          <div>
-            <hr className="my-2" />
-
-            <Link
-              to="/rides/rides-to-confirm"
-              className="text-light text-decoration-none"
-            >
+    <Container fluid data-aos="fade-in">
+      <Row>
+        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+          <ListGroup variant="flush" className="pt-2">
+            <Link to="/bookings" className="text-light text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <div>
-                    <span className="fw-bold">Rides to confirm</span>
-                    <Badge
-                      bg="warning"
-                      className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
-                    >
-                      {ridesToConfirmData.length}
-                    </Badge>
+                    Bookings
+                    {userBookingsData.length > 0 ? (
+                      countUserBookings(userBookingsData) ? (
+                        <Badge bg="primary" className="ms-2">
+                          {isLoadingUserBookings ? (
+                            <LoadingSpinner size="sm" />
+                          ) : (
+                            countUserBookings(userBookingsData)
+                          )}
+                        </Badge>
+                      ) : null
+                    ) : null}
                   </div>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
             </Link>
+
+            <hr className="my-2" />
+
+            <Link
+              to="/rides/driver"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <div>
+                    Rides offered
+                    {driverRidesData.length > 0 ? (
+                      countDriverRides(driverRidesData) ? (
+                        <Badge bg="success" className="text-dark ms-2">
+                          {isLoadingDriverRides ? (
+                            <LoadingSpinner size="sm" />
+                          ) : (
+                            countDriverRides(driverRidesData)
+                          )}
+                        </Badge>
+                      ) : null
+                    ) : null}
+                  </div>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link
+              to="/rides/bookings"
+              className="text-light text-decoration-none"
+            >
+              <ListGroup.Item className="border-0 ">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <div>
+                    Bookings received
+                    {driverBookingsData.length > 0 ? (
+                      countDriverBookings(driverBookingsData) ? (
+                        <Badge bg="info" className="text-dark ms-2">
+                          {isLoadingDriverBookings ? (
+                            <LoadingSpinner size="sm" />
+                          ) : (
+                            countDriverBookings(driverBookingsData)
+                          )}
+                        </Badge>
+                      ) : null
+                    ) : null}
+                  </div>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+              <div>
+                <hr className="my-2" />
+
+                <Link
+                  to="/rides/rides-to-confirm"
+                  className="text-light text-decoration-none"
+                >
+                  <ListGroup.Item className="border-0">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <div>
+                        <span className="fw-bold">Rides to confirm</span>
+                        <Badge
+                          bg="warning"
+                          className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
+                        >
+                          {ridesToConfirmData.length}
+                        </Badge>
+                      </div>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
+              </div>
+            ) : null}
+
+            <hr className="my-2" />
+
+            <Link to="/help" className="text-light text-decoration-none mt-4">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  Help
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+          </ListGroup>
+
+          <div className="text-center">
+            <img src={car} alt="Car" width={400} className="img-fluid mt-5" />
           </div>
-        ) : null}
-
-        <hr className="my-2" />
-
-        <Link to="/help" className="text-light text-decoration-none mt-4">
-          <ListGroup.Item className="border-0">
-            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-              Help
-              <ChevronRightIcon size={24} verticalAlign="middle" />
-            </div>
-          </ListGroup.Item>
-        </Link>
-      </ListGroup>
+        </Col>
+      </Row>
     </Container>
   );
 };
