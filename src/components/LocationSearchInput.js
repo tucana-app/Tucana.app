@@ -139,7 +139,6 @@ function LocationSearchInput(props) {
           required
           aria-label="Search"
           onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
-          className="rounded-pill"
         />
         <Button
           onClick={handleSubmit}

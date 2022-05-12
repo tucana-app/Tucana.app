@@ -117,7 +117,7 @@ const RidesBookings = () => {
                                 <Button variant="light">See ride</Button>
                               </LinkContainer>
                               <LinkContainer to={`/booking/${booking.id}`}>
-                                <Button variant="light">See booking</Button>
+                                <Button variant="success">See booking</Button>
                               </LinkContainer>
                             </Col>
                           </Row>

@@ -122,12 +122,8 @@ const BecomeDriver = () => {
                   size="lg"
                   disabled={isLoadingSubmitFormBecomeDriver}
                 >
-                  {isLoadingSubmitFormBecomeDriver ? (
-                    <LoadingSpinner />
-                  ) : (
-                    <CheckIcon size={24} className="me-2" />
-                  )}
-                  I want to become a driver
+                  {isLoadingSubmitFormBecomeDriver ? <LoadingSpinner /> : null}I
+                  want to become a driver
                 </Button>
               ) : null
             ) : null}

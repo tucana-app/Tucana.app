@@ -128,7 +128,6 @@ const SingleConversation = ({ conversation }) => {
                   placeholder="Send a message"
                   onChange={(e) => setMessage(e.target.value)}
                   size="lg"
-                  className="rounded-pill rounded-end"
                 />
                 <Button
                   type="submit"
@@ -141,6 +140,7 @@ const SingleConversation = ({ conversation }) => {
                     <LoadingSpinner size={"sm"} />
                   ) : (
                     <PaperAirplaneIcon
+                      size={24}
                       verticalAlign="middle"
                       className="mb-1"
                     />

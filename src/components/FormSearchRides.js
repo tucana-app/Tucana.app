@@ -307,7 +307,7 @@ const FormSearchRides = () => {
               </Row>
             </Container>
           ) : (
-            <Form.Control className="rounded-pill" disabled />
+            <Form.Control disabled />
           )}
         </Col>
       </Row>
@@ -323,7 +323,7 @@ const FormSearchRides = () => {
               value={date}
               min={dateFormat(new Date(), "yyyy-mm-dd")}
               onChange={handleChangeDate}
-              className="rounded-pill"
+              onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
               required
             />
           </Form.Group>

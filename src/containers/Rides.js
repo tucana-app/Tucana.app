@@ -76,6 +76,11 @@ const Rides = () => {
 
   return (
     <Container fluid data-aos="fade-in">
+      <Row className="my-3">
+        <Col className="text-center">
+          <img src={car} alt="Car" width={400} className="img-fluid" />
+        </Col>
+      </Row>
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <ListGroup variant="flush" className="pt-2">
@@ -190,10 +195,6 @@ const Rides = () => {
               </ListGroup.Item>
             </Link>
           </ListGroup>
-
-          <div className="text-center">
-            <img src={car} alt="Car" width={400} className="img-fluid mt-5" />
-          </div>
         </Col>
       </Row>
     </Container>

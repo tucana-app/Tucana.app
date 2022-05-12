@@ -61,14 +61,14 @@ const Find = () => {
         </Row>
         {isFormSearchRideSubmitted ? (
           <>
-            <Row className="mb-3 mx-1 mx-sm-0">
+            <Row className="sticky-top mb-3 mx-1 mx-sm-0">
               <Col
                 xs={12}
                 sm={10}
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-success shadow-sm rounded bg-white mx-auto"
+                className="border border-success shadow-sm rounded bg-white mx-auto mt-2"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
@@ -117,7 +117,7 @@ const Find = () => {
                       className="border shadow-sm rounded bg-white pb-3 mx-auto"
                     >
                       <LinkContainer
-                        to={!isLoggedIn ? "/login" : `/ride/${ride.id}`}
+                        to={`/ride/${ride.id}`}
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
