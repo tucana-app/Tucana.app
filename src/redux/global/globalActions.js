@@ -1,14 +1,4 @@
-import globalTypes from "./globalTypes";
 import { findEmails, findPhones, findLinks } from "../../helpers/functions";
-
-export const setfeedback = (message) => ({
-  type: globalTypes.SET_FEEDBACK,
-  payload: message,
-});
-
-export const clearFeedback = () => ({
-  type: globalTypes.CLEAR_FEEDBACK,
-});
 
 export const parseText = (text) => {
   let result = "";

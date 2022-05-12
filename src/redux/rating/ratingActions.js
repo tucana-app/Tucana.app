@@ -1,6 +1,6 @@
 import ratingTypes from "./ratingTypes";
 import axios from "axios";
-import { parseText, setToast, setfeedback } from "../index";
+import { parseText, setToast } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -36,7 +36,14 @@ export const getRatingsReceivedPassenger = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsReceivedPassengerFail(message));
       });
   };
@@ -88,7 +95,14 @@ export const getRatingsGivenPassenger = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsGivenPassengerFail(message));
       });
   };
@@ -140,7 +154,14 @@ export const getRatingsReceivedDriver = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsReceivedDriverFail(message));
       });
   };
@@ -192,7 +213,14 @@ export const getRatingsGivenDriver = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsGivenDriverFail(message));
       });
   };
@@ -244,7 +272,14 @@ export const getRatingsToDoPassenger = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsToDoPassengerFail(message));
       });
   };
@@ -296,7 +331,14 @@ export const getRatingsToDoDriver = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getRatingsToDoDriverFail(message));
       });
   };
@@ -342,7 +384,12 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
 
           dispatch(submitPassengerRatingFormSuccess(response.data));
           dispatch(
-            setfeedback({ message: response.data.message, variant: "success" })
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: response.data.message,
+              variant: "success",
+            })
           );
         })
         .catch((error) => {
@@ -354,7 +401,14 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
             error.toString();
 
           // console.log(error);
-          dispatch(setfeedback({ message, variant: "danger" }));
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
+              variant: "danger",
+            })
+          );
           dispatch(submitPassengerRatingFormFail(message));
         });
     } else {
@@ -412,7 +466,12 @@ export const submitDriverRatingForm = (ride, note, comment) => {
 
           dispatch(submitDriverRatingFormSuccess(response.data));
           dispatch(
-            setfeedback({ message: response.data.message, variant: "success" })
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: response.data.message,
+              variant: "success",
+            })
           );
         })
         .catch((error) => {
@@ -424,7 +483,14 @@ export const submitDriverRatingForm = (ride, note, comment) => {
             error.toString();
 
           // console.log(error);
-          dispatch(setfeedback({ message, variant: "danger" }));
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
+              variant: "danger",
+            })
+          );
           dispatch(submitDriverRatingFormFail(message));
         });
     } else {

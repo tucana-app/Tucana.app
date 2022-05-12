@@ -8,7 +8,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { submitFormOfferRide } from "../redux";
-import FeedbackMessage from "../components/FeedbackMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const OfferRide = () => {
@@ -332,12 +331,6 @@ const OfferRide = () => {
                       {errors.comment}
                     </Form.Control.Feedback>
                   </Form.Group>
-                </Row>
-
-                <Row>
-                  <Col className="mx-auto">
-                    <FeedbackMessage />
-                  </Col>
                 </Row>
 
                 <Row>

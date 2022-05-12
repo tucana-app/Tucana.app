@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
-import FeedbackMessage from "../../components/FeedbackMessage";
 
 import { confirmEmail } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -47,7 +46,6 @@ const SignUpConfirm = () => {
           </Col>
         ) : null}
       </Row>
-      <FeedbackMessage />
     </Container>
   );
 };

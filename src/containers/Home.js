@@ -6,6 +6,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 // Importing assets
 import logo from "../assets/images/OPTI_noir.png";
 import carpooling from "../assets/images/undraw_off_road.png";
+import { ArrowRightIcon, LinkExternalIcon } from "@primer/octicons-react";
+import { LinkContainer } from "react-router-bootstrap";
 
 function Home() {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -36,17 +38,31 @@ function Home() {
             <h2 className="text-success">
               Your companion for all your travels in Costa Rica
             </h2>
-            <p>
-              Welcome to Ride.CR, the first carpooling application in Costa
-              Rica: a practical and ecological way to travel and meet people.
+            <p className="mb-0">
+              Welcome to Ride.CR, the best carpooling app in Costa Rica: a
+              practical and ecological way to travel and meet people.
             </p>
-            <a
-              href="http://ridecr.atwebpages.com/"
-              target={"_blank"}
-              rel="noreferrer"
-            >
-              <Button variant="outline-success">Learn more</Button>
-            </a>
+            <p>
+              <a
+                href="http://ridecr.atwebpages.com/"
+                target={"_blank"}
+                rel="noreferrer"
+                className="link-success small"
+              >
+                Learn more
+                <LinkExternalIcon size={12} className="mb-1 ms-2" />
+              </a>
+            </p>
+            <LinkContainer to="/login" href="/login" className="ms-2">
+              <Button variant="success" size="lg">
+                Start
+                <ArrowRightIcon
+                  size={24}
+                  verticalAlign="middle"
+                  className="mb-1 ms-2"
+                />
+              </Button>
+            </LinkContainer>
           </Col>
         </Row>
       </Container>

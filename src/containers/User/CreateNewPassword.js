@@ -8,7 +8,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
-import FeedbackMessage from "../../components/FeedbackMessage";
 
 import { resetPassword, checkDeprecatedLinkResetPassword } from "../../redux";
 
@@ -192,8 +191,6 @@ const CreateNewPassword = () => {
               </p>
             </Col>
           </Row>
-
-          <FeedbackMessage />
         </Container>
       )}
 

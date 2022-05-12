@@ -14,7 +14,6 @@ import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import FeedbackMessage from "../../components/FeedbackMessage";
 
 import {
   getRatingsToDoDriver,
@@ -121,14 +120,6 @@ function RatingsDriver() {
           ) : null}
         </Tab>
       </Tabs>
-
-      <Container>
-        <Row>
-          <Col>
-            <FeedbackMessage />
-          </Col>
-        </Row>
-      </Container>
     </div>
   );
 }

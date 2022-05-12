@@ -7,7 +7,6 @@ import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import FeedbackMessage from "../../components/FeedbackMessage";
 import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverBookings } from "../../redux";
@@ -129,18 +128,11 @@ const RidesBookings = () => {
                 )}
               </>
             ) : (
-              <>
-                <Row>
-                  <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                    <FeedbackMessage />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="text-center">
-                    <MessageEmpty title="bookings" />
-                  </Col>
-                </Row>
-              </>
+              <Row>
+                <Col className="text-center">
+                  <MessageEmpty title="bookings" />
+                </Col>
+              </Row>
             )}
           </>
         )}

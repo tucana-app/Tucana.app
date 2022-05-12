@@ -1,6 +1,6 @@
 import messageTypes from "./messageTypes";
 import axios from "axios";
-import { parseText, setfeedback, setToast } from "../index";
+import { parseText, setToast } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -36,7 +36,14 @@ export const getAllUserMessages = (userId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(getAllUserMessagesFail(error));
       });
   };
@@ -113,7 +120,14 @@ export const startConversation = (driverId, userId, rideId) => {
           error.toString();
 
         // console.log(error);
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
         dispatch(startConversationFail(error));
       });
   };
@@ -228,7 +242,14 @@ export const getUserNewMessages = (userId) => {
 
         // console.log(error);
 
-        dispatch(setfeedback({ message, variant: "danger" }));
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
       });
   };
 };

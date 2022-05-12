@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import FeedbackMessage from "../../components/FeedbackMessage";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
@@ -112,8 +111,6 @@ const ForgotPassword = () => {
             </Formik>
           </Col>
         </Row>
-
-        <FeedbackMessage />
       </Container>
     </>
   );

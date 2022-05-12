@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -7,7 +7,12 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { SearchIcon, XIcon } from "@primer/octicons-react";
 
-import { setSearchAddress, setLocation, resetSearch } from "../redux";
+import {
+  setSearchAddress,
+  setLocation,
+  resetSearch,
+  setIsLoadingLocation,
+} from "../redux";
 
 function LocationSearchInput(props) {
   const dispatch = useDispatch();
@@ -53,6 +58,7 @@ function LocationSearchInput(props) {
       // by setting the second parameter to "false"
       setValue(description, false);
       clearSuggestions();
+      dispatch(setIsLoadingLocation());
 
       // Get latitude and longitude via utility functions
       getGeocode({ address: description })
@@ -124,25 +130,28 @@ function LocationSearchInput(props) {
 
   return (
     <>
-      <div>
-        <InputGroup>
-          <FormControl
-            value={searchAddress}
-            onChange={handleInput}
-            disabled={!ready}
-            placeholder="Search a city"
-            required
-            aria-label="Search"
-            onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
-            className="rounded-pill rounded-end"
-          />
-          <Button onClick={handleSubmit} variant="success">
-            <SearchIcon size={24} />
-          </Button>
-          <Button onClick={handleReset} variant="warning">
-            <XIcon size={24} />
-          </Button>
-        </InputGroup>
+      <div className="d-inline-flex w-100">
+        <FormControl
+          value={searchAddress}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Search a city"
+          required
+          aria-label="Search"
+          onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
+          className="rounded-pill"
+        />
+        <Button
+          onClick={handleSubmit}
+          variant="success"
+          size="sm"
+          className="ms-1"
+        >
+          <SearchIcon size={24} />
+        </Button>
+        <Button onClick={handleReset} variant="white" className="px-0 ms-1">
+          <XIcon size={24} />
+        </Button>
       </div>
 
       {status === "OK" ? (

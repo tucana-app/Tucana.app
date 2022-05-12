@@ -6,7 +6,7 @@ const MessageFee = () => {
   return (
     <Container
       fluid
-      className="border border-success border-end-0 border-start-0 border-top-0"
+      className="border border-success border-end-0 border-start-0 border-top-0 bg-white"
     >
       <Row>
         <Col className="mx-auto text-center">

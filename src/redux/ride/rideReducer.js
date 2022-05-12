@@ -61,6 +61,7 @@ const initialState = {
 
   searchAddress: "",
 
+  isLoadingLocation: false,
   location: {
     city: "",
     province: "",
@@ -439,9 +440,16 @@ const rideReducer = (state = initialState, action) => {
         searchAddress: action.payload,
       };
 
+    case rideTypes.SET_IS_LOADING_LOCATION:
+      return {
+        ...state,
+        isLoadingLocation: true,
+      };
+
     case rideTypes.SET_LOCATION:
       return {
         ...state,
+        isLoadingLocation: false,
         location: {
           city: action.payload.city,
           province: action.payload.province,
@@ -454,6 +462,7 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.RESET_SEARCH:
       return {
         ...state,
+        isLoadingLocation: false,
         searchAddress: "",
         location: {
           city: "",

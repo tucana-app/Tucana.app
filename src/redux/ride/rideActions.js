@@ -1,6 +1,6 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { parseText, getNotifications, setfeedback, setToast } from "../index";
+import { parseText, getNotifications, setToast } from "../index";
 import * as Yup from "yup";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -38,9 +38,11 @@ export const getDriverRides = (userId) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
         dispatch(getDriverRidesFail(error));
@@ -415,9 +417,11 @@ export const getFilteredRides = (date) => {
         // console.log(error);
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: error.message,
             variant: "danger",
-            message: error.message,
           })
         );
 
@@ -468,9 +472,11 @@ export const submitFormBookRide = (user, ride, formValues) => {
         // console.log(response.data);
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: response.data.message,
             variant: "success",
-            message: response.data.message,
           })
         );
 
@@ -490,9 +496,11 @@ export const submitFormBookRide = (user, ride, formValues) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
 
@@ -548,9 +556,11 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
             // If ride refused by driver
 
             dispatch(
-              setfeedback({
+              setToast({
+                show: true,
+                headerText: "Warning",
+                bodyText: response.data.message,
                 variant: "warning",
-                message: response.data.message,
               })
             );
           }
@@ -572,9 +582,11 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
           // console.log(message);
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
               variant: "danger",
-              message: message,
             })
           );
 
@@ -790,9 +802,11 @@ export const getDriverBookingRide = (driverId, rideId) => {
         // console.log(error);
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
 
@@ -848,9 +862,11 @@ export const getPassengersDetails = (rideId) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
 
@@ -907,9 +923,11 @@ export const getRidesToConfirm = (userId) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
 
@@ -988,6 +1006,13 @@ export const setSearchAddress = (address) => {
   return {
     type: rideTypes.SET_SEARCH_ADDRESS,
     payload: address,
+  };
+};
+
+// Set location with Google Maps
+export const setIsLoadingLocation = () => {
+  return {
+    type: rideTypes.SET_IS_LOADING_LOCATION,
   };
 };
 

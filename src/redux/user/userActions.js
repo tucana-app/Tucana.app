@@ -3,7 +3,6 @@ import userTypes from "./userTypes";
 import validator from "validator";
 
 import {
-  setfeedback,
   setToast,
   getDriverNewRidesRequests,
   resetNotifications,
@@ -29,9 +28,11 @@ export const registerUser = (formSignupUser) => {
         // console.log(response.data);
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: response.data.message,
             variant: "success",
-            message: response.data.message,
           })
         );
 
@@ -48,9 +49,11 @@ export const registerUser = (formSignupUser) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message: message,
           })
         );
 
@@ -112,9 +115,11 @@ export const confirmEmail = (uuid) => {
           }
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Message",
+              bodyText: response.data.message,
               variant,
-              message: response.data.message,
             })
           );
 
@@ -133,9 +138,11 @@ export const confirmEmail = (uuid) => {
             error.toString();
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
               variant: "danger",
-              message: message,
             })
           );
           dispatch(confirmEmailFail(message));
@@ -144,9 +151,11 @@ export const confirmEmail = (uuid) => {
       const message = "Please enter a valid confirmation number in the URL";
 
       dispatch(
-        setfeedback({
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: message,
           variant: "danger",
-          message: message,
         })
       );
 
@@ -195,19 +204,13 @@ export const login = (formLogin) => {
           });
 
           dispatch(getDriverNewRidesRequests(response.data.id));
+        } else {
           dispatch(
             setToast({
               show: true,
-              headerText: "Logged in",
-              bodyText: `Welcome back ${response.data.firstName}`,
-              variant: "success",
-            })
-          );
-        } else {
-          dispatch(
-            setfeedback({
+              headerText: "Error",
+              bodyText: "There has been an error",
               variant: "danger",
-              message: "There has been an error",
             })
           );
         }
@@ -227,9 +230,11 @@ export const login = (formLogin) => {
 
         if (flag !== "NOT_CONFIRMED") {
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
               variant: "danger",
-              message,
             })
           );
         }
@@ -286,9 +291,11 @@ export const submitEmailForgotPassword = (formValue) => {
         dispatch(submitEmailForgotPasswordSuccess(response.data));
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: response.data.message,
             variant: "success",
-            message: response.data.message,
           })
         );
       })
@@ -301,9 +308,11 @@ export const submitEmailForgotPassword = (formValue) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message,
           })
         );
 
@@ -348,9 +357,11 @@ export const resetPassword = (formValues, uuid) => {
           dispatch(resetPasswordSuccess(response.data));
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: response.data.message,
               variant: "success",
-              message: response.data.message,
             })
           );
         })
@@ -363,9 +374,11 @@ export const resetPassword = (formValues, uuid) => {
             error.toString();
 
           dispatch(
-            setfeedback({
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
               variant: "danger",
-              message,
             })
           );
 
@@ -375,9 +388,11 @@ export const resetPassword = (formValues, uuid) => {
       const message = "The passwords must match";
 
       dispatch(
-        setfeedback({
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: message,
           variant: "danger",
-          message,
         })
       );
 
@@ -461,9 +476,11 @@ export const resendConfirmationLink = (userId) => {
         dispatch(resendConfirmationLinkSuccess(response.data));
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: response.data.message,
             variant: "success",
-            message: response.data.message,
           })
         );
       })
@@ -476,9 +493,11 @@ export const resendConfirmationLink = (userId) => {
           error.toString();
 
         dispatch(
-          setfeedback({
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
             variant: "danger",
-            message,
           })
         );
 

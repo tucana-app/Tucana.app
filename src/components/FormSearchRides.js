@@ -6,6 +6,7 @@ import {
   LinkExternalIcon,
   PencilIcon,
   CheckIcon,
+  SearchIcon,
 } from "@primer/octicons-react";
 
 import LocationSearchInput from "./LocationSearchInput";
@@ -17,6 +18,7 @@ import {
   getFilteredRides,
   setToast,
 } from "../redux";
+import LoadingSpinner from "./LoadingSpinner";
 
 const FormSearchRides = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const FormSearchRides = () => {
   const {
     location,
     formSearchRide,
+    isLoadingLocation,
     // isLoadingSubmitFormSearchRide,
     // submitFormSearchRideSuccess,
   } = useSelector((state) => state.ride);
@@ -111,13 +114,24 @@ const FormSearchRides = () => {
 
   return (
     <>
-      <Row>
+      <Row className="mb-3">
         <Col>
-          <p className="mb-0">From:</p>
+          <p className="mb-0">
+            From:{" "}
+            <span className="text-secondary small ms-3">
+              click{" "}
+              <SearchIcon size={10} verticalAlign="middle" className="mb-1" />{" "}
+              or hit enter
+            </span>
+          </p>
           {stepOne ? (
             <>
               <LocationSearchInput />
-              {location.city !== "" ? (
+              {isLoadingLocation ? (
+                <div className="text-center mt-2">
+                  <LoadingSpinner />
+                </div>
+              ) : location.city !== "" ? (
                 <>
                   <h3 className="fw-light mt-3">Selected:</h3>
                   <p>
@@ -196,11 +210,22 @@ const FormSearchRides = () => {
 
       <Row className="my-2">
         <Col>
-          <p className="mb-0">To:</p>
+          <p className="mb-0">
+            To:{" "}
+            <span className="text-secondary small ms-3">
+              click{" "}
+              <SearchIcon size={10} verticalAlign="middle" className="mb-1" />{" "}
+              or hit enter
+            </span>
+          </p>
           {stepTwo ? (
             <>
               <LocationSearchInput />
-              {location.city !== "" ? (
+              {isLoadingLocation ? (
+                <div className="text-center mt-2">
+                  <LoadingSpinner />
+                </div>
+              ) : location.city !== "" ? (
                 <>
                   <h3 className="fw-light mt-3">Selected:</h3>
                   <p>
@@ -282,13 +307,13 @@ const FormSearchRides = () => {
               </Row>
             </Container>
           ) : (
-            <Form.Control disabled />
+            <Form.Control className="rounded-pill" disabled />
           )}
         </Col>
       </Row>
       <Row className="align-items-center py-3">
         <Col xs={2}>
-          <p className="mb-0">Date</p>
+          <p className="mb-0">Date:</p>
         </Col>
         <Col className="mx-auto">
           <Form.Group>
@@ -298,6 +323,7 @@ const FormSearchRides = () => {
               value={date}
               min={dateFormat(new Date(), "yyyy-mm-dd")}
               onChange={handleChangeDate}
+              className="rounded-pill"
               required
             />
           </Form.Group>
@@ -305,7 +331,12 @@ const FormSearchRides = () => {
       </Row>
       <Row className="py-2">
         <Col className="text-end">
-          <Button onClick={handleSubmit} variant="success" type="submit">
+          <Button
+            onClick={handleSubmit}
+            variant="success"
+            size="lg"
+            type="submit"
+          >
             Search
           </Button>
         </Col>

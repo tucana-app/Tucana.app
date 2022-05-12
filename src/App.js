@@ -58,7 +58,6 @@ import Toasts from "./components/Toasts";
 import MessageFee from "./components/MessageFee";
 
 import {
-  clearFeedback,
   // getNotifications,
   resetConversationView,
 } from "./redux";
@@ -76,11 +75,8 @@ function App() {
   useEffect(() => {
     history.listen((location) => {
       if (isLoggedIn) {
-        dispatch(clearFeedback());
         // dispatch(getNotifications(currentUser.id));
         dispatch(resetConversationView(currentUser.id));
-      } else {
-        dispatch(clearFeedback());
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

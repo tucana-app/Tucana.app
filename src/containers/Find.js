@@ -15,8 +15,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormSearchRides from "../components/FormSearchRides";
 
-import background from "../assets/images/mountain-landscape.jpg";
-
 import { resetSearchForm } from "../redux";
 
 const Find = () => {
@@ -69,7 +67,8 @@ const Find = () => {
                 sm={10}
                 md={8}
                 lg={6}
-                className="border shadow-sm rounded bg-light mx-auto"
+                xl={4}
+                className="border border-success shadow-sm rounded bg-white mx-auto"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
@@ -114,6 +113,7 @@ const Find = () => {
                       sm={10}
                       md={8}
                       lg={6}
+                      xl={4}
                       className="border shadow-sm rounded bg-white pb-3 mx-auto"
                     >
                       <LinkContainer
@@ -138,13 +138,14 @@ const Find = () => {
                                 {ride.origin.province}
                               </p>
                               <p className="small mb-0">
-                                <span className="text-warning">
+                                <span className="text-primary small">
+                                  (
                                   {distanceLatLng(
                                     ride.origin.latLng,
                                     formSearchRide.origin.latLng
                                   )}
                                 </span>{" "}
-                                km away
+                                km away)
                               </p>
 
                               <ArrowDownIcon
@@ -159,13 +160,14 @@ const Find = () => {
                                 {ride.destination.province}
                               </p>
                               <p className="small mb-0">
-                                <span className="text-warning">
+                                <span className="text-primary small">
+                                  (
                                   {distanceLatLng(
                                     ride.destination.latLng,
                                     formSearchRide.destination.latLng
                                   )}
                                 </span>{" "}
-                                km away
+                                km away)
                               </p>
                             </Col>
                             <Col xs={3} className="text-center mx-auto">
@@ -230,9 +232,22 @@ const Find = () => {
                 ))}
               </>
             ) : (
-              <Row>
-                <Col className="text-center">
-                  <MessageEmpty title="rides" />
+              <Row className="mb-2 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="border shadow-sm rounded bg-white mx-auto"
+                >
+                  <Container className="py-3 px-2">
+                    <Row>
+                      <Col className="text-center">
+                        <MessageEmpty title="rides" />
+                      </Col>
+                    </Row>
+                  </Container>
                 </Col>
               </Row>
             )}
@@ -244,6 +259,7 @@ const Find = () => {
               sm={10}
               md={8}
               lg={6}
+              xl={4}
               className="border border-success shadow-sm rounded bg-white mx-auto"
             >
               <Container className="py-3 px-2">

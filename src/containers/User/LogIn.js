@@ -7,9 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
-import FeedbackMessage from "../../components/FeedbackMessage";
 
-import { clearFeedback, login, resendConfirmationLink } from "../../redux";
+import { login, resendConfirmationLink } from "../../redux";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ const Login = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
-    dispatch(clearFeedback());
     dispatch(login(values));
     formikBag.setSubmitting(false);
   };
@@ -50,8 +48,7 @@ const Login = () => {
     <Container className="my-5" data-aos="fade-in">
       <Row className="mb-4">
         <Col className="text-center">
-          <h1 className="text-success">Welcome back</h1>
-          <p className="lead">We are happy to see you again</p>
+          <h1 className="text-success">Login</h1>
         </Col>
       </Row>
       <Row>
@@ -121,8 +118,6 @@ const Login = () => {
                   </Col>
                 </Row>
 
-                <FeedbackMessage />
-
                 {loginErrorData ? (
                   loginErrorData.flag === "NOT_CONFIRMED" ? (
                     <>
@@ -163,9 +158,12 @@ const Login = () => {
                         disabled={isSubmitting || isloadingLogin}
                       >
                         {isSubmitting || isloadingLogin ? (
-                          <LoadingSpinner />
-                        ) : null}
-                        Login
+                          <span className="mx-2">
+                            <LoadingSpinner />
+                          </span>
+                        ) : (
+                          <span>Login</span>
+                        )}
                       </Button>
                     </Form.Group>
                   </Col>

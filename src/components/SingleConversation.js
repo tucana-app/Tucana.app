@@ -18,13 +18,11 @@ import {
 import {
   resetConversationView,
   sendMessage,
-  clearFeedback,
   getAllUserMessages,
 } from "../redux";
 
 import dateFormat from "dateformat";
 import LoadingSpinner from "./LoadingSpinner";
-import FeedbackMessage from "./FeedbackMessage";
 
 const SingleConversation = ({ conversation }) => {
   const dispatch = useDispatch();
@@ -67,7 +65,6 @@ const SingleConversation = ({ conversation }) => {
       <ListGroup className="cursor-pointer sticky-top mb-3">
         <ListGroup.Item
           onClick={() => {
-            dispatch(clearFeedback());
             dispatch(getAllUserMessages(currentUser.id));
             dispatch(resetConversationView(currentUser.id));
           }}
@@ -154,10 +151,6 @@ const SingleConversation = ({ conversation }) => {
           </Row>
         </Container>
       </Form>
-
-      <div className="w-50 mx-auto">
-        <FeedbackMessage />
-      </div>
     </div>
   );
 };

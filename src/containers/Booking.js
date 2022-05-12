@@ -11,7 +11,6 @@ import {
   ArrowDownIcon,
 } from "@primer/octicons-react";
 
-import FeedbackMessage from "../components/FeedbackMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 
@@ -150,7 +149,6 @@ const Booking = () => {
                   >
                     <Container className="py-3 px-2">
                       <FormDriverResponseBooking bookingId={bookingId} />
-                      <FeedbackMessage />
                     </Container>
                   </Col>
                 </Row>

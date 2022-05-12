@@ -7,7 +7,6 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
-import FeedbackMessage from "../../components/FeedbackMessage";
 
 import {
   getRatingsToDoDriver,
@@ -341,8 +340,6 @@ const NewRating = () => {
                 </Button>
               </Col>
             </Row>
-
-            <FeedbackMessage />
           </Container>
         </>
       ) : null}
@@ -599,8 +596,6 @@ const NewRating = () => {
                 </Button>
               </Col>
             </Row>
-
-            <FeedbackMessage />
           </Container>
         </>
       ) : null}
