@@ -41,6 +41,7 @@ import Legal from "./containers/SideMenu/Legal";
 import Report from "./containers/SideMenu/Report";
 import Language from "./containers/SideMenu/Language";
 import Credits from "./containers/SideMenu/Credits";
+import Privacy from "./containers/SideMenu/Privacy";
 
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
@@ -55,7 +56,6 @@ import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
-import MessageFee from "./components/MessageFee";
 
 import { resetConversationView } from "./redux";
 import { history } from "./helpers/history";
@@ -80,7 +80,6 @@ function App() {
     <Suspense fallback={<Fallback />}>
       <Router history={history}>
         <ScrollToTop />
-        <MessageFee />
         <NavigationBar />
 
         <Switch>
@@ -145,6 +144,7 @@ function App() {
           <Route exact path="/report" component={Report} />
           <Route exact path="/language" component={Language} />
           <Route exact path="/credits" component={Credits} />
+          <Route exact path="/privacy" component={Privacy} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 

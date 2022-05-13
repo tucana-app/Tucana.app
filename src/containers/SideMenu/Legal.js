@@ -14,7 +14,7 @@ const Legal = () => {
 
       <Container fluid className="p-0" data-aos="fade-in">
         <ListGroup variant="flush">
-          <Link to="/coming-soon" className="text-decoration-none">
+          <Link to="/privacy" className="text-decoration-none">
             <ListGroup.Item className="border-0">
               <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                 <p className="mb-0">Privacy policy</p>
