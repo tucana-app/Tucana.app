@@ -1,4 +1,4 @@
-var CACHE_NAME = "Ride.cr";
+var CACHE_NAME = "Tucana.app";
 var urlsToCache = ["/"];
 
 // Install a service worker
@@ -27,7 +27,7 @@ this.addEventListener("fetch", (event) => {
 
 // Update a service worker
 this.addEventListener("activate", (event) => {
-  var cacheWhitelist = ["Ride.cr"];
+  var cacheWhitelist = ["Tucana.app"];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
