@@ -7,6 +7,7 @@ import {
   CircleIcon,
   LinkExternalIcon,
 } from "@primer/octicons-react";
+import { ArrowRight } from "react-bootstrap-icons";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
