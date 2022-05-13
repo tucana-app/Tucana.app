@@ -73,7 +73,7 @@ function NavigationBar() {
                       <p className="text-icon-nav-bar mb-0">
                         {t("navigationBar.messages")}
                         {messages > 0 ? (
-                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
                             <span className="visually-hidden">
                               unread notification(s)
@@ -83,7 +83,7 @@ function NavigationBar() {
                       </p>
                       <p className="text-icon-nav-bar d-xs-screen mb-0">
                         {messages > 0 ? (
-                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
                             <span className="visually-hidden">
                               unread messages
@@ -103,7 +103,7 @@ function NavigationBar() {
                       <p className="text-icon-nav-bar mb-0">
                         {t("navigationBar.account")}
                         {notifications > 0 ? (
-                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
                             <span className="visually-hidden">
                               unread notification(s)
@@ -113,7 +113,7 @@ function NavigationBar() {
                       </p>
                       <p className="text-icon-nav-bar d-xs-screen mb-0">
                         {notifications > 0 ? (
-                          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
                             <span className="visually-hidden">
                               unseen notification

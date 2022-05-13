@@ -365,6 +365,19 @@ export const setSearchOrigin = (origin) => {
   };
 };
 
+// Reset origin
+export const resetSearchOrigin = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_SEARCH_ORIGIN,
+    });
+  };
+};
+
 // Set destination with Google Maps
 export const setSearchDestination = (destination) => {
   return (dispatch) => {
@@ -375,6 +388,19 @@ export const setSearchDestination = (destination) => {
     dispatch({
       type: rideTypes.SET_SEARCH_DESTINATION,
       payload: destination,
+    });
+  };
+};
+
+// Reset destination
+export const resetSearchDestination = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_SEARCH_DESTINATION,
     });
   };
 };
@@ -444,7 +470,7 @@ export const getFilteredRidesFail = (error) => {
   };
 };
 
-export const resetSearchForm = () => {
+export const showSearchForm = () => {
   return {
     type: rideTypes.RESET_SEARCH_FORM,
   };

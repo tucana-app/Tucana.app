@@ -234,7 +234,6 @@ const rideReducer = (state = initialState, action) => {
         isFormSearchRideSubmitted: false,
       };
 
-    //
     case rideTypes.SUBMIT_FORM_BOOK_RIDE_REQUEST:
       return {
         ...state,
@@ -582,6 +581,21 @@ const rideReducer = (state = initialState, action) => {
         },
       };
 
+    case rideTypes.RESET_SEARCH_ORIGIN:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          origin: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
+          },
+        },
+      };
+
     case rideTypes.SET_SEARCH_DESTINATION:
       return {
         ...state,
@@ -593,6 +607,21 @@ const rideReducer = (state = initialState, action) => {
             address: action.payload.address,
             latLng: action.payload.latLng,
             details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.RESET_SEARCH_DESTINATION:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          destination: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
           },
         },
       };

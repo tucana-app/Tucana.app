@@ -17,6 +17,8 @@ import {
   setSearchDate,
   getFilteredRides,
   setToast,
+  resetSearchOrigin,
+  resetSearchDestination,
 } from "../redux";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -54,6 +56,7 @@ const FormSearchRides = () => {
   const handleEditOne = () => {
     setStepOne(true);
     setStepTwo(false);
+    dispatch(resetSearchOrigin());
   };
 
   const handleClickStepTwo = () => {
@@ -71,6 +74,7 @@ const FormSearchRides = () => {
   const handleEditTwo = () => {
     setStepTwo(true);
     setStepThree(false);
+    dispatch(resetSearchDestination());
   };
 
   // Handlers
@@ -126,7 +130,6 @@ const FormSearchRides = () => {
           </p>
           {stepOne ? (
             <>
-              <LocationSearchInput />
               {isLoadingLocation ? (
                 <div className="text-center mt-2">
                   <LoadingSpinner />
@@ -181,7 +184,9 @@ const FormSearchRides = () => {
                     </Col>
                   </Row>
                 </Container>
-              ) : null}
+              ) : (
+                <LocationSearchInput />
+              )}
             </>
           ) : formSearchRide.origin.city !== "" ? (
             <Container className="px-0">
@@ -220,7 +225,6 @@ const FormSearchRides = () => {
           </p>
           {stepTwo ? (
             <>
-              <LocationSearchInput />
               {isLoadingLocation ? (
                 <div className="text-center mt-2">
                   <LoadingSpinner />
@@ -283,7 +287,9 @@ const FormSearchRides = () => {
                     </Button>
                   </p>
                 </>
-              ) : null}
+              ) : (
+                <LocationSearchInput />
+              )}
             </>
           ) : formSearchRide.destination.city !== "" ? (
             <Container className="px-0">

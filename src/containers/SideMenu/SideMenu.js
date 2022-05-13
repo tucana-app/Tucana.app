@@ -154,7 +154,7 @@ const SideMenu = () => {
                   </div>
                 </ListGroup.Item>
 
-                <hr className="my-2" />
+                {/* <hr className="my-2" />
 
                 <Link to="/notifications" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
@@ -168,7 +168,7 @@ const SideMenu = () => {
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
-                </Link>
+                </Link> */}
               </>
             ) : (
               <>

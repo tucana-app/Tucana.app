@@ -86,7 +86,10 @@ function LocationSearchInput(props) {
   const setCityProvince = () => {
     city = details.address_components.find((address) =>
       address.types.find(
-        (type) => type === "neighborhood" || type === "locality"
+        (type) =>
+          type === "neighborhood" ||
+          type === "locality" ||
+          type === "sublocality"
       )
     );
 

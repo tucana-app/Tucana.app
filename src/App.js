@@ -57,10 +57,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 import MessageFee from "./components/MessageFee";
 
-import {
-  // getNotifications,
-  resetConversationView,
-} from "./redux";
+import { resetConversationView } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -70,12 +67,9 @@ function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
-  // if (isLoggedIn) dispatch(getNotifications(currentUser.id));
-
   useEffect(() => {
     history.listen((location) => {
       if (isLoggedIn) {
-        // dispatch(getNotifications(currentUser.id));
         dispatch(resetConversationView(currentUser.id));
       }
     });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
@@ -15,7 +15,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormSearchRides from "../components/FormSearchRides";
 
-import { resetSearchForm } from "../redux";
+import { showSearchForm } from "../redux";
 
 const Find = () => {
   const dispatch = useDispatch();
@@ -28,20 +28,29 @@ const Find = () => {
     formSearchRide,
   } = useSelector((state) => state.ride);
 
-  // var filteredRides =
-  //   filteredRidesData.length > 0 &&
-  //   filteredRidesData.filter((ride) => {
-  //     return new Date(ride.dateTime).setHours(0, 0, 0, 0) ===
-  //       new Date(
-  //         formSearchRide.date.slice(0, 4),
-  //         formSearchRide.date.slice(5, 7) - 1,
-  //         formSearchRide.date.slice(8, 10)
-  //       ).setHours(0, 0, 0, 0) &&
-  //       ride.origin.province === formSearchRide.origin &&
-  //       ride.destination.province === formSearchRide.destination
-  //       ? ride
-  //       : null;
-  //   });
+  const filteredRides = useRef([]);
+
+  useEffect(() => {
+    // If we have received the rides
+    if (filteredRidesData.length > 0) {
+      // We had to each ride object the distance between
+      // the ride origin and the user search origin
+      filteredRides.current = filteredRidesData.map((ride) => {
+        return {
+          ...ride,
+          distance: distanceLatLng(
+            ride.origin.latLng,
+            formSearchRide.origin.latLng
+          ),
+        };
+      });
+
+      // Then we just have to sort the array of object by distance
+      filteredRides.current = filteredRides.current.sort((ride1, ride2) => {
+        return ride1.distance - ride2.distance;
+      });
+    }
+  }, [filteredRidesData, distanceLatLng, formSearchRide]);
 
   return (
     <>
@@ -86,7 +95,7 @@ const Find = () => {
                     </Col>
                     <Col xs={"auto"}>
                       <Button
-                        onClick={() => dispatch(resetSearchForm())}
+                        onClick={() => dispatch(showSearchForm())}
                         variant="warning"
                         className="mb-0"
                       >
@@ -106,7 +115,7 @@ const Find = () => {
               </Row>
             ) : filteredRidesData.length > 0 ? (
               <>
-                {filteredRidesData.map((ride, index) => (
+                {filteredRides.current.map((ride, index) => (
                   <Row key={index} className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}

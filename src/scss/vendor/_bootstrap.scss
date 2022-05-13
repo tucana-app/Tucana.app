@@ -1,11 +1,11 @@
 // Override default variables before the import
 $theme-colors: (
-  "primary": $primary,
+  "primary": $blue,
   "secondary": $secondary,
   "success": $brand-1,
   "info": $info,
-  "warning": $warning,
-  "danger": $danger,
+  "warning": $orange,
+  "danger": $red,
   "light": $light,
   "dark": $dark,
 );

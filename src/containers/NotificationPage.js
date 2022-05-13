@@ -126,7 +126,7 @@ const NotificationPage = () => {
       {!isLoadingPassengerBookingsResponses &&
       passengerBookingsResponsesData.count > 0 ? (
         <ListGroup variant="flush">
-          <ListGroup.Item className="border border-start-0 border-end-0">
+          <ListGroup.Item className="border border-bottom-0 border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
                 Answers from your bookings
