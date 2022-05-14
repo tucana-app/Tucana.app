@@ -22,6 +22,7 @@ import RidesBookings from "./containers/Rides/RidesBookings";
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
 import Offer from "./containers/Offer";
+import HowItWorks from "./containers/HowItWorks";
 
 import BecomeDriver from "./containers/BecomeDriver";
 
@@ -41,6 +42,11 @@ import Report from "./containers/SideMenu/Report";
 import Language from "./containers/SideMenu/Language";
 import Credits from "./containers/SideMenu/Credits";
 import Privacy from "./containers/SideMenu/Privacy";
+import RefundPolicy from "./containers/SideMenu/RefundPolicy";
+import LegalNotice from "./containers/SideMenu/LegalNotice";
+import TermsConditions from "./containers/SideMenu/TermsConditions";
+import DataProtection from "./containers/SideMenu/DataProtection";
+import FAQ from "./containers/SideMenu/FAQ";
 
 import Download from "./containers/Download";
 import Donate from "./containers/Donate";
@@ -52,7 +58,6 @@ import ComingSoon from "./containers/ComingSoon";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
-import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 
@@ -143,13 +148,18 @@ function App() {
           <Route exact path="/language" component={Language} />
           <Route exact path="/credits" component={Credits} />
           <Route exact path="/privacy" component={Privacy} />
+          <Route exact path="/refund-policy" component={RefundPolicy} />
+          <Route exact path="/legal-notice" component={LegalNotice} />
+          <Route exact path="/terms" component={TermsConditions} />
+          <Route exact path="/data-protection" component={DataProtection} />
+          <Route exact path="/faq" component={FAQ} />
+          <Route exact path="/how-it-works" component={HowItWorks} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 
           <Route component={Page404} />
         </Switch>
 
-        <Footer />
         <Toasts />
       </Router>
     </Suspense>

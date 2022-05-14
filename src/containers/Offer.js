@@ -658,14 +658,14 @@ const Offer = () => {
           </>
         ) : null
       ) : (
-        <Row className="mt-5 mb-2 mx-1 mx-sm-0">
+        <Row className="mt-5 mx-1 mx-sm-0">
           <Col
             xs={12}
             sm={10}
             md={8}
             lg={6}
             xl={4}
-            className="bg-white text-center shadow-lg rounded mx-auto py-3"
+            className="bg-white border shadow-sm rounded text-center pt-3 pb-4 mx-auto"
           >
             <Container>
               <Row>

@@ -25,14 +25,14 @@ $utilities: map-merge(
       property: height,
       class: vh,
       values: (
-        100: calc(100vh - #{$navbarHeight} - #{$topBannerHeight}),
+        100: calc(100vh - #{$navbarHeight}),
       ),
     ),
     "min-viewport-height": (
       property: min-height,
       class: min-vh,
       values: (
-        100: calc(100vh - #{$navbarHeight} - #{$topBannerHeight}),
+        100: calc(100vh - #{$navbarHeight}),
       ),
     ),
   )
@@ -45,3 +45,5 @@ $btn-border-radius-lg: $border-radius-pill;
 $input-border-radius: $border-radius-pill;
 $input-border-radius-sm: $border-radius-pill;
 $input-border-radius-lg: $border-radius-pill;
+
+$form-select-border-radius: $border-radius-pill;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
 
 import GoBack from "../../components/GoBack";
 
@@ -8,29 +8,34 @@ const Credits = () => {
     <div>
       <GoBack />
 
-      <hr className="my-2" />
+      <Container>
+        <Row>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <h1 className="title text-center">Credits</h1>
 
-      <Container fluid className="p-0" data-aos="fade-in">
-        <ul>
-          <li>
-            <a
-              href="https://www.freepik.com/vectors/rocky-mountains"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Rocky mountains vector created by vectorpocket - www.freepik.com
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.svgbackgrounds.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Background provided by SVGBackgrounds.com
-            </a>
-          </li>
-        </ul>
+            <ListGroup>
+              <ListGroup.Item>
+                <a
+                  href="https://www.freepik.com/vectors/rocky-mountains"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Rocky mountains vector created by vectorpocket -
+                  www.freepik.com
+                </a>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <a
+                  href="https://www.svgbackgrounds.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Background provided by SVGBackgrounds.com
+                </a>
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

@@ -56,7 +56,7 @@ const SideMenu = () => {
   };
 
   return (
-    <Container fluid data-aos="fade-in">
+    <Container fluid data-aos="fade-in" className="pb-5">
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <ListGroup variant="flush">
@@ -223,22 +223,22 @@ const SideMenu = () => {
                     ) : null}
                     {i18n.language === "es" ? (
                       <>
+                        {t("global.language")}
                         <ReactCountryFlag
                           countryCode="CR"
-                          className="me-2 mb-1"
+                          className="ms-2 mb-1"
                           svg
                         />
-                        {t("global.language")}
                       </>
                     ) : null}
                     {i18n.language === "fr" ? (
                       <>
+                        {t("global.language")}
                         <ReactCountryFlag
                           countryCode="FR"
-                          className="me-2 mb-1"
+                          className="ms-2 mb-1"
                           svg
                         />
-                        {t("global.language")}
                       </>
                     ) : null}
                   </div>
@@ -308,21 +308,21 @@ const SideMenu = () => {
                 </div>
               </ListGroup.Item>
             </Link>
-
-            <hr className="my-2" />
-
-            <div className="text-center mt-2">
-              <SocialIcons />
-            </div>
-
-            {isLoggedIn ? (
-              <div onClick={logOut} className="cursor-pointer text-center mt-4">
-                <ListGroup.Item className="border-0 link-success">
-                  <p className="mb-0 py-1">Log Out</p>
-                </ListGroup.Item>
-              </div>
-            ) : null}
           </ListGroup>
+
+          <hr className="my-2" />
+
+          <div className="text-center pt-3">
+            <SocialIcons />
+          </div>
+
+          {isLoggedIn ? (
+            <div onClick={logOut} className="cursor-pointer text-center mt-4">
+              <ListGroup.Item className="border-0 link-success">
+                <p className="mb-0 py-1">Log Out</p>
+              </ListGroup.Item>
+            </div>
+          ) : null}
         </Col>
       </Row>
     </Container>

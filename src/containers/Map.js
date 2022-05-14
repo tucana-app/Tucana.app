@@ -19,7 +19,7 @@ const Map = () => {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <Accordion>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Map #1</Accordion.Header>

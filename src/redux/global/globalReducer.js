@@ -9,20 +9,6 @@ const isDateInPast = (firstDate, secondDate) => {
 };
 
 const initialState = {
-  supportedLanguagesCodes: ["en", "es", "fr", "de"],
-  supportedLanguagesNames: ["English", "Español", "Français", "Deutsch"],
-
-  provinces: [
-    "Unknown",
-    "Alajuela",
-    "Cartago",
-    "Guanacaste",
-    "Heredia",
-    "Limón",
-    "Puntarenas",
-    "San José",
-  ],
-
   seatsMax: 6,
 
   isEmptyObject: (obj) => {
@@ -111,6 +97,19 @@ const initialState = {
       );
     return (d * 1.609344).toFixed(2);
   },
+
+  arrayContactSubjects: [
+    "Account",
+    "Booking",
+    "Ride",
+    "Investment",
+    "Donation",
+    "App feedback",
+    "Report someone",
+    "Work with us",
+    "Request a feature",
+    "Other",
+  ],
 };
 
 function globalReducer(state = initialState, action) {

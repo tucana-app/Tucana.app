@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { ArrowRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
@@ -137,7 +137,10 @@ const Bookings = () => {
         ) : (
           <Row>
             <Col className="text-center">
-              <MessageEmpty title="rides" />
+              <p>You haven't made a booking yet</p>
+              <Link to="/find">
+                <Button variant="success">Book a ride</Button>
+              </Link>
             </Col>
           </Row>
         )}

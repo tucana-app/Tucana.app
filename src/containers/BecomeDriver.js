@@ -73,7 +73,7 @@ const BecomeDriver = () => {
             <p className="lead mb-0">You are growing the community</p>
             <p className="text-center">
               Visit{" "}
-              <Link to="/coming-soon" className="text-success">
+              <Link to="/how-it-works" className="text-success">
                 this link
               </Link>{" "}
               for more info.

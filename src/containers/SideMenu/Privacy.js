@@ -1,22 +1,29 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-
+import { Container, Row, Col } from "react-bootstrap";
 import GoBack from "../../components/GoBack";
 
-function Privacy() {
+const Privacy = () => {
   return (
-    <div data-aos="fade-in">
+    <div>
       <GoBack />
 
-      <Container className="my-5">
-        <Row className="mb-5">
-          <Col>
-            <h1 className="text-success text-center">Privacy</h1>
+      <Container>
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <h1 className="title">Privacy Policy</h1>
+            <p>Coming soon</p>
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default Privacy;

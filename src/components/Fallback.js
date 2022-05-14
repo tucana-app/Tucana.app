@@ -4,7 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const Fallback = () => {
   return (
-    <Container className="vh-100">
+    <Container>
       <Row className="h-100 align-items-center">
         <Col className="text-center">
           <div className="d-inline-flex align-items-center">
