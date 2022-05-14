@@ -1,7 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IndexLinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Button,
+  Container,
+  Row,
+  Col,
+  TabContainer,
+} from "react-bootstrap";
 import {
   SearchIcon,
   PlusCircleIcon,
@@ -133,41 +141,55 @@ function NavigationBar() {
   ) : (
     <Navbar bg="light" variant="light" fixed="bottom">
       <Navbar.Collapse id="navigation-bar">
-        <Nav className="w-100 justify-content-around align-items-center">
-          <IndexLinkContainer to="/" href="/">
-            <Nav.Link className="text-center">
-              <HomeIcon size={24} />
-              <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                {t("navigationBar.home")}
-              </p>
-            </Nav.Link>
-          </IndexLinkContainer>
-          <div className="d-inline-flex">
-            <IndexLinkContainer to="/login" href="/login">
-              <Nav.Link className="text-center">
-                <Button variant="outline-success" size="lg">
-                  {t("navigationBar.logIn")}
-                </Button>
-              </Nav.Link>
-            </IndexLinkContainer>
-
-            <IndexLinkContainer to="/signup" href="/signup">
-              <Nav.Link className="text-center">
-                <Button variant="success" size="lg">
-                  {t("navigationBar.signUp")}
-                </Button>
-              </Nav.Link>
-            </IndexLinkContainer>
-          </div>
-
-          <IndexLinkContainer to="/menu" href="/menu">
-            <Nav.Link className="text-center">
-              <ThreeBarsIcon size={24} />
-              <p className="text-icon-nav-bar d-lg-screen mb-0">
-                {t("navigationBar.menu")}
-              </p>
-            </Nav.Link>
-          </IndexLinkContainer>
+        <Nav className="w-100 justify-content-center align-items-center">
+          <Container>
+            <Row>
+              <Col xs={12} sm={10} md={8} lg={6} className="px-0 mx-auto">
+                <Container className="px-0">
+                  <Row>
+                    <Col xs={2} className="text-center mx-auto">
+                      <IndexLinkContainer to="/" href="/">
+                        <Nav.Link>
+                          <HomeIcon size={24} />
+                          <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
+                            {t("navigationBar.home")}
+                          </p>
+                        </Nav.Link>
+                      </IndexLinkContainer>
+                    </Col>
+                    <Col xs="auto" className="text-center mx-auto">
+                      <div className="d-inline-flex">
+                        <IndexLinkContainer to="/login" href="/login">
+                          <Nav.Link>
+                            <Button variant="outline-success" size="lg">
+                              {t("navigationBar.logIn")}
+                            </Button>
+                          </Nav.Link>
+                        </IndexLinkContainer>
+                        <IndexLinkContainer to="/signup" href="/signup">
+                          <Nav.Link>
+                            <Button variant="success" size="lg">
+                              {t("navigationBar.signUp")}
+                            </Button>
+                          </Nav.Link>
+                        </IndexLinkContainer>
+                      </div>
+                    </Col>
+                    <Col xs={2} className="text-center mx-auto">
+                      <IndexLinkContainer to="/menu" href="/menu">
+                        <Nav.Link>
+                          <ThreeBarsIcon size={24} />
+                          <p className="text-icon-nav-bar d-lg-screen mb-0">
+                            {t("navigationBar.menu")}
+                          </p>
+                        </Nav.Link>
+                      </IndexLinkContainer>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+          </Container>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
