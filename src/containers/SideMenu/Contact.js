@@ -18,13 +18,21 @@ const Contact = () => {
     isLoggedIn,
     isLoadingSubmitFormContact,
   } = useSelector((state) => state.user);
-  const { labelStringField, labelRequiredField } = useSelector(
-    (state) => state.global
-  );
+  const { labelStringField, labelRequiredField, arrayContactSubjects } =
+    useSelector((state) => state.global);
 
   const [captcha, setCaptcha] = useState(false);
   const [captchaReady, setCaptchaReady] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
+
+  var arraySubjects = [];
+  arrayContactSubjects.map((subject, index) => {
+    return arraySubjects.push(
+      <option key={index} value={subject}>
+        {subject}
+      </option>
+    );
+  });
 
   const schema = Yup.object().shape({
     fullname: Yup.string(labelStringField)
@@ -33,6 +41,9 @@ const Contact = () => {
       .required(labelRequiredField),
     email: Yup.string(labelStringField)
       .email("Please enter a valid email address")
+      .required(labelRequiredField),
+    subject: Yup.mixed()
+      .oneOf(arrayContactSubjects, labelRequiredField)
       .required(labelRequiredField),
     message: Yup.string()
       .min(20, "Min. 20 characters")
@@ -56,6 +67,14 @@ const Contact = () => {
     if (captchaVerified) {
       setCaptchaVerified(false);
 
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Yes",
+          bodyText: "Please fill",
+          variant: "success",
+        })
+      );
       if (isLoggedIn) {
         dispatch(submitFormContact(currentUser, values));
       } else {
@@ -70,7 +89,7 @@ const Contact = () => {
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: "Please fill",
+          bodyText: "Please fill up the captcha",
           variant: "warning",
         })
       );
@@ -81,7 +100,7 @@ const Contact = () => {
     <>
       <GoBack />
 
-      <Container fluid data-aos="fade-in">
+      <Container fluid data-aos="fade-in" className="pb-5">
         <Row>
           <Col
             xs={12}
@@ -127,6 +146,7 @@ const Contact = () => {
                   ? `${currentUser.firstName} ${currentUser.lastName}`
                   : "",
                 email: isLoggedIn ? currentUser.email : "",
+                subject: "",
                 message: "",
               }}
             >
@@ -160,8 +180,6 @@ const Contact = () => {
                           </Form.Control.Feedback>
                         </Form.Group>
                       </Col>
-                    </Row>
-                    <Row className="my-3">
                       <Col>
                         <Form.Group>
                           <Form.Control
@@ -180,20 +198,40 @@ const Contact = () => {
                         </Form.Group>
                       </Col>
                     </Row>
+
+                    <Row className="my-3">
+                      <Col>
+                        <Form.Group>
+                          <Form.Select
+                            name="subject"
+                            onChange={handleChange}
+                            isInvalid={!!errors.subject}
+                            isValid={touched.subject && !errors.subject}
+                            disabled={isSubmitting}
+                          >
+                            <option value={0}>Subject</option>
+                            {arraySubjects}
+                          </Form.Select>
+                          <Form.Control.Feedback type="invalid">
+                            {errors.subject}
+                          </Form.Control.Feedback>
+                        </Form.Group>
+                      </Col>
+                    </Row>
                     <Row className="my-3">
                       <Col>
                         <Form.Group>
                           <Form.Control
                             type="textarea"
                             name="message"
+                            as="textarea"
                             value={values.message}
                             placeholder="Message"
                             onChange={handleChange}
                             isInvalid={!!errors.message}
                             isValid={touched.message && !errors.message}
-                            as="textarea"
-                            rows="3"
-                            className="rounded-3"
+                            className="rounded-0"
+                            rows="4"
                             required
                           />
                           <Form.Control.Feedback type="invalid">

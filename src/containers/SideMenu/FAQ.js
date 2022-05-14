@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 
-function ComingSoon(props) {
+const FAQ = () => {
   return (
     <div>
       <GoBack />
@@ -17,17 +17,13 @@ function ComingSoon(props) {
             xl={4}
             className="text-center mx-auto"
           >
-            <h1 className="text-success">{props.pageName || "Coming soon"}</h1>
-            <p className="lead">
-              This page or feature will soon be available
-              <br />
-              Thank you for your understanding
-            </p>
+            <h1 className="title">FAQ</h1>
+            <p>Coming soon</p>
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
-export default ComingSoon;
+export default FAQ;

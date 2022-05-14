@@ -288,7 +288,7 @@ const SignUp = () => {
         <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
           <p className="small text-secondary mb-3">
             If you chose to sign up, you agree with our{" "}
-            <Link to="/coming-soon" className="link-secondary">
+            <Link to="/terms" className="link-secondary">
               terms and conditions
             </Link>
             .
@@ -296,7 +296,7 @@ const SignUp = () => {
           <p className="small text-secondary mb-3">
             The information you are providing will be checked later by a
             moderator. Please make sure they are the most acurate possible.{" "}
-            <Link to="/coming-soon" className="text-secondary">
+            <Link to="/how-it-works" className="text-secondary">
               Learn more
             </Link>
           </p>
