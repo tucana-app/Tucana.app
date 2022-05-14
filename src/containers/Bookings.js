@@ -41,7 +41,7 @@ const Bookings = () => {
         <Row className="justify-content-center mb-4">
           <Col className="text-center">
             <div>
-              <h1 className="font-title text-success mb-0">Bookings</h1>
+              <h1 className="title mb-0">Bookings</h1>
               <p className="lead">All the bookings you have made</p>
             </div>
           </Col>

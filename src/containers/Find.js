@@ -60,9 +60,16 @@ const Find = () => {
         id="container-find-ride"
       >
         <Row className="justify-content-center mb-4">
-          <Col className="text-center">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
             <div>
-              <h1 className="display-5 text-success text-shadow fw-bold mb-0">
+              <h1 className="title text-dark text-shadow fw-bold mb-0">
                 Find your next trip across Costa Rica
               </h1>
             </div>

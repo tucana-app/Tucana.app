@@ -66,7 +66,7 @@ const OfferRide = () => {
     <Container className="py-0 my-5" data-aos="fade-in">
       <Row className="mb-3">
         <Col className="text-center">
-          <h1 className="text-success font-title">Offer a ride</h1>
+          <h1 className="title">Offer a ride</h1>
           <p className="lead mb-0">Thank you for helping the community!</p>
           <p className="text-center">
             Visit{" "}
@@ -108,7 +108,7 @@ const OfferRide = () => {
               <Form noValidate onSubmit={handleSubmit} ref={form}>
                 <Row className="mb-4">
                   <Col xs={12} sm={6} className="mb-3 mb-md-0">
-                    <p className="font-title text-center text-sm-start mb-1">
+                    <p className="title text-center text-sm-start mb-1">
                       Origin
                     </p>
                     <div className="p-2 p-md-3 border rounded">
@@ -163,7 +163,7 @@ const OfferRide = () => {
                   </Col>
 
                   <Col xs={12} sm={6}>
-                    <p className="font-title text-center text-sm-start mb-1">
+                    <p className="title text-center text-sm-start mb-1">
                       Destination
                     </p>
                     <div className="p-2 p-md-3 border rounded">

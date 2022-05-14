@@ -33,42 +33,48 @@ function RidesToConfirm() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="pt-5">
+      <Container>
         <Row>
-          <Col>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <h1 className="text-success text-center">Rides to confirm</h1>
           </Col>
         </Row>
-      </Container>
-      {isLoadingRidesToConfirm ? (
-        <LoadingSpinner />
-      ) : ridesToConfirmData.length ? (
-        <ListGroup variant="flush" className="pt-4">
-          {ridesToConfirmData.map((ride, index) => (
-            <Link
-              key={index}
-              to={`/ride/${ride.id}`}
-              className="text-decoration-none"
-            >
-              <ListGroup.Item className="border border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span>
-                    <CircleIcon
-                      size={12}
-                      verticalAlign="middle"
-                      className="text-danger me-2"
-                    />
-                    {ride.origin.city} - {ride.destination.city} (
-                    {dateFormat(ride.dateTime, "dd/mm/yyyy")})
-                  </span>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-          ))}
-        </ListGroup>
-      ) : (
-        <Container>
+        {isLoadingRidesToConfirm ? (
+          <Row>
+            <Col className="text-center">
+              <LoadingSpinner />
+            </Col>
+          </Row>
+        ) : ridesToConfirmData.length ? (
+          <Row>
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+              <ListGroup variant="flush" className="pt-4">
+                {ridesToConfirmData.map((ride, index) => (
+                  <Link
+                    key={index}
+                    to={`/ride/${ride.id}`}
+                    className="text-decoration-none"
+                  >
+                    <ListGroup.Item className="border border-start-0 border-end-0 ">
+                      <div className="d-inline-flex justify-content-between w-100 py-2">
+                        <span>
+                          <CircleIcon
+                            size={12}
+                            verticalAlign="middle"
+                            className="text-danger me-2"
+                          />
+                          {ride.origin.city} - {ride.destination.city} (
+                          {dateFormat(ride.dateTime, "dd/mm/yyyy")})
+                        </span>
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </div>
+                    </ListGroup.Item>
+                  </Link>
+                ))}
+              </ListGroup>
+            </Col>
+          </Row>
+        ) : (
           <Row>
             <Col className="text-center">
               <p className="lead">No rides to confirm.</p>
@@ -77,8 +83,8 @@ function RidesToConfirm() {
               </LinkContainer>
             </Col>
           </Row>
-        </Container>
-      )}
+        )}
+      </Container>
     </div>
   );
 }

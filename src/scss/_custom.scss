@@ -20,93 +20,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bg-cover,
-.parralax {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.font-small {
-  font-size: 0.75rem;
-}
-
-.frame,
-.frame-hover {
-  padding: 1px;
-  border: solid 3px #efefef;
-}
-
-.frame-hover {
-  &:hover,
-  frame {
-    border: solid 3px #ccc;
-    -moz-box-shadow: 1px 1px 5px #999;
-    -webkit-box-shadow: 1px 1px 5px #999;
-    box-shadow: 1px 1px 5px #999;
-  }
-}
-
-.font-small {
-  font-size: 0.9rem;
-}
-
-.font-smaller {
-  font-size: 0.8rem;
-}
-
-.font-big {
-  font-size: 1.25rem;
-}
-
-.font-bigger {
-  font-size: 1.5rem;
-}
-
-.letter-spacing-big {
-  letter-spacing: 2px;
-}
-
-.letter-spacing-bigger {
-  letter-spacing: 3px;
-}
-
-.line-height-big {
-  line-height: 2rem;
-}
-
 // Fonts
 
-.font-title {
-  font-family: "Jost" !important;
+.title {
+  font-family: "Work Sans" !important;
+  @extend .text-success;
 }
 
-.font-subtitle {
-  // font-family: "Amatic SC" !important;
-}
-
-.font-text {
-  font-family: "Manrope", sans-serif !important;
-}
-
-// Display breakpoint
-.d-xs-screen.d-md-screen,
-.d-xs-screen.d-lg-screen {
-  display: revert;
-}
-
-.d-md-screen {
-  display: none;
-}
-
-.d-lg-screen {
-  display: none;
-}
-
-.img-cover {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
+.navbar {
+  border-top: 2px solid $brand-1;
 }
 
 .cursor-pointer {
@@ -156,7 +78,23 @@ body {
 }
 
 .text-shadow {
-  text-shadow: 2px 2px $black;
+  text-shadow: 2px 2px $brand-1;
+}
+
+// END CUSTOM CLASSES
+// DO NOT TOUCH FROM HERE
+// Display breakpoint
+.d-xs-screen.d-md-screen,
+.d-xs-screen.d-lg-screen {
+  display: revert;
+}
+
+.d-md-screen {
+  display: none;
+}
+
+.d-lg-screen {
+  display: none;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
@@ -207,15 +145,6 @@ body {
     display: revert;
   }
 
-  .parralax {
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-  }
-
-  [class*="display-two-columns"] {
-    height: 400px;
-  }
-
   .icon-nav-bar {
     font-size: large;
   }
@@ -241,20 +170,12 @@ body {
     display: block;
   }
 
-  [class*="display-two-columns"] {
-    height: 500px;
-  }
-
   .navbar {
     .navbar-logo {
       width: 200px;
     }
 
     font-size: 1.25rem;
-
-    .dropdown-menu {
-      text-align: left;
-    }
   }
 }
 

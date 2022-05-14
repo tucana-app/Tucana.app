@@ -20,6 +20,11 @@ function DriverProfile(props) {
       <Container className="py-5 text-center">
         {currentUser.Driver && currentUser.Driver.id ? (
           <>
+            <Row>
+              <Col>
+                <h1 className="title">Your driver's profile</h1>
+              </Col>
+            </Row>
             <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
               <Col xs={12} sm={4} className="text-md-end">
                 <h4 className="text-secondary">Rating</h4>

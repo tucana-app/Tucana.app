@@ -3,22 +3,15 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useTranslation } from "react-i18next";
-import ReactCountryFlag from "react-country-flag";
 
 import GoBack from "../../components/GoBack";
 import { CheckIcon } from "@primer/octicons-react";
 
 function Settings() {
-  const { t, i18n } = useTranslation();
   const { isLoggedIn } = useSelector((state) => state.user);
 
   const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
   const [showModalRequestData, setShowModalRequestData] = useState(false);
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -53,37 +46,6 @@ function Settings() {
               onClick={() => setShowModalRemoveAccount(true)}
             >
               Remove my account
-            </Button>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col className="text-center">
-            <p>
-              {t("languagePage.current")}: {t("global.language")}
-            </p>
-            <Button
-              onClick={() => changeLanguage("en")}
-              variant="outline-success"
-              className="me-2"
-            >
-              <ReactCountryFlag countryCode="US" className="mb-1 me-2" svg />
-              English
-            </Button>
-            <Button
-              onClick={() => changeLanguage("es")}
-              variant="outline-success"
-              className="me-2"
-            >
-              <ReactCountryFlag countryCode="CR" className="mb-1 me-2" svg />
-              Español
-            </Button>
-            <Button
-              onClick={() => changeLanguage("fr")}
-              variant="outline-success"
-            >
-              <ReactCountryFlag countryCode="FR" className="mb-1 me-2" svg />
-              Français
             </Button>
           </Col>
         </Row>

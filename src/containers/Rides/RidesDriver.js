@@ -46,9 +46,7 @@ const RidesDriver = () => {
             <Row className="justify-content-center">
               <Col>
                 <div className="text-center mb-4">
-                  <h1 className="font-title text-success mb-0">
-                    Rides offered
-                  </h1>
+                  <h1 className="title mb-0">Rides offered</h1>
                   <p className="lead">All the rides you have submitted</p>
                 </div>
               </Col>

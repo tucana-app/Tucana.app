@@ -69,7 +69,7 @@ const BecomeDriver = () => {
       <Container className="py-0 my-5" data-aos="fade-in">
         <Row className="mb-3">
           <Col className="text-center">
-            <h1 className="text-success font-title">Become a driver</h1>
+            <h1 className="title">Become a driver</h1>
             <p className="lead mb-0">You are growing the community</p>
             <p className="text-center">
               Visit{" "}
@@ -90,7 +90,7 @@ const BecomeDriver = () => {
                 <p>Past submissions:</p>
                 {getSubmissionsBecomeDriverData.map((submission, index) => (
                   <div key={index} className="mb-3">
-                    {index + 1}: status:{" "}
+                    Request #{index + 1}:{" "}
                     {submission.admin_VerifDriverInfos.length === 0 ? (
                       <span className="text-warning">under review</span>
                     ) : submission.admin_VerifDriverInfos[0] &&

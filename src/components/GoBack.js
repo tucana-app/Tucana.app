@@ -11,15 +11,19 @@ function GoBack(props) {
   };
 
   return (
-    <Container className="mt-3">
-      <Row>
-        <Col xs={1}>
-          <div onClick={handleGoBack} className="cursor-pointer">
-            <ArrowLeftIcon size={28} className="text-success" />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <Row className="mb-2 mx-1 mx-sm-0">
+      <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+        <Container className="mt-3 py-3 px-2">
+          <Row>
+            <Col xs={1}>
+              <div onClick={handleGoBack} className="cursor-pointer">
+                <ArrowLeftIcon size={28} className="text-success" />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </Col>
+    </Row>
   );
 }
 

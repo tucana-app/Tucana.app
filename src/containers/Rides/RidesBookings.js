@@ -48,7 +48,7 @@ const RidesBookings = () => {
             <Row className="justify-content-center">
               <Col>
                 <div className="text-center mb-4">
-                  <h1 className="font-title text-success mb-0">
+                  <h1 className="title text-success mb-0">
                     Bookings for your rides
                   </h1>
                   <p className="lead">Find your potential passenger here</p>

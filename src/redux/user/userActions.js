@@ -228,6 +228,14 @@ export const login = (formLogin) => {
         // If a flag is provided, if not default is "ERROR"
         const flag = (!!error.response && error.response.data.flag) || "ERROR";
 
+        dispatch({
+          type: userTypes.LOGIN_FAIL,
+          payload: {
+            message,
+            flag,
+          },
+        });
+
         if (flag !== "NOT_CONFIRMED") {
           dispatch(
             setToast({
@@ -238,15 +246,6 @@ export const login = (formLogin) => {
             })
           );
         }
-
-        dispatch({
-          type: userTypes.LOGIN_FAIL,
-          payload: {
-            message,
-            flag,
-            userId: error.response.data.userId || null,
-          },
-        });
       });
   };
 };
@@ -673,5 +672,65 @@ export const updateDriverStateFail = (error) => {
   return {
     type: userTypes.UPDATE_DRIVER_STATE_ERROR,
     payload: error,
+  };
+};
+
+// Submit form contact
+
+export const submitFormContactRequested = () => {
+  return {
+    type: userTypes.SUBMIT_CONTACT_FORM_REQUESTED,
+  };
+};
+
+export const submitFormContact = (userId, values) => {
+  return (dispatch) => {
+    dispatch(submitFormContactRequested());
+
+    axios
+      .post(URL_API + "/user/submit-contact-form", { userId, values })
+      .then((response) => {
+        dispatch(submitFormContactSuccess());
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Message sent",
+            bodyText: "Thank you for contacting us",
+            variant: "success",
+          })
+        );
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(submitFormContactFail(message));
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: "Your message couldn't be sent",
+            variant: "danger",
+          })
+        );
+      });
+  };
+};
+
+export const submitFormContactSuccess = () => {
+  return {
+    type: userTypes.SUBMIT_CONTACT_FORM_SUCCESS,
+  };
+};
+
+export const submitFormContactFail = () => {
+  return {
+    type: userTypes.SUBMIT_CONTACT_FORM_ERROR,
   };
 };

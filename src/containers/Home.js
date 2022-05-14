@@ -21,7 +21,7 @@ function Home() {
       <Container className="my-5">
         <Row className="mb-3">
           <Col xs={10} sm={8} md={6} lg={4} className="text-center mx-auto">
-            <img src={logo} alt="Ride.CR logo" className="img-fluid" />
+            <img src={logo} alt="Tucána logo" className="img-fluid" />
             <p className="lead mb-0">Share your rides in Costa Rica</p>
           </Col>
         </Row>
@@ -29,7 +29,7 @@ function Home() {
           <Col xs={10} sm={8} md={6} xl={4} className="text-center">
             <img
               src={carpooling}
-              alt="Ride.CR logo"
+              alt="Tucána logo"
               width={400}
               className="img-fluid"
             />
@@ -49,7 +49,7 @@ function Home() {
               </Button>
             </LinkContainer>
             <p className="mb-0">
-              Welcome to Ride.CR, the best carpooling app in Costa Rica: a
+              Welcome to Tucána, the best carpooling app in Costa Rica: a
               practical and ecological way to travel and meet people.
             </p>
             <p>

@@ -7,7 +7,6 @@ import {
   CircleIcon,
   LinkExternalIcon,
 } from "@primer/octicons-react";
-import { ArrowRight } from "react-bootstrap-icons";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
@@ -16,6 +15,7 @@ import { logout } from "../../redux";
 
 // Importing assets
 import logo from "../../assets/images/OPTI_noir.png";
+import SocialIcons from "../../components/SocialIcons";
 
 const SideMenu = () => {
   const { t, i18n } = useTranslation();
@@ -58,7 +58,14 @@ const SideMenu = () => {
   return (
     <Container fluid data-aos="fade-in">
       <Row>
-        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+        <Col
+          xs={12}
+          sm={10}
+          md={8}
+          lg={6}
+          xl={4}
+          className="bg-white p-0 mx-auto"
+        >
           <ListGroup variant="flush">
             {isLoggedIn ? (
               <>
@@ -85,7 +92,7 @@ const SideMenu = () => {
                 <Link to="/profile/passenger" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Profile</p>
+                      <p className="mb-0">Account</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -95,7 +102,7 @@ const SideMenu = () => {
                   <Link to="/profile/driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="mb-0">Driver's profile</p>
+                        <p className="mb-0">Profile</p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
@@ -129,19 +136,16 @@ const SideMenu = () => {
                   </ListGroup.Item>
                 </Link>
 
+                <Link to="/help" className="text-decoration-none">
+                  <ListGroup.Item className="border-0">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <p className="mb-0">Help</p>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
+
                 <hr className="my-2" />
-
-                {currentUser.Driver ? (
-                  <>
-                    <ListGroup.Item className="border-0">
-                      <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="text-secondary mb-0">Vehicles</p>
-                      </div>
-                    </ListGroup.Item>
-
-                    <hr className="my-2" />
-                  </>
-                ) : null}
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -178,7 +182,7 @@ const SideMenu = () => {
                     <div className="d-inline mx-auto">
                       <img
                         src={logo}
-                        alt="Ride.CR logo"
+                        alt="Tucána logo"
                         className="img-fluid"
                         style={{ maxWidth: "200px" }}
                       />
@@ -201,6 +205,15 @@ const SideMenu = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">Sign Up</p>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
+
+                <Link to="/help" className="text-decoration-none">
+                  <ListGroup.Item className="border-0">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <p className="mb-0">Help</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -237,22 +250,7 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
 
-            <ListGroup.Item className="border-0">
-              <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                <p className="text-secondary mb-0">Rate the app</p>
-              </div>
-            </ListGroup.Item>
-
             <hr className="my-2" />
-
-            <Link to="/help" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Help</p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
 
             <Link to="/language" className="text-decoration-none">
               <ListGroup.Item className="border-0">
@@ -260,12 +258,12 @@ const SideMenu = () => {
                   <div className="mb-0">
                     {i18n.language === "en" ? (
                       <>
+                        {t("global.language")}
                         <ReactCountryFlag
                           countryCode="US"
-                          className="me-2 mb-1"
+                          className="ms-2 mb-1"
                           svg
                         />
-                        {t("global.language")}
                       </>
                     ) : null}
                     {i18n.language === "es" ? (
@@ -312,7 +310,7 @@ const SideMenu = () => {
               </ListGroup.Item>
             </Link>
             <a
-              href="https://ridecr.atwebpages.com"
+              href="http://ridecr.atwebpages.com"
               target={"_blank"}
               rel="noreferrer"
               className="text-decoration-none"
@@ -338,8 +336,14 @@ const SideMenu = () => {
 
             <hr className="my-2" />
 
+            <Row className="mt-2">
+              <Col className="text-center">
+                <SocialIcons />
+              </Col>
+            </Row>
+
             {isLoggedIn ? (
-              <div onClick={logOut} className="cursor-pointer mt-4">
+              <div onClick={logOut} className="cursor-pointer text-center mt-4">
                 <ListGroup.Item className="border-0 link-success">
                   <p className="mb-0 py-1">Log Out</p>
                 </ListGroup.Item>

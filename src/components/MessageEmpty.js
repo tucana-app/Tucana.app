@@ -5,7 +5,7 @@ function MessageEmpty(props) {
   const { title } = props;
   return (
     <div>
-      <h1 className="font-title mb-4">No {title} found</h1>
+      <h1 className="title mb-4">No {title} found</h1>
       <p className="lead mb-0">
         Book your next ride by{" "}
         <Link to="/find" className="text-success">

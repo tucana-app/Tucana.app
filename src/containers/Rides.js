@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Badge, Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
 
@@ -15,6 +15,7 @@ import {
 import car from "../assets/images/undraw_Order_ride.png";
 
 import LoadingSpinner from "../components/LoadingSpinner";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Rides = () => {
   const dispatch = useDispatch();
@@ -83,7 +84,9 @@ const Rides = () => {
       </Row>
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
-          <ListGroup variant="flush" className="pt-2">
+          <hr className="my-2" />
+
+          <ListGroup variant="flush">
             <Link to="/bookings" className="text-light text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -108,85 +111,105 @@ const Rides = () => {
 
             <hr className="my-2" />
 
-            <Link
-              to="/rides/driver"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <div>
-                    Rides offered
-                    {driverRidesData.length > 0 ? (
-                      countDriverRides(driverRidesData) ? (
-                        <Badge bg="success" className="text-dark ms-2">
-                          {isLoadingDriverRides ? (
-                            <LoadingSpinner size="sm" />
-                          ) : (
-                            countDriverRides(driverRidesData)
-                          )}
-                        </Badge>
-                      ) : null
-                    ) : null}
-                  </div>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link
-              to="/rides/bookings"
-              className="text-light text-decoration-none"
-            >
-              <ListGroup.Item className="border-0 ">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <div>
-                    Bookings received
-                    {driverBookingsData.length > 0 ? (
-                      countDriverBookings(driverBookingsData) ? (
-                        <Badge bg="info" className="text-dark ms-2">
-                          {isLoadingDriverBookings ? (
-                            <LoadingSpinner size="sm" />
-                          ) : (
-                            countDriverBookings(driverBookingsData)
-                          )}
-                        </Badge>
-                      ) : null
-                    ) : null}
-                  </div>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
-              <div>
-                <hr className="my-2" />
-
+            {currentUser.Driver ? (
+              <>
                 <Link
-                  to="/rides/rides-to-confirm"
+                  to="/rides/driver"
                   className="text-light text-decoration-none"
                 >
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
-                        <span className="fw-bold">Rides to confirm</span>
-                        <Badge
-                          bg="warning"
-                          className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
-                        >
-                          {ridesToConfirmData.length}
-                        </Badge>
+                        Rides offered
+                        {driverRidesData.length > 0 ? (
+                          countDriverRides(driverRidesData) ? (
+                            <Badge bg="success" className="text-dark ms-2">
+                              {isLoadingDriverRides ? (
+                                <LoadingSpinner size="sm" />
+                              ) : (
+                                countDriverRides(driverRidesData)
+                              )}
+                            </Badge>
+                          ) : null
+                        ) : null}
                       </div>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
-              </div>
-            ) : null}
 
-            <hr className="my-2" />
+                <Link
+                  to="/rides/bookings"
+                  className="text-light text-decoration-none"
+                >
+                  <ListGroup.Item className="border-0 ">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <div>
+                        Bookings received
+                        {driverBookingsData.length > 0 ? (
+                          countDriverBookings(driverBookingsData) ? (
+                            <Badge bg="info" className="text-dark ms-2">
+                              {isLoadingDriverBookings ? (
+                                <LoadingSpinner size="sm" />
+                              ) : (
+                                countDriverBookings(driverBookingsData)
+                              )}
+                            </Badge>
+                          ) : null
+                        ) : null}
+                      </div>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
 
-            <Link to="/help" className="text-light text-decoration-none mt-4">
+                {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+                  <div>
+                    <hr className="my-2" />
+
+                    <Link
+                      to="/rides/rides-to-confirm"
+                      className="text-light text-decoration-none"
+                    >
+                      <ListGroup.Item className="border-0">
+                        <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                          <div>
+                            <span className="fw-bold">Rides to confirm</span>
+                            <Badge
+                              bg="warning"
+                              className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
+                            >
+                              {ridesToConfirmData.length}
+                            </Badge>
+                          </div>
+                          <ChevronRightIcon size={24} verticalAlign="middle" />
+                        </div>
+                      </ListGroup.Item>
+                    </Link>
+
+                    <hr className="mt-2 mb-4" />
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/become-driver"
+                  className="text-light text-decoration-none mt-4"
+                >
+                  <ListGroup.Item className="border-0">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <p className="text-success fw-bold mb-0">
+                        Become a driver
+                      </p>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
+              </>
+            )}
+
+            <Link to="/help" className="text-light text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   Help
