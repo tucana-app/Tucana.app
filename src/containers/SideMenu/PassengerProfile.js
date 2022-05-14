@@ -9,9 +9,9 @@ import {
   CircleIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
+import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 import GoBack from "../../components/GoBack";
-import { CheckIcon } from "@primer/octicons-react";
 
 function PassengerProfile() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -89,7 +89,7 @@ function PassengerProfile() {
             <span className="text-secondary">Phone number</span>
           </Col>
           <Col className="text-start">
-            <span>{currentUser.phoneNumber}</span>
+            <span>{formatPhoneNumberIntl(currentUser.phoneNumber)}</span>
           </Col>
         </Row>
 

@@ -58,14 +58,7 @@ const SideMenu = () => {
   return (
     <Container fluid data-aos="fade-in">
       <Row>
-        <Col
-          xs={12}
-          sm={10}
-          md={8}
-          lg={6}
-          xl={4}
-          className="bg-white p-0 mx-auto"
-        >
+        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <ListGroup variant="flush">
             {isLoggedIn ? (
               <>
@@ -214,35 +207,6 @@ const SideMenu = () => {
 
             <hr className="my-2" />
 
-            <Link to="/donate" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="text-success fw-bold mb-0">Donate </p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link to="/download" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Download the App</p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link to="/coming-soon" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Feedbacks</p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <hr className="my-2" />
-
             <Link to="/language" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -287,6 +251,26 @@ const SideMenu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="mb-0">Map of Costa Rica</p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <hr className="my-2" />
+
+            <Link to="/donate" className="text-decoration-none">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="text-success fw-bold mb-0">Donate </p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
+
+            <Link to="/download" className="text-decoration-none">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">Download the App</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>

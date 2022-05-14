@@ -1,11 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 
-import { registerUser } from "../../redux";
+import { registerUser, setToast } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 require("yup-password")(Yup); // extend yup
@@ -24,6 +25,7 @@ const SignUp = () => {
   );
 
   const form = useRef();
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const schema = Yup.object().shape({
     firstName: Yup.string(labelStringField)
@@ -48,15 +50,14 @@ const SignUp = () => {
       .email("Please enter a valid email address")
       .required(labelRequiredField),
 
-    phoneNumber: Yup.string(labelStringField)
-      .matches(
-        /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
-        "Please enter a valid phone number"
-      )
-      .min(8, "Please enter a valid phone number")
-      .max(15, "Please enter a valid phone number")
-
-      .required(labelRequiredField),
+    // phoneNumber: Yup.string(labelStringField)
+    //   .matches(
+    //     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
+    //     "Please enter a valid phone number"
+    //   )
+    //   .min(8, "Please enter a valid phone number")
+    //   .max(15, "Please enter a valid phone number")
+    //   .required(labelRequiredField),
 
     username: Yup.string(labelStringField)
       .min(4, "Min. 4 characters")
@@ -71,10 +72,23 @@ const SignUp = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
-    dispatch(registerUser(values));
+    if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
+      values.phoneNumber = phoneNumber;
+      dispatch(registerUser(values));
 
-    form.current.reset();
-    formikBag.setSubmitting(false);
+      // form.current.reset();
+      formikBag.setSubmitting(false);
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: "Please enter a valid phone number",
+          variant: "warning",
+        })
+      );
+      formikBag.setSubmitting(false);
+    }
   };
 
   // Handle redirection in case the user is already logged in
@@ -124,9 +138,6 @@ const SignUp = () => {
                 <Row>
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        First name<span className="text-danger">*</span>
-                      </Form.Label>
                       <Form.Control
                         type="text"
                         name="firstName"
@@ -144,9 +155,6 @@ const SignUp = () => {
 
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        Last name<span className="text-danger">*</span>
-                      </Form.Label>
                       <Form.Control
                         type="text"
                         name="lastName"
@@ -166,9 +174,6 @@ const SignUp = () => {
                 <Row>
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        Email<span className="text-danger">*</span>
-                      </Form.Label>
                       <Form.Control
                         type="email"
                         name="email"
@@ -186,18 +191,22 @@ const SignUp = () => {
 
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        Phone number<span className="text-danger">*</span>
-                      </Form.Label>
-                      <Form.Control
-                        type="tel"
-                        name="phoneNumber"
+                      <PhoneInput
+                        international
+                        defaultCountry="CR"
+                        value={phoneNumber}
+                        onChange={setPhoneNumber}
                         placeholder="Phone number"
-                        onChange={handleChange}
-                        isInvalid={!!errors.phoneNumber}
-                        isValid={touched.phoneNumber && !errors.phoneNumber}
-                        required
+                        name="phoneNumber"
+                        error={
+                          phoneNumber
+                            ? isValidPhoneNumber(phoneNumber)
+                              ? undefined
+                              : "Invalid phone number"
+                            : "Phone number required"
+                        }
                       />
+
                       <Form.Control.Feedback type="invalid">
                         {errors.phoneNumber}
                       </Form.Control.Feedback>
@@ -208,9 +217,6 @@ const SignUp = () => {
                 <Row>
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group>
-                      <Form.Label>
-                        Username<span className="text-danger">*</span>
-                      </Form.Label>
                       <Form.Control
                         type="text"
                         name="username"
@@ -228,9 +234,6 @@ const SignUp = () => {
 
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
                     <Form.Group className="mb-3">
-                      <Form.Label>
-                        Password<span className="text-danger">*</span>
-                      </Form.Label>
                       <Form.Control
                         type="password"
                         name="password"
@@ -283,9 +286,6 @@ const SignUp = () => {
 
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
-          <p className="small text-secondary mb-3">
-            <span className="text-danger">*</span> These fields are mandatory
-          </p>
           <p className="small text-secondary mb-3">
             If you chose to sign up, you agree with our{" "}
             <Link to="/coming-soon" className="link-secondary">

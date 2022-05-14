@@ -81,6 +81,13 @@ body {
   text-shadow: 2px 2px $brand-1;
 }
 
+.PhoneInputInput {
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .py-1;
+  @extend .px-2;
+}
+
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE
 // Display breakpoint
