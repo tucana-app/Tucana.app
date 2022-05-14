@@ -31,7 +31,6 @@ import RatingsPassenger from "./containers/SideMenu/RatingsPassenger";
 import RatingsDriver from "./containers/SideMenu/RatingsDriver";
 import Ratings from "./containers/SideMenu/Ratings";
 import NewRating from "./containers/SideMenu/NewRating";
-import Settings from "./containers/SideMenu/Settings";
 import Contact from "./containers/SideMenu/Contact";
 import NotificationPage from "./containers/NotificationPage";
 import PassengerProfile from "./containers/SideMenu/PassengerProfile";
@@ -133,7 +132,6 @@ function App() {
             component={RidesToConfirm}
           />
           <Route exact path="/profile/driver" component={DriverProfile} />
-          <Route exact path="/settings" component={Settings} />
           <Route exact path="/notifications" component={NotificationPage} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/download" component={Download} />

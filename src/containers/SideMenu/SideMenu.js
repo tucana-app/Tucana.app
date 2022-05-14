@@ -127,15 +127,6 @@ const SideMenu = () => {
                   </ListGroup.Item>
                 </Link>
 
-                <Link to="/settings" className="text-decoration-none">
-                  <ListGroup.Item className="border-0">
-                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Settings</p>
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </div>
-                  </ListGroup.Item>
-                </Link>
-
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">

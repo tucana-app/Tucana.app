@@ -14,11 +14,11 @@ AOS.init();
 
 ReactDOM.render(
   <React.StrictMode>
-    <HttpsRedirect>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </HttpsRedirect>
+    {/* <HttpsRedirect> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
+    {/* </HttpsRedirect> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

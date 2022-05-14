@@ -102,6 +102,19 @@ const Contact = () => {
             md={8}
             lg={6}
             xl={4}
+            className="bg-white text-center mx-auto py-3"
+          >
+            <SocialIcons />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
             className="bg-white mx-auto"
           >
             <Formik
@@ -202,7 +215,7 @@ const Contact = () => {
                         />
                       </Col>
                     </Row>
-                    <Row className="mt-2">
+                    <Row className="mt-4">
                       <Col>
                         <Form.Group className="text-end mx-auto">
                           <Button
@@ -229,19 +242,6 @@ const Contact = () => {
                 </Form>
               )}
             </Formik>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="bg-white text-center mx-auto py-3"
-          >
-            <SocialIcons />
           </Col>
         </Row>
       </Container>

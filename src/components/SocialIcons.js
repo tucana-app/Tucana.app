@@ -16,7 +16,7 @@ const SocialIcons = () => {
         href="https://www.facebook.com/ridecrapp/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Facebook className="mb-1" size="30" />
       </a>
@@ -24,7 +24,7 @@ const SocialIcons = () => {
         href="https://www.instagram.com/ride.cr.app/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Instagram className="mb-1" size="30" />
       </a>
@@ -32,7 +32,7 @@ const SocialIcons = () => {
         href="https://wa.me/50660164300/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Whatsapp className="mb-1" size="30" />
       </a>
@@ -40,7 +40,7 @@ const SocialIcons = () => {
         href="https://m.me/ride.cr.app/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Messenger className="mb-1" size="30" />
       </a>
@@ -48,7 +48,7 @@ const SocialIcons = () => {
         href="https://www.paypal.com/donate/?hosted_button_id=M4QRJF5GDHCKA"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Paypal size="30" />
       </a>
@@ -56,7 +56,7 @@ const SocialIcons = () => {
         href="https://twitter.com/ride_cr_app"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Twitter className="mb-1" size="30" />
       </a>
@@ -64,7 +64,7 @@ const SocialIcons = () => {
         href="mailto:info@tucana.app"
         target="_blank"
         rel="noopener noreferrer"
-        className="hvr-grow text-success me-3"
+        className="hvr-grow text-dark me-3"
       >
         <Envelope className="mb-1" size="30" />
       </a>

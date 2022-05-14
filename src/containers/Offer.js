@@ -195,7 +195,7 @@ const Offer = () => {
   }
 
   return (
-    <Container data-aos="fade-in">
+    <Container fluid data-aos="fade-in">
       {currentUser.Driver ? (
         stepOne ? (
           <>
@@ -658,7 +658,7 @@ const Offer = () => {
           </>
         ) : null
       ) : (
-        <Row className="mt-5">
+        <Row className="mt-5 mb-2 mx-1 mx-sm-0">
           <Col
             xs={12}
             sm={10}

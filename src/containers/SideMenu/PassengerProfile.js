@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
   StarFillIcon,
@@ -11,9 +11,13 @@ import {
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
+import { CheckIcon } from "@primer/octicons-react";
 
 function PassengerProfile() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+
+  const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
+  const [showModalRequestData, setShowModalRequestData] = useState(false);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -125,7 +129,102 @@ function PassengerProfile() {
             {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
           </Col>
         </Row>
+
+        <Row className="mb-3">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="bg-white mx-auto"
+          >
+            <h1 className="title">Settings</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center bg-white mx-auto"
+          >
+            <Button
+              variant="outline-primary"
+              onClick={() => setShowModalRequestData(true)}
+              className="me-3"
+            >
+              Request my data
+            </Button>
+            <Button
+              variant="outline-danger"
+              onClick={() => setShowModalRemoveAccount(true)}
+            >
+              Remove my account
+            </Button>
+          </Col>
+        </Row>
       </Container>
+
+      <Modal
+        show={showModalRequestData}
+        onHide={() => setShowModalRequestData(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-dark">Request your data</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p className="mb-0">Contact us to download your data collected</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="outline-secondary"
+            size="lg"
+            onClick={() => setShowModalRequestData(false)}
+          >
+            Close
+          </Button>
+          <LinkContainer to="/contact">
+            <Button variant="primary" size="lg">
+              Contact
+            </Button>
+          </LinkContainer>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showModalRemoveAccount}
+        onHide={() => setShowModalRemoveAccount(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-dark">Remove your account</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p className="mb-0">Contact us to remove your account</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            variant="outline-secondary"
+            size="lg"
+            onClick={() => setShowModalRemoveAccount(false)}
+          >
+            Close
+          </Button>
+          <LinkContainer to="/contact">
+            <Button variant="danger" size="lg">
+              Contact
+            </Button>
+          </LinkContainer>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
