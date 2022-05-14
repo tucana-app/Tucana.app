@@ -336,11 +336,9 @@ const SideMenu = () => {
 
             <hr className="my-2" />
 
-            <Row className="mt-2">
-              <Col className="text-center">
-                <SocialIcons />
-              </Col>
-            </Row>
+            <div className="text-center mt-2">
+              <SocialIcons />
+            </div>
 
             {isLoggedIn ? (
               <div onClick={logOut} className="cursor-pointer text-center mt-4">
