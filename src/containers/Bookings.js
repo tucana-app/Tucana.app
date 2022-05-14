@@ -6,7 +6,6 @@ import { ArrowRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
-import MessageEmpty from "../components/MessageEmpty";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { getUserBookings } from "../redux";

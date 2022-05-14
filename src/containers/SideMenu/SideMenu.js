@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
   CircleIcon,
@@ -45,6 +45,7 @@ const SideMenu = () => {
       numberPassengerBookingsResponses &&
       numberDriverNewRidesRequests !== undefined
     ) {
+      // eslint-disable-next-line no-unused-vars
       notifications =
         numberDriverNewRidesRequests + numberPassengerBookingsResponses;
     }

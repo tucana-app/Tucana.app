@@ -1,15 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IndexLinkContainer } from "react-router-bootstrap";
-import {
-  Navbar,
-  Nav,
-  Button,
-  Container,
-  Row,
-  Col,
-  TabContainer,
-} from "react-bootstrap";
+import { Navbar, Nav, Button, Container, Row, Col } from "react-bootstrap";
 import {
   SearchIcon,
   PlusCircleIcon,
