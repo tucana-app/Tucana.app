@@ -18,7 +18,7 @@ const Legal = () => {
             md={8}
             lg={6}
             xl={4}
-            className="text-center mx-auto"
+            className="text-center px-0 mx-auto"
           >
             <ListGroup variant="flush">
               <Link to="/privacy" className="text-decoration-none">

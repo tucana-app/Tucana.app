@@ -17,14 +17,15 @@ function DriverProfile(props) {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="py-5 text-center">
+      <Container>
+        <Row className="mb-5">
+          <Col>
+            <h1 className="title text-center">Your driver's profile</h1>
+          </Col>
+        </Row>
+
         {currentUser.Driver && currentUser.Driver.id ? (
           <>
-            <Row>
-              <Col>
-                <h1 className="title">Your driver's profile</h1>
-              </Col>
-            </Row>
             <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
               <Col xs={12} sm={4} className="text-md-end">
                 <h4 className="text-secondary">Rating</h4>
@@ -50,7 +51,7 @@ function DriverProfile(props) {
         ) : (
           <Row>
             <Col className="text-center">
-              <h3 className="fw-light">Driver's profile still under review</h3>
+              <p className="mb-0">Your submission is still under review</p>
             </Col>
           </Row>
         )}

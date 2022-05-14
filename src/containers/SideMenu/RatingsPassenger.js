@@ -51,10 +51,10 @@ function RatingsPassenger() {
       <GoBack />
 
       <Container fluid>
-        <Row className="py-3">
+        <Row>
           <Col className="text-center">
-            <h1 className="display-4 text-success mb-0">Ratings</h1>
-            <p className="lead mb-0">As a passenger</p>
+            <h1 className="title mb-0">Ratings</h1>
+            <p className="lead">As a passenger</p>
           </Col>
         </Row>
       </Container>

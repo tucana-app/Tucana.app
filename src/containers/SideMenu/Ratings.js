@@ -36,10 +36,10 @@ function Ratings() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="pt-5">
-        <Row className="mb-4">
+      <Container>
+        <Row className="mb-5">
           <Col>
-            <h1 className="text-success text-center">Ratings</h1>
+            <h1 className="title text-center">Ratings</h1>
           </Col>
         </Row>
 

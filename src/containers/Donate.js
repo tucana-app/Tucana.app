@@ -8,9 +8,9 @@ const Donate = () => {
       <GoBack />
 
       <Container data-aos="fade-in">
-        <Row className="py-5 text-center">
-          <Col>
-            <h1 className="text-success">Donate</h1>
+        <Row>
+          <Col className="text-center">
+            <h1 className="title">Donate</h1>
             <p className="lead">
               Thank you so much for your consideration
               <br />

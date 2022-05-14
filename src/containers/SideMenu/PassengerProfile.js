@@ -27,7 +27,7 @@ function PassengerProfile() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="pt-5 text-center">
+      <Container className="text-center">
         <Row>
           <Col className="text-center">
             <CircleIcon size={78} className="text-secondary" />

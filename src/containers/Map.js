@@ -12,9 +12,9 @@ const Map = () => {
       <GoBack />
 
       <Container data-aos="fade-in">
-        <Row className="pt-5 text-center">
+        <Row className="text-center">
           <Col>
-            <h1 className="text-success">Maps</h1>
+            <h1 className="title">Maps</h1>
             <p className="lead">Different maps of Costa Rica</p>
           </Col>
         </Row>

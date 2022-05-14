@@ -16,10 +16,10 @@ function Language() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="my-5">
+      <Container>
         <Row className="mb-5">
           <Col>
-            <h1 className="text-success text-center">Language</h1>
+            <h1 className="title text-center">Language</h1>
           </Col>
         </Row>
 

@@ -8,9 +8,9 @@ const Download = () => {
     <>
       <GoBack />
 
-      <Container className="py-5 text-center" data-aos="fade-in">
+      <Container data-aos="fade-in">
         <Row className="mb-5">
-          <Col>
+          <Col className="text-center">
             <h1 className="title">Download the app</h1>
 
             <p className="lead">
@@ -19,11 +19,11 @@ const Download = () => {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+          <Col className="text-center">
             <p>Follow the instruction to "install" the app on your device</p>
           </Col>
         </Row>
-        <Row className="justify-content-center">
+        <Row>
           <Col className="text-center">
             <a
               href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DAndroid&oco=1"
