@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Col, Container, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Reaptcha from "reaptcha";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import SocialIcons from "../../components/SocialIcons";
 
-import { submitFormContact } from "../../redux";
+import { submitFormContact, setToast } from "../../redux";
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,10 @@ const Contact = () => {
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
+
+  const [captcha, setCaptcha] = useState(false);
+  const [captchaReady, setCaptchaReady] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
 
   const schema = Yup.object().shape({
     fullname: Yup.string(labelStringField)
@@ -35,14 +40,41 @@ const Contact = () => {
       .required(labelRequiredField),
   });
 
+  const onLoad = () => {
+    setCaptchaReady(true);
+  };
+
+  const onVerify = (recaptchaResponse) => {
+    setCaptchaVerified(true);
+  };
+
+  const onExpire = () => {
+    setCaptchaVerified(false);
+  };
+
   const handleSubmit = (values, formikBag) => {
-    if (isLoggedIn) {
-      dispatch(submitFormContact(currentUser, values));
+    if (captchaVerified) {
+      setCaptchaVerified(false);
+
+      if (isLoggedIn) {
+        dispatch(submitFormContact(currentUser, values));
+      } else {
+        dispatch(submitFormContact(null, values));
+      }
+
+      captcha.reset();
+      formikBag.setSubmitting(false);
+      formikBag.resetForm();
     } else {
-      dispatch(submitFormContact(null, values));
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: "Please fill",
+          variant: "warning",
+        })
+      );
     }
-    formikBag.setSubmitting(false);
-    // formikBag.resetForm();
   };
 
   return (
@@ -157,6 +189,19 @@ const Contact = () => {
                         </Form.Group>
                       </Col>
                     </Row>
+                    <Row>
+                      <Col>
+                        <Reaptcha
+                          sitekey={
+                            process.env.REACT_APP_GOOGLE_RECAPTCHA_SITE_KEY
+                          }
+                          ref={(e) => setCaptcha(e)}
+                          onVerify={onVerify}
+                          onLoad={onLoad}
+                          onExpire={onExpire}
+                        />
+                      </Col>
+                    </Row>
                     <Row className="mt-2">
                       <Col>
                         <Form.Group className="text-end mx-auto">
@@ -165,10 +210,14 @@ const Contact = () => {
                             type="submit"
                             size="lg"
                             disabled={
-                              isSubmitting || isLoadingSubmitFormContact
+                              isSubmitting ||
+                              isLoadingSubmitFormContact ||
+                              !captchaReady | !captchaVerified
                             }
                           >
-                            {isSubmitting || isLoadingSubmitFormContact ? (
+                            {isSubmitting ||
+                            isLoadingSubmitFormContact ||
+                            !captchaReady ? (
                               <LoadingSpinner />
                             ) : null}
                             Send

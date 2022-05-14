@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Badge, Button, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,6 @@ import {
 import car from "../assets/images/undraw_Order_ride.png";
 
 import LoadingSpinner from "../components/LoadingSpinner";
-import { LinkContainer } from "react-router-bootstrap";
 
 const Rides = () => {
   const dispatch = useDispatch();
