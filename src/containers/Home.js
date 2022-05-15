@@ -22,7 +22,7 @@ function Home() {
         <Row className="min-vh-100 align-items-center">
           <Col>
             <Container className="p-0">
-              <Row>
+              <Row className="mb-5">
                 <Col
                   xs={10}
                   sm={8}
