@@ -13,7 +13,7 @@ const SocialIcons = () => {
   return (
     <>
       <a
-        href="https://www.facebook.com/ridecrapp/"
+        href="https://business.facebook.com/tucanaapp"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"
@@ -37,7 +37,7 @@ const SocialIcons = () => {
         <Whatsapp className="mb-1" size="30" />
       </a>
       <a
-        href="https://m.me/ride.cr.app/"
+        href="https://m.me/tucanaapp/"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"

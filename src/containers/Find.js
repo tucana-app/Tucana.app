@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import {
@@ -29,7 +30,6 @@ const Find = () => {
   } = useSelector((state) => state.ride);
 
   const filteredRides = useRef([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // If we have received the rides
@@ -50,10 +50,12 @@ const Find = () => {
       filteredRides.current = filteredRides.current.sort((ride1, ride2) => {
         return ride1.distance - ride2.distance;
       });
-
-      setLoading(false);
     }
   }, [filteredRidesData, filteredRides, distanceLatLng, formSearchRide]);
+
+  if (!isLoggedIn) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>
@@ -117,7 +119,7 @@ const Find = () => {
               </Col>
             </Row>
 
-            {isloadingFilteredRides || loading ? (
+            {isloadingFilteredRides ? (
               <Row>
                 <Col className="text-center">
                   <LoadingSpinner />

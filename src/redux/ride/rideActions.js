@@ -425,10 +425,6 @@ export const getFilteredRides = (date) => {
   return (dispatch) => {
     dispatch(getFilteredRidesRequested());
 
-    // console.log(
-    //   new Date(date.slice(0, 4), date.slice(5, 7) - 1, date.slice(8, 10))
-    // );
-
     axios
       .get(URL_API + "/ride/filtered-rides", {
         params: {
