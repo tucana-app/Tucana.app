@@ -60,6 +60,7 @@ const Bookings = () => {
                 sm={10}
                 md={8}
                 lg={6}
+                xl={4}
                 className="border shadow-sm rounded mx-auto"
               >
                 <Container className="py-3 px-2">

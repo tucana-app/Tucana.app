@@ -13,12 +13,13 @@ import {
   getRatingsToDoPassenger,
   submitPassengerRatingForm,
   submitDriverRatingForm,
+  setToast,
 } from "../../redux";
 
 const NewRating = () => {
   const { rideId } = useParams();
 
-  const [note, setNote] = useState(1);
+  const [note, setNote] = useState(0);
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
@@ -36,11 +37,33 @@ const NewRating = () => {
   const { isEmptyObject } = useSelector((state) => state.global);
 
   const handleSubmitPassengerRatingForm = () => {
-    dispatch(submitPassengerRatingForm(ridePassenger, note, comment));
+    if (note < 1) {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: "Make sure you give a rating",
+          variant: "warning",
+        })
+      );
+    } else {
+      dispatch(submitPassengerRatingForm(ridePassenger, note, comment));
+    }
   };
 
   const handleSubmitDriverRatingForm = () => {
-    dispatch(submitDriverRatingForm(rideDriver, note, comment));
+    if (note < 1) {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: "Make sure you give a rating",
+          variant: "warning",
+        })
+      );
+    } else {
+      dispatch(submitDriverRatingForm(rideDriver, note, comment));
+    }
   };
 
   useEffect(() => {
@@ -72,533 +95,612 @@ const NewRating = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="pt-5">
+      <Container>
         <Row>
-          <Col className="text-center">
-            <h1 className="text-success">Give a rating</h1>
-            {/* <p className="lead"></p> */}
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <Container>
+              <Row>
+                <Col>
+                  <h1 className="title text-center">Give a rating</h1>
+
+                  {isLoadingGetRatingsToDoPassenger ||
+                  isLoadingGetRatingsToDoDriver ? (
+                    <Col className="text-center">
+                      <LoadingSpinner />
+                    </Col>
+                  ) : (
+                    <>
+                      {/* Makes the form appear if the user is a passenger rating a driver */}
+                      {!isLoadingGetRatingsToDoPassenger &&
+                      !(isEmptyObject(ridePassenger) === undefined) ? (
+                        <>
+                          <Row className="mb-3">
+                            <Col className="text-center">
+                              <p className="lead mb-0">Driver:</p>
+                              <p className="h3">
+                                {ridePassenger.Driver.User.firstName}
+                              </p>
+                            </Col>
+                          </Row>
+
+                          <Row className="mb-2">
+                            <Col className="text-center">
+                              <p className="small mb-0">Ride summary</p>
+                              <p className="mb-0">
+                                {ridePassenger.origin.city} -{" "}
+                                {ridePassenger.destination.city}
+                              </p>
+                              <p className="mb-2">
+                                Date:{" "}
+                                {dateFormat(
+                                  ridePassenger.dateTime,
+                                  "dd/mm/yyyy"
+                                )}
+                              </p>
+                              <Link to={`/ride/${ridePassenger.id}`}>
+                                <Button variant="outline-success">
+                                  <p className="lead mb-0">View</p>
+                                </Button>
+                              </Link>
+                            </Col>
+                          </Row>
+
+                          <hr className="w-75 mx-auto" />
+
+                          <Row className="mb-3">
+                            <Col className="text-center">
+                              <p className="mb-0">Comment</p>
+                              <Form.Control
+                                type="text"
+                                name="message"
+                                placeholder="Type your comment here"
+                                onChange={(e) => setComment(e.target.value)}
+                                disabled={
+                                  submitPassengerRatingFormData.flag ===
+                                  "SUCCESS"
+                                }
+                              />
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col className="d-inline-flex justify-content-center">
+                              {note === 0 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(1)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(1)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(1)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 1 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(2)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(2)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(2)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(2)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 2 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(3)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(3)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(3)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(3)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 3 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(4)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(4)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(4)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(4)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 4 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(5)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(5)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(5)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(5)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+                            </Col>
+                          </Row>
+
+                          <Row className="mt-3">
+                            <Col className="text-center">
+                              <Button
+                                variant="success"
+                                size="lg"
+                                onClick={handleSubmitPassengerRatingForm}
+                                disabled={
+                                  submitPassengerRatingFormData.flag ===
+                                  "SUCCESS"
+                                }
+                              >
+                                {isLoadingSubmitPassengerRatingForm ? (
+                                  <LoadingSpinner />
+                                ) : null}{" "}
+                                Submit
+                              </Button>
+                            </Col>
+                          </Row>
+                        </>
+                      ) : null}
+
+                      {/* Makes the form appear if the user is a driver rating a passenger */}
+                      {!isLoadingGetRatingsToDoDriver &&
+                      !(isEmptyObject(rideDriver) === undefined) ? (
+                        <>
+                          <Row className="mb-3">
+                            <Col className="text-center">
+                              <p className="lead mb-0">Passenger:</p>
+                              <p className="h3">
+                                {rideDriver.Booking.User.firstName}
+                              </p>
+                            </Col>
+                          </Row>
+
+                          <Row className="mb-2">
+                            <Col className="text-center">
+                              <p className="small mb-0">Ride summary</p>
+                              <p className="mb-0">
+                                {rideDriver.origin.city} -{" "}
+                                {rideDriver.destination.city}
+                              </p>
+                              <p className="mb-2">
+                                Date:{" "}
+                                {dateFormat(rideDriver.dateTime, "dd/mm/yyyy")}
+                              </p>
+                              <Link to={`/ride/${rideDriver.id}`}>
+                                <Button variant="outline-success">
+                                  <p className="small mb-0">View</p>
+                                </Button>
+                              </Link>
+                            </Col>
+                          </Row>
+
+                          <hr className="w-75 mx-auto" />
+
+                          <Row className="mb-3">
+                            <Col className="text-center">
+                              <p className="mb-0">Comment</p>
+                              <Form.Control
+                                type="text"
+                                name="message"
+                                placeholder="Type your comment here"
+                                onChange={(e) => setComment(e.target.value)}
+                                disabled={
+                                  submitDriverRatingFormData.flag === "SUCCESS"
+                                }
+                              />
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col className="d-inline-flex justify-content-center">
+                              {note === 0 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(1)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(1)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(1)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 1 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(2)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(2)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(2)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(2)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 2 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(3)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(3)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(3)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(3)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 3 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(4)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(4)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(4)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(4)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+
+                              {note > 4 ? (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(5)
+                                      : null
+                                  }
+                                >
+                                  <StarFillIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(5)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="m-0 p-0"
+                                  onClick={() =>
+                                    submitDriverRatingFormData.flag !==
+                                    "SUCCESS"
+                                      ? setNote(5)
+                                      : null
+                                  }
+                                >
+                                  <StarIcon
+                                    size={40}
+                                    className="text-warning ms-2"
+                                    onClick={() =>
+                                      submitDriverRatingFormData.flag !==
+                                      "SUCCESS"
+                                        ? setNote(5)
+                                        : null
+                                    }
+                                  />
+                                </div>
+                              )}
+                            </Col>
+                          </Row>
+
+                          <Row className="mt-3">
+                            <Col className="text-center">
+                              <Button
+                                variant="success"
+                                size="lg"
+                                onClick={handleSubmitDriverRatingForm}
+                                disabled={
+                                  submitDriverRatingFormData.flag === "SUCCESS"
+                                }
+                              >
+                                {isLoadingSubmitDriverRatingForm ? (
+                                  <LoadingSpinner />
+                                ) : null}{" "}
+                                Submit
+                              </Button>
+                            </Col>
+                          </Row>
+                        </>
+                      ) : null}
+                    </>
+                  )}
+                </Col>
+              </Row>
+            </Container>
           </Col>
         </Row>
       </Container>
-
-      {isLoadingGetRatingsToDoPassenger || isLoadingGetRatingsToDoDriver ? (
-        <LoadingSpinner />
-      ) : null}
-
-      {/* Makes the form appear if the user is a passenger rating a driver */}
-      {!isLoadingGetRatingsToDoPassenger &&
-      !(isEmptyObject(ridePassenger) === undefined) ? (
-        <>
-          <Container className="pb-5">
-            <Row className="mb-2">
-              <Col className="text-center">
-                <Link to={`/ride/${ridePassenger.id}`}>
-                  <p className="lead mb-0">Ride:</p>
-                </Link>
-                <p className="mb-0">
-                  {ridePassenger.origin.city} - {ridePassenger.destination.city}
-                </p>
-                <p>Date: {dateFormat(ridePassenger.dateTime, "dd/mm/yyyy")}</p>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col className="text-center">
-                <p className="lead mb-0">Driver:</p>
-                <p className="h3">{ridePassenger.Driver.User.firstName}</p>
-              </Col>
-            </Row>
-
-            <hr className="w-75 mx-auto" />
-
-            <Row className="mb-3">
-              <Col xs={12} sm={10} md={8} className="text-center mx-auto">
-                <p className="mb-0">Comment</p>
-                <Form.Control
-                  type="text"
-                  name="message"
-                  placeholder="Type your comment here"
-                  onChange={(e) => setComment(e.target.value)}
-                  disabled={submitPassengerRatingFormData.flag === "SUCCESS"}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} className="d-inline-flex justify-content-center">
-                {note === 0 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(1)
-                        : null
-                    }
-                  >
-                    <StarIcon size={40} className="text-warning ms-2" />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(1)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(1)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 1 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(2)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(2)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(2)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(2)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 2 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(3)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(3)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(3)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(3)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 3 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(4)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(4)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(4)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(4)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 4 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(5)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(5)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(5)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(5)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-              </Col>
-
-              <Col className="text-center mx-auto">
-                <p>
-                  You are rating {ridePassenger.Driver.User.firstName}: {note} /
-                  5
-                </p>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col xs={12} sm={10} md={8} className="text-center mx-auto">
-                <Button
-                  variant="success"
-                  onClick={handleSubmitPassengerRatingForm}
-                  disabled={submitPassengerRatingFormData.flag === "SUCCESS"}
-                >
-                  {isLoadingSubmitPassengerRatingForm ? (
-                    <LoadingSpinner />
-                  ) : null}{" "}
-                  Submit
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        </>
-      ) : null}
-
-      {/* Makes the form appear if the user is a driver rating a passenger */}
-      {!isLoadingGetRatingsToDoDriver &&
-      !(isEmptyObject(rideDriver) === undefined) ? (
-        <>
-          <Container className="pb-5">
-            <Row className="mb-2">
-              <Col className="text-center">
-                <Link to={`/ride/${rideDriver.id}`}>
-                  <p className="lead mb-0">Ride:</p>
-                </Link>
-                <p className="mb-0">
-                  {rideDriver.origin.city} - {rideDriver.destination.city}
-                </p>
-                <p>Date: {dateFormat(rideDriver.dateTime, "dd/mm/yyyy")}</p>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col className="text-center">
-                <p className="lead mb-0">Passenger:</p>
-                <p className="h3">{rideDriver.Booking.User.firstName}</p>
-              </Col>
-            </Row>
-
-            <hr className="w-75 mx-auto" />
-
-            <Row className="mb-3">
-              <Col xs={12} sm={10} md={8} className="text-center mx-auto">
-                <p className="mb-0">Comment</p>
-                <Form.Control
-                  type="text"
-                  name="message"
-                  placeholder="Type your comment here"
-                  onChange={(e) => setComment(e.target.value)}
-                  disabled={submitDriverRatingFormData.flag === "SUCCESS"}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} className="d-inline-flex justify-content-center">
-                {note === 0 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(1)
-                        : null
-                    }
-                  >
-                    <StarIcon size={40} className="text-warning ms-2" />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(1)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(1)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 1 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(2)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(2)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(2)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(2)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 2 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(3)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(3)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(3)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(3)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 3 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(4)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(4)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(4)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(4)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-
-                {note > 4 ? (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(5)
-                        : null
-                    }
-                  >
-                    <StarFillIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(5)
-                          : null
-                      }
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="m-0 p-0"
-                    onClick={() =>
-                      submitDriverRatingFormData.flag !== "SUCCESS"
-                        ? setNote(5)
-                        : null
-                    }
-                  >
-                    <StarIcon
-                      size={40}
-                      className="text-warning ms-2"
-                      onClick={() =>
-                        submitDriverRatingFormData.flag !== "SUCCESS"
-                          ? setNote(5)
-                          : null
-                      }
-                    />
-                  </div>
-                )}
-              </Col>
-
-              <Col className="text-center mx-auto">
-                <p>
-                  You are rating {rideDriver.Booking.User.firstName}: {note} / 5
-                </p>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col xs={12} sm={10} md={8} className="text-center mx-auto">
-                <Button
-                  variant="success"
-                  onClick={handleSubmitDriverRatingForm}
-                  disabled={submitDriverRatingFormData.flag === "SUCCESS"}
-                >
-                  {isLoadingSubmitDriverRatingForm ? <LoadingSpinner /> : null}{" "}
-                  Submit
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        </>
-      ) : null}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
@@ -29,6 +29,7 @@ const Find = () => {
   } = useSelector((state) => state.ride);
 
   const filteredRides = useRef([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // If we have received the rides
@@ -49,8 +50,10 @@ const Find = () => {
       filteredRides.current = filteredRides.current.sort((ride1, ride2) => {
         return ride1.distance - ride2.distance;
       });
+
+      setLoading(false);
     }
-  }, [filteredRidesData, distanceLatLng, formSearchRide]);
+  }, [filteredRidesData, filteredRides, distanceLatLng, formSearchRide]);
 
   return (
     <>
@@ -89,12 +92,12 @@ const Find = () => {
                 <Container className="p-2">
                   <Row className="align-items-center">
                     <Col>
-                      <p className="mb-0">
+                      <p className="small fw-bold mb-0">
                         {formSearchRide.origin.city}{" "}
                         <ArrowRightIcon size={24} className="text-success" />{" "}
                         {formSearchRide.destination.city}
                       </p>
-                      <p className="mb-0">
+                      <p className="small mb-0">
                         {formSearchRide.date.slice(8, 10)}/
                         {formSearchRide.date.slice(5, 7)}/
                         {formSearchRide.date.slice(0, 4)}
@@ -114,7 +117,7 @@ const Find = () => {
               </Col>
             </Row>
 
-            {isloadingFilteredRides ? (
+            {isloadingFilteredRides || loading ? (
               <Row>
                 <Col className="text-center">
                   <LoadingSpinner />
@@ -276,7 +279,7 @@ const Find = () => {
               md={8}
               lg={6}
               xl={4}
-              className="border border-success shadow-sm rounded bg-white mx-auto"
+              className="bg-white border border-success shadow-sm rounded mt-2 mx-auto"
             >
               <Container className="py-3 px-2">
                 <FormSearchRides />

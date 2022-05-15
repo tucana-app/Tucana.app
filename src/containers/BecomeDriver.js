@@ -66,7 +66,7 @@ const BecomeDriver = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="py-0 my-5" data-aos="fade-in">
+      <Container data-aos="fade-in">
         <Row className="mb-3">
           <Col className="text-center">
             <h1 className="title">Become a driver</h1>

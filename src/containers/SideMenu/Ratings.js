@@ -44,26 +44,40 @@ function Ratings() {
         </Row>
 
         <Row>
-          <Col xs={6} className="text-center mb-4 mb-md-0">
-            <h2 className="text-info mb-0">- / 5</h2>
-            <p className="lead">Passenger</p>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <Container className="p-0">
+              <Row>
+                <Col>
+                  <h2 className="text-info mb-0">- / 5</h2>
+                  <p className="lead">Passenger</p>
 
-            <LinkContainer to="/profile/passenger/ratings">
-              <Button variant="info" size={"lg"}>
-                Ratings
-              </Button>
-            </LinkContainer>
-          </Col>
+                  <LinkContainer to="/profile/passenger/ratings">
+                    <Button variant="info" size={"lg"}>
+                      Ratings
+                    </Button>
+                  </LinkContainer>
+                </Col>
+                {currentUser.Driver ? (
+                  <Col>
+                    <h2 className="text-warning mb-0">- / 5</h2>
+                    <p className="lead">Driver</p>
 
-          <Col xs={6} className="text-center">
-            <h2 className="text-warning mb-0">- / 5</h2>
-            <p className="lead">Driver</p>
-
-            <LinkContainer to="/profile/driver/ratings">
-              <Button variant="warning" size={"lg"}>
-                Ratings
-              </Button>
-            </LinkContainer>
+                    <LinkContainer to="/profile/driver/ratings">
+                      <Button variant="warning" size={"lg"}>
+                        Ratings
+                      </Button>
+                    </LinkContainer>
+                  </Col>
+                ) : null}
+              </Row>
+            </Container>
           </Col>
         </Row>
       </Container>
@@ -71,57 +85,63 @@ function Ratings() {
       {(!isLoadingGetRatingsToDoPassenger || !isLoadingGetRatingsToDoDriver) &&
       (getRatingsToDoPassengerData.length ||
         getRatingsToDoDriverData.length) ? (
-        <ListGroup variant="flush" className="pt-4">
-          <ListGroup.Item className="border-0">
-            <p className="lead mb-0">Ratings to do</p>
-          </ListGroup.Item>
+        <Container>
+          <Row>
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
+              <ListGroup variant="flush" className="pt-4">
+                <ListGroup.Item className="border-0">
+                  <p className="lead mb-0">Ratings to do</p>
+                </ListGroup.Item>
 
-          {getRatingsToDoPassengerData.map((ride, index) => (
-            <Link
-              key={index}
-              to={`/ratings/new-rating/${ride.id}`}
-              className="text-decoration-none"
-            >
-              <ListGroup.Item className="border border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span>
-                    <CircleIcon
-                      size={12}
-                      verticalAlign="middle"
-                      className="text-danger me-2"
-                    />
-                    {ride.origin.city} - {ride.destination.city} (
-                    {dateFormat(ride.dateTime, "dd/mm/yyyy")})
-                  </span>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-          ))}
+                {getRatingsToDoPassengerData.map((ride, index) => (
+                  <Link
+                    key={index}
+                    to={`/ratings/new-rating/${ride.id}`}
+                    className="text-decoration-none"
+                  >
+                    <ListGroup.Item className="border border-start-0 border-end-0 ">
+                      <div className="d-inline-flex justify-content-between w-100 py-2">
+                        <span>
+                          <CircleIcon
+                            size={12}
+                            verticalAlign="middle"
+                            className="text-danger me-2"
+                          />
+                          {ride.origin.city} - {ride.destination.city} (
+                          {dateFormat(ride.dateTime, "dd/mm/yyyy")})
+                        </span>
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </div>
+                    </ListGroup.Item>
+                  </Link>
+                ))}
 
-          {getRatingsToDoDriverData.map((ride, index) => (
-            <Link
-              key={index}
-              to={`/ratings/new-rating/${ride.id}`}
-              className="text-decoration-none"
-            >
-              <ListGroup.Item className="border border-start-0 border-end-0 ">
-                <div className="d-inline-flex justify-content-between w-100 py-2">
-                  <span>
-                    <CircleIcon
-                      size={12}
-                      verticalAlign="middle"
-                      className="text-danger me-2"
-                    />{" "}
-                    {ride.origin.city} - {ride.destination.city} (
-                    {dateFormat(ride.dateTime, "dd/mm/yyyy")})
-                  </span>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-          ))}
-        </ListGroup>
+                {getRatingsToDoDriverData.map((ride, index) => (
+                  <Link
+                    key={index}
+                    to={`/ratings/new-rating/${ride.id}`}
+                    className="text-decoration-none"
+                  >
+                    <ListGroup.Item className="border border-start-0 border-end-0 ">
+                      <div className="d-inline-flex justify-content-between w-100 py-2">
+                        <span>
+                          <CircleIcon
+                            size={12}
+                            verticalAlign="middle"
+                            className="text-danger me-2"
+                          />{" "}
+                          {ride.origin.city} - {ride.destination.city} (
+                          {dateFormat(ride.dateTime, "dd/mm/yyyy")})
+                        </span>
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </div>
+                    </ListGroup.Item>
+                  </Link>
+                ))}
+              </ListGroup>
+            </Col>
+          </Row>
+        </Container>
       ) : null}
     </div>
   );
