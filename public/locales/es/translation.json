@@ -1,18 +1,29 @@
 {
 	"global": {
+		"email": "Correo Electrónico",
+		"firstName": "Nombre",
 		"language": "Español",
+		"lastName": "Apellido",
+		"learnMore": "Aprenda más",
 		"logIn": "Ingresar",
+		"password": "Contraseña",
+		"resendLink": "Reenviar el enlace de confirmación",
 		"signUp": "Inscríbete",
-		"slogan": "Comparte tus viajes en Costa Rica"
+		"slogan": "Comparte tus viajes en Costa Rica",
+		"submit": "Envíe",
+		"username": "Nombre de usuario"
 	},
 	"homepage": {
 		"catchPhrase": "Su compañero de viaje en Costa Rica",
-		"learnMore": "Aprenda más",
 		"paragraph": "Bienvenido a Tucána, la mejor app para compartir coche en Costa Rica: una forma práctica y ecológica de viajar y conocer gente.",
 		"start": "Comienza"
 	},
 	"languagePage": {
 		"current": "Idioma actual"
+	},
+	"logIn": {
+		"credential": "Correo electrónico o nombre de usuario",
+		"forgotPassword": "¿Olvidó su contraseña?"
 	},
 	"menu": {
 		"about": "Sobre nosotros",
@@ -41,5 +52,11 @@
 		"offerRide": "oferta",
 		"rides": "Rides",
 		"signUp": "Inscríbete"
+	},
+	"signUp": {
+		"agreement1": "Si eliges registrarte, estás de acuerdo con nuestra",
+		"agreement2": "Términos y condiciones",
+		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
+		"subTitle": "Regístrese para acceder a la plataforma"
 	}
 }

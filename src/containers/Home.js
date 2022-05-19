@@ -67,7 +67,7 @@ function Home() {
                       rel="noreferrer"
                       className="link-success small"
                     >
-                      {t("homepage.learnMore")}
+                      {t("global.learnMore")}
                       <LinkExternalIcon size={12} className="mb-1 ms-2" />
                     </a>
                   </p>

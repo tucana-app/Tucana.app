@@ -1,18 +1,29 @@
 {
 	"global": {
+		"email": "Courriel",
+		"firstName": "Prénom",
 		"language": "Français",
+		"lastName": "Nom de famille",
+		"learnMore": "En savoir plus",
 		"logIn": "Connexion",
+		"password": "Mot de passe",
+		"resendLink": "Renvoyez le lien de confirmation",
 		"signUp": "S'inscrire",
-		"slogan": "Partagez vos balades au Costa Rica"
+		"slogan": "Partagez vos balades au Costa Rica",
+		"submit": "Soumettre",
+		"username": "Nom d'utilisateur"
 	},
 	"homepage": {
 		"catchPhrase": "Votre compagnon pour tous vos voyages au Costa Rica",
-		"learnMore": "En savoir plus",
 		"paragraph": "Bienvenue à Tucána, la meilleure application de covoiturage au Costa Rica : une façon pratique et écologique de voyager et de rencontrer des gens.",
 		"start": "Démarrer"
 	},
 	"languagePage": {
 		"current": "Langue actuelle"
+	},
+	"logIn": {
+		"credential": "Courriel ou nom d'utilisateur",
+		"forgotPassword": "Vous avez oublié votre mot de passe ?"
 	},
 	"menu": {
 		"about": "À propos de nous",
@@ -41,5 +52,11 @@
 		"offerRide": "Offrir une course",
 		"rides": "Rides",
 		"signUp": "S'inscrire"
+	},
+	"signUp": {
+		"agreement1": "Si vous choisissez de vous inscrire, vous acceptez notre politique de",
+		"agreement2": "Conditions générales",
+		"paragraphInfo": "Les informations que vous fournissez seront vérifiées ultérieurement par un modérateur. Veuillez vous assurer qu'elles sont les plus précises possibles.",
+		"subTitle": "S'inscrire pour accéder à la plateforme"
 	}
 }

@@ -5,6 +5,7 @@ import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { useTranslation } from "react-i18next";
 
 import { registerUser, setToast } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -12,6 +13,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 require("yup-password")(Yup); // extend yup
 
 const SignUp = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
     isloadingSignup,
@@ -104,12 +106,12 @@ const SignUp = () => {
     <Container className="my-5" data-aos="fade-in">
       <Row className="mb-3">
         <Col className="text-center">
-          <h1 className="text-success">Sign Up</h1>
-          <p className="lead">Sign up to access the plateform</p>
+          <h1 className="text-success">{t("global.signUp")}</h1>
+          <p className="lead">{t("signUp.subTitle")}</p>
         </Col>
       </Row>
       <Row>
-        <Col sm={12} md={10} lg={8} className="mx-auto">
+        <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
           <Formik
             validationSchema={schema}
             validateOnChange={false}
@@ -141,7 +143,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="firstName"
-                        placeholder="First name"
+                        placeholder={t("global.firstName")}
                         onChange={handleChange}
                         isInvalid={!!errors.firstName}
                         isValid={touched.firstName && !errors.firstName}
@@ -158,7 +160,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="lastName"
-                        placeholder="Last name"
+                        placeholder={t("global.lastName")}
                         onChange={handleChange}
                         isInvalid={!!errors.lastName}
                         isValid={touched.lastName && !errors.lastName}
@@ -177,7 +179,7 @@ const SignUp = () => {
                       <Form.Control
                         type="email"
                         name="email"
-                        placeholder="Email"
+                        placeholder={t("global.email")}
                         onChange={handleChange}
                         isInvalid={!!errors.email}
                         isValid={touched.email && !errors.email}
@@ -196,7 +198,6 @@ const SignUp = () => {
                         defaultCountry="CR"
                         value={phoneNumber}
                         onChange={setPhoneNumber}
-                        placeholder="Phone number"
                         name="phoneNumber"
                         error={
                           phoneNumber
@@ -220,7 +221,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="username"
-                        placeholder="Username"
+                        placeholder={t("global.username")}
                         onChange={handleChange}
                         isInvalid={!!errors.username}
                         isValid={touched.username && !errors.username}
@@ -237,7 +238,7 @@ const SignUp = () => {
                       <Form.Control
                         type="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder={t("global.username")}
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
@@ -253,7 +254,7 @@ const SignUp = () => {
                 {signupErrorFlag === "NOT_CONFIRMED" ? (
                   <Alert variant="warning">
                     {signupErrorMessage}.{" "}
-                    <Link to="/coming-soon">Resend the confirmation link</Link>
+                    <Link to="/coming-soon"> {t("global.resendLink")}</Link>
                   </Alert>
                 ) : (
                   feedback.message && (
@@ -273,7 +274,7 @@ const SignUp = () => {
                         {isSubmitting || isloadingSignup ? (
                           <LoadingSpinner />
                         ) : null}
-                        Submit
+                        {t("global.submit")}
                       </Button>
                     </Form.Group>
                   </Col>
@@ -284,20 +285,19 @@ const SignUp = () => {
         </Col>
       </Row>
 
-      <Row>
+      <Row className="mt-4">
         <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
           <p className="small text-secondary mb-3">
-            If you chose to sign up, you agree with our{" "}
+            {t("signUp.agreement1")}{" "}
             <Link to="/terms" className="link-secondary">
-              terms and conditions
+              {t("signUp.agreement2")}
             </Link>
             .
           </p>
           <p className="small text-secondary mb-3">
-            The information you are providing will be checked later by a
-            moderator. Please make sure they are the most acurate possible.{" "}
+            {t("signUp.paragraphInfo")}{" "}
             <Link to="/how-it-works" className="text-secondary">
-              Learn more
+              {t("global.learnMore")}
             </Link>
           </p>
         </Col>

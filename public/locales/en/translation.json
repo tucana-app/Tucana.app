@@ -1,18 +1,29 @@
 {
 	"global": {
+		"email": "Email",
+		"firstName": "First name",
 		"language": "English",
+		"lastName": "Last name",
+		"learnMore": "Learn more",
 		"logIn": "Log In",
+		"password": "Password",
+		"resendLink": "Resend the confirmation link",
 		"signUp": "Sign Up",
-		"slogan": "Share your rides in Costa Rica"
+		"slogan": "Share your rides in Costa Rica",
+		"submit": "Submit",
+		"username": "Username"
 	},
 	"homepage": {
 		"catchPhrase": "Your companion for all your travels in Costa Rica",
-		"learnMore": "Learn more",
 		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
 		"start": "Start"
 	},
 	"languagePage": {
 		"current": "Current language"
+	},
+	"logIn": {
+		"credential": "Email or Username",
+		"forgotPassword": "Forgot your password?"
 	},
 	"menu": {
 		"about": "About Us",
@@ -41,5 +52,11 @@
 		"offerRide": "Offer",
 		"rides": "Rides",
 		"signUp": "Sign Up"
+	},
+	"signUp": {
+		"agreement1": "If you chose to sign up, you agree with our",
+		"agreement2": "terms and conditions",
+		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
+		"subTitle": "Sign up to access the platform"
 	}
 }
