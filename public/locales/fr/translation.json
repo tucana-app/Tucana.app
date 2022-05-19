@@ -1,9 +1,34 @@
 {
 	"global": {
-		"language": "Français"
+		"language": "Français",
+		"logIn": "Connexion",
+		"signUp": "S'inscrire",
+		"slogan": "Partagez vos balades au Costa Rica"
+	},
+	"homepage": {
+		"catchPhrase": "Votre compagnon pour tous vos voyages au Costa Rica",
+		"learnMore": "En savoir plus",
+		"paragraph": "Bienvenue à Tucána, la meilleure application de covoiturage au Costa Rica : une façon pratique et écologique de voyager et de rencontrer des gens.",
+		"start": "Démarrer"
 	},
 	"languagePage": {
 		"current": "Langue actuelle"
+	},
+	"menu": {
+		"about": "À propos de nous",
+		"account": "Compte",
+		"becomeDriver": "Devenir chauffeur",
+		"contact": "Contactez-nous",
+		"donate": "Faire un don",
+		"help": "Aide",
+		"legal": "juridique",
+		"logOut": "Déconnexion",
+		"maps": "Carte de Costa Rica",
+		"memberSince": "Membre depuis",
+		"payments": "Paiements",
+		"profile": "Profil",
+		"ratings": "Notations",
+		"refunds": "Remboursements"
 	},
 	"navigationBar": {
 		"account": "Compte",

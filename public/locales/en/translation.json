@@ -1,9 +1,34 @@
 {
 	"global": {
-		"language": "English"
+		"language": "English",
+		"logIn": "Log In",
+		"signUp": "Sign Up",
+		"slogan": "Share your rides in Costa Rica"
+	},
+	"homepage": {
+		"catchPhrase": "Your companion for all your travels in Costa Rica",
+		"learnMore": "Learn more",
+		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
+		"start": "Start"
 	},
 	"languagePage": {
 		"current": "Current language"
+	},
+	"menu": {
+		"about": "About Us",
+		"account": "Account",
+		"becomeDriver": "Become a driver",
+		"contact": "Contact Us",
+		"donate": "Donate",
+		"help": "Help",
+		"legal": "Legal",
+		"logOut": "Log Out",
+		"maps": "Map of Costa Rica",
+		"memberSince": "Member since",
+		"payments": "Payments",
+		"profile": "Profile",
+		"ratings": "Ratings",
+		"refunds": "Refunds"
 	},
 	"navigationBar": {
 		"account": "Account",

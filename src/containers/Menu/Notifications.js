@@ -5,12 +5,12 @@ import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { BellIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import GoBack from "../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
-import { getNotifications } from "../redux";
+import { getNotifications } from "../../redux";
 
-const NotificationPage = () => {
+const Notifications = () => {
   // const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant } = useSelector((state) => state.global);
@@ -177,4 +177,4 @@ const NotificationPage = () => {
   );
 };
 
-export default NotificationPage;
+export default Notifications;

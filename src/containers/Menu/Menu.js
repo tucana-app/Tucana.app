@@ -17,7 +17,7 @@ import { logout } from "../../redux";
 import logo from "../../assets/images/OPTI_noir.png";
 import SocialIcons from "../../components/SocialIcons";
 
-const SideMenu = () => {
+const Menu = () => {
   const { t, i18n } = useTranslation();
 
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const SideMenu = () => {
                     <p className="lead">{currentUser.email}</p>
 
                     <p className="small text-secondary mb-0">
-                      Member since{" "}
+                      {t("menu.memberSince")}{" "}
                       {dateFormat(currentUser.createdAt, "mm/yyyy")}
                     </p>
                   </div>
@@ -86,7 +86,7 @@ const SideMenu = () => {
                 <Link to="/profile/passenger" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Account</p>
+                      <p className="mb-0">{t("menu.account")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -96,7 +96,7 @@ const SideMenu = () => {
                   <Link to="/profile/driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="mb-0">Profile</p>
+                        <p className="mb-0">{t("menu.profile")}</p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
@@ -105,7 +105,9 @@ const SideMenu = () => {
                   <Link to="/become-driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="text-success mb-0">Become a driver</p>
+                        <p className="text-success mb-0">
+                          {t("menu.becomeDriver")}
+                        </p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
@@ -115,7 +117,7 @@ const SideMenu = () => {
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Ratings</p>
+                      <p className="mb-0">{t("menu.ratings")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -124,7 +126,7 @@ const SideMenu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Help</p>
+                      <p className="mb-0">{t("menu.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -134,13 +136,13 @@ const SideMenu = () => {
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="text-secondary mb-0">Payments</p>
+                    <p className="text-secondary mb-0">{t("menu.payments")}</p>
                   </div>
                 </ListGroup.Item>
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="text-secondary mb-0">Refunds</p>
+                    <p className="text-secondary mb-0">{t("menu.refunds")}</p>
                   </div>
                 </ListGroup.Item>
 
@@ -180,7 +182,7 @@ const SideMenu = () => {
                 <Link to="/login" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Log In</p>
+                      <p className="mb-0">{t("global.logIn")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -189,7 +191,7 @@ const SideMenu = () => {
                 <Link to="/signup" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Sign Up</p>
+                      <p className="mb-0">{t("global.signUp")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -198,7 +200,7 @@ const SideMenu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">Help</p>
+                      <p className="mb-0">{t("menu.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -251,7 +253,7 @@ const SideMenu = () => {
             <Link to="/map" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Map of Costa Rica</p>
+                  <p className="mb-0">{t("menu.maps")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -262,16 +264,9 @@ const SideMenu = () => {
             <Link to="/donate" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="text-success fw-bold mb-0">Donate </p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-            </Link>
-
-            <Link to="/download" className="text-decoration-none">
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Download the App</p>
+                  <p className="text-success fw-bold mb-0">
+                    {t("menu.donate")}
+                  </p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -280,7 +275,7 @@ const SideMenu = () => {
             <Link to="/contact" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Contact us</p>
+                  <p className="mb-0">{t("menu.contact")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -293,7 +288,7 @@ const SideMenu = () => {
             >
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">About us</p>
+                  <p className="mb-0">{t("menu.about")}</p>
                   <LinkExternalIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -304,7 +299,7 @@ const SideMenu = () => {
             <Link to="/legal" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">Legal</p>
+                  <p className="mb-0">{t("menu.legal")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -320,7 +315,7 @@ const SideMenu = () => {
           {isLoggedIn ? (
             <div onClick={logOut} className="cursor-pointer text-center mt-4">
               <ListGroup.Item className="border-0 link-success">
-                <p className="mb-0 py-1">Log Out</p>
+                <p className="mb-0 py-1">{t("menu.logOut")}</p>
               </ListGroup.Item>
             </div>
           ) : null}
@@ -330,4 +325,4 @@ const SideMenu = () => {
   );
 };
 
-export default SideMenu;
+export default Menu;

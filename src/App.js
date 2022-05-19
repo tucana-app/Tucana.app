@@ -13,7 +13,7 @@ import SignUpConfirm from "./containers/User/SignUpConfirm";
 import Fallback from "./components/Fallback";
 import Home from "./containers/Home";
 import Find from "./containers/Find";
-import MessagePage from "./containers/MessagePage";
+import Messages from "./containers/Messages";
 
 import Ride from "./containers/Ride";
 import Rides from "./containers/Rides";
@@ -27,28 +27,27 @@ import HowItWorks from "./containers/HowItWorks";
 import BecomeDriver from "./containers/BecomeDriver";
 
 // All pages included in the side menu
-import SideMenu from "./containers/SideMenu/SideMenu";
-import RatingsPassenger from "./containers/SideMenu/RatingsPassenger";
-import RatingsDriver from "./containers/SideMenu/RatingsDriver";
-import Ratings from "./containers/SideMenu/Ratings";
-import NewRating from "./containers/SideMenu/NewRating";
-import Contact from "./containers/SideMenu/Contact";
-import NotificationPage from "./containers/NotificationPage";
-import PassengerProfile from "./containers/SideMenu/PassengerProfile";
-import DriverProfile from "./containers/SideMenu/DriverProfile";
-import RidesToConfirm from "./containers/SideMenu/RidesToConfirm";
-import Legal from "./containers/SideMenu/Legal";
-import Report from "./containers/SideMenu/Report";
-import Language from "./containers/SideMenu/Language";
-import Credits from "./containers/SideMenu/Credits";
-import Privacy from "./containers/SideMenu/Privacy";
-import RefundPolicy from "./containers/SideMenu/RefundPolicy";
-import LegalNotice from "./containers/SideMenu/LegalNotice";
-import TermsConditions from "./containers/SideMenu/TermsConditions";
-import DataProtection from "./containers/SideMenu/DataProtection";
-import FAQ from "./containers/SideMenu/FAQ";
+import Menu from "./containers/Menu/Menu";
+import RatingsPassenger from "./containers/Menu/RatingsPassenger";
+import RatingsDriver from "./containers/Menu/RatingsDriver";
+import Ratings from "./containers/Menu/Ratings";
+import NewRating from "./containers/Menu/NewRating";
+import Contact from "./containers/Menu/Contact";
+import Notifications from "./containers/Menu/Notifications";
+import PassengerProfile from "./containers/Menu/PassengerProfile";
+import DriverProfile from "./containers/Menu/DriverProfile";
+import RidesToConfirm from "./containers/Menu/RidesToConfirm";
+import Legal from "./containers/Menu/Legal";
+import Report from "./containers/Menu/Report";
+import Language from "./containers/Menu/Language";
+import Credits from "./containers/Menu/Credits";
+import Privacy from "./containers/Menu/Privacy";
+import RefundPolicy from "./containers/Menu/RefundPolicy";
+import LegalNotice from "./containers/Menu/LegalNotice";
+import TermsConditions from "./containers/Menu/TermsConditions";
+import DataProtection from "./containers/Menu/DataProtection";
+import FAQ from "./containers/Menu/FAQ";
 
-import Download from "./containers/Download";
 import Donate from "./containers/Donate";
 import Map from "./containers/Map";
 
@@ -103,7 +102,7 @@ function App() {
 
           <Route exact path="/offer" component={Offer} />
           <Route exact path="/find" component={Find} />
-          <Route exact path="/messages" component={MessagePage} />
+          <Route exact path="/messages" component={Messages} />
           <Route exact path="/become-driver" component={BecomeDriver} />
 
           <Route exact path="/ride/:rideId" component={Ride} />
@@ -113,7 +112,7 @@ function App() {
           <Route exact path="/bookings" component={Bookings} />
           <Route exact path="/booking/:bookingId" component={Booking} />
 
-          <Route exact path="/menu" component={SideMenu} />
+          <Route exact path="/menu" component={Menu} />
           <Route
             exact
             path="/profile/passenger/ratings"
@@ -137,9 +136,8 @@ function App() {
             component={RidesToConfirm}
           />
           <Route exact path="/profile/driver" component={DriverProfile} />
-          <Route exact path="/notifications" component={NotificationPage} />
+          <Route exact path="/notifications" component={Notifications} />
           <Route exact path="/help" component={Help} />
-          <Route exact path="/download" component={Download} />
           <Route exact path="/donate" component={Donate} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/map" component={Map} />

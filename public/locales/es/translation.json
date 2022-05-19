@@ -1,9 +1,34 @@
 {
 	"global": {
-		"language": "Español"
+		"language": "Español",
+		"logIn": "Ingresar",
+		"signUp": "Inscríbete",
+		"slogan": "Comparte tus viajes en Costa Rica"
+	},
+	"homepage": {
+		"catchPhrase": "Su compañero de viaje en Costa Rica",
+		"learnMore": "Aprenda más",
+		"paragraph": "Bienvenido a Tucána, la mejor app para compartir coche en Costa Rica: una forma práctica y ecológica de viajar y conocer gente.",
+		"start": "Comienza"
 	},
 	"languagePage": {
 		"current": "Idioma actual"
+	},
+	"menu": {
+		"about": "Sobre nosotros",
+		"account": "Cuenta",
+		"becomeDriver": "Conviértase en conductor",
+		"contact": "Contáctenos",
+		"donate": "Donar",
+		"help": "Ayuda",
+		"legal": "Legal",
+		"logOut": "Cierre de sesión",
+		"maps": "Mapa de Costa Rica",
+		"memberSince": "Miembro desde",
+		"payments": "Pagos",
+		"profile": "Perfil",
+		"ratings": "Clasificaciones",
+		"refunds": "reembolsos"
 	},
 	"navigationBar": {
 		"account": "Cuenta",

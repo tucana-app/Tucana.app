@@ -75,9 +75,6 @@ function NavigationBar() {
                         {messages > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
-                            <span className="visually-hidden">
-                              unread notification(s)
-                            </span>
                           </span>
                         ) : null}
                       </p>
@@ -85,9 +82,6 @@ function NavigationBar() {
                         {messages > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
-                            <span className="visually-hidden">
-                              unread messages
-                            </span>
                           </span>
                         ) : null}
                       </p>
@@ -105,9 +99,6 @@ function NavigationBar() {
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
-                            <span className="visually-hidden">
-                              unread notification(s)
-                            </span>
                           </span>
                         ) : null}
                       </p>
@@ -115,9 +106,6 @@ function NavigationBar() {
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
-                            <span className="visually-hidden">
-                              unseen notification
-                            </span>
                           </span>
                         ) : null}
                       </p>

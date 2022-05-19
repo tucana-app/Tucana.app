@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 // Importing assets
 import logo from "../assets/images/OPTI_noir.png";
@@ -10,6 +11,7 @@ import { ArrowRightIcon, LinkExternalIcon } from "@primer/octicons-react";
 import { LinkContainer } from "react-router-bootstrap";
 
 function Home() {
+  const { t } = useTranslation();
   const { isLoggedIn } = useSelector((state) => state.user);
 
   if (isLoggedIn) {
@@ -31,7 +33,7 @@ function Home() {
                   className="text-center px-0 mx-auto"
                 >
                   <img src={logo} alt="Tucána logo" className="img-fluid" />
-                  <p className="lead mb-0">Share your rides in Costa Rica</p>
+                  <p className="lead mb-0">{t("global.slogan")}</p>
                 </Col>
               </Row>
               <Row className="justify-content-center align-items-center">
@@ -45,11 +47,11 @@ function Home() {
                 </Col>
                 <Col xs={10} sm={8} md={6} xl={4} className="text-center">
                   <h2 className="text-success mb-0">
-                    Your companion for all your travels in Costa Rica
+                    {t("homepage.catchPhrase")}
                   </h2>
                   <LinkContainer to="/login" href="/login" className="my-2">
                     <Button variant="success" size="lg">
-                      Start
+                      {t("homepage.start")}
                       <ArrowRightIcon
                         size={24}
                         verticalAlign="middle"
@@ -57,10 +59,7 @@ function Home() {
                       />
                     </Button>
                   </LinkContainer>
-                  <p className="mb-0">
-                    Welcome to Tucána, the best carpooling app in Costa Rica: a
-                    practical and ecological way to travel and meet people.
-                  </p>
+                  <p className="mb-0">{t("homepage.paragraph")}</p>
                   <p>
                     <a
                       href="http://ridecr.atwebpages.com/"
@@ -68,7 +67,7 @@ function Home() {
                       rel="noreferrer"
                       className="link-success small"
                     >
-                      Learn more
+                      {t("homepage.learnMore")}
                       <LinkExternalIcon size={12} className="mb-1 ms-2" />
                     </a>
                   </p>
