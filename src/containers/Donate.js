@@ -1,8 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+
 import GoBack from "../components/GoBack";
 
 const Donate = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <GoBack />
@@ -10,13 +14,9 @@ const Donate = () => {
       <Container data-aos="fade-in">
         <Row>
           <Col className="text-center">
-            <h1 className="title">Donate</h1>
-            <p className="lead">
-              Thank you so much for your consideration
-              <br />
-              We are in search for funds to hire more people and improve our
-              platform
-            </p>
+            <h1 className="title">{t("translation:donate.title")}</h1>
+            <p className="lead">{t("translation:donate.subTitle")}</p>
+            <p className="lead">{t("translation:donate.paragraph")}</p>
           </Col>
         </Row>
         <Row className="mb-3">
@@ -26,7 +26,9 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="warning">Giveth.io</Button>
+              <Button variant="warning" size={"lg"}>
+                Giveth.io
+              </Button>
             </a>
 
             <a
@@ -34,7 +36,9 @@ const Donate = () => {
               target={"blank"}
               className="me-3"
             >
-              <Button variant="success">PayPal</Button>
+              <Button variant="success" size={"lg"}>
+                PayPal
+              </Button>
             </a>
           </Col>
         </Row>
@@ -42,7 +46,7 @@ const Donate = () => {
           <Col className="text-center">
             <a href="http://ridecr.atwebpages.com" target={"blank"}>
               <Button variant="outline-success" size={"lg"}>
-                Crowdfunding website
+                {t("translation:donate.crowdfunding")}
               </Button>
             </a>
           </Col>

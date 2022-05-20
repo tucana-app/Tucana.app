@@ -163,7 +163,7 @@ const Contact = () => {
                 <Form noValidate onSubmit={handleSubmit}>
                   <Container>
                     <Row className="my-3">
-                      <Col>
+                      <Col xs={12} md={6} className="my-2 my-md-0 mx-auto">
                         <Form.Group>
                           <Form.Control
                             type="text"
@@ -180,7 +180,7 @@ const Contact = () => {
                           </Form.Control.Feedback>
                         </Form.Group>
                       </Col>
-                      <Col>
+                      <Col xs={12} md={6} className="mt-2 my-md-0 mx-auto">
                         <Form.Group>
                           <Form.Control
                             type="email"
@@ -199,7 +199,7 @@ const Contact = () => {
                       </Col>
                     </Row>
 
-                    <Row className="my-3">
+                    <Row>
                       <Col>
                         <Form.Group>
                           <Form.Select

@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
+import { useTranslation } from "react-i18next";
 
 import GoBack from "../../components/GoBack";
 
 const Legal = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <GoBack />
@@ -65,6 +68,21 @@ const Legal = () => {
                   </div>
                 </ListGroup.Item>
               </Link>
+
+              <hr className="my-2" />
+
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">
+                    {t("translation:legal.appVersion")}:{" "}
+                    <span className="text-success">
+                      v{process.env.REACT_APP_VERSION}
+                    </span>{" "}
+                    (beta)
+                  </p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>

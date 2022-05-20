@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 import { PersonIcon, ChevronRightIcon } from "@primer/octicons-react";
 
-import { getAllUserMessages, changeConversationView } from "../redux";
+import LoadingSpinner from "../components/LoadingSpinner";
 import SingleConversation from "../components/SingleConversation";
 
+import { getAllUserMessages, changeConversationView } from "../redux";
+
 function Messages() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
@@ -60,7 +63,9 @@ function Messages() {
       ) : (
         <>
           <ListGroup.Item className="py-4 border border-top-0 border-end-0 border-start-0">
-            <h1 className="text-success text-center w-100 mb-0">Messages</h1>
+            <h1 className="title text-center mb-0">
+              {t("translation:messages.title")}
+            </h1>
           </ListGroup.Item>
 
           {isLoadingAllUserMessages ? (

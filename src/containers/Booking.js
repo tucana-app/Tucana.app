@@ -6,21 +6,23 @@ import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 import {
   CircleIcon,
-  StarFillIcon,
+  // StarFillIcon,
   ChevronRightIcon,
   ArrowDownIcon,
 } from "@primer/octicons-react";
+import { useTranslation } from "react-i18next";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
-
-import { getBooking } from "../redux";
 
 import MessageEmpty from "../components/MessageEmpty";
 import GoBack from "../components/GoBack";
 import SendMessageButton from "../components/SendMessageButton";
 
+import { getBooking } from "../redux";
+
 const Booking = () => {
+  const { t } = useTranslation();
   const { bookingId } = useParams();
 
   const dispatch = useDispatch();
@@ -48,7 +50,7 @@ const Booking = () => {
     <div>
       <GoBack />
 
-      <Container className="mt-4">
+      <Container className="mb-5">
         {isloadingBooking ? (
           <Row>
             <Col className="text-center">
@@ -59,7 +61,9 @@ const Booking = () => {
           currentUser.id === bookingData.User.id ||
           currentUser.id === bookingData.DriverId ? (
             <div data-aos="fade-in">
-              <h2 className="text-success text-center">Booking details</h2>
+              <h2 className="text-success text-center">
+                {t("translation:booking.title")}
+              </h2>
 
               <Row className="mb-2 mx-1 mx-sm-0">
                 <Col
@@ -67,6 +71,7 @@ const Booking = () => {
                   sm={10}
                   md={8}
                   lg={6}
+                  xl={4}
                   className="border shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
@@ -74,25 +79,28 @@ const Booking = () => {
                       <Col>
                         <p>
                           {currentUser.id === bookingData.User.id ? (
-                            "You"
+                            t("translation:booking.summary1")
                           ) : (
-                            <span className="text-success">
-                              {bookingData.User.firstName}
-                            </span>
+                            <>
+                              <span className="text-success">
+                                {bookingData.User.firstName}{" "}
+                              </span>{" "}
+                              {t("translation:booking.summary2")}
+                            </>
                           )}{" "}
-                          booked{" "}
                           <span className="text-success">
                             {bookingData.seatsBooked}
                           </span>{" "}
-                          seat{bookingData.seatsBooked > 1 ? "s" : null} to{" "}
+                          {t("translation:global.seat")}
+                          {bookingData.seatsBooked > 1 ? "s" : null} to{" "}
                           <span className="text-success">
                             {bookingData.Ride.destination.city}
                           </span>{" "}
-                          on the{" "}
+                          {t("translation:booking.summary4")}{" "}
                           {dateFormat(bookingData.Ride.dateTime, "dd/mm/yy")}
                         </p>
                         <p className="mb-0">
-                          Status:{" "}
+                          {t("translation:global.status")}:{" "}
                           <span
                             className={`text-${bookingStatusVariant(
                               bookingData.BookingStatusId
@@ -104,14 +112,18 @@ const Booking = () => {
                         {bookingData.commentPassenger !== "" &&
                         bookingData.commentPassenger !== null ? (
                           <>
-                            <p className="mt-3 mb-0">Passenger comment: </p>
+                            <p className="mt-3 mb-0">
+                              {t("translation:global.passengerComment")}:{" "}
+                            </p>
                             <p>"{bookingData.commentPassenger}"</p>
                           </>
                         ) : null}
                         {bookingData.commentDriver !== "" &&
                         bookingData.commentDriver !== null ? (
                           <>
-                            <p className="mt-3 mb-0">Driver comment: </p>
+                            <p className="mt-3 mb-0">
+                              {t("translation:global.driverComment")}:{" "}
+                            </p>
                             <p className="mb-0">
                               "{bookingData.commentDriver}"
                             </p>
@@ -145,6 +157,7 @@ const Booking = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="border shadow-sm rounded mx-auto"
                   >
                     <Container className="py-3 px-2">
@@ -177,7 +190,8 @@ const Booking = () => {
                             <p className="mb-0">
                               {bookingData.Ride.Driver.User.firstName}
                             </p>
-                            <p className="mb-0">
+                            {/* RATINGS */}
+                            {/* <p className="mb-0">
                               <StarFillIcon
                                 size={18}
                                 verticalAlign="middle"
@@ -185,7 +199,7 @@ const Booking = () => {
                               />
 
                               <span>-/5 | - ratings</span>
-                            </p>
+                            </p> */}
                           </Col>
                           <Col className="text-end">
                             <ChevronRightIcon
@@ -215,7 +229,9 @@ const Booking = () => {
                 </Row>
               ) : null}
 
-              <h2 className="text-success text-center mt-3">Ride details</h2>
+              <h2 className="text-success text-center mt-3">
+                {t("translation:booking.rideDetails")}
+              </h2>
 
               <Row className="mb-2 mx-1 mx-sm-0">
                 <Col
@@ -223,6 +239,7 @@ const Booking = () => {
                   sm={10}
                   md={8}
                   lg={6}
+                  xl={4}
                   className="border shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
@@ -265,12 +282,15 @@ const Booking = () => {
                   sm={10}
                   md={8}
                   lg={6}
+                  xl={4}
                   className="border shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
                       <Col xs={6} className="text-center">
-                        <p className="mb-0">Seats available:</p>
+                        <p className="mb-0">
+                          {t("translation:global.seatsAvailable")}:
+                        </p>
                         <p className="mb-0">
                           <span className="text-success">
                             {bookingData.Ride.seatsLeft}
@@ -280,7 +300,7 @@ const Booking = () => {
                       </Col>
                       <Col xs={6} className="text-center">
                         <p className="mb-0">
-                          Status:{" "}
+                          {t("translation:global.status")}:{" "}
                           <span
                             className={`text-${rideStatusVariant(
                               bookingData.Ride.RideStatus.id
@@ -301,6 +321,7 @@ const Booking = () => {
                   sm={10}
                   md={8}
                   lg={6}
+                  xl={4}
                   className="border shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
@@ -310,7 +331,9 @@ const Booking = () => {
                           to={`/ride/${bookingData.RideId}`}
                           className="cursor-pointer"
                         >
-                          <Button variant="success">More</Button>
+                          <Button variant="success">
+                            {t("translation:global.more")}
+                          </Button>
                         </LinkContainer>
                       </Col>
                     </Row>

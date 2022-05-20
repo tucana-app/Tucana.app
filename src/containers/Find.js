@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import dateFormat from "dateformat";
 import {
   CircleIcon,
   StarFillIcon,
@@ -10,7 +12,6 @@ import {
   ArrowDownIcon,
   ArrowRightIcon,
 } from "@primer/octicons-react";
-import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
@@ -19,6 +20,7 @@ import FormSearchRides from "../components/FormSearchRides";
 import { showSearchForm } from "../redux";
 
 const Find = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { distanceLatLng } = useSelector((state) => state.global);
@@ -59,11 +61,7 @@ const Find = () => {
 
   return (
     <>
-      <Container
-        className="py-5 mx-0"
-        // data-aos="fade-in"
-        id="container-find-ride"
-      >
+      <Container className="py-5 mx-0" id="container-find-ride">
         <Row className="justify-content-center mb-4">
           <Col
             xs={12}
@@ -75,7 +73,7 @@ const Find = () => {
           >
             <div>
               <h1 className="title text-dark text-shadow fw-bold mb-0">
-                Find your next trip across Costa Rica
+                {t("translation:find.catchPhrase")}
               </h1>
             </div>
           </Col>
@@ -111,7 +109,7 @@ const Find = () => {
                         variant="warning"
                         className="mb-0"
                       >
-                        Change
+                        {t("translation:find.change")}
                       </Button>
                     </Col>
                   </Row>
@@ -166,7 +164,7 @@ const Find = () => {
                                     formSearchRide.origin.latLng
                                   )}
                                 </span>{" "}
-                                km away)
+                                km)
                               </p>
 
                               <ArrowDownIcon
@@ -188,11 +186,14 @@ const Find = () => {
                                     formSearchRide.destination.latLng
                                   )}
                                 </span>{" "}
-                                km away)
+                                km)
                               </p>
                             </Col>
                             <Col xs={3} className="text-center mx-auto">
-                              <p className="mb-0">Seats</p>
+                              <p className="mb-0">
+                                {t("translation:global.seat")}
+                                {ride.seatsAvailable > 1 ? "s" : null}
+                              </p>
                               <p>
                                 <span className="text-success">
                                   {ride.seatsLeft}
@@ -232,16 +233,20 @@ const Find = () => {
                                       verticalAlign="middle"
                                       className="mb-1"
                                     />{" "}
-                                    Login
+                                    {t("translation:global.logIn")}
                                   </Button>
                                 </LinkContainer>
                               ) : ride.Driver.User.id === currentUser.id ? (
                                 <LinkContainer to={`/ride/${ride.id}`}>
-                                  <Button variant="info">Manage</Button>
+                                  <Button variant="info">
+                                    {t("translation:global.manage")}
+                                  </Button>
                                 </LinkContainer>
                               ) : (
                                 <LinkContainer to={`/ride/${ride.id}`}>
-                                  <Button variant="success">More</Button>
+                                  <Button variant="success">
+                                    {t("translation:global.more")}
+                                  </Button>
                                 </LinkContainer>
                               )}
                             </Col>

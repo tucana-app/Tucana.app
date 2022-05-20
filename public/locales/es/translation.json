@@ -16,28 +16,88 @@
 		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
 		"underReview": "En revisión"
 	},
+	"booking": {
+		"rideDetails": "Detalles del viaje",
+		"summary1": "Usted reservó",
+		"summary2": "reservó",
+		"summary3": "asiento",
+		"summary4": "el",
+		"title": "Detalles de la reserva"
+	},
+	"bookings": {
+		"noBookings": "",
+		"subTitle": ""
+	},
+	"comingSoon": {
+		"subTitle": "",
+		"thankYou": "",
+		"title": ""
+	},
+	"donate": {
+		"crowdfunding": "",
+		"paragraph": "",
+		"subTitle": "",
+		"title": ""
+	},
+	"find": {
+		"catchPhrase": "",
+		"change": ""
+	},
 	"global": {
 		"accepted": "Aceptado",
 		"becomeDriver": "Conviértase en conductor",
+		"bookRide": "",
+		"bookings": "",
+		"city": "",
+		"comingSoon": "",
+		"comment": "",
+		"congratulations": "",
 		"contact": "Contáctenos",
+		"date": "",
+		"day": "",
+		"destination": "",
+		"doNotShare": "",
+		"driverComment": "Comentario del conductor",
 		"email": "Correo Electrónico",
+		"errors": {
+			"chooseSeatsAvailable": "",
+			"dateFuture": "",
+			"error": "",
+			"missingInfo": ""
+		},
 		"faq": "Preguntas frecuentes",
 		"firstName": "Nombre",
+		"help": "Ayuda",
 		"howItWorks": "¿Como funciona?",
 		"language": "Español",
 		"lastName": "Apellido",
 		"learnMore": "Aprenda más",
 		"logIn": "Ingresar",
+		"manage": "",
 		"maps": "Mapa de Costa Rica",
+		"more": "Más",
+		"next": "",
+		"origin": "",
+		"passengerComment": "Comentario de los pasajeros",
+		"passengerDetails": "",
 		"password": "Contraseña",
+		"province": "",
 		"refundPolicy": "Politica de reembolso",
 		"refused": "Rechazado",
 		"report": "Informar de un problema",
 		"resendLink": "Reenviar el enlace de confirmación",
+		"seat": "Asiento",
+		"seatsAvailable": "Asientos disponibles",
+		"seeBooking": "",
+		"seeRide": "",
+		"selected": "",
 		"signUp": "Inscríbete",
 		"slogan": "Comparte tus viajes en Costa Rica",
+		"status": "Estado",
 		"submit": "Envíe",
-		"username": "Nombre de usuario"
+		"time": "",
+		"username": "Nombre de usuario",
+		"verify": ""
 	},
 	"help": {
 		"message1": "Si ocurre algo durante el viaje, llame a",
@@ -51,12 +111,15 @@
 	"languagePage": {
 		"current": "Idioma actual"
 	},
+	"legal": {
+		"appVersion": "Versión de la app"
+	},
 	"logIn": {
 		"credential": "Correo electrónico o nombre de usuario",
 		"forgotPassword": "¿Olvidó su contraseña?"
 	},
 	"maps": {
-		"courtesy": "",
+		"courtesy": "Fotografía por cortesía de",
 		"map": "Mapa",
 		"subTitle": "Diferentes mapas de Costa Rica",
 		"title": "Mapas"
@@ -65,7 +128,6 @@
 		"about": "Sobre nosotros",
 		"account": "Cuenta",
 		"donate": "Donar",
-		"help": "Ayuda",
 		"legal": "Legal",
 		"logOut": "Cierre de sesión",
 		"memberSince": "Miembro desde",
@@ -73,6 +135,9 @@
 		"profile": "Perfil",
 		"ratings": "Clasificaciones",
 		"refunds": "reembolsos"
+	},
+	"messages": {
+		"title": ""
 	},
 	"navigationBar": {
 		"account": "Cuenta",
@@ -85,6 +150,38 @@
 		"offerRide": "oferta",
 		"rides": "Rides",
 		"signUp": "Inscríbete"
+	},
+	"offer": {
+		"comment": "",
+		"details": "",
+		"findRide": "",
+		"onlyVerifiedDriver": "",
+		"placeholderComment": "",
+		"preview": "",
+		"rideOnline1": "",
+		"rideOnline2": "",
+		"selectNumber": "",
+		"step": "",
+		"summary": {
+			"subTitle": "",
+			"title": ""
+		},
+		"title": "",
+		"whereFrom": "",
+		"whereTo": ""
+	},
+	"ride": {
+		"allSeatsBooked": "",
+		"bookThisRide": "",
+		"manageBookingRequests": "",
+		"reviewRide": "",
+		"title": "",
+		"viewTrip": ""
+	},
+	"rides": {
+		"bookingsReceived": "",
+		"ridesOffered": "",
+		"ridesToConfirm": ""
 	},
 	"signUp": {
 		"agreement1": "Si eliges registrarte, estás de acuerdo con nuestra",

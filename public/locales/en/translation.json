@@ -16,28 +16,88 @@
 		"thankYou": "Thank you for applying. A moderator will review your submission",
 		"underReview": "under review"
 	},
+	"booking": {
+		"rideDetails": "Ride details",
+		"summary1": "You booked",
+		"summary2": "booked",
+		"summary3": "seat",
+		"summary4": "on the",
+		"title": "Booking details"
+	},
+	"bookings": {
+		"noBookings": "You haven't made a booking yet",
+		"subTitle": "All the bookings you have made"
+	},
+	"comingSoon": {
+		"subTitle": "This page or feature will soon be available",
+		"thankYou": "Thank you for your understanding",
+		"title": "Coming soon"
+	},
+	"donate": {
+		"crowdfunding": "Crowdfunding website",
+		"paragraph": "We are in search for funds to hire more people and improve our platform",
+		"subTitle": "Thank you so much for your consideration",
+		"title": "Donate"
+	},
+	"find": {
+		"catchPhrase": "Find your next trip across Costa Rica",
+		"change": "Change"
+	},
 	"global": {
 		"accepted": "Accepted",
 		"becomeDriver": "Become a driver",
+		"bookRide": "Book a ride",
+		"bookings": "Bookings",
+		"city": "City",
+		"comingSoon": "Coming soon",
+		"comment": "Comment",
+		"congratulations": "Congratulations",
 		"contact": "Contact Us",
+		"date": "Date",
+		"day": "Day",
+		"destination": "Destination",
+		"doNotShare": "Do not share any contact info (phone, email, etc), they will be shared within the platform when a booking is made.",
+		"driverComment": "Driver comment",
 		"email": "Email",
+		"errors": {
+			"chooseSeatsAvailable": "You need to choose the amount of seats you have available",
+			"dateFuture": "The date needs to be in the future",
+			"error": "Error",
+			"missingInfo": "Please fill up all the information"
+		},
 		"faq": "FAQ",
 		"firstName": "First name",
+		"help": "Help",
 		"howItWorks": "How does it works?",
 		"language": "English",
 		"lastName": "Last name",
 		"learnMore": "Learn more",
 		"logIn": "Log In",
+		"manage": "Manage",
 		"maps": "Map of Costa Rica",
+		"more": "More",
+		"next": "Next",
+		"origin": "Origin",
+		"passengerComment": "Passenger comment",
+		"passengerDetails": "Passenger details",
 		"password": "Password",
+		"province": "Province",
 		"refundPolicy": "Refund policy",
 		"refused": "Refused",
 		"report": "Report a problem",
 		"resendLink": "Resend the confirmation link",
+		"seat": "Seat",
+		"seatsAvailable": "Seats available",
+		"seeBooking": "See booking",
+		"seeRide": "See ride",
+		"selected": "Selected",
 		"signUp": "Sign Up",
 		"slogan": "Share your rides in Costa Rica",
+		"status": "Status",
 		"submit": "Submit",
-		"username": "Username"
+		"time": "Time",
+		"username": "Username",
+		"verify": "Verify"
 	},
 	"help": {
 		"message1": "If anything happens during your ride, call",
@@ -50,6 +110,9 @@
 	},
 	"languagePage": {
 		"current": "Current language"
+	},
+	"legal": {
+		"appVersion": "App version"
 	},
 	"logIn": {
 		"credential": "Email or Username",
@@ -65,7 +128,6 @@
 		"about": "About Us",
 		"account": "Account",
 		"donate": "Donate",
-		"help": "Help",
 		"legal": "Legal",
 		"logOut": "Log Out",
 		"memberSince": "Member since",
@@ -73,6 +135,9 @@
 		"profile": "Profile",
 		"ratings": "Ratings",
 		"refunds": "Refunds"
+	},
+	"messages": {
+		"title": "Messages"
 	},
 	"navigationBar": {
 		"account": "Account",
@@ -85,6 +150,38 @@
 		"offerRide": "Offer",
 		"rides": "Rides",
 		"signUp": "Sign Up"
+	},
+	"offer": {
+		"comment": "Any comment?",
+		"details": "Details about your ride",
+		"findRide": "Find a ride",
+		"onlyVerifiedDriver": "You can offer rides only when you are a verified driver",
+		"placeholderComment": "Want to share the road you'll take or a precision on your destination?",
+		"preview": "Preview on Google Maps",
+		"rideOnline1": "Your ride is now online. Check it out",
+		"rideOnline2": "here",
+		"selectNumber": "Select a number",
+		"step": "Step",
+		"summary": {
+			"subTitle": "Double check",
+			"title": "Summary"
+		},
+		"title": "Offer a ride",
+		"whereFrom": "Where are you leaving from?",
+		"whereTo": "Where are you heading to?"
+	},
+	"ride": {
+		"allSeatsBooked": "All the seats have been booked",
+		"bookThisRide": "Book this ride",
+		"manageBookingRequests": "Manage your booking requests",
+		"reviewRide": "Review the ride",
+		"title": "Ride",
+		"viewTrip": "View trip"
+	},
+	"rides": {
+		"bookingsReceived": "Bookings received",
+		"ridesOffered": "Rides offered",
+		"ridesToConfirm": "Rides to confirm"
 	},
 	"signUp": {
 		"agreement1": "If you chose to sign up, you agree with our",

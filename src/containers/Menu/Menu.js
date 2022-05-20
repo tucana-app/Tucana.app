@@ -126,7 +126,7 @@ const Menu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("translation:menu.help")}</p>
+                      <p className="mb-0">{t("translation:global.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -204,7 +204,7 @@ const Menu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("translation:menu.help")}</p>
+                      <p className="mb-0">{t("translation:global.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>

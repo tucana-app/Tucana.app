@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   getDriverRides,
@@ -17,6 +18,7 @@ import car from "../assets/images/undraw_Order_ride.png";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Rides = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isDateInPast, countDriverRides } = useSelector(
@@ -90,7 +92,7 @@ const Rides = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <div>
-                    Bookings
+                    {t("translation:global.bookings")}
                     {userBookingsData.length > 0 ? (
                       countUserBookings(userBookingsData) ? (
                         <Badge bg="primary" className="ms-2">
@@ -119,7 +121,7 @@ const Rides = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
-                        Rides offered
+                        {t("translation:rides.ridesOffered")}
                         {driverRidesData.length > 0 ? (
                           countDriverRides(driverRidesData) ? (
                             <Badge bg="success" className="text-dark ms-2">
@@ -144,7 +146,7 @@ const Rides = () => {
                   <ListGroup.Item className="border-0 ">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
-                        Bookings received
+                        {t("translation:rides.bookingsReceived")}
                         {driverBookingsData.length > 0 ? (
                           countDriverBookings(driverBookingsData) ? (
                             <Badge bg="info" className="text-dark ms-2">
@@ -173,7 +175,9 @@ const Rides = () => {
                       <ListGroup.Item className="border-0">
                         <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                           <div>
-                            <span className="fw-bold">Rides to confirm</span>
+                            <span className="fw-bold">
+                              {t("translation:rides.ridesToConfirm")}
+                            </span>
                             <Badge
                               bg="warning"
                               className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
@@ -199,7 +203,7 @@ const Rides = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="text-success fw-bold mb-0">
-                        Become a driver
+                        {t("translation:global.becomeDriver")}
                       </p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
@@ -211,7 +215,7 @@ const Rides = () => {
             <Link to="/help" className="text-light text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  Help
+                  {t("translation:global.help")}
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>

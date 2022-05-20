@@ -1,8 +1,12 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+
 import GoBack from "../components/GoBack";
 
 function ComingSoon(props) {
+  const { t } = useTranslation();
+
   return (
     <div>
       <GoBack />
@@ -17,11 +21,13 @@ function ComingSoon(props) {
             xl={4}
             className="text-center mx-auto"
           >
-            <h1 className="text-success">{props.pageName || "Coming soon"}</h1>
+            <h1 className="text-success">
+              {props.pageName || t("translation:comingSoon.title")}
+            </h1>
             <p className="lead">
-              This page or feature will soon be available
+              {t("translation:comingSoon.subTitle")}
               <br />
-              Thank you for your understanding
+              {t("translation:comingSoon.thankYou")}
             </p>
           </Col>
         </Row>

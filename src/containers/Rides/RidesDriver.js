@@ -61,6 +61,7 @@ const RidesDriver = () => {
                       sm={10}
                       md={8}
                       lg={6}
+                      xl={4}
                       className="border shadow-sm rounded pb-3 mx-auto"
                     >
                       <LinkContainer

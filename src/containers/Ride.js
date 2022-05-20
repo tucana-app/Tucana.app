@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { useTranslation } from "react-i18next";
 import {
   ChevronRightIcon,
   ArrowDownIcon,
-  StarFillIcon,
+  // StarFillIcon,
   CircleIcon,
+  LinkExternalIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -25,6 +27,7 @@ import SendMessageButton from "../components/SendMessageButton";
 import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
 
 const Ride = () => {
+  const { t } = useTranslation();
   const { rideId } = useParams();
 
   const dispatch = useDispatch();
@@ -62,7 +65,7 @@ const Ride = () => {
     <div>
       <GoBack />
 
-      <Container className="mt-4">
+      <Container className="mb-5">
         {isloadingRide ? (
           <Row>
             <Col className="text-center">
@@ -73,7 +76,9 @@ const Ride = () => {
           <div data-aos="fade-in">
             <Row>
               <Col>
-                <h1 className="text-center">Ride</h1>
+                <h1 className="title text-center">
+                  {t("translation:ride.title")}
+                </h1>
               </Col>
             </Row>
             <Row className="mb-2 mx-1 mx-sm-0">
@@ -82,6 +87,7 @@ const Ride = () => {
                 sm={10}
                 md={8}
                 lg={6}
+                xl={4}
                 className="border shadow-sm rounded mx-auto"
               >
                 <Container className="py-3 px-2">
@@ -121,8 +127,9 @@ const Ride = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Button variant="outline-success" size={"sm"}>
-                          Google Maps
+                        <Button variant="outline-success">
+                          {t("translation:ride.viewTrip")}
+                          <LinkExternalIcon size={24} className="ms-2" />
                         </Button>
                       </a>
                     </Col>
@@ -138,12 +145,15 @@ const Ride = () => {
                   sm={10}
                   md={8}
                   lg={6}
+                  xl={4}
                   className="border border-2 border-warning shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row>
                       <Col>
-                        <h3 className="text-center">Review the ride</h3>
+                        <h3 className="text-center">
+                          {t("translation:ride.reviewRide")}
+                        </h3>
                       </Col>
                     </Row>
 
@@ -159,12 +169,15 @@ const Ride = () => {
                 sm={10}
                 md={8}
                 lg={6}
+                xl={4}
                 className="border shadow-sm rounded mx-auto"
               >
                 <Container className="py-3 px-2">
                   <Row className="align-items-center">
                     <Col xs={6} className="text-center">
-                      <p className="mb-0">Seats available:</p>
+                      <p className="mb-0">
+                        {t("translation:global.seatsAvailable")}:
+                      </p>
                       <p className="mb-0">
                         <span className="text-success">
                           {rideData.ride.seatsLeft}
@@ -174,7 +187,7 @@ const Ride = () => {
                     </Col>
                     <Col xs={6} className="text-center">
                       <p className="mb-0">
-                        Status:{" "}
+                        {t("translation:global.status")}:{" "}
                         <span
                           className={`text-${rideStatusVariant(
                             rideData.ride.RideStatus.id
@@ -198,6 +211,7 @@ const Ride = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="border shadow-sm rounded mx-auto"
                   >
                     <Container className="py-3 px-2">
@@ -213,7 +227,8 @@ const Ride = () => {
                             <p className="mb-0">
                               {rideData.ride.Driver.User.firstName}
                             </p>
-                            <p className="mb-0">
+                            {/* RATINGS */}
+                            {/* <p className="mb-0">
                               <StarFillIcon
                                 size={18}
                                 verticalAlign="middle"
@@ -221,7 +236,7 @@ const Ride = () => {
                               />
 
                               <span>-/5 | - ratings</span>
-                            </p>
+                            </p> */}
                           </Col>
                           <Col className="text-end">
                             <ChevronRightIcon
@@ -248,7 +263,8 @@ const Ride = () => {
                             <>
                               <hr />
                               <p className="mb-0">
-                                Comment: {rideData.ride.comment}
+                                {t("translation:global.comment")}:{" "}
+                                {rideData.ride.comment}
                               </p>
                             </>
                           ) : null}
@@ -266,12 +282,15 @@ const Ride = () => {
                       sm={10}
                       md={8}
                       lg={6}
+                      xl={4}
                       className="border shadow-sm rounded mx-auto"
                     >
                       <Container className="py-3 px-2">
                         <Row>
                           <Col>
-                            <p className="lead">Bookings</p>
+                            <p className="lead">
+                              {t("translation:global.bookings")}
+                            </p>
                           </Col>
                         </Row>
 
@@ -296,7 +315,9 @@ const Ride = () => {
                       <Container className="py-3 px-2">
                         <Row>
                           <Col>
-                            <p className="lead">Book this ride</p>
+                            <p className="lead">
+                              {t("translation:ride.bookThisRide")}
+                            </p>
                           </Col>
                         </Row>
 
@@ -314,12 +335,15 @@ const Ride = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="border shadow-sm rounded mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <Row>
                         <Col>
-                          <p className="lead">Manage your booking requests</p>
+                          <p className="lead">
+                            {t("translation:ride.manageBookingRequests")}
+                          </p>
                         </Col>
                       </Row>
 
@@ -336,16 +360,17 @@ const Ride = () => {
                       sm={10}
                       md={8}
                       lg={6}
+                      xl={4}
                       className="border border-success shadow-sm rounded mx-auto"
                     >
                       <Container fluid className="p-2">
                         <Row>
                           <Col className="text-center ">
                             <h1 className="text-success fw-light mb-0">
-                              Congratulations
+                              {t("translation:global.congratulations")}
                             </h1>
                             <p className="fw-light mb-0">
-                              All the seats have been booked
+                              {t("translation:ride.allSeatsBooked")}
                             </p>
                           </Col>
                         </Row>
@@ -360,12 +385,15 @@ const Ride = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="border shadow-sm rounded mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <Row>
                         <Col>
-                          <p className="lead mb-0">Passengers details</p>
+                          <p className="lead mb-0">
+                            {t("translation:global.passengerDetails")}
+                          </p>
                         </Col>
                       </Row>
 

@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Container, Row, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
+import GoBack from "../components/GoBack";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { LinkContainer } from "react-router-bootstrap";
 
 import { getUserBookings } from "../redux";
-import GoBack from "../components/GoBack";
 
 const Bookings = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant, isDateInPast } = useSelector(
@@ -36,12 +38,12 @@ const Bookings = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="mt-4">
+      <Container className="mb-5">
         <Row className="justify-content-center mb-4">
           <Col className="text-center">
             <div>
-              <h1 className="title mb-0">Bookings</h1>
-              <p className="lead">All the bookings you have made</p>
+              <h1 className="title mb-0">{t("translation:global.bookings")}</h1>
+              <p className="lead">{t("translation:bookings.subTitle")}</p>
             </div>
           </Col>
         </Row>
@@ -99,7 +101,8 @@ const Bookings = () => {
                   <Row className="align-items-center mb-3">
                     <Col xs={6} className="text-center">
                       <h4>
-                        Seats:{" "}
+                        {t("translation:global.seat")}
+                        {booking.seatsBooked > 1 ? "s" : null}:{" "}
                         <span className="text-success">
                           {booking.seatsBooked}
                         </span>
@@ -107,7 +110,7 @@ const Bookings = () => {
                     </Col>
                     <Col xs={6} className="text-center">
                       <h4>
-                        Status:{" "}
+                        {t("translation:global.status")}:{" "}
                         <span
                           className={`text-${bookingStatusVariant(
                             booking.BookingStatus.id
@@ -122,11 +125,13 @@ const Bookings = () => {
                     <Col className="text-center">
                       <LinkContainer to={`/ride/${booking.RideId}`}>
                         <Button variant="light" className="me-2">
-                          See ride
+                          {t("translation:global.seeRide")}
                         </Button>
                       </LinkContainer>
                       <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button variant="success">See booking</Button>
+                        <Button variant="success">
+                          {t("translation:global.seeBooking")}
+                        </Button>
                       </LinkContainer>
                     </Col>
                   </Row>
@@ -137,9 +142,11 @@ const Bookings = () => {
         ) : (
           <Row>
             <Col className="text-center">
-              <p>You haven't made a booking yet</p>
+              <p>{t("translation:bookings.noBookings")}</p>
               <Link to="/find">
-                <Button variant="success">Book a ride</Button>
+                <Button variant="success">
+                  {t("translation:global.bookRide")}
+                </Button>
               </Link>
             </Col>
           </Row>

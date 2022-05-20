@@ -2,12 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { AlertFillIcon, ChevronRightIcon } from "@primer/octicons-react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import GoBack from "../components/GoBack";
-
-var count = 0;
-var name = "Patrick";
 
 const Help = () => {
   const { t } = useTranslation();

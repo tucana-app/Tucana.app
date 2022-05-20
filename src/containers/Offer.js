@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import {
   AlertIcon,
@@ -25,6 +26,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import LocationSearchInput from "../components/LocationSearchInput";
 
 const Offer = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
@@ -111,8 +113,8 @@ const Offer = () => {
         dispatch(
           setToast({
             show: true,
-            headerText: "Error",
-            bodyText: "The date needs to be in the future",
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.dateFuture"),
             variant: "warning",
           })
         );
@@ -120,9 +122,8 @@ const Offer = () => {
         dispatch(
           setToast({
             show: true,
-            headerText: "Error",
-            bodyText:
-              "You need to choose the amount of seats you have available",
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.chooseSeatsAvailable"),
             variant: "warning",
           })
         );
@@ -134,8 +135,8 @@ const Offer = () => {
       dispatch(
         setToast({
           show: true,
-          headerText: "Error",
-          bodyText: "Please fill up all the information",
+          headerText: t("translation:global.errors.error"),
+          bodyText: t("translation:global.errors.missingInfo"),
           variant: "warning",
         })
       );
@@ -202,13 +203,14 @@ const Offer = () => {
             <Row className="mt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
-                  Step <span className="text-success">1</span> / 4
+                  {t("translation:offer.step")}{" "}
+                  <span className="text-success">1</span> / 4
                 </p>
-                <h2>Where are you leaving from?</h2>
+                <h2>{t("translation:offer.whereFrom")}</h2>
               </Col>
             </Row>
             <Row>
-              <Col xs={10} md={8} lg={6} className="mx-auto">
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
                 <LocationSearchInput />
               </Col>
             </Row>
@@ -220,11 +222,15 @@ const Offer = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="text-center mx-auto"
                   >
-                    <h3 className="fw-light mt-3">Selected:</h3>
+                    <h3 className="fw-light mt-3">
+                      {t("translation:global.selected")}:
+                    </h3>
                     <p>
-                      City: <strong>{location.city}</strong>,{" "}
+                      {t("translation:global.city")}:{" "}
+                      <strong>{location.city}</strong>,{" "}
                       <small>{location.province}</small>
                     </p>
                     <p>
@@ -235,7 +241,7 @@ const Offer = () => {
                         className="me-2"
                       >
                         <Button variant="outline-success">
-                          Verify
+                          {t("translation:global.verify")}
                           <LinkExternalIcon size={24} className="ms-2" />
                         </Button>
                       </a>
@@ -246,7 +252,7 @@ const Offer = () => {
                 <Row className="mt-5">
                   <Col className="text-end">
                     <Button onClick={handleClickStepOne} variant="success">
-                      Next
+                      {t("translation:global.next")}
                       <ArrowRightIcon size={24} className="ms-2" />
                     </Button>
                   </Col>
@@ -260,11 +266,15 @@ const Offer = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="text-center mx-auto"
                   >
-                    <h3 className="fw-light mt-3">Selected:</h3>
+                    <h3 className="fw-light mt-3">
+                      {t("translation:global.selected")}:
+                    </h3>
                     <p>
-                      City: <strong>{formOfferRide.origin.city}</strong>,{" "}
+                      {t("translation:global.city")}:{" "}
+                      <strong>{formOfferRide.origin.city}</strong>,{" "}
                       <small>{formOfferRide.origin.province}</small>
                     </p>
                     <p>
@@ -275,7 +285,7 @@ const Offer = () => {
                         className="me-2"
                       >
                         <Button variant="outline-success">
-                          Verify
+                          {t("translation:global.verify")}
                           <LinkExternalIcon size={24} className="ms-2" />
                         </Button>
                       </a>
@@ -286,7 +296,7 @@ const Offer = () => {
                 <Row className="mt-5">
                   <Col className="text-end">
                     <Button onClick={handleClickStepOne} variant="success">
-                      Next
+                      {t("translation:global.next")}
                       <ArrowRightIcon size={24} className="ms-2" />
                     </Button>
                   </Col>
@@ -301,13 +311,14 @@ const Offer = () => {
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
-                  Step <span className="text-success">2</span> / 4
+                  {t("translation:offer.step")}{" "}
+                  <span className="text-success">2</span> / 4
                 </p>
-                <h2>Where are you heading to?</h2>
+                <h2>{t("translation:offer.whereTo")}</h2>
               </Col>
             </Row>
             <Row>
-              <Col xs={10} md={8} lg={6} className="mx-auto">
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
                 <LocationSearchInput />
               </Col>
             </Row>
@@ -319,11 +330,15 @@ const Offer = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="text-center mx-auto"
                   >
-                    <h3 className="fw-light mt-3">Selected:</h3>
+                    <h3 className="fw-light mt-3">
+                      {t("translation:global.selected")}:
+                    </h3>
                     <p>
-                      City: <strong>{location.city}</strong>,{" "}
+                      {t("translation:global.city")}:{" "}
+                      <strong>{location.city}</strong>,{" "}
                       <small>{location.province}</small>
                     </p>
                     <p>
@@ -334,7 +349,7 @@ const Offer = () => {
                         className="me-2"
                       >
                         <Button variant="outline-success">
-                          Verify
+                          {t("translation:global.verify")}
                           <LinkExternalIcon size={24} className="ms-2" />
                         </Button>
                       </a>
@@ -345,7 +360,7 @@ const Offer = () => {
                 <Row className="mt-5">
                   <Col className="text-end">
                     <Button onClick={handleClickStepTwo} variant="success">
-                      Next
+                      {t("translation:global.next")}
                       <ArrowRightIcon size={24} className="ms-2" />
                     </Button>
                   </Col>
@@ -359,11 +374,15 @@ const Offer = () => {
                     sm={10}
                     md={8}
                     lg={6}
+                    xl={4}
                     className="text-center mx-auto"
                   >
-                    <h3 className="fw-light mt-3">Selected:</h3>
+                    <h3 className="fw-light mt-3">
+                      {t("translation:global.selected")}:
+                    </h3>
                     <p>
-                      City: <strong>{formOfferRide.destination.city}</strong>,{" "}
+                      {t("translation:global.city")}:{" "}
+                      <strong>{formOfferRide.destination.city}</strong>,{" "}
                       <small>{formOfferRide.destination.province}</small>
                     </p>
                     <p>
@@ -374,7 +393,7 @@ const Offer = () => {
                         className="me-2"
                       >
                         <Button variant="outline-success">
-                          Verify
+                          {t("translation:global.verify")}
                           <LinkExternalIcon size={24} className="ms-2" />
                         </Button>
                       </a>
@@ -385,7 +404,7 @@ const Offer = () => {
                 <Row className="mt-5">
                   <Col className="text-end">
                     <Button onClick={handleClickStepTwo} variant="success">
-                      Next
+                      {t("translation:global.next")}
                       <ArrowRightIcon size={24} className="ms-2" />
                     </Button>
                   </Col>
@@ -400,9 +419,10 @@ const Offer = () => {
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
-                  Step <span className="text-success">3</span> / 4
+                  {t("translation:offer.step")}{" "}
+                  <span className="text-success">3</span> / 4
                 </p>
-                <h2>Details about your ride</h2>
+                <h2>{t("translation:offer.details")}</h2>
               </Col>
             </Row>
 
@@ -415,7 +435,8 @@ const Offer = () => {
                 className="text-center mx-auto"
               >
                 <Form.Label>
-                  Day<span className="text-danger">*</span>
+                  {t("translation:global.day")}
+                  <span className="text-danger">*</span>
                 </Form.Label>
                 <Form.Control
                   type="date"
@@ -436,7 +457,8 @@ const Offer = () => {
                 className="text-center mx-auto"
               >
                 <Form.Label>
-                  Time<span className="text-danger">*</span>
+                  {t("translation:global.time")}
+                  <span className="text-danger">*</span>
                 </Form.Label>
                 <Form.Control
                   type="time"
@@ -460,7 +482,8 @@ const Offer = () => {
                 className="text-center mx-auto"
               >
                 <Form.Label>
-                  Seats<span className="text-danger">*</span>
+                  {t("translation:global.seat")}(s)
+                  <span className="text-danger">*</span>
                 </Form.Label>
 
                 <Form.Select
@@ -469,7 +492,7 @@ const Offer = () => {
                   value={seats}
                   required
                 >
-                  <option>Select a number</option>
+                  <option>{t("translation:offer.selectNumber")}</option>
                   {seatsMaxList.map((option, index) => (
                     <option key={index} value={option}>
                       {option}
@@ -482,7 +505,7 @@ const Offer = () => {
             <Row className="mt-5">
               <Col className="text-end">
                 <Button onClick={handleClickStepThree} variant="success">
-                  Next
+                  {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
               </Col>
@@ -495,9 +518,10 @@ const Offer = () => {
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
-                  Step <span className="text-success">4</span> / 4
+                  {t("translation:offer.step")}{" "}
+                  <span className="text-success">4</span> / 4
                 </p>
-                <h2>Any comments?</h2>
+                <h2>{t("translation:offer.comment")}</h2>
               </Col>
             </Row>
 
@@ -515,15 +539,14 @@ const Offer = () => {
                   rows={2}
                   type="textarea"
                   value={comment}
-                  placeholder="Want to share the road you'll take or a precision on your destination?"
+                  placeholder={t("translation:offer.placeholderComment")}
                   className="mb-3"
                   onChange={handleChangeComment}
                 />
                 <Form.Label>
                   <p className="small text-secondary">
                     <AlertIcon size={24} className="text-warning me-2" />
-                    Do not share any contact info (phone, email, etc), they will
-                    be shared within the platform when a booking is made.
+                    {t("translation:global.doNotShare")}
                   </p>
                 </Form.Label>
               </Form.Group>
@@ -532,7 +555,7 @@ const Offer = () => {
             <Row className="mt-5">
               <Col className="text-end">
                 <Button onClick={handleClickStepFour} variant="success">
-                  Next
+                  {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
               </Col>
@@ -544,21 +567,23 @@ const Offer = () => {
 
             <Row className="pt-5 mb-3">
               <Col className="text-center">
-                <p className="text-secondary mb-0">Double check</p>
-                <h2>Summary</h2>
+                <p className="text-secondary mb-0">
+                  {t("translation:offer.summary.subTitle")}
+                </p>
+                <h2>{t("translation:offer.summary.title")}</h2>
               </Col>
             </Row>
 
             <Row className="justify-content-center mb-3">
               <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">Origin:</p>
+                <p className="mb-0">{t("translation:global.origin")}:</p>
                 <h4>
                   <strong>{formOfferRide.origin.city}</strong>,{" "}
                   <small>{formOfferRide.origin.province}</small>
                 </h4>
               </Col>
               <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">Destination:</p>
+                <p className="mb-0">{t("translation:global.destination")}:</p>
                 <h4>
                   <strong>{formOfferRide.destination.city}</strong>,{" "}
                   <small>{formOfferRide.destination.province}</small>
@@ -575,7 +600,7 @@ const Offer = () => {
                     rel="noopener noreferrer"
                   >
                     <Button variant="outline-success">
-                      Preview on Google Maps
+                      {t("translation:offer.preview")}
                       <LinkExternalIcon size={24} className="ms-2" />
                     </Button>
                   </a>
@@ -594,12 +619,12 @@ const Offer = () => {
 
             <Row className="justify-content-center mb-md-3">
               <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">Date:</p>
+                <p className="mb-0">{t("translation:global.date")}:</p>
                 <h4>{dateFormat(formOfferRide.date, "dd/mm/yyyy")}</h4>
               </Col>
 
               <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">Time:</p>
+                <p className="mb-0">{t("translation:global.time")}:</p>
                 <h4>
                   {dateFormat(
                     new Date(
@@ -618,7 +643,7 @@ const Offer = () => {
 
             <Row>
               <Col className="text-center">
-                <p className="mb-0">Comment:</p>
+                <p className="mb-0">{t("translation:global.comment")}:</p>
                 <h4>{formOfferRide.comment}</h4>
               </Col>
             </Row>
@@ -626,7 +651,7 @@ const Offer = () => {
             <Row className="mt-5">
               <Col className="text-end">
                 <Button onClick={handleSubmit} size={"lg"} variant="success">
-                  Submit
+                  {t("translation:global.submit")}
                 </Button>
               </Col>
             </Row>
@@ -642,14 +667,18 @@ const Offer = () => {
             ) : submitFormOfferRideSuccess ? (
               <Row className="mt-5">
                 <Col className="text-center">
-                  <h1 className="text-success">Congratulations</h1>
+                  <h1 className="text-success">
+                    {t("translation:global.congratulations")}
+                  </h1>
                   <p>
-                    Your ride is now online, check it out{" "}
+                    {t("translation:offer.rideOnline1")}{" "}
                     <LinkContainer
                       to="/rides/driver"
                       className="cursor-pointer"
                     >
-                      <u className="link-primary">here</u>
+                      <u className="link-primary">
+                        {t("translation:offer.rideOnline2")}
+                      </u>
                     </LinkContainer>
                   </p>
                 </Col>
@@ -670,9 +699,11 @@ const Offer = () => {
             <Container>
               <Row>
                 <Col>
-                  <h1 className="title display-4">Offer a ride</h1>
+                  <h1 className="title display-4">
+                    {t("translation:offer.title")}
+                  </h1>
                   <p className="mb-0">
-                    You can offer rides only when you are a verified driver
+                    {t("translation:offer.onlyVerifiedDriver")}
                   </p>
                 </Col>
               </Row>
@@ -681,13 +712,15 @@ const Offer = () => {
                   <p>
                     <Link to="/become-driver">
                       <Button variant="success" size="lg">
-                        Become a driver
+                        {t("translation:global.becomeDriver")}
                       </Button>
                     </Link>
                   </p>
                   <p className="mb-0">
                     <Link to="/find">
-                      <Button variant="warning">Find a ride</Button>
+                      <Button variant="warning">
+                        {t("translation:offer.findRide")}
+                      </Button>
                     </Link>
                   </p>
                 </Col>

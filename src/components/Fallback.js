@@ -5,13 +5,11 @@ import LoadingSpinner from "./LoadingSpinner";
 const Fallback = () => {
   return (
     <Container>
-      <Row className="h-100 align-items-center">
+      <Row className="min-vh-100 align-items-center">
         <Col className="text-center">
           <div className="d-inline-flex align-items-center">
             <LoadingSpinner />
-            <h1 className="m-0">
-              Ride<span className="text-success">.</span>CR
-            </h1>
+            <h1 className="my-0 ms-3 p-0">Tucána</h1>
           </div>
         </Col>
       </Row>

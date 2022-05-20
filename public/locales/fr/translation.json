@@ -16,28 +16,88 @@
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
 		"underReview": "En cours d'examen"
 	},
+	"booking": {
+		"rideDetails": "Détails du trajet",
+		"summary1": "Vous avez réservé",
+		"summary2": "a réservé",
+		"summary3": "siège",
+		"summary4": "le",
+		"title": "Détails de la réservation"
+	},
+	"bookings": {
+		"noBookings": "Vous n'avez pas encore réserver de course",
+		"subTitle": "Toutes les réservations que vous avez faites"
+	},
+	"comingSoon": {
+		"subTitle": "",
+		"thankYou": "",
+		"title": ""
+	},
+	"donate": {
+		"crowdfunding": "",
+		"paragraph": "",
+		"subTitle": "",
+		"title": ""
+	},
+	"find": {
+		"catchPhrase": "",
+		"change": ""
+	},
 	"global": {
 		"accepted": "Accepté",
 		"becomeDriver": "Devenir chauffeur",
+		"bookRide": "Réserver un trajet",
+		"bookings": "Réservations",
+		"city": "",
+		"comingSoon": "",
+		"comment": "",
+		"congratulations": "",
 		"contact": "Contactez-nous",
+		"date": "",
+		"day": "",
+		"destination": "",
+		"doNotShare": "",
+		"driverComment": "Commentaire du conducteur",
 		"email": "Courriel",
+		"errors": {
+			"chooseSeatsAvailable": "",
+			"dateFuture": "La date doit être dans le futur",
+			"error": "",
+			"missingInfo": "Veuillez remplir toutes les informations"
+		},
 		"faq": "FAQ",
 		"firstName": "Prénom",
+		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
 		"language": "Français",
 		"lastName": "Nom de famille",
 		"learnMore": "En savoir plus",
 		"logIn": "Connexion",
+		"manage": "",
 		"maps": "Carte du Costa Rica",
+		"more": "En savoir plus",
+		"next": "",
+		"origin": "",
+		"passengerComment": "Commentaire du passager",
+		"passengerDetails": "",
 		"password": "Mot de passe",
+		"province": "",
 		"refundPolicy": "Politique de remboursement",
 		"refused": "refus",
 		"report": "Signaler un problème",
 		"resendLink": "Renvoyez le lien de confirmation",
+		"seat": "Siège",
+		"seatsAvailable": "Sièges disponibles",
+		"seeBooking": "Voir réservation",
+		"seeRide": "Voir trajet",
+		"selected": "",
 		"signUp": "S'inscrire",
 		"slogan": "Partagez vos balades au Costa Rica",
+		"status": "Statut",
 		"submit": "Soumettre",
-		"username": "Nom d'utilisateur"
+		"time": "",
+		"username": "Nom d'utilisateur",
+		"verify": ""
 	},
 	"help": {
 		"message1": "Si quelque chose se produit pendant votre trajet, appelez",
@@ -50,6 +110,9 @@
 	},
 	"languagePage": {
 		"current": "Langue actuelle"
+	},
+	"legal": {
+		"appVersion": "Version de l'app"
 	},
 	"logIn": {
 		"credential": "Courriel ou nom d'utilisateur",
@@ -65,7 +128,6 @@
 		"about": "À propos de nous",
 		"account": "Compte",
 		"donate": "Faire un don",
-		"help": "Aide",
 		"legal": "juridique",
 		"logOut": "Déconnexion",
 		"memberSince": "Membre depuis",
@@ -73,6 +135,9 @@
 		"profile": "Profil",
 		"ratings": "Notations",
 		"refunds": "Remboursements"
+	},
+	"messages": {
+		"title": ""
 	},
 	"navigationBar": {
 		"account": "Compte",
@@ -85,6 +150,38 @@
 		"offerRide": "Offrir une course",
 		"rides": "Rides",
 		"signUp": "S'inscrire"
+	},
+	"offer": {
+		"comment": "",
+		"details": "",
+		"findRide": "",
+		"onlyVerifiedDriver": "",
+		"placeholderComment": "",
+		"preview": "",
+		"rideOnline1": "",
+		"rideOnline2": "",
+		"selectNumber": "",
+		"step": "",
+		"summary": {
+			"subTitle": "",
+			"title": ""
+		},
+		"title": "",
+		"whereFrom": "D'où partez-vous ?",
+		"whereTo": ""
+	},
+	"ride": {
+		"allSeatsBooked": "",
+		"bookThisRide": "",
+		"manageBookingRequests": "",
+		"reviewRide": "",
+		"title": "",
+		"viewTrip": ""
+	},
+	"rides": {
+		"bookingsReceived": "",
+		"ridesOffered": "",
+		"ridesToConfirm": ""
 	},
 	"signUp": {
 		"agreement1": "Si vous choisissez de vous inscrire, vous acceptez notre politique de",

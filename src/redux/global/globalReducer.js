@@ -108,6 +108,8 @@ const initialState = {
     "Report someone",
     "Work with us",
     "Request a feature",
+    "Request my data",
+    "Remove my account",
     "Other",
   ],
 };
