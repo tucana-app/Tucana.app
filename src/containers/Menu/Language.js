@@ -26,7 +26,8 @@ function Language() {
         <Row>
           <Col className="text-center">
             <p>
-              {t("languagePage.current")}: {t("global.language")}
+              {t("translation:languagePage.current")}:{" "}
+              {t("translation:global.language")}
             </p>
             <Button
               onClick={() => changeLanguage("en")}

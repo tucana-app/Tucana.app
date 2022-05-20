@@ -1,17 +1,47 @@
 {
+	"404": {
+		"back1": "Go back to the",
+		"back2": "homepage",
+		"message": "We couldn't find the page you are looking for.",
+		"notFound": "Page not found"
+	},
+	"becomeDriver": {
+		"button": "I want to become a driver",
+		"message1": "Visit",
+		"message2": "this link",
+		"message3": "for more info.",
+		"pastSubmissions": "Past submissions",
+		"request": "Request",
+		"subTitle": "You are growing the community",
+		"thankYou": "Thank you for applying. A moderator will review your submission",
+		"underReview": "under review"
+	},
 	"global": {
+		"accepted": "Accepted",
+		"becomeDriver": "Become a driver",
+		"contact": "Contact Us",
 		"email": "Email",
+		"faq": "FAQ",
 		"firstName": "First name",
+		"howItWorks": "How does it works?",
 		"language": "English",
 		"lastName": "Last name",
 		"learnMore": "Learn more",
 		"logIn": "Log In",
+		"maps": "Map of Costa Rica",
 		"password": "Password",
+		"refundPolicy": "Refund policy",
+		"refused": "Refused",
+		"report": "Report a problem",
 		"resendLink": "Resend the confirmation link",
 		"signUp": "Sign Up",
 		"slogan": "Share your rides in Costa Rica",
 		"submit": "Submit",
 		"username": "Username"
+	},
+	"help": {
+		"message1": "If anything happens during your ride, call",
+		"message2": "immediately, the local emergency services"
 	},
 	"homepage": {
 		"catchPhrase": "Your companion for all your travels in Costa Rica",
@@ -25,16 +55,19 @@
 		"credential": "Email or Username",
 		"forgotPassword": "Forgot your password?"
 	},
+	"maps": {
+		"courtesy": "Photo courtesy of",
+		"map": "Map",
+		"subTitle": "Different maps of Costa Rica",
+		"title": "Maps"
+	},
 	"menu": {
 		"about": "About Us",
 		"account": "Account",
-		"becomeDriver": "Become a driver",
-		"contact": "Contact Us",
 		"donate": "Donate",
 		"help": "Help",
 		"legal": "Legal",
 		"logOut": "Log Out",
-		"maps": "Map of Costa Rica",
 		"memberSince": "Member since",
 		"payments": "Payments",
 		"profile": "Profile",

@@ -1,17 +1,47 @@
 {
+	"404": {
+		"back1": "Vuelve a la",
+		"back2": "Página web",
+		"message": "No hemos podido encontrar la página que busca.",
+		"notFound": "Página no encontrada"
+	},
+	"becomeDriver": {
+		"button": "Quiero ser conductor",
+		"message1": "Visite",
+		"message2": "este enlace",
+		"message3": "para más información.",
+		"pastSubmissions": "Presentaciones anteriores",
+		"request": "Solicite",
+		"subTitle": "Usted está haciendo crecer la comunidad",
+		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
+		"underReview": "En revisión"
+	},
 	"global": {
+		"accepted": "Aceptado",
+		"becomeDriver": "Conviértase en conductor",
+		"contact": "Contáctenos",
 		"email": "Correo Electrónico",
+		"faq": "Preguntas frecuentes",
 		"firstName": "Nombre",
+		"howItWorks": "¿Como funciona?",
 		"language": "Español",
 		"lastName": "Apellido",
 		"learnMore": "Aprenda más",
 		"logIn": "Ingresar",
+		"maps": "Mapa de Costa Rica",
 		"password": "Contraseña",
+		"refundPolicy": "Politica de reembolso",
+		"refused": "Rechazado",
+		"report": "Informar de un problema",
 		"resendLink": "Reenviar el enlace de confirmación",
 		"signUp": "Inscríbete",
 		"slogan": "Comparte tus viajes en Costa Rica",
 		"submit": "Envíe",
 		"username": "Nombre de usuario"
+	},
+	"help": {
+		"message1": "Si ocurre algo durante el viaje, llame a",
+		"message2": "inmediatamente, los servicios de emergencia locales"
 	},
 	"homepage": {
 		"catchPhrase": "Su compañero de viaje en Costa Rica",
@@ -25,16 +55,19 @@
 		"credential": "Correo electrónico o nombre de usuario",
 		"forgotPassword": "¿Olvidó su contraseña?"
 	},
+	"maps": {
+		"courtesy": "",
+		"map": "Mapa",
+		"subTitle": "Diferentes mapas de Costa Rica",
+		"title": "Mapas"
+	},
 	"menu": {
 		"about": "Sobre nosotros",
 		"account": "Cuenta",
-		"becomeDriver": "Conviértase en conductor",
-		"contact": "Contáctenos",
 		"donate": "Donar",
 		"help": "Ayuda",
 		"legal": "Legal",
 		"logOut": "Cierre de sesión",
-		"maps": "Mapa de Costa Rica",
 		"memberSince": "Miembro desde",
 		"payments": "Pagos",
 		"profile": "Perfil",

@@ -75,7 +75,7 @@ const Menu = () => {
                     <p className="lead">{currentUser.email}</p>
 
                     <p className="small text-secondary mb-0">
-                      {t("menu.memberSince")}{" "}
+                      {t("translation:menu.memberSince")}{" "}
                       {dateFormat(currentUser.createdAt, "mm/yyyy")}
                     </p>
                   </div>
@@ -86,7 +86,7 @@ const Menu = () => {
                 <Link to="/profile/passenger" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("menu.account")}</p>
+                      <p className="mb-0">{t("translation:menu.account")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -96,7 +96,7 @@ const Menu = () => {
                   <Link to="/profile/driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="mb-0">{t("menu.profile")}</p>
+                        <p className="mb-0">{t("translation:menu.profile")}</p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
@@ -106,7 +106,7 @@ const Menu = () => {
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                         <p className="text-success mb-0">
-                          {t("menu.becomeDriver")}
+                          {t("translation:global.becomeDriver")}
                         </p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
@@ -117,7 +117,7 @@ const Menu = () => {
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("menu.ratings")}</p>
+                      <p className="mb-0">{t("translation:menu.ratings")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -126,7 +126,7 @@ const Menu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("menu.help")}</p>
+                      <p className="mb-0">{t("translation:menu.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -136,13 +136,17 @@ const Menu = () => {
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="text-secondary mb-0">{t("menu.payments")}</p>
+                    <p className="text-secondary mb-0">
+                      {t("translation:menu.payments")}
+                    </p>
                   </div>
                 </ListGroup.Item>
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="text-secondary mb-0">{t("menu.refunds")}</p>
+                    <p className="text-secondary mb-0">
+                      {t("translation:menu.refunds")}
+                    </p>
                   </div>
                 </ListGroup.Item>
 
@@ -182,7 +186,7 @@ const Menu = () => {
                 <Link to="/login" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("global.logIn")}</p>
+                      <p className="mb-0">{t("translation:global.logIn")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -191,7 +195,7 @@ const Menu = () => {
                 <Link to="/signup" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("global.signUp")}</p>
+                      <p className="mb-0">{t("translation:global.signUp")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -200,7 +204,7 @@ const Menu = () => {
                 <Link to="/help" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("menu.help")}</p>
+                      <p className="mb-0">{t("translation:menu.help")}</p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -216,7 +220,7 @@ const Menu = () => {
                   <div className="mb-0">
                     {i18n.language === "en" ? (
                       <>
-                        {t("global.language")}
+                        {t("translation:global.language")}
                         <ReactCountryFlag
                           countryCode="US"
                           className="ms-2 mb-1"
@@ -226,7 +230,7 @@ const Menu = () => {
                     ) : null}
                     {i18n.language === "es" ? (
                       <>
-                        {t("global.language")}
+                        {t("translation:global.language")}
                         <ReactCountryFlag
                           countryCode="CR"
                           className="ms-2 mb-1"
@@ -236,7 +240,7 @@ const Menu = () => {
                     ) : null}
                     {i18n.language === "fr" ? (
                       <>
-                        {t("global.language")}
+                        {t("translation:global.language")}
                         <ReactCountryFlag
                           countryCode="FR"
                           className="ms-2 mb-1"
@@ -253,7 +257,7 @@ const Menu = () => {
             <Link to="/map" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">{t("menu.maps")}</p>
+                  <p className="mb-0">{t("translation:global.maps")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -265,7 +269,7 @@ const Menu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <p className="text-success fw-bold mb-0">
-                    {t("menu.donate")}
+                    {t("translation:menu.donate")}
                   </p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
@@ -275,7 +279,7 @@ const Menu = () => {
             <Link to="/contact" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">{t("menu.contact")}</p>
+                  <p className="mb-0">{t("translation:global.contact")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -288,7 +292,7 @@ const Menu = () => {
             >
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">{t("menu.about")}</p>
+                  <p className="mb-0">{t("translation:menu.about")}</p>
                   <LinkExternalIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -299,7 +303,7 @@ const Menu = () => {
             <Link to="/legal" className="text-decoration-none">
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">{t("menu.legal")}</p>
+                  <p className="mb-0">{t("translation:menu.legal")}</p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
               </ListGroup.Item>
@@ -315,7 +319,7 @@ const Menu = () => {
           {isLoggedIn ? (
             <div onClick={logOut} className="cursor-pointer text-center mt-4">
               <ListGroup.Item className="border-0 link-success">
-                <p className="mb-0 py-1">{t("menu.logOut")}</p>
+                <p className="mb-0 py-1">{t("translation:menu.logOut")}</p>
               </ListGroup.Item>
             </div>
           ) : null}

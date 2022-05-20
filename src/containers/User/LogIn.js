@@ -53,7 +53,10 @@ const Login = () => {
           <Container className="p-0">
             <Row className="mb-4">
               <Col className="text-center p-0">
-                <h1 className="text-success"> {t("global.logIn")}</h1>
+                <h1 className="text-success">
+                  {" "}
+                  {t("translation:global.logIn")}
+                </h1>
               </Col>
             </Row>
             <Row>
@@ -85,7 +88,7 @@ const Login = () => {
                             <Form.Control
                               type="text"
                               name="credential"
-                              placeholder={t("logIn.credential")}
+                              placeholder={t("translation:logIn.credential")}
                               onChange={handleChange}
                               isInvalid={!!errors.credential}
                               isValid={touched.credential && !errors.credential}
@@ -102,7 +105,7 @@ const Login = () => {
                             <Form.Control
                               type="password"
                               name="password"
-                              placeholder={t("global.password")}
+                              placeholder={t("translation:global.password")}
                               onChange={handleChange}
                               isInvalid={!!errors.password}
                               isValid={touched.password && !errors.password}
@@ -116,7 +119,7 @@ const Login = () => {
 
                         <Col className="text-end mb-3 mb-md-4">
                           <Link to="/forgot-password" className="text-end">
-                            {t("logIn.forgotPassword")}
+                            {t("translation:logIn.forgotPassword")}
                           </Link>
                         </Col>
                       </Row>
@@ -140,7 +143,7 @@ const Login = () => {
                                   setShowAlertConfirmEmail(false);
                                 }}
                               >
-                                {t("global.resendLink")}
+                                {t("translation:global.resendLink")}
                               </u>
                             </Alert>
                           </>
@@ -155,7 +158,7 @@ const Login = () => {
                               className="me-5"
                               size="lg"
                             >
-                              {t("global.signUp")}
+                              {t("translation:global.signUp")}
                             </Button>
                           </LinkContainer>
                           <Form.Group>
@@ -170,7 +173,7 @@ const Login = () => {
                                   <LoadingSpinner />
                                 </span>
                               ) : (
-                                <span> {t("global.logIn")}</span>
+                                <span> {t("translation:global.logIn")}</span>
                               )}
                             </Button>
                           </Form.Group>

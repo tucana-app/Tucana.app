@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { CheckIcon, XIcon } from "@primer/octicons-react";
+import { useTranslation } from "react-i18next";
 
 import {
   updateDriverState,
@@ -13,6 +14,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
 
 const BecomeDriver = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
     user: currentUser,
@@ -69,40 +71,45 @@ const BecomeDriver = () => {
       <Container data-aos="fade-in">
         <Row className="mb-3">
           <Col className="text-center">
-            <h1 className="title">Become a driver</h1>
-            <p className="lead mb-0">You are growing the community</p>
+            <h1 className="title"> {t("translation:global.becomeDriver")}</h1>
+            <p className="lead">{t("translation:becomeDriver.subTitle")}</p>
             <p className="text-center">
-              Visit{" "}
+              {t("translation:becomeDriver.message1")}{" "}
               <Link to="/how-it-works" className="text-success">
-                this link
+                {t("translation:becomeDriver.message2")}
               </Link>{" "}
-              for more info.
+              {t("translation:becomeDriver.message3")}
             </p>
           </Col>
         </Row>
-        <Row>
+
+        <hr className="w-75 my-2 mx-auto" />
+
+        <Row className="mt-5">
           <Col className="text-center">
             {isLoadingGetSubmissionsBecomeDriver ? (
               <LoadingSpinner />
             ) : getSubmissionsBecomeDriverData !== undefined &&
               getSubmissionsBecomeDriverData.length > 0 ? (
               <>
-                <p>Past submissions:</p>
+                <p>{t("translation:becomeDriver.pastSubmissions")}:</p>
                 {getSubmissionsBecomeDriverData.map((submission, index) => (
                   <div key={index} className="mb-3">
-                    Request #{index + 1}:{" "}
+                    {t("translation:becomeDriver.request")} #{index + 1}:{" "}
                     {submission.admin_VerifDriverInfos.length === 0 ? (
-                      <span className="text-warning">under review</span>
+                      <span className="text-warning">
+                        {t("translation:becomeDriver.underReview")}
+                      </span>
                     ) : submission.admin_VerifDriverInfos[0] &&
                       submission.admin_VerifDriverInfos[0].accepted ? (
                       <span className="text-success">
                         <CheckIcon size={24} className="me-2" />
-                        Accepted
+                        {t("translation:global.accepted")}
                       </span>
                     ) : (
                       <span className="text-danger">
                         <XIcon size={24} className="me-2" />
-                        Refused
+                        {t("translation:global.refused")}
                       </span>
                     )}
                   </div>
@@ -112,7 +119,7 @@ const BecomeDriver = () => {
 
             {submitFormBecomeDriverSuccess ? (
               <Alert variant="success">
-                Thank you for applying. A moderator will review your submission
+                {t("translation:becomeDriver.thankYou")}
               </Alert>
             ) : !isLoadingGetSubmissionsBecomeDriver ? (
               !isFoundAccepted() && !isFoundPending() ? (
@@ -122,8 +129,8 @@ const BecomeDriver = () => {
                   size="lg"
                   disabled={isLoadingSubmitFormBecomeDriver}
                 >
-                  {isLoadingSubmitFormBecomeDriver ? <LoadingSpinner /> : null}I
-                  want to become a driver
+                  {isLoadingSubmitFormBecomeDriver ? <LoadingSpinner /> : null}{" "}
+                  {t("translation:becomeDriver.button")}
                 </Button>
               ) : null
             ) : null}

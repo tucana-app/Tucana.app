@@ -36,7 +36,7 @@ function NavigationBar() {
                   <Nav.Link className="text-center">
                     <SearchIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">
-                      {t("navigationBar.find")}
+                      {t("translation:navigationBar.find")}
                     </p>
                   </Nav.Link>
                 </IndexLinkContainer>
@@ -46,7 +46,7 @@ function NavigationBar() {
                   <Nav.Link className="text-center">
                     <PlusCircleIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">
-                      {t("navigationBar.offer")}
+                      {t("translation:navigationBar.offer")}
                     </p>
                   </Nav.Link>
                 </IndexLinkContainer>
@@ -56,7 +56,7 @@ function NavigationBar() {
                   <Nav.Link className="text-center text-decoration-none">
                     <ZapIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">
-                      {t("navigationBar.rides")}
+                      {t("translation:navigationBar.rides")}
                     </p>
                   </Nav.Link>
                 </IndexLinkContainer>
@@ -71,7 +71,7 @@ function NavigationBar() {
                     <div className="position-relative">
                       <CommentDiscussionIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("navigationBar.messages")}
+                        {t("translation:navigationBar.messages")}
                         {messages > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
@@ -95,7 +95,7 @@ function NavigationBar() {
                     <div className="position-relative">
                       <PersonIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("navigationBar.account")}
+                        {t("translation:navigationBar.account")}
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
@@ -132,7 +132,7 @@ function NavigationBar() {
                         <Nav.Link>
                           <HomeIcon size={24} />
                           <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                            {t("navigationBar.home")}
+                            {t("translation:navigationBar.home")}
                           </p>
                         </Nav.Link>
                       </IndexLinkContainer>
@@ -142,14 +142,14 @@ function NavigationBar() {
                         <IndexLinkContainer to="/login" href="/login">
                           <Nav.Link>
                             <Button variant="outline-success" size="lg">
-                              {t("navigationBar.logIn")}
+                              {t("translation:navigationBar.logIn")}
                             </Button>
                           </Nav.Link>
                         </IndexLinkContainer>
                         <IndexLinkContainer to="/signup" href="/signup">
                           <Nav.Link>
                             <Button variant="success" size="lg">
-                              {t("navigationBar.signUp")}
+                              {t("translation:navigationBar.signUp")}
                             </Button>
                           </Nav.Link>
                         </IndexLinkContainer>
@@ -160,7 +160,7 @@ function NavigationBar() {
                         <Nav.Link>
                           <ThreeBarsIcon size={24} />
                           <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                            {t("navigationBar.menu")}
+                            {t("translation:navigationBar.menu")}
                           </p>
                         </Nav.Link>
                       </IndexLinkContainer>

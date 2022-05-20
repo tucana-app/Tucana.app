@@ -1,17 +1,47 @@
 {
+	"404": {
+		"back1": "Retournez à la",
+		"back2": "Page d'accueil",
+		"message": "Nous n'avons pas trouvé la page que vous recherchez.",
+		"notFound": "Page non trouvée"
+	},
+	"becomeDriver": {
+		"button": "Je veux devenir chauffeur",
+		"message1": "Visitez",
+		"message2": "ce lien",
+		"message3": "pour plus d'informations.",
+		"pastSubmissions": "Soumissions antérieures",
+		"request": "Demande",
+		"subTitle": "Vous faites grandir la communauté",
+		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
+		"underReview": "En cours d'examen"
+	},
 	"global": {
+		"accepted": "Accepté",
+		"becomeDriver": "Devenir chauffeur",
+		"contact": "Contactez-nous",
 		"email": "Courriel",
+		"faq": "FAQ",
 		"firstName": "Prénom",
+		"howItWorks": "Comment ça marche?",
 		"language": "Français",
 		"lastName": "Nom de famille",
 		"learnMore": "En savoir plus",
 		"logIn": "Connexion",
+		"maps": "Carte du Costa Rica",
 		"password": "Mot de passe",
+		"refundPolicy": "Politique de remboursement",
+		"refused": "refus",
+		"report": "Signaler un problème",
 		"resendLink": "Renvoyez le lien de confirmation",
 		"signUp": "S'inscrire",
 		"slogan": "Partagez vos balades au Costa Rica",
 		"submit": "Soumettre",
 		"username": "Nom d'utilisateur"
+	},
+	"help": {
+		"message1": "Si quelque chose se produit pendant votre trajet, appelez",
+		"message2": "immédiatement, les services d'urgence locaux"
 	},
 	"homepage": {
 		"catchPhrase": "Votre compagnon pour tous vos voyages au Costa Rica",
@@ -25,16 +55,19 @@
 		"credential": "Courriel ou nom d'utilisateur",
 		"forgotPassword": "Vous avez oublié votre mot de passe ?"
 	},
+	"maps": {
+		"courtesy": "Avec l'aimable autorisation de",
+		"map": "Carte",
+		"subTitle": "Différentes cartes du Costa Rica",
+		"title": "cartes"
+	},
 	"menu": {
 		"about": "À propos de nous",
 		"account": "Compte",
-		"becomeDriver": "Devenir chauffeur",
-		"contact": "Contactez-nous",
 		"donate": "Faire un don",
 		"help": "Aide",
 		"legal": "juridique",
 		"logOut": "Déconnexion",
-		"maps": "Carte de Costa Rica",
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"profile": "Profil",

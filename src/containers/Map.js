@@ -1,12 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import GoBack from "../components/GoBack";
+import { useTranslation } from "react-i18next";
 
 import map1 from "../assets/images/maps/costa_rica_political_map_1_worldometers.info.jpg";
 import map2 from "../assets/images/maps/costa_rica_political_map_2_costaricalaw.com.jpg";
 import map3 from "../assets/images/maps/costa_rica_political_map_3_orangesmile.com.jpg";
 
 const Map = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <GoBack />
@@ -14,15 +17,17 @@ const Map = () => {
       <Container data-aos="fade-in">
         <Row className="text-center">
           <Col>
-            <h1 className="title">Maps</h1>
-            <p className="lead">Different maps of Costa Rica</p>
+            <h1 className="title">{t("translation:maps.title")}</h1>
+            <p className="lead">{t("translation:maps.subTitle")}</p>
           </Col>
         </Row>
         <Row>
-          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="pb-5 mx-auto">
             <Accordion>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Map #1</Accordion.Header>
+                <Accordion.Header>
+                  {t("translation:maps.map")} #1
+                </Accordion.Header>
                 <Accordion.Body>
                   <p>
                     <a href={map1} target={"_blank"} rel="noreferrer">
@@ -30,7 +35,7 @@ const Map = () => {
                     </a>
                   </p>
                   <p>
-                    Photo courtesy of{" "}
+                    {t("translation:maps.courtesy")}{" "}
                     <a
                       href="https://www.worldometers.info/maps/costa-rica-political-map-full/"
                       target={"_blank"}
@@ -51,7 +56,9 @@ const Map = () => {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
-                <Accordion.Header>Map #2</Accordion.Header>
+                <Accordion.Header>
+                  {t("translation:maps.map")} #2
+                </Accordion.Header>
                 <Accordion.Body>
                   <p>
                     <a href={map2} target={"_blank"} rel="noreferrer">
@@ -59,7 +66,7 @@ const Map = () => {
                     </a>
                   </p>
                   <p>
-                    Photo courtesy of{" "}
+                    {t("translation:maps.courtesy")}{" "}
                     <a
                       href="https://costaricalaw.com/costa-rica-facts/maps-of-costa-rica/maps-of-the-provinces-and-cantons-of-costa-rica/"
                       target={"_blank"}
@@ -80,7 +87,9 @@ const Map = () => {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2">
-                <Accordion.Header>Map #3</Accordion.Header>
+                <Accordion.Header>
+                  {t("translation:maps.map")} #3
+                </Accordion.Header>
                 <Accordion.Body>
                   <p>
                     <a href={map3} target={"_blank"} rel="noreferrer">
@@ -88,7 +97,7 @@ const Map = () => {
                     </a>
                   </p>
                   <p>
-                    Photo courtesy of{" "}
+                    {t("translation:maps.courtesy")}{" "}
                     <a
                       href="https://www.orangesmile.com/travelguide/costa-rica/country-maps-provinces.htm"
                       target={"_blank"}

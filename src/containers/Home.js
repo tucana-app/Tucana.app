@@ -33,7 +33,7 @@ function Home() {
                   className="text-center px-0 mx-auto"
                 >
                   <img src={logo} alt="Tucána logo" className="img-fluid" />
-                  <p className="lead mb-0">{t("global.slogan")}</p>
+                  <p className="lead mb-0">{t("translation:global.slogan")}</p>
                 </Col>
               </Row>
               <Row className="justify-content-center align-items-center">
@@ -47,11 +47,11 @@ function Home() {
                 </Col>
                 <Col xs={10} sm={8} md={6} xl={4} className="text-center">
                   <h2 className="text-success mb-0">
-                    {t("homepage.catchPhrase")}
+                    {t("translation:homepage.catchPhrase")}
                   </h2>
                   <LinkContainer to="/login" href="/login" className="my-2">
                     <Button variant="success" size="lg">
-                      {t("homepage.start")}
+                      {t("translation:homepage.start")}
                       <ArrowRightIcon
                         size={24}
                         verticalAlign="middle"
@@ -59,7 +59,7 @@ function Home() {
                       />
                     </Button>
                   </LinkContainer>
-                  <p className="mb-0">{t("homepage.paragraph")}</p>
+                  <p className="mb-0">{t("translation:homepage.paragraph")}</p>
                   <p>
                     <a
                       href="http://ridecr.atwebpages.com/"
@@ -67,7 +67,7 @@ function Home() {
                       rel="noreferrer"
                       className="link-success small"
                     >
-                      {t("global.learnMore")}
+                      {t("translation:global.learnMore")}
                       <LinkExternalIcon size={12} className="mb-1 ms-2" />
                     </a>
                   </p>

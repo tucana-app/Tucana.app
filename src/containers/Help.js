@@ -2,10 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { AlertFillIcon, ChevronRightIcon } from "@primer/octicons-react";
+import { useTranslation, Trans } from "react-i18next";
 
 import GoBack from "../components/GoBack";
 
+var count = 0;
+var name = "Patrick";
+
 const Help = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <GoBack />
@@ -17,8 +23,8 @@ const Help = () => {
               <ListGroup.Item className="border-0">
                 <p className="mb-0">
                   <AlertFillIcon size={24} className="text-warning me-2" />
-                  If anything happens during your ride, call{" "}
-                  <strong>911</strong> immediatly, the local emergency services
+                  {t("translation:help.message1")} <strong>911</strong>{" "}
+                  {t("translation:help.message2")}
                 </p>
               </ListGroup.Item>
 
@@ -27,7 +33,7 @@ const Help = () => {
               <Link to="/how-it-works" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">How does it works?</p>
+                    <p className="mb-0">{t("translation:global.howItWorks")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -36,7 +42,7 @@ const Help = () => {
               <Link to="/map" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Map of Costa Rica</p>
+                    <p className="mb-0">{t("translation:global.maps")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -45,7 +51,7 @@ const Help = () => {
               <Link to="/contact" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Report a problem</p>
+                    <p className="mb-0">{t("translation:global.report")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -54,7 +60,9 @@ const Help = () => {
               <Link to="/refund-policy" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Refund policy</p>
+                    <p className="mb-0">
+                      {t("translation:global.refundPolicy")}
+                    </p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -63,7 +71,7 @@ const Help = () => {
               <Link to="/faq" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">FAQ</p>
+                    <p className="mb-0">{t("translation:global.faq")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -74,7 +82,7 @@ const Help = () => {
               <Link to="/contact" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Contact Us</p>
+                    <p className="mb-0">{t("translation:global.contact")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>

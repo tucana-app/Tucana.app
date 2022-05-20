@@ -106,8 +106,8 @@ const SignUp = () => {
     <Container className="my-5" data-aos="fade-in">
       <Row className="mb-3">
         <Col className="text-center">
-          <h1 className="text-success">{t("global.signUp")}</h1>
-          <p className="lead">{t("signUp.subTitle")}</p>
+          <h1 className="text-success">{t("translation:global.signUp")}</h1>
+          <p className="lead">{t("translation:signUp.subTitle")}</p>
         </Col>
       </Row>
       <Row>
@@ -143,7 +143,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="firstName"
-                        placeholder={t("global.firstName")}
+                        placeholder={t("translation:global.firstName")}
                         onChange={handleChange}
                         isInvalid={!!errors.firstName}
                         isValid={touched.firstName && !errors.firstName}
@@ -160,7 +160,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="lastName"
-                        placeholder={t("global.lastName")}
+                        placeholder={t("translation:global.lastName")}
                         onChange={handleChange}
                         isInvalid={!!errors.lastName}
                         isValid={touched.lastName && !errors.lastName}
@@ -179,7 +179,7 @@ const SignUp = () => {
                       <Form.Control
                         type="email"
                         name="email"
-                        placeholder={t("global.email")}
+                        placeholder={t("translation:global.email")}
                         onChange={handleChange}
                         isInvalid={!!errors.email}
                         isValid={touched.email && !errors.email}
@@ -221,7 +221,7 @@ const SignUp = () => {
                       <Form.Control
                         type="text"
                         name="username"
-                        placeholder={t("global.username")}
+                        placeholder={t("translation:global.username")}
                         onChange={handleChange}
                         isInvalid={!!errors.username}
                         isValid={touched.username && !errors.username}
@@ -238,7 +238,7 @@ const SignUp = () => {
                       <Form.Control
                         type="password"
                         name="password"
-                        placeholder={t("global.username")}
+                        placeholder={t("translation:global.username")}
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
@@ -254,7 +254,10 @@ const SignUp = () => {
                 {signupErrorFlag === "NOT_CONFIRMED" ? (
                   <Alert variant="warning">
                     {signupErrorMessage}.{" "}
-                    <Link to="/coming-soon"> {t("global.resendLink")}</Link>
+                    <Link to="/coming-soon">
+                      {" "}
+                      {t("translation:global.resendLink")}
+                    </Link>
                   </Alert>
                 ) : (
                   feedback.message && (
@@ -274,7 +277,7 @@ const SignUp = () => {
                         {isSubmitting || isloadingSignup ? (
                           <LoadingSpinner />
                         ) : null}
-                        {t("global.submit")}
+                        {t("translation:global.submit")}
                       </Button>
                     </Form.Group>
                   </Col>
@@ -288,16 +291,16 @@ const SignUp = () => {
       <Row className="mt-4">
         <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
           <p className="small text-secondary mb-3">
-            {t("signUp.agreement1")}{" "}
+            {t("translation:signUp.agreement1")}{" "}
             <Link to="/terms" className="link-secondary">
-              {t("signUp.agreement2")}
+              {t("translation:signUp.agreement2")}
             </Link>
             .
           </p>
           <p className="small text-secondary mb-3">
-            {t("signUp.paragraphInfo")}{" "}
+            {t("translation:signUp.paragraphInfo")}{" "}
             <Link to="/how-it-works" className="text-secondary">
-              {t("global.learnMore")}
+              {t("translation:global.learnMore")}
             </Link>
           </p>
         </Col>
