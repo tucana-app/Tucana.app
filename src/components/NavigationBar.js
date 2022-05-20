@@ -127,7 +127,7 @@ function NavigationBar() {
               <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
                 <Container className="px-0">
                   <Row className="align-items-center">
-                    <Col xs={2} className="text-center mx-auto">
+                    <Col xs={2} className="text-center me-0 pe-0">
                       <IndexLinkContainer to="/" href="/">
                         <Nav.Link>
                           <HomeIcon size={24} />
@@ -137,25 +137,25 @@ function NavigationBar() {
                         </Nav.Link>
                       </IndexLinkContainer>
                     </Col>
-                    <Col xs="auto" className="text-center mx-auto">
+                    <Col xs={8} className="text-center px-0 mx-0">
                       <div className="d-inline-flex">
                         <IndexLinkContainer to="/login" href="/login">
                           <Nav.Link>
                             <Button variant="outline-success" size="lg">
-                              {t("translation:navigationBar.logIn")}
+                              {t("translation:global.logIn")}
                             </Button>
                           </Nav.Link>
                         </IndexLinkContainer>
                         <IndexLinkContainer to="/signup" href="/signup">
                           <Nav.Link>
                             <Button variant="success" size="lg">
-                              {t("translation:navigationBar.signUp")}
+                              {t("translation:global.signUp")}
                             </Button>
                           </Nav.Link>
                         </IndexLinkContainer>
                       </div>
                     </Col>
-                    <Col xs={2} className="text-center mx-auto">
+                    <Col xs={2} className="text-center ps-0 ms-0">
                       <IndexLinkContainer to="/menu" href="/menu">
                         <Nav.Link>
                           <ThreeBarsIcon size={24} />

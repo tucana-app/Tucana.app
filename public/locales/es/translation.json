@@ -143,13 +143,11 @@
 		"account": "Cuenta",
 		"find": "Encuentre",
 		"home": "Inicio",
-		"logIn": "Ingresar",
 		"menu": "Menú",
 		"messages": "Mensajes",
 		"offer": "Ofrecer",
 		"offerRide": "oferta",
-		"rides": "Rides",
-		"signUp": "Inscríbete"
+		"rides": "Rides"
 	},
 	"offer": {
 		"comment": "",

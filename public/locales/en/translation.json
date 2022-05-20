@@ -143,13 +143,11 @@
 		"account": "Account",
 		"find": "Find",
 		"home": "Home",
-		"logIn": "Log In",
 		"menu": "Menu",
 		"messages": "Messages",
 		"offer": "Offer",
 		"offerRide": "Offer",
-		"rides": "Rides",
-		"signUp": "Sign Up"
+		"rides": "Rides"
 	},
 	"offer": {
 		"comment": "Any comment?",

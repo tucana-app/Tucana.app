@@ -143,13 +143,11 @@
 		"account": "Compte",
 		"find": "Chercher",
 		"home": "Accueil",
-		"logIn": "Se connecter",
 		"menu": "Menu",
 		"messages": "Messages",
 		"offer": "Offrir",
 		"offerRide": "Offrir une course",
-		"rides": "Rides",
-		"signUp": "S'inscrire"
+		"rides": "Rides"
 	},
 	"offer": {
 		"comment": "",
