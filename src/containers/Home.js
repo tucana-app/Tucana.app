@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
+import { ArrowRightIcon, LinkExternalIcon } from "@primer/octicons-react";
 
 // Importing assets
 import logo from "../assets/images/OPTI_noir.png";
-import carpooling from "../assets/images/undraw_off_road.png";
-import { ArrowRightIcon, LinkExternalIcon } from "@primer/octicons-react";
-import { LinkContainer } from "react-router-bootstrap";
+import carpooling from "../assets/images/undraw_trip.svg";
 
 function Home() {
   const { t } = useTranslation();
@@ -37,11 +37,17 @@ function Home() {
                 </Col>
               </Row>
               <Row className="justify-content-center align-items-center">
-                <Col xs={10} sm={8} md={6} xl={4} className="text-center">
+                <Col
+                  xs={10}
+                  sm={8}
+                  md={6}
+                  xl={4}
+                  className="text-center mb-5 mb-md-0"
+                >
                   <img
                     src={carpooling}
                     alt="Tucána logo"
-                    width={400}
+                    width={300}
                     className="img-fluid"
                   />
                 </Col>

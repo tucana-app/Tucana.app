@@ -13,7 +13,7 @@ import {
   getRidesToConfirm,
 } from "../redux";
 
-import car from "../assets/images/undraw_Order_ride.png";
+import car from "../assets/images/undraw_Order_ride.svg";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -78,7 +78,7 @@ const Rides = () => {
 
   return (
     <Container fluid data-aos="fade-in">
-      <Row className="my-3">
+      <Row className="my-4">
         <Col className="text-center">
           <img src={car} alt="Car" width={400} className="img-fluid" />
         </Col>
