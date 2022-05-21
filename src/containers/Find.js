@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import {
   CircleIcon,
-  StarFillIcon,
+  // StarFillIcon,
   LockIcon,
   ArrowDownIcon,
   ArrowRightIcon,
@@ -61,25 +61,16 @@ const Find = () => {
 
   return (
     <>
-      <Container className="py-5 mx-0" id="container-find-ride">
-        <Row className="justify-content-center mb-4">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="text-center mx-auto"
-          >
-            <div>
-              <h1 className="title text-dark text-shadow fw-bold mb-0">
-                {t("translation:find.catchPhrase")}
-              </h1>
-            </div>
-          </Col>
-        </Row>
+      <Container className="py-5">
         {isFormSearchRideSubmitted ? (
           <>
+            <Row>
+              <Col xs={12}>
+                <h1 className="title text-center fw-bold mb-0">
+                  {t("translation:find.searchResults")}
+                </h1>
+              </Col>
+            </Row>
             <Row className="sticky-top mb-3 mx-1 mx-sm-0">
               <Col
                 xs={12}
@@ -152,19 +143,18 @@ const Find = () => {
                               </p>
                             </Col>
                             <Col xs={7}>
-                              <p className="fw-bold mb-0">{ride.origin.city}</p>
-                              <p className="small mb-0">
-                                {ride.origin.province}
+                              <p className="mb-0">
+                                <strong>{ride.origin.city}, </strong>
+                                <small>{ride.origin.province}</small>
                               </p>
-                              <p className="small mb-0">
-                                <span className="text-primary small">
-                                  (
+                              <p className="small text-secondary mb-0">
+                                <span className="text-primary">
                                   {distanceLatLng(
                                     ride.origin.latLng,
                                     formSearchRide.origin.latLng
                                   )}
                                 </span>{" "}
-                                km)
+                                km {t("translation:find.distanceOrigin")}
                               </p>
 
                               <ArrowDownIcon
@@ -172,21 +162,18 @@ const Find = () => {
                                 className="text-success"
                               />
 
-                              <p className="fw-bold mb-0">
-                                {ride.destination.city}
+                              <p className="mb-0">
+                                <strong>{ride.destination.city}, </strong>
+                                <small>{ride.destination.province}</small>
                               </p>
-                              <p className="small mb-0">
-                                {ride.destination.province}
-                              </p>
-                              <p className="small mb-0">
-                                <span className="text-primary small">
-                                  (
+                              <p className="small text-secondary mb-0">
+                                <span className="text-primary">
                                   {distanceLatLng(
                                     ride.destination.latLng,
                                     formSearchRide.destination.latLng
                                   )}
                                 </span>{" "}
-                                km)
+                                km {t("translation:find.distanceDestination")}
                               </p>
                             </Col>
                             <Col xs={3} className="text-center mx-auto">
@@ -215,14 +202,15 @@ const Find = () => {
                               <p className="mb-0">
                                 {ride.Driver.User.firstName}
                               </p>
-                              <p className="mb-0">
+                              {/* RATINGS */}
+                              {/* <p className="mb-0">
                                 <StarFillIcon
                                   size={18}
                                   verticalAlign="middle"
                                   className="text-warning"
                                 />{" "}
                                 <span>-</span>
-                              </p>
+                              </p> */}
                             </Col>
                             <Col xs={4} className="text-end mx-auto">
                               {!isLoggedIn ? (
@@ -279,20 +267,38 @@ const Find = () => {
             )}
           </>
         ) : (
-          <Row className="mb-2 mx-1 mx-sm-0">
-            <Col
-              xs={12}
-              sm={10}
-              md={8}
-              lg={6}
-              xl={4}
-              className="bg-white border border-success shadow-sm rounded mt-2 mx-auto"
-            >
-              <Container className="py-3 px-2">
-                <FormSearchRides />
-              </Container>
-            </Col>
-          </Row>
+          <>
+            <Row className="justify-content-center mb-4">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="text-center mx-auto"
+              >
+                <div>
+                  <h1 className="title display-5 text-dark mb-0">
+                    {t("translation:find.catchPhrase")}
+                  </h1>
+                </div>
+              </Col>
+            </Row>
+            <Row className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="bg-white border border-success shadow-sm rounded mt-2 mx-auto"
+              >
+                <Container className="py-3 px-2">
+                  <FormSearchRides />
+                </Container>
+              </Col>
+            </Row>
+          </>
         )}
       </Container>
     </>

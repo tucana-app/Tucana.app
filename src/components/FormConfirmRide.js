@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   ArrowLeftIcon,
   XIcon,
   CheckIcon,
-  StarFillIcon,
+  // StarFillIcon,
 } from "@primer/octicons-react";
 
 import { submitFormConfirmRide } from "../redux";
@@ -111,13 +111,14 @@ const FormConfirmRide = ({ ride }) => {
         <>
           <Alert variant="success" className="text-center">
             <p className="mb-0">{submitFormConfirmRideData.message}</p>
-            <p className="mb-0">
+            {/* RATINGS */}
+            {/* <p className="mb-0">
               You can now rate the other person:{" "}
               <Link to="/ratings" className="link-primary">
                 <StarFillIcon size={24} className="text-warning me-2" />
                 Ratings
               </Link>{" "}
-            </p>
+            </p> */}
           </Alert>
         </>
       )}

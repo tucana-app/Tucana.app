@@ -41,7 +41,10 @@
 	},
 	"find": {
 		"catchPhrase": "",
-		"change": ""
+		"change": "",
+		"distanceDestination": "",
+		"distanceOrigin": "",
+		"searchResults": ""
 	},
 	"global": {
 		"accepted": "Aceptado",

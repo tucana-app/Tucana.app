@@ -4,8 +4,8 @@ import { Redirect, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
-  ChevronRightIcon,
-  StarFillIcon,
+  // ChevronRightIcon,
+  // StarFillIcon,
   CircleIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
@@ -45,7 +45,8 @@ function PassengerProfile() {
           </Col>
         </Row>
 
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
+        {/* RATINGS */}
+        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
           <Col xs={12} sm={4} className="text-center">
             <h4>
               <span className="text-secondary">
@@ -64,49 +65,49 @@ function PassengerProfile() {
               </Button>
             </LinkContainer>
           </Col>
-        </Row>
+        </Row> */}
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
+          <Col xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Username</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             <span>{currentUser.username}</span>
           </Col>
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
+          <Col xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Email</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             <span>{currentUser.email}</span>
           </Col>
         </Row>
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
+          <Col xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Phone number</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             <span>{formatPhoneNumberIntl(currentUser.phoneNumber)}</span>
           </Col>
         </Row>
 
         {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
+          <Col  xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Biography</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             <span>{currentUser.biography}</span>
           </Col>
         </Row> */}
 
         {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col className="text-end">
+          <Col  xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Phone verified</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             {currentUser.phoneConfirmed ? (
               <span className="text-success">
                         <CheckIcon size={24} className="me-2" />
@@ -122,10 +123,10 @@ function PassengerProfile() {
         </Row> */}
 
         <Row className="justify-content-center align-items-center text-center text-sm-start mb-5">
-          <Col className="text-end">
+          <Col xs={12} md={6} className="text-center text-md-end">
             <span className="text-secondary">Member since</span>
           </Col>
-          <Col className="text-start">
+          <Col className="text-center text-md-start">
             {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
           </Col>
         </Row>

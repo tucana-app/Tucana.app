@@ -26,7 +26,8 @@ function DriverProfile(props) {
 
         {currentUser.Driver && currentUser.Driver.id ? (
           <>
-            <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
+            {/* RATINGS */}
+            {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
               <Col xs={12} sm={4} className="text-md-end">
                 <h4 className="text-secondary">Rating</h4>
               </Col>
@@ -46,7 +47,7 @@ function DriverProfile(props) {
                   </Button>
                 </LinkContainer>
               </Col>
-            </Row>
+            </Row> */}
           </>
         ) : (
           <Row>
