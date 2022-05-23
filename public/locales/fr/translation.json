@@ -5,6 +5,14 @@
 		"message": "Nous n'avons pas trouvé la page que vous recherchez.",
 		"notFound": "Page non trouvée"
 	},
+	"FormConfirmRide": {
+		"confirm": "",
+		"confirmNoRide": "",
+		"confirmRide": ""
+	},
+	"FormDriverResponseBooking": {
+		"manageBooking": ""
+	},
 	"becomeDriver": {
 		"button": "Je veux devenir chauffeur",
 		"message1": "Visitez",
@@ -46,7 +54,13 @@
 		"distanceOrigin": "",
 		"searchResults": ""
 	},
+	"formBookRide": {
+		"alreadyRide": "",
+		"book": "",
+		"numberPassengers": ""
+	},
 	"global": {
+		"about": "",
 		"accepted": "Accepté",
 		"becomeDriver": "Devenir chauffeur",
 		"bookRide": "Réserver un trajet",
@@ -70,6 +84,7 @@
 		},
 		"faq": "FAQ",
 		"firstName": "Prénom",
+		"goBack": "",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
 		"language": "Français",
@@ -80,9 +95,11 @@
 		"maps": "Carte du Costa Rica",
 		"more": "En savoir plus",
 		"next": "",
+		"no": "Non",
 		"origin": "",
 		"passengerComment": "Commentaire du passager",
 		"passengerDetails": "",
+		"passengers": "",
 		"password": "Mot de passe",
 		"province": "",
 		"refundPolicy": "Politique de remboursement",
@@ -93,6 +110,7 @@
 		"seatsAvailable": "Sièges disponibles",
 		"seeBooking": "Voir réservation",
 		"seeRide": "Voir trajet",
+		"selectOption": "",
 		"selected": "",
 		"signUp": "S'inscrire",
 		"slogan": "Partagez vos balades au Costa Rica",
@@ -100,7 +118,8 @@
 		"submit": "Soumettre",
 		"time": "",
 		"username": "Nom d'utilisateur",
-		"verify": ""
+		"verify": "",
+		"yes": ""
 	},
 	"help": {
 		"message1": "Si quelque chose se produit pendant votre trajet, appelez",

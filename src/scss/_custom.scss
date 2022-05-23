@@ -1,8 +1,5 @@
 @use "./colors";
 
-$navbarHeight: 72px;
-$topBannerHeight: 27px;
-
 html {
   scroll-behavior: smooth;
 }
@@ -23,7 +20,6 @@ body {
 // Fonts
 
 .title {
-  font-family: "Work Sans" !important;
   @extend .text-success;
 }
 
@@ -76,6 +72,20 @@ body {
   @extend .border;
   @extend .py-1;
   @extend .px-2;
+}
+
+.overlay {
+  max-width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  @extend .min-vh-100;
+}
+
+.container-homepage {
+  background-image: url("/assets/images/background-homepage.jpg");
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 // END CUSTOM CLASSES

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { AlertIcon } from "@primer/octicons-react";
 
 import LoadingSpinner from "./LoadingSpinner";
@@ -9,6 +10,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { submitFormBookRide } from "../redux";
 
 const FormBookRide = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const {
@@ -31,7 +33,7 @@ const FormBookRide = () => {
           <Col className="mx-auto">
             <p className="small text-warning mb-0">
               <AlertIcon size={24} className="me-2" />
-              You already have booking(s) for this ride
+              {t("translation:formBookRide.alreadyRide")}
             </p>
           </Col>
         </Row>
@@ -63,8 +65,12 @@ const FormBookRide = () => {
                   <Col className="py-2 mx-auto">
                     <Form.Group className="mx-auto mb-3">
                       <Form.Label>
-                        <span className="d-xs-screen">Passengers</span>
-                        <span className="d-md-screen">Number of passenger</span>
+                        <span className="d-xs-screen">
+                          {t("translation:global.passengers")}
+                        </span>
+                        <span className="d-md-screen">
+                          {t("translation:formBookRide.numberPassengers")}
+                        </span>
                         <span className="text-danger">*</span>
                       </Form.Label>
                       <Form.Select
@@ -77,7 +83,9 @@ const FormBookRide = () => {
                           rideData.ride.DriverId === currentUser.id
                         }
                       >
-                        <option value="0">Select an option</option>
+                        <option value="0">
+                          {t("translation:global.selectOption")}
+                        </option>
                         {rideData.optionsSeatsNeeded}
                       </Form.Select>
                       <Form.Control.Feedback type="invalid">
@@ -99,7 +107,7 @@ const FormBookRide = () => {
                         {isSubmitting || isloadingBookingRide ? (
                           <LoadingSpinner />
                         ) : null}
-                        Book
+                        {t("translation:formBookRide.book")}
                       </Button>
                     </Form.Group>
                   </Col>

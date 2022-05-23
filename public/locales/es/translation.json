@@ -5,6 +5,14 @@
 		"message": "No hemos podido encontrar la página que busca.",
 		"notFound": "Página no encontrada"
 	},
+	"FormConfirmRide": {
+		"confirm": "",
+		"confirmNoRide": "",
+		"confirmRide": ""
+	},
+	"FormDriverResponseBooking": {
+		"manageBooking": ""
+	},
 	"becomeDriver": {
 		"button": "Quiero ser conductor",
 		"message1": "Visite",
@@ -46,7 +54,13 @@
 		"distanceOrigin": "",
 		"searchResults": ""
 	},
+	"formBookRide": {
+		"alreadyRide": "",
+		"book": "",
+		"numberPassengers": ""
+	},
 	"global": {
+		"about": "",
 		"accepted": "Aceptado",
 		"becomeDriver": "Conviértase en conductor",
 		"bookRide": "",
@@ -70,6 +84,7 @@
 		},
 		"faq": "Preguntas frecuentes",
 		"firstName": "Nombre",
+		"goBack": "",
 		"help": "Ayuda",
 		"howItWorks": "¿Como funciona?",
 		"language": "Español",
@@ -80,9 +95,11 @@
 		"maps": "Mapa de Costa Rica",
 		"more": "Más",
 		"next": "",
+		"no": "No",
 		"origin": "",
 		"passengerComment": "Comentario de los pasajeros",
 		"passengerDetails": "",
+		"passengers": "",
 		"password": "Contraseña",
 		"province": "",
 		"refundPolicy": "Politica de reembolso",
@@ -93,6 +110,7 @@
 		"seatsAvailable": "Asientos disponibles",
 		"seeBooking": "",
 		"seeRide": "",
+		"selectOption": "",
 		"selected": "",
 		"signUp": "Inscríbete",
 		"slogan": "Comparte tus viajes en Costa Rica",
@@ -100,7 +118,8 @@
 		"submit": "Envíe",
 		"time": "",
 		"username": "Nombre de usuario",
-		"verify": ""
+		"verify": "",
+		"yes": ""
 	},
 	"help": {
 		"message1": "Si ocurre algo durante el viaje, llame a",
@@ -148,7 +167,7 @@
 		"home": "Inicio",
 		"menu": "Menú",
 		"messages": "Mensajes",
-		"offer": "Ofrecer",
+		"offer": "Ofertas",
 		"offerRide": "oferta",
 		"rides": "Rides"
 	},

@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { ChevronRightIcon } from "@primer/octicons-react";
+// import { LinkContainer } from "react-router-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+// import { ChevronRightIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 

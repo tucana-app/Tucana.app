@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { Formik } from "formik";
+import { useTranslation } from "react-i18next";
 import {
   AlertIcon,
   CheckIcon,
   CommentIcon,
   XIcon,
 } from "@primer/octicons-react";
-import { Formik } from "formik";
 
 import LoadingSpinner from "./LoadingSpinner";
 
 import { submitFormDriverResponseBooking } from "../redux";
 
 const FormDriverResponseBooking = ({ bookingId }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const { bookingData, isloadingSubmitFormDriverResponseBooking } = useSelector(
@@ -60,7 +62,9 @@ const FormDriverResponseBooking = ({ bookingId }) => {
         <Form noValidate onSubmit={handleSubmit}>
           <Row>
             <Col className="mx-auto">
-              <p className="lead mb-1">Manage this booking</p>
+              <p className="lead mb-1">
+                {t("translation:FormDriverResponseBooking.manageBooking")}
+              </p>
             </Col>
           </Row>
           <Row>

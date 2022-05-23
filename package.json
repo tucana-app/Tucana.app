@@ -55,7 +55,8 @@
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "dev": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "pushgit": "git push github master"
   },
   "eslintConfig": {
     "extends": "react-app"

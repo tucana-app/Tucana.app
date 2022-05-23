@@ -5,6 +5,14 @@
 		"message": "We couldn't find the page you are looking for.",
 		"notFound": "Page not found"
 	},
+	"FormConfirmRide": {
+		"confirm": "I confirm",
+		"confirmNoRide": "Please confirm that the ride didn't take place",
+		"confirmRide": "Do you confirm the ride?"
+	},
+	"FormDriverResponseBooking": {
+		"manageBooking": "Manage this booking"
+	},
 	"becomeDriver": {
 		"button": "I want to become a driver",
 		"message1": "Visit",
@@ -46,7 +54,13 @@
 		"distanceOrigin": "from your starting address",
 		"searchResults": "Search results"
 	},
+	"formBookRide": {
+		"alreadyRide": "You already have booking(s) for this ride",
+		"book": "Book",
+		"numberPassengers": "Number of passenger"
+	},
 	"global": {
+		"about": "About",
 		"accepted": "Accepted",
 		"becomeDriver": "Become a driver",
 		"bookRide": "Book a ride",
@@ -70,6 +84,7 @@
 		},
 		"faq": "FAQ",
 		"firstName": "First name",
+		"goBack": "Go back",
 		"help": "Help",
 		"howItWorks": "How does it works?",
 		"language": "English",
@@ -80,9 +95,11 @@
 		"maps": "Map of Costa Rica",
 		"more": "More",
 		"next": "Next",
+		"no": "No",
 		"origin": "Origin",
 		"passengerComment": "Passenger comment",
 		"passengerDetails": "Passenger details",
+		"passengers": "Passengers",
 		"password": "Password",
 		"province": "Province",
 		"refundPolicy": "Refund policy",
@@ -93,6 +110,7 @@
 		"seatsAvailable": "Seats available",
 		"seeBooking": "See booking",
 		"seeRide": "See ride",
+		"selectOption": "Select an option",
 		"selected": "Selected",
 		"signUp": "Sign Up",
 		"slogan": "Share your rides in Costa Rica",
@@ -100,7 +118,8 @@
 		"submit": "Submit",
 		"time": "Time",
 		"username": "Username",
-		"verify": "Verify"
+		"verify": "Verify",
+		"yes": "Yes"
 	},
 	"help": {
 		"message1": "If anything happens during your ride, call",

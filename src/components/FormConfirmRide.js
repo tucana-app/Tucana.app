@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Alert } from "react-bootstrap";
 // import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   ArrowLeftIcon,
   XIcon,
@@ -12,6 +13,7 @@ import {
 import { submitFormConfirmRide } from "../redux";
 
 const FormConfirmRide = ({ ride }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const {
@@ -41,7 +43,7 @@ const FormConfirmRide = ({ ride }) => {
         <Row data-aos="fade-in">
           <Col className="text-center mx-auto">
             <p className="lead text-center mb-1">
-              Please confirm that the ride didn't take place
+              {t("translation:FormConfirmRide.confirmNoRide")}
             </p>
 
             <Button
@@ -55,13 +57,14 @@ const FormConfirmRide = ({ ride }) => {
             >
               <span>
                 <ArrowLeftIcon size={24} className="me-2" />
-                Go back
+                {t("translation:global.goBack")}
               </span>
             </Button>
 
             <Button variant="danger" type="submit" onClick={handleSubmitNo}>
               <span>
-                <XIcon size={24} className="me-2" />I confirm
+                <XIcon size={24} className="me-2" />
+                {t("translation:FormConfirmRide.confirm")}
               </span>
             </Button>
           </Col>
@@ -71,7 +74,9 @@ const FormConfirmRide = ({ ride }) => {
         <div data-aos="fade-in">
           <Row>
             <Col className="mx-auto">
-              <p className="lead text-center mb-1">Do you confirm the ride?</p>
+              <p className="lead text-center mb-1">
+                {t("translation:FormConfirmRide.confirmRide")}
+              </p>
             </Col>
           </Row>
           <Row>
@@ -85,7 +90,7 @@ const FormConfirmRide = ({ ride }) => {
               >
                 <span>
                   <XIcon size={24} className="me-2" />
-                  No
+                  {t("translation:global.no")}
                 </span>
               </Button>
 
@@ -97,7 +102,7 @@ const FormConfirmRide = ({ ride }) => {
               >
                 <span>
                   <CheckIcon size={24} className="me-2" />
-                  Yes
+                  {t("translation:global.yes")}
                 </span>
               </Button>
             </Col>
