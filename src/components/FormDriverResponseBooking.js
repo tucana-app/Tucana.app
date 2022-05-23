@@ -72,9 +72,13 @@ const FormDriverResponseBooking = ({ bookingId }) => {
               {bookingData.seatsBooked > bookingData.Ride.seatsLeft ? (
                 <p className="text-warning mb-0">
                   <AlertIcon size={24} className="me-2" />"
-                  {bookingData.User.firstName}" booked {bookingData.seatsBooked}{" "}
-                  seats but there are {bookingData.Ride.seatsLeft} seats left,
-                  you cannot accept or refuse this booking.
+                  {bookingData.User.firstName}"{" "}
+                  {t("translation:FormDriverResponseBooking.message1")}{" "}
+                  {bookingData.seatsBooked}{" "}
+                  {t("translation:FormDriverResponseBooking.message2")}{" "}
+                  {bookingData.Ride.seatsLeft}{" "}
+                  {t("translation:FormDriverResponseBooking.message3")},
+                  {t("translation:FormDriverResponseBooking.message4")}.
                 </p>
               ) : (
                 <>
@@ -82,20 +86,22 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                     <Form.Label>
                       <p className="small text-secondary">
                         <AlertIcon size={24} className="me-2" />
-                        Do not share any contact info (phone, email, links,
-                        etc.), they will be shared within the platform before
-                        the ride.
+                        {t("translation:global.doNotShare")}
                       </p>
                       <CommentIcon size={24} className="text-success me-2" />
-                      Comment{" "}
-                      <span className="text-secondary">Not mandatory</span>
+                      {t("translation:global.comment")}{" "}
+                      <span className="text-secondary">
+                        {t("translation:global.notMandatory")}
+                      </span>
                     </Form.Label>
                     <Form.Control
                       name="comment"
                       as="textarea"
                       rows={2}
                       type="textarea"
-                      placeholder="Give your passenger more details about the booking or the ride"
+                      placeholder={t(
+                        "translation:FormDriverResponseBooking.placeholder"
+                      )}
                       className="mb-1"
                       onChange={handleChange}
                       isInvalid={!!errors.comment}
@@ -129,7 +135,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         >
                           <span>
                             <XIcon size={24} className="me-2" />
-                            Refuse
+                            {t("translation:FormDriverResponseBooking.refuse")}
                           </span>
                         </Button>
 
@@ -145,7 +151,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         >
                           <span>
                             <CheckIcon size={24} className="me-2" />
-                            Accept
+                            {t("translation:FormDriverResponseBooking.accept")}
                           </span>
                         </Button>
                       </Form.Group>
