@@ -13,6 +13,13 @@
 	"FormDriverResponseBooking": {
 		"manageBooking": "Manage this booking"
 	},
+	"ManageDriverBooking": {
+		"noBookings": "You do not have any bookings for this ride yet"
+	},
+	"PassengersDetails": {
+		"noPassengers": "You do not have passengers for this ride yet",
+		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{totalPassengers}}</2> booking(s)"
+	},
 	"becomeDriver": {
 		"button": "I want to become a driver",
 		"message1": "Visit",
@@ -51,13 +58,15 @@
 		"catchPhrase": "Find your next trip across Costa Rica",
 		"change": "Change",
 		"distanceDestination": "from your arrival address",
-		"distanceOrigin": "from your starting address",
-		"searchResults": "Search results"
+		"distanceOrigin": "from your starting address"
 	},
 	"formBookRide": {
 		"alreadyRide": "You already have booking(s) for this ride",
 		"book": "Book",
 		"numberPassengers": "Number of passenger"
+	},
+	"formSearchRide": {
+		"hitEnter": "or hit enter"
 	},
 	"global": {
 		"about": "About",
@@ -65,16 +74,21 @@
 		"becomeDriver": "Become a driver",
 		"bookRide": "Book a ride",
 		"bookings": "Bookings",
+		"by": "By",
 		"city": "City",
+		"click": "Click",
 		"comingSoon": "Coming soon",
 		"comment": "Comment",
+		"confirm": "Confirm",
 		"congratulations": "Congratulations",
-		"contact": "Contact Us",
+		"contact": "Contact",
+		"contactUs": "Contact Us",
 		"date": "Date",
 		"day": "Day",
 		"destination": "Destination",
 		"doNotShare": "Do not share any contact info (phone, email, etc), they will be shared within the platform when a booking is made.",
 		"driverComment": "Driver comment",
+		"edit": "Edit",
 		"email": "Email",
 		"errors": {
 			"chooseSeatsAvailable": "You need to choose the amount of seats you have available",
@@ -84,6 +98,7 @@
 		},
 		"faq": "FAQ",
 		"firstName": "First name",
+		"from": "From",
 		"goBack": "Go back",
 		"help": "Help",
 		"howItWorks": "How does it works?",
@@ -97,6 +112,7 @@
 		"next": "Next",
 		"no": "No",
 		"origin": "Origin",
+		"passenger": "Passenger",
 		"passengerComment": "Passenger comment",
 		"passengerDetails": "Passenger details",
 		"passengers": "Passengers",
@@ -106,6 +122,8 @@
 		"refused": "Refused",
 		"report": "Report a problem",
 		"resendLink": "Resend the confirmation link",
+		"search": "Search",
+		"searchResults": "Search results",
 		"seat": "Seat",
 		"seatsAvailable": "Seats available",
 		"seeBooking": "See booking",
@@ -117,6 +135,7 @@
 		"status": "Status",
 		"submit": "Submit",
 		"time": "Time",
+		"to": "To",
 		"username": "Username",
 		"verify": "Verify",
 		"yes": "Yes"
@@ -135,6 +154,9 @@
 	},
 	"legal": {
 		"appVersion": "App version"
+	},
+	"locationSearchInput": {
+		"searchCity": "Search a city"
 	},
 	"logIn": {
 		"credential": "Email or Username",
@@ -157,6 +179,11 @@
 		"profile": "Profile",
 		"ratings": "Ratings",
 		"refunds": "Refunds"
+	},
+	"messageEmpty": {
+		"bookRide": "Book your next ride",
+		"message": "No {{title}} found",
+		"offerRide": "Offer a ride"
 	},
 	"messages": {
 		"title": "Messages"
@@ -208,5 +235,8 @@
 		"agreement2": "terms and conditions",
 		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
 		"subTitle": "Sign up to access the platform"
+	},
+	"singleConversation": {
+		"sendMessage": "Send a message"
 	}
 }

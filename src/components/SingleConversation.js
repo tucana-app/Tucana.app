@@ -9,6 +9,7 @@ import {
   InputGroup,
   ListGroup,
 } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import {
   PaperAirplaneIcon,
   PersonIcon,
@@ -25,6 +26,7 @@ import dateFormat from "dateformat";
 import LoadingSpinner from "./LoadingSpinner";
 
 const SingleConversation = ({ conversation }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const { messageStatusIcon, isLoadingSendMessage } = useSelector(
@@ -125,7 +127,7 @@ const SingleConversation = ({ conversation }) => {
               <InputGroup className="mx-auto">
                 <Form.Control
                   name="message"
-                  placeholder="Send a message"
+                  placeholder={t("translation:singleConversation.sendMessage")}
                   onChange={(e) => setMessage(e.target.value)}
                   size="lg"
                 />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import {
   LinkExternalIcon,
@@ -23,6 +24,7 @@ import {
 import LoadingSpinner from "./LoadingSpinner";
 
 const FormSearchRides = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const {
@@ -97,7 +99,7 @@ const FormSearchRides = () => {
           setToast({
             show: true,
             headerText: "Error",
-            bodyText: "The date needs to be in the future",
+            bodyText: t("translation:global.errors.dateFuture"),
             variant: "warning",
           })
         );
@@ -109,7 +111,7 @@ const FormSearchRides = () => {
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: "Please fill up all the information",
+          bodyText: t("translation:global.errors.missingInfo"),
           variant: "warning",
         })
       );
@@ -121,11 +123,11 @@ const FormSearchRides = () => {
       <Row className="mb-3">
         <Col>
           <p className="mb-0">
-            From:{" "}
+            {t("translation:global.from")}:{" "}
             <span className="text-secondary small ms-3">
-              click{" "}
+              {t("translation:global.click")}{" "}
               <SearchIcon size={10} verticalAlign="middle" className="mb-1" />{" "}
-              or hit enter
+              {t("translation:formSearchRide.hitEnter")}
             </span>
           </p>
           {stepOne ? (
@@ -136,9 +138,12 @@ const FormSearchRides = () => {
                 </div>
               ) : location.city !== "" ? (
                 <>
-                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <h3 className="fw-light mt-3">
+                    {t("translation:global.selected")}:
+                  </h3>
                   <p>
-                    City: <strong>{location.city}</strong>,{" "}
+                    {t("translation:global.city")}:{" "}
+                    <strong>{location.city}</strong>,{" "}
                     <small>{location.province}</small>
                   </p>
                   <p className="text-end">
@@ -149,7 +154,7 @@ const FormSearchRides = () => {
                       className="me-2"
                     >
                       <Button variant="outline-success">
-                        Verify
+                        {t("translation:global.verify")}
                         <LinkExternalIcon size={24} className="ms-2" />
                       </Button>
                     </a>
@@ -158,7 +163,7 @@ const FormSearchRides = () => {
                       variant="success"
                       className="ms-2"
                     >
-                      Confirm
+                      {t("translation:global.confirm")}
                       <CheckIcon size={24} className="ms-2" />
                     </Button>
                   </p>
@@ -179,7 +184,7 @@ const FormSearchRides = () => {
                         variant="outline-warning"
                       >
                         <PencilIcon size={24} className="me-2" />
-                        Edit
+                        {t("translation:global.edit")}
                       </Button>
                     </Col>
                   </Row>
@@ -204,7 +209,7 @@ const FormSearchRides = () => {
                     variant="outline-warning"
                   >
                     <PencilIcon size={24} className="me-2" />
-                    Edit
+                    {t("translation:global.edit")}
                   </Button>
                 </Col>
               </Row>
@@ -216,11 +221,11 @@ const FormSearchRides = () => {
       <Row className="my-2">
         <Col>
           <p className="mb-0">
-            To:{" "}
+            {t("translation:global.to")}:{" "}
             <span className="text-secondary small ms-3">
-              click{" "}
+              {t("translation:global.click")}{" "}
               <SearchIcon size={10} verticalAlign="middle" className="mb-1" />{" "}
-              or hit enter
+              {t("translation:formSearchRide.hitEnter")}
             </span>
           </p>
           {stepTwo ? (
@@ -231,9 +236,12 @@ const FormSearchRides = () => {
                 </div>
               ) : location.city !== "" ? (
                 <>
-                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <h3 className="fw-light mt-3">
+                    {t("translation:global.selected")}:
+                  </h3>
                   <p>
-                    City: <strong>{location.city}</strong>,{" "}
+                    {t("translation:global.city")}:{" "}
+                    <strong>{location.city}</strong>,{" "}
                     <small>{location.province}</small>
                   </p>
                   <p className="text-end">
@@ -244,7 +252,7 @@ const FormSearchRides = () => {
                       className="me-2"
                     >
                       <Button variant="outline-success">
-                        Verify
+                        {t("translation:global.verify")}
                         <LinkExternalIcon size={24} className="ms-2" />
                       </Button>
                     </a>
@@ -253,16 +261,19 @@ const FormSearchRides = () => {
                       variant="success"
                       className="ms-2"
                     >
-                      Confirm
+                      {t("translation:global.confirm")}
                       <CheckIcon size={24} className="ms-2" />
                     </Button>
                   </p>
                 </>
               ) : formSearchRide.destination.city !== "" ? (
                 <>
-                  <h3 className="fw-light mt-3">Selected:</h3>
+                  <h3 className="fw-light mt-3">
+                    {t("translation:global.selected")}:
+                  </h3>
                   <p>
-                    City: <strong>{formSearchRide.destination.city}</strong>,{" "}
+                    {t("translation:global.city")}:{" "}
+                    <strong>{formSearchRide.destination.city}</strong>,{" "}
                     <small>{formSearchRide.destination.province}</small>
                   </p>
                   <p className="text-end">
@@ -273,7 +284,7 @@ const FormSearchRides = () => {
                       className="me-2"
                     >
                       <Button variant="outline-success">
-                        Verify
+                        {t("translation:global.verify")}
                         <LinkExternalIcon size={24} className="ms-2" />
                       </Button>
                     </a>
@@ -282,7 +293,7 @@ const FormSearchRides = () => {
                       variant="success"
                       className="ms-2"
                     >
-                      Confirm
+                      {t("translation:global.confirm")}
                       <CheckIcon size={24} className="ms-2" />
                     </Button>
                   </p>
@@ -307,7 +318,7 @@ const FormSearchRides = () => {
                     variant="outline-warning"
                   >
                     <PencilIcon size={24} className="me-2" />
-                    Edit
+                    {t("translation:global.edit")}
                   </Button>
                 </Col>
               </Row>
@@ -319,7 +330,7 @@ const FormSearchRides = () => {
       </Row>
       <Row className="align-items-center py-3">
         <Col xs={2}>
-          <p className="mb-0">Date:</p>
+          <p className="mb-0">{t("translation:global.date")}:</p>
         </Col>
         <Col className="mx-auto">
           <Form.Group>
@@ -343,7 +354,7 @@ const FormSearchRides = () => {
             size="lg"
             type="submit"
           >
-            Search
+            {t("translation:global.search")}
           </Button>
         </Col>
       </Row>

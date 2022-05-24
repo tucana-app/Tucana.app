@@ -6,12 +6,19 @@
 		"notFound": "Page non trouvée"
 	},
 	"FormConfirmRide": {
-		"confirm": "",
-		"confirmNoRide": "",
-		"confirmRide": ""
+		"confirm": "je confirme",
+		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
+		"confirmRide": "Confirmez-vous le trajet ?"
 	},
 	"FormDriverResponseBooking": {
-		"manageBooking": ""
+		"manageBooking": "Gérer cette réservation"
+	},
+	"ManageDriverBooking": {
+		"noBookings": "Vous n'avez pas encore de réservations pour ce tour."
+	},
+	"PassengersDetails": {
+		"noPassengers": "Vous n'avez pas encore de passagers pour ce trajet",
+		"summary": ""
 	},
 	"becomeDriver": {
 		"button": "Je veux devenir chauffeur",
@@ -37,27 +44,29 @@
 		"subTitle": "Toutes les réservations que vous avez faites"
 	},
 	"comingSoon": {
-		"subTitle": "",
-		"thankYou": "",
-		"title": ""
+		"subTitle": "Cette page ou fonctionnalité sera bientôt disponible",
+		"thankYou": "Merci de votre compréhension",
+		"title": "À venir"
 	},
 	"donate": {
-		"crowdfunding": "",
-		"paragraph": "",
-		"subTitle": "",
-		"title": ""
+		"crowdfunding": "Site web de crowdfunding",
+		"paragraph": "Nous sommes à la recherche de fonds pour embaucher davantage de personnes et améliorer notre plateforme.",
+		"subTitle": "Merci beaucoup pour votre considération",
+		"title": "Faire un don"
 	},
 	"find": {
-		"catchPhrase": "",
-		"change": "",
-		"distanceDestination": "",
-		"distanceOrigin": "",
-		"searchResults": ""
+		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",
+		"change": "Changer",
+		"distanceDestination": "à partir de votre adresse d'arrivée",
+		"distanceOrigin": "à partir de votre adresse de départ"
 	},
 	"formBookRide": {
-		"alreadyRide": "",
-		"book": "",
-		"numberPassengers": ""
+		"alreadyRide": "Vous avez déjà une ou plusieurs réservations pour ce trajet.",
+		"book": "Livré",
+		"numberPassengers": "Nombre de passagers"
+	},
+	"formSearchRide": {
+		"hitEnter": "ou appuyez sur Entrée"
 	},
 	"global": {
 		"about": "A propos",
@@ -65,61 +74,71 @@
 		"becomeDriver": "Devenir chauffeur",
 		"bookRide": "Réserver un trajet",
 		"bookings": "Réservations",
-		"city": "",
-		"comingSoon": "",
-		"comment": "",
-		"congratulations": "",
-		"contact": "Contactez-nous",
-		"date": "",
-		"day": "",
-		"destination": "",
-		"doNotShare": "",
+		"by": "Par",
+		"city": "Ville",
+		"click": "Cliquez sur",
+		"comingSoon": "À venir",
+		"comment": "Commentaire",
+		"confirm": "Confirmer",
+		"congratulations": "Félicitations ",
+		"contact": "Contacter",
+		"contactUs": "Contactez-nous",
+		"date": "Date",
+		"day": "journée",
+		"destination": "Destination",
+		"doNotShare": "Ne partagez pas vos coordonnées (téléphone, e-mail, etc.), elles seront partagées au sein de la plateforme lors de la réservation.",
 		"driverComment": "Commentaire du conducteur",
+		"edit": "edit",
 		"email": "Courriel",
 		"errors": {
-			"chooseSeatsAvailable": "",
+			"chooseSeatsAvailable": "Vous devez choisir le nombre de sièges dont vous disposez.",
 			"dateFuture": "La date doit être dans le futur",
-			"error": "",
+			"error": "erreur",
 			"missingInfo": "Veuillez remplir toutes les informations"
 		},
 		"faq": "FAQ",
 		"firstName": "Prénom",
-		"goBack": "",
+		"from": "à partir de",
+		"goBack": "Retour en arrière",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
 		"language": "Français",
 		"lastName": "Nom de famille",
 		"learnMore": "En savoir plus",
 		"logIn": "Connexion",
-		"manage": "",
+		"manage": "Gérer",
 		"maps": "Carte du Costa Rica",
 		"more": "En savoir plus",
-		"next": "",
+		"next": "Suivant",
 		"no": "Non",
-		"origin": "",
+		"origin": "Origine",
+		"passenger": "passager",
 		"passengerComment": "Commentaire du passager",
-		"passengerDetails": "",
-		"passengers": "",
+		"passengerDetails": "Détails sur le passager",
+		"passengers": "Passagers",
 		"password": "Mot de passe",
-		"province": "",
+		"province": "province",
 		"refundPolicy": "Politique de remboursement",
 		"refused": "refus",
 		"report": "Signaler un problème",
 		"resendLink": "Renvoyez le lien de confirmation",
+		"search": "Recherchez",
+		"searchResults": "Résultats de la recherche",
 		"seat": "Siège",
 		"seatsAvailable": "Sièges disponibles",
 		"seeBooking": "Voir réservation",
 		"seeRide": "Voir trajet",
-		"selectOption": "",
-		"selected": "",
+		"selectOption": "Sélectionnez une option",
+		"selected": "sélectionné",
 		"signUp": "S'inscrire",
 		"slogan": "Partagez vos balades au Costa Rica",
 		"status": "Statut",
 		"submit": "Soumettre",
-		"time": "",
+		"time": "heure",
+		"to": "À l'adresse suivante :",
 		"username": "Nom d'utilisateur",
-		"verify": "",
-		"yes": ""
+		"verify": "vérifier",
+		"yes": "Oui"
 	},
 	"help": {
 		"message1": "Si quelque chose se produit pendant votre trajet, appelez",
@@ -135,6 +154,9 @@
 	},
 	"legal": {
 		"appVersion": "Version de l'app"
+	},
+	"locationSearchInput": {
+		"searchCity": "Rechercher une ville"
 	},
 	"logIn": {
 		"credential": "Courriel ou nom d'utilisateur",
@@ -158,8 +180,13 @@
 		"ratings": "Notations",
 		"refunds": "Remboursements"
 	},
+	"messageEmpty": {
+		"bookRide": "Réservez votre prochain voyage",
+		"message": "Il n'y a pas de {{title}}",
+		"offerRide": "Proposer un trajet"
+	},
 	"messages": {
-		"title": ""
+		"title": "messages"
 	},
 	"navigationBar": {
 		"account": "Compte",
@@ -172,41 +199,44 @@
 		"rides": "Rides"
 	},
 	"offer": {
-		"comment": "",
-		"details": "",
-		"findRide": "",
-		"onlyVerifiedDriver": "",
-		"placeholderComment": "",
-		"preview": "",
-		"rideOnline1": "",
-		"rideOnline2": "",
-		"selectNumber": "",
-		"step": "",
+		"comment": "Des commentaires ?",
+		"details": "Détails sur votre trajet",
+		"findRide": "Trouver un transport",
+		"onlyVerifiedDriver": "Vous ne pouvez proposer des trajets que si vous êtes un conducteur vérifié.",
+		"placeholderComment": "Vous voulez partager la route que vous allez prendre ou une précision sur votre destination ?",
+		"preview": "Aperçu sur Google Maps",
+		"rideOnline1": "Votre trajet est maintenant en ligne. Consultez-le",
+		"rideOnline2": "ici",
+		"selectNumber": "Sélectionnez un numéro",
+		"step": "Étape",
 		"summary": {
-			"subTitle": "",
-			"title": ""
+			"subTitle": "double vérification",
+			"title": "Résumé"
 		},
-		"title": "",
+		"title": "Proposer un transport",
 		"whereFrom": "D'où partez-vous ?",
-		"whereTo": ""
+		"whereTo": "Où allez-vous ?"
 	},
 	"ride": {
-		"allSeatsBooked": "",
-		"bookThisRide": "",
-		"manageBookingRequests": "",
-		"reviewRide": "",
-		"title": "",
-		"viewTrip": ""
+		"allSeatsBooked": "Tous les sièges ont été réservés",
+		"bookThisRide": "Réservez ce tour",
+		"manageBookingRequests": "Gérez vos demandes de réservation",
+		"reviewRide": "Revoir le trajet",
+		"title": "Ride",
+		"viewTrip": "Voir le voyage"
 	},
 	"rides": {
-		"bookingsReceived": "",
-		"ridesOffered": "",
-		"ridesToConfirm": ""
+		"bookingsReceived": "Réservations reçues",
+		"ridesOffered": "Manèges proposés",
+		"ridesToConfirm": "Manèges à confirmer"
 	},
 	"signUp": {
 		"agreement1": "Si vous choisissez de vous inscrire, vous acceptez notre politique de",
 		"agreement2": "Conditions générales",
 		"paragraphInfo": "Les informations que vous fournissez seront vérifiées ultérieurement par un modérateur. Veuillez vous assurer qu'elles sont les plus précises possibles.",
 		"subTitle": "S'inscrire pour accéder à la plateforme"
+	},
+	"singleConversation": {
+		"sendMessage": "Envoyer un message"
 	}
 }

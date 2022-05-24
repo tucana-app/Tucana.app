@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -15,6 +16,7 @@ import {
 } from "../redux";
 
 function LocationSearchInput(props) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { searchAddress, location } = useSelector((state) => state.ride);
 
@@ -138,9 +140,9 @@ function LocationSearchInput(props) {
           value={searchAddress}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search a city"
+          placeholder={t("translation:locationSearchInput.searchCity")}
           required
-          aria-label="Search"
+          aria-label={t("translation:global.search")}
           onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
         />
         <Button
@@ -158,7 +160,9 @@ function LocationSearchInput(props) {
 
       {status === "OK" ? (
         <>
-          <p className="small text-secondary mt-2 mb-0">Search results:</p>
+          <p className="small text-secondary mt-2 mb-0">
+            {t("translation:global.searchResults")}:
+          </p>
           <ul>{renderSuggestions()}</ul>
         </>
       ) : null}

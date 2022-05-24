@@ -30,7 +30,9 @@ function Home() {
                 className="text-success"
               >
                 <Nav.Link className="text-center">
-                  <h2 className="mb-0">{t("translation:homepage.start")}</h2>
+                  <h3 className="fw-light mb-0">
+                    {t("translation:homepage.start")}
+                  </h3>
                 </Nav.Link>
               </IndexLinkContainer>
             </Nav.Item>
@@ -41,7 +43,9 @@ function Home() {
                 className="link-light"
               >
                 <Nav.Link className="text-center">
-                  <h2 className="mb-0">{t("translation:global.logIn")}</h2>
+                  <h3 className="fw-light mb-0">
+                    {t("translation:global.logIn")}
+                  </h3>
                 </Nav.Link>
               </IndexLinkContainer>
             </Nav.Item>
@@ -52,7 +56,9 @@ function Home() {
                 className="link-light"
               >
                 <Nav.Link className="text-center">
-                  <h2 className="mb-0">{t("translation:global.signUp")}</h2>
+                  <h3 className="fw-light mb-0">
+                    {t("translation:global.signUp")}
+                  </h3>
                 </Nav.Link>
               </IndexLinkContainer>
             </Nav.Item>
@@ -63,7 +69,9 @@ function Home() {
                 rel="noreferrer"
                 className="link-light nav-link text-decoration-none"
               >
-                <h2 className="mb-0">{t("translation:global.about")}</h2>
+                <h3 className="fw-light mb-0">
+                  {t("translation:global.about")}
+                </h3>
               </a>
             </Nav.Item>
           </Nav>

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { CommentDiscussionIcon } from "@primer/octicons-react";
 
 import { startConversation } from "../redux";
@@ -9,6 +10,7 @@ import { startConversation } from "../redux";
 import LoadingSpinner from "./LoadingSpinner";
 
 function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
   const { isLoadingStartConversation } = useSelector((state) => state.message);
@@ -28,7 +30,9 @@ function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
       disabled={isLoadingStartConversation}
       className="p-0 me-2"
     >
-      <span className="text-success">Contact {receiverName}</span>
+      <span className="text-success">
+        {t("translation:global.contact")} {receiverName}
+      </span>
     </Button>
   ) : (
     <Button
@@ -41,7 +45,9 @@ function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
       ) : (
         <CommentDiscussionIcon size={24} verticalAlign="middle" />
       )}
-      <span className="d-md-screen ms-2">Contact {receiverName}</span>
+      <span className="d-md-screen ms-2">
+        {t("translation:global.contact")} {receiverName}
+      </span>
     </Button>
   );
 }

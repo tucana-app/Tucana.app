@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Trans, useTranslation } from "react-i18next";
 import { Col, Row } from "react-bootstrap";
 
 import { getPassengersDetails } from "../redux";
 import SendMessageButton from "./SendMessageButton";
 
 const PassengersDetails = ({ rideId, booking }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isLoadingPassengersDetails, passengersDetailsData } = useSelector(
     (state) => state.ride
@@ -25,7 +27,6 @@ const PassengersDetails = ({ rideId, booking }) => {
   const totalPassengers = passengersDetailsData.reduce(
     (accumulator, passengerDetails) =>
       accumulator + passengerDetails.seatsBooked,
-
     0
   );
 
@@ -41,12 +42,19 @@ const PassengersDetails = ({ rideId, booking }) => {
           <Row>
             <Col>
               <p>
-                Total: <span className="text-success">{totalPassengers}</span>{" "}
-                passenger(s) with{" "}
-                <span className="text-success">
-                  {passengersDetailsData.length}
-                </span>{" "}
-                booking(s)
+                <Trans
+                  i18nKey="translation:PassengersDetails.summary"
+                  totalPassengers={totalPassengers}
+                  bookings={passengersDetailsData.length}
+                >
+                  Total:{" "}
+                  <span className="text-success">{{ totalPassengers }}</span>{" "}
+                  passenger(s) with{" "}
+                  <span className="text-success">
+                    {passengersDetailsData.length}
+                  </span>{" "}
+                  booking(s)
+                </Trans>
               </p>
             </Col>
           </Row>
@@ -54,14 +62,15 @@ const PassengersDetails = ({ rideId, booking }) => {
             <Row key={index} className="mb-2">
               <Col className="d-inline-flex align-items-center">
                 <p className="flex-grow-1 mb-0">
-                  Passenger:{" "}
+                  {t("translation:global.passenger")}:{" "}
                   <span className="text-success">{booking.User.firstName}</span>{" "}
-                  | Seats:{" "}
+                  | {t("translation:global.seat")}
+                  {booking.seatsBooked > 1 ? "s" : null}:{" "}
                   <span className="text-success">{booking.seatsBooked}</span>{" "}
                 </p>
                 <div className="text-end">
                   <SendMessageButton
-                    type="button"
+                    type="link"
                     driverId={booking.DriverId}
                     userId={booking.UserId}
                     receiverName={booking.User.firstName}
@@ -75,7 +84,9 @@ const PassengersDetails = ({ rideId, booking }) => {
       ) : (
         <Row>
           <Col>
-            <p className="mb-0">You do not have passengers for this ride yet</p>
+            <p className="mb-0">
+              {t("translation:PassengersDetails.noPassengers")}
+            </p>
           </Col>
         </Row>
       )}

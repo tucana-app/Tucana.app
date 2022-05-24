@@ -238,7 +238,7 @@ const SignUp = () => {
                       <Form.Control
                         type="password"
                         name="password"
-                        placeholder={t("translation:global.username")}
+                        placeholder={t("translation:global.password")}
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { ChevronRightIcon } from "@primer/octicons-react";
 
 import { getDriverBookingRide } from "../redux";
@@ -8,6 +9,7 @@ import dateFormat from "dateformat";
 import { LinkContainer } from "react-router-bootstrap";
 
 function ManageDriverBooking({ rideId }) {
+  const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant } = useSelector((state) => state.global);
   const { isloadingDriverRideBookingList, driverRideBookingData } = useSelector(
@@ -35,9 +37,14 @@ function ManageDriverBooking({ rideId }) {
             >
               <Row className="align-items-center mb-2">
                 <Col xs={11}>
-                  {dateFormat(booking.createdAt, "dd/mm")}: Seats:{" "}
+                  {dateFormat(booking.createdAt, "dd/mm")}:{" "}
+                  {t("translation:global.seat")}
+                  {booking.seatsBooked > 1 ? "s" : null}:{" "}
                   <span className="text-success">{booking.seatsBooked}</span> |{" "}
-                  <span>By: {booking.User.firstName}</span> | Status:{" "}
+                  <span>
+                    {t("translation:global.by")}: {booking.User.firstName}
+                  </span>{" "}
+                  | {t("translation:global.status")}:{" "}
                   <span
                     className={`text-${bookingStatusVariant(
                       booking.BookingStatusId
@@ -54,7 +61,9 @@ function ManageDriverBooking({ rideId }) {
           ))}
         </>
       ) : (
-        <p className="mb-0">You do not have any bookings for this ride yet</p>
+        <p className="mb-0">
+          {t("translation:ManageDriverBooking.noBookings")}
+        </p>
       )}
     </>
   );
