@@ -27,19 +27,6 @@ function Home() {
               <IndexLinkContainer
                 to="/login"
                 href="/login"
-                className="text-success"
-              >
-                <Nav.Link className="text-center">
-                  <h3 className="fw-light mb-0">
-                    {t("translation:homepage.start")}
-                  </h3>
-                </Nav.Link>
-              </IndexLinkContainer>
-            </Nav.Item>
-            <Nav.Item>
-              <IndexLinkContainer
-                to="/login"
-                href="/login"
                 className="link-light"
               >
                 <Nav.Link className="text-center">

@@ -11,7 +11,8 @@
 		"confirmRide": "Confirmez-vous le trajet ?"
 	},
 	"FormDriverResponseBooking": {
-		"manageBooking": "Gérer cette réservation"
+		"manageBooking": "Gérer cette réservation",
+		"placeholder": ""
 	},
 	"ManageDriverBooking": {
 		"noBookings": "Vous n'avez pas encore de réservations pour ce tour."
@@ -70,6 +71,7 @@
 	},
 	"global": {
 		"about": "A propos",
+		"accept": "",
 		"accepted": "Accepté",
 		"becomeDriver": "Devenir chauffeur",
 		"bookRide": "Réserver un trajet",
@@ -111,6 +113,7 @@
 		"more": "En savoir plus",
 		"next": "Suivant",
 		"no": "Non",
+		"notMandatory": "",
 		"origin": "Origine",
 		"passenger": "passager",
 		"passengerComment": "Commentaire du passager",
@@ -119,6 +122,7 @@
 		"password": "Mot de passe",
 		"province": "province",
 		"refundPolicy": "Politique de remboursement",
+		"refuse": "",
 		"refused": "refus",
 		"report": "Signaler un problème",
 		"resendLink": "Renvoyez le lien de confirmation",
@@ -153,7 +157,11 @@
 		"current": "Langue actuelle"
 	},
 	"legal": {
-		"appVersion": "Version de l'app"
+		"credits": "",
+		"dataProtection": "",
+		"legalNotice": "",
+		"privacy": "",
+		"terms": ""
 	},
 	"locationSearchInput": {
 		"searchCity": "Rechercher une ville"

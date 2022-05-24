@@ -72,13 +72,9 @@ const FormDriverResponseBooking = ({ bookingId }) => {
               {bookingData.seatsBooked > bookingData.Ride.seatsLeft ? (
                 <p className="text-warning mb-0">
                   <AlertIcon size={24} className="me-2" />"
-                  {bookingData.User.firstName}"{" "}
-                  {t("translation:FormDriverResponseBooking.message1")}{" "}
-                  {bookingData.seatsBooked}{" "}
-                  {t("translation:FormDriverResponseBooking.message2")}{" "}
-                  {bookingData.Ride.seatsLeft}{" "}
-                  {t("translation:FormDriverResponseBooking.message3")},
-                  {t("translation:FormDriverResponseBooking.message4")}.
+                  {bookingData.User.firstName}" booked {bookingData.seatsBooked}{" "}
+                  seats but there are {bookingData.Ride.seatsLeft} seats left,
+                  you cannot accept or refuse this booking.
                 </p>
               ) : (
                 <>
@@ -135,7 +131,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         >
                           <span>
                             <XIcon size={24} className="me-2" />
-                            {t("translation:FormDriverResponseBooking.refuse")}
+                            {t("translation:global.refuse")}
                           </span>
                         </Button>
 
@@ -151,7 +147,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                         >
                           <span>
                             <CheckIcon size={24} className="me-2" />
-                            {t("translation:FormDriverResponseBooking.accept")}
+                            {t("translation:global.accept")}
                           </span>
                         </Button>
                       </Form.Group>

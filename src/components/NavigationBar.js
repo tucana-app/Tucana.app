@@ -141,7 +141,7 @@ function NavigationBar() {
                       <div className="d-inline-flex">
                         <IndexLinkContainer to="/login" href="/login">
                           <Nav.Link>
-                            <Button variant="outline-success" size="lg">
+                            <Button variant="success" size="lg">
                               {t("translation:global.logIn")}
                             </Button>
                           </Nav.Link>

@@ -11,7 +11,8 @@
 		"confirmRide": "Do you confirm the ride?"
 	},
 	"FormDriverResponseBooking": {
-		"manageBooking": "Manage this booking"
+		"manageBooking": "Manage this booking",
+		"placeholder": "Give your passenger more details about the booking or the ride"
 	},
 	"ManageDriverBooking": {
 		"noBookings": "You do not have any bookings for this ride yet"
@@ -70,6 +71,7 @@
 	},
 	"global": {
 		"about": "About",
+		"accept": "Accept",
 		"accepted": "Accepted",
 		"becomeDriver": "Become a driver",
 		"bookRide": "Book a ride",
@@ -111,6 +113,7 @@
 		"more": "More",
 		"next": "Next",
 		"no": "No",
+		"notMandatory": "Not mandatory",
 		"origin": "Origin",
 		"passenger": "Passenger",
 		"passengerComment": "Passenger comment",
@@ -119,6 +122,7 @@
 		"password": "Password",
 		"province": "Province",
 		"refundPolicy": "Refund policy",
+		"refuse": "Refuse",
 		"refused": "Refused",
 		"report": "Report a problem",
 		"resendLink": "Resend the confirmation link",
@@ -153,7 +157,11 @@
 		"current": "Current language"
 	},
 	"legal": {
-		"appVersion": "App version"
+		"credits": "Credits",
+		"dataProtection": "Data protection",
+		"legalNotice": "Legal notice",
+		"privacy": "Privacy policy",
+		"terms": "Terms & Conditions"
 	},
 	"locationSearchInput": {
 		"searchCity": "Search a city"

@@ -25,13 +25,15 @@ const Credits = () => {
                 </a>
               </ListGroup.Item>
               <ListGroup.Item>
+                "man driving straight on pathway during day time photo" by{" "}
                 <a
-                  href="https://www.svgbackgrounds.com/"
+                  href="https://alexjumper.com"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Background provided by SVGBackgrounds.com
-                </a>
+                  Alex Jumper
+                </a>{" "}
+                on Unsplash
               </ListGroup.Item>
             </ListGroup>
           </Col>

@@ -27,7 +27,7 @@ const Legal = () => {
               <Link to="/privacy" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Privacy policy</p>
+                    <p className="mb-0">{t("translation:legal.privacy")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -36,7 +36,7 @@ const Legal = () => {
               <Link to="/terms" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Terms &amp; Conditions</p>
+                    <p className="mb-0">{t("translation:legal.terms")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -45,7 +45,9 @@ const Legal = () => {
               <Link to="/data-protection" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Data protection</p>
+                    <p className="mb-0">
+                      {t("translation:legal.dataProtection")}
+                    </p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -54,7 +56,7 @@ const Legal = () => {
               <Link to="/legal-notice" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Legal notice</p>
+                    <p className="mb-0">{t("translation:legal.legalNotice")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -63,26 +65,11 @@ const Legal = () => {
               <Link to="/credits" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">Credits</p>
+                    <p className="mb-0">{t("translation:legal.credits")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
               </Link>
-
-              <hr className="my-2" />
-
-              <ListGroup.Item className="border-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">
-                    {t("translation:legal.appVersion")}:{" "}
-                    <span className="text-success">
-                      v{process.env.REACT_APP_VERSION}
-                    </span>{" "}
-                    (beta)
-                  </p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
