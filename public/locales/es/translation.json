@@ -255,7 +255,7 @@
 	"newRating": {
 		"rideSummary": "Resumen del viaje",
 		"title": "Dar una calificación",
-		"typeComment": "Escriba su comentario aqui"
+		"typeComment": "Escriba su comentario aquí"
 	},
 	"notifications": {
 		"answersBookings": "Respuestas de sus reservas",
@@ -302,6 +302,12 @@
 		"behavior": "Denunciar un comportamiento",
 		"problemApp": ""
 	},
+	"resetPassword": {
+		"sendLink": "",
+		"subTitle": "",
+		"title": "",
+		"typeEmail": ""
+	},
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
 		"bookThisRide": "Reservar este viaje",
@@ -335,6 +341,15 @@
 		"agreement2": "Términos y condiciones",
 		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
 		"subTitle": "Regístrese para acceder a la plataforma"
+	},
+	"signUpConfirm": {
+		"loginNow": "",
+		"title": ""
+	},
+	"signUpSuccess": {
+		"subTitle": "",
+		"text": "",
+		"title": ""
 	},
 	"singleConversation": {
 		"sendMessage": "Enviar un mensaje"

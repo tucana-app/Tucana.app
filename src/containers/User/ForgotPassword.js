@@ -3,13 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { Formik } from "formik";
+import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
+
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
 import { submitEmailForgotPassword } from "../../redux";
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isLoggedIn, isLoadingSendEmailForgotPassword } = useSelector(
     (state) => state.user
@@ -20,7 +23,7 @@ const ForgotPassword = () => {
 
   const schema = Yup.object().shape({
     email: Yup.string(labelStringField)
-      .email("Invalid email address format")
+      .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
   });
 
@@ -40,11 +43,10 @@ const ForgotPassword = () => {
       <Container className="my-5" data-aos="fade-in">
         <Row className="mb-4">
           <Col className="text-center">
-            <h1 className="text-warning">Password reset</h1>
-            <p className="lead">
-              Please enter your email address to receive a link to reset your
-              password
-            </p>
+            <h1 className="text-warning">
+              {t("translation:resetPassword.title")}
+            </h1>
+            <p className="lead">{t("translation:resetPassword.subTitle")}</p>
           </Col>
         </Row>
         <Row>
@@ -76,7 +78,7 @@ const ForgotPassword = () => {
                         <Form.Control
                           type="email"
                           name="email"
-                          placeholder="Type your email address here"
+                          placeholder={t("translation:resetPassword.typeEmail")}
                           onChange={handleChange}
                           isInvalid={!!errors.email}
                           isValid={touched.email && !errors.email}
@@ -101,7 +103,7 @@ const ForgotPassword = () => {
                           {isSubmitting || isLoadingSendEmailForgotPassword ? (
                             <LoadingSpinner />
                           ) : null}
-                          Send reset link
+                          {t("translation:resetPassword.sendLink")}
                         </Button>
                       </Form.Group>
                     </Col>

@@ -2,8 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SignUpSuccess(props) {
+  const { t } = useTranslation();
   const { isLoggedIn, signupUserSuccessful } = useSelector(
     (state) => state.user
   );
@@ -21,12 +23,14 @@ function SignUpSuccess(props) {
       <Container className="py-5 text-center">
         <Row className="mb-5">
           <Col>
-            <h1 className="text-success">Sign up successful!</h1>
-            <p className="lead">Welcome to our platform 🎉</p>
+            <h1 className="text-success">
+              {t("translation:signUpSuccess.title")}!
+            </h1>
+            <p className="lead">{t("translation:signUpSuccess.subTitle")}</p>
           </Col>
         </Row>
         <Row>
-          <Col>Check your email inbox to confirm your email address</Col>
+          <Col>{t("translation:signUpSuccess.text")}</Col>
         </Row>
       </Container>
     </>

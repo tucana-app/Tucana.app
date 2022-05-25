@@ -302,6 +302,12 @@
 		"behavior": "Report a behavior",
 		"problemApp": "A problem with the app"
 	},
+	"resetPassword": {
+		"sendLink": "Send reset link",
+		"subTitle": "Please enter your email address to receive a link",
+		"title": "Reset your password",
+		"typeEmail": "Type your email address here"
+	},
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
 		"bookThisRide": "Book this ride",
@@ -335,6 +341,15 @@
 		"agreement2": "terms and conditions",
 		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
 		"subTitle": "Sign up to access the platform"
+	},
+	"signUpConfirm": {
+		"loginNow": "You can now <2><1>login</1></2>",
+		"title": "Confirm your email address"
+	},
+	"signUpSuccess": {
+		"subTitle": "Welcome to our platform 🎉",
+		"text": "Check for the confirmation link in your email inbox & your spam folder to confirm your account",
+		"title": "Sign up successful"
 	},
 	"singleConversation": {
 		"sendMessage": "Send a message"
