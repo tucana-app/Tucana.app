@@ -683,12 +683,12 @@ export const submitFormContactRequested = () => {
   };
 };
 
-export const submitFormContact = (userId, values) => {
+export const submitFormContact = (user, values) => {
   return (dispatch) => {
     dispatch(submitFormContactRequested());
 
     axios
-      .post(URL_API + "/user/submit-contact-form", { userId, values })
+      .post(URL_API + "/user/submit-contact-form", { user, values })
       .then((response) => {
         dispatch(submitFormContactSuccess());
 

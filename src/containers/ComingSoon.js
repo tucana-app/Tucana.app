@@ -22,7 +22,7 @@ function ComingSoon(props) {
             className="text-center mx-auto"
           >
             <h1 className="text-success">
-              {props.pageName || t("translation:comingSoon.title")}
+              {props.pageName || t("translation:global.comingSoon")}
             </h1>
             <p className="lead">
               {t("translation:comingSoon.subTitle")}

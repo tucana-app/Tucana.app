@@ -221,7 +221,7 @@ const Menu = () => {
                   <div className="mb-0">
                     {i18n.language === "en" ? (
                       <>
-                        {t("translation:global.language")}
+                        {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
                           countryCode="US"
                           className="ms-2 mb-1"
@@ -231,7 +231,7 @@ const Menu = () => {
                     ) : null}
                     {i18n.language === "es" ? (
                       <>
-                        {t("translation:global.language")}
+                        {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
                           countryCode="CR"
                           className="ms-2 mb-1"
@@ -241,7 +241,7 @@ const Menu = () => {
                     ) : null}
                     {i18n.language === "fr" ? (
                       <>
-                        {t("translation:global.language")}
+                        {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
                           countryCode="FR"
                           className="ms-2 mb-1"
@@ -286,7 +286,7 @@ const Menu = () => {
               </ListGroup.Item>
             </Link>
             <a
-              href="http://ridecr.atwebpages.com"
+              href="https://fund.tucana.app"
               target={"_blank"}
               rel="noreferrer"
               className="text-decoration-none"

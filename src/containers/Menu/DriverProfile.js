@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { LinkContainer } from "react-router-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 // import { ChevronRightIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
 
 function DriverProfile(props) {
+  const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
   if (!isLoggedIn || currentUser.Driver === null) {
@@ -20,7 +22,9 @@ function DriverProfile(props) {
       <Container>
         <Row className="mb-5">
           <Col>
-            <h1 className="title text-center">Your driver's profile</h1>
+            <h1 className="title text-center">
+              {t("translation:driverProfile.title")}
+            </h1>
           </Col>
         </Row>
 
@@ -52,7 +56,9 @@ function DriverProfile(props) {
         ) : (
           <Row>
             <Col className="text-center">
-              <p className="mb-0">Your submission is still under review</p>
+              <p className="mb-0">
+                {t("translation:driverProfile.underReview")}
+              </p>
             </Col>
           </Row>
         )}

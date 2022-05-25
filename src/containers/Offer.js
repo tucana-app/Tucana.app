@@ -694,7 +694,7 @@ const Offer = () => {
             md={8}
             lg={6}
             xl={4}
-            className="bg-white border shadow-sm rounded text-center pt-3 pb-4 mx-auto"
+            className="border shadow-sm rounded text-center pt-3 pb-4 mx-auto"
           >
             <Container>
               <Row>

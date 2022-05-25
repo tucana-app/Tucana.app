@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import dateFormat from "dateformat";
+import { useTranslation } from "react-i18next";
 import { ArrowDownIcon } from "@primer/octicons-react";
+import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -13,6 +14,7 @@ import MessageEmpty from "../../components/MessageEmpty";
 import { getDriverRides } from "../../redux";
 
 const RidesDriver = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingDriverRides, driverRidesData } = useSelector(
@@ -46,8 +48,12 @@ const RidesDriver = () => {
             <Row className="justify-content-center">
               <Col>
                 <div className="text-center mb-4">
-                  <h1 className="title mb-0">Rides offered</h1>
-                  <p className="lead">All the rides you have submitted</p>
+                  <h1 className="title mb-0">
+                    {t("translation:ridesDriver.title")}
+                  </h1>
+                  <p className="lead">
+                    {t("translation:ridesDriver.subTitle")}
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -112,7 +118,7 @@ const RidesDriver = () => {
                             <Col className="text-center">
                               <LinkContainer to={`/ride/${ride.id}`}>
                                 <Button variant="success" className="me-2">
-                                  See ride
+                                  {t("translation:global.seeRide")}
                                 </Button>
                               </LinkContainer>
                             </Col>

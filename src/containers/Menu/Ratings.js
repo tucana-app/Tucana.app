@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
-import dateFormat from "dateformat";
+import { useTranslation } from "react-i18next";
 import { LinkContainer } from "react-router-bootstrap";
+import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 
 import { getRatingsToDoDriver, getRatingsToDoPassenger } from "../../redux";
 
 function Ratings() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
@@ -39,7 +41,9 @@ function Ratings() {
       <Container>
         <Row className="mb-5">
           <Col>
-            <h1 className="title text-center">Ratings</h1>
+            <h1 className="title text-center">
+              {t("translation:ratings.title")}
+            </h1>
           </Col>
         </Row>
 
@@ -55,23 +59,23 @@ function Ratings() {
             <Container className="p-0">
               <Row>
                 <Col>
-                  <h2 className="text-info mb-0">- / 5</h2>
-                  <p className="lead">Passenger</p>
+                  <h2 className="text-info mb-0">-</h2>
+                  <p className="lead">{t("translation:global.passenger")}</p>
 
                   <LinkContainer to="/profile/passenger/ratings">
                     <Button variant="info" size={"lg"}>
-                      Ratings
+                      {t("translation:global.view")}
                     </Button>
                   </LinkContainer>
                 </Col>
                 {currentUser.Driver ? (
                   <Col>
-                    <h2 className="text-warning mb-0">- / 5</h2>
-                    <p className="lead">Driver</p>
+                    <h2 className="text-warning mb-0">-</h2>
+                    <p className="lead">{t("translation:global.driver")}</p>
 
                     <LinkContainer to="/profile/driver/ratings">
                       <Button variant="warning" size={"lg"}>
-                        Ratings
+                        {t("translation:global.view")}
                       </Button>
                     </LinkContainer>
                   </Col>
@@ -90,7 +94,7 @@ function Ratings() {
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
               <ListGroup variant="flush" className="pt-4">
                 <ListGroup.Item className="border-0">
-                  <p className="lead mb-0">Ratings to do</p>
+                  <p className="lead mb-0">{t("translation:ratings.toDo")}</p>
                 </ListGroup.Item>
 
                 {getRatingsToDoPassengerData.map((ride, index) => (

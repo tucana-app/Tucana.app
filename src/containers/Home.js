@@ -1,14 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, Button, Nav } from "react-bootstrap";
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "@primer/octicons-react";
 
 // Importing assets
-// import logo from "../assets/images/OPTI_noir.png";
-import carpooling from "../assets/images/undraw_trip.svg";
+import logo from "../assets/images/logo.png";
 
 function Home() {
   const { t } = useTranslation();
@@ -63,14 +62,20 @@ function Home() {
             </Nav.Item>
           </Nav>
         </Row>
-        <Row className="justify-content-center align-content-center mt-5">
+        <Row className="justify-content-center align-content-center pt-5 pt-md-0 mt-5">
           <Col xs={12} sm={10} md={8} className="mx-auto">
             <Container>
               <Row className="mb-3">
-                <Col xs={12} sm={10} md={8} xl={6} className="text-center px-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  xl={6}
+                  className="text-center mx-auto"
+                >
                   <img
-                    src={carpooling}
-                    width={200}
+                    src={logo}
+                    width={150}
                     alt="Tucána logo"
                     className="img-fluid"
                   />
@@ -80,7 +85,13 @@ function Home() {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12} sm={10} md={8} xl={6} className="text-center">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  xl={6}
+                  className="text-center mx-auto"
+                >
                   <h1 className="title">
                     {t("translation:homepage.catchPhrase")}
                   </h1>

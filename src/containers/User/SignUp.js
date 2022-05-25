@@ -31,25 +31,25 @@ const SignUp = () => {
 
   const schema = Yup.object().shape({
     firstName: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
+      .min(4, t("translation:global.errors.min4characters"))
+      .max(20, t("translation:global.errors.max20characters"))
       .matches(
         /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-        "Please enter a valid name"
+        t("translation:global.errors.validName")
       )
       .required(labelRequiredField),
 
     lastName: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
+      .min(4, t("translation:global.errors.min4characters"))
+      .max(20, t("translation:global.errors.max20characters"))
       .matches(
         /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-        "Please enter a valid name"
+        t("translation:global.errors.validName")
       )
       .required(labelRequiredField),
 
     email: Yup.string(labelStringField)
-      .email("Please enter a valid email address")
+      .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
 
     // phoneNumber: Yup.string(labelStringField)
@@ -62,11 +62,11 @@ const SignUp = () => {
     //   .required(labelRequiredField),
 
     username: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
+      .min(4, t("translation:global.errors.min4characters"))
+      .max(20, t("translation:global.errors.max20characters"))
       .matches(
         /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){2,18}[a-zA-Z0-9]$/,
-        "Please enter a valid name (only letters and numbers)"
+        t("translation:global.errors.validUsername")
       )
       .required(labelRequiredField),
 
@@ -85,7 +85,7 @@ const SignUp = () => {
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: "Please enter a valid phone number",
+          bodyText: t("translation:global.errors.validPhone"),
           variant: "warning",
         })
       );

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Form, Col, Container, Row } from "react-bootstrap";
 import { Formik } from "formik";
-import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
 import Reaptcha from "reaptcha";
+import * as Yup from "yup";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -12,6 +13,7 @@ import SocialIcons from "../../components/SocialIcons";
 import { submitFormContact, setToast } from "../../redux";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
     user: currentUser,
@@ -36,18 +38,18 @@ const Contact = () => {
 
   const schema = Yup.object().shape({
     fullname: Yup.string(labelStringField)
-      .min(4, "Min. 4 characters")
-      .max(20, "Max. 20 characters")
+      .min(4, t("translation:global.errors.min4characters"))
+      .max(20, t("translation:global.errors.max20characters"))
       .required(labelRequiredField),
     email: Yup.string(labelStringField)
-      .email("Please enter a valid email address")
+      .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
     subject: Yup.mixed()
       .oneOf(arrayContactSubjects, labelRequiredField)
       .required(labelRequiredField),
     message: Yup.string()
-      .min(20, "Min. 20 characters")
-      .max(1000, "Max. 1000 characters")
+      .min(20, t("translation:contact.min20characters"))
+      .max(1000, t("translation:contact.max1000characters"))
       .required(labelRequiredField),
   });
 
@@ -89,7 +91,7 @@ const Contact = () => {
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: "Please fill up the captcha",
+          bodyText: t("translation:global.errors.captcha"),
           variant: "warning",
         })
       );
@@ -102,15 +104,10 @@ const Contact = () => {
 
       <Container fluid data-aos="fade-in" className="pb-5">
         <Row>
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="bg-white mx-auto"
-          >
-            <h1 className="title text-center">Get in touch</h1>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <h1 className="title text-center">
+              {t("translation:contact.title")}
+            </h1>
           </Col>
         </Row>
 
@@ -121,21 +118,14 @@ const Contact = () => {
             md={8}
             lg={6}
             xl={4}
-            className="bg-white text-center mx-auto py-3"
+            className="text-center mx-auto py-3"
           >
             <SocialIcons />
           </Col>
         </Row>
 
         <Row>
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="bg-white mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <Formik
               validationSchema={schema}
               validateOnChange={false}
@@ -168,7 +158,7 @@ const Contact = () => {
                           <Form.Control
                             type="text"
                             name="fullname"
-                            placeholder="Fullname"
+                            placeholder={t("translation:global.fullname")}
                             value={values.fullname}
                             onChange={handleChange}
                             isInvalid={!!errors.fullname}
@@ -186,7 +176,7 @@ const Contact = () => {
                             type="email"
                             name="email"
                             value={values.email}
-                            placeholder="Email"
+                            placeholder={t("translation:global.email")}
                             onChange={handleChange}
                             isInvalid={!!errors.email}
                             isValid={touched.email && !errors.email}
@@ -209,7 +199,9 @@ const Contact = () => {
                             isValid={touched.subject && !errors.subject}
                             disabled={isSubmitting}
                           >
-                            <option value={0}>Subject</option>
+                            <option value={0}>
+                              {t("translation:contact.subject")}
+                            </option>
                             {arraySubjects}
                           </Form.Select>
                           <Form.Control.Feedback type="invalid">
@@ -226,7 +218,7 @@ const Contact = () => {
                             name="message"
                             as="textarea"
                             value={values.message}
-                            placeholder="Message"
+                            placeholder={t("translation:global.message")}
                             onChange={handleChange}
                             isInvalid={!!errors.message}
                             isValid={touched.message && !errors.message}
@@ -271,7 +263,7 @@ const Contact = () => {
                             !captchaReady ? (
                               <LoadingSpinner />
                             ) : null}
-                            Send
+                            {t("translation:global.send")}
                           </Button>
                         </Form.Group>
                       </Col>

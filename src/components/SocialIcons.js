@@ -21,7 +21,7 @@ const SocialIcons = () => {
         <Facebook className="mb-1" size="30" />
       </a>
       <a
-        href="https://www.instagram.com/ride.cr.app/"
+        href="https://www.instagram.com/tucana.app/"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"
@@ -53,7 +53,7 @@ const SocialIcons = () => {
         <Paypal size="30" />
       </a>
       <a
-        href="https://twitter.com/ride_cr_app"
+        href="https://twitter.com/tucana_app"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"

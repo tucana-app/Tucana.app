@@ -42,16 +42,12 @@ const PassengersDetails = ({ rideId, booking }) => {
           <Row>
             <Col>
               <p>
-                <Trans
-                  i18nKey="translation:PassengersDetails.summary"
-                  totalPassengers={totalPassengers}
-                  bookings={passengersDetailsData.length}
-                >
+                <Trans i18nKey="translation:PassengersDetails.summary">
                   Total:{" "}
                   <span className="text-success">{{ totalPassengers }}</span>{" "}
                   passenger(s) with{" "}
                   <span className="text-success">
-                    {passengersDetailsData.length}
+                    {{ bookings: passengersDetailsData.length }}
                   </span>{" "}
                   booking(s)
                 </Trans>

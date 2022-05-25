@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link, useParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { StarFillIcon, StarIcon } from "@primer/octicons-react";
+import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -17,6 +18,7 @@ import {
 } from "../../redux";
 
 const NewRating = () => {
+  const { t } = useTranslation();
   const { rideId } = useParams();
 
   const [note, setNote] = useState(0);
@@ -108,7 +110,9 @@ const NewRating = () => {
             <Container>
               <Row>
                 <Col>
-                  <h1 className="title text-center">Give a rating</h1>
+                  <h1 className="title text-center">
+                    {t("translation:newRating.title")}
+                  </h1>
 
                   {isLoadingGetRatingsToDoPassenger ||
                   isLoadingGetRatingsToDoDriver ? (
@@ -123,7 +127,9 @@ const NewRating = () => {
                         <>
                           <Row className="mb-3">
                             <Col className="text-center">
-                              <p className="lead mb-0">Driver:</p>
+                              <p className="lead mb-0">
+                                {t("translation:global.driver")}:
+                              </p>
                               <p className="h3">
                                 {ridePassenger.Driver.User.firstName}
                               </p>
@@ -132,13 +138,15 @@ const NewRating = () => {
 
                           <Row className="mb-2">
                             <Col className="text-center">
-                              <p className="small mb-0">Ride summary</p>
+                              <p className="small mb-0">
+                                {t("translation:newRating.rideSummary")}
+                              </p>
                               <p className="mb-0">
                                 {ridePassenger.origin.city} -{" "}
                                 {ridePassenger.destination.city}
                               </p>
                               <p className="mb-2">
-                                Date:{" "}
+                                {t("translation:global.date")}:{" "}
                                 {dateFormat(
                                   ridePassenger.dateTime,
                                   "dd/mm/yyyy"
@@ -146,7 +154,9 @@ const NewRating = () => {
                               </p>
                               <Link to={`/ride/${ridePassenger.id}`}>
                                 <Button variant="outline-success">
-                                  <p className="lead mb-0">View</p>
+                                  <p className="lead mb-0">
+                                    {t("translation:global.view")}
+                                  </p>
                                 </Button>
                               </Link>
                             </Col>
@@ -156,11 +166,15 @@ const NewRating = () => {
 
                           <Row className="mb-3">
                             <Col className="text-center">
-                              <p className="mb-0">Comment</p>
+                              <p className="mb-0">
+                                {t("translation:global.comment")}
+                              </p>
                               <Form.Control
                                 type="text"
                                 name="message"
-                                placeholder="Type your comment here"
+                                placeholder={t(
+                                  "translation:newRating.typeComment"
+                                )}
                                 onChange={(e) => setComment(e.target.value)}
                                 disabled={
                                   submitPassengerRatingFormData.flag ===
@@ -401,7 +415,7 @@ const NewRating = () => {
                                 {isLoadingSubmitPassengerRatingForm ? (
                                   <LoadingSpinner />
                                 ) : null}{" "}
-                                Submit
+                                {t("translation:global.submit")}
                               </Button>
                             </Col>
                           </Row>
@@ -414,7 +428,9 @@ const NewRating = () => {
                         <>
                           <Row className="mb-3">
                             <Col className="text-center">
-                              <p className="lead mb-0">Passenger:</p>
+                              <p className="lead mb-0">
+                                {t("translation:global.passenger")}:
+                              </p>
                               <p className="h3">
                                 {rideDriver.Booking.User.firstName}
                               </p>
@@ -423,7 +439,9 @@ const NewRating = () => {
 
                           <Row className="mb-2">
                             <Col className="text-center">
-                              <p className="small mb-0">Ride summary</p>
+                              <p className="small mb-0">
+                                {t("translation:newRating.rideSummary")}
+                              </p>
                               <p className="mb-0">
                                 {rideDriver.origin.city} -{" "}
                                 {rideDriver.destination.city}
@@ -434,7 +452,9 @@ const NewRating = () => {
                               </p>
                               <Link to={`/ride/${rideDriver.id}`}>
                                 <Button variant="outline-success">
-                                  <p className="small mb-0">View</p>
+                                  <p className="small mb-0">
+                                    {t("translation:global.view")}
+                                  </p>
                                 </Button>
                               </Link>
                             </Col>
@@ -444,11 +464,15 @@ const NewRating = () => {
 
                           <Row className="mb-3">
                             <Col className="text-center">
-                              <p className="mb-0">Comment</p>
+                              <p className="mb-0">
+                                {t("translation:global.comment")}
+                              </p>
                               <Form.Control
                                 type="text"
                                 name="message"
-                                placeholder="Type your comment here"
+                                placeholder={t(
+                                  "translation:newRating.typeComment"
+                                )}
                                 onChange={(e) => setComment(e.target.value)}
                                 disabled={
                                   submitDriverRatingFormData.flag === "SUCCESS"
@@ -687,7 +711,7 @@ const NewRating = () => {
                                 {isLoadingSubmitDriverRatingForm ? (
                                   <LoadingSpinner />
                                 ) : null}{" "}
-                                Submit
+                                {t("translation:global.submit")}
                               </Button>
                             </Col>
                           </Row>

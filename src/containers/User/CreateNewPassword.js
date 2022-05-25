@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import { Trans, useTranslation } from "react-i18next";
 import { CheckIcon } from "@primer/octicons-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -14,6 +15,7 @@ import { resetPassword, checkDeprecatedLinkResetPassword } from "../../redux";
 require("yup-password")(Yup); // extend yup
 
 const CreateNewPassword = () => {
+  const { t } = useTranslation();
   const { uuid } = useParams();
 
   const dispatch = useDispatch();
@@ -35,7 +37,10 @@ const CreateNewPassword = () => {
     password2: Yup.string(labelStringField)
       .required(labelRequiredField)
       .password()
-      .oneOf([Yup.ref("password1"), null], "Passwords must match"),
+      .oneOf(
+        [Yup.ref("password1"), null],
+        t("translation:global.errors.passwordsMatch")
+      ),
   });
 
   const handleSubmit = (values, formikBag) => {
@@ -68,12 +73,16 @@ const CreateNewPassword = () => {
         <Container>
           <Row className="py-5 text-center">
             <Col className="text-center">
-              <h1 className="display-4">This link is deprecated</h1>
+              <h1 className="display-4">
+                {t("translation:createNewPassword.linkDeprecated")}
+              </h1>
               <h3 className="fw-light">
-                Return to the{" "}
-                <Link to="/login" className="link-success">
-                  login page
-                </Link>
+                <Trans i18nKey="translation:global.returnLogin">
+                  Return to the{" "}
+                  <span className="link-success cursor-pointer text-decoration-underline">
+                    <Link to="/login">login page</Link>
+                  </span>
+                </Trans>
               </h3>
             </Col>
           </Row>
@@ -82,7 +91,9 @@ const CreateNewPassword = () => {
         <Container>
           <Row className="py-5 text-center">
             <Col className="text-center">
-              <h1 className="display-4">Create a new password</h1>
+              <h1 className="display-4">
+                {t("translation:createNewPassword.title")}
+              </h1>
             </Col>
           </Row>
 
@@ -116,7 +127,7 @@ const CreateNewPassword = () => {
                           <Form.Control
                             type="password"
                             name="password1"
-                            placeholder="Password"
+                            placeholder={t("translation:global.password")}
                             onChange={handleChange}
                             isInvalid={!!errors.password1}
                             isValid={touched.password1 && !errors.password1}
@@ -135,13 +146,13 @@ const CreateNewPassword = () => {
                       <Col xs={12} className="mb-3 mb-md-4">
                         <Form.Group>
                           <Form.Label>
-                            Retype password
+                            {t("translation:createNewPassword.retypePassword")}
                             <span className="text-danger">*</span>
                           </Form.Label>
                           <Form.Control
                             type="password"
                             name="password2"
-                            placeholder="Password"
+                            placeholder={t("translation:global.password")}
                             onChange={handleChange}
                             disabled={
                               resetPasswordData.flag ===
@@ -173,7 +184,7 @@ const CreateNewPassword = () => {
                             {isSubmitting || isLoadingResetPassword ? (
                               <LoadingSpinner />
                             ) : null}
-                            Reset password
+                            {t("translation:createNewPassword.reset")}
                           </Button>
                         </Form.Group>
                       </Col>

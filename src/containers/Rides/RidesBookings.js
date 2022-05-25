@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Trans, useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
@@ -12,6 +13,7 @@ import MessageEmpty from "../../components/MessageEmpty";
 import { getDriverBookings } from "../../redux";
 
 const RidesBookings = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingDriverBookingsList, driverBookingsData } = useSelector(
@@ -49,9 +51,11 @@ const RidesBookings = () => {
               <Col>
                 <div className="text-center mb-4">
                   <h1 className="title text-success mb-0">
-                    Bookings for your rides
+                    {t("translation:ridesBookings.title")}
                   </h1>
-                  <p className="lead">Find your potential passenger here</p>
+                  <p className="lead">
+                    {t("translation:ridesBookings.subTitle")}
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -76,28 +80,35 @@ const RidesBookings = () => {
                             <Col>
                               <p>
                                 {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
-                                <span className="text-success">
-                                  {booking.User.firstName}
-                                </span>{" "}
-                                booked{" "}
-                                <span className="text-success">
-                                  {booking.seatsBooked}
-                                </span>{" "}
-                                seat(s) from{" "}
-                                <span className="text-success">
-                                  {booking.Ride.origin.city}
-                                </span>{" "}
-                                to{" "}
-                                <span className="text-success">
-                                  {booking.Ride.destination.city}
-                                </span>
+                                <Trans i18nKey="translation:ridesBookings.summary">
+                                  <span className="text-success">
+                                    {{ firstName: booking.User.firstName }}
+                                  </span>
+                                  booked
+                                  <span className="text-success">
+                                    {{ seatsBooked: booking.seatsBooked }}
+                                  </span>{" "}
+                                  seat(s) from{" "}
+                                  <span className="text-success">
+                                    {{ cityOrigin: booking.Ride.origin.city }}
+                                  </span>{" "}
+                                  to{" "}
+                                  <span className="text-success">
+                                    {{
+                                      cityDestination:
+                                        booking.Ride.destination.city,
+                                    }}
+                                  </span>
+                                </Trans>
                               </p>
                             </Col>
                           </Row>
                           <Row>
                             <Col>
                               <p>
-                                <span className="text-secondary">Status:</span>{" "}
+                                <span className="text-secondary">
+                                  {t("translation:global.status")}:
+                                </span>{" "}
                                 <span
                                   className={`text-${bookingStatusVariant(
                                     booking.BookingStatusId
@@ -115,10 +126,14 @@ const RidesBookings = () => {
                                 to={`/ride/${booking.RideId}`}
                                 className="me-3"
                               >
-                                <Button variant="light">See ride</Button>
+                                <Button variant="light">
+                                  {t("translation:global.seeRide")}
+                                </Button>
                               </LinkContainer>
                               <LinkContainer to={`/booking/${booking.id}`}>
-                                <Button variant="success">See booking</Button>
+                                <Button variant="success">
+                                  {t("translation:global.seeBooking")}
+                                </Button>
                               </LinkContainer>
                             </Col>
                           </Row>

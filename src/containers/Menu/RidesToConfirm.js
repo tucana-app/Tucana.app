@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -12,6 +13,7 @@ import GoBack from "../../components/GoBack";
 import { getRidesToConfirm } from "../../redux";
 
 function RidesToConfirm() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isLoadingRidesToConfirm, ridesToConfirmData } = useSelector(
@@ -36,7 +38,9 @@ function RidesToConfirm() {
       <Container>
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <h1 className="text-success text-center">Rides to confirm</h1>
+            <h1 className="text-success text-center">
+              {t("translation:ridesToConfirm.title")}
+            </h1>
           </Col>
         </Row>
         {isLoadingRidesToConfirm ? (
@@ -77,9 +81,11 @@ function RidesToConfirm() {
         ) : (
           <Row>
             <Col className="text-center">
-              <p className="lead">No rides to confirm.</p>
+              <p className="lead">{t("translation:ridesToConfirm.noRides")}</p>
               <LinkContainer to="/rides">
-                <Button variant="success">Go back to your rides</Button>
+                <Button variant="success">
+                  {t("translation:ridesToConfirm.goBack")}
+                </Button>
               </LinkContainer>
             </Col>
           </Row>

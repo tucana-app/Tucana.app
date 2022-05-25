@@ -1,9 +1,11 @@
 import React from "react";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import GoBack from "../../components/GoBack";
 
 const Credits = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <GoBack />
@@ -11,7 +13,9 @@ const Credits = () => {
       <Container>
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <h1 className="title text-center">Credits</h1>
+            <h1 className="title text-center">
+              {t("translation:global.credits")}
+            </h1>
 
             <ListGroup>
               <ListGroup.Item>
@@ -25,13 +29,13 @@ const Credits = () => {
                 </a>
               </ListGroup.Item>
               <ListGroup.Item>
-                "man driving straight on pathway during day time photo" by{" "}
+                "two men sitting inside vehicle" by{" "}
                 <a
-                  href="https://alexjumper.com"
+                  href="https://unsplash.com/@davidemrich"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Alex Jumper
+                  David Emrich
                 </a>{" "}
                 on Unsplash
               </ListGroup.Item>

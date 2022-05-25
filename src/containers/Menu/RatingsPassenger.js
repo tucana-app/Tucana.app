@@ -10,6 +10,7 @@ import {
   ListGroup,
   Badge,
 } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
@@ -22,6 +23,7 @@ import {
 } from "../../redux";
 
 function RatingsPassenger() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
@@ -53,8 +55,8 @@ function RatingsPassenger() {
       <Container fluid>
         <Row>
           <Col className="text-center">
-            <h1 className="title mb-0">Ratings</h1>
-            <p className="lead">As a passenger</p>
+            <h1 className="title mb-0">{t("translation:ratings.title")}</h1>
+            <p className="lead">{t("translation:ratings.asPassenger")}</p>
           </Col>
         </Row>
       </Container>
@@ -76,7 +78,7 @@ function RatingsPassenger() {
                     verticalAlign="middle"
                     className="text-danger me-2"
                   />
-                  Ratings to do
+                  {t("translation:ratings.toDo")}
                   <Badge bg="danger" className="align-text-top ms-2">
                     {getRatingsToDoPassengerData.length}
                   </Badge>
@@ -97,7 +99,7 @@ function RatingsPassenger() {
               <Row>
                 <Col>
                   <p className="text-center">
-                    It seems that no one has left you a rating yet
+                    {t("translation:ratings.noRatingsYou")}
                   </p>
                 </Col>
               </Row>
@@ -112,7 +114,7 @@ function RatingsPassenger() {
               <Row>
                 <Col>
                   <p className="text-center">
-                    It seems that you haven't left a rating yet
+                    {t("translation:ratings.noYouRatings")}
                   </p>
                 </Col>
               </Row>

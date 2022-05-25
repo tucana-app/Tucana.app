@@ -60,8 +60,8 @@ const Find = () => {
   }
 
   return (
-    <>
-      <Container className="py-5">
+    <div className="container-findpage">
+      <Container className="overlay py-5">
         {isFormSearchRideSubmitted ? (
           <>
             <Row>
@@ -78,7 +78,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-success shadow-sm rounded bg-white mx-auto mt-2"
+                className="border border-success shadow-sm rounded mx-auto mt-2"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
@@ -124,7 +124,7 @@ const Find = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow-sm rounded bg-white pb-3 mx-auto"
+                      className="border shadow-sm rounded pb-3 mx-auto"
                     >
                       <LinkContainer
                         to={`/ride/${ride.id}`}
@@ -253,7 +253,7 @@ const Find = () => {
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border shadow-sm rounded bg-white mx-auto"
+                  className="border shadow-sm rounded mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row>
@@ -278,7 +278,7 @@ const Find = () => {
                 className="text-center mx-auto"
               >
                 <div>
-                  <h1 className="title display-5 text-dark mb-0">
+                  <h1 className="title display-5 mb-0">
                     {t("translation:find.catchPhrase")}
                   </h1>
                 </div>
@@ -291,7 +291,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-white border border-success shadow-sm rounded mt-2 mx-auto"
+                className="border border-success shadow-sm rounded mt-2 mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />
@@ -301,7 +301,7 @@ const Find = () => {
           </>
         )}
       </Container>
-    </>
+    </div>
   );
 };
 

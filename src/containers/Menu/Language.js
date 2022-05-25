@@ -19,7 +19,9 @@ function Language() {
       <Container>
         <Row className="mb-5">
           <Col>
-            <h1 className="title text-center">Language</h1>
+            <h1 className="title text-center">
+              {t("translation:global.language")}
+            </h1>
           </Col>
         </Row>
 
@@ -27,7 +29,7 @@ function Language() {
           <Col className="text-center">
             <p>
               {t("translation:languagePage.current")}:{" "}
-              {t("translation:global.language")}
+              {t("translation:global.currentLanguage")}
             </p>
             <Button
               onClick={() => changeLanguage("en")}

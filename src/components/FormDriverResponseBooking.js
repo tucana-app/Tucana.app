@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { Formik } from "formik";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import {
   AlertIcon,
   CheckIcon,
@@ -71,10 +71,16 @@ const FormDriverResponseBooking = ({ bookingId }) => {
             <Col className="py-2 mx-auto">
               {bookingData.seatsBooked > bookingData.Ride.seatsLeft ? (
                 <p className="text-warning mb-0">
-                  <AlertIcon size={24} className="me-2" />"
-                  {bookingData.User.firstName}" booked {bookingData.seatsBooked}{" "}
-                  seats but there are {bookingData.Ride.seatsLeft} seats left,
-                  you cannot accept or refuse this booking.
+                  <AlertIcon size={24} className="me-2" />
+                  <Trans i18nKey="translation:FormDriverResponseBooking.message">
+                    {{ firstName: bookingData.User.firstName }} booked{" "}
+                    {{ seatsBooked: bookingData.seatsBooked }} seats but there
+                    are {{ seatsLeft: bookingData.Ride.seatsLeft }} seats left,
+                    you cannot accept or refuse this booking.
+                  </Trans>
+                  {/* "{}" booked {bookingData.seatsBooked} seats but there are{" "}
+                  {bookingData.Ride.seatsLeft} seats left, you cannot accept or
+                  refuse this booking. */}
                 </p>
               ) : (
                 <>

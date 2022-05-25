@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { BellIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
@@ -11,6 +12,7 @@ import GoBack from "../../components/GoBack";
 import { getNotifications } from "../../redux";
 
 const Notifications = () => {
+  const { t } = useTranslation();
   // const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant } = useSelector((state) => state.global);
@@ -59,7 +61,7 @@ const Notifications = () => {
         <ListGroup.Item className="border-0 mt-3">
           <div className="py-3">
             <BellIcon size={24} className="text-warning me-2" />
-            Notifications
+            {t("translation:notifications.title")}
             <Badge bg="danger" className="align-text-top ms-2">
               {notifications}
             </Badge>
@@ -84,7 +86,7 @@ const Notifications = () => {
           <ListGroup.Item className="border border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
-                Bookings for your ride(s)
+                {t("translation:notifications.bookingsRides")}
                 <Badge bg="info" className="text-dark align-text-top ms-2">
                   {numberDriverNewRidesRequests}
                 </Badge>
@@ -102,18 +104,19 @@ const Notifications = () => {
                 <small className="text-secondary me-1">
                   {dateFormat(request.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
-                Ride:{" "}
+                {t("translation:global.ride")}:{" "}
                 <span className="text-success">{request.Ride.origin.city}</span>{" "}
-                to{" "}
+                {t("translation:global.to")}{" "}
                 <span className="text-success">
                   {request.Ride.destination.city}
                 </span>{" "}
-                ({dateFormat(request.Ride.dateTime, "dd/mm/yyyy")}) - Seats
-                booked:{" "}
+                ({dateFormat(request.Ride.dateTime, "dd/mm/yyyy")}) -{" "}
+                {t("translation:global.seat")}
+                {request.seatsBooked > 1 ? "s" : null} booked:{" "}
                 <span className="text-success">{request.seatsBooked}</span> /{" "}
                 {request.Ride.seatsAvailable}{" "}
                 <span>
-                  by{" "}
+                  {t("translation:global.by")}{" "}
                   <span className="text-success">{request.User.firstName}</span>
                 </span>
               </ListGroup.Item>
@@ -129,7 +132,7 @@ const Notifications = () => {
           <ListGroup.Item className="border border-bottom-0 border-start-0 border-end-0">
             <div className="d-inline-flex justify-content-between w-100 py-2">
               <span>
-                Answers from your bookings
+                {t("translation:notifications.answersBookings")}
                 <Badge bg="success" className="text-dark align-text-top ms-2">
                   {numberPassengerBookingsResponses}
                 </Badge>
@@ -147,15 +150,15 @@ const Notifications = () => {
                 <small className="text-secondary me-1">
                   {dateFormat(booking.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
-                Ride:{" "}
+                {t("translation:global.ride")}:{" "}
                 <span className="text-success">{booking.Ride.origin.city}</span>{" "}
-                to{" "}
+                {t("translation:global.to")}{" "}
                 <span className="text-success">
                   {booking.Ride.destination.city}
                 </span>{" "}
                 ({dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}){" "}
                 <span>
-                  by{" "}
+                  {t("translation:global.by")}{" "}
                   <span className="text-success">
                     {booking.Ride.Driver.User.firstName}
                   </span>
