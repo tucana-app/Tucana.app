@@ -487,6 +487,21 @@ const rideReducer = (state = initialState, action) => {
         },
       };
 
+    case rideTypes.RESET_RIDE_ORIGIN:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          origin: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
+          },
+        },
+      };
+
     case rideTypes.SET_RIDE_DESTINATION:
       return {
         ...state,
@@ -498,6 +513,21 @@ const rideReducer = (state = initialState, action) => {
             address: action.payload.address,
             latLng: action.payload.latLng,
             details: action.payload.details,
+          },
+        },
+      };
+
+    case rideTypes.RESET_RIDE_DESTINATION:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          destination: {
+            city: "",
+            province: "",
+            address: "",
+            latLng: { lat: 0, lng: 0 },
+            details: {},
           },
         },
       };

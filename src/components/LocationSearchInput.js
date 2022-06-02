@@ -6,16 +6,20 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import { SearchIcon, XIcon } from "@primer/octicons-react";
+import { XIcon } from "@primer/octicons-react";
 
 import {
   setSearchAddress,
-  setLocation,
+  setSearchOrigin,
+  setSearchDestination,
+  setOfferOrigin,
+  setOfferDestination,
   resetSearch,
-  setIsLoadingLocation,
 } from "../redux";
 
 function LocationSearchInput(props) {
+  const { inputLocation } = props;
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { searchAddress, location } = useSelector((state) => state.ride);
@@ -49,7 +53,13 @@ function LocationSearchInput(props) {
     dispatch(resetSearch());
   };
 
+  // const handleInput = (e) => {
+  //   dispatch(setSearchAddress(e.target.value));
+  // };
+
   const handleInput = (e) => {
+    // Update the keyword of the input element
+    setValue(e.target.value);
     dispatch(setSearchAddress(e.target.value));
   };
 
@@ -60,7 +70,6 @@ function LocationSearchInput(props) {
       // by setting the second parameter to "false"
       setValue(description, false);
       clearSuggestions();
-      dispatch(setIsLoadingLocation());
 
       // Get latitude and longitude via utility functions
       getGeocode({ address: description })
@@ -70,15 +79,59 @@ function LocationSearchInput(props) {
           return getLatLng(results[0]);
         })
         .then((latLng) => {
-          dispatch(
-            setLocation({
-              city,
-              province,
-              address: description,
-              details,
-              latLng,
-            })
-          );
+          switch (inputLocation) {
+            case "searchOrigin":
+              dispatch(
+                setSearchOrigin({
+                  city,
+                  province,
+                  address: description,
+                  details,
+                  latLng,
+                })
+              );
+
+              break;
+
+            case "searchDestination":
+              dispatch(
+                setSearchDestination({
+                  city,
+                  province,
+                  address: description,
+                  details,
+                  latLng,
+                })
+              );
+              break;
+
+            case "offerOrigin":
+              dispatch(
+                setOfferOrigin({
+                  city,
+                  province,
+                  address: description,
+                  details,
+                  latLng,
+                })
+              );
+              break;
+
+            case "offerDestination":
+              dispatch(
+                setOfferDestination({
+                  city,
+                  province,
+                  address: description,
+                  details,
+                  latLng,
+                })
+              );
+              break;
+
+            default:
+              break;
+          }
         })
         .catch((error) => {
           console.log("Error: ", error);
@@ -145,14 +198,6 @@ function LocationSearchInput(props) {
           aria-label={t("translation:global.search")}
           onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
         />
-        <Button
-          onClick={handleSubmit}
-          variant="success"
-          size="sm"
-          className="ms-1"
-        >
-          <SearchIcon size={24} />
-        </Button>
         <Button onClick={handleReset} variant="white" className="px-0 ms-1">
           <XIcon size={24} />
         </Button>

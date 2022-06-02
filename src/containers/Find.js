@@ -66,7 +66,7 @@ const Find = () => {
           <>
             <Row>
               <Col xs={12}>
-                <h1 className="title text-center fw-bold mb-0">
+                <h1 className="title display-5 text-center mb-0">
                   {t("translation:global.searchResults")}
                 </h1>
               </Col>
@@ -78,7 +78,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-success shadow-sm rounded mx-auto mt-2"
+                className="bg-light border border-success shadow-sm rounded mx-auto mt-2"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
@@ -124,7 +124,7 @@ const Find = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow-sm rounded pb-3 mx-auto"
+                      className="bg-light border shadow-sm rounded pb-3 mx-auto"
                     >
                       <LinkContainer
                         to={`/ride/${ride.id}`}
@@ -277,11 +277,9 @@ const Find = () => {
                 xl={4}
                 className="text-center mx-auto"
               >
-                <div>
-                  <h1 className="title display-5 mb-0">
-                    {t("translation:find.catchPhrase")}
-                  </h1>
-                </div>
+                <h1 className="title display-5 mb-0">
+                  {t("translation:find.catchPhrase")}
+                </h1>
               </Col>
             </Row>
             <Row className="mb-2 mx-1 mx-sm-0">
@@ -291,7 +289,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-success shadow-sm rounded mt-2 mx-auto"
+                className="bg-light border border-success shadow-sm rounded mt-2 mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

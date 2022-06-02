@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
@@ -9,12 +9,14 @@ import {
   AlertIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
   LinkExternalIcon,
+  PencilIcon,
 } from "@primer/octicons-react";
 
 import {
-  setOrigin,
-  setDestination,
+  resetOfferOrigin,
+  resetOfferDestination,
   setRideDate,
   setRideTime,
   setRideSeats,
@@ -30,7 +32,6 @@ const Offer = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
-    location,
     formOfferRide,
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
@@ -66,15 +67,17 @@ const Offer = () => {
   };
 
   const handleClickStepOne = () => {
-    if (location.city !== "" || formOfferRide.origin.city !== "") {
-      setStepOne(false);
-      setStepTwo(true);
-      if (location.city !== "") {
-        dispatch(setOrigin(location));
-      } else if (formOfferRide.origin.city !== "") {
-        dispatch(setOrigin(formOfferRide.origin));
-      }
-    }
+    setStepOne(false);
+    setStepTwo(true);
+  };
+
+  const handleEditOrigin = () => {
+    dispatch(resetOfferOrigin());
+  };
+
+  const handleClickStepTwo = () => {
+    setStepTwo(false);
+    setStepThree(true);
   };
 
   const handleBackToStepOne = () => {
@@ -82,16 +85,8 @@ const Offer = () => {
     setStepTwo(false);
   };
 
-  const handleClickStepTwo = () => {
-    if (location.city !== "" || formOfferRide.destination.city !== "") {
-      setStepTwo(false);
-      setStepThree(true);
-      if (location.city !== "") {
-        dispatch(setDestination(location));
-      } else if (formOfferRide.destination.city !== "") {
-        dispatch(setDestination(formOfferRide.destination));
-      }
-    }
+  const handleEditDestination = () => {
+    dispatch(resetOfferDestination());
   };
 
   const handleBackToStepTwo = () => {
@@ -191,6 +186,18 @@ const Offer = () => {
     }
   };
 
+  useEffect(() => {
+    if (formOfferRide.origin.city !== "") {
+      setStepOne(false);
+      setStepTwo(true);
+    }
+
+    if (formOfferRide.destination.city !== "") {
+      setStepTwo(false);
+      setStepThree(true);
+    }
+  }, [formOfferRide]);
+
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
@@ -211,98 +218,43 @@ const Offer = () => {
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                <LocationSearchInput />
+                {formOfferRide.origin.city !== "" ? (
+                  <Container className="px-0">
+                    <Row className="mb-3">
+                      <Col xs={12} className="text-center">
+                        <h3 className="mb-0">
+                          <strong>{formOfferRide.origin.city}</strong>,{" "}
+                          <small>{formOfferRide.origin.province}</small>
+                        </h3>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12} className="text-center">
+                        <Button
+                          size={"sm"}
+                          onClick={handleEditOrigin}
+                          variant="outline-warning"
+                          className="me-2"
+                        >
+                          <PencilIcon size={24} className="me-2" />
+                          {t("translation:global.edit")}
+                        </Button>
+                        <Button
+                          size={"sm"}
+                          onClick={handleClickStepOne}
+                          variant="success"
+                        >
+                          <CheckIcon size={24} className="me-2" />
+                          {t("translation:global.confirm")}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                ) : (
+                  <LocationSearchInput inputLocation="offerOrigin" />
+                )}
               </Col>
             </Row>
-            {location.city !== "" ? (
-              <>
-                <Row>
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="text-center mx-auto"
-                  >
-                    <h3 className="fw-light mt-3">
-                      {t("translation:global.selected")}:
-                    </h3>
-                    <p>
-                      {t("translation:global.city")}:{" "}
-                      <strong>{location.city}</strong>,{" "}
-                      <small>{location.province}</small>
-                    </p>
-                    <p>
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="me-2"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:global.verify")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row className="mt-5">
-                  <Col className="text-end">
-                    <Button onClick={handleClickStepOne} variant="success">
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </>
-            ) : formOfferRide.origin.city !== "" ? (
-              <>
-                <Row>
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="text-center mx-auto"
-                  >
-                    <h3 className="fw-light mt-3">
-                      {t("translation:global.selected")}:
-                    </h3>
-                    <p>
-                      {t("translation:global.city")}:{" "}
-                      <strong>{formOfferRide.origin.city}</strong>,{" "}
-                      <small>{formOfferRide.origin.province}</small>
-                    </p>
-                    <p>
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${formOfferRide.origin.address}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="me-2"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:global.verify")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row className="mt-5">
-                  <Col className="text-end">
-                    <Button onClick={handleClickStepOne} variant="success">
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </>
-            ) : null}
           </>
         ) : stepTwo ? (
           <>
@@ -319,98 +271,43 @@ const Offer = () => {
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                <LocationSearchInput />
+                {formOfferRide.destination.city !== "" ? (
+                  <Container className="px-0">
+                    <Row className="mb-3">
+                      <Col xs={12} className="text-center">
+                        <h3 className="mb-0">
+                          <strong>{formOfferRide.destination.city}</strong>,{" "}
+                          <small>{formOfferRide.destination.province}</small>
+                        </h3>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12} className="text-center">
+                        <Button
+                          size={"sm"}
+                          onClick={handleEditDestination}
+                          variant="outline-warning"
+                          className="me-2"
+                        >
+                          <PencilIcon size={24} className="me-2" />
+                          {t("translation:global.edit")}
+                        </Button>
+                        <Button
+                          size={"sm"}
+                          onClick={handleClickStepTwo}
+                          variant="success"
+                        >
+                          <CheckIcon size={24} className="me-2" />
+                          {t("translation:global.confirm")}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                ) : (
+                  <LocationSearchInput inputLocation="offerDestination" />
+                )}
               </Col>
             </Row>
-            {location.city !== "" ? (
-              <>
-                <Row>
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="text-center mx-auto"
-                  >
-                    <h3 className="fw-light mt-3">
-                      {t("translation:global.selected")}:
-                    </h3>
-                    <p>
-                      {t("translation:global.city")}:{" "}
-                      <strong>{location.city}</strong>,{" "}
-                      <small>{location.province}</small>
-                    </p>
-                    <p>
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${location.address}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="me-2"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:global.verify")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row className="mt-5">
-                  <Col className="text-end">
-                    <Button onClick={handleClickStepTwo} variant="success">
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </>
-            ) : formOfferRide.destination.city !== "" ? (
-              <>
-                <Row>
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="text-center mx-auto"
-                  >
-                    <h3 className="fw-light mt-3">
-                      {t("translation:global.selected")}:
-                    </h3>
-                    <p>
-                      {t("translation:global.city")}:{" "}
-                      <strong>{formOfferRide.destination.city}</strong>,{" "}
-                      <small>{formOfferRide.destination.province}</small>
-                    </p>
-                    <p>
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${formOfferRide.destination.address}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="me-2"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:global.verify")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row className="mt-5">
-                  <Col className="text-end">
-                    <Button onClick={handleClickStepTwo} variant="success">
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </>
-            ) : null}
           </>
         ) : stepThree ? (
           <>

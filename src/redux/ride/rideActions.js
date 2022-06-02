@@ -66,7 +66,7 @@ export const getDriverRidesFail = (error) => {
 
 // Form add new ride
 // Set origin with Google Maps
-export const setOrigin = (origin) => {
+export const setOfferOrigin = (origin) => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -79,8 +79,21 @@ export const setOrigin = (origin) => {
   };
 };
 
+// Reset origin
+export const resetOfferOrigin = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_RIDE_ORIGIN,
+    });
+  };
+};
+
 // Set destination with Google Maps
-export const setDestination = (destination) => {
+export const setOfferDestination = (destination) => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -89,6 +102,19 @@ export const setDestination = (destination) => {
     dispatch({
       type: rideTypes.SET_RIDE_DESTINATION,
       payload: destination,
+    });
+  };
+};
+
+// Reset origin
+export const resetOfferDestination = () => {
+  return (dispatch) => {
+    dispatch({
+      type: rideTypes.RESET_SEARCH,
+    });
+
+    dispatch({
+      type: rideTypes.RESET_RIDE_DESTINATION,
     });
   };
 };
@@ -1028,13 +1054,6 @@ export const setSearchAddress = (address) => {
   return {
     type: rideTypes.SET_SEARCH_ADDRESS,
     payload: address,
-  };
-};
-
-// Set location with Google Maps
-export const setIsLoadingLocation = () => {
-  return {
-    type: rideTypes.SET_IS_LOADING_LOCATION,
   };
 };
 
