@@ -78,10 +78,13 @@ const CreateNewPassword = () => {
               </h1>
               <h3 className="fw-light">
                 <Trans i18nKey="translation:global.returnLogin">
-                  Return to the{" "}
-                  <span className="link-success cursor-pointer text-decoration-underline">
-                    <Link to="/login">login page</Link>
-                  </span>
+                  You can now{" "}
+                  <Link
+                    to="/login"
+                    className="link-success cursor-pointer text-decoration-underline"
+                  >
+                    login
+                  </Link>
                 </Trans>
               </h3>
             </Col>

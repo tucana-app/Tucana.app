@@ -16,13 +16,13 @@ export const registerUserRequested = () => {
   };
 };
 
-export const registerUser = (formSignupUser) => {
+export const registerUser = (values) => {
   return (dispatch) => {
     dispatch(registerUserRequested());
 
     axios
       .post(URL_API + "/user/signup", {
-        formSignupUser,
+        values,
       })
       .then((response) => {
         // console.log(response.data);
