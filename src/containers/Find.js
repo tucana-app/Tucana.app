@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
@@ -31,37 +31,38 @@ const Find = () => {
     formSearchRide,
   } = useSelector((state) => state.ride);
 
-  const filteredRides = useRef([]);
+  // const filteredRides = useRef([]);
 
-  useEffect(() => {
-    // If we have received the rides
-    if (filteredRidesData.length > 0) {
-      // We had to each ride object the distance between
-      // the ride origin and the user search origin
-      filteredRides.current = filteredRidesData.map((ride) => {
-        return {
-          ...ride,
-          distance: distanceLatLng(
-            ride.origin.latLng,
-            formSearchRide.origin.latLng
-          ),
-        };
-      });
+  // I can't make this work!
+  // useEffect(() => {
+  //   // If we have received the rides
+  //   if (filteredRidesData.length > 0) {
+  //     // We add the distance between the ride origin and
+  //     // the user search origin to each ride object
+  //     filteredRides.current = filteredRidesData.map((ride) => {
+  //       return {
+  //         ...ride,
+  //         distance: distanceLatLng(
+  //           ride.origin.latLng,
+  //           formSearchRide.origin.latLng
+  //         ),
+  //       };
+  //     });
 
-      // Then we just have to sort the array of object by distance
-      filteredRides.current = filteredRides.current.sort((ride1, ride2) => {
-        return ride1.distance - ride2.distance;
-      });
-    }
-  }, [filteredRidesData, filteredRides, distanceLatLng, formSearchRide]);
+  //     // Then we sort the array of object by distance
+  //     filteredRides.current = filteredRides.current.sort((ride1, ride2) => {
+  //       return ride1.distance - ride2.distance;
+  //     });
+  //   }
+  // }, [filteredRidesData, filteredRides, distanceLatLng, formSearchRide]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
 
   return (
-    <div className="container-findpage">
-      <Container className="overlay py-5">
+    <>
+      <Container className="py-5">
         {isFormSearchRideSubmitted ? (
           <>
             <Row>
@@ -116,7 +117,7 @@ const Find = () => {
               </Row>
             ) : filteredRidesData.length > 0 ? (
               <>
-                {filteredRides.current.map((ride, index) => (
+                {filteredRidesData.map((ride, index) => (
                   <Row key={index} className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -299,7 +300,7 @@ const Find = () => {
           </>
         )}
       </Container>
-    </div>
+    </>
   );
 };
 

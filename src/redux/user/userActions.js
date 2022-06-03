@@ -48,6 +48,9 @@ export const registerUser = (values) => {
           error.message ||
           error.toString();
 
+        // If a flag is provided, if not default is "ERROR"
+        const flag = (!!error.response && error.response.data.flag) || "ERROR";
+
         dispatch(
           setToast({
             show: true,
@@ -60,9 +63,21 @@ export const registerUser = (values) => {
         dispatch(
           registerUserFail({
             message,
-            flag: error.response.data.flag,
+            flag,
+            userId: error.response.data.userId,
           })
         );
+
+        if (flag !== "NOT_CONFIRMED") {
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: message,
+              variant: "danger",
+            })
+          );
+        }
       });
   };
 };
@@ -233,6 +248,7 @@ export const login = (formLogin) => {
           payload: {
             message,
             flag,
+            userId: error.response.data.userId,
           },
         });
 

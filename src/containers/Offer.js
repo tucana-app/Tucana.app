@@ -36,7 +36,7 @@ const Offer = () => {
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
   } = useSelector((state) => state.ride);
-  const { seatsMax, distanceLatLng } = useSelector((state) => state.global);
+  const { seatsMax } = useSelector((state) => state.global);
 
   const [date, setDate] = useState(formOfferRide.date);
   const [time, setTime] = useState(formOfferRide.time);
@@ -459,7 +459,7 @@ const Offer = () => {
             </Row>
           </>
         ) : stepVerify ? (
-          <>
+          <div className="mb-5">
             {backButton(handleBackToStepFour)}
 
             <Row className="pt-5 mb-3">
@@ -488,7 +488,7 @@ const Offer = () => {
               </Col>
             </Row>
 
-            <Row>
+            <Row className="mb-3">
               <Col className="text-center">
                 <p className="mb-1">
                   <a
@@ -501,15 +501,6 @@ const Offer = () => {
                       <LinkExternalIcon size={24} className="ms-2" />
                     </Button>
                   </a>
-                </p>
-
-                <p>
-                  ~{" "}
-                  {distanceLatLng(
-                    formOfferRide.origin.latLng,
-                    formOfferRide.destination.latLng
-                  )}{" "}
-                  km
                 </p>
               </Col>
             </Row>
@@ -552,7 +543,7 @@ const Offer = () => {
                 </Button>
               </Col>
             </Row>
-          </>
+          </div>
         ) : submitted ? (
           <>
             {isLoadingSubmitFormOfferRide ? (

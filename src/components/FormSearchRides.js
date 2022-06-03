@@ -47,8 +47,8 @@ const FormSearchRides = () => {
       formSearchRide.destination.city !== ""
     ) {
       if (
-        new Date(date.slice(0, 4), date.slice(5, 7) - 1, date.slice(8, 10)) <=
-        new Date()
+        new Date(date.slice(0, 4), date.slice(5, 7) - 1, date.slice(8, 10)) <
+        new Date().setHours(0, 0, 0, 0)
       ) {
         dispatch(
           setToast({

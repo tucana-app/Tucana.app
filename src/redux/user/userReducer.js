@@ -68,8 +68,7 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         signupUserSuccessful: true,
         isloadingSignup: false,
-        signupErrorFlag: "",
-        signupErrorMessage: "",
+        signupErrorData: "",
       };
 
     case userTypes.REGISTER_USER_FAIL:
@@ -78,8 +77,7 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         signupUserSuccessful: false,
         isloadingSignup: false,
-        signupErrorFlag: action.payload.flag,
-        signupErrorMessage: action.payload.message,
+        signupErrorData: action.payload,
       };
 
     case userTypes.LOGIN_REQUESTED:

@@ -9,12 +9,10 @@ import usePlacesAutocomplete, {
 import { XIcon } from "@primer/octicons-react";
 
 import {
-  setSearchAddress,
   setSearchOrigin,
   setSearchDestination,
   setOfferOrigin,
   setOfferDestination,
-  resetSearch,
 } from "../redux";
 
 function LocationSearchInput(props) {
@@ -28,7 +26,7 @@ function LocationSearchInput(props) {
 
   const {
     ready,
-    // value,
+    value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
@@ -50,17 +48,12 @@ function LocationSearchInput(props) {
 
   const handleReset = () => {
     clearSuggestions();
-    dispatch(resetSearch());
+    setValue("");
   };
-
-  // const handleInput = (e) => {
-  //   dispatch(setSearchAddress(e.target.value));
-  // };
 
   const handleInput = (e) => {
     // Update the keyword of the input element
     setValue(e.target.value);
-    dispatch(setSearchAddress(e.target.value));
   };
 
   const handleSelect =
@@ -175,22 +168,35 @@ function LocationSearchInput(props) {
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
 
-      return (
-        <li
-          key={place_id}
-          onClick={handleSelect(suggestion)}
-          className="hvr-highlight cursor-pointer py-1"
-        >
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </li>
+      // console.log(suggestion);
+
+      let isCity = suggestion.types.find(
+        (type) =>
+          type === "neighborhood" ||
+          type === "locality" ||
+          type === "sublocality"
       );
+
+      if (isCity) {
+        return (
+          <li
+            key={place_id}
+            onClick={handleSelect(suggestion)}
+            className="hvr-highlight cursor-pointer py-1"
+          >
+            <strong>{main_text}</strong> <small>{secondary_text}</small>
+          </li>
+        );
+      } else {
+        return null;
+      }
     });
 
   return (
     <>
       <div className="d-inline-flex w-100">
         <FormControl
-          value={searchAddress}
+          value={value}
           onChange={handleInput}
           disabled={!ready}
           placeholder={t("translation:locationSearchInput.searchCity")}

@@ -58,18 +58,6 @@ const initialState = {
   submitFormConfirmRideError: "",
 
   isFormSearchRideSubmitted: false,
-
-  searchAddress: "",
-
-  isLoadingLocation: false,
-  location: {
-    city: "",
-    province: "",
-    address: "",
-    latLng: { lat: 0, lng: 0 },
-    details: {},
-  },
-
   formOfferRide: {
     origin: {
       city: "",
@@ -233,7 +221,6 @@ const rideReducer = (state = initialState, action) => {
         ...state,
         isFormSearchRideSubmitted: false,
       };
-
     case rideTypes.SUBMIT_FORM_BOOK_RIDE_REQUEST:
       return {
         ...state,
@@ -432,23 +419,9 @@ const rideReducer = (state = initialState, action) => {
         submitFormConfirmRideError: action.payload,
       };
 
-    // Form search for a city
-    case rideTypes.SET_SEARCH_ADDRESS:
-      return {
-        ...state,
-        searchAddress: action.payload,
-      };
-
-    case rideTypes.SET_IS_LOADING_LOCATION:
-      return {
-        ...state,
-        isLoadingLocation: true,
-      };
-
     case rideTypes.SET_LOCATION:
       return {
         ...state,
-        isLoadingLocation: false,
         location: {
           city: action.payload.city,
           province: action.payload.province,
@@ -461,8 +434,6 @@ const rideReducer = (state = initialState, action) => {
     case rideTypes.RESET_SEARCH:
       return {
         ...state,
-        isLoadingLocation: false,
-        searchAddress: "",
         location: {
           city: "",
           province: "",

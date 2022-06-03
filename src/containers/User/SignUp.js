@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { useTranslation } from "react-i18next";
 
-import { registerUser, setToast } from "../../redux";
+import { registerUser, setToast, resendConfirmationLink } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 require("yup-password")(Yup); // extend yup
@@ -15,16 +15,13 @@ require("yup-password")(Yup); // extend yup
 const SignUp = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const {
-    isloadingSignup,
-    isLoggedIn,
-    signupUserSuccessful,
-    signupErrorFlag,
-    signupErrorMessage,
-  } = useSelector((state) => state.user);
-  const { feedback, labelStringField, labelRequiredField } = useSelector(
+  const { isloadingSignup, isLoggedIn, signupUserSuccessful, signupErrorData } =
+    useSelector((state) => state.user);
+  const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
+
+  const [showAlertConfirmEmail, setShowAlertConfirmEmail] = useState(false);
 
   const form = useRef();
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -92,6 +89,14 @@ const SignUp = () => {
       formikBag.setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (signupErrorData) {
+      signupErrorData.flag === "NOT_CONFIRMED"
+        ? setShowAlertConfirmEmail(true)
+        : setShowAlertConfirmEmail(false);
+    }
+  }, [signupErrorData]);
 
   // Handle redirection in case the user is already logged in
   if (isLoggedIn) {
@@ -251,19 +256,26 @@ const SignUp = () => {
                   </Col>
                 </Row>
 
-                {signupErrorFlag === "NOT_CONFIRMED" ? (
-                  <Alert variant="warning">
-                    {signupErrorMessage}.{" "}
-                    <Link to="/coming-soon">
-                      {" "}
-                      {t("translation:global.resendLink")}
-                    </Link>
-                  </Alert>
-                ) : (
-                  feedback.message && (
-                    <Alert variant={feedback.variant}>{feedback.message}</Alert>
-                  )
-                )}
+                {signupErrorData ? (
+                  signupErrorData.flag === "NOT_CONFIRMED" ? (
+                    <>
+                      <Alert variant="warning" show={showAlertConfirmEmail}>
+                        {signupErrorData.message}.{" "}
+                        <u
+                          className="cursor-pointer text-primary"
+                          onClick={() => {
+                            dispatch(
+                              resendConfirmationLink(signupErrorData.userId)
+                            );
+                            setShowAlertConfirmEmail(false);
+                          }}
+                        >
+                          {t("translation:global.resendLink")}
+                        </u>
+                      </Alert>
+                    </>
+                  ) : null
+                ) : null}
 
                 <Row>
                   <Col>

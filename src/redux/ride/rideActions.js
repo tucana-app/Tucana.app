@@ -1048,15 +1048,6 @@ export const submitFormConfirmRideFail = (error) => {
   };
 };
 
-// Input search city
-// Set search address
-export const setSearchAddress = (address) => {
-  return {
-    type: rideTypes.SET_SEARCH_ADDRESS,
-    payload: address,
-  };
-};
-
 // Set location with Google Maps
 export const setLocation = (location) => {
   return {
