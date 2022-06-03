@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
@@ -9,7 +9,6 @@ import {
   AlertIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CheckIcon,
   LinkExternalIcon,
   PencilIcon,
 } from "@primer/octicons-react";
@@ -186,18 +185,6 @@ const Offer = () => {
     }
   };
 
-  useEffect(() => {
-    if (formOfferRide.origin.city !== "") {
-      setStepOne(false);
-      setStepTwo(true);
-    }
-
-    if (formOfferRide.destination.city !== "") {
-      setStepTwo(false);
-      setStepThree(true);
-    }
-  }, [formOfferRide]);
-
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
@@ -244,8 +231,8 @@ const Offer = () => {
                           onClick={handleClickStepOne}
                           variant="success"
                         >
-                          <CheckIcon size={24} className="me-2" />
-                          {t("translation:global.confirm")}
+                          {t("translation:global.next")}
+                          <ArrowRightIcon size={24} className="ms-2" />
                         </Button>
                       </Col>
                     </Row>
@@ -297,8 +284,8 @@ const Offer = () => {
                           onClick={handleClickStepTwo}
                           variant="success"
                         >
-                          <CheckIcon size={24} className="me-2" />
-                          {t("translation:global.confirm")}
+                          {t("translation:global.next")}
+                          <ArrowRightIcon size={24} className="ms-2" />
                         </Button>
                       </Col>
                     </Row>
@@ -400,7 +387,7 @@ const Offer = () => {
             </Row>
 
             <Row className="mt-5">
-              <Col className="text-end">
+              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
                 <Button onClick={handleClickStepThree} variant="success">
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
@@ -437,7 +424,7 @@ const Offer = () => {
                   type="textarea"
                   value={comment}
                   placeholder={t("translation:offer.placeholderComment")}
-                  className="mb-3"
+                  className="rounded mb-3"
                   onChange={handleChangeComment}
                 />
                 <Form.Label>
@@ -450,7 +437,7 @@ const Offer = () => {
             </Row>
 
             <Row className="mt-5">
-              <Col className="text-end">
+              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
                 <Button onClick={handleClickStepFour} variant="success">
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />

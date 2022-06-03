@@ -173,19 +173,17 @@ const Ride = () => {
                 className="border shadow-sm rounded mx-auto"
               >
                 <Container className="py-3 px-2">
-                  <Row className="align-items-center">
-                    <Col xs={6} className="text-center">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={6}>
                       <p className="mb-0">
-                        {t("translation:global.seatsAvailable")}:
-                      </p>
-                      <p className="mb-0">
+                        {t("translation:global.seatsAvailable")}:{" "}
                         <span className="text-success">
                           {rideData.ride.seatsLeft}
                         </span>{" "}
                         / {rideData.ride.seatsAvailable}
                       </p>
                     </Col>
-                    <Col xs={6} className="text-center">
+                    <Col xs={6}>
                       <p className="mb-0">
                         {t("translation:global.status")}:{" "}
                         <span
@@ -195,6 +193,14 @@ const Ride = () => {
                         >
                           {rideData.ride.RideStatus.name}
                         </span>
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col xs={12}>
+                      <p className="mb-0">
+                        {t("translation:global.comment")}: "
+                        {rideData.ride.comment}"
                       </p>
                     </Col>
                   </Row>
@@ -257,19 +263,17 @@ const Ride = () => {
                           />
                         </Col>
                       </Row>
-                      <Row>
-                        <Col>
-                          {!(rideData.ride.comment === "") ? (
-                            <>
-                              <hr />
-                              <p className="mb-0">
-                                {t("translation:global.comment")}:{" "}
-                                {rideData.ride.comment}
-                              </p>
-                            </>
-                          ) : null}
-                        </Col>
-                      </Row>
+                      {!(rideData.ride.comment === "") ? (
+                        <Row>
+                          <Col>
+                            <hr />
+                            <p className="mb-0">
+                              {t("translation:global.comment")}:{" "}
+                              {rideData.ride.comment}
+                            </p>
+                          </Col>
+                        </Row>
+                      ) : null}
                     </Container>
                   </Col>
                 </Row>
