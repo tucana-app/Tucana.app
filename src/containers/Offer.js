@@ -24,7 +24,7 @@ import {
   setToast,
 } from "../redux";
 import LoadingSpinner from "../components/LoadingSpinner";
-import LocationSearchInput from "../components/LocationSearchInput";
+import InputSearchLocation from "../components/InputSearchLocation";
 
 const Offer = () => {
   const { t } = useTranslation();
@@ -238,7 +238,7 @@ const Offer = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <LocationSearchInput inputLocation="offerOrigin" />
+                  <InputSearchLocation inputLocation="offerOrigin" />
                 )}
               </Col>
             </Row>
@@ -291,7 +291,7 @@ const Offer = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <LocationSearchInput inputLocation="offerDestination" />
+                  <InputSearchLocation inputLocation="offerDestination" />
                 )}
               </Col>
             </Row>

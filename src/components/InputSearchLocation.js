@@ -15,7 +15,7 @@ import {
   setOfferDestination,
 } from "../redux";
 
-function LocationSearchInput(props) {
+function InputSearchLocation(props) {
   const { inputLocation } = props;
 
   const { t } = useTranslation();
@@ -199,7 +199,7 @@ function LocationSearchInput(props) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder={t("translation:locationSearchInput.searchCity")}
+          placeholder={t("translation:inputSearchLocation.searchCity")}
           required
           aria-label={t("translation:global.search")}
           onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
@@ -221,4 +221,4 @@ function LocationSearchInput(props) {
   );
 }
 
-export default LocationSearchInput;
+export default InputSearchLocation;

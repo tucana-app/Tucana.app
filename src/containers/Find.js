@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
@@ -19,11 +19,13 @@ import FormSearchRides from "../components/FormSearchRides";
 
 import { showSearchForm } from "../redux";
 
+var distance = require("hpsweb-google-distance");
+distance.apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { distanceLatLng } = useSelector((state) => state.global);
   const {
     isloadingFilteredRides,
     filteredRidesData,
@@ -33,7 +35,6 @@ const Find = () => {
 
   // const filteredRides = useRef([]);
 
-  // I can't make this work!
   // useEffect(() => {
   //   // If we have received the rides
   //   if (filteredRidesData.length > 0) {
@@ -55,6 +56,10 @@ const Find = () => {
   //     });
   //   }
   // }, [filteredRidesData, filteredRides, distanceLatLng, formSearchRide]);
+
+  // useEffect(() => {
+  // console.log(filteredRidesData);
+  // }, []);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -128,32 +133,41 @@ const Find = () => {
                       className="bg-light border shadow-sm rounded pb-3 mx-auto"
                     >
                       <LinkContainer
-                        to={`/ride/${ride.id}`}
+                        to={`/ride/${ride.rideDetails.id}`}
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
                           <Row className="mb-2">
                             <Col className="text-center">
-                              {dateFormat(ride.dateTime, "dd/mm/yyyy")}
+                              {dateFormat(
+                                ride.rideDetails.dateTime,
+                                "dd/mm/yyyy"
+                              )}
                             </Col>
                           </Row>
                           <Row className="mb-4">
                             <Col xs={2}>
                               <p className="text-end mb-0">
-                                {dateFormat(ride.dateTime, "hh:MM TT")}
+                                {dateFormat(
+                                  ride.rideDetails.dateTime,
+                                  "hh:MM TT"
+                                )}
                               </p>
                             </Col>
                             <Col xs={7}>
                               <p className="mb-0">
-                                <strong>{ride.origin.city}, </strong>
-                                <small>{ride.origin.province}</small>
+                                <strong>
+                                  {ride.rideDetails.origin.city},{" "}
+                                </strong>
+                                <small>
+                                  {ride.rideDetails.origin.province}
+                                </small>
                               </p>
                               <p className="small text-secondary mb-0">
                                 <span className="text-primary">
-                                  {distanceLatLng(
-                                    ride.origin.latLng,
-                                    formSearchRide.origin.latLng
-                                  )}
+                                  {(
+                                    ride.distanceFromOrigin.distanceValue / 1000
+                                  ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceOrigin")}
                               </p>
@@ -164,29 +178,35 @@ const Find = () => {
                               />
 
                               <p className="mb-0">
-                                <strong>{ride.destination.city}, </strong>
-                                <small>{ride.destination.province}</small>
+                                <strong>
+                                  {ride.rideDetails.destination.city},{" "}
+                                </strong>
+                                <small>
+                                  {ride.rideDetails.destination.province}
+                                </small>
                               </p>
-                              <p className="small text-secondary mb-0">
+                              {/* <p className="small text-secondary mb-0">
                                 <span className="text-primary">
                                   {distanceLatLng(
-                                    ride.destination.latLng,
-                                    formSearchRide.destination.latLng
+                                    ride.rideDetails.destination.latLng,
+                                    formSearchRide.rideDetails.destination.latLng
                                   )}
                                 </span>{" "}
                                 km {t("translation:find.distanceDestination")}
-                              </p>
+                              </p> */}
                             </Col>
                             <Col xs={3} className="text-center mx-auto">
                               <p className="mb-0">
                                 {t("translation:global.seat")}
-                                {ride.seatsAvailable > 1 ? "s" : null}
+                                {ride.rideDetails.seatsAvailable > 1
+                                  ? "s"
+                                  : null}
                               </p>
                               <p>
                                 <span className="text-success">
-                                  {ride.seatsLeft}
+                                  {ride.rideDetails.seatsLeft}
                                 </span>
-                                /{ride.seatsAvailable}
+                                /{ride.rideDetails.seatsAvailable}
                               </p>
                             </Col>
                           </Row>
@@ -201,7 +221,7 @@ const Find = () => {
                             </Col>
                             <Col xs={5} className="ps-0">
                               <p className="mb-0">
-                                {ride.Driver.User.firstName}
+                                {ride.rideDetails.Driver.User.firstName}
                               </p>
                               {/* RATINGS */}
                               {/* <p className="mb-0">
@@ -225,14 +245,19 @@ const Find = () => {
                                     {t("translation:global.logIn")}
                                   </Button>
                                 </LinkContainer>
-                              ) : ride.Driver.User.id === currentUser.id ? (
-                                <LinkContainer to={`/ride/${ride.id}`}>
+                              ) : ride.rideDetails.Driver.User.id ===
+                                currentUser.id ? (
+                                <LinkContainer
+                                  to={`/ride/${ride.rideDetails.id}`}
+                                >
                                   <Button variant="info">
                                     {t("translation:global.manage")}
                                   </Button>
                                 </LinkContainer>
                               ) : (
-                                <LinkContainer to={`/ride/${ride.id}`}>
+                                <LinkContainer
+                                  to={`/ride/${ride.rideDetails.id}`}
+                                >
                                   <Button variant="success">
                                     {t("translation:global.more")}
                                   </Button>

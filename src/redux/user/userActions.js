@@ -693,20 +693,20 @@ export const updateDriverStateFail = (error) => {
 
 // Submit form contact
 
-export const submitFormContactRequested = () => {
+export const submitContactFormRequested = () => {
   return {
     type: userTypes.SUBMIT_CONTACT_FORM_REQUESTED,
   };
 };
 
-export const submitFormContact = (user, values) => {
+export const submitContactForm = (user, values) => {
   return (dispatch) => {
-    dispatch(submitFormContactRequested());
+    dispatch(submitContactFormRequested());
 
     axios
       .post(URL_API + "/user/submit-contact-form", { user, values })
       .then((response) => {
-        dispatch(submitFormContactSuccess());
+        dispatch(submitContactFormSuccess());
 
         dispatch(
           setToast({
@@ -725,7 +725,7 @@ export const submitFormContact = (user, values) => {
           error.message ||
           error.toString();
 
-        dispatch(submitFormContactFail(message));
+        dispatch(submitContactFormFail(message));
 
         dispatch(
           setToast({
@@ -739,13 +739,13 @@ export const submitFormContact = (user, values) => {
   };
 };
 
-export const submitFormContactSuccess = () => {
+export const submitContactFormSuccess = () => {
   return {
     type: userTypes.SUBMIT_CONTACT_FORM_SUCCESS,
   };
 };
 
-export const submitFormContactFail = () => {
+export const submitContactFormFail = () => {
   return {
     type: userTypes.SUBMIT_CONTACT_FORM_ERROR,
   };

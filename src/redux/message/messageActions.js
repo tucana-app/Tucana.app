@@ -291,8 +291,6 @@ export const changeConversationView = (uuid, viewerId, conversationId) => {
 export const resetConversationView = (viewerId) => {
   return (dispatch) => {
     // Change view before making an API call
-    dispatch(getAllUserMessages(viewerId));
-
     dispatch({
       type: messageTypes.RESET_CONVERSATION_VIEW,
     });

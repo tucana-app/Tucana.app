@@ -176,5 +176,4 @@ function NavigationBar() {
   );
 }
 
-// @ts-ignore
 export default NavigationBar;

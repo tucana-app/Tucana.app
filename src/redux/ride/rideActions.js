@@ -447,13 +447,19 @@ export const getFilteredRidesRequested = () => {
   };
 };
 
-export const getFilteredRides = (date) => {
+export const getFilteredRides = (origin, destination, date) => {
   return (dispatch) => {
     dispatch(getFilteredRidesRequested());
 
     axios
       .get(URL_API + "/ride/filtered-rides", {
         params: {
+          originProvince: origin.province,
+          originLat: origin.latLng.lat,
+          originLng: origin.latLng.lng,
+          destinationProvince: destination.province,
+          destinationLat: destination.latLng.lat,
+          destinationLng: destination.latLng.lng,
           date,
         },
       })

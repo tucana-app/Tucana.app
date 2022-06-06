@@ -10,7 +10,7 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import SocialIcons from "../../components/SocialIcons";
 
-import { submitFormContact, setToast } from "../../redux";
+import { submitContactForm, setToast } from "../../redux";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const Contact = () => {
   const {
     user: currentUser,
     isLoggedIn,
-    isLoadingSubmitFormContact,
+    isLoadingSubmitContactForm,
   } = useSelector((state) => state.user);
   const { labelStringField, labelRequiredField, arrayContactSubjects } =
     useSelector((state) => state.global);
@@ -78,9 +78,9 @@ const Contact = () => {
         })
       );
       if (isLoggedIn) {
-        dispatch(submitFormContact(currentUser, values));
+        dispatch(submitContactForm(currentUser, values));
       } else {
-        dispatch(submitFormContact(null, values));
+        dispatch(submitContactForm(null, values));
       }
 
       captcha.reset();
@@ -254,12 +254,12 @@ const Contact = () => {
                             size="lg"
                             disabled={
                               isSubmitting ||
-                              isLoadingSubmitFormContact ||
+                              isLoadingSubmitContactForm ||
                               !captchaReady | !captchaVerified
                             }
                           >
                             {isSubmitting ||
-                            isLoadingSubmitFormContact ||
+                            isLoadingSubmitContactForm ||
                             !captchaReady ? (
                               <LoadingSpinner />
                             ) : null}

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import { PencilIcon } from "@primer/octicons-react";
 
-import LocationSearchInput from "./LocationSearchInput";
+import InputSearchLocation from "./InputSearchLocation";
 
 import {
   setSearchDate,
@@ -59,7 +59,13 @@ const FormSearchRides = () => {
           })
         );
       } else {
-        dispatch(getFilteredRides(formSearchRide.date));
+        dispatch(
+          getFilteredRides(
+            formSearchRide.origin,
+            formSearchRide.destination,
+            formSearchRide.date
+          )
+        );
       }
     } else {
       dispatch(
@@ -101,7 +107,7 @@ const FormSearchRides = () => {
                 </Row>
               </Container>
             ) : (
-              <LocationSearchInput inputLocation="searchOrigin" />
+              <InputSearchLocation inputLocation="searchOrigin" />
             )}
           </>
         </Col>
@@ -133,7 +139,7 @@ const FormSearchRides = () => {
                 </Row>
               </Container>
             ) : (
-              <LocationSearchInput inputLocation="searchDestination" />
+              <InputSearchLocation inputLocation="searchDestination" />
             )}
           </>
         </Col>
