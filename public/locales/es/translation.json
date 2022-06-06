@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "404": {
     "back1": "Vuelve a la",
     "back2": "Página web",
@@ -359,4 +360,366 @@
   "singleConversation": {
     "sendMessage": "Enviar un mensaje"
   }
+=======
+	"404": {
+		"back1": "Vuelve a la",
+		"back2": "Página web",
+		"message": "No hemos podido encontrar la página que busca.",
+		"notFound": "Página no encontrada"
+	},
+	"FAQ": {
+		"title": "Preguntas frecuentes"
+	},
+	"FormConfirmRide": {
+		"confirm": "Confirmo",
+		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
+		"confirmRide": "¿Confirmas el viaje?"
+	},
+	"FormDriverResponseBooking": {
+		"manageBooking": "Gestionar esta reserva",
+		"message": "{{firstName}} reservó {{seatsBooked}} asiento(s) pero quedan {{seatsLeft}} plazas, no puede aceptar o rechazar esta reserva.",
+		"placeholder": "Dar al pasajero más detalles sobre la reserva o el viaje"
+	},
+	"ManageDriverBooking": {
+		"noBookings": "Todavía no tiene ninguna reserva para este viaje"
+	},
+	"PassengersDetails": {
+		"noPassengers": "Todavía no tiene pasajeros para este viaje",
+		"summary": "Total: <2>{{totalPassengers}}</2> pasajero(s) con <2>{{bookings}}</2> reservación(es)"
+	},
+	"becomeDriver": {
+		"button": "Quiero ser conductor",
+		"message1": "Visite",
+		"message2": "este enlace",
+		"message3": "para más información.",
+		"pastSubmissions": "Presentaciones anteriores",
+		"request": "Solicite",
+		"subTitle": "Usted está haciendo crecer la comunidad",
+		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
+		"underReview": "En revisión"
+	},
+	"booking": {
+		"rideDetails": "Detalles del viaje",
+		"summary1": "Usted reservó",
+		"summary2": "reservó",
+		"summary3": "asiento",
+		"summary4": "el",
+		"title": "Detalles de la reserva"
+	},
+	"bookings": {
+		"noBookings": "Todavía no has hecho una reserva",
+		"subTitle": "Todas las reservas que has hecho"
+	},
+	"comingSoon": {
+		"subTitle": "Esta página o función estará pronto disponible",
+		"thankYou": "Gracias por su comprensión",
+		"title": "Próximamente"
+	},
+	"contact": {
+		"max1000characters": "Máx. 1000 caracteres",
+		"min20characters": "Mínimo 20 caracteres",
+		"subject": "Asunto",
+		"title": "Póngase en contacto con nosotros"
+	},
+	"createNewPassword": {
+		"linkDeprecated": "",
+		"reset": "",
+		"retypePassword": "",
+		"title": ""
+	},
+	"dataProtection": {
+		"title": "Protección de Datos"
+	},
+	"donate": {
+		"crowdfunding": "Sitio web de crowdfunding",
+		"paragraph": "Estamos buscando fondos para contratar más personal y mejorar nuestra plataforma",
+		"subTitle": "Muchas gracias por su consideración",
+		"title": "Donar"
+	},
+	"driverProfile": {
+		"title": "El perfil de su conductor",
+		"underReview": "Su envío está todavía en revisión"
+	},
+	"find": {
+		"catchPhrase": "Encuentre su próximo viaje por Costa Rica",
+		"change": "Cambiar",
+		"distanceDestination": "de su dirección de llegada",
+		"distanceOrigin": "desde su dirección inicial"
+	},
+	"formBookRide": {
+		"alreadyRide": "Ya tiene reserva(s) para este viaje",
+		"book": "libro",
+		"numberPassengers": "Número de pasajeros"
+	},
+	"formSearchRide": {
+		"hitEnter": "o pulsa enter"
+	},
+	"global": {
+		"about": "Acerca",
+		"accept": "Aceptar",
+		"accepted": "Aceptado",
+		"becomeDriver": "Conviértase en conductor",
+		"bookRide": "Reservar un viaje",
+		"bookings": "reservas",
+		"by": "Por",
+		"city": "ciudad",
+		"click": "haga clic en",
+		"close": "Cerrar",
+		"comingSoon": "Próximamente",
+		"comment": "Comentario",
+		"confirm": "Confirme",
+		"congratulations": "felicitaciones",
+		"contact": "Contacte",
+		"contactUs": "Contáctenos",
+		"credits": "Creditos",
+		"currentLanguage": "Español",
+		"date": "Fecha",
+		"day": "Día",
+		"destination": "destino",
+		"doNotShare": "No comparta ninguna información de contacto (teléfono, correo electrónico, etc.), se compartirán dentro de la plataforma cuando se realice una reserva.",
+		"driver": "Conductor",
+		"driverComment": "Comentario del conductor",
+		"edit": "Edita",
+		"email": "Correo Electrónico",
+		"errors": {
+			"captcha": "Por favor, rellene el captcha",
+			"chooseSeatsAvailable": "Tienes que elegir la cantidad de plazas que tienes disponibles",
+			"dateFuture": "La fecha tiene que ser en el futuro",
+			"error": "Error",
+			"max20characters": "Máx. 20 caracteres",
+			"min4characters": "Mínimo 4 caracteres",
+			"missingInfo": "Por favor, rellene toda la información",
+			"passwordsMatch": "",
+			"validEmail": "Introduzca una dirección de correo electrónico válida",
+			"validName": "Por favor, introduzca un nombre válido",
+			"validPhone": "Por favor, introduzca un número de teléfono válido",
+			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)"
+		},
+		"faq": "Preguntas frecuentes",
+		"firstName": "Nombre",
+		"from": "de",
+		"fullname": "Nombre completo",
+		"goBack": "Volver",
+		"help": "Ayuda",
+		"howItWorks": "¿Como funciona?",
+		"language": "Idioma",
+		"lastName": "Apellido",
+		"learnMore": "Aprenda más",
+		"logIn": "Ingresar",
+		"manage": "Gestione",
+		"maps": "Mapa de Costa Rica",
+		"memberSince": "Miembro desde",
+		"message": "Mensaje",
+		"more": "Más",
+		"next": "Siguiente",
+		"no": "No",
+		"notMandatory": "No es obligatorio",
+		"origin": "Origen",
+		"passenger": "Pasajeros",
+		"passengerComment": "Comentario de los pasajeros",
+		"passengerDetails": "Datos del pasajero",
+		"passengers": "Pasajeros",
+		"password": "Contraseña",
+		"province": "Provincia",
+		"refundPolicy": "Politica de reembolso",
+		"refuse": "Rechazar",
+		"refused": "Rechazado",
+		"report": "Informar de un problema",
+		"resendLink": "Reenviar el enlace de confirmación",
+		"returnLogin": "",
+		"ride": "Montar",
+		"search": "Busca en",
+		"searchResults": "Resultados de la búsqueda",
+		"seat": "Asiento",
+		"seatsAvailable": "Asientos disponibles",
+		"seeBooking": "Ver la reserva",
+		"seeRide": "Ver paseo",
+		"selectOption": "Seleccione una opción",
+		"selected": "Seleccionado",
+		"send": "Envía",
+		"settings": "Ajustes",
+		"signUp": "Inscríbete",
+		"slogan": "Comparte tus viajes en Costa Rica",
+		"status": "Estado",
+		"submit": "Envíe",
+		"time": "tiempo",
+		"to": "a",
+		"username": "Nombre de usuario",
+		"verify": "Verifique",
+		"view": "Vea",
+		"yes": "Sí"
+	},
+	"help": {
+		"message1": "Si ocurre algo durante el viaje, llame a",
+		"message2": "inmediatamente, los servicios de emergencia locales"
+	},
+	"hiring": {
+		"title": "Estamos contratando"
+	},
+	"homepage": {
+		"catchPhrase": "Su compañero de viaje en Costa Rica",
+		"paragraph": "Bienvenido a Tucána, la mejor app para compartir coche en Costa Rica: una forma práctica y ecológica de viajar y conocer gente.",
+		"start": "Comienza"
+	},
+	"languagePage": {
+		"current": "Idioma actual"
+	},
+	"legal": {
+		"credits": "Créditos",
+		"dataProtection": "Protección de Datos",
+		"legalNotice": "Aviso legal",
+		"privacy": "Política de privacidad",
+		"terms": "Términos y condiciones"
+	},
+	"legalNotice": {
+		"title": "Aviso legal"
+	},
+	"locationSearchInput": {
+		"searchCity": "Buscar una ciudad"
+	},
+	"logIn": {
+		"credential": "Correo electrónico o nombre de usuario",
+		"forgotPassword": "¿Olvidó su contraseña?"
+	},
+	"maps": {
+		"courtesy": "Fotografía por cortesía de",
+		"map": "Mapa",
+		"subTitle": "Diferentes mapas de Costa Rica",
+		"title": "Mapas"
+	},
+	"menu": {
+		"about": "Sobre nosotros",
+		"account": "Cuenta",
+		"donate": "Donar",
+		"legal": "Legal",
+		"logOut": "Cierre de sesión",
+		"memberSince": "Miembro desde",
+		"payments": "Pagos",
+		"profile": "Perfil",
+		"ratings": "Clasificaciones",
+		"refunds": "reembolsos"
+	},
+	"messageEmpty": {
+		"bookRide": "Reserve su próximo viaje",
+		"message": "No se encontró {{title}}",
+		"offerRide": "Ofrecer un ride"
+	},
+	"messages": {
+		"title": "Mensajes"
+	},
+	"navigationBar": {
+		"account": "Cuenta",
+		"find": "Encuentre",
+		"home": "Inicio",
+		"menu": "Menú",
+		"messages": "Mensajes",
+		"offer": "Ofertas",
+		"offerRide": "oferta",
+		"rides": "Rides"
+	},
+	"newRating": {
+		"rideSummary": "Resumen del viaje",
+		"title": "Dar una calificación",
+		"typeComment": "Escriba su comentario aquí"
+	},
+	"notifications": {
+		"answersBookings": "Respuestas de sus reservas",
+		"bookingsRides": "Reservas para su(s) viaje(s)",
+		"title": "Notificaciones"
+	},
+	"offer": {
+		"comment": "¿Algún comentario?",
+		"details": "Detalles de su viaje",
+		"findRide": "Encontrar un viaje",
+		"onlyVerifiedDriver": "Sólo puedes ofrecer viajes si eres un conductor verificado",
+		"placeholderComment": "¿Quieres compartir el camino que vas a tomar o una precisión sobre tu destino?",
+		"preview": "Vista previa en Google Maps",
+		"rideOnline1": "Su viaje ya está en línea. Compruébalo",
+		"rideOnline2": "aquí",
+		"selectNumber": "Seleccione un número",
+		"step": "STEP",
+		"summary": {
+			"subTitle": "Doble comprobación",
+			"title": "Resumen"
+		},
+		"title": "Ofrecer un paseo",
+		"whereFrom": "¿De dónde sales?",
+		"whereTo": "¿Adónde vas?"
+	},
+	"passengerProfile": {
+		"contactRemoveAccount": "Póngase en contacto con nosotros para eliminar su cuenta",
+		"contactRequestData": "Póngase en contacto con nosotros para descargar los datos recogidos",
+		"removeAccount": "Eliminar mi cuenta",
+		"requestData": "Solicitar mis datos"
+	},
+	"ratings": {
+		"asDriver": "Como conductor",
+		"asPassenger": "Como pasajero",
+		"noRatingsYou": "Parece que nadie te ha dejado una valoración todavía",
+		"noYouRatings": "Parece que aún no has dejado una valoración",
+		"title": "Clasificaciones",
+		"toDo": "Calificaciones para hacer"
+	},
+	"refundPolicy": {
+		"title": "Politica de reembolso"
+	},
+	"report": {
+		"behavior": "Denunciar un comportamiento",
+		"problemApp": ""
+	},
+	"resetPassword": {
+		"sendLink": "",
+		"subTitle": "",
+		"title": "",
+		"typeEmail": ""
+	},
+	"ride": {
+		"allSeatsBooked": "Todas las plazas están reservadas",
+		"bookThisRide": "Reservar este viaje",
+		"manageBookingRequests": "Gestione sus solicitudes de reserva",
+		"reviewRide": "Revisar el viaje",
+		"title": "Montar",
+		"viewTrip": "Ver viaje"
+	},
+	"rides": {
+		"bookingsReceived": "Reservas recibidas",
+		"ridesOffered": "Paseos ofrecidos",
+		"ridesToConfirm": "Viajes a confirmar"
+	},
+	"ridesBookings": {
+		"subTitle": "",
+		"summary": "",
+		"title": ""
+	},
+	"ridesDriver": {
+		"subTitle": "",
+		"summary": "",
+		"title": ""
+	},
+	"ridesToConfirm": {
+		"goBack": "",
+		"noRides": "",
+		"title": ""
+	},
+	"signUp": {
+		"agreement": "Estoy de acuerdo con los <2>términos y condiciones</2> y la <6>política de privacidad</6>",
+		"agreement1": "Si eliges registrarte, estás de acuerdo con nuestra",
+		"agreement2": "Términos y condiciones",
+		"newsletter": "Acepto recibir el boletín de noticias ocasional (no spam)",
+		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
+		"subTitle": "Regístrese para acceder a la plataforma"
+	},
+	"signUpConfirm": {
+		"loginNow": "",
+		"title": ""
+	},
+	"signUpSuccess": {
+		"subTitle": "",
+		"text": "",
+		"title": ""
+	},
+	"singleConversation": {
+		"sendMessage": "Enviar un mensaje"
+	}
+>>>>>>> e4fff229fe2798036c9ad0ea32037e451b2e625b
 }
