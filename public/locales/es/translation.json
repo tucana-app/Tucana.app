@@ -191,6 +191,9 @@
 		"message1": "Si ocurre algo durante el viaje, llame a",
 		"message2": "inmediatamente, los servicios de emergencia locales"
 	},
+	"hiring": {
+		"title": "Estamos contratando"
+	},
 	"homepage": {
 		"catchPhrase": "Su compañero de viaje en Costa Rica",
 		"paragraph": "Bienvenido a Tucána, la mejor app para compartir coche en Costa Rica: una forma práctica y ecológica de viajar y conocer gente.",
@@ -337,8 +340,10 @@
 		"title": ""
 	},
 	"signUp": {
+		"agreement": "Estoy de acuerdo con los <2>términos y condiciones</2> y la <6>política de privacidad</6>",
 		"agreement1": "Si eliges registrarte, estás de acuerdo con nuestra",
 		"agreement2": "Términos y condiciones",
+		"newsletter": "Acepto recibir el boletín de noticias ocasional (no spam)",
 		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
 		"subTitle": "Regístrese para acceder a la plataforma"
 	},

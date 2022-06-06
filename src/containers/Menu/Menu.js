@@ -285,6 +285,7 @@ const Menu = () => {
                 </div>
               </ListGroup.Item>
             </Link>
+
             <a
               href="https://fund.tucana.app"
               target={"_blank"}
@@ -298,6 +299,15 @@ const Menu = () => {
                 </div>
               </ListGroup.Item>
             </a>
+
+            <Link to="/hiring" className="text-decoration-none">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">{t("translation:hiring.title")}</p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </Link>
 
             <hr className="my-2" />
 

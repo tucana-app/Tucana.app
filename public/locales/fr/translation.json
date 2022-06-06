@@ -191,6 +191,9 @@
 		"message1": "Si quelque chose se produit pendant votre trajet, appelez",
 		"message2": "immédiatement, les services d'urgence locaux"
 	},
+	"hiring": {
+		"title": "Nous recrutons"
+	},
 	"homepage": {
 		"catchPhrase": "Votre compagnon pour tous vos voyages au Costa Rica",
 		"paragraph": "Bienvenue à Tucána, la meilleure application de covoiturage au Costa Rica : une façon pratique et écologique de voyager et de rencontrer des gens.",
@@ -337,8 +340,10 @@
 		"title": ""
 	},
 	"signUp": {
+		"agreement": "J'accepte les <2>termes et conditions</2> et la <6>politique de confidentialité</6>",
 		"agreement1": "Si vous choisissez de vous inscrire, vous acceptez notre politique de",
 		"agreement2": "Conditions générales",
+		"newsletter": "J'accepte de recevoir la newsletter occasionnelle (pas de spam)",
 		"paragraphInfo": "Les informations que vous fournissez seront vérifiées ultérieurement par un modérateur. Veuillez vous assurer qu'elles sont les plus précises possibles.",
 		"subTitle": "S'inscrire pour accéder à la plateforme"
 	},

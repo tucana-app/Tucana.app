@@ -48,7 +48,7 @@ initialState = {
   isLoadingUpdateDriverState: false,
   updateDriverStateError: "",
 
-  isLoadingSubmitFormContact: false,
+  isLoadingSubmitContactForm: false,
 };
 
 function userReducer(state = initialState, action) {
@@ -290,19 +290,19 @@ function userReducer(state = initialState, action) {
     case userTypes.SUBMIT_CONTACT_FORM_REQUESTED:
       return {
         ...state,
-        isLoadingSubmitFormContact: true,
+        isLoadingSubmitContactForm: true,
       };
 
     case userTypes.SUBMIT_CONTACT_FORM_SUCCESS:
       return {
         ...state,
-        isLoadingSubmitFormContact: false,
+        isLoadingSubmitContactForm: false,
       };
 
     case userTypes.SUBMIT_CONTACT_FORM_ERROR:
       return {
         ...state,
-        isLoadingSubmitFormContact: false,
+        isLoadingSubmitContactForm: false,
       };
 
     default:

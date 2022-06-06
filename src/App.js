@@ -47,6 +47,7 @@ import LegalNotice from "./containers/Menu/LegalNotice";
 import TermsConditions from "./containers/Menu/TermsConditions";
 import DataProtection from "./containers/Menu/DataProtection";
 import FAQ from "./containers/Menu/FAQ";
+import Hiring from "./containers/Menu/Hiring";
 
 import Donate from "./containers/Donate";
 import Map from "./containers/Map";
@@ -150,8 +151,9 @@ function App() {
           <Route exact path="/legal-notice" component={LegalNotice} />
           <Route exact path="/terms" component={TermsConditions} />
           <Route exact path="/data-protection" component={DataProtection} />
-          <Route exact path="/faq" component={FAQ} />
           <Route exact path="/how-it-works" component={HowItWorks} />
+          <Route exact path="/faq" component={FAQ} />
+          <Route exact path="/hiring" component={Hiring} />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 

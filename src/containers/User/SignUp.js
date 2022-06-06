@@ -5,7 +5,7 @@ import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 import { registerUser, setToast, resendConfirmationLink } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -238,7 +238,7 @@ const SignUp = () => {
                     </Form.Group>
                   </Col>
 
-                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
+                  <Col xs={12} sm={6} className="mb-3">
                     <Form.Group className="mb-3">
                       <Form.Control
                         type="password"
@@ -253,6 +253,44 @@ const SignUp = () => {
                         {errors.password}
                       </Form.Control.Feedback>
                     </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row className="mb-3 mb-md-4">
+                  <Col xs={12}>
+                    <Form.Check
+                      type="checkbox"
+                      label={
+                        <small>
+                          <Trans i18nKey="translation:signUp.agreement">
+                            I agree with the{" "}
+                            <Link
+                              to="/terms"
+                              className="link-success cursor-pointer text-decoration-underline"
+                            >
+                              terms &amp; conditions
+                            </Link>{" "}
+                            and the{" "}
+                            <Link
+                              to="/privacy"
+                              className="link-success cursor-pointer text-decoration-underline"
+                            >
+                              privacy policy
+                            </Link>
+                          </Trans>
+                        </small>
+                      }
+                      required
+                    />
+                  </Col>
+                  <Col xs={12}>
+                    <Form.Check
+                      type="checkbox"
+                      label={
+                        <small>{t("translation:signUp.newsletter")}</small>
+                      }
+                      required
+                    />
                   </Col>
                 </Row>
 

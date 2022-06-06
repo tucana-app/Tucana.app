@@ -191,6 +191,9 @@
 		"message1": "If anything happens during your ride, call",
 		"message2": "immediately, the local emergency services"
 	},
+	"hiring": {
+		"title": "We are hiring"
+	},
 	"homepage": {
 		"catchPhrase": "Your companion for all your travels in Costa Rica",
 		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
@@ -337,8 +340,10 @@
 		"title": "Rides to confirm"
 	},
 	"signUp": {
+		"agreement": "I agree with the <2>terms & conditions</2> and the <6>privacy policy</6>",
 		"agreement1": "If you chose to sign up, you agree with our",
 		"agreement2": "terms and conditions",
+		"newsletter": "I agree to receive casual newsletter (no spam)",
 		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
 		"subTitle": "Sign up to access the platform"
 	},
