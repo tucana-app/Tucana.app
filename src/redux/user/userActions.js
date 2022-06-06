@@ -537,15 +537,15 @@ export const resendConfirmationLinkFail = (error) => {
 
 // Get submissions for become a driver form
 
-export const getSubmissionsBecomeDriverRequested = () => {
+export const getApplicationsBecomeDriverRequested = () => {
   return {
     type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_REQUESTED,
   };
 };
 
-export const getSubmissionsBecomeDriver = (userId) => {
+export const getApplicationsBecomeDriver = (userId) => {
   return (dispatch) => {
-    dispatch(getSubmissionsBecomeDriverRequested());
+    dispatch(getApplicationsBecomeDriverRequested());
 
     axios
       .get(URL_API + "/user/submissions-become-driver", {
@@ -554,7 +554,7 @@ export const getSubmissionsBecomeDriver = (userId) => {
         },
       })
       .then((response) => {
-        dispatch(getSubmissionsBecomeDriverData(response.data));
+        dispatch(getApplicationsBecomeDriverData(response.data));
       })
       .catch((error) => {
         const message =
@@ -564,19 +564,19 @@ export const getSubmissionsBecomeDriver = (userId) => {
           error.message ||
           error.toString();
 
-        dispatch(getSubmissionsBecomeDriverFail(message));
+        dispatch(getApplicationsBecomeDriverFail(message));
       });
   };
 };
 
-export const getSubmissionsBecomeDriverData = (data) => {
+export const getApplicationsBecomeDriverData = (data) => {
   return {
     type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_DATA,
     payload: data,
   };
 };
 
-export const getSubmissionsBecomeDriverFail = (error) => {
+export const getApplicationsBecomeDriverFail = (error) => {
   return {
     type: userTypes.GET_SUBMISSIONS_BECOME_DRIVER_ERROR,
     payload: error,
@@ -601,7 +601,7 @@ export const submitFormBecomeDriver = (userId) => {
       })
       .then((response) => {
         dispatch(submitFormBecomeDriverSuccess(response.data));
-        dispatch(getSubmissionsBecomeDriver(userId));
+        dispatch(getApplicationsBecomeDriver(userId));
       })
       .catch((error) => {
         const message =

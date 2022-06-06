@@ -37,9 +37,9 @@ initialState = {
   resendConfirmationLinkData: {},
   resendConfirmationLinkError: "",
 
-  isLoadingGetSubmissionsBecomeDriver: false,
-  getSubmissionsBecomeDriverData: [],
-  getSubmissionsBecomeDriverError: "",
+  isLoadingGetApplicationsBecomeDriver: false,
+  getApplicationsBecomeDriverData: [],
+  getApplicationsBecomeDriverError: "",
 
   isLoadingSubmitFormBecomeDriver: false,
   submitFormBecomeDriverSuccess: false,
@@ -212,23 +212,23 @@ function userReducer(state = initialState, action) {
     case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_REQUESTED:
       return {
         ...state,
-        isLoadingGetSubmissionsBecomeDriver: true,
+        isLoadingGetApplicationsBecomeDriver: true,
       };
 
     case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_DATA:
       return {
         ...state,
-        isLoadingGetSubmissionsBecomeDriver: false,
-        getSubmissionsBecomeDriverData: action.payload,
-        getSubmissionsBecomeDriverError: "",
+        isLoadingGetApplicationsBecomeDriver: false,
+        getApplicationsBecomeDriverData: action.payload,
+        getApplicationsBecomeDriverError: "",
       };
 
     case userTypes.GET_SUBMISSIONS_BECOME_DRIVER_ERROR:
       return {
         ...state,
-        isLoadingGetSubmissionsBecomeDriver: false,
-        getSubmissionsBecomeDriverData: [],
-        getSubmissionsBecomeDriverError: action.payload,
+        isLoadingGetApplicationsBecomeDriver: false,
+        getApplicationsBecomeDriverData: [],
+        getApplicationsBecomeDriverError: action.payload,
       };
 
     // Submit the form to become a driver

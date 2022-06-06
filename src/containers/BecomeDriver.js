@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   updateDriverState,
-  getSubmissionsBecomeDriver,
+  getApplicationsBecomeDriver,
   submitFormBecomeDriver,
 } from "../redux";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -19,8 +19,8 @@ const BecomeDriver = () => {
   const {
     user: currentUser,
     isLoggedIn,
-    isLoadingGetSubmissionsBecomeDriver,
-    getSubmissionsBecomeDriverData,
+    isLoadingGetApplicationsBecomeDriver,
+    getApplicationsBecomeDriverData,
     isLoadingSubmitFormBecomeDriver,
     submitFormBecomeDriverSuccess,
   } = useSelector((state) => state.user);
@@ -31,8 +31,8 @@ const BecomeDriver = () => {
 
   const isFoundAccepted = () => {
     let found = 0;
-    if (getSubmissionsBecomeDriverData !== undefined) {
-      found = getSubmissionsBecomeDriverData.find((submission) => {
+    if (getApplicationsBecomeDriverData !== undefined) {
+      found = getApplicationsBecomeDriverData.find((submission) => {
         return submission.admin_VerifDriverInfos.length > 0
           ? submission.admin_VerifDriverInfos[0].accepted === true
           : null;
@@ -44,8 +44,8 @@ const BecomeDriver = () => {
 
   const isFoundPending = () => {
     let found = 0;
-    if (getSubmissionsBecomeDriverData !== undefined) {
-      found = getSubmissionsBecomeDriverData.find(
+    if (getApplicationsBecomeDriverData !== undefined) {
+      found = getApplicationsBecomeDriverData.find(
         (submission) => submission.admin_VerifDriverInfos.length === 0
       );
     }
@@ -54,7 +54,7 @@ const BecomeDriver = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(getSubmissionsBecomeDriver(currentUser.id));
+    if (isLoggedIn) dispatch(getApplicationsBecomeDriver(currentUser.id));
     // if (currentUser.Driver === null)
     dispatch(updateDriverState(currentUser.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,13 +87,13 @@ const BecomeDriver = () => {
 
         <Row className="mt-5">
           <Col className="text-center">
-            {isLoadingGetSubmissionsBecomeDriver ? (
+            {isLoadingGetApplicationsBecomeDriver ? (
               <LoadingSpinner />
-            ) : getSubmissionsBecomeDriverData !== undefined &&
-              getSubmissionsBecomeDriverData.length > 0 ? (
+            ) : getApplicationsBecomeDriverData !== undefined &&
+              getApplicationsBecomeDriverData.length > 0 ? (
               <>
                 <p>{t("translation:becomeDriver.pastSubmissions")}:</p>
-                {getSubmissionsBecomeDriverData.map((submission, index) => (
+                {getApplicationsBecomeDriverData.map((submission, index) => (
                   <div key={index} className="mb-3">
                     {t("translation:becomeDriver.request")} #{index + 1}:{" "}
                     {submission.admin_VerifDriverInfos.length === 0 ? (
@@ -121,7 +121,7 @@ const BecomeDriver = () => {
               <Alert variant="success">
                 {t("translation:becomeDriver.thankYou")}
               </Alert>
-            ) : !isLoadingGetSubmissionsBecomeDriver ? (
+            ) : !isLoadingGetApplicationsBecomeDriver ? (
               !isFoundAccepted() && !isFoundPending() ? (
                 <Button
                   onClick={handleSubmit}

@@ -721,7 +721,7 @@ export const getUserBookingRideFail = (error) => {
   };
 };
 
-// Get all the driver's rides requests
+// Get all the passenger's rides bookings
 
 export const getUserBookingsRequested = () => {
   return {
