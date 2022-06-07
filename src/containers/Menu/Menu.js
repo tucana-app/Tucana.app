@@ -133,7 +133,7 @@ const Menu = () => {
                   </ListGroup.Item>
                 </Link>
 
-                <hr className="my-2" />
+                {/* <hr className="my-2" />
 
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -149,7 +149,7 @@ const Menu = () => {
                       {t("translation:menu.refunds")}
                     </p>
                   </div>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
 
                 {/* <hr className="my-2" />
 

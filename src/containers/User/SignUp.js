@@ -49,15 +49,6 @@ const SignUp = () => {
       .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
 
-    // phoneNumber: Yup.string(labelStringField)
-    //   .matches(
-    //     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
-    //     "Please enter a valid phone number"
-    //   )
-    //   .min(8, "Please enter a valid phone number")
-    //   .max(15, "Please enter a valid phone number")
-    //   .required(labelRequiredField),
-
     username: Yup.string(labelStringField)
       .min(4, t("translation:global.errors.min4characters"))
       .max(20, t("translation:global.errors.max20characters"))
@@ -68,14 +59,20 @@ const SignUp = () => {
       .required(labelRequiredField),
 
     password: Yup.string().password().required(labelRequiredField),
+
+    checkTerms: Yup.bool().oneOf(
+      [true],
+      t("translation:global.errors.acceptTerms")
+    ),
+
+    checkNewsletter: Yup.bool().oneOf([true]),
   });
 
   const handleSubmit = (values, formikBag) => {
     if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
       values.phoneNumber = phoneNumber;
       dispatch(registerUser(values));
-
-      // form.current.reset();
+      form.current.reset();
       formikBag.setSubmitting(false);
     } else {
       dispatch(
@@ -129,6 +126,8 @@ const SignUp = () => {
               phoneNumber: "",
               username: "",
               password: "",
+              checkTerms: false,
+              checkNewsletter: false,
             }}
           >
             {({
@@ -258,39 +257,58 @@ const SignUp = () => {
 
                 <Row className="mb-3 mb-md-4">
                   <Col xs={12}>
-                    <Form.Check
-                      type="checkbox"
-                      label={
-                        <small>
-                          <Trans i18nKey="translation:signUp.agreement">
-                            I agree with the{" "}
-                            <Link
-                              to="/terms"
-                              className="link-success cursor-pointer text-decoration-underline"
-                            >
-                              terms &amp; conditions
-                            </Link>{" "}
-                            and the{" "}
-                            <Link
-                              to="/privacy"
-                              className="link-success cursor-pointer text-decoration-underline"
-                            >
-                              privacy policy
-                            </Link>
-                          </Trans>
-                        </small>
-                      }
-                      required
-                    />
+                    <Form.Group>
+                      <Form.Check
+                        type="checkbox"
+                        name="checkTerms"
+                        label={
+                          <small>
+                            <Trans i18nKey="translation:signUp.agreement">
+                              I agree with the{" "}
+                              <Link
+                                to="/terms"
+                                className="link-success cursor-pointer text-decoration-underline"
+                              >
+                                terms &amp; conditions
+                              </Link>{" "}
+                              and the{" "}
+                              <Link
+                                to="/privacy"
+                                className="link-success cursor-pointer text-decoration-underline"
+                              >
+                                privacy policy
+                              </Link>
+                            </Trans>
+                          </small>
+                        }
+                        onChange={handleChange}
+                        isInvalid={!!errors.checkTerms}
+                        isValid={touched.checkTerms && !errors.checkTerms}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.checkTerms}
+                      </Form.Control.Feedback>
+                    </Form.Group>
                   </Col>
                   <Col xs={12}>
-                    <Form.Check
-                      type="checkbox"
-                      label={
-                        <small>{t("translation:signUp.newsletter")}</small>
-                      }
-                      required
-                    />
+                    <Form.Group>
+                      <Form.Check
+                        type="checkbox"
+                        name="checkNewsletter"
+                        label={
+                          <small>{t("translation:signUp.newsletter")}</small>
+                        }
+                        onChange={handleChange}
+                        isInvalid={!!errors.checkNewsletter}
+                        isValid={
+                          touched.checkNewsletter && !errors.checkNewsletter
+                        }
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.checkNewsletter}
+                      </Form.Control.Feedback>
+                    </Form.Group>
                   </Col>
                 </Row>
 
@@ -340,13 +358,6 @@ const SignUp = () => {
 
       <Row className="mt-4">
         <Col xs={12} sm={10} md={8} lg={6} className="mt-2 mx-auto">
-          <p className="small text-secondary mb-3">
-            {t("translation:signUp.agreement1")}{" "}
-            <Link to="/terms" className="link-secondary">
-              {t("translation:signUp.agreement2")}
-            </Link>
-            .
-          </p>
           <p className="small text-secondary mb-3">
             {t("translation:signUp.paragraphInfo")}{" "}
             <Link to="/how-it-works" className="text-secondary">

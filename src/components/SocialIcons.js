@@ -29,7 +29,7 @@ const SocialIcons = () => {
         <Instagram className="mb-1" size="30" />
       </a>
       <a
-        href="https://wa.me/50660164300/"
+        href="https://wa.me/50687882262/"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"

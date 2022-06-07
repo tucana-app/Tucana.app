@@ -470,11 +470,18 @@ export const getFilteredRides = (origin, destination, date) => {
       .catch((error) => {
         // console.log(error);
 
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
         dispatch(
           setToast({
             show: true,
             headerText: "Error",
-            bodyText: error.message,
+            bodyText: message,
             variant: "danger",
           })
         );
@@ -626,14 +633,14 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
           dispatch(getNotifications(formValues.userId));
         })
         .catch((error) => {
+          // console.log(error);
+
           const message =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-
-          // console.log(message);
 
           dispatch(
             setToast({
