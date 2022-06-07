@@ -5,6 +5,11 @@ import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
+import DatePicker, { registerLocale } from "react-datepicker";
+import en from "date-fns/locale/en-US";
+import es from "date-fns/locale/es";
+import fr from "date-fns/locale/fr";
+import i18n from "i18next";
 import {
   AlertIcon,
   ArrowLeftIcon,
@@ -23,8 +28,14 @@ import {
   submitFormOfferRide,
   setToast,
 } from "../redux";
+
 import LoadingSpinner from "../components/LoadingSpinner";
 import InputSearchLocation from "../components/InputSearchLocation";
+
+// Enable translation for the date picker
+registerLocale("en", en);
+registerLocale("es", es);
+registerLocale("fr", fr);
 
 const Offer = () => {
   const { t } = useTranslation();
@@ -218,19 +229,14 @@ const Offer = () => {
                     <Row>
                       <Col xs={12} className="text-center">
                         <Button
-                          size={"sm"}
                           onClick={handleEditOrigin}
-                          variant="outline-warning"
+                          variant="warning"
                           className="me-2"
                         >
                           <PencilIcon size={24} className="me-2" />
                           {t("translation:global.edit")}
                         </Button>
-                        <Button
-                          size={"sm"}
-                          onClick={handleClickStepOne}
-                          variant="success"
-                        >
+                        <Button onClick={handleClickStepOne} variant="success">
                           {t("translation:global.next")}
                           <ArrowRightIcon size={24} className="ms-2" />
                         </Button>
@@ -245,8 +251,11 @@ const Offer = () => {
           </>
         ) : stepTwo ? (
           <>
-            {backButton(handleBackToStepOne)}
-
+            <Row>
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepOne)}
+              </Col>
+            </Row>
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
@@ -271,19 +280,14 @@ const Offer = () => {
                     <Row>
                       <Col xs={12} className="text-center">
                         <Button
-                          size={"sm"}
                           onClick={handleEditDestination}
-                          variant="outline-warning"
+                          variant="warning"
                           className="me-2"
                         >
                           <PencilIcon size={24} className="me-2" />
                           {t("translation:global.edit")}
                         </Button>
-                        <Button
-                          size={"sm"}
-                          onClick={handleClickStepTwo}
-                          variant="success"
-                        >
+                        <Button onClick={handleClickStepTwo} variant="success">
                           {t("translation:global.next")}
                           <ArrowRightIcon size={24} className="ms-2" />
                         </Button>
@@ -298,8 +302,11 @@ const Offer = () => {
           </>
         ) : stepThree ? (
           <>
-            {backButton(handleBackToStepTwo)}
-
+            <Row>
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepTwo)}
+              </Col>
+            </Row>
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
@@ -397,8 +404,11 @@ const Offer = () => {
           </>
         ) : stepFour ? (
           <>
-            {backButton(handleBackToStepThree)}
-
+            <Row>
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepThree)}
+              </Col>
+            </Row>
             <Row className="pt-5 mb-3">
               <Col className="text-center">
                 <p className="text-secondary mb-0">
