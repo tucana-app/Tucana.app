@@ -95,9 +95,9 @@ const Find = () => {
                         {formSearchRide.destination.city}
                       </p>
                       <p className="small mb-0">
-                        {formSearchRide.date.slice(8, 10)}/
-                        {formSearchRide.date.slice(5, 7)}/
-                        {formSearchRide.date.slice(0, 4)}
+                        {formSearchRide.date.getDate()}/
+                        {formSearchRide.date.getMonth() + 1}/
+                        {formSearchRide.date.getFullYear()}
                       </p>
                     </Col>
                     <Col xs={"auto"}>
@@ -315,7 +315,8 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-light border border-success shadow-sm rounded mt-2 mx-auto"
+                className="bg-light shadow mt-2 mx-auto"
+                style={{ borderRadius: "15px" }}
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

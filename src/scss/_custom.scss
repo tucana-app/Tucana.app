@@ -99,7 +99,12 @@ body {
   background-color: unset;
 }
 
-PhoneInputCountry
+.no-caret,
+.no-caret:focus {
+  color: transparent;
+  text-shadow: 0 0 0 $dark;
+  background-color: $white !important;
+}
 
 // ####################################################################
 // END CUSTOM CLASSES

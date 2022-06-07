@@ -21,13 +21,6 @@ $navbar-light-active-color: $brand-1;
 $utilities: map-merge(
   $utilities,
   (
-    "viewport-height": (
-      property: height,
-      class: vh,
-      values: (
-        100: calc(100vh - #{$navbarHeight}),
-      ),
-    ),
     "min-viewport-height": (
       property: min-height,
       class: min-vh,

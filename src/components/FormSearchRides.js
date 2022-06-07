@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { Form, Row, Col, Button, Container, Offcanvas } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import { PencilIcon } from "@primer/octicons-react";
+import { XIcon } from "@primer/octicons-react";
+import DatePicker, { registerLocale } from "react-datepicker";
+import en from "date-fns/locale/en-US";
+import es from "date-fns/locale/es";
+import fr from "date-fns/locale/fr";
+import i18n from "i18next";
 
 import InputSearchLocation from "./InputSearchLocation";
 
@@ -15,16 +20,31 @@ import {
   resetSearchDestination,
 } from "../redux";
 
+// Enable translation for the date picker
+registerLocale("en", en);
+registerLocale("es", es);
+registerLocale("fr", fr);
+
 const FormSearchRides = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const { formSearchRide } = useSelector((state) => state.ride);
 
+  const [show, setShow] = useState(false);
+  // const [date, setDate] = useState(formSearchRide.date);
   const [date, setDate] = useState(formSearchRide.date);
 
-  // eslint-disable-next-line no-unused-vars
-  const [stepThree, setStepThree] = useState(false);
+  var now = new Date();
+  var dateMax;
+  if (now.getMonth() === 11) {
+    dateMax = new Date(now.getFullYear() + 1, 2, 0);
+  } else {
+    dateMax = new Date(now.getFullYear(), now.getMonth() + 4, 0);
+  }
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleEditOne = () => {
     dispatch(resetSearchOrigin());
@@ -35,9 +55,10 @@ const FormSearchRides = () => {
   };
 
   // Handlers
-  const handleChangeDate = (e) => {
-    setDate(e.target.value);
-    dispatch(setSearchDate(e.target.value));
+  const handleChangeDate = (date) => {
+    setDate(date);
+    dispatch(setSearchDate(date));
+    handleClose();
   };
 
   const handleSubmit = () => {
@@ -46,10 +67,7 @@ const FormSearchRides = () => {
       formSearchRide.origin.city !== "" &&
       formSearchRide.destination.city !== ""
     ) {
-      if (
-        new Date(date.slice(0, 4), date.slice(5, 7) - 1, date.slice(8, 10)) <
-        new Date().setHours(0, 0, 0, 0)
-      ) {
+      if (date < new Date().setHours(0, 0, 0, 0)) {
         dispatch(
           setToast({
             show: true,
@@ -99,9 +117,9 @@ const FormSearchRides = () => {
                       size={"sm"}
                       onClick={handleEditOne}
                       variant="outline-warning"
+                      className="p-0"
                     >
-                      <PencilIcon size={24} className="me-2" />
-                      {t("translation:global.edit")}
+                      <XIcon size={24} />
                     </Button>
                   </Col>
                 </Row>
@@ -131,9 +149,9 @@ const FormSearchRides = () => {
                       size={"sm"}
                       onClick={handleEditTwo}
                       variant="outline-warning"
+                      className="p-0"
                     >
-                      <PencilIcon size={24} className="me-2" />
-                      {t("translation:global.edit")}
+                      <XIcon size={24} />
                     </Button>
                   </Col>
                 </Row>
@@ -151,13 +169,16 @@ const FormSearchRides = () => {
         <Col className="mx-auto">
           <Form.Group>
             <Form.Control
-              type="date"
+              type="text"
               name="date"
-              value={date}
-              min={dateFormat(new Date(), "yyyy-mm-dd")}
-              onChange={handleChangeDate}
-              onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
+              value={dateFormat(date, "dd/mm/yyyy")}
+              className="cursor-pointer no-caret"
+              // min={dateFormat(new Date(), "yyyy-mm-dd")}
+              // onChange={handleChangeDate}
+              // onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
+              onClick={handleShow}
               required
+              readOnly
             />
           </Form.Group>
         </Col>
@@ -174,6 +195,36 @@ const FormSearchRides = () => {
           </Button>
         </Col>
       </Row>
+
+      <Offcanvas
+        show={show}
+        onHide={handleClose}
+        placement="bottom"
+        className="vh-100"
+      >
+        <Container>
+          <Row>
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title>
+                  <h1>{t("translation:global.date")}</h1>
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body className="text-center">
+                <DatePicker
+                  selected={date}
+                  onChange={handleChangeDate}
+                  monthsShown={2}
+                  minDate={now}
+                  maxDate={dateMax}
+                  locale={i18n.language}
+                  inline
+                />
+              </Offcanvas.Body>
+            </Col>
+          </Row>
+        </Container>
+      </Offcanvas>
     </>
   );
 };

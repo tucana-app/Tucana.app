@@ -5,6 +5,8 @@
 
 // Import all CSS librairies and its default variables
 @import "./vendor/bootstrap"; // To customize Bootstrap CSS
+
+//
 @import "~bootstrap/scss/bootstrap";
 @import "~aos/src/sass/aos";
 @import "~animate.css/animate.min";
@@ -13,6 +15,8 @@
 @import "~rfs/scss";
 @import "~hover.css/scss/hover.scss";
 @import "~react-phone-number-input/style.css";
+@import "~react-datepicker/src/stylesheets/datepicker.scss";
+@import "./vendor/react-datepicker";
 
 // Import all the SCSS rules for each components and containers
 @import "./custom";
