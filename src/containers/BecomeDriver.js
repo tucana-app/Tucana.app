@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Row, Col, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import { CheckIcon, XIcon } from "@primer/octicons-react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { updateDriverState, getApplicationsBecomeDriver } from "../redux";
 
-import {
-  updateDriverState,
-  getApplicationsBecomeDriver,
-  submitFormBecomeDriver,
-} from "../redux";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
+import FormBecomeDriver from "../components/FormBecomeDriver";
 
 const BecomeDriver = () => {
   const { t } = useTranslation();
@@ -21,13 +18,8 @@ const BecomeDriver = () => {
     isLoggedIn,
     isLoadingGetApplicationsBecomeDriver,
     getApplicationsBecomeDriverData,
-    isLoadingSubmitFormBecomeDriver,
     submitFormBecomeDriverSuccess,
   } = useSelector((state) => state.user);
-
-  const handleSubmit = () => {
-    dispatch(submitFormBecomeDriver(currentUser.id));
-  };
 
   const isFoundAccepted = () => {
     let found = 0;
@@ -68,30 +60,49 @@ const BecomeDriver = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container data-aos="fade-in">
+      <Container className="mb-5" data-aos="fade-in">
         <Row className="mb-3">
           <Col className="text-center">
             <h1 className="title"> {t("translation:global.becomeDriver")}</h1>
             <p className="lead">{t("translation:becomeDriver.subTitle")}</p>
             <p className="text-center">
-              {t("translation:becomeDriver.message1")}{" "}
-              <Link to="/how-it-works" className="text-success">
-                {t("translation:becomeDriver.message2")}
-              </Link>{" "}
-              {t("translation:becomeDriver.message3")}
+              <Trans i18nKey="translation:becomeDriver.moreInfo">
+                Visit{" "}
+                <Link to="/how-it-works" className="text-success">
+                  this link
+                </Link>{" "}
+                for more info.
+              </Trans>
             </p>
           </Col>
         </Row>
 
         <hr className="w-75 my-2 mx-auto" />
 
-        <Row className="mt-5">
+        <Row className="mt-3">
+          <Col>
+            {submitFormBecomeDriverSuccess ? (
+              <Alert variant="success">
+                {t("translation:becomeDriver.thankYou")}
+              </Alert>
+            ) : !isLoadingGetApplicationsBecomeDriver ? (
+              !isFoundAccepted() && !isFoundPending() ? (
+                <FormBecomeDriver />
+              ) : null
+            ) : null}
+          </Col>
+        </Row>
+
+        <Row className="mt-3">
           <Col className="text-center">
             {isLoadingGetApplicationsBecomeDriver ? (
-              <LoadingSpinner />
+              <div className="text-center">
+                <LoadingSpinner />
+              </div>
             ) : getApplicationsBecomeDriverData !== undefined &&
               getApplicationsBecomeDriverData.length > 0 ? (
               <>
+                <hr className="w-75 mt-2 mb-4 mx-auto" />
                 <p>{t("translation:becomeDriver.pastSubmissions")}:</p>
                 {getApplicationsBecomeDriverData.map((submission, index) => (
                   <div key={index} className="mb-3">
@@ -115,24 +126,6 @@ const BecomeDriver = () => {
                   </div>
                 ))}
               </>
-            ) : null}
-
-            {submitFormBecomeDriverSuccess ? (
-              <Alert variant="success">
-                {t("translation:becomeDriver.thankYou")}
-              </Alert>
-            ) : !isLoadingGetApplicationsBecomeDriver ? (
-              !isFoundAccepted() && !isFoundPending() ? (
-                <Button
-                  onClick={handleSubmit}
-                  variant="success"
-                  size="lg"
-                  disabled={isLoadingSubmitFormBecomeDriver}
-                >
-                  {isLoadingSubmitFormBecomeDriver ? <LoadingSpinner /> : null}{" "}
-                  {t("translation:becomeDriver.button")}
-                </Button>
-              ) : null
             ) : null}
           </Col>
         </Row>

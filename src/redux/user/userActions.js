@@ -548,7 +548,7 @@ export const getApplicationsBecomeDriver = (userId) => {
     dispatch(getApplicationsBecomeDriverRequested());
 
     axios
-      .get(URL_API + "/user/submissions-become-driver", {
+      .get(URL_API + "/user/applications-become-driver", {
         params: {
           userId,
         },
@@ -591,17 +591,17 @@ export const submitFormBecomeDriverRequested = () => {
   };
 };
 
-export const submitFormBecomeDriver = (userId) => {
+export const submitFormBecomeDriver = (user) => {
   return (dispatch) => {
     dispatch(submitFormBecomeDriverRequested());
 
     axios
       .post(URL_API + "/user/submit-become-driver", {
-        userId,
+        user,
       })
       .then((response) => {
         dispatch(submitFormBecomeDriverSuccess(response.data));
-        dispatch(getApplicationsBecomeDriver(userId));
+        dispatch(getApplicationsBecomeDriver(user.id));
       })
       .catch((error) => {
         const message =

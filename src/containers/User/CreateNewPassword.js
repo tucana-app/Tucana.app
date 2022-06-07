@@ -92,7 +92,7 @@ const CreateNewPassword = () => {
         </Container>
       ) : (
         <Container>
-          <Row className="py-5 text-center">
+          <Row className="py-5">
             <Col className="text-center">
               <h1 className="display-4">
                 {t("translation:createNewPassword.title")}

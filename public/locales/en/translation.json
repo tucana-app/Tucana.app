@@ -27,14 +27,19 @@
 	},
 	"becomeDriver": {
 		"button": "I want to become a driver",
-		"message1": "Visit",
-		"message2": "this link",
-		"message3": "for more info.",
+		"color": "Color",
+		"maker": "Maker",
+		"message": "The more accurate the information you provide, the more confidence your potential passengers will have in you",
+		"model": "Model",
+		"moreInfo": "Visit <2>this link</2> for more info.",
+		"numberPlate": "Number plate",
 		"pastSubmissions": "Past submissions",
 		"request": "Request",
 		"subTitle": "You are growing the community",
 		"thankYou": "Thank you for applying. A moderator will review your submission",
-		"underReview": "under review"
+		"titleVehicle": "Your vehicle's information",
+		"underReview": "under review",
+		"year": "Year"
 	},
 	"booking": {
 		"rideDetails": "Ride details",
@@ -131,8 +136,10 @@
 			"passwordsMatch": "Passwords must match",
 			"validEmail": "Please enter a valid email address",
 			"validName": "Please enter a valid name",
+			"validNumberPlage": "Enter a valid number plate",
 			"validPhone": "Please enter a valid phone number",
-			"validUsername": "Please enter a valid username (only letters and numbers)"
+			"validUsername": "Please enter a valid username (only letters and numbers)",
+			"validYear": "Enter a valid year"
 		},
 		"faq": "FAQ",
 		"firstName": "First name",

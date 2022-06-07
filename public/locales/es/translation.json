@@ -27,14 +27,19 @@
 	},
 	"becomeDriver": {
 		"button": "Quiero ser conductor",
-		"message1": "Visite",
-		"message2": "este enlace",
-		"message3": "para más información.",
+		"color": "Color",
+		"maker": "Marca",
+		"message": "Cuanto más precisa sea la información que proporcione, más confianza tendrán en usted sus potenciales pasajeros",
+		"model": "Modelo",
+		"moreInfo": "Visite <2>este enlace</2> para obtener más información.",
+		"numberPlate": "Placa",
 		"pastSubmissions": "Presentaciones anteriores",
 		"request": "Solicite",
 		"subTitle": "Usted está haciendo crecer la comunidad",
 		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
-		"underReview": "En revisión"
+		"titleVehicle": "La información de tu vehículo",
+		"underReview": "En revisión",
+		"year": "Año"
 	},
 	"booking": {
 		"rideDetails": "Detalles del viaje",
@@ -131,8 +136,10 @@
 			"passwordsMatch": "",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
+			"validNumberPlage": "",
 			"validPhone": "Por favor, introduzca un número de teléfono válido",
-			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)"
+			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)",
+			"validYear": ""
 		},
 		"faq": "Preguntas frecuentes",
 		"firstName": "Nombre",

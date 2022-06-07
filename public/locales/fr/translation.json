@@ -27,14 +27,19 @@
 	},
 	"becomeDriver": {
 		"button": "Je veux devenir chauffeur",
-		"message1": "Visitez",
-		"message2": "ce lien",
-		"message3": "pour plus d'informations.",
+		"color": "Couleur",
+		"maker": "Marque",
+		"message": "Plus les info que vous donner son précise, plus ça va accroître la confiance en vous de vos potentiels passagers",
+		"model": "Modèle",
+		"moreInfo": "Visitez <2>ce lien</2> pour plus d'informations.",
+		"numberPlate": "Plaque d'immatriculation",
 		"pastSubmissions": "Soumissions antérieures",
 		"request": "Demande",
 		"subTitle": "Vous faites grandir la communauté",
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
-		"underReview": "En cours d'examen"
+		"titleVehicle": "Informations sur ton véhicule",
+		"underReview": "En cours d'examen",
+		"year": "Année"
 	},
 	"booking": {
 		"rideDetails": "Détails du trajet",
@@ -131,8 +136,10 @@
 			"passwordsMatch": "",
 			"validEmail": "Veuillez saisir une adresse électronique valide",
 			"validName": "Veuillez entrer un nom valide",
+			"validNumberPlage": "",
 			"validPhone": "Veuillez entrer un numéro de téléphone valide",
-			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres)."
+			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
+			"validYear": ""
 		},
 		"faq": "FAQ",
 		"firstName": "Prénom",
