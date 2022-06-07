@@ -1,6 +1,7 @@
 import ratingTypes from "./ratingTypes";
 import axios from "axios";
-import { parseText, setToast } from "../index";
+import { setToast } from "../index";
+import { parseText } from "../../helpers";
 
 const URL_API = process.env.REACT_APP_URL_API;
 

@@ -31,9 +31,7 @@ const FormSearchRides = () => {
 
   const { formSearchRide } = useSelector((state) => state.ride);
 
-  const [show, setShow] = useState(false);
-  // const [date, setDate] = useState(formSearchRide.date);
-  const [date, setDate] = useState(formSearchRide.date);
+  const [showOffcanvaDate, setShowOffcanvaDate] = useState(false);
 
   var now = new Date();
   var dateMax;
@@ -43,9 +41,16 @@ const FormSearchRides = () => {
     dateMax = new Date(now.getFullYear(), now.getMonth() + 4, 0);
   }
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // Date picker
+  const [date, setDate] = useState(
+    formSearchRide.date === "" ? now : formSearchRide.date
+  );
 
+  if (formSearchRide.date === "") {
+    dispatch(setSearchDate(now));
+  }
+
+  // Handlers
   const handleEditOne = () => {
     dispatch(resetSearchOrigin());
   };
@@ -58,12 +63,12 @@ const FormSearchRides = () => {
   const handleChangeDate = (date) => {
     setDate(date);
     dispatch(setSearchDate(date));
-    handleClose();
+    setShowOffcanvaDate(false);
   };
 
   const handleSubmit = () => {
     if (
-      date !== "" &&
+      formSearchRide.date !== "" &&
       formSearchRide.origin.city !== "" &&
       formSearchRide.destination.city !== ""
     ) {
@@ -173,10 +178,7 @@ const FormSearchRides = () => {
               name="date"
               value={dateFormat(date, "dd/mm/yyyy")}
               className="cursor-pointer no-caret"
-              // min={dateFormat(new Date(), "yyyy-mm-dd")}
-              // onChange={handleChangeDate}
-              // onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
-              onClick={handleShow}
+              onClick={() => setShowOffcanvaDate(true)}
               required
               readOnly
             />
@@ -197,8 +199,8 @@ const FormSearchRides = () => {
       </Row>
 
       <Offcanvas
-        show={show}
-        onHide={handleClose}
+        show={showOffcanvaDate}
+        onHide={() => setShowOffcanvaDate(false)}
         placement="bottom"
         className="vh-100"
       >

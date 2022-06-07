@@ -8,7 +8,6 @@ import dateFormat from "dateformat";
 import {
   CircleIcon,
   // StarFillIcon,
-  LockIcon,
   ArrowDownIcon,
   ArrowRightIcon,
 } from "@primer/octicons-react";
@@ -16,6 +15,7 @@ import {
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormSearchRides from "../components/FormSearchRides";
+import { formatPrice } from "../helpers";
 
 import { showSearchForm } from "../redux";
 
@@ -25,7 +25,7 @@ distance.apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const {
     isloadingFilteredRides,
     filteredRidesData,
@@ -84,7 +84,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-light border border-success shadow-sm rounded mx-auto mt-2"
+                className="bg-light border border-success shadow-sm rounded-5 mx-auto mt-2"
               >
                 <Container className="p-2">
                   <Row className="align-items-center">
@@ -95,9 +95,7 @@ const Find = () => {
                         {formSearchRide.destination.city}
                       </p>
                       <p className="small mb-0">
-                        {formSearchRide.date.getDate()}/
-                        {formSearchRide.date.getMonth() + 1}/
-                        {formSearchRide.date.getFullYear()}
+                        {dateFormat(formSearchRide.date, "dd/mm/yyyy")}
                       </p>
                     </Col>
                     <Col xs={"auto"}>
@@ -130,14 +128,14 @@ const Find = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="bg-light border shadow-sm rounded pb-3 mx-auto"
+                      className="bg-light border shadow rounded-5 pb-3 mx-auto hvr-grow hvr-grow-sm"
                     >
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
-                          <Row className="mb-2">
+                          <Row className="mb-3">
                             <Col className="text-center">
                               {dateFormat(
                                 ride.rideDetails.dateTime,
@@ -145,17 +143,17 @@ const Find = () => {
                               )}
                             </Col>
                           </Row>
-                          <Row className="mb-4">
-                            <Col xs={2}>
-                              <p className="text-end mb-0">
+                          <Row>
+                            <Col xs={2} className="mt-1 px-0">
+                              <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
                                   ride.rideDetails.dateTime,
                                   "hh:MM TT"
                                 )}
                               </p>
                             </Col>
-                            <Col xs={7}>
-                              <p className="mb-0">
+                            <Col xs={8}>
+                              <p className="line-height-md mb-0">
                                 <strong>
                                   {ride.rideDetails.origin.city},{" "}
                                 </strong>
@@ -163,39 +161,22 @@ const Find = () => {
                                   {ride.rideDetails.origin.province}
                                 </small>
                               </p>
-                              <p className="small text-secondary mb-0">
+                              <small className="smaller text-secondary">
                                 <span className="text-primary">
                                   {(
                                     ride.distanceFromOrigin.distanceValue / 1000
                                   ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceOrigin")}
+                              </small>
+                              <p>
+                                <ArrowDownIcon
+                                  size={24}
+                                  className="text-success"
+                                />
                               </p>
-
-                              <ArrowDownIcon
-                                size={24}
-                                className="text-success"
-                              />
-
-                              <p className="mb-0">
-                                <strong>
-                                  {ride.rideDetails.destination.city},{" "}
-                                </strong>
-                                <small>
-                                  {ride.rideDetails.destination.province}
-                                </small>
-                              </p>
-                              {/* <p className="small text-secondary mb-0">
-                                <span className="text-primary">
-                                  {distanceLatLng(
-                                    ride.rideDetails.destination.latLng,
-                                    formSearchRide.rideDetails.destination.latLng
-                                  )}
-                                </span>{" "}
-                                km {t("translation:find.distanceDestination")}
-                              </p> */}
                             </Col>
-                            <Col xs={3} className="text-center mx-auto">
+                            <Col xs={2} className="text-end ps-0 mx-auto">
                               <p className="mb-0">
                                 {t("translation:global.seat")}
                                 {ride.rideDetails.seatsAvailable > 1
@@ -209,6 +190,36 @@ const Find = () => {
                                 /{ride.rideDetails.seatsAvailable}
                               </p>
                             </Col>
+                          </Row>
+                          <Row className="mb-4">
+                            <Col xs={2} className="px-0">
+                              <p className="smaller line-height-md text-secondary text-end mb-0">
+                                {dateFormat(
+                                  ride.rideDetails.dateTime,
+                                  "hh:MM TT"
+                                )}
+                              </p>
+                            </Col>
+                            <Col xs={7}>
+                              <p className="line-height-md mb-0">
+                                <strong>
+                                  {ride.rideDetails.destination.city},{" "}
+                                </strong>
+                                <small>
+                                  {ride.rideDetails.destination.province}
+                                </small>
+                              </p>
+                              <small className="smaller text-secondary">
+                                <span className="text-primary">
+                                  {(
+                                    ride.distanceFromDestination.distanceValue /
+                                    1000
+                                  ).toFixed(2)}
+                                </span>{" "}
+                                km {t("translation:find.distanceDestination")}
+                              </small>
+                            </Col>
+                            <Col xs={3}></Col>
                           </Row>
                           <Row className="align-items-center">
                             <Col xs={3} className="pe-0">
@@ -234,35 +245,15 @@ const Find = () => {
                               </p> */}
                             </Col>
                             <Col xs={4} className="text-end mx-auto">
-                              {!isLoggedIn ? (
-                                <LinkContainer to="/login">
-                                  <Button variant="warning">
-                                    <LockIcon
-                                      size={18}
-                                      verticalAlign="middle"
-                                      className="mb-1"
-                                    />{" "}
-                                    {t("translation:global.logIn")}
-                                  </Button>
-                                </LinkContainer>
-                              ) : ride.rideDetails.Driver.User.id ===
-                                currentUser.id ? (
-                                <LinkContainer
-                                  to={`/ride/${ride.rideDetails.id}`}
-                                >
-                                  <Button variant="info">
-                                    {t("translation:global.manage")}
-                                  </Button>
-                                </LinkContainer>
-                              ) : (
-                                <LinkContainer
-                                  to={`/ride/${ride.rideDetails.id}`}
-                                >
-                                  <Button variant="success">
-                                    {t("translation:global.more")}
-                                  </Button>
-                                </LinkContainer>
-                              )}
+                              <p className="line-height-sm mb-0">
+                                <span className="fw-bold mb-0">
+                                  {formatPrice(1500)}
+                                </span>
+                                <br />
+                                <span className="smaller text-secondary">
+                                  {t("translation:global.perPassenger")}
+                                </span>
+                              </p>
                             </Col>
                           </Row>
                         </Container>
@@ -315,8 +306,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-light shadow mt-2 mx-auto"
-                style={{ borderRadius: "15px" }}
+                className="bg-light shadow rounded-5 mt-2 mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

@@ -8,6 +8,7 @@ import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
+import { isEmptyObject } from "../../helpers";
 
 import {
   getRatingsToDoDriver,
@@ -36,7 +37,6 @@ const NewRating = () => {
     isLoadingSubmitDriverRatingForm,
     submitDriverRatingFormData,
   } = useSelector((state) => state.rating);
-  const { isEmptyObject } = useSelector((state) => state.global);
 
   const handleSubmitPassengerRatingForm = () => {
     if (note < 1) {

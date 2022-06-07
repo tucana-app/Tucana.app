@@ -168,8 +168,6 @@ function InputSearchLocation(props) {
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
 
-      // console.log(suggestion);
-
       let isCity = suggestion.types.find(
         (type) =>
           type === "neighborhood" ||

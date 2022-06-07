@@ -1,6 +1,7 @@
 import rideTypes from "./rideTypes";
 import axios from "axios";
-import { parseText, getNotifications, setToast } from "../index";
+import { getNotifications, setToast } from "../index";
+import { parseText } from "../../helpers";
 import * as Yup from "yup";
 
 const URL_API = process.env.REACT_APP_URL_API;
