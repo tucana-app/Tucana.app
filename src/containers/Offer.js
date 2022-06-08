@@ -10,12 +10,16 @@ import en from "date-fns/locale/en-US";
 import es from "date-fns/locale/es";
 import fr from "date-fns/locale/fr";
 import i18n from "i18next";
+import Select from "react-select";
 import {
   AlertIcon,
+  ArrowDownIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  DashIcon,
   LinkExternalIcon,
   PencilIcon,
+  PlusIcon,
 } from "@primer/octicons-react";
 
 import {
@@ -24,11 +28,13 @@ import {
   setRideDate,
   setRideTime,
   setRideSeats,
+  setRidePrice,
   setRideComment,
   submitFormOfferRide,
   setToast,
 } from "../redux";
 
+import { getArrayTimeRide, formatPrice } from "../helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import InputSearchLocation from "../components/InputSearchLocation";
 
@@ -46,11 +52,12 @@ const Offer = () => {
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
   } = useSelector((state) => state.ride);
-  const { seatsMax } = useSelector((state) => state.global);
+  const { seatsMax, priceMin, priceMax } = useSelector((state) => state.global);
 
   const [date, setDate] = useState(formOfferRide.date);
   const [time, setTime] = useState(formOfferRide.time);
   const [seats, setSeats] = useState(formOfferRide.seats);
+  const [price, setPrice] = useState(formOfferRide.price);
   const [comment, setComment] = useState(formOfferRide.comment);
 
   // Steps
@@ -58,12 +65,22 @@ const Offer = () => {
   const [stepTwo, setStepTwo] = useState(false);
   const [stepThree, setStepThree] = useState(false);
   const [stepFour, setStepFour] = useState(false);
+  const [stepFive, setStepFive] = useState(false);
+  const [stepSix, setStepSix] = useState(false);
   const [stepVerify, setStepVerify] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  var now = new Date();
+  var dateMax;
+  if (now.getMonth() === 11) {
+    dateMax = new Date(now.getFullYear() + 1, 2, 0);
+  } else {
+    dateMax = new Date(now.getFullYear(), now.getMonth() + 4, 0);
+  }
+
   const backButton = (handleBackToStep) => {
     return (
-      <div style={{ position: "absolute" }} className="pt-3 ps-2">
+      <div className="pt-3 ps-2">
         <Button
           size={"sm"}
           onClick={handleBackToStep}
@@ -76,6 +93,7 @@ const Offer = () => {
     );
   };
 
+  // Step 1
   const handleClickStepOne = () => {
     setStepOne(false);
     setStepTwo(true);
@@ -85,9 +103,14 @@ const Offer = () => {
     dispatch(resetOfferOrigin());
   };
 
+  // Step 2
   const handleClickStepTwo = () => {
     setStepTwo(false);
     setStepThree(true);
+  };
+
+  const handleEditDestination = () => {
+    dispatch(resetOfferDestination());
   };
 
   const handleBackToStepOne = () => {
@@ -95,8 +118,21 @@ const Offer = () => {
     setStepTwo(false);
   };
 
-  const handleEditDestination = () => {
-    dispatch(resetOfferDestination());
+  // Step 3
+  const handleClickStepThree = () => {
+    if (date !== "") {
+      setStepThree(false);
+      setStepFour(true);
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: t("translation:global.errors.error"),
+          bodyText: t("translation:global.errors.chooseDate"),
+          variant: "warning",
+        })
+      );
+    }
   };
 
   const handleBackToStepTwo = () => {
@@ -104,26 +140,32 @@ const Offer = () => {
     setStepThree(false);
   };
 
-  const handleClickStepThree = () => {
-    if (date !== "" && time !== "" && seats !== 0) {
-      if (
-        new Date(
-          date.slice(0, 4),
-          date.slice(5, 7) - 1,
-          date.slice(8, 10),
-          time.slice(0, 2),
-          time.slice(3, 5)
-        ) <= new Date()
-      ) {
-        dispatch(
-          setToast({
-            show: true,
-            headerText: t("translation:global.errors.error"),
-            bodyText: t("translation:global.errors.dateFuture"),
-            variant: "warning",
-          })
-        );
-      } else if (isNaN(seats) || seats <= 0 || seats > seatsMax) {
+  // Step 4
+  const handleClickStepFour = () => {
+    if (time.value === "" || time.value === undefined) {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: t("translation:global.errors.error"),
+          bodyText: t("translation:global.errors.chooseTime"),
+          variant: "warning",
+        })
+      );
+    } else {
+      setStepFour(false);
+      setStepFive(true);
+    }
+  };
+
+  const handleBackToStepThree = () => {
+    setStepThree(true);
+    setStepFour(false);
+  };
+
+  // Step 5
+  const handleClickStepFive = () => {
+    if (seats !== "") {
+      if (isNaN(seats) || seats <= 0 || seats > seatsMax) {
         dispatch(
           setToast({
             show: true,
@@ -133,8 +175,10 @@ const Offer = () => {
           })
         );
       } else {
-        setStepThree(false);
-        setStepFour(true);
+        dispatch(setRideSeats(seats));
+
+        setStepFive(false);
+        setStepSix(true);
       }
     } else {
       dispatch(
@@ -148,52 +192,89 @@ const Offer = () => {
     }
   };
 
-  const handleBackToStepThree = () => {
-    setStepThree(true);
-    setStepFour(false);
-  };
-
-  const handleClickStepFour = () => {
-    setStepFour(false);
-    setStepVerify(true);
-  };
-
   const handleBackToStepFour = () => {
     setStepFour(true);
+    setStepFive(false);
   };
 
-  // Handlers
-  const handleChangeDate = (e) => {
-    setDate(e.target.value);
-    dispatch(setRideDate(e.target.value));
+  // Step 6
+  const handleClickStepSix = () => {
+    if (seats !== "") {
+      if (isNaN(seats) || seats <= 0 || seats > seatsMax) {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.chooseSeatsAvailable"),
+            variant: "warning",
+          })
+        );
+      } else {
+        dispatch(setRidePrice(price));
+
+        setStepSix(false);
+        setStepVerify(true);
+      }
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: t("translation:global.errors.error"),
+          bodyText: t("translation:global.errors.missingInfo"),
+          variant: "warning",
+        })
+      );
+    }
   };
 
-  const handleChangeTime = (e) => {
-    setTime(e.target.value);
-    dispatch(setRideTime(e.target.value));
+  const handleBackToStepFive = () => {
+    setStepFive(true);
+    setStepSix(false);
   };
 
-  const handleChangeSeats = (e) => {
-    setSeats(e.target.value);
-    dispatch(setRideSeats(e.target.value));
+  // Step verify
+  const handleBackToStepSix = () => {
+    setStepSix(true);
+    setStepVerify(false);
   };
 
-  const handleChangeComment = (e) => {
-    setComment(e.target.value);
-    dispatch(setRideComment(e.target.value));
-  };
-
+  // Submit
   const handleSubmit = () => {
     setStepVerify(false);
     setSubmitted(true);
     dispatch(submitFormOfferRide(currentUser, formOfferRide));
   };
 
-  var seatsMaxList = [];
-  const makeSeatsMaxList = () => {
-    for (var i = 1; i <= seatsMax; i++) {
-      seatsMaxList.push(i);
-    }
+  // Handlers
+  const handleChangeDate = (date) => {
+    setDate(date);
+    dispatch(setRideDate(date));
+  };
+
+  const handleChangeTime = (time) => {
+    setTime(time);
+    dispatch(setRideTime(time));
+  };
+
+  const handleDecreaseSeats = () => {
+    setSeats(seats <= 1 ? 1 : seats - 1);
+  };
+
+  const handleIncreaseSeats = () => {
+    setSeats(seats >= seatsMax ? seatsMax : seats + 1);
+  };
+
+  const handleDecreasePrice = () => {
+    setPrice(price <= priceMin ? priceMin : price - 500);
+  };
+
+  const handleIncreasePrice = () => {
+    setPrice(price >= priceMax ? priceMax : price + 500);
+  };
+
+  const handleChangeComment = (e) => {
+    setComment(e.target.value);
+    dispatch(setRideComment(e.target.value));
   };
 
   if (!isLoggedIn) {
@@ -205,12 +286,8 @@ const Offer = () => {
       {currentUser.Driver ? (
         stepOne ? (
           <>
-            <Row className="mt-5 mb-3">
+            <Row className="mt-5 pt-3 mb-3">
               <Col className="text-center">
-                <p className="text-secondary mb-0">
-                  {t("translation:offer.step")}{" "}
-                  <span className="text-success">1</span> / 4
-                </p>
                 <h2>{t("translation:offer.whereFrom")}</h2>
               </Col>
             </Row>
@@ -251,17 +328,13 @@ const Offer = () => {
           </>
         ) : stepTwo ? (
           <>
-            <Row>
+            <Row className="mb-3">
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
                 {backButton(handleBackToStepOne)}
               </Col>
             </Row>
-            <Row className="pt-5 mb-3">
+            <Row className="mb-3">
               <Col className="text-center">
-                <p className="text-secondary mb-0">
-                  {t("translation:offer.step")}{" "}
-                  <span className="text-success">2</span> / 4
-                </p>
                 <h2>{t("translation:offer.whereTo")}</h2>
               </Col>
             </Row>
@@ -302,95 +375,28 @@ const Offer = () => {
           </>
         ) : stepThree ? (
           <>
-            <Row>
+            <Row className="mb-3">
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
                 {backButton(handleBackToStepTwo)}
               </Col>
             </Row>
-            <Row className="pt-5 mb-3">
+            <Row className="mb-3">
               <Col className="text-center">
-                <p className="text-secondary mb-0">
-                  {t("translation:offer.step")}{" "}
-                  <span className="text-success">3</span> / 4
-                </p>
-                <h2>{t("translation:offer.details")}</h2>
+                <h2>{t("translation:offer.when")}</h2>
               </Col>
             </Row>
 
             <Row className="mb-4">
-              <Form.Group
-                as={Col}
-                xs={12}
-                sm={6}
-                md={4}
-                className="text-center mx-auto"
-              >
-                <Form.Label>
-                  {t("translation:global.day")}
-                  <span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="date"
-                  name="date"
-                  value={date}
-                  min={dateFormat(new Date(), "yyyy-mm-dd")}
+              <Col className="text-center">
+                <DatePicker
+                  selected={date}
                   onChange={handleChangeDate}
-                  required
+                  minDate={now}
+                  maxDate={dateMax}
+                  locale={i18n.language}
+                  inline
                 />
-              </Form.Group>
-            </Row>
-            <Row className="mb-4">
-              <Form.Group
-                as={Col}
-                xs={12}
-                sm={6}
-                md={4}
-                className="text-center mx-auto"
-              >
-                <Form.Label>
-                  {t("translation:global.time")}
-                  <span className="text-danger">*</span>
-                </Form.Label>
-                <Form.Control
-                  type="time"
-                  name="time"
-                  value={time}
-                  min="00:00"
-                  max="23:59"
-                  onChange={handleChangeTime}
-                  required
-                />
-              </Form.Group>
-            </Row>
-            <Row className="mb-4">
-              {makeSeatsMaxList()}
-
-              <Form.Group
-                as={Col}
-                xs={12}
-                sm={6}
-                md={4}
-                className="text-center mx-auto"
-              >
-                <Form.Label>
-                  {t("translation:global.seat")}(s)
-                  <span className="text-danger">*</span>
-                </Form.Label>
-
-                <Form.Select
-                  name="seats"
-                  onChange={handleChangeSeats}
-                  value={seats}
-                  required
-                >
-                  <option>{t("translation:offer.selectNumber")}</option>
-                  {seatsMaxList.map((option, index) => (
-                    <option key={index} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
+              </Col>
             </Row>
 
             <Row className="mt-5">
@@ -404,46 +410,26 @@ const Offer = () => {
           </>
         ) : stepFour ? (
           <>
-            <Row>
+            <Row className="mb-3">
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
                 {backButton(handleBackToStepThree)}
               </Col>
             </Row>
-            <Row className="pt-5 mb-3">
+            <Row className="mb-3">
               <Col className="text-center">
-                <p className="text-secondary mb-0">
-                  {t("translation:offer.step")}{" "}
-                  <span className="text-success">4</span> / 4
-                </p>
-                <h2>{t("translation:offer.comment")}</h2>
+                <h2>{t("translation:offer.whatTime")}</h2>
               </Col>
             </Row>
 
-            <Row>
-              <Form.Group
-                as={Col}
-                xs={12}
-                sm={6}
-                md={4}
-                className="text-center mx-auto"
-              >
-                <Form.Control
-                  name="comment"
-                  as="textarea"
-                  rows={2}
-                  type="textarea"
-                  value={comment}
-                  placeholder={t("translation:offer.placeholderComment")}
-                  className="rounded mb-3"
-                  onChange={handleChangeComment}
+            <Row className="mb-4">
+              <Col xs={10} md={8} lg={6} xl={4} className="text-center mx-auto">
+                <Select
+                  placeholder={t("translation:offer.chooseTime")}
+                  value={time}
+                  onChange={handleChangeTime}
+                  options={getArrayTimeRide()}
                 />
-                <Form.Label>
-                  <p className="small text-secondary">
-                    <AlertIcon size={24} className="text-warning me-2" />
-                    {t("translation:global.doNotShare")}
-                  </p>
-                </Form.Label>
-              </Form.Group>
+              </Col>
             </Row>
 
             <Row className="mt-5">
@@ -455,92 +441,281 @@ const Offer = () => {
               </Col>
             </Row>
           </>
-        ) : stepVerify ? (
-          <div className="mb-5">
-            {backButton(handleBackToStepFour)}
-
-            <Row className="pt-5 mb-3">
-              <Col className="text-center">
-                <p className="text-secondary mb-0">
-                  {t("translation:offer.summary.subTitle")}
-                </p>
-                <h2>{t("translation:offer.summary.title")}</h2>
+        ) : stepFive ? (
+          <>
+            <Row className="mb-3">
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepFour)}
               </Col>
             </Row>
-
-            <Row className="justify-content-center mb-3">
-              <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">{t("translation:global.origin")}:</p>
-                <h4>
-                  <strong>{formOfferRide.origin.city}</strong>,{" "}
-                  <small>{formOfferRide.origin.province}</small>
-                </h4>
-              </Col>
-              <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">{t("translation:global.destination")}:</p>
-                <h4>
-                  <strong>{formOfferRide.destination.city}</strong>,{" "}
-                  <small>{formOfferRide.destination.province}</small>
-                </h4>
-              </Col>
-            </Row>
-
             <Row className="mb-3">
               <Col className="text-center">
-                <p className="mb-1">
-                  <a
-                    href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="outline-success">
-                      {t("translation:offer.preview")}
-                      <LinkExternalIcon size={24} className="ms-2" />
-                    </Button>
-                  </a>
-                </p>
+                <h2>{t("translation:offer.seatsAvailable")}</h2>
               </Col>
             </Row>
 
-            <Row className="justify-content-center mb-md-3">
-              <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">{t("translation:global.date")}:</p>
-                <h4>{dateFormat(formOfferRide.date, "dd/mm/yyyy")}</h4>
-              </Col>
-
-              <Col xs={12} md={6} lg={4} className="text-center mb-3 mb-md-0">
-                <p className="mb-0">{t("translation:global.time")}:</p>
-                <h4>
-                  {dateFormat(
-                    new Date(
-                      formOfferRide.date.slice(0, 4),
-                      formOfferRide.date.slice(5, 7) - 1,
-                      formOfferRide.date.slice(8, 10),
-                      formOfferRide.time.slice(0, 2),
-                      formOfferRide.time.slice(3, 5)
-                    ),
-                    "hh:MM TT"
-                  )}
-                  {/* {formOfferRide.time} */}
-                </h4>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col className="text-center">
-                <p className="mb-0">{t("translation:global.comment")}:</p>
-                <h4>{formOfferRide.comment}</h4>
+            <Row className="justify-content-center mb-4">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="text-center mx-auto"
+              >
+                <Container>
+                  <Row className="align-items-center">
+                    <Col xs={3}>
+                      <Button
+                        onClick={handleDecreaseSeats}
+                        variant="outline-success"
+                        disabled={seats === 1}
+                        className="p-0"
+                      >
+                        <DashIcon size={36} />
+                      </Button>
+                    </Col>
+                    <Col xs={6}>
+                      <h1 className="display-3 fw-bold">{seats}</h1>
+                    </Col>
+                    <Col xs={3}>
+                      <Button
+                        onClick={handleIncreaseSeats}
+                        variant="outline-success"
+                        disabled={seats === seatsMax}
+                        className="p-0"
+                      >
+                        <PlusIcon size={36} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
               </Col>
             </Row>
 
             <Row className="mt-5">
+              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
+                <Button onClick={handleClickStepFive} variant="success">
+                  {t("translation:global.next")}
+                  <ArrowRightIcon size={24} className="ms-2" />
+                </Button>
+              </Col>
+            </Row>
+          </>
+        ) : stepSix ? (
+          <>
+            <Row className="mb-3">
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepFive)}
+              </Col>
+            </Row>
+            <Row className="mb-3">
+              <Col className="text-center">
+                <h2>{t("translation:offer.priceTitle")}</h2>
+              </Col>
+            </Row>
+
+            <Row className="justify-content-center mb-4">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="text-center mx-auto"
+              >
+                <Container>
+                  <Row className="align-items-center">
+                    <Col xs={3}>
+                      <Button
+                        onClick={handleDecreasePrice}
+                        variant="outline-success"
+                        disabled={price === priceMin}
+                        className="p-0"
+                      >
+                        <DashIcon size={36} />
+                      </Button>
+                    </Col>
+                    <Col xs={6}>
+                      <h1 className="display-3 fw-bold">
+                        {formatPrice(price)}
+                      </h1>
+                    </Col>
+                    <Col xs={3}>
+                      <Button
+                        onClick={handleIncreasePrice}
+                        variant="outline-success"
+                        className="p-0"
+                        disabled={price === priceMax}
+                      >
+                        <PlusIcon size={36} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mt-5">
+              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
+                <Button onClick={handleClickStepSix} variant="success">
+                  {t("translation:global.next")}
+                  <ArrowRightIcon size={24} className="ms-2" />
+                </Button>
+              </Col>
+            </Row>
+          </>
+        ) : stepVerify ? (
+          <>
+            <Row className="mb-3">
+              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
+                {backButton(handleBackToStepSix)}
+              </Col>
+            </Row>
+            <Row className="mb-3">
+              <Col className="text-center">
+                <h2>{t("translation:offer.summary")}</h2>
+              </Col>
+            </Row>
+
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 mx-auto"
+              >
+                <Container className="py-3 px-2">
+                  <Row className="mb-2">
+                    <Col className="text-center">
+                      <p className="mb-0">
+                        {dateFormat(formOfferRide.date, "dd/mm/yyyy")} -{" "}
+                        {time.label}
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col className="text-center">
+                      <h2 className="fw-bold mb-0">
+                        {formOfferRide.origin.city}
+                      </h2>
+                      <p className="small mb-0">
+                        {formOfferRide.origin.province}
+                      </p>
+
+                      <ArrowDownIcon size={24} className="text-success" />
+
+                      <h2 className="fw-bold mb-0">
+                        {formOfferRide.destination.city}
+                      </h2>
+                      <p className="small mb-0">
+                        {formOfferRide.destination.province}
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col className="text-center">
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="outline-success">
+                          {t("translation:offer.previewTrip")}
+                          <LinkExternalIcon size={24} className="ms-2" />
+                        </Button>
+                      </a>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 mx-auto"
+              >
+                <Container className="py-3 px-2">
+                  <Row>
+                    <Col xs={6} className="text-center">
+                      <p className="mb-0">
+                        {t("translation:global.seat")}
+                        {seats > 1 ? "s" : null}: <strong>{seats}</strong>
+                      </p>
+                    </Col>
+                    <Col xs={6} className="text-center">
+                      <p className="mb-0">
+                        {t("translation:global.price")}:{" "}
+                        <strong>{formatPrice(price)}</strong>
+                      </p>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 mx-auto"
+              >
+                <Container className="py-3 px-2">
+                  <Row>
+                    <Col>
+                      <p>{t("translation:global.comment")}</p>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="text-center">
+                      <Form.Group>
+                        <Form.Control
+                          name="comment"
+                          as="textarea"
+                          rows={2}
+                          type="textarea"
+                          value={comment}
+                          placeholder={t(
+                            "translation:offer.placeholderComment"
+                          )}
+                          className="rounded mb-3"
+                          onChange={handleChangeComment}
+                        />
+                        <Form.Label className="mb-0">
+                          <p className="small text-secondary mb-0">
+                            <AlertIcon
+                              size={24}
+                              className="text-warning me-2"
+                            />
+                            {t("translation:global.doNotShare")}
+                          </p>
+                        </Form.Label>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="my-5">
               <Col className="text-end">
                 <Button onClick={handleSubmit} size={"lg"} variant="success">
                   {t("translation:global.submit")}
                 </Button>
               </Col>
             </Row>
-          </div>
+          </>
         ) : submitted ? (
           <>
             {isLoadingSubmitFormOfferRide ? (

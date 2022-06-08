@@ -10,6 +10,8 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import MessageEmpty from "../../components/MessageEmpty";
 
+import { isDateInPast } from "../../helpers";
+
 import { getDriverBookings } from "../../redux";
 
 const RidesBookings = () => {
@@ -19,9 +21,7 @@ const RidesBookings = () => {
   const { isLoadingDriverBookingsList, driverBookingsData } = useSelector(
     (state) => state.ride
   );
-  const { bookingStatusVariant, isDateInPast } = useSelector(
-    (state) => state.global
-  );
+  const { bookingStatusVariant } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn) {

@@ -20,7 +20,7 @@ import GoBack from "../components/GoBack";
 import SendMessageButton from "../components/SendMessageButton";
 
 import { getBooking } from "../redux";
-import { isEmptyObject } from "../helpers";
+import { isEmptyObject, isDateInPast } from "../helpers";
 
 const Booking = () => {
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ const Booking = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isDateInPast, bookingStatusVariant, rideStatusVariant } = useSelector(
+  const { bookingStatusVariant, rideStatusVariant } = useSelector(
     (state) => state.global
   );
   const { isloadingBooking, bookingData } = useSelector((state) => state.ride);

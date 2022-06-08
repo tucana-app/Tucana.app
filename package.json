@@ -36,6 +36,7 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.3.2",
     "react-tabs": "^3.2.1",
     "react-validation": "^3.0.7",
     "reaptcha": "^1.12.0",

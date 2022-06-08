@@ -9,6 +9,7 @@ import dateFormat from "dateformat";
 
 import GoBack from "../components/GoBack";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { isDateInPast } from "../helpers";
 
 import { getUserBookings } from "../redux";
 
@@ -16,9 +17,7 @@ const Bookings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { bookingStatusVariant, isDateInPast } = useSelector(
-    (state) => state.global
-  );
+  const { bookingStatusVariant } = useSelector((state) => state.global);
   const { isLoadingUserBookings, userBookingsData } = useSelector(
     (state) => state.ride
   );

@@ -24,6 +24,8 @@ import MessageEmpty from "../components/MessageEmpty";
 import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
 
+import { isDateInPast } from "../helpers";
+
 import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
 
 const Ride = () => {
@@ -32,9 +34,7 @@ const Ride = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { rideStatusVariant, isDateInPast } = useSelector(
-    (state) => state.global
-  );
+  const { rideStatusVariant } = useSelector((state) => state.global);
   const {
     isloadingRide,
     rideData,

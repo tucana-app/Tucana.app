@@ -127,7 +127,9 @@
 		"errors": {
 			"acceptTerms": "Pour utiliser nos services, vous devez accepter nos conditions générales et notre politique de confidentialité.",
 			"captcha": "Veuillez remplir le captcha",
+			"chooseDate": "Vous devez choisir un jour",
 			"chooseSeatsAvailable": "Vous devez choisir le nombre de sièges dont vous disposez.",
+			"chooseTime": "Vous devez choisir une heure",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
 			"max20characters": "Max. 20 caractères",
@@ -166,7 +168,8 @@
 		"passengerDetails": "Détails sur le passager",
 		"passengers": "Passagers",
 		"password": "Mot de passe",
-		"perPassenger": "par passager",
+		"perSeat": "par siège",
+		"price": "Prix",
 		"province": "province",
 		"refundPolicy": "Politique de remboursement",
 		"refuse": "Refuser",
@@ -275,21 +278,24 @@
 		"title": "notifications"
 	},
 	"offer": {
+		"chooseTime": "Choisir une heure",
 		"comment": "Des commentaires ?",
 		"details": "Détails sur votre trajet",
 		"findRide": "Trouver un transport",
 		"onlyVerifiedDriver": "Vous ne pouvez proposer des trajets que si vous êtes un conducteur vérifié.",
 		"placeholderComment": "Vous voulez partager la route que vous allez prendre ou une précision sur votre destination ?",
 		"preview": "Aperçu sur Google Maps",
+		"previewTrip": "Prévisualiser le trajet",
+		"priceTitle": "Prix par siège",
 		"rideOnline1": "Votre trajet est maintenant en ligne. Consultez-le",
 		"rideOnline2": "ici",
+		"seatsAvailable": "Combien avez-vous de places disponibles ?",
 		"selectNumber": "Sélectionnez un numéro",
 		"step": "Étape",
-		"summary": {
-			"subTitle": "double vérification",
-			"title": "Résumé"
-		},
+		"summary": "Résumé",
 		"title": "Proposer un transport",
+		"whatTime": "A quelle heure?",
+		"when": "Quand est-ce que vous partez ?",
 		"whereFrom": "D'où partez-vous ?",
 		"whereTo": "Où allez-vous ?"
 	},

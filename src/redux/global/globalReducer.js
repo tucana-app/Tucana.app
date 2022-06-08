@@ -1,13 +1,5 @@
 import globalTypes from "./globalTypes";
 
-const isDateInPast = (firstDate, secondDate) => {
-  let first = new Date(firstDate);
-  let second = new Date(secondDate);
-
-  return first <= second;
-  // return first.setHours(0, 0, 0, 0) <= second.setHours(0, 0, 0, 0);
-};
-
 const initialState = {
   seatsMax: 6,
 
@@ -37,35 +29,6 @@ const initialState = {
     return variant[status - 1];
   },
 
-  isDateInPast: isDateInPast,
-
-  countDriverRides: (driverRidesData) => {
-    let count = 0;
-
-    driverRidesData.map((ride, index) => {
-      return (ride.RideStatusId === 1 || ride.RideStatusId === 2) &&
-        !isDateInPast(ride.dateTime, new Date())
-        ? count++
-        : null;
-    });
-
-    return count;
-  },
-
-  countDriverBookings: (driverBookingsData) => {
-    let count = 0;
-
-    driverBookingsData.map((booking, index) => {
-      return booking.Ride.seatsLeft !== 0 &&
-        booking.BookingStatusId === 1 &&
-        !isDateInPast(booking.Ride.dateTime, new Date())
-        ? count++
-        : null;
-    });
-
-    return count;
-  },
-
   arrayContactSubjects: [
     "Account",
     "Booking",
@@ -80,6 +43,9 @@ const initialState = {
     "Remove my account",
     "Other",
   ],
+
+  priceMin: 500,
+  priceMax: 50000,
 };
 
 function globalReducer(state = initialState, action) {

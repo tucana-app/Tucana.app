@@ -13,17 +13,20 @@ import {
   getRidesToConfirm,
 } from "../redux";
 
-import car from "../assets/images/undraw_Order_ride.svg";
-
 import LoadingSpinner from "../components/LoadingSpinner";
+
+import {
+  isDateInPast,
+  countDriverRides,
+  countDriverBookings,
+} from "../helpers";
+
+import car from "../assets/images/undraw_Order_ride.svg";
 
 const Rides = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isDateInPast, countDriverRides } = useSelector(
-    (state) => state.global
-  );
   const {
     isLoadingDriverRides,
     driverRidesData,
@@ -41,20 +44,6 @@ const Rides = () => {
     userBookingsData.map((booking, index) => {
       return booking.BookingStatusId === 3 &&
         !isDateInPast(booking.Ride.dateTime, new Date())
-        ? count++
-        : null;
-    });
-
-    return count;
-  };
-
-  const countDriverBookings = (driverBookingsData) => {
-    let count = 0;
-
-    driverBookingsData.map((booking, index) => {
-      return booking.BookingStatusId === 1 &&
-        !isDateInPast(booking.Ride.dateTime, new Date()) &&
-        booking.Ride.seatsLeft > 0
         ? count++
         : null;
     });

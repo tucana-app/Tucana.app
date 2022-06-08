@@ -54,3 +54,83 @@ export const isEmptyObject = (obj) => {
 export const formatPrice = (number) => {
   return `₡${Number(number).toLocaleString()}`;
 };
+
+export const isDateInPast = (firstDate, secondDate) => {
+  let first = new Date(firstDate);
+  let second = new Date(secondDate);
+
+  return first <= second;
+};
+
+export const countDriverRides = (driverRidesData) => {
+  let count = 0;
+
+  driverRidesData.map((ride, index) => {
+    return (ride.RideStatusId === 1 || ride.RideStatusId === 2) &&
+      !isDateInPast(ride.dateTime, new Date())
+      ? count++
+      : null;
+  });
+
+  return count;
+};
+
+export const countDriverBookings = (driverBookingsData) => {
+  let count = 0;
+
+  driverBookingsData.map((booking, index) => {
+    return booking.Ride.seatsLeft !== 0 &&
+      booking.BookingStatusId === 1 &&
+      !isDateInPast(booking.Ride.dateTime, new Date())
+      ? count++
+      : null;
+  });
+
+  return count;
+};
+
+export const getArrayTimeRide = () => {
+  let i,
+    j,
+    interval = 15,
+    array = [],
+    arrayValue = [],
+    options = [];
+
+  // Create the 12 AM
+  for (j = 0; j < 60 / interval; j++) {
+    array.push(12 + ":" + (j === 0 ? "00" : interval * j) + " AM");
+  }
+
+  // Create the rest of the AM
+  for (i = 1; i < 12; i++) {
+    for (j = 0; j < 60 / interval; j++) {
+      array.push(i + ":" + (j === 0 ? "00" : interval * j) + " AM");
+    }
+  }
+
+  // Create the 12 PM
+  for (j = 0; j < 60 / interval; j++) {
+    array.push(12 + ":" + (j === 0 ? "00" : interval * j) + " PM");
+  }
+
+  // Create the rest of the PM
+  for (i = 1; i < 12; i++) {
+    for (j = 0; j < 60 / interval; j++) {
+      array.push(i + ":" + (j === 0 ? "00" : interval * j) + " PM");
+    }
+  }
+
+  // Time value 24h format
+  for (i = 0; i < 24; i++) {
+    for (j = 0; j < 60 / interval; j++) {
+      arrayValue.push(i + ":" + (j === 0 ? "00" : interval * j));
+    }
+  }
+
+  array.map((time, index) => {
+    return options.push({ value: arrayValue[index], label: time });
+  });
+
+  return options;
+};

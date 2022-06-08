@@ -76,7 +76,8 @@ const initialState = {
     },
     date: "",
     time: "",
-    seats: 0,
+    seats: 1,
+    price: 500,
     comment: "",
   },
 
@@ -530,6 +531,15 @@ const rideReducer = (state = initialState, action) => {
         },
       };
 
+    case rideTypes.SET_RIDE_PRICE:
+      return {
+        ...state,
+        formOfferRide: {
+          ...state.formOfferRide,
+          price: action.payload,
+        },
+      };
+
     case rideTypes.SET_RIDE_COMMENT:
       return {
         ...state,
@@ -560,7 +570,8 @@ const rideReducer = (state = initialState, action) => {
           },
           date: "",
           time: "",
-          seats: 0,
+          seats: 1,
+          price: 500,
           comment: "",
         },
       };

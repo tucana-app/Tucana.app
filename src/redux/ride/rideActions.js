@@ -144,6 +144,14 @@ export const setRideSeats = (seats) => {
   };
 };
 
+// Set price
+export const setRidePrice = (price) => {
+  return {
+    type: rideTypes.SET_RIDE_PRICE,
+    payload: price,
+  };
+};
+
 // Set comment
 export const setRideComment = (comment) => {
   return {
@@ -179,10 +187,16 @@ export const submitFormOfferRide = (user, formOfferRide) => {
 
     const parsingResult = parseText(formOfferRide.comment);
 
+    const time = formOfferRide.time.value;
+    const hours = time.slice(0, time.search(":"));
+    const minutes = time.slice(time.search(":") + 1);
+    var dateFormatted = formOfferRide.date.setHours(hours);
+    dateFormatted = formOfferRide.date.setMinutes(minutes);
+
     if (parsingResult.value === 0) {
       formOfferRide = {
         ...formOfferRide,
-        dateTime: new Date(`${formOfferRide.date}T${formOfferRide.time}`),
+        dateTime: new Date(dateFormatted),
       };
 
       axios

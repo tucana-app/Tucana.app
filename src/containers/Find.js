@@ -252,7 +252,7 @@ const Find = () => {
                                 </span>
                                 <br />
                                 <span className="smaller text-secondary">
-                                  {t("translation:global.perPassenger")}
+                                  {t("translation:global.perSeat")}
                                 </span>
                               </p>
                             </Col>

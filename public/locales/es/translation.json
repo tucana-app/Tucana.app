@@ -127,7 +127,9 @@
 		"errors": {
 			"acceptTerms": "Para utilizar nuestros servicios, debe aceptar nuestras Condiciones Generales y nuestra Política de Privacidad",
 			"captcha": "Por favor, rellene el captcha",
+			"chooseDate": "Tienes que elegir un día",
 			"chooseSeatsAvailable": "Tienes que elegir la cantidad de plazas que tienes disponibles",
+			"chooseTime": "Tienes que elegir una hora",
 			"dateFuture": "La fecha tiene que ser en el futuro",
 			"error": "Error",
 			"max20characters": "Máx. 20 caracteres",
@@ -166,7 +168,8 @@
 		"passengerDetails": "Datos del pasajero",
 		"passengers": "Pasajeros",
 		"password": "Contraseña",
-		"perPassenger": "por pasajero",
+		"perSeat": "por asiento",
+		"price": "Precio",
 		"province": "Provincia",
 		"refundPolicy": "Politica de reembolso",
 		"refuse": "Rechazar",
@@ -275,21 +278,24 @@
 		"title": "Notificaciones"
 	},
 	"offer": {
+		"chooseTime": "Elige una hora",
 		"comment": "¿Algún comentario?",
 		"details": "Detalles de su viaje",
 		"findRide": "Encontrar un viaje",
 		"onlyVerifiedDriver": "Sólo puedes ofrecer viajes si eres un conductor verificado",
 		"placeholderComment": "¿Quieres compartir el camino que vas a tomar o una precisión sobre tu destino?",
 		"preview": "Vista previa en Google Maps",
+		"previewTrip": "Previsualización de la ruta",
+		"priceTitle": "Precio por asientos",
 		"rideOnline1": "Su viaje ya está en línea. Compruébalo",
 		"rideOnline2": "aquí",
+		"seatsAvailable": "¿Cuántos asientos tienes?",
 		"selectNumber": "Seleccione un número",
 		"step": "STEP",
-		"summary": {
-			"subTitle": "Doble comprobación",
-			"title": "Resumen"
-		},
+		"summary": "Resumen",
 		"title": "Ofrecer un paseo",
+		"whatTime": "A que hora?",
+		"when": "¿Cuándo te vas?",
 		"whereFrom": "¿De dónde sales?",
 		"whereTo": "¿Adónde vas?"
 	},
