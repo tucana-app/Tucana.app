@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
@@ -16,10 +16,8 @@ import {
   ArrowDownIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  DashIcon,
   LinkExternalIcon,
   PencilIcon,
-  PlusIcon,
 } from "@primer/octicons-react";
 
 import {
@@ -31,12 +29,19 @@ import {
   setRidePrice,
   setRideComment,
   submitFormOfferRide,
+  getETA,
   setToast,
 } from "../redux";
 
-import { getArrayTimeRide, formatPrice } from "../helpers";
+import {
+  getArrayTimeRide,
+  formatPrice,
+  formatTimeSecond,
+  formatDistance,
+} from "../helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import InputSearchLocation from "../components/InputSearchLocation";
+import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 
 // Enable translation for the date picker
 registerLocale("en", en);
@@ -51,6 +56,8 @@ const Offer = () => {
     formOfferRide,
     isLoadingSubmitFormOfferRide,
     submitFormOfferRideSuccess,
+    isLoadingGetETA,
+    getETAData,
   } = useSelector((state) => state.ride);
   const { seatsMax, priceMin, priceMax } = useSelector((state) => state.global);
 
@@ -70,6 +77,9 @@ const Offer = () => {
   const [stepVerify, setStepVerify] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const intervalPriceDecreaseRef = useRef(null);
+  const intervalPriceIncreaseRef = useRef(null);
+
   var now = new Date();
   var dateMax;
   if (now.getMonth() === 11) {
@@ -80,16 +90,18 @@ const Offer = () => {
 
   const backButton = (handleBackToStep) => {
     return (
-      <div className="pt-3 ps-2">
-        <Button
-          size={"sm"}
-          onClick={handleBackToStep}
-          variant="outline-secondary"
-        >
-          <ArrowLeftIcon size={24} className="me-2" />
-          Back
-        </Button>
-      </div>
+      <Row className="my-3">
+        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+          <Button
+            size={"sm"}
+            onClick={handleBackToStep}
+            variant="outline-secondary"
+          >
+            <ArrowLeftIcon size={24} className="me-2" />
+            Back
+          </Button>
+        </Col>
+      </Row>
     );
   };
 
@@ -107,6 +119,7 @@ const Offer = () => {
   const handleClickStepTwo = () => {
     setStepTwo(false);
     setStepThree(true);
+    dispatch(getETA(formOfferRide.origin, formOfferRide.destination));
   };
 
   const handleEditDestination = () => {
@@ -264,18 +277,56 @@ const Offer = () => {
     setSeats(seats >= seatsMax ? seatsMax : seats + 1);
   };
 
-  const handleDecreasePrice = () => {
+  // Decrease price
+  const handleDecreasePriceSingle = () => {
     setPrice(price <= priceMin ? priceMin : price - 500);
   };
 
-  const handleIncreasePrice = () => {
+  const handleDecreasePrice = () => {
+    if (intervalPriceDecreaseRef.current) return;
+    intervalPriceDecreaseRef.current = setInterval(() => {
+      setPrice((price) => (price <= priceMin ? priceMin : price - 500));
+    }, 250);
+  };
+
+  const stopCounterDecrease = () => {
+    if (intervalPriceDecreaseRef.current) {
+      clearInterval(intervalPriceDecreaseRef.current);
+      intervalPriceDecreaseRef.current = null;
+    }
+  };
+
+  // Increase price
+  const handleIncreasePriceSingle = () => {
     setPrice(price >= priceMax ? priceMax : price + 500);
   };
 
+  const handleIncreasePrice = () => {
+    if (intervalPriceIncreaseRef.current) return;
+    intervalPriceIncreaseRef.current = setInterval(() => {
+      setPrice((price) => (price >= priceMax ? priceMax : price + 500));
+    }, 250);
+  };
+
+  const stopCounterIncrease = () => {
+    if (intervalPriceIncreaseRef.current) {
+      clearInterval(intervalPriceIncreaseRef.current);
+      intervalPriceIncreaseRef.current = null;
+    }
+  };
+
+  // Change comment
   const handleChangeComment = (e) => {
     setComment(e.target.value);
     dispatch(setRideComment(e.target.value));
   };
+
+  useEffect(() => {
+    return () => {
+      stopCounterDecrease();
+      stopCounterIncrease();
+    };
+  }, []);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -328,11 +379,8 @@ const Offer = () => {
           </>
         ) : stepTwo ? (
           <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepOne)}
-              </Col>
-            </Row>
+            {backButton(handleBackToStepOne)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.whereTo")}</h2>
@@ -375,11 +423,8 @@ const Offer = () => {
           </>
         ) : stepThree ? (
           <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepTwo)}
-              </Col>
-            </Row>
+            {backButton(handleBackToStepTwo)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.when")}</h2>
@@ -410,11 +455,8 @@ const Offer = () => {
           </>
         ) : stepFour ? (
           <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepThree)}
-              </Col>
-            </Row>
+            {backButton(handleBackToStepThree)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.whatTime")}</h2>
@@ -443,11 +485,8 @@ const Offer = () => {
           </>
         ) : stepFive ? (
           <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepFour)}
-              </Col>
-            </Row>
+            {backButton(handleBackToStepFour)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.seatsAvailable")}</h2>
@@ -466,27 +505,49 @@ const Offer = () => {
                 <Container>
                   <Row className="align-items-center">
                     <Col xs={3}>
-                      <Button
-                        onClick={handleDecreaseSeats}
-                        variant="outline-success"
-                        disabled={seats === 1}
-                        className="p-0"
-                      >
-                        <DashIcon size={36} />
-                      </Button>
+                      {seats === 1 ? (
+                        <span
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={handleDecreaseSeats}
+                          variant="outline-success"
+                          className="cursor-pointer text-success"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      )}
                     </Col>
                     <Col xs={6}>
-                      <h1 className="display-3 fw-bold">{seats}</h1>
+                      <Form.Control
+                        plaintext
+                        readOnly
+                        value={seats}
+                        className="h1 fw-bold text-center"
+                      />
                     </Col>
                     <Col xs={3}>
-                      <Button
-                        onClick={handleIncreaseSeats}
-                        variant="outline-success"
-                        disabled={seats === seatsMax}
-                        className="p-0"
-                      >
-                        <PlusIcon size={36} />
-                      </Button>
+                      {seats === seatsMax ? (
+                        <span
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <PlusCircle size={36} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={handleIncreaseSeats}
+                          variant="outline-success"
+                          disabled={seats === seatsMax}
+                          className="cursor-pointer text-success"
+                        >
+                          <PlusCircle size={36} />
+                        </span>
+                      )}
                     </Col>
                   </Row>
                 </Container>
@@ -504,11 +565,8 @@ const Offer = () => {
           </>
         ) : stepSix ? (
           <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepFive)}
-              </Col>
-            </Row>
+            {backButton(handleBackToStepFive)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.priceTitle")}</h2>
@@ -527,29 +585,60 @@ const Offer = () => {
                 <Container>
                   <Row className="align-items-center">
                     <Col xs={3}>
-                      <Button
-                        onClick={handleDecreasePrice}
-                        variant="outline-success"
-                        disabled={price === priceMin}
-                        className="p-0"
-                      >
-                        <DashIcon size={36} />
-                      </Button>
+                      {price === priceMin ? (
+                        <span
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={handleDecreasePriceSingle}
+                          onMouseDown={handleDecreasePrice}
+                          onMouseUp={stopCounterDecrease}
+                          onTouchStart={handleDecreasePrice}
+                          onTouchEnd={stopCounterDecrease}
+                          onTouchCancel={stopCounterDecrease}
+                          onMouseLeave={stopCounterDecrease}
+                          variant="outline-success"
+                          className="cursor-pointer text-success"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      )}
                     </Col>
                     <Col xs={6}>
-                      <h1 className="display-3 fw-bold">
-                        {formatPrice(price)}
-                      </h1>
+                      <Form.Control
+                        plaintext
+                        readOnly
+                        value={formatPrice(price)}
+                        className="h1 fw-bold text-center"
+                      />
                     </Col>
                     <Col xs={3}>
-                      <Button
-                        onClick={handleIncreasePrice}
-                        variant="outline-success"
-                        className="p-0"
-                        disabled={price === priceMax}
-                      >
-                        <PlusIcon size={36} />
-                      </Button>
+                      {price === priceMax ? (
+                        <div
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <DashCircle size={36} />
+                        </div>
+                      ) : (
+                        <span
+                          onClick={handleIncreasePriceSingle}
+                          onMouseDown={handleIncreasePrice}
+                          onMouseUp={stopCounterIncrease}
+                          onMouseLeave={stopCounterIncrease}
+                          onTouchStart={handleIncreasePrice}
+                          onTouchEnd={stopCounterIncrease}
+                          onTouchCancel={stopCounterIncrease}
+                          variant="outline-success"
+                          className="cursor-pointer text-success"
+                        >
+                          <PlusCircle size={36} />
+                        </span>
+                      )}
                     </Col>
                   </Row>
                 </Container>
@@ -566,12 +655,9 @@ const Offer = () => {
             </Row>
           </>
         ) : stepVerify ? (
-          <>
-            <Row className="mb-3">
-              <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {backButton(handleBackToStepSix)}
-              </Col>
-            </Row>
+          <div className="mb-5">
+            {backButton(handleBackToStepSix)}
+
             <Row className="mb-3">
               <Col className="text-center">
                 <h2>{t("translation:offer.summary")}</h2>
@@ -615,7 +701,7 @@ const Offer = () => {
                       </p>
                     </Col>
                   </Row>
-                  <Row className="align-items-center">
+                  <Row className="align-items-center mb-3">
                     <Col className="text-center">
                       <a
                         href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
@@ -629,6 +715,33 @@ const Offer = () => {
                       </a>
                     </Col>
                   </Row>
+
+                  {isLoadingGetETA ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <Row>
+                      <Col xs={6} className="text-center">
+                        <p className="mb-0">
+                          {t("translation:offer.estimatedTime")}
+                        </p>
+                        <p className="mb-0">
+                          <strong>
+                            {formatTimeSecond(getETAData.durationValue)}
+                          </strong>
+                        </p>
+                      </Col>
+                      <Col xs={6} className="text-center">
+                        <p className="mb-0">
+                          {t("translation:offer.estimatedDistance")}
+                        </p>
+                        <p className="mb-0">
+                          <strong>
+                            {formatDistance(getETAData.distanceValue)}
+                          </strong>
+                        </p>
+                      </Col>
+                    </Row>
+                  )}
                 </Container>
               </Col>
             </Row>
@@ -647,13 +760,19 @@ const Offer = () => {
                     <Col xs={6} className="text-center">
                       <p className="mb-0">
                         {t("translation:global.seat")}
-                        {seats > 1 ? "s" : null}: <strong>{seats}</strong>
+                        {seats > 1 ? "s" : null}
+                      </p>
+                      <p className="mb-0">
+                        <strong>{seats}</strong>
                       </p>
                     </Col>
-                    <Col xs={6} className="text-center">
+                    <Col xs={6} className="text-center ps-0">
+                      <p className="mb-0">{t("translation:global.price")}</p>
                       <p className="mb-0">
-                        {t("translation:global.price")}:{" "}
                         <strong>{formatPrice(price)}</strong>
+                        <small className="text-secondary">
+                          /{t("translation:global.perSeat")}
+                        </small>
                       </p>
                     </Col>
                   </Row>
@@ -672,7 +791,7 @@ const Offer = () => {
               >
                 <Container className="py-3 px-2">
                   <Row>
-                    <Col>
+                    <Col xs={12} className="text-center">
                       <p>{t("translation:global.comment")}</p>
                     </Col>
                   </Row>
@@ -708,14 +827,27 @@ const Offer = () => {
               </Col>
             </Row>
 
-            <Row className="my-5">
-              <Col className="text-end">
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="text-end mx-auto"
+              >
                 <Button onClick={handleSubmit} size={"lg"} variant="success">
                   {t("translation:global.submit")}
                 </Button>
               </Col>
             </Row>
-          </>
+
+            {/* <Row className="my-5">
+              <Col className="text-end">
+                
+              </Col>
+            </Row> */}
+          </div>
         ) : submitted ? (
           <>
             {isLoadingSubmitFormOfferRide ? (

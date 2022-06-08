@@ -55,6 +55,12 @@ export const formatPrice = (number) => {
   return `₡${Number(number).toLocaleString()}`;
 };
 
+export const formatDistance = (distance) => {
+  let km = distance / 1000;
+  km = km.toFixed(2);
+  return `${Number(km).toLocaleString()} km`;
+};
+
 export const isDateInPast = (firstDate, secondDate) => {
   let first = new Date(firstDate);
   let second = new Date(secondDate);
@@ -133,4 +139,18 @@ export const getArrayTimeRide = () => {
   });
 
   return options;
+};
+
+export const formatTimeSecond = (seconds) => {
+  //Get hours from seconds
+  let hours = seconds / (60 * 60);
+  let absoluteHours = Math.floor(hours);
+  let h = absoluteHours > 9 ? absoluteHours : "0" + absoluteHours;
+
+  //Get remainder from hours and convert to minutes
+  let minutes = (hours - absoluteHours) * 60;
+  let absoluteMinutes = Math.floor(minutes);
+  let m = absoluteMinutes > 9 ? absoluteMinutes : "0" + absoluteMinutes;
+
+  return `${h}h${m}`;
 };

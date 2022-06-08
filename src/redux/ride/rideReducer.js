@@ -57,7 +57,10 @@ const initialState = {
   submitFormConfirmRideData: [],
   submitFormConfirmRideError: "",
 
-  isFormSearchRideSubmitted: false,
+  isloadingGetETA: false,
+  getETAData: [],
+  getETAError: "",
+
   formOfferRide: {
     origin: {
       city: "",
@@ -80,6 +83,8 @@ const initialState = {
     price: 500,
     comment: "",
   },
+
+  isFormSearchRideSubmitted: false,
 
   formSearchRide: {
     origin: {
@@ -124,6 +129,28 @@ const rideReducer = (state = initialState, action) => {
         isLoadingDriverRides: false,
         driverRidesData: [],
         driverRidesError: action.payload,
+      };
+
+    case rideTypes.GET_ETA_REQUEST:
+      return {
+        ...state,
+        isloadingGetETA: true,
+      };
+
+    case rideTypes.GET_ETA_SUCCESS:
+      return {
+        ...state,
+        isloadingGetETA: false,
+        getETAData: action.payload,
+        getETAError: "",
+      };
+
+    case rideTypes.GET_ETA_FAIL:
+      return {
+        ...state,
+        isloadingGetETA: false,
+        getETAData: [],
+        getETAError: action.payload,
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST:

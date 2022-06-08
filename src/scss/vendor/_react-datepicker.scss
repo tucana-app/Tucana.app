@@ -2,9 +2,13 @@
   font-family: unset;
   background-color: unset;
   color: unset;
-  border: 0px;
 }
 
 .react-datepicker__month-container {
   float: unset;
+}
+
+.react-datepicker__day,
+.react-datepicker__day-name {
+  font-size: larger;
 }

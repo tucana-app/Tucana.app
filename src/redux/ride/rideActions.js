@@ -175,6 +175,52 @@ export const resetFormOfferRide = () => {
 
 // Submit the form to add a new ride
 
+export const getETARequested = () => {
+  return {
+    type: rideTypes.GET_ETA_REQUEST,
+  };
+};
+
+export const getETA = (origin, destination) => {
+  return (dispatch) => {
+    dispatch(getETARequested());
+
+    axios
+      .get(URL_API + "/ride/get-eta", {
+        params: {
+          originLat: origin.latLng.lat,
+          originLng: origin.latLng.lng,
+          destinationLat: destination.latLng.lat,
+          destinationLng: destination.latLng.lng,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getETASuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error)
+        dispatch(getETAFail(error));
+      });
+  };
+};
+
+export const getETASuccess = (data) => {
+  return {
+    type: rideTypes.GET_ETA_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getETAFail = (error) => {
+  return {
+    type: rideTypes.GET_ETA_FAIL,
+    payload: error,
+  };
+};
+
+// Submit the form to add a new ride
+
 export const submitFormOfferRideRequested = () => {
   return {
     type: rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST,

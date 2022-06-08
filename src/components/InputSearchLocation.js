@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, FormControl } from "react-bootstrap";
+import { Button, FormControl, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import usePlacesAutocomplete, {
@@ -177,13 +177,14 @@ function InputSearchLocation(props) {
 
       if (isCity) {
         return (
-          <li
+          <ListGroup.Item
+            action
             key={place_id}
             onClick={handleSelect(suggestion)}
-            className="hvr-highlight cursor-pointer py-1"
           >
-            <strong>{main_text}</strong> <small>{secondary_text}</small>
-          </li>
+            <strong>{main_text}</strong>{" "}
+            <small>{secondary_text.replace(", Costa Rica", "")}</small>
+          </ListGroup.Item>
         );
       } else {
         return null;
@@ -208,12 +209,7 @@ function InputSearchLocation(props) {
       </div>
 
       {status === "OK" ? (
-        <>
-          <p className="small text-secondary mt-2 mb-0">
-            {t("translation:global.searchResults")}:
-          </p>
-          <ul>{renderSuggestions()}</ul>
-        </>
+        <ListGroup className="bg-white">{renderSuggestions()}</ListGroup>
       ) : null}
     </>
   );
