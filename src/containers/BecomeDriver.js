@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Row, Col, Alert } from "react-bootstrap";
-import { CheckIcon, XIcon } from "@primer/octicons-react";
-import { Trans, useTranslation } from "react-i18next";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { ArrowRightIcon, CheckIcon, XIcon } from "@primer/octicons-react";
+import { useTranslation } from "react-i18next";
 import { updateDriverState, getApplicationsBecomeDriver } from "../redux";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
-import FormBecomeDriver from "../components/FormBecomeDriver";
 
 const BecomeDriver = () => {
   const { t } = useTranslation();
@@ -18,15 +17,14 @@ const BecomeDriver = () => {
     isLoggedIn,
     isLoadingGetApplicationsBecomeDriver,
     getApplicationsBecomeDriverData,
-    submitFormBecomeDriverSuccess,
   } = useSelector((state) => state.user);
 
   const isFoundAccepted = () => {
     let found = 0;
     if (getApplicationsBecomeDriverData !== undefined) {
-      found = getApplicationsBecomeDriverData.find((submission) => {
-        return submission.admin_VerifDriverInfos.length > 0
-          ? submission.admin_VerifDriverInfos[0].accepted === true
+      found = getApplicationsBecomeDriverData.find((application) => {
+        return application.admin_VerifDriverApplications.length > 0
+          ? application.admin_VerifDriverApplications[0].accepted === true
           : null;
       });
     }
@@ -38,7 +36,7 @@ const BecomeDriver = () => {
     let found = 0;
     if (getApplicationsBecomeDriverData !== undefined) {
       found = getApplicationsBecomeDriverData.find(
-        (submission) => submission.admin_VerifDriverInfos.length === 0
+        (application) => application.admin_VerifDriverApplications.length === 0
       );
     }
 
@@ -64,34 +62,24 @@ const BecomeDriver = () => {
         <Row className="mb-3">
           <Col className="text-center">
             <h1 className="title"> {t("translation:global.becomeDriver")}</h1>
-            <p className="lead">{t("translation:becomeDriver.subTitle")}</p>
-            <p className="text-center">
-              <Trans i18nKey="translation:becomeDriver.moreInfo">
-                Visit{" "}
-                <Link to="/how-it-works" className="text-success">
-                  this link
-                </Link>{" "}
-                for more info.
-              </Trans>
-            </p>
           </Col>
         </Row>
 
-        <hr className="w-75 my-2 mx-auto" />
-
-        <Row className="mt-3">
-          <Col>
-            {submitFormBecomeDriverSuccess ? (
-              <Alert variant="success">
-                {t("translation:becomeDriver.thankYou")}
-              </Alert>
-            ) : !isLoadingGetApplicationsBecomeDriver ? (
-              !isFoundAccepted() && !isFoundPending() ? (
-                <FormBecomeDriver />
-              ) : null
-            ) : null}
-          </Col>
-        </Row>
+        {!isLoadingGetApplicationsBecomeDriver ? (
+          !isFoundAccepted() && !isFoundPending() ? (
+            <Row className="mt-3">
+              <Col className="text-center">
+                <p>{t("translation:becomeDriver.notDriver")}</p>
+                <Link to="/apply-driver" className="hvr-icon-forward">
+                  <Button type="submit" variant="success" size="lg">
+                    {t("translation:becomeDriver.apply")}
+                    <ArrowRightIcon size={24} className="hvr-icon" />
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
+          ) : null
+        ) : null}
 
         <Row className="mt-3">
           <Col className="text-center">
@@ -103,16 +91,16 @@ const BecomeDriver = () => {
               getApplicationsBecomeDriverData.length > 0 ? (
               <>
                 <hr className="w-75 mt-2 mb-4 mx-auto" />
-                <p>{t("translation:becomeDriver.pastSubmissions")}:</p>
-                {getApplicationsBecomeDriverData.map((submission, index) => (
+                <p>{t("translation:becomeDriver.pastApplications")}:</p>
+                {getApplicationsBecomeDriverData.map((application, index) => (
                   <div key={index} className="mb-3">
                     {t("translation:becomeDriver.request")} #{index + 1}:{" "}
-                    {submission.admin_VerifDriverInfos.length === 0 ? (
+                    {application.admin_VerifDriverApplications.length === 0 ? (
                       <span className="text-warning">
                         {t("translation:becomeDriver.underReview")}
                       </span>
-                    ) : submission.admin_VerifDriverInfos[0] &&
-                      submission.admin_VerifDriverInfos[0].accepted ? (
+                    ) : application.admin_VerifDriverApplications[0] &&
+                      application.admin_VerifDriverApplications[0].accepted ? (
                       <span className="text-success">
                         <CheckIcon size={24} className="me-2" />
                         {t("translation:global.accepted")}

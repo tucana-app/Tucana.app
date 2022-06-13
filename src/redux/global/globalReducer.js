@@ -46,6 +46,9 @@ const initialState = {
 
   priceMin: 500,
   priceMax: 50000,
+
+  isLoadingCountries: false,
+  countries: [],
 };
 
 function globalReducer(state = initialState, action) {
@@ -64,6 +67,21 @@ function globalReducer(state = initialState, action) {
 
     case globalTypes.CLEAR_FEEDBACK:
       return { ...state, feedback: {} };
+
+    // Get all countries info
+
+    case globalTypes.GET_COUNTRIES_REQUEST:
+      return {
+        ...state,
+        isLoadingCountries: true,
+      };
+
+    case globalTypes.GET_COUNTRIES_SUCCESS:
+      return {
+        ...state,
+        isLoadingCountries: false,
+        countries: action.payload,
+      };
 
     default:
       return state;

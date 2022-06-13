@@ -583,6 +583,70 @@ export const getApplicationsBecomeDriverFail = (error) => {
   };
 };
 
+// Become a driver application form
+// Set the type of ID
+export const setApplicationIdType = (idType) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_ID_TYPE,
+    payload: idType,
+  };
+};
+
+// Set ID number
+export const setApplicationIdNumber = (idNumber) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_ID_NUMBER,
+    payload: idNumber,
+  };
+};
+
+// Set ID country
+export const setApplicationLicenseCountry = (country) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_LICENSE_COUNTRY,
+    payload: country,
+  };
+};
+
+// Set License number
+export const setApplicationLicenseNumber = (idNumber) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_LICENSE_NUMBER,
+    payload: idNumber,
+  };
+};
+
+// Set License country
+export const setApplicationIdCountry = (country) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_ID_COUNTRY,
+    payload: country,
+  };
+};
+
+// Set the car maker
+export const setApplicationCarMaker = (maker) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_MAKER,
+    payload: maker,
+  };
+};
+
+// Set the number plate
+export const setApplicationNumberPlate = (numberPlate) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_NUMBER_PLATE,
+    payload: numberPlate,
+  };
+};
+
+// Reset application form become driver
+export const resetApplicationForm = () => {
+  return {
+    type: userTypes.RESET_APPLICATION_FORM_BECOME_DRIVER,
+  };
+};
+
 // Submit form to become a driver
 
 export const submitFormBecomeDriverRequested = () => {

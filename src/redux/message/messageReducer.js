@@ -115,13 +115,13 @@ function messageReducer(state = initialState, action) {
     case messageTypes.GET_USER_NEW_MESSAGES_REQUEST:
       return {
         ...state,
-        isLoadingUserNewMessages: false,
+        isLoadingUserNewMessages: true,
       };
 
     case messageTypes.GET_USER_NEW_MESSAGES_SUCCESS:
       return {
         ...state,
-        isLoadingUserNewMessages: true,
+        isLoadingUserNewMessages: false,
         userNewMessagesData: action.payload,
         userNewMessagesError: "",
       };

@@ -25,6 +25,7 @@ import Offer from "./containers/Offer";
 import HowItWorks from "./containers/HowItWorks";
 
 import BecomeDriver from "./containers/BecomeDriver";
+import DriverApplication from "./containers/DriverApplication";
 
 // All pages included in the side menu
 import Menu from "./containers/Menu/Menu";
@@ -105,6 +106,7 @@ function App() {
           <Route exact path="/find" component={Find} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/become-driver" component={BecomeDriver} />
+          <Route exact path="/apply-driver" component={DriverApplication} />
 
           <Route exact path="/ride/:rideId" component={Ride} />
           <Route exact path="/rides" component={Rides} />

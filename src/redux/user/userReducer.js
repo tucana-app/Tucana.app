@@ -49,6 +49,22 @@ initialState = {
   updateDriverStateError: "",
 
   isLoadingSubmitContactForm: false,
+
+  formApplyDriver: {
+    id: {
+      type: "",
+      number: "",
+      country: "",
+    },
+    license: {
+      number: "",
+      country: "",
+    },
+    car: {
+      maker: "",
+      numberPlate: "",
+    },
+  },
 };
 
 function userReducer(state = initialState, action) {
@@ -229,6 +245,111 @@ function userReducer(state = initialState, action) {
         isLoadingGetApplicationsBecomeDriver: false,
         getApplicationsBecomeDriverData: [],
         getApplicationsBecomeDriverError: action.payload,
+      };
+
+    // Application form to become a driver
+    case userTypes.SET_FORM_BECOME_DRIVER_ID_TYPE:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          id: {
+            ...state.formApplyDriver.id,
+            type: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_ID_NUMBER:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          id: {
+            ...state.formApplyDriver.id,
+            number: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_ID_COUNTRY:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          id: {
+            ...state.formApplyDriver.id,
+            country: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_LICENSE_NUMBER:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          license: {
+            ...state.formApplyDriver.license,
+            number: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_LICENSE_COUNTRY:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          license: {
+            ...state.formApplyDriver.license,
+            country: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_MAKER:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            maker: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_NUMBER_PLATE:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            numberPlate: action.payload,
+          },
+        },
+      };
+
+    case userTypes.RESET_APPLICATION_FORM_BECOME_DRIVER:
+      return {
+        ...state,
+        formApplyDriver: {
+          id: {
+            type: "",
+            number: "",
+            country: "",
+          },
+          license: {
+            number: "",
+            country: "",
+          },
+          car: {
+            maker: "",
+            numberPlate: "",
+          },
+        },
       };
 
     // Submit the form to become a driver
