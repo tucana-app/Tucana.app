@@ -15,7 +15,7 @@ import {
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormSearchRides from "../components/FormSearchRides";
-import { formatPrice } from "../helpers";
+import { formatPrice, formatTimeSecond } from "../helpers";
 
 import { showSearchForm } from "../redux";
 
@@ -145,10 +145,15 @@ const Find = () => {
                           </Row>
                           <Row>
                             <Col xs={2} className="mt-1 px-0">
-                              <p className="smaller line-height-md text-secondary text-end mb-0">
+                              <p className="smaller line-height-md text-secondary text-end mb-2">
                                 {dateFormat(
                                   ride.rideDetails.dateTimeOrigin,
-                                  "hh:MM TT"
+                                  "HH:MM TT"
+                                )}
+                              </p>
+                              <p className="smaller fw-bold line-height-md text-secondary text-end mb-0">
+                                {formatTimeSecond(
+                                  ride.rideDetails.ETA.durationValue
                                 )}
                               </p>
                             </Col>
@@ -248,7 +253,7 @@ const Find = () => {
                             <Col xs={4} className="text-end mx-auto">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
-                                  {formatPrice(1500)}
+                                  {formatPrice(ride.rideDetails.price)}
                                 </span>
                                 <br />
                                 <span className="smaller text-secondary">
