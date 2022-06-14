@@ -2,7 +2,7 @@ import userTypes from "./userTypes";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-let initialState = user
+var initialState = user
   ? {
       isLoggedIn: true,
       user,
@@ -68,9 +68,7 @@ initialState = {
 };
 
 function userReducer(state = initialState, action) {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case userTypes.REGISTER_USER_REQUESTED:
       return {
         ...state,
@@ -107,7 +105,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isloadingLogin: false,
         isLoggedIn: true,
-        user: payload.user,
+        user: action.payload,
         loginErrorData: "",
       };
 

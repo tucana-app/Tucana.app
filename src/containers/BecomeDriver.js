@@ -48,9 +48,12 @@ const BecomeDriver = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(getApplicationsBecomeDriver(currentUser.id));
-    // if (currentUser.Driver === null)
-    dispatch(updateDriverState(currentUser.id));
+    if (isLoggedIn) {
+      dispatch(getApplicationsBecomeDriver(currentUser.id));
+
+      // if (currentUser.Driver === null)
+      dispatch(updateDriverState(currentUser.id));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

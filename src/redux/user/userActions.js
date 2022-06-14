@@ -215,7 +215,7 @@ export const login = (formLogin) => {
 
           dispatch({
             type: userTypes.LOGIN_SUCCESS,
-            payload: { user: response.data },
+            payload: response.data,
           });
 
           dispatch(getDriverNewRidesRequests(response.data.id));

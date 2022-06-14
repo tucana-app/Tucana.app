@@ -106,7 +106,7 @@ const initialState = {
   },
 };
 
-const rideReducer = (state = initialState, action) => {
+function rideReducer(state = initialState, action) {
   switch (action.type) {
     case rideTypes.GET_USER_RIDES_REQUEST:
       return {
@@ -677,6 +677,6 @@ const rideReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
 export default rideReducer;
