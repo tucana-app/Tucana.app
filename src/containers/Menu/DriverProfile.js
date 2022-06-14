@@ -19,7 +19,7 @@ function DriverProfile(props) {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container>
+      <Container className="mb-5">
         <Row className="mb-5">
           <Col>
             <h1 className="title text-center">
@@ -28,22 +28,94 @@ function DriverProfile(props) {
           </Col>
         </Row>
 
-        <Row>
-          <Col xs={12} md={4}>
-            <p className="fw-bold">Your car</p>
-            <p>Maker: {currentUser.Driver.Car.maker}</p>
-            <p>Number Plate: {currentUser.Driver.Car.numberPlate}</p>
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-2">
+              <Row>
+                <Col>
+                  <p className="fw-bold">
+                    {t("translation:global.yourVehicle")}
+                  </p>
+                  <p>
+                    {t("translation:global.maker")}:{" "}
+                    {currentUser.Driver.Car.maker}
+                  </p>
+                  <p className="mb-0">
+                    {t("translation:global.numberPlate")}:{" "}
+                    {currentUser.Driver.Car.numberPlate}
+                  </p>
+                </Col>
+              </Row>
+            </Container>
           </Col>
-          <Col xs={12} md={4}>
-            <p className="fw-bold">Your ID</p>
-            <p>ID type: {currentUser.Driver.idType}</p>
-            <p>ID number: {currentUser.Driver.idNumber}</p>
-            <p>ID country: {currentUser.Driver.idCountry}</p>
+        </Row>
+
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-2">
+              <Row>
+                <Col>
+                  <p className="fw-bold">
+                    {t("translation:global.yourIdentity")}
+                  </p>
+                  <p>
+                    {t("translation:global.idType")}:{" "}
+                    {currentUser.Driver.idType}
+                  </p>
+                  <p>
+                    {t("translation:global.number")}:{" "}
+                    {currentUser.Driver.idNumber}
+                  </p>
+                  <p className="mb-0">
+                    {t("translation:global.country")}:{" "}
+                    {currentUser.Driver.idCountry}
+                  </p>
+                </Col>
+              </Row>
+            </Container>
           </Col>
-          <Col xs={12} md={4}>
-            <p className="fw-bold">Your licence</p>
-            <p>License number: {currentUser.Driver.licenseNumber}</p>
-            <p>License country: {currentUser.Driver.licenseCountry}</p>
+        </Row>
+
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-2">
+              <Row>
+                <Col>
+                  <p className="fw-bold">
+                    {t("translation:global.yourLicense")}
+                  </p>
+                  <p>
+                    {t("translation:global.number")}:{" "}
+                    {currentUser.Driver.licenseNumber}
+                  </p>
+                  <p className="mb-0">
+                    {t("translation:global.country")}:{" "}
+                    {currentUser.Driver.licenseCountry}
+                  </p>
+                </Col>
+              </Row>
+            </Container>
           </Col>
         </Row>
 

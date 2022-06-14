@@ -261,12 +261,7 @@ const DriverApplication = () => {
               <Container className="px-0 px-md-2">
                 <Row className="mb-3">
                   <Col className="text-center">
-                    <h3 className="fw-light">
-                      {t("translation:becomeDriver.aboutYou")}
-                    </h3>
-                    <p className="fw-bold mb-0">
-                      1. {t("translation:becomeDriver.identification")}
-                    </p>
+                    <h3>1. {t("translation:global.yourIdentity")}</h3>
                   </Col>
                 </Row>
                 <Row className="align-items-center">
@@ -428,12 +423,7 @@ const DriverApplication = () => {
                   {backButton(handleBackToStepOne)}
 
                   <Col className="text-center">
-                    <h3 className="fw-light">
-                      {t("translation:becomeDriver.aboutYou")}
-                    </h3>
-                    <p className="fw-bold mb-0">
-                      2. {t("translation:becomeDriver.drivingLicense")}
-                    </p>
+                    <h3>2. {t("translation:global.yourLicense")}</h3>
                   </Col>
                 </Row>
                 <Row className="align-items-center">
@@ -562,12 +552,7 @@ const DriverApplication = () => {
                   {backButton(handleBackToStepTwo)}
 
                   <Col className="text-center">
-                    <h3 className="fw-light">
-                      {t("translation:becomeDriver.titleVehicle")}
-                    </h3>
-                    <p className="fw-bold mb-0">
-                      3. {t("translation:becomeDriver.vehicleDetails")}
-                    </p>
+                    <h3>3. {t("translation:global.yourVehicle")}</h3>
                   </Col>
                 </Row>
                 <Row className="align-items-center">
@@ -577,7 +562,7 @@ const DriverApplication = () => {
                 <Row className="mb-5">
                   <Col xs={12} className="mb-3">
                     <p className="small ms-2 mb-0">
-                      {t("translation:becomeDriver.maker")}
+                      {t("translation:global.maker")}
                       <span className="text-danger">*</span>
                     </p>
                     <Form.Group>
@@ -595,7 +580,7 @@ const DriverApplication = () => {
                   <Col xs={12}>
                     <Form.Group>
                       <p className="small ms-2 mb-0">
-                        {t("translation:becomeDriver.numberPlate")}
+                        {t("translation:global.numberPlate")}
                         <span className="text-danger">*</span>
                       </p>
                       <Form.Control
