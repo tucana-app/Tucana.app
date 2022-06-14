@@ -23,7 +23,7 @@ import {
 } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
 
-const DriverApplication = ({ ride }) => {
+const DriverApplication = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const {
@@ -601,7 +601,7 @@ const DriverApplication = ({ ride }) => {
                       <Form.Control
                         type="text"
                         name="numberPlate"
-                        placeholder="333AAA, 222000, etc."
+                        placeholder="AAA333, 222000, etc."
                         value={numberPlate}
                         onChange={handleChangeNumberPlate}
                         maxLength={6}

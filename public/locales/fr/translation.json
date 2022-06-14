@@ -47,7 +47,7 @@
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
 		"titleVehicle": "Informations sur ton véhicule",
 		"underReview": "En cours d'examen",
-		"vehicleDetails": "Détails du véhicule",
+		"vehicleDetails": "Détails de ton véhicule",
 		"year": "Année"
 	},
 	"booking": {
@@ -89,8 +89,7 @@
 		"title": "Faire un don"
 	},
 	"driverProfile": {
-		"title": "Le profil de votre conducteur",
-		"underReview": "Votre demande est toujours en cours d'examen"
+		"title": "Le profil de votre conducteur"
 	},
 	"find": {
 		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",

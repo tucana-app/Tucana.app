@@ -655,13 +655,14 @@ export const submitFormBecomeDriverRequested = () => {
   };
 };
 
-export const submitFormBecomeDriver = (user) => {
+export const submitFormBecomeDriver = (user, form) => {
   return (dispatch) => {
     dispatch(submitFormBecomeDriverRequested());
 
     axios
       .post(URL_API + "/user/submit-become-driver", {
         user,
+        form,
       })
       .then((response) => {
         dispatch(submitFormBecomeDriverSuccess(response.data));
@@ -678,7 +679,7 @@ export const submitFormBecomeDriver = (user) => {
         dispatch(
           setToast({
             show: true,
-            headerText: "A problem happened",
+            headerText: "Error",
             bodyText: message,
             variant: "warning",
           })
@@ -722,11 +723,7 @@ export const updateDriverState = (userId) => {
         },
       })
       .then((response) => {
-        if (response.data === "") {
-          dispatch(updateDriverStateSuccess(null));
-        } else {
-          dispatch(updateDriverStateSuccess(response.data));
-        }
+        dispatch(updateDriverStateSuccess(response.data));
       })
       .catch((error) => {
         const message =

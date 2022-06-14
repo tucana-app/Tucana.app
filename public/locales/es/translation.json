@@ -47,7 +47,7 @@
 		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
 		"titleVehicle": "La información de tu vehículo",
 		"underReview": "En revisión",
-		"vehicleDetails": "Datos del vehículo",
+		"vehicleDetails": "Datos de su vehículo",
 		"year": "Año"
 	},
 	"booking": {
@@ -89,8 +89,7 @@
 		"title": "Donar"
 	},
 	"driverProfile": {
-		"title": "El perfil de su conductor",
-		"underReview": "Su envío está todavía en revisión"
+		"title": "El perfil de su conductor"
 	},
 	"find": {
 		"catchPhrase": "Encuentre su próximo viaje por Costa Rica",

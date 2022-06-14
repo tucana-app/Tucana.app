@@ -47,7 +47,7 @@
 		"thankYou": "Thank you for applying. A moderator will review your submission",
 		"titleVehicle": "Your vehicle's information",
 		"underReview": "under review",
-		"vehicleDetails": "Details of the vehicle",
+		"vehicleDetails": "Details about your vehicle",
 		"year": "Year"
 	},
 	"booking": {
@@ -89,8 +89,7 @@
 		"title": "Donate"
 	},
 	"driverProfile": {
-		"title": "Your driver's profile",
-		"underReview": "Your submission is still under review"
+		"title": "Your driver's profile"
 	},
 	"find": {
 		"catchPhrase": "Find your next trip across Costa Rica",

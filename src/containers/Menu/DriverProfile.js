@@ -12,7 +12,7 @@ function DriverProfile(props) {
   const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
-  if (!isLoggedIn || currentUser.Driver === null) {
+  if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
   return (
@@ -28,10 +28,27 @@ function DriverProfile(props) {
           </Col>
         </Row>
 
-        {currentUser.Driver && currentUser.Driver.id ? (
-          <>
-            {/* RATINGS */}
-            {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
+        <Row>
+          <Col xs={12} md={4}>
+            <p className="fw-bold">Your car</p>
+            <p>Maker: {currentUser.Driver.Car.maker}</p>
+            <p>Number Plate: {currentUser.Driver.Car.numberPlate}</p>
+          </Col>
+          <Col xs={12} md={4}>
+            <p className="fw-bold">Your ID</p>
+            <p>ID type: {currentUser.Driver.idType}</p>
+            <p>ID number: {currentUser.Driver.idNumber}</p>
+            <p>ID country: {currentUser.Driver.idCountry}</p>
+          </Col>
+          <Col xs={12} md={4}>
+            <p className="fw-bold">Your licence</p>
+            <p>License number: {currentUser.Driver.licenseNumber}</p>
+            <p>License country: {currentUser.Driver.licenseCountry}</p>
+          </Col>
+        </Row>
+
+        {/* RATINGS */}
+        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
               <Col xs={12} sm={4} className="text-md-end">
                 <h4 className="text-secondary">Rating</h4>
               </Col>
@@ -52,16 +69,6 @@ function DriverProfile(props) {
                 </LinkContainer>
               </Col>
             </Row> */}
-          </>
-        ) : (
-          <Row>
-            <Col className="text-center">
-              <p className="mb-0">
-                {t("translation:driverProfile.underReview")}
-              </p>
-            </Col>
-          </Row>
-        )}
       </Container>
     </div>
   );

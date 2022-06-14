@@ -393,7 +393,14 @@ function userReducer(state = initialState, action) {
         user: {
           ...user,
           Driver: {
+            ...state.user.Driver,
+            Car: action.payload.Car,
             id: action.payload.id,
+            idType: action.payload.idType,
+            idNumber: action.payload.idNumber,
+            idCountry: action.payload.idCountry,
+            licenseNumber: action.payload.licenseNumber,
+            licenseCountry: action.payload.licenseCountry,
           },
         },
         updateDriverStateError: "",
