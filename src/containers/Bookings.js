@@ -88,12 +88,12 @@ const Bookings = () => {
                       </p>
                       <p
                         className={
-                          isDateInPast(booking.Ride.dateTime, new Date())
+                          isDateInPast(booking.Ride.dateTimeOrigin, new Date())
                             ? "text-warning"
                             : null
                         }
                       >
-                        ({dateFormat(booking.Ride.dateTime, "dd/mm/yy")})
+                        ({dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yy")})
                       </p>
                     </Col>
                   </Row>

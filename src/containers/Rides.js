@@ -43,7 +43,7 @@ const Rides = () => {
 
     userBookingsData.map((booking, index) => {
       return booking.BookingStatusId === 3 &&
-        !isDateInPast(booking.Ride.dateTime, new Date())
+        !isDateInPast(booking.Ride.dateTimeOrigin, new Date())
         ? count++
         : null;
     });

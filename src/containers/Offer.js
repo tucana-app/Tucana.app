@@ -67,6 +67,9 @@ const Offer = () => {
   const [price, setPrice] = useState(formOfferRide.price);
   const [comment, setComment] = useState(formOfferRide.comment);
 
+  const timeOrigin = useRef(new Date());
+  const timeDestination = useRef(new Date());
+
   // Steps
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
@@ -165,6 +168,9 @@ const Offer = () => {
         })
       );
     } else {
+      timeOrigin.current.setHours(time.value.slice(0, 2));
+      timeOrigin.current.setMinutes(time.value.slice(3, 5));
+
       setStepFour(false);
       setStepFive(true);
     }
@@ -255,7 +261,7 @@ const Offer = () => {
   const handleSubmit = () => {
     setStepVerify(false);
     setSubmitted(true);
-    dispatch(submitFormOfferRide(currentUser, formOfferRide));
+    dispatch(submitFormOfferRide(currentUser, formOfferRide, getETAData));
   };
 
   // Handlers
@@ -327,6 +333,14 @@ const Offer = () => {
       stopCounterIncrease();
     };
   }, []);
+
+  useEffect(() => {
+    if (getETAData.durationValue) {
+      timeDestination.current.setTime(
+        timeOrigin.current.getTime() + getETAData.durationValue * 1000
+      );
+    }
+  }, [formOfferRide, getETAData]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -655,199 +669,193 @@ const Offer = () => {
             </Row>
           </>
         ) : stepVerify ? (
-          <div className="mb-5">
-            {backButton(handleBackToStepSix)}
+          isLoadingGetETA ? (
+            <LoadingSpinner />
+          ) : (
+            <div className="mb-5">
+              {backButton(handleBackToStepSix)}
 
-            <Row className="mb-3">
-              <Col className="text-center">
-                <h2>{t("translation:offer.summary")}</h2>
-              </Col>
-            </Row>
+              <Row className="mb-3">
+                <Col className="text-center">
+                  <h2>{t("translation:offer.summary")}</h2>
+                </Col>
+              </Row>
 
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="bg-light border shadow rounded-5 mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row className="mb-2">
-                    <Col className="text-center">
-                      <p className="mb-0">
-                        {dateFormat(formOfferRide.date, "dd/mm/yyyy")} -{" "}
-                        {time.label}
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col className="text-center">
-                      <h2 className="fw-bold mb-0">
-                        {formOfferRide.origin.city}
-                      </h2>
-                      <p className="small mb-0">
-                        {formOfferRide.origin.province}
-                      </p>
-
-                      <ArrowDownIcon size={24} className="text-success" />
-
-                      <h2 className="fw-bold mb-0">
-                        {formOfferRide.destination.city}
-                      </h2>
-                      <p className="small mb-0">
-                        {formOfferRide.destination.province}
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="align-items-center mb-3">
-                    <Col className="text-center">
-                      <a
-                        href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:offer.previewTrip")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </Col>
-                  </Row>
-
-                  {isLoadingGetETA ? (
-                    <LoadingSpinner />
-                  ) : (
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="border shadow rounded-5 pb-3 mx-auto"
+                >
+                  <Container className="p-2">
+                    <Row className="mb-3">
+                      <Col className="text-center">
+                        {dateFormat(formOfferRide.date, "dd/mm/yyyy")}
+                      </Col>
+                    </Row>
                     <Row>
-                      <Col xs={6} className="text-center">
-                        <p className="mb-0">
-                          {t("translation:offer.estimatedTime")}
+                      <Col xs={2} className="mt-1 px-0">
+                        <p className="smaller line-height-md text-secondary text-end mb-2">
+                          {dateFormat(timeOrigin.current, "HH:MM TT")}
                         </p>
+                        <p className="smaller fw-bold line-height-md text-secondary text-end mb-0">
+                          {formatTimeSecond(getETAData.durationValue)}
+                        </p>
+                      </Col>
+                      <Col xs={8}>
+                        <p className="line-height-md mb-1">
+                          <strong>{formOfferRide.origin.city}, </strong>
+                          <small>{formOfferRide.origin.province}</small>
+                        </p>
+                        <p className="mb-2">
+                          <ArrowDownIcon size={24} className="text-success" />
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row className="mb-4">
+                      <Col xs={2} className="px-0">
+                        <p className="smaller line-height-md text-secondary text-end mb-0">
+                          {dateFormat(timeDestination.current, "HH:MM TT")}
+                        </p>
+                      </Col>
+                      <Col xs={7}>
+                        <p className="line-height-md mb-0">
+                          <strong>{formOfferRide.destination.city}, </strong>
+                          <small>{formOfferRide.destination.province}</small>
+                        </p>
+                      </Col>
+                      <Col xs={3}></Col>
+                    </Row>
+                    <hr />
+                    <Row className="align-items-center">
+                      <Col xs={12} md={8}>
                         <p className="mb-0">
+                          {t("translation:offer.estimatedTime")}:{" "}
                           <strong>
                             {formatTimeSecond(getETAData.durationValue)}
                           </strong>
                         </p>
-                      </Col>
-                      <Col xs={6} className="text-center">
                         <p className="mb-0">
-                          {t("translation:offer.estimatedDistance")}
-                        </p>
-                        <p className="mb-0">
+                          {t("translation:offer.estimatedDistance")}:{" "}
                           <strong>
                             {formatDistance(getETAData.distanceValue)}
                           </strong>
                         </p>
                       </Col>
+                      <Col xs={12} md={4} className="text-center mt-3 mt-md-0">
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button variant="outline-success" size="sm">
+                            {t("translation:ride.viewTrip")}
+                            <LinkExternalIcon size={18} className="ms-2" />
+                          </Button>
+                        </a>
+                      </Col>
                     </Row>
-                  )}
-                </Container>
-              </Col>
-            </Row>
+                  </Container>
+                </Col>
+              </Row>
 
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="bg-light border shadow rounded-5 mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row>
-                    <Col xs={6} className="text-center">
-                      <p className="mb-0">
-                        {t("translation:global.seat")}
-                        {seats > 1 ? "s" : null}
-                      </p>
-                      <p className="mb-0">
-                        <strong>{seats}</strong>
-                      </p>
-                    </Col>
-                    <Col xs={6} className="text-center ps-0">
-                      <p className="mb-0">{t("translation:global.price")}</p>
-                      <p className="mb-0">
-                        <strong>{formatPrice(price)}</strong>
-                        <small className="text-secondary">
-                          /{t("translation:global.perSeat")}
-                        </small>
-                      </p>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="bg-light border shadow rounded-5 mx-auto"
+                >
+                  <Container className="py-3 px-2">
+                    <Row className="align-items-center">
+                      <Col xs={8}>
+                        <p className="mb-0">
+                          {t("translation:global.price")}:{" "}
+                          <strong>{formatPrice(price)}</strong>
+                          <small className="text-secondary">
+                            /{t("translation:global.perSeat")}
+                          </small>
+                        </p>
+                      </Col>
+                      <Col xs={4} className="">
+                        <p className="mb-0">
+                          {t("translation:global.seat")}
+                          {seats > 1 ? "s" : null}: <strong>{seats}</strong>
+                        </p>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
 
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="bg-light border shadow rounded-5 mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row>
-                    <Col xs={12} className="text-center">
-                      <p>{t("translation:global.comment")}</p>
-                    </Col>
-                  </Row>
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="bg-light border shadow rounded-5 mx-auto"
+                >
+                  <Container className="py-3 px-2">
+                    <Row>
+                      <Col xs={12} className="text-center">
+                        <p>{t("translation:global.comment")}</p>
+                      </Col>
+                    </Row>
 
-                  <Row>
-                    <Col className="text-center">
-                      <Form.Group>
-                        <Form.Control
-                          name="comment"
-                          as="textarea"
-                          rows={2}
-                          type="textarea"
-                          value={comment}
-                          placeholder={t(
-                            "translation:offer.placeholderComment"
-                          )}
-                          className="rounded mb-3"
-                          onChange={handleChangeComment}
-                        />
-                        <Form.Label className="mb-0">
-                          <p className="small text-secondary mb-0">
-                            <AlertIcon
-                              size={24}
-                              className="text-warning me-2"
-                            />
-                            {t("translation:global.doNotShare")}
-                          </p>
-                        </Form.Label>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
+                    <Row>
+                      <Col className="text-center">
+                        <Form.Group>
+                          <Form.Control
+                            name="comment"
+                            as="textarea"
+                            rows={2}
+                            type="textarea"
+                            value={comment}
+                            placeholder={t(
+                              "translation:offer.placeholderComment"
+                            )}
+                            className="rounded mb-3"
+                            onChange={handleChangeComment}
+                          />
+                          <Form.Label className="mb-0">
+                            <p className="small text-secondary mb-0">
+                              <AlertIcon
+                                size={24}
+                                className="text-warning me-2"
+                              />
+                              {t("translation:global.doNotShare")}
+                            </p>
+                          </Form.Label>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
 
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="text-end mx-auto"
-              >
-                <Button onClick={handleSubmit} size={"lg"} variant="success">
-                  {t("translation:global.submit")}
-                </Button>
-              </Col>
-            </Row>
-
-            {/* <Row className="my-5">
-              <Col className="text-end">
-                
-              </Col>
-            </Row> */}
-          </div>
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="text-end mx-auto"
+                >
+                  <Button onClick={handleSubmit} size={"lg"} variant="success">
+                    {t("translation:global.submit")}
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          )
         ) : submitted ? (
           <>
             {isLoadingSubmitFormOfferRide ? (

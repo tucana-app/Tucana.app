@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { PersonCircle } from "react-bootstrap-icons";
 import {
   ChevronRightIcon,
-  ArrowDownIcon,
   // StarFillIcon,
-  CircleIcon,
-  LinkExternalIcon,
 } from "@primer/octicons-react";
-import dateFormat from "dateformat";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
 import ManagePassengerBooking from "../components/ManagePassengerBooking";
@@ -24,9 +21,12 @@ import MessageEmpty from "../components/MessageEmpty";
 import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
 
-import { isDateInPast } from "../helpers";
+import { formatPrice, isDateInPast } from "../helpers";
 
 import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
+
+import car from "../assets/images/car.png";
+import RideDetails from "../components/RideDetails";
 
 const Ride = () => {
   const { t } = useTranslation();
@@ -81,72 +81,18 @@ const Ride = () => {
                 </h1>
               </Col>
             </Row>
-            <Row className="mb-2 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="border shadow-sm rounded mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row className="mb-2">
-                    <Col className="text-center">
-                      <p className="mb-0">
-                        {dateFormat(rideData.ride.dateTime, "dd/mm/yyyy")}
-                      </p>
-                      <p className="fw-bold text-success mb-0">
-                        {dateFormat(rideData.ride.dateTime, "hh:MM TT")}
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col className="text-center">
-                      <h2 className="fw-bold mb-0">
-                        {rideData.ride.origin.city}
-                      </h2>
-                      <p className="small mb-0">
-                        {rideData.ride.origin.province}
-                      </p>
 
-                      <ArrowDownIcon size={24} className="text-success" />
-
-                      <h2 className="fw-bold mb-0">
-                        {rideData.ride.destination.city}
-                      </h2>
-                      <p className="small mb-0">
-                        {rideData.ride.destination.province}
-                      </p>
-                    </Col>
-                  </Row>
-                  <Row className="align-items-center">
-                    <Col className="text-center">
-                      <a
-                        href={`https://www.google.com/maps/dir/?api=1&origin=${rideData.ride.origin.address}&destination=${rideData.ride.destination.address}&travelmode=driving`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button variant="outline-success">
-                          {t("translation:ride.viewTrip")}
-                          <LinkExternalIcon size={24} className="ms-2" />
-                        </Button>
-                      </a>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
+            <RideDetails ride={rideData.ride} />
 
             {!isLoadingRidesToConfirm && rideToConfirm() ? (
-              <Row className="mb-2 mx-1 mx-sm-0">
+              <Row className="mb-3 mx-1 mx-sm-0">
                 <Col
                   xs={12}
                   sm={10}
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border border-2 border-warning shadow-sm rounded mx-auto"
+                  className="border border-2 border-warning shadow rounded-5 mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row>
@@ -163,20 +109,45 @@ const Ride = () => {
               </Row>
             ) : null}
 
-            <Row className="mb-2 mx-1 mx-sm-0">
+            <Row className="mb-3 mx-1 mx-sm-0">
               <Col
                 xs={12}
                 sm={10}
                 md={8}
                 lg={6}
                 xl={4}
-                className="border shadow-sm rounded mx-auto"
+                className="border shadow rounded-5 mx-auto"
               >
                 <Container className="py-3 px-2">
-                  <Row className="align-items-center mb-3">
+                  <Row>
+                    <Col xs={8}>
+                      {t("translation:global.price")}{" "}
+                      {t("translation:global.perSeat")}
+                    </Col>
+                    <Col xs={4} className="text-center">
+                      <strong>{formatPrice(rideData.ride.price)}</strong>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="border shadow rounded-5 mx-auto"
+              >
+                <Container className="py-3 px-2">
+                  <Row>
                     <Col xs={6}>
                       <p className="mb-0">
-                        {t("translation:global.seatsAvailable")}:{" "}
+                        {t("translation:global.seatsAvailable")}:
+                      </p>
+                      <p className="mb-0">
                         <span className="text-success">
                           {rideData.ride.seatsLeft}
                         </span>{" "}
@@ -196,14 +167,16 @@ const Ride = () => {
                       </p>
                     </Col>
                   </Row>
-                  <Row className="align-items-center">
-                    <Col xs={12}>
-                      <p className="mb-0">
-                        {t("translation:global.comment")}: "
-                        {rideData.ride.comment}"
-                      </p>
-                    </Col>
-                  </Row>
+                  {!(rideData.ride.comment === "") ? (
+                    <Row className="mt-3">
+                      <Col>
+                        <p className="mb-0">
+                          {t("translation:global.comment")}:{" "}
+                          {rideData.ride.comment}
+                        </p>
+                      </Col>
+                    </Row>
+                  ) : null}
                 </Container>
               </Col>
             </Row>
@@ -211,23 +184,26 @@ const Ride = () => {
             {/* Display past booking for this ride by this user */}
             {!(rideData.ride.DriverId === currentUser.id) ? (
               <>
-                <Row className="mb-2 mx-1 mx-sm-0">
+                <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
                     sm={10}
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow-sm rounded mx-auto"
+                    className="border shadow rounded-5 mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
                         to="/coming-soon"
                         className="cursor-pointer"
                       >
-                        <Row className="align-items-center mb-3">
+                        <Row className="align-items-center">
                           <Col xs={3} md={2} className="text-end pe-0">
-                            <CircleIcon size={56} className="text-secondary" />
+                            <PersonCircle
+                              size={48}
+                              className="text-secondary"
+                            />
                           </Col>
                           <Col xs={6} className="text-start">
                             <p className="mb-0">
@@ -254,6 +230,7 @@ const Ride = () => {
                       </LinkContainer>
                       <Row>
                         <Col>
+                          <hr />
                           <SendMessageButton
                             type="link"
                             driverId={rideData.ride.DriverId}
@@ -261,33 +238,36 @@ const Ride = () => {
                             receiverName={rideData.ride.Driver.User.firstName}
                             rideId={rideData.ride}
                           />
+                          <hr />
                         </Col>
                       </Row>
-                      {!(rideData.ride.comment === "") ? (
-                        <Row>
-                          <Col>
-                            <hr />
-                            <p className="mb-0">
-                              {t("translation:global.comment")}:{" "}
-                              {rideData.ride.comment}
-                            </p>
-                          </Col>
-                        </Row>
-                      ) : null}
+                      <Row className="align-items-center">
+                        <Col xs={3} md={2} className="text-center pe-0">
+                          <img src={car} alt="" height={36} />
+                        </Col>
+                        <Col>
+                          <p className="lead mb-0">
+                            {t("translation:global.vehicle")}
+                          </p>
+                          <p className="mb-0">
+                            {rideData.ride.Driver.Car.maker}
+                          </p>
+                        </Col>
+                      </Row>
                     </Container>
                   </Col>
                 </Row>
 
                 {!isloadingUserRideBookingList &&
                 userRideBookingData.length > 0 ? (
-                  <Row className="mb-2 mx-1 mx-sm-0">
+                  <Row className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}
                       sm={10}
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow-sm rounded mx-auto"
+                      className="border shadow rounded-5 mx-auto"
                     >
                       <Container className="py-3 px-2">
                         <Row>
@@ -306,8 +286,10 @@ const Ride = () => {
 
                 {/* If it is not a past ride, and if there are still */}
                 {/* seats left, users can book */}
-                {!isDateInPast(new Date(rideData.ride.dateTime), new Date()) &&
-                rideData.ride.seatsLeft > 0 ? (
+                {!isDateInPast(
+                  new Date(rideData.ride.dateTimeOrigin),
+                  new Date()
+                ) && rideData.ride.seatsLeft > 0 ? (
                   <Row className="mb-2 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -315,7 +297,7 @@ const Ride = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow-sm rounded mx-auto"
+                      className="border shadow rounded-5 mx-auto"
                     >
                       <Container className="py-3 px-2">
                         <Row>
@@ -334,14 +316,14 @@ const Ride = () => {
               </>
             ) : (
               <>
-                <Row className="mb-2 mx-1 mx-sm-0">
+                <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
                     sm={10}
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow-sm rounded mx-auto"
+                    className="border shadow rounded-5 mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <Row>
@@ -357,8 +339,10 @@ const Ride = () => {
                   </Col>
                 </Row>
 
-                {!isDateInPast(new Date(rideData.ride.dateTime), new Date()) &&
-                rideData.ride.seatsLeft === 0 ? (
+                {!isDateInPast(
+                  new Date(rideData.ride.dateTimeOrigin),
+                  new Date()
+                ) && rideData.ride.seatsLeft === 0 ? (
                   <Row className="mb-2 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -366,7 +350,7 @@ const Ride = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border border-success shadow-sm rounded mx-auto"
+                      className="border border-success shadow rounded-5 mx-auto"
                     >
                       <Container fluid className="p-2">
                         <Row>
@@ -391,7 +375,7 @@ const Ride = () => {
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow-sm rounded mx-auto"
+                    className="border shadow rounded-5 mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <Row>

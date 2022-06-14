@@ -138,7 +138,7 @@ const Find = () => {
                           <Row className="mb-3">
                             <Col className="text-center">
                               {dateFormat(
-                                ride.rideDetails.dateTime,
+                                ride.rideDetails.dateTimeOrigin,
                                 "dd/mm/yyyy"
                               )}
                             </Col>
@@ -147,7 +147,7 @@ const Find = () => {
                             <Col xs={2} className="mt-1 px-0">
                               <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
-                                  ride.rideDetails.dateTime,
+                                  ride.rideDetails.dateTimeOrigin,
                                   "hh:MM TT"
                                 )}
                               </p>
@@ -196,7 +196,7 @@ const Find = () => {
                             <Col xs={2} className="px-0">
                               <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
-                                  ride.rideDetails.dateTime,
+                                  ride.rideDetails.dateTimeOrigin,
                                   "hh:MM TT"
                                 )}
                               </p>

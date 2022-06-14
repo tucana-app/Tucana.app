@@ -227,22 +227,32 @@ export const submitFormOfferRideRequested = () => {
   };
 };
 
-export const submitFormOfferRide = (user, formOfferRide) => {
+export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
   return (dispatch) => {
     dispatch(submitFormOfferRideRequested());
 
     const parsingResult = parseText(formOfferRide.comment);
 
+    // Formatting origin date & time
     const time = formOfferRide.time.value;
     const hours = time.slice(0, time.search(":"));
     const minutes = time.slice(time.search(":") + 1);
-    var dateFormatted = formOfferRide.date.setHours(hours);
-    dateFormatted = formOfferRide.date.setMinutes(minutes);
+    var dateTimeOrigin = formOfferRide.date.setHours(hours);
+    dateTimeOrigin = formOfferRide.date.setMinutes(minutes);
+    dateTimeOrigin = new Date(dateTimeOrigin);
+
+    // Formatting destination date & time
+    var dateTimeDestination = new Date();
+    dateTimeDestination.setTime(
+      dateTimeOrigin.getTime() + ETAdata.durationValue * 1000
+    );
 
     if (parsingResult.value === 0) {
       formOfferRide = {
         ...formOfferRide,
-        dateTime: new Date(dateFormatted),
+        dateTimeOrigin,
+        dateTimeDestination,
+        ETAdata,
       };
 
       axios

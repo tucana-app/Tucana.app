@@ -73,7 +73,7 @@ export const countDriverRides = (driverRidesData) => {
 
   driverRidesData.map((ride, index) => {
     return (ride.RideStatusId === 1 || ride.RideStatusId === 2) &&
-      !isDateInPast(ride.dateTime, new Date())
+      !isDateInPast(ride.dateTimeOrigin, new Date())
       ? count++
       : null;
   });
@@ -87,7 +87,7 @@ export const countDriverBookings = (driverBookingsData) => {
   driverBookingsData.map((booking, index) => {
     return booking.Ride.seatsLeft !== 0 &&
       booking.BookingStatusId === 1 &&
-      !isDateInPast(booking.Ride.dateTime, new Date())
+      !isDateInPast(booking.Ride.dateTimeOrigin, new Date())
       ? count++
       : null;
   });
@@ -142,12 +142,12 @@ export const getArrayTimeRide = () => {
 };
 
 export const formatTimeSecond = (seconds) => {
-  //Get hours from seconds
+  // Get hours from seconds
   let hours = seconds / (60 * 60);
   let absoluteHours = Math.floor(hours);
   let h = absoluteHours > 9 ? absoluteHours : "0" + absoluteHours;
 
-  //Get remainder from hours and convert to minutes
+  // Get remainder from hours and convert to minutes
   let minutes = (hours - absoluteHours) * 60;
   let absoluteMinutes = Math.floor(minutes);
   let m = absoluteMinutes > 9 ? absoluteMinutes : "0" + absoluteMinutes;

@@ -31,7 +31,7 @@
 		"apply": "Postuler",
 		"color": "Couleur",
 		"countryIssue": "Pays d'émission",
-		"disclaimer": "Nous ne divulguons aucune d'informations sur votre pays d'origine. Ceci est uniquement à des fins de vérification",
+		"disclaimer": "Nous ne divulguons aucune information sur votre pays d'origine. Ceci est uniquement à des fins de vérification",
 		"drivingLicense": "Permis de conduire",
 		"identification": "Identification",
 		"licenseNumber": "Numéro du permis de conduire",
@@ -208,6 +208,7 @@
 		"time": "heure",
 		"to": "À l'adresse suivante :",
 		"username": "Nom d'utilisateur",
+		"vehicle": "Véhicule",
 		"verify": "vérifier",
 		"view": "Voir",
 		"yes": "Oui"

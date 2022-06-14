@@ -110,7 +110,7 @@ const Notifications = () => {
                 <span className="text-success">
                   {request.Ride.destination.city}
                 </span>{" "}
-                ({dateFormat(request.Ride.dateTime, "dd/mm/yyyy")}) -{" "}
+                ({dateFormat(request.Ride.dateTimeOrigin, "dd/mm/yyyy")}) -{" "}
                 {t("translation:global.seat")}
                 {request.seatsBooked > 1 ? "s" : null} booked:{" "}
                 <span className="text-success">{request.seatsBooked}</span> /{" "}
@@ -156,7 +156,7 @@ const Notifications = () => {
                 <span className="text-success">
                   {booking.Ride.destination.city}
                 </span>{" "}
-                ({dateFormat(booking.Ride.dateTime, "dd/mm/yyyy")}){" "}
+                ({dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yyyy")}){" "}
                 <span>
                   {t("translation:global.by")}{" "}
                   <span className="text-success">

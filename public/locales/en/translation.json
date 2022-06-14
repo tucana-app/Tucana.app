@@ -31,7 +31,7 @@
 		"apply": "Apply",
 		"color": "Color",
 		"countryIssue": "Country of issue",
-		"disclaimer": "We do not any disclose information about your country of origin. This is solely for verification purposes",
+		"disclaimer": "We do not disclose any information about your country of origin. This is solely for verification purposes",
 		"drivingLicense": "Driving license",
 		"identification": "Identification",
 		"licenseNumber": "Driving license's number",
@@ -208,6 +208,7 @@
 		"time": "Time",
 		"to": "To",
 		"username": "Username",
+		"vehicle": "Vehicle",
 		"verify": "Verify",
 		"view": "View",
 		"yes": "Yes"

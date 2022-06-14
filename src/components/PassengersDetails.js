@@ -64,7 +64,16 @@ const PassengersDetails = ({ rideId, booking }) => {
                   {booking.seatsBooked > 1 ? "s" : null}:{" "}
                   <span className="text-success">{booking.seatsBooked}</span>{" "}
                 </p>
-                <div className="text-end">
+                <div className="d-xs-screen text-end">
+                  <SendMessageButton
+                    type="button"
+                    driverId={booking.DriverId}
+                    userId={booking.UserId}
+                    receiverName={booking.User.firstName}
+                    rideId={booking.Ride}
+                  />
+                </div>
+                <div className="d-md-screen text-end">
                   <SendMessageButton
                     type="link"
                     driverId={booking.DriverId}

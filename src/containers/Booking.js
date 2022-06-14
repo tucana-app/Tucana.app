@@ -8,7 +8,6 @@ import {
   CircleIcon,
   // StarFillIcon,
   ChevronRightIcon,
-  ArrowDownIcon,
 } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
@@ -21,6 +20,7 @@ import SendMessageButton from "../components/SendMessageButton";
 
 import { getBooking } from "../redux";
 import { isEmptyObject, isDateInPast } from "../helpers";
+import RideDetails from "../components/RideDetails";
 
 const Booking = () => {
   const { t } = useTranslation();
@@ -63,14 +63,14 @@ const Booking = () => {
                 {t("translation:booking.title")}
               </h2>
 
-              <Row className="mb-2 mx-1 mx-sm-0">
+              <Row className="mb-3 mx-1 mx-sm-0">
                 <Col
                   xs={12}
                   sm={10}
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border shadow-sm rounded mx-auto"
+                  className="border shadow rounded-5 mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
@@ -95,7 +95,10 @@ const Booking = () => {
                             {bookingData.Ride.destination.city}
                           </span>{" "}
                           {t("translation:booking.summary4")}{" "}
-                          {dateFormat(bookingData.Ride.dateTime, "dd/mm/yy")}
+                          {dateFormat(
+                            bookingData.Ride.dateTimeOrigin,
+                            "dd/mm/yy"
+                          )}
                         </p>
                         <p className="mb-0">
                           {t("translation:global.status")}:{" "}
@@ -147,16 +150,16 @@ const Booking = () => {
               {/* If not a past booking */}
               {/* and the booking is still pending approval */}
               {currentUser.id === bookingData.DriverId &&
-              !isDateInPast(bookingData.Ride.dateTime, new Date()) &&
+              !isDateInPast(bookingData.Ride.dateTimeOrigin, new Date()) &&
               bookingData.BookingStatusId === 1 ? (
-                <Row className="mb-2 mx-1 mx-sm-0">
+                <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
                     sm={10}
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow-sm rounded mx-auto"
+                    className="border shadow rounded-5 mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <FormDriverResponseBooking bookingId={bookingId} />
@@ -173,7 +176,7 @@ const Booking = () => {
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow-sm rounded mx-auto"
+                    className="border shadow rounded-5 mx-auto"
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
@@ -231,57 +234,16 @@ const Booking = () => {
                 {t("translation:booking.rideDetails")}
               </h2>
 
-              <Row className="mb-2 mx-1 mx-sm-0">
+              <RideDetails ride={bookingData.Ride} />
+
+              <Row className="mb-3 mx-1 mx-sm-0">
                 <Col
                   xs={12}
                   sm={10}
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border shadow-sm rounded mx-auto"
-                >
-                  <Container className="py-3 px-2">
-                    <Row className="mb-2">
-                      <Col className="text-center">
-                        <p className="mb-0">
-                          {dateFormat(bookingData.Ride.dateTime, "dd/mm/yyyy")}
-                        </p>
-                        <p className="fw-bold text-success mb-0">
-                          {dateFormat(bookingData.Ride.dateTime, "hh:MM TT")}
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="text-center">
-                        <h2 className="fw-bold mb-0">
-                          {bookingData.Ride.origin.city}
-                        </h2>
-                        <p className="small mb-0">
-                          {bookingData.Ride.origin.province}
-                        </p>
-
-                        <ArrowDownIcon size={24} className="text-success" />
-
-                        <h2 className="fw-bold mb-0">
-                          {bookingData.Ride.destination.city}
-                        </h2>
-                        <p className="small mb-0">
-                          {bookingData.Ride.destination.province}
-                        </p>
-                      </Col>
-                    </Row>
-                  </Container>
-                </Col>
-              </Row>
-
-              <Row className="mb-2 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  xl={4}
-                  className="border shadow-sm rounded mx-auto"
+                  className="border shadow rounded-5 mx-auto"
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
@@ -309,28 +271,14 @@ const Booking = () => {
                         </p>
                       </Col>
                     </Row>
-                  </Container>
-                </Col>
-              </Row>
-
-              <Row className="mb-2 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  xl={4}
-                  className="border shadow-sm rounded mx-auto"
-                >
-                  <Container className="py-3 px-2">
-                    <Row>
+                    <Row className="mt-3">
                       <Col className="text-center">
                         <LinkContainer
                           to={`/ride/${bookingData.RideId}`}
                           className="cursor-pointer"
                         >
                           <Button variant="success">
-                            {t("translation:global.more")}
+                            {t("translation:global.seeRide")}
                           </Button>
                         </LinkContainer>
                       </Col>

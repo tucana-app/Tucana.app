@@ -29,7 +29,7 @@ function ManagePassengerBooking({ rideId }) {
                   {dateFormat(booking.createdAt, "dd/mm")}:{" "}
                   {t("translation:global.seat")}
                   {booking.seatsBooked > 1 ? "s" : null}:{" "}
-                  <span className="text-success">{booking.seatsBooked}</span> |
+                  <span className="text-success">{booking.seatsBooked}</span> |{" "}
                   {t("translation:global.status")}:{" "}
                   <span
                     className={`text-${bookingStatusVariant(

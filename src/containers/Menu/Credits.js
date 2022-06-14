@@ -39,6 +39,14 @@ const Credits = () => {
                 </a>{" "}
                 on Unsplash
               </ListGroup.Item>
+              <ListGroup.Item>
+                <a
+                  href="https://www.flaticon.com/free-icons/car"
+                  title="car icons"
+                >
+                  Car icons created by Kiranshastry - Flaticon
+                </a>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>

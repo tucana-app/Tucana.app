@@ -68,7 +68,7 @@ function RidesToConfirm() {
                             className="text-danger me-2"
                           />
                           {ride.origin.city} - {ride.destination.city} (
-                          {dateFormat(ride.dateTime, "dd/mm/yyyy")})
+                          {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")})
                         </span>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>

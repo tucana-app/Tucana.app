@@ -63,7 +63,7 @@ const RidesBookings = () => {
             {driverBookingsData.length > 0 ? (
               <>
                 {driverBookingsData.map((booking, index) =>
-                  !isDateInPast(booking.Ride.dateTime, new Date()) &&
+                  !isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
                   booking.BookingStatusId < 3 &&
                   booking.Ride.seatsLeft > 0 ? (
                     <Row key={index} className="mb-2 mx-1 mx-sm-0">

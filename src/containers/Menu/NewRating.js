@@ -148,7 +148,7 @@ const NewRating = () => {
                               <p className="mb-2">
                                 {t("translation:global.date")}:{" "}
                                 {dateFormat(
-                                  ridePassenger.dateTime,
+                                  ridePassenger.dateTimeOrigin,
                                   "dd/mm/yyyy"
                                 )}
                               </p>
@@ -448,7 +448,10 @@ const NewRating = () => {
                               </p>
                               <p className="mb-2">
                                 Date:{" "}
-                                {dateFormat(rideDriver.dateTime, "dd/mm/yyyy")}
+                                {dateFormat(
+                                  rideDriver.dateTimeOrigin,
+                                  "dd/mm/yyyy"
+                                )}
                               </p>
                               <Link to={`/ride/${rideDriver.id}`}>
                                 <Button variant="outline-success">
