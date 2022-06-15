@@ -62,11 +62,9 @@ function RatingsPassenger() {
       </Container>
 
       {isLoadingGetRatingsToDoPassenger ? (
-        <Row>
-          <Col className="text-center">
-            <LoadingSpinner />
-          </Col>
-        </Row>
+        <div className="text-center">
+          <LoadingSpinner />
+        </div>
       ) : getRatingsToDoPassengerData.length ? (
         <ListGroup variant="flush" className="mb-2">
           <Link to="/ratings" className="text-decoration-none">
@@ -93,7 +91,9 @@ function RatingsPassenger() {
       <Tabs className="tabRating mb-3" defaultActiveKey="received">
         <Tab eventKey="received" title="Received" className="mx-auto">
           {isLoadingGetRatingsReceivedPassenger ? (
-            <LoadingSpinner />
+            <div className="text-center">
+              <LoadingSpinner />
+            </div>
           ) : !getRatingsReceivedPassengerData.length ? (
             <Container>
               <Row>
@@ -108,7 +108,9 @@ function RatingsPassenger() {
         </Tab>
         <Tab eventKey="given" title="Given">
           {isLoadingGetRatingsGivenPassenger ? (
-            <LoadingSpinner />
+            <div className="text-center">
+              <LoadingSpinner />
+            </div>
           ) : !getRatingsGivenPassengerData.length ? (
             <Container>
               <Row>

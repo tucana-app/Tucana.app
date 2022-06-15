@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -62,10 +62,9 @@ function RidesToConfirm() {
                     <ListGroup.Item className="border border-start-0 border-end-0 ">
                       <div className="d-inline-flex justify-content-between w-100 py-2">
                         <span>
-                          <CircleIcon
-                            size={12}
-                            verticalAlign="middle"
-                            className="text-danger me-2"
+                          <DotFillIcon
+                            size={24}
+                            className="text-success me-2"
                           />
                           {ride.origin.city} - {ride.destination.city}{" "}
                           <small>

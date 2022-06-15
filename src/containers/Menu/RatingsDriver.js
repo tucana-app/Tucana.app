@@ -61,13 +61,7 @@ function RatingsDriver() {
         </Row>
       </Container>
 
-      {isLoadingGetRatingsToDoDriver ? (
-        <Row>
-          <Col className="text-center">
-            <LoadingSpinner />
-          </Col>
-        </Row>
-      ) : getRatingsToDoDriverData.length ? (
+      {!isLoadingGetRatingsToDoDriver && getRatingsToDoDriverData.length ? (
         <ListGroup variant="flush" className="mb-2">
           <Link to="/ratings" className="text-decoration-none">
             <ListGroup.Item className="border border-start-0 border-end-0 ">
@@ -93,7 +87,9 @@ function RatingsDriver() {
       <Tabs className="tabRating mb-3" defaultActiveKey="received">
         <Tab eventKey="received" title="Received" className="mx-auto">
           {isLoadingGetRatingsReceivedDriver ? (
-            <LoadingSpinner />
+            <div className="text-center">
+              <LoadingSpinner />
+            </div>
           ) : !getRatingsReceivedDriverData.length ? (
             <Container>
               <Row>
@@ -106,9 +102,12 @@ function RatingsDriver() {
             </Container>
           ) : null}
         </Tab>
+        {console.log(getRatingsGivenDriverData)}
         <Tab eventKey="given" title="Given">
           {isLoadingGetRatingsGivenDriver ? (
-            <LoadingSpinner />
+            <div className="text-center">
+              <LoadingSpinner />
+            </div>
           ) : !getRatingsGivenDriverData.length ? (
             <Container>
               <Row>
@@ -119,7 +118,19 @@ function RatingsDriver() {
                 </Col>
               </Row>
             </Container>
-          ) : null}
+          ) : getRatingsGivenDriverData.length > 0 ? (
+            getRatingsGivenDriverData.map((rating) => (
+              <>
+                {rating.admin_VerifPassengerRating ? (
+                  <p>
+                    {rating.BookingId} - {rating.RideId}
+                  </p>
+                ) : null}
+              </>
+            ))
+          ) : (
+            <p>No ratings found</p>
+          )}
         </Tab>
       </Tabs>
     </div>

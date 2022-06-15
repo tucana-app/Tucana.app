@@ -17,7 +17,6 @@ import FormBookRide from "../components/FormBookRide";
 
 import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
-import MessageEmpty from "../components/MessageEmpty";
 import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
 
