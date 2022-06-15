@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import { ChevronRightIcon, CircleIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
-import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
@@ -47,7 +46,7 @@ function Ratings() {
           </Col>
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col
             xs={12}
             sm={10}
@@ -83,7 +82,7 @@ function Ratings() {
               </Row>
             </Container>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
 
       {(!isLoadingGetRatingsToDoPassenger || !isLoadingGetRatingsToDoDriver) &&
@@ -146,7 +145,15 @@ function Ratings() {
             </Col>
           </Row>
         </Container>
-      ) : null}
+      ) : (
+        <Container>
+          <Row>
+            <Col className="text-center">
+              <p>{t("translation:ratings.noRatings")}</p>
+            </Col>
+          </Row>
+        </Container>
+      )}
     </div>
   );
 }

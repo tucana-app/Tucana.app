@@ -388,7 +388,7 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: response.data.message,
+              bodyText: "Rating submitted for review by a moderator",
               variant: "success",
             })
           );
@@ -470,7 +470,7 @@ export const submitDriverRatingForm = (ride, note, comment) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: response.data.message,
+              bodyText: "Rating submitted for review by a moderator",
               variant: "success",
             })
           );

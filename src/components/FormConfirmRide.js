@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Alert } from "react-bootstrap";
-// import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   ArrowLeftIcon,
   XIcon,
   CheckIcon,
-  // StarFillIcon,
+  StarFillIcon,
 } from "@primer/octicons-react";
 
 import { submitFormConfirmRide } from "../redux";
+import { LinkContainer } from "react-router-bootstrap";
 
 const FormConfirmRide = ({ ride }) => {
   const { t } = useTranslation();
@@ -113,19 +113,33 @@ const FormConfirmRide = ({ ride }) => {
           {submitFormConfirmRideError}
         </Alert>
       ) : (
-        <>
-          <Alert variant="success" className="text-center">
-            <p className="mb-0">{submitFormConfirmRideData.message}</p>
-            {/* RATINGS */}
-            {/* <p className="mb-0">
-              You can now rate the other person:{" "}
-              <Link to="/ratings" className="link-primary">
-                <StarFillIcon size={24} className="text-warning me-2" />
-                Ratings
-              </Link>{" "}
-            </p> */}
-          </Alert>
-        </>
+        <Row data-aos="fade-in">
+          <Col xs={12} className="text-center">
+            <p>{t("translation:ride.answer")}</p>
+          </Col>
+          <Col xs={12} md={6} className="text-center text-md-end mb-3 mb-md-0">
+            <LinkContainer to="/ratings">
+              <Button variant="success" className="hvr-icon-grow me-2">
+                {t("translation:ride.rateRide")}
+                <StarFillIcon
+                  size={24}
+                  className="hvr-icon text-warning ms-2"
+                />
+              </Button>
+            </LinkContainer>
+          </Col>
+          <Col xs={12} md={6} className="text-center text-md-start">
+            <a
+              href="https://forms.gle/Fi5ek3ZTATc1DcG36"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="warning">
+                {t("translation:ride.feedback")}
+              </Button>
+            </a>
+          </Col>
+        </Row>
       )}
     </>
   );

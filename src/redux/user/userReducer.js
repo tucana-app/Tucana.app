@@ -102,7 +102,7 @@ function userReducer(state = initialState, action) {
 
     case userTypes.LOGIN_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         isloadingLogin: false,
         isLoggedIn: true,
         user: action.payload,

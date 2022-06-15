@@ -283,7 +283,7 @@
 	},
 	"newRating": {
 		"rideSummary": "Résumé de la randonnée",
-		"title": "Donnez une note",
+		"title": "Noter votre trajet",
 		"typeComment": "Tapez votre commentaire ici"
 	},
 	"notifications": {
@@ -324,6 +324,7 @@
 	"ratings": {
 		"asDriver": "En tant que conducteur",
 		"asPassenger": "En tant que passager",
+		"noRatings": "Aucune note trouvée",
 		"noRatingsYou": "Il semble que personne ne vous ait encore laissé d'évaluation.",
 		"noYouRatings": "Il semble que vous n'ayez pas encore laissé d'évaluation.",
 		"title": "Notations",
@@ -344,8 +345,11 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
+		"answer": "Ta réponse a été envoyée",
 		"bookThisRide": "Réservez ce tour",
+		"feedback": "Laisse-nous un commentaire",
 		"manageBookingRequests": "Gérez vos demandes de réservation",
+		"rateRide": "Note ton trajet",
 		"reviewRide": "Revoir le trajet",
 		"title": "Ride",
 		"viewTrip": "Voir le voyage"

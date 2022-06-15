@@ -283,7 +283,7 @@
 	},
 	"newRating": {
 		"rideSummary": "Ride summary",
-		"title": "Give a rating",
+		"title": "Note your ride",
 		"typeComment": "Type your comment here"
 	},
 	"notifications": {
@@ -324,6 +324,7 @@
 	"ratings": {
 		"asDriver": "As a driver",
 		"asPassenger": "As a passenger",
+		"noRatings": "No ratings found",
 		"noRatingsYou": "It seems that no one has left you a rating yet",
 		"noYouRatings": "It seems that you haven't left a rating yet",
 		"title": "Ratings",
@@ -344,8 +345,11 @@
 	},
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
+		"answer": "Your answer has been submitted",
 		"bookThisRide": "Book this ride",
+		"feedback": "Leave us a feedback",
 		"manageBookingRequests": "Manage your booking requests",
+		"rateRide": "Rate your ride",
 		"reviewRide": "Review the ride",
 		"title": "Ride",
 		"viewTrip": "View trip"

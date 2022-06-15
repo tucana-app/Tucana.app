@@ -283,7 +283,7 @@
 	},
 	"newRating": {
 		"rideSummary": "Resumen del viaje",
-		"title": "Dar una calificación",
+		"title": "Califica tu viaje",
 		"typeComment": "Escriba su comentario aquí"
 	},
 	"notifications": {
@@ -324,6 +324,7 @@
 	"ratings": {
 		"asDriver": "Como conductor",
 		"asPassenger": "Como pasajero",
+		"noRatings": "No se han encontrado calificaciones",
 		"noRatingsYou": "Parece que nadie te ha dejado una valoración todavía",
 		"noYouRatings": "Parece que aún no has dejado una valoración",
 		"title": "Clasificaciones",
@@ -344,8 +345,11 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
+		"answer": "Tu respuesta ha sido enviada",
 		"bookThisRide": "Reservar este viaje",
+		"feedback": "Déjanos un comentario",
 		"manageBookingRequests": "Gestione sus solicitudes de reserva",
+		"rateRide": "Clasifica tu ride",
 		"reviewRide": "Revisar el viaje",
 		"title": "Montar",
 		"viewTrip": "Ver viaje"

@@ -1090,18 +1090,38 @@ export const submitFormConfirmRideRequested = () => {
   };
 };
 
-export const submitFormConfirmRide = (user, ride, isRideHappened) => {
+export const submitFormConfirmRide = (user, ride, isConfirmed) => {
   return (dispatch) => {
     dispatch(submitFormConfirmRideRequested());
 
     axios
       .post(URL_API + "/ride/form-confirm-ride", {
-        userId: user.id,
-        ride: ride,
-        isRideHappened,
+        user,
+        ride,
+        isConfirmed,
       })
       .then((response) => {
         // console.log(response.message);
+
+        if (isConfirmed) {
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "You have confirmed the ride",
+              variant: "success",
+            })
+          );
+        } else {
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "You have rejected the ride",
+              variant: "warning",
+            })
+          );
+        }
 
         dispatch(submitFormConfirmRideSuccess(response.data));
       })
