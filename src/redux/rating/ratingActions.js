@@ -359,7 +359,7 @@ export const getRatingsToDoDriverFail = (error) => {
   };
 };
 
-// Submit passenger rating's form
+// Submit passenger's rating form
 
 export const submitPassengerRatingFormRequested = () => {
   return {
@@ -441,7 +441,7 @@ export const submitPassengerRatingFormFail = (error) => {
   };
 };
 
-// Submit driver rating's form
+// Submit driver's rating form
 
 export const submitDriverRatingFormRequested = () => {
   return {

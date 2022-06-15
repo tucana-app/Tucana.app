@@ -31,9 +31,7 @@ body {
   cursor: pointer;
 }
 
-.tabRating {
-  @extend .border-0;
-
+.tab-rating {
   .nav-item {
     @extend .col;
     @extend .border-0;
@@ -44,11 +42,17 @@ body {
       @extend .border-top-0;
       @extend .border-start-0;
       @extend .border-end-0;
-    }
+      @extend .text-success;
 
-    .active {
-      @extend .border-3;
-      @extend .border-success;
+      &.active {
+        @extend .text-dark;
+        @extend .border-3;
+        @extend .border-success;
+      }
+
+      &:not(.active):hover {
+        @extend .border-bottom-0;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
@@ -9,6 +9,7 @@ import dateFormat from "dateformat";
 import GoBack from "../../components/GoBack";
 
 import { getRatingsToDoDriver, getRatingsToDoPassenger } from "../../redux";
+import { LinkContainer } from "react-router-bootstrap";
 
 function Ratings() {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ function Ratings() {
       <GoBack />
 
       <Container>
-        <Row className="mb-5">
+        <Row className="mb-3">
           <Col>
             <h1 className="title text-center">
               {t("translation:ratings.title")}
@@ -46,7 +47,7 @@ function Ratings() {
           </Col>
         </Row>
 
-        {/* <Row>
+        <Row>
           <Col
             xs={12}
             sm={10}
@@ -58,22 +59,34 @@ function Ratings() {
             <Container className="p-0">
               <Row>
                 <Col>
-                  <h2 className="text-info mb-0">-</h2>
+                  <h1 className="fw-bold mb-0">
+                    {currentUser.passengerRating > 0 ? (
+                      <span>{currentUser.passengerRating}</span>
+                    ) : (
+                      <span>-</span>
+                    )}
+                  </h1>
                   <p className="lead">{t("translation:global.passenger")}</p>
 
                   <LinkContainer to="/profile/passenger/ratings">
-                    <Button variant="info" size={"lg"}>
+                    <Button variant="success" size={"lg"}>
                       {t("translation:global.view")}
                     </Button>
                   </LinkContainer>
                 </Col>
                 {currentUser.Driver ? (
                   <Col>
-                    <h2 className="text-warning mb-0">-</h2>
+                    <h1 className="fw-bold mb-0">
+                      {currentUser.driverRating > 0 ? (
+                        <span>{currentUser.driverRating}</span>
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </h1>
                     <p className="lead">{t("translation:global.driver")}</p>
 
                     <LinkContainer to="/profile/driver/ratings">
-                      <Button variant="warning" size={"lg"}>
+                      <Button variant="success" size={"lg"}>
                         {t("translation:global.view")}
                       </Button>
                     </LinkContainer>
@@ -82,7 +95,7 @@ function Ratings() {
               </Row>
             </Container>
           </Col>
-        </Row> */}
+        </Row>
       </Container>
 
       {(!isLoadingGetRatingsToDoPassenger || !isLoadingGetRatingsToDoDriver) &&
@@ -143,15 +156,7 @@ function Ratings() {
             </Col>
           </Row>
         </Container>
-      ) : (
-        <Container>
-          <Row>
-            <Col className="text-center">
-              <p>{t("translation:ratings.noRatings")}</p>
-            </Col>
-          </Row>
-        </Container>
-      )}
+      ) : null}
     </div>
   );
 }

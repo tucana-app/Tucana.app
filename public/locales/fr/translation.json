@@ -149,6 +149,7 @@
 		"firstName": "Prénom",
 		"from": "à partir de",
 		"fullname": "Nom et prénom",
+		"given": "Laissés",
 		"goBack": "Retour en arrière",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
@@ -179,6 +180,7 @@
 		"perSeat": "par siège",
 		"price": "Prix",
 		"province": "province",
+		"received": "Reçus",
 		"refundPolicy": "Politique de remboursement",
 		"refuse": "Refuser",
 		"refused": "refus",
@@ -260,7 +262,7 @@
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"profile": "Profil",
-		"ratings": "Notations",
+		"ratings": "Avis",
 		"refunds": "Remboursements"
 	},
 	"messageEmpty": {
@@ -327,7 +329,7 @@
 		"noRatings": "Aucune note trouvée",
 		"noRatingsYou": "Il semble que personne ne vous ait encore laissé d'évaluation.",
 		"noYouRatings": "Il semble que vous n'ayez pas encore laissé d'évaluation.",
-		"title": "Notations",
+		"title": "Avis",
 		"toDo": "Cotes à faire"
 	},
 	"refundPolicy": {

@@ -220,6 +220,9 @@ export const login = (formLogin) => {
 
           dispatch(getDriverNewRidesRequests(response.data.id));
         } else {
+          // If a flag is provided, if not default is "ERROR"
+          const flag = response.data.flag || "ERROR";
+
           dispatch(
             setToast({
               show: true,
@@ -228,6 +231,13 @@ export const login = (formLogin) => {
               variant: "danger",
             })
           );
+
+          dispatch({
+            type: userTypes.LOGIN_FAIL,
+            payload: {
+              flag,
+            },
+          });
         }
       })
       .catch((error) => {
