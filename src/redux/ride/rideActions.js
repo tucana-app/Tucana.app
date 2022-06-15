@@ -341,34 +341,38 @@ export const getRide = (rideId) => {
       .then((response) => {
         // console.log(response);
 
-        // Render the list of option for the number of seats available
-        const optionsSeatsNeeded = [];
+        if (response.data) {
+          // Render the list of option for the number of seats available
+          const optionsSeatsNeeded = [];
 
-        for (let i = 1; i <= response.data.seatsLeft; i++) {
-          optionsSeatsNeeded.push(
-            <option key={i} value={i}>
-              {i}
-            </option>
+          for (let i = 1; i <= response.data.seatsLeft; i++) {
+            optionsSeatsNeeded.push(
+              <option key={i} value={i}>
+                {i}
+              </option>
+            );
+          }
+
+          const schema = Yup.object().shape({
+            seatsNeeded: Yup.number("Please select a number")
+              .min(1, "Min. 1 passenger required")
+              .max(
+                response.data.seatsLeft,
+                `Max. ${response.data.seatsLeft} passengers`
+              )
+              .required(),
+          });
+
+          dispatch(
+            getRideSuccess({
+              ride: response.data,
+              optionsSeatsNeeded,
+              schema,
+            })
           );
+        } else {
+          dispatch(getRideFail("Ride not found"));
         }
-
-        const schema = Yup.object().shape({
-          seatsNeeded: Yup.number("Please select a number")
-            .min(1, "Min. 1 passenger required")
-            .max(
-              response.data.seatsLeft,
-              `Max. ${response.data.seatsLeft} passengers`
-            )
-            .required(),
-        });
-
-        dispatch(
-          getRideSuccess({
-            ride: response.data,
-            optionsSeatsNeeded,
-            schema,
-          })
-        );
       })
       .catch((error) => {
         const message =

@@ -38,6 +38,7 @@ const Ride = () => {
   const {
     isloadingRide,
     rideData,
+    rideError,
     isloadingUserRideBookingList,
     userRideBookingData,
     isLoadingRidesToConfirm,
@@ -393,13 +394,9 @@ const Ride = () => {
               </>
             )}
           </div>
-        ) : (
-          <Row>
-            <Col className="text-center">
-              <MessageEmpty title="ride" />
-            </Col>
-          </Row>
-        )}
+        ) : rideError ? (
+          <Redirect to="/" />
+        ) : null}
       </Container>
     </div>
   );

@@ -10,7 +10,7 @@ const initialState = {
   submitFormOfferRideFail: "",
 
   isloadingRide: false,
-  rideData: [],
+  rideData: {},
   rideError: "",
 
   isloadingBooking: false,
@@ -195,7 +195,7 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isloadingRide: false,
-        rideData: [],
+        rideData: {},
         rideError: action.payload,
       };
 
