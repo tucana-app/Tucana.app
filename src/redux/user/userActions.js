@@ -723,7 +723,11 @@ export const updateDriverState = (userId) => {
         },
       })
       .then((response) => {
-        dispatch(updateDriverStateSuccess(response.data));
+        if (response.data) {
+          dispatch(updateDriverStateSuccess(response.data));
+        } else {
+          dispatch(updateDriverStateFail("No updates available"));
+        }
       })
       .catch((error) => {
         const message =

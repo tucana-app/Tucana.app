@@ -12,7 +12,7 @@ function DriverProfile(props) {
   const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn || !currentUser.Driver) {
     return <Redirect to="/" />;
   }
   return (
