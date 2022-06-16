@@ -526,6 +526,13 @@ export const getFilteredRides = (origin, destination, date) => {
   return (dispatch) => {
     dispatch(getFilteredRidesRequested());
 
+    // Convert the date withouth the Timezone
+    const convertedDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+
     axios
       .get(URL_API + "/ride/filtered-rides", {
         params: {
@@ -535,7 +542,7 @@ export const getFilteredRides = (origin, destination, date) => {
           destinationProvince: destination.province,
           destinationLat: destination.latLng.lat,
           destinationLng: destination.latLng.lng,
-          date,
+          date: convertedDate,
         },
       })
       .then((response) => {

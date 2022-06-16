@@ -17,9 +17,6 @@ import { formatPrice, formatTimeSecond } from "../helpers";
 
 import { showSearchForm } from "../redux";
 
-var distance = require("hpsweb-google-distance");
-distance.apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
 const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
