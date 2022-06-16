@@ -5,16 +5,14 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import {
-  CircleIcon,
-  // StarFillIcon,
-  ArrowDownIcon,
-  ArrowRightIcon,
-} from "@primer/octicons-react";
+import { ArrowDownIcon, ArrowRightIcon } from "@primer/octicons-react";
+import { PersonCircle } from "react-bootstrap-icons";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
 import FormSearchRides from "../components/FormSearchRides";
+import DisplayRating from "../components/DisplayRating";
+
 import { formatPrice, formatTimeSecond } from "../helpers";
 
 import { showSearchForm } from "../redux";
@@ -230,8 +228,8 @@ const Find = () => {
                           <Row className="align-items-center">
                             <Col xs={3} className="pe-0">
                               <p className="text-end mb-0">
-                                <CircleIcon
-                                  size={56}
+                                <PersonCircle
+                                  size={48}
                                   className="text-secondary me-2"
                                 />
                               </p>
@@ -240,17 +238,12 @@ const Find = () => {
                               <p className="mb-0">
                                 {ride.rideDetails.Driver.User.firstName}
                               </p>
-                              {/* RATINGS */}
-                              {/* <p className="mb-0">
-                                <StarFillIcon
-                                  size={18}
-                                  verticalAlign="middle"
-                                  className="text-warning"
-                                />{" "}
-                                <span>-</span>
-                              </p> */}
+                              <DisplayRating
+                                user={ride.rideDetails.Driver.User}
+                                type="driver"
+                              />
                             </Col>
-                            <Col xs={4} className="text-end mx-auto">
+                            <Col xs={4} className="text-center mx-auto">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
                                   {formatPrice(ride.rideDetails.price)}

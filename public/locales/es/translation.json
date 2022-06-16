@@ -136,7 +136,9 @@
 			"error": "Error",
 			"max20characters": "Máx. 20 caracteres",
 			"min4characters": "Mínimo 4 caracteres",
+			"missingComment": "Tienes que escribir un comentario (mín. 10 caracteres)",
 			"missingInfo": "Por favor, rellene toda la información",
+			"missingRating": "Asegúrese de dar una calificación",
 			"passwordsMatch": "",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
@@ -168,6 +170,7 @@
 		"more": "Más",
 		"next": "Siguiente",
 		"no": "No",
+		"noRatings": "No calificaciones",
 		"notMandatory": "No es obligatorio",
 		"number": "Numeró",
 		"numberPlate": "Placa",
@@ -178,6 +181,7 @@
 		"passengers": "Pasajeros",
 		"password": "Contraseña",
 		"perSeat": "por asiento",
+		"phoneVerified": "Teléfono verificado",
 		"price": "Precio",
 		"province": "Provincia",
 		"received": "Recibido",
@@ -213,6 +217,7 @@
 		"yes": "Sí",
 		"yourIdentity": "Tu identidad",
 		"yourLicense": "Tu licencia",
+		"yourRating": "Tu calificación",
 		"yourVehicle": "Tu vehículo"
 	},
 	"help": {

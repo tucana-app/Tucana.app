@@ -136,7 +136,9 @@
 			"error": "erreur",
 			"max20characters": "Max. 20 caractères",
 			"min4characters": "Min. 4 caractères",
+			"missingComment": "Vous devez écrire un commentaire (10 caractères min.)",
 			"missingInfo": "Veuillez remplir toutes les informations",
+			"missingRating": "Assurez-vous de donner une note",
 			"passwordsMatch": "",
 			"validEmail": "Veuillez saisir une adresse électronique valide",
 			"validName": "Veuillez entrer un nom valide",
@@ -168,6 +170,7 @@
 		"more": "En savoir plus",
 		"next": "Suivant",
 		"no": "Non",
+		"noRatings": "Pas de notes",
 		"notMandatory": "non obligatoire",
 		"number": "Numéro",
 		"numberPlate": "Plaque d'immatriculation",
@@ -178,6 +181,7 @@
 		"passengers": "Passagers",
 		"password": "Mot de passe",
 		"perSeat": "par siège",
+		"phoneVerified": "Téléphone vérifié",
 		"price": "Prix",
 		"province": "province",
 		"received": "Reçus",
@@ -213,6 +217,7 @@
 		"yes": "Oui",
 		"yourIdentity": "Ton identité",
 		"yourLicense": "Ton permis de conduire",
+		"yourRating": "Ta note",
 		"yourVehicle": "Ton véhicule"
 	},
 	"help": {

@@ -5,10 +5,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { PersonCircle } from "react-bootstrap-icons";
-import {
-  ChevronRightIcon,
-  // StarFillIcon,
-} from "@primer/octicons-react";
+import { ChevronRightIcon } from "@primer/octicons-react";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
 import ManagePassengerBooking from "../components/ManagePassengerBooking";
@@ -19,6 +16,7 @@ import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
 import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
+import DisplayRating from "../components/DisplayRating";
 
 import { formatPrice, isDateInPast } from "../helpers";
 
@@ -209,16 +207,10 @@ const Ride = () => {
                             <p className="mb-0">
                               {rideData.ride.Driver.User.firstName}
                             </p>
-                            {/* RATINGS */}
-                            {/* <p className="mb-0">
-                              <StarFillIcon
-                                size={18}
-                                verticalAlign="middle"
-                                className="text-warning me-2"
-                              />
-
-                              <span>-/5 | - ratings</span>
-                            </p> */}
+                            <DisplayRating
+                              user={rideData.ride.Driver.User}
+                              type="driver"
+                            />
                           </Col>
                           <Col className="text-end">
                             <ChevronRightIcon

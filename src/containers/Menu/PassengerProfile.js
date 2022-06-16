@@ -4,15 +4,12 @@ import { Redirect, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import {
-  // ChevronRightIcon,
-  // StarFillIcon,
-  CircleIcon,
-} from "@primer/octicons-react";
+import { CheckIcon, StarFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 import GoBack from "../../components/GoBack";
+import { PersonCircle } from "react-bootstrap-icons";
 
 function PassengerProfile() {
   const { t } = useTranslation();
@@ -29,15 +26,12 @@ function PassengerProfile() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="text-center mb-5">
+      <Container className="mb-4">
         <Row>
           <Col className="text-center">
-            <CircleIcon size={78} className="text-secondary" />
-          </Col>
-        </Row>
-
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} sm={4} className="text-center">
+            <p>
+              <PersonCircle size={62} className="text-secondary me-2" />
+            </p>
             <h3 className="mb-0">
               {currentUser.firstName} {currentUser.lastName}{" "}
             </h3>
@@ -47,122 +41,165 @@ function PassengerProfile() {
           </Col>
         </Row>
 
-        {/* RATINGS */}
-        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
-          <Col xs={12} sm={4} className="text-center">
-            <h4>
-              <span className="text-secondary">
-                <StarFillIcon size={24} className="text-warning me-2 mb-1" />-
-              </span>
-              /5
-            </h4>
-          </Col>
-        </Row>
-
-        <Row className="text-center mb-5">
-          <Col>
-            <LinkContainer to="/profile/passenger/ratings">
-              <Button variant="warning" size={"lg"}>
-                Ratings <ChevronRightIcon size={24} />
-              </Button>
-            </LinkContainer>
-          </Col>
-        </Row> */}
-
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">
-              {t("translation:global.username")}
-            </span>
-          </Col>
-          <Col className="text-center text-md-start">
-            <span>{currentUser.username}</span>
-          </Col>
-        </Row>
-
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">
-              {t("translation:global.email")}
-            </span>
-          </Col>
-          <Col className="text-center text-md-start">
-            <span>{currentUser.email}</span>
-          </Col>
-        </Row>
-
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">Phone number</span>
-          </Col>
-          <Col className="text-center text-md-start">
-            <span>{formatPhoneNumberIntl(currentUser.phoneNumber)}</span>
-          </Col>
-        </Row>
-
-        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col  xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">Biography</span>
-          </Col>
-          <Col className="text-center text-md-start">
-            <span>{currentUser.biography}</span>
-          </Col>
-        </Row> */}
-
-        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-3">
-          <Col  xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">Phone verified</span>
-          </Col>
-          <Col className="text-center text-md-start">
-            {currentUser.phoneConfirmed ? (
-              <span className="text-success">
-                        <CheckIcon size={24} className="me-2" />
-                Yes
-              </span>
-            ) : (
-              <span className="text-danger">
-                        <XIcon size={24} className="me-2" />
-                No
-              </span>
-            )}
-          </Col>
-        </Row> */}
-
-        <Row className="justify-content-center align-items-center text-center text-sm-start mb-5">
-          <Col xs={12} md={6} className="text-center text-md-end">
-            <span className="text-secondary">
-              {t("translation:global.memberSince")}
-            </span>
-          </Col>
-          <Col className="text-center text-md-start">
-            {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
-          </Col>
-        </Row>
-
-        <Row className="mb-3">
-          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <h1 className="title">{t("translation:global.settings")}</h1>
-          </Col>
-        </Row>
-        <Row>
+        <Row className="mb-3 mx-1 mx-sm-0">
           <Col
             xs={12}
             sm={10}
             md={8}
             lg={6}
             xl={4}
-            className="text-center mx-auto"
+            className="border shadow rounded-5 mx-auto"
           >
+            <Container className="p-3">
+              <Row>
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">
+                    {t("translation:global.username")}
+                  </p>
+                </Col>
+                <Col>
+                  <p>{currentUser.username}</p>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">
+                    {t("translation:global.email")}
+                  </p>
+                </Col>
+                <Col>
+                  <p>{currentUser.email}</p>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">Phone number</p>
+                </Col>
+                <Col>
+                  <p>{formatPhoneNumberIntl(currentUser.phoneNumber)}</p>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">Biography</p>
+                </Col>
+                <Col>
+                  {currentUser.biography && currentUser.biography !== "" ? (
+                    <p>{currentUser.biography}</p>
+                  ) : (
+                    <p>-</p>
+                  )}
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">
+                    {t("translation:global.phoneVerified")}
+                  </p>
+                </Col>
+                <Col>
+                  {currentUser.phoneConfirmed ? (
+                    <p className="text-success">
+                      <CheckIcon size={24} className="me-2" />
+                      {t("translation:global.yes")}
+                    </p>
+                  ) : (
+                    <p>{t("translation:global.no")}</p>
+                  )}
+                </Col>
+              </Row>
+
+              <Row className="">
+                <Col xs={12} md={6}>
+                  <p className="text-secondary mb-0 mb-md-3">
+                    {t("translation:global.memberSince")}
+                  </p>
+                </Col>
+                <Col>{dateFormat(currentUser.createdAt, "dd/mm/yyyy")}</Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-3">
+              <Row>
+                <Col>
+                  <p className="fw-bold">
+                    {t("translation:global.yourRating")}
+                  </p>
+                </Col>
+              </Row>
+              <Row className="align-items-center">
+                <Col xs={6}>
+                  {currentUser.passengerRating > 0 ? (
+                    <div className="d-inline-flex align-items-center">
+                      <StarFillIcon size={26} className="text-warning me-2" />
+                      <h1 className="fw-bold mb-0">
+                        {currentUser.passengerRating}{" "}
+                      </h1>
+                    </div>
+                  ) : (
+                    <span>{t("translation:global.noRatings")}</span>
+                  )}
+                </Col>
+                <Col xs={6} className="text-end">
+                  <LinkContainer to="/profile/passenger/ratings">
+                    <Button variant="success" size={"lg"}>
+                      {t("translation:global.view")}
+                    </Button>
+                  </LinkContainer>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-3">
+              <Row>
+                <Col className="text-center px-0">
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => setShowModalRequestData(true)}
+                    className="me-3"
+                  >
+                    {t("translation:passengerProfile.requestData")}
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+
+      <Container className="mb-3">
+        <Row>
+          <Col className="text-center">
             <Button
-              variant="outline-primary"
-              onClick={() => setShowModalRequestData(true)}
-              className="me-3"
-            >
-              {t("translation:passengerProfile.requestData")}
-            </Button>
-            <Button
-              variant="outline-danger"
+              variant="link link-secondary"
               onClick={() => setShowModalRemoveAccount(true)}
+              className="text-center"
             >
               {t("translation:passengerProfile.removeAccount")}
             </Button>

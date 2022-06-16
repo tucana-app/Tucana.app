@@ -5,7 +5,6 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 import {
-  CircleIcon,
   // StarFillIcon,
   ChevronRightIcon,
 } from "@primer/octicons-react";
@@ -17,10 +16,12 @@ import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 import MessageEmpty from "../components/MessageEmpty";
 import GoBack from "../components/GoBack";
 import SendMessageButton from "../components/SendMessageButton";
+import DisplayRating from "../components/DisplayRating";
 
 import { getBooking } from "../redux";
 import { isEmptyObject, isDateInPast } from "../helpers";
 import RideDetails from "../components/RideDetails";
+import { PersonCircle } from "react-bootstrap-icons";
 
 const Booking = () => {
   const { t } = useTranslation();
@@ -185,22 +186,19 @@ const Booking = () => {
                       >
                         <Row className="align-items-center">
                           <Col xs={3} md={2} className="text-end pe-0">
-                            <CircleIcon size={56} className="text-secondary" />
+                            <PersonCircle
+                              size={48}
+                              className="text-secondary"
+                            />
                           </Col>
                           <Col xs={6} className="text-start">
                             <p className="mb-0">
                               {bookingData.Ride.Driver.User.firstName}
                             </p>
-                            {/* RATINGS */}
-                            {/* <p className="mb-0">
-                              <StarFillIcon
-                                size={18}
-                                verticalAlign="middle"
-                                className="text-warning me-2"
-                              />
-
-                              <span>-/5 | - ratings</span>
-                            </p> */}
+                            <DisplayRating
+                              user={bookingData.Ride.Driver.User}
+                              type="driver"
+                            />
                           </Col>
                           <Col className="text-end">
                             <ChevronRightIcon

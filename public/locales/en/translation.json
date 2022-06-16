@@ -136,7 +136,9 @@
 			"error": "Error",
 			"max20characters": "Max. 20 characters",
 			"min4characters": "Min. 4 characters",
+			"missingComment": "You need to write a comment (min. 10 characters)",
 			"missingInfo": "Please fill up all the information",
+			"missingRating": "Make sure you give a rating",
 			"passwordsMatch": "Passwords must match",
 			"validEmail": "Please enter a valid email address",
 			"validName": "Please enter a valid name",
@@ -168,6 +170,7 @@
 		"more": "More",
 		"next": "Next",
 		"no": "No",
+		"noRatings": "No ratings",
 		"notMandatory": "Not mandatory",
 		"number": "Number",
 		"numberPlate": "Number plate",
@@ -178,6 +181,7 @@
 		"passengers": "Passengers",
 		"password": "Password",
 		"perSeat": "per seat",
+		"phoneVerified": "Phone verified",
 		"price": "Price",
 		"province": "Province",
 		"received": "Received",
@@ -213,6 +217,7 @@
 		"yes": "Yes",
 		"yourIdentity": "Your identity",
 		"yourLicense": "Your driving license",
+		"yourRating": "Your rating",
 		"yourVehicle": "Your vehicle"
 	},
 	"help": {

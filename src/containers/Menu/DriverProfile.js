@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-// import { LinkContainer } from "react-router-bootstrap";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-// import { ChevronRightIcon } from "@primer/octicons-react";
+import { LinkContainer } from "react-router-bootstrap";
 
 import GoBack from "../../components/GoBack";
+import { StarFillIcon } from "@primer/octicons-react";
 
 function DriverProfile(props) {
   const { t } = useTranslation();
@@ -37,7 +37,49 @@ function DriverProfile(props) {
             xl={4}
             className="border shadow rounded-5 mx-auto"
           >
-            <Container className="p-2">
+            <Container className="p-3">
+              <Row>
+                <Col>
+                  <p className="fw-bold">
+                    {t("translation:global.yourRating")}
+                  </p>
+                </Col>
+              </Row>
+              <Row className="align-items-center">
+                <Col xs={6}>
+                  {currentUser.driverRating > 0 ? (
+                    <div className="d-inline-flex align-items-center">
+                      <StarFillIcon size={26} className="text-warning me-2" />
+                      <h1 className="fw-bold mb-0">
+                        {currentUser.driverRating}{" "}
+                      </h1>
+                    </div>
+                  ) : (
+                    <span>{t("translation:global.noRatings")}</span>
+                  )}
+                </Col>
+                <Col xs={6} className="text-end">
+                  <LinkContainer to="/profile/driver/ratings">
+                    <Button variant="success" size={"lg"}>
+                      {t("translation:global.view")}
+                    </Button>
+                  </LinkContainer>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="border shadow rounded-5 mx-auto"
+          >
+            <Container className="p-3">
               <Row>
                 <Col>
                   <p className="fw-bold">
@@ -66,7 +108,7 @@ function DriverProfile(props) {
             xl={4}
             className="border shadow rounded-5 mx-auto"
           >
-            <Container className="p-2">
+            <Container className="p-3">
               <Row>
                 <Col>
                   <p className="fw-bold">
@@ -99,7 +141,7 @@ function DriverProfile(props) {
             xl={4}
             className="border shadow rounded-5 mx-auto"
           >
-            <Container className="p-2">
+            <Container className="p-3">
               <Row>
                 <Col>
                   <p className="fw-bold">
@@ -118,29 +160,6 @@ function DriverProfile(props) {
             </Container>
           </Col>
         </Row>
-
-        {/* RATINGS */}
-        {/* <Row className="justify-content-center align-items-center text-center text-sm-start mb-1">
-              <Col xs={12} sm={4} className="text-md-end">
-                <h4 className="text-secondary">Rating</h4>
-              </Col>
-              <Col xs={12} sm={4}>
-                <h4>
-                  <span className="text-secondary">-</span> / 5
-                </h4>
-              </Col>
-            </Row>
-
-            <Row className="text-center mb-5">
-              <Col>
-                <LinkContainer to="/profile/driver/ratings">
-                  <Button variant="warning" size={"lg"}>
-                    Ratings{" "}
-                    <ChevronRightIcon size={24} verticalAlign="middle" />
-                  </Button>
-                </LinkContainer>
-              </Col>
-            </Row> */}
       </Container>
     </div>
   );

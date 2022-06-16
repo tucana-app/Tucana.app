@@ -65,7 +65,7 @@ const SignUp = () => {
       t("translation:global.errors.acceptTerms")
     ),
 
-    checkNewsletter: Yup.bool().oneOf([true]),
+    checkNewsletter: Yup.bool().oneOf([true, false]),
   });
 
   const handleSubmit = (values, formikBag) => {

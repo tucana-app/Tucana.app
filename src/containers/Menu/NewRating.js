@@ -54,12 +54,21 @@ const NewRating = () => {
   };
 
   const handleSubmitDriverRatingForm = () => {
-    if (note < 1) {
+    if (comment === "" || comment.length < 10) {
       dispatch(
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: "Make sure you give a rating",
+          bodyText: t("translation:global.errors.missingComment"),
+          variant: "warning",
+        })
+      );
+    } else if (note < 1) {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: t("translation:global.errors.missingRating"),
           variant: "warning",
         })
       );
@@ -180,6 +189,7 @@ const NewRating = () => {
                                   submitPassengerRatingFormData.flag ===
                                   "SUCCESS"
                                 }
+                                required
                               />
                             </Col>
                           </Row>

@@ -1,12 +1,8 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Container, ListGroup, Row } from "react-bootstrap";
-import {
-  ChevronRightIcon,
-  CircleIcon,
-  LinkExternalIcon,
-} from "@primer/octicons-react";
+import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { ChevronRightIcon, LinkExternalIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
@@ -16,6 +12,7 @@ import { logout } from "../../redux";
 // Importing assets
 import logo from "../../assets/images/OPTI_noir.png";
 import SocialIcons from "../../components/SocialIcons";
+import { PersonCircle } from "react-bootstrap-icons";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();
@@ -57,30 +54,31 @@ const Menu = () => {
   };
 
   return (
-    <Container fluid data-aos="fade-in" className="pb-5">
+    <Container fluid data-aos="fade-in" className="pb-4">
+      {isLoggedIn ? (
+        <Row className="my-4">
+          <Col className="text-center">
+            <p>
+              <Link to="/profile/passenger" className="text-decoration-none">
+                <PersonCircle size={62} className="text-secondary me-2" />
+              </Link>
+            </p>
+            <h3 className="mb-0">{currentUser.firstName}</h3>
+            <p className="lead">{currentUser.email}</p>
+
+            <p className="small text-secondary mb-0">
+              {t("translation:menu.memberSince")}:{" "}
+              {dateFormat(currentUser.createdAt, "mm/yyyy")}
+            </p>
+          </Col>
+        </Row>
+      ) : null}
+
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <ListGroup variant="flush">
             {isLoggedIn ? (
               <>
-                <ListGroup.Item className="border-0">
-                  <div className="text-center py-2">
-                    <Link
-                      to="/profile/passenger"
-                      className="text-decoration-none"
-                    >
-                      <CircleIcon size={78} className="text-secondary" />
-                    </Link>
-                    <p className="h3 mb-0">{currentUser.firstName}</p>
-                    <p className="lead">{currentUser.email}</p>
-
-                    <p className="small text-secondary mb-0">
-                      {t("translation:menu.memberSince")}{" "}
-                      {dateFormat(currentUser.createdAt, "mm/yyyy")}
-                    </p>
-                  </div>
-                </ListGroup.Item>
-
                 <hr className="my-2" />
 
                 <Link to="/profile/passenger" className="text-decoration-none">
@@ -319,22 +317,32 @@ const Menu = () => {
               </ListGroup.Item>
             </Link>
           </ListGroup>
+        </Col>
+      </Row>
 
+      <Row>
+        <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <hr className="my-2" />
 
           <div className="text-center pt-3">
             <SocialIcons />
           </div>
-
-          {isLoggedIn ? (
-            <div onClick={logOut} className="cursor-pointer text-center mt-4">
-              <ListGroup.Item className="border-0 link-success">
-                <p className="mb-0 py-1">{t("translation:menu.logOut")}</p>
-              </ListGroup.Item>
-            </div>
-          ) : null}
         </Col>
       </Row>
+
+      {isLoggedIn ? (
+        <Row>
+          <Col className="text-center">
+            <Button
+              onClick={logOut}
+              variant="link link-success"
+              className="mt-4"
+            >
+              <p className="mb-0 py-1">{t("translation:menu.logOut")}</p>
+            </Button>
+          </Col>
+        </Row>
+      ) : null}
     </Container>
   );
 };
