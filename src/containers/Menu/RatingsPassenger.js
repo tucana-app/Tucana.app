@@ -124,15 +124,15 @@ function RatingsPassenger() {
                               xs={3}
                               className="d-inline-flex align-items-center"
                             >
+                              <StarFillIcon
+                                size={24}
+                                className="text-warning me-2"
+                              />
                               <h4 className="fw-bold mb-0">
                                 <span className="text-success">
                                   {rating.value}
                                 </span>
                               </h4>
-                              <StarFillIcon
-                                size={24}
-                                className="text-warning ms-2"
-                              />
                             </Col>
                             <Col xs={12}>
                               <p className="mb-0">{rating.comment}</p>
@@ -186,16 +186,15 @@ function RatingsPassenger() {
                               xs={3}
                               className="d-inline-flex align-items-center"
                             >
+                              <StarFillIcon
+                                size={24}
+                                className="text-warning me-2"
+                              />
                               <h4 className="fw-bold mb-0">
                                 <span className="text-success">
                                   {rating.value}
                                 </span>
-                                <span>/5</span>
                               </h4>
-                              <StarFillIcon
-                                size={24}
-                                className="text-warning ms-2"
-                              />
                             </Col>
                             <Col xs={12}>
                               <p className="mb-0">{rating.comment}</p>
