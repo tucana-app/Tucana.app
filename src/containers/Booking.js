@@ -10,13 +10,12 @@ import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
 
-import MessageEmpty from "../components/MessageEmpty";
 import GoBack from "../components/GoBack";
 import SendMessageButton from "../components/SendMessageButton";
 import DisplayRating from "../components/DisplayRating";
 
 import { getBooking } from "../redux";
-import { isEmptyObject, isDateInPast } from "../helpers";
+import { isDateInPast } from "../helpers";
 import RideDetails from "../components/RideDetails";
 import { PersonCircle } from "react-bootstrap-icons";
 

@@ -10,8 +10,6 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import MessageEmpty from "../../components/MessageEmpty";
 
-import { isDateInPast } from "../../helpers";
-
 import { getDriverBookings } from "../../redux";
 
 const RidesBookings = () => {
