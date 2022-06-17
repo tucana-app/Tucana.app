@@ -21,7 +21,9 @@ const RidesBookings = () => {
   const { isLoadingDriverBookingsList, driverBookingsData } = useSelector(
     (state) => state.ride
   );
-  const { bookingStatusVariant } = useSelector((state) => state.global);
+  const { bookingStatusVariant, rideStatusVariant } = useSelector(
+    (state) => state.global
+  );
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -62,10 +64,11 @@ const RidesBookings = () => {
 
             {driverBookingsData.length > 0 ? (
               <>
-                {driverBookingsData.map((booking, index) =>
-                  !isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
-                  booking.BookingStatusId < 3 &&
-                  booking.Ride.seatsLeft > 0 ? (
+                {driverBookingsData.map(
+                  (booking, index) => (
+                    // !isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
+                    // booking.BookingStatusId < 3 &&
+                    // booking.Ride.seatsLeft > 0 ? (
                     <Row key={index} className="mb-2 mx-1 mx-sm-0">
                       <Col
                         xs={12}
@@ -107,7 +110,7 @@ const RidesBookings = () => {
                             <Col>
                               <p>
                                 <span className="text-secondary">
-                                  {t("translation:global.status")}:
+                                  {t("translation:global.booking")}:
                                 </span>{" "}
                                 <span
                                   className={`text-${bookingStatusVariant(
@@ -115,6 +118,22 @@ const RidesBookings = () => {
                                   )}`}
                                 >
                                   {booking.BookingStatus.name}
+                                </span>
+                              </p>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <p>
+                                <span className="text-secondary">
+                                  {t("translation:global.ride")}:
+                                </span>{" "}
+                                <span
+                                  className={`text-${rideStatusVariant(
+                                    booking.Ride.RideStatusId
+                                  )}`}
+                                >
+                                  {booking.Ride.RideStatus.name}
                                 </span>
                               </p>
                             </Col>
@@ -140,7 +159,8 @@ const RidesBookings = () => {
                         </Container>
                       </Col>
                     </Row>
-                  ) : null
+                  )
+                  // ) : null
                 )}
               </>
             ) : (

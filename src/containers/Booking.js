@@ -4,10 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
-import {
-  // StarFillIcon,
-  ChevronRightIcon,
-} from "@primer/octicons-react";
+import { ChevronRightIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -32,7 +29,9 @@ const Booking = () => {
   const { bookingStatusVariant, rideStatusVariant } = useSelector(
     (state) => state.global
   );
-  const { isloadingBooking, bookingData } = useSelector((state) => state.ride);
+  const { isloadingBooking, bookingData, bookingError } = useSelector(
+    (state) => state.ride
+  );
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -56,7 +55,7 @@ const Booking = () => {
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : !isEmptyObject(bookingData) && bookingData !== null ? (
+        ) : bookingData.id ? (
           currentUser.id === bookingData.User.id ||
           currentUser.id === bookingData.DriverId ? (
             <div data-aos="fade-in">
@@ -290,13 +289,9 @@ const Booking = () => {
             // Not authorized to see the booking's details
             <Redirect to="/bookings" />
           )
-        ) : (
-          <Row>
-            <Col className="text-center">
-              <MessageEmpty title="booking" />
-            </Col>
-          </Row>
-        )}
+        ) : bookingError ? (
+          <Redirect to="/" />
+        ) : null}
       </Container>
     </div>
   );
