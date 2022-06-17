@@ -197,9 +197,9 @@ function PassengerProfile() {
         <Row>
           <Col className="text-center">
             <Button
-              variant="link link-secondary"
+              variant="link"
               onClick={() => setShowModalRemoveAccount(true)}
-              className="text-center"
+              className="link-secondary text-decoration-none text-center"
             >
               {t("translation:passengerProfile.removeAccount")}
             </Button>

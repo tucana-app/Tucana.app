@@ -10,11 +10,8 @@ import {
   ListGroup,
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import {
-  PaperAirplaneIcon,
-  PersonIcon,
-  ChevronLeftIcon,
-} from "@primer/octicons-react";
+import { PaperAirplaneIcon, ChevronLeftIcon } from "@primer/octicons-react";
+import { PersonCircle } from "react-bootstrap-icons";
 
 import {
   resetConversationView,
@@ -75,7 +72,7 @@ const SingleConversation = ({ conversation }) => {
         >
           <span>
             <ChevronLeftIcon size={28} className="text-success" />
-            <PersonIcon size={24} className="mb-1 me-2" />
+            <PersonCircle size={24} className="mb-1 me-2" />
             <span className="h2">{receiver}</span>
           </span>
         </ListGroup.Item>

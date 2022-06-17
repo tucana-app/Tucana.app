@@ -335,8 +335,8 @@ const Menu = () => {
           <Col className="text-center">
             <Button
               onClick={logOut}
-              variant="link link-success"
-              className="mt-4"
+              variant="link"
+              className="link-success text-decoration-none mt-4"
             >
               <p className="mb-0 py-1">{t("translation:menu.logOut")}</p>
             </Button>

@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { PersonIcon, ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon } from "@primer/octicons-react";
+import { PersonCircle } from "react-bootstrap-icons";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import SingleConversation from "../components/SingleConversation";
@@ -105,7 +106,10 @@ function Messages() {
                         >
                           <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
                             <div className="position-relative">
-                              <PersonIcon size={24} className="mb-1 me-2" />
+                              <PersonCircle
+                                size={28}
+                                className="text-secondary mb-2 me-2"
+                              />
                               <span className="h2">
                                 {getSenderUsername(conversation)}
                               </span>
