@@ -70,11 +70,11 @@ const SingleConversation = ({ conversation }) => {
           className="rounded-0 border border-top-0 border-start-0
           border-end-0 py-3"
         >
-          <span>
+          <div className="d-flex align-items-center">
             <ChevronLeftIcon size={28} className="text-success" />
-            <PersonCircle size={24} className="mb-1 me-2" />
-            <span className="h2">{receiver}</span>
-          </span>
+            <PersonCircle size={28} className="text-secondary me-2" />
+            <h2 className="mb-0">{receiver}</h2>
+          </div>
         </ListGroup.Item>
       </ListGroup>
 
