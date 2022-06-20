@@ -10,7 +10,10 @@ function DisplayRating(props) {
     rating.driverRating > 0 ? (
       <p className="mb-0">
         <StarFillIcon size={18} className="text-warning me-1 mb-1" />
-        <span>{rating.driverRating}</span>
+        <span>{rating.driverRating}</span> -{" "}
+        <span className="text-secondary small">
+          {rating.nbDriverRating} {t("translation:global.ratings")}
+        </span>
       </p>
     ) : (
       <small className="smaller text-secondary">
@@ -21,7 +24,10 @@ function DisplayRating(props) {
     rating.passengerRating > 0 ? (
       <p className="mb-0">
         <StarFillIcon size={18} className="text-warning me-1 mb-1" />
-        <span>{rating.passengerRating}</span>
+        <span>{rating.passengerRating}</span> -{" "}
+        <span className="text-secondary small">
+          {rating.nbPassengerRating} {t("translation:global.ratings")}
+        </span>
       </p>
     ) : (
       <small className="smaller text-secondary">
