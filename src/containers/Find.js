@@ -152,7 +152,7 @@ const Find = () => {
                                 )}
                               </p>
                             </Col>
-                            <Col xs={8}>
+                            <Col>
                               <p className="line-height-md mb-0">
                                 <strong>
                                   {ride.rideDetails.origin.city},{" "}
@@ -175,20 +175,6 @@ const Find = () => {
                                   size={24}
                                   className="text-success"
                                 />
-                              </p>
-                            </Col>
-                            <Col xs={2} className="text-end ps-0 mx-auto">
-                              <p className="mb-0">
-                                {t("translation:global.seat")}
-                                {ride.rideDetails.seatsAvailable > 1
-                                  ? "s"
-                                  : null}
-                              </p>
-                              <p>
-                                <span className="text-success">
-                                  {ride.rideDetails.seatsLeft}
-                                </span>
-                                /{ride.rideDetails.seatsAvailable}
                               </p>
                             </Col>
                           </Row>

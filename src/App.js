@@ -180,10 +180,10 @@ function App() {
           />
 
           {/* Public profile */}
-          <Route exact path="/driver/:driverId" component={DriverProfile} />
+          <Route exact path="/driver/:username" component={DriverProfile} />
           <Route
             exact
-            path="/driver/:passengerId"
+            path="/passenger/:username"
             component={PassengerProfile}
           />
 

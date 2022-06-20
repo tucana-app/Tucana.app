@@ -193,7 +193,7 @@ const Ride = () => {
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
-                        to="/coming-soon"
+                        to={`/driver/${rideData.ride.Driver.User.username}`}
                         className="cursor-pointer"
                       >
                         <Row className="align-items-center">

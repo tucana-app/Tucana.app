@@ -1,11 +1,13 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 import GoBack from "../../components/GoBack";
 
 function DriverProfile(props) {
   const { t } = useTranslation();
+  const { username } = useParams();
 
   return (
     <div>
@@ -21,9 +23,7 @@ function DriverProfile(props) {
             xl={4}
             className="text-center mx-auto"
           >
-            <h1 className="text-success">
-              {props.pageName || t("translation:global.comingSoon")}
-            </h1>
+            <h1 className="text-success">{username}</h1>
             <p className="lead">
               {t("translation:comingSoon.subTitle")}
               <br />
