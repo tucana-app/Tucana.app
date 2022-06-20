@@ -165,6 +165,8 @@ function App() {
           <Route exact path="/how-it-works" component={HowItWorks} />
           <Route exact path="/faq" component={FAQ} />
           <Route exact path="/hiring" component={Hiring} />
+
+          {/* Verification */}
           <Route exact path="/verification" component={Verification} />
           <Route
             exact
@@ -175,6 +177,14 @@ function App() {
             exact
             path="/driver-verification"
             component={PassengerVerification}
+          />
+
+          {/* Public profile */}
+          <Route exact path="/driver/:driverId" component={DriverProfile} />
+          <Route
+            exact
+            path="/driver/:passengerId"
+            component={PassengerProfile}
           />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
