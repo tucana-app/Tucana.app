@@ -35,3 +35,10 @@ export const getCountriesSuccess = (data) => {
     payload: data,
   };
 };
+
+export const displayNavBar = (isDisplay) => {
+  return {
+    type: globalTypes.DISPLAY_NAV_BAR,
+    payload: isDisplay,
+  };
+};

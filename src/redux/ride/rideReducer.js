@@ -103,6 +103,7 @@ const initialState = {
       details: {},
     },
     date: "",
+    seats: 1,
   },
 };
 
@@ -157,8 +158,6 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSubmitFormOfferRide: true,
-        submitBookingRideSuccess: false,
-        submitBookingRideError: "",
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_SUCCESS:
@@ -249,6 +248,7 @@ function rideReducer(state = initialState, action) {
         ...state,
         isFormSearchRideSubmitted: false,
       };
+
     case rideTypes.SUBMIT_FORM_BOOK_RIDE_REQUEST:
       return {
         ...state,
@@ -671,6 +671,15 @@ function rideReducer(state = initialState, action) {
         formSearchRide: {
           ...state.formSearchRide,
           date: action.payload,
+        },
+      };
+
+    case rideTypes.SET_SEARCH_SEATS:
+      return {
+        ...state,
+        formSearchRide: {
+          ...state.formSearchRide,
+          seats: action.payload,
         },
       };
 

@@ -15,12 +15,13 @@ import DisplayRating from "../components/DisplayRating";
 
 import { formatPrice, formatTimeSecond } from "../helpers";
 
-import { showSearchForm } from "../redux";
+import { showSearchForm, displayNavBar } from "../redux";
 
 const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { commission } = useSelector((state) => state.global);
   const {
     isloadingFilteredRides,
     filteredRidesData,
@@ -127,6 +128,7 @@ const Find = () => {
                     >
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
+                        onClick={() => dispatch(displayNavBar(false))}
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
@@ -229,7 +231,9 @@ const Find = () => {
                             <Col xs={4} className="text-center mx-auto">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
-                                  {formatPrice(ride.rideDetails.price)}
+                                  {formatPrice(
+                                    ride.rideDetails.price * commission
+                                  )}
                                 </span>
                                 <br />
                                 <span className="smaller text-secondary">

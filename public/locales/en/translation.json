@@ -85,8 +85,6 @@
 		"distanceOrigin": "from your starting address"
 	},
 	"formBookRide": {
-		"alreadyRide": "You already have booking(s) for this ride",
-		"book": "Book",
 		"numberPassengers": "Number of passenger"
 	},
 	"formSearchRide": {
@@ -96,9 +94,13 @@
 		"about": "About",
 		"accept": "Accept",
 		"accepted": "Accepted",
+		"alreadyBooking": "You already have booking(s) for this ride",
 		"becomeDriver": "Become a driver",
+		"book": "Book",
 		"bookRide": "Book a ride",
+		"bookThisRide": "Book this ride",
 		"booking": "Booking",
+		"bookingSuccess": "Your booking has been submitted to the driver",
 		"bookings": "Bookings",
 		"by": "By",
 		"cancel": "Cancel",
@@ -111,6 +113,7 @@
 		"congratulations": "Congratulations",
 		"contact": "Contact",
 		"contactUs": "Contact Us",
+		"continue": "Continue",
 		"country": "Country",
 		"credits": "Credits",
 		"currentLanguage": "English",
@@ -196,6 +199,7 @@
 		"search": "Search",
 		"searchResults": "Search results",
 		"seat": "Seat",
+		"seats": "Seats",
 		"seatsAvailable": "Seats available",
 		"seeBooking": "See booking",
 		"seeRide": "See ride",
@@ -209,6 +213,7 @@
 		"submit": "Submit",
 		"time": "Time",
 		"to": "To",
+		"total": "Total",
 		"username": "Username",
 		"vehicle": "Vehicle",
 		"verify": "Verify",
@@ -353,7 +358,6 @@
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
 		"answer": "Your answer has been submitted",
-		"bookThisRide": "Book this ride",
 		"feedback": "Leave us a feedback",
 		"manageBookingRequests": "Manage your booking requests",
 		"rateRide": "Rate your ride",

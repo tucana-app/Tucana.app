@@ -49,6 +49,10 @@ const initialState = {
 
   isLoadingCountries: false,
   countries: [],
+
+  isNavBar: true,
+
+  commission: 1,
 };
 
 function globalReducer(state = initialState, action) {
@@ -81,6 +85,13 @@ function globalReducer(state = initialState, action) {
         ...state,
         isLoadingCountries: false,
         countries: action.payload,
+      };
+
+    // Conditionally display the Navigation Bar
+    case globalTypes.DISPLAY_NAV_BAR:
+      return {
+        ...state,
+        isNavBar: action.payload,
       };
 
     default:

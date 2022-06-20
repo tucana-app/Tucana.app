@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Link, Redirect, useParams } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { PersonCircle } from "react-bootstrap-icons";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, AlertIcon } from "@primer/octicons-react";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
 import ManagePassengerBooking from "../components/ManagePassengerBooking";
 import LoadingSpinner from "../components/LoadingSpinner";
-import FormBookRide from "../components/FormBookRide";
 
 import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
@@ -20,7 +19,12 @@ import DisplayRating from "../components/DisplayRating";
 
 import { formatPrice, isDateInPast } from "../helpers";
 
-import { getRide, getUserBookingRide, getRidesToConfirm } from "../redux";
+import {
+  getRide,
+  getUserBookingRide,
+  getRidesToConfirm,
+  displayNavBar,
+} from "../redux";
 
 import car from "../assets/images/car.png";
 import RideDetails from "../components/RideDetails";
@@ -60,8 +64,28 @@ const Ride = () => {
   }
 
   return (
-    <div>
-      <GoBack />
+    <div className="pb-3">
+      <span onClick={() => dispatch(displayNavBar(true))}>
+        <GoBack />
+      </span>
+
+      {rideData.ride &&
+      !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
+      rideData.ride.seatsLeft > 0 ? (
+        <div className="book-button">
+          <Link to={`/book/${rideData.ride.id}`}>
+            <Button variant="success" size="lg">
+              {t("translation:global.bookThisRide")}
+            </Button>
+          </Link>
+          {!isloadingUserRideBookingList && userRideBookingData.length > 0 ? (
+            <p className="smaller text-center text-warning mb-0">
+              <AlertIcon size={24} className="me-2" />
+              {t("translation:global.alreadyBooking")}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <Container className="mb-5">
         {isloadingRide ? (
@@ -271,36 +295,6 @@ const Ride = () => {
                         </Row>
 
                         <ManagePassengerBooking rideId={rideId} />
-                      </Container>
-                    </Col>
-                  </Row>
-                ) : null}
-
-                {/* If it is not a past ride, and if there are still */}
-                {/* seats left, users can book */}
-                {!isDateInPast(
-                  new Date(rideData.ride.dateTimeOrigin),
-                  new Date()
-                ) && rideData.ride.seatsLeft > 0 ? (
-                  <Row className="mb-2 mx-1 mx-sm-0">
-                    <Col
-                      xs={12}
-                      sm={10}
-                      md={8}
-                      lg={6}
-                      xl={4}
-                      className="border shadow rounded-5 mx-auto"
-                    >
-                      <Container className="py-3 px-2">
-                        <Row>
-                          <Col>
-                            <p className="lead">
-                              {t("translation:ride.bookThisRide")}
-                            </p>
-                          </Col>
-                        </Row>
-
-                        <FormBookRide rideId={rideId} />
                       </Container>
                     </Col>
                   </Row>

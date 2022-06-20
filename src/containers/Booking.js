@@ -15,7 +15,7 @@ import SendMessageButton from "../components/SendMessageButton";
 import DisplayRating from "../components/DisplayRating";
 
 import { getBooking } from "../redux";
-import { isDateInPast } from "../helpers";
+import { formatPrice, isDateInPast } from "../helpers";
 import RideDetails from "../components/RideDetails";
 import { PersonCircle } from "react-bootstrap-icons";
 
@@ -140,6 +140,34 @@ const Booking = () => {
                             />
                           </p>
                         ) : null}
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
+
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="border shadow rounded-5 mx-auto"
+                >
+                  <Container className="py-3 px-2">
+                    <Row className="align-items-center">
+                      <Col xs={7}>
+                        <h1 className="mb-0">
+                          {t("translation:global.total")}
+                        </h1>
+                      </Col>
+                      <Col xs={5} className="text-center">
+                        <h2 className="mb-0">
+                          {currentUser.id !== bookingData.DriverId
+                            ? formatPrice(bookingData.totalPaidPassenger)
+                            : formatPrice(bookingData.totalReceivedDriver)}
+                        </h2>
                       </Col>
                     </Row>
                   </Container>

@@ -20,8 +20,11 @@ import Rides from "./containers/Rides";
 import RidesDriver from "./containers/Rides/RidesDriver";
 import RidesBookings from "./containers/Rides/RidesBookings";
 import RidesToConfirm from "./containers/Rides/RidesToConfirm";
+
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
+import Book from "./containers/Book";
+
 import Offer from "./containers/Offer";
 import HowItWorks from "./containers/HowItWorks";
 
@@ -30,27 +33,36 @@ import DriverApplication from "./containers/DriverApplication";
 
 // All pages included in the side menu
 import Menu from "./containers/Menu/Menu";
-import NewRating from "./containers/Menu/NewRating";
-import Contact from "./containers/Menu/Contact";
 import Notifications from "./containers/Menu/Notifications";
 import Account from "./containers/Menu/Account";
 import Profile from "./containers/Menu/Profile";
-import Legal from "./containers/Menu/Legal";
-import Report from "./containers/Menu/Report";
 import Language from "./containers/Menu/Language";
-import Credits from "./containers/Menu/Credits";
+import Report from "./containers/Menu/Report";
+import FAQ from "./containers/Menu/FAQ";
+import Hiring from "./containers/Menu/Hiring";
+import Contact from "./containers/Menu/Contact";
+import Donate from "./containers/Donate";
+import Map from "./containers/Map";
+import Help from "./containers/Help";
+import Page404 from "./containers/Page404";
+import ComingSoon from "./containers/ComingSoon";
+
+// Legal
+import Legal from "./containers/Menu/Legal";
 import Privacy from "./containers/Menu/Privacy";
 import RefundPolicy from "./containers/Menu/RefundPolicy";
 import LegalNotice from "./containers/Menu/LegalNotice";
 import TermsConditions from "./containers/Menu/TermsConditions";
 import DataProtection from "./containers/Menu/DataProtection";
-import FAQ from "./containers/Menu/FAQ";
-import Hiring from "./containers/Menu/Hiring";
+import Credits from "./containers/Menu/Credits";
+
+// Verification
 import Verification from "./containers/Menu/Verification";
 import DriverVerification from "./containers/Menu/DriverVerification";
 import PassengerVerification from "./containers/Menu/PassengerVerification";
 
 // Rating
+import NewRating from "./containers/Menu/NewRating";
 import RatingsPassenger from "./containers/Menu/RatingsPassenger";
 import RatingsDriver from "./containers/Menu/RatingsDriver";
 import Ratings from "./containers/Menu/Ratings";
@@ -58,13 +70,6 @@ import Ratings from "./containers/Menu/Ratings";
 // Public Profile
 import PassengerProfile from "./containers/Menu/PassengerProfile";
 import DriverProfile from "./containers/Menu/DriverProfile";
-
-import Donate from "./containers/Donate";
-import Map from "./containers/Map";
-
-import Help from "./containers/Help";
-import Page404 from "./containers/Page404";
-import ComingSoon from "./containers/ComingSoon";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -80,6 +85,7 @@ import "./scss/app.scss";
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isNavBar } = useSelector((state) => state.global);
 
   useEffect(() => {
     history.listen((location) => {
@@ -94,7 +100,7 @@ function App() {
     <Suspense fallback={<Fallback />}>
       <Router history={history}>
         <ScrollToTop />
-        <NavigationBar />
+        {isNavBar ? <NavigationBar /> : null}
 
         <Switch>
           <Route exact path="/" component={Home} />
@@ -123,6 +129,7 @@ function App() {
           <Route exact path="/rides/bookings" component={RidesBookings} />
           <Route exact path="/bookings" component={Bookings} />
           <Route exact path="/booking/:bookingId" component={Booking} />
+          <Route exact path="/book/:rideId" component={Book} />
 
           <Route exact path="/menu" component={Menu} />
           <Route

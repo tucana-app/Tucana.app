@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Row, Col, Button, Container, Offcanvas } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import { XIcon } from "@primer/octicons-react";
+import { XIcon, PersonIcon } from "@primer/octicons-react";
+import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 import DatePicker, { registerLocale } from "react-datepicker";
 import en from "date-fns/locale/en-US";
 import es from "date-fns/locale/es";
@@ -14,6 +15,7 @@ import InputSearchLocation from "./InputSearchLocation";
 
 import {
   setSearchDate,
+  setSearchSeats,
   getFilteredRides,
   setToast,
   resetSearchOrigin,
@@ -29,9 +31,11 @@ const FormSearchRides = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  const { seatsMax } = useSelector((state) => state.global);
   const { formSearchRide } = useSelector((state) => state.ride);
 
   const [showOffcanvaDate, setShowOffcanvaDate] = useState(false);
+  const [showOffcanvaSeats, setShowOffcanvaSeats] = useState(false);
 
   var now = new Date();
   var dateMax;
@@ -45,6 +49,7 @@ const FormSearchRides = () => {
   const [date, setDate] = useState(
     formSearchRide.date === "" ? now : formSearchRide.date
   );
+  const [seats, setSeats] = useState(formSearchRide.seats);
 
   if (formSearchRide.date === "") {
     dispatch(setSearchDate(now));
@@ -66,11 +71,22 @@ const FormSearchRides = () => {
     setShowOffcanvaDate(false);
   };
 
+  const handleDecreaseSeats = () => {
+    setSeats(seats <= 1 ? 1 : seats - 1);
+    dispatch(setSearchSeats(seats <= 1 ? 1 : seats - 1));
+  };
+
+  const handleIncreaseSeats = () => {
+    setSeats(seats >= seatsMax ? seatsMax : seats + 1);
+    dispatch(setSearchSeats(seats >= seatsMax ? seatsMax : seats + 1));
+  };
+
   const handleSubmit = () => {
     if (
       formSearchRide.date !== "" &&
       formSearchRide.origin.city !== "" &&
-      formSearchRide.destination.city !== ""
+      formSearchRide.destination.city !== "" &&
+      formSearchRide.seats > 0
     ) {
       if (date < new Date().setHours(0, 0, 0, 0)) {
         dispatch(
@@ -86,7 +102,8 @@ const FormSearchRides = () => {
           getFilteredRides(
             formSearchRide.origin,
             formSearchRide.destination,
-            formSearchRide.date
+            formSearchRide.date,
+            formSearchRide.seats
           )
         );
       }
@@ -171,7 +188,7 @@ const FormSearchRides = () => {
         <Col xs={2}>
           <p className="mb-0">{t("translation:global.date")}:</p>
         </Col>
-        <Col className="mx-auto">
+        <Col xs={6} className="mx-auto">
           <Form.Group>
             <Form.Control
               type="text"
@@ -179,6 +196,20 @@ const FormSearchRides = () => {
               value={dateFormat(date, "dd/mm/yyyy")}
               className="cursor-pointer no-caret"
               onClick={() => setShowOffcanvaDate(true)}
+              required
+              readOnly
+            />
+          </Form.Group>
+        </Col>
+        <Col xs={4} className="mx-auto d-inline-flex align-items-center">
+          <PersonIcon size={24} className="me-2" />
+          <Form.Group>
+            <Form.Control
+              type="number"
+              name="seats"
+              value={seats}
+              className="cursor-pointer no-caret text-center"
+              onClick={() => setShowOffcanvaSeats(true)}
               required
               readOnly
             />
@@ -222,6 +253,76 @@ const FormSearchRides = () => {
                   locale={i18n.language}
                   inline
                 />
+              </Offcanvas.Body>
+            </Col>
+          </Row>
+        </Container>
+      </Offcanvas>
+
+      <Offcanvas
+        show={showOffcanvaSeats}
+        onHide={() => setShowOffcanvaSeats(false)}
+        placement="bottom"
+        className="vh-100"
+      >
+        <Container>
+          <Row>
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title>
+                  <h1>{t("translation:global.passengers")}</h1>
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body className="text-center">
+                <Container>
+                  <Row className="align-items-center">
+                    <Col xs={3}>
+                      {seats === 1 ? (
+                        <span
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={handleDecreaseSeats}
+                          variant="outline-success"
+                          className="cursor-pointer text-success"
+                        >
+                          <DashCircle size={36} />
+                        </span>
+                      )}
+                    </Col>
+                    <Col xs={6}>
+                      <Form.Control
+                        plaintext
+                        readOnly
+                        value={seats}
+                        className="h1 fw-bold text-center"
+                      />
+                    </Col>
+                    <Col xs={3}>
+                      {seats === seatsMax ? (
+                        <span
+                          variant="outline-success"
+                          className="text-secondary"
+                        >
+                          <PlusCircle size={36} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={handleIncreaseSeats}
+                          variant="outline-success"
+                          disabled={seats === seatsMax}
+                          className="cursor-pointer text-success"
+                        >
+                          <PlusCircle size={36} />
+                        </span>
+                      )}
+                    </Col>
+                  </Row>
+                </Container>
               </Offcanvas.Body>
             </Col>
           </Row>

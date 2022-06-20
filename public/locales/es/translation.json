@@ -85,8 +85,6 @@
 		"distanceOrigin": "desde su dirección inicial"
 	},
 	"formBookRide": {
-		"alreadyRide": "Ya tiene reserva(s) para este viaje",
-		"book": "libro",
 		"numberPassengers": "Número de pasajeros"
 	},
 	"formSearchRide": {
@@ -96,9 +94,13 @@
 		"about": "Acerca",
 		"accept": "Aceptar",
 		"accepted": "Aceptado",
+		"alreadyBooking": "Ya tiene reserva(s) para este viaje",
 		"becomeDriver": "Conviértase en conductor",
+		"book": "Reserva",
 		"bookRide": "Reservar un viaje",
+		"bookThisRide": "Reservar este viaje",
 		"booking": "Reservación",
+		"bookingSuccess": "Su reserva ha sido enviada al conductor",
 		"bookings": "reservas",
 		"by": "Por",
 		"cancel": "Anular",
@@ -111,6 +113,7 @@
 		"congratulations": "felicitaciones",
 		"contact": "Contacte",
 		"contactUs": "Contáctenos",
+		"continue": "",
 		"country": "País",
 		"credits": "Creditos",
 		"currentLanguage": "Español",
@@ -196,6 +199,7 @@
 		"search": "Busca en",
 		"searchResults": "Resultados de la búsqueda",
 		"seat": "Asiento",
+		"seats": "Asientos",
 		"seatsAvailable": "Asientos disponibles",
 		"seeBooking": "Ver la reserva",
 		"seeRide": "Ver paseo",
@@ -209,6 +213,7 @@
 		"submit": "Envíe",
 		"time": "tiempo",
 		"to": "a",
+		"total": "Total",
 		"username": "Nombre de usuario",
 		"vehicle": "Vehículo",
 		"verify": "Verifique",
@@ -353,7 +358,6 @@
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
 		"answer": "Tu respuesta ha sido enviada",
-		"bookThisRide": "Reservar este viaje",
 		"feedback": "Déjanos un comentario",
 		"manageBookingRequests": "Gestione sus solicitudes de reserva",
 		"rateRide": "Clasifica tu ride",

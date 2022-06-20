@@ -518,6 +518,14 @@ export const setSearchDate = (date) => {
   };
 };
 
+// Set search date
+export const setSearchSeats = (seats) => {
+  return {
+    type: rideTypes.SET_SEARCH_SEATS,
+    payload: seats,
+  };
+};
+
 // Get all the driver's ride from a user
 
 export const getFilteredRidesRequested = () => {
@@ -605,7 +613,13 @@ export const submitFormBookRideRequested = () => {
   };
 };
 
-export const submitFormBookRide = (user, ride, formValues) => {
+export const submitFormBookRide = (
+  user,
+  ride,
+  seats,
+  totalPaidPassenger,
+  totalReceivedDriver
+) => {
   return (dispatch) => {
     dispatch(submitFormBookRideRequested());
 
@@ -613,7 +627,9 @@ export const submitFormBookRide = (user, ride, formValues) => {
       .post(URL_API + "/ride/book", {
         passenger: user,
         ride,
-        formValues,
+        seats,
+        totalPaidPassenger,
+        totalReceivedDriver,
       })
       .then((response) => {
         // console.log(response.data);
@@ -622,7 +638,7 @@ export const submitFormBookRide = (user, ride, formValues) => {
           setToast({
             show: true,
             headerText: "Success",
-            bodyText: response.data.message,
+            bodyText: "Your booking has been submitted to the driver",
             variant: "success",
           })
         );
@@ -630,7 +646,7 @@ export const submitFormBookRide = (user, ride, formValues) => {
         // Refresh everything
         dispatch(getUserBookingRide(user.id, ride.id));
         dispatch(getUserBookings(user.id));
-        dispatch(submitFormBookRideSuccess(response));
+        dispatch(submitFormBookRideSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
