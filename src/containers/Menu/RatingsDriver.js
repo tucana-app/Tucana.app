@@ -126,9 +126,7 @@ function RatingsDriver() {
                                 className="text-warning me-2"
                               />
                               <h4 className="fw-bold mb-0">
-                                <span className="text-success">
-                                  {rating.value}
-                                </span>
+                                <span>{rating.value}</span>
                               </h4>
                             </Col>
                             <Col xs={12}>
@@ -186,9 +184,7 @@ function RatingsDriver() {
                                 className="text-warning me-2"
                               />
                               <h4 className="fw-bold mb-0">
-                                <span className="text-success">
-                                  {rating.value}
-                                </span>
+                                <span>{rating.value}</span>
                               </h4>
                             </Col>
                             <Col xs={12}>

@@ -2,15 +2,15 @@ import React from "react";
 import { StarFillIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
-function GoBack(props) {
+function DisplayRating(props) {
   const { t } = useTranslation();
-  const { user, type } = props;
+  const { rating, type } = props;
 
   return type === "driver" ? (
-    user.driverRating > 0 ? (
+    rating.driverRating > 0 ? (
       <p className="mb-0">
         <StarFillIcon size={18} className="text-warning me-1 mb-1" />
-        <span>{user.driverRating}</span>
+        <span>{rating.driverRating}</span>
       </p>
     ) : (
       <small className="smaller text-secondary">
@@ -18,10 +18,10 @@ function GoBack(props) {
       </small>
     )
   ) : type === "passenger" ? (
-    user.passengerRating > 0 ? (
+    rating.passengerRating > 0 ? (
       <p className="mb-0">
         <StarFillIcon size={18} className="text-warning me-1 mb-1" />
-        <span>{user.passengerRating}</span>
+        <span>{rating.passengerRating}</span>
       </p>
     ) : (
       <small className="smaller text-secondary">
@@ -31,4 +31,4 @@ function GoBack(props) {
   ) : null;
 }
 
-export default GoBack;
+export default DisplayRating;

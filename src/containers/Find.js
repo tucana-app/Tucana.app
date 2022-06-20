@@ -236,7 +236,7 @@ const Find = () => {
                                 {ride.rideDetails.Driver.User.firstName}
                               </p>
                               <DisplayRating
-                                user={ride.rideDetails.Driver.User}
+                                rating={ride.rideDetails.Driver.User.Rating}
                                 type="driver"
                               />
                             </Col>

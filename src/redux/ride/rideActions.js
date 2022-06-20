@@ -418,7 +418,7 @@ export const getBooking = (rideId) => {
     axios
       .get(URL_API + "/booking/" + rideId)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
         if (response.data) {
           dispatch(getBookingSuccess(response.data));

@@ -78,9 +78,6 @@
 		"subTitle": "Merci beaucoup pour votre considération",
 		"title": "Faire un don"
 	},
-	"driverProfile": {
-		"title": "Le profil de votre conducteur"
-	},
 	"find": {
 		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",
 		"change": "Changer",
@@ -124,6 +121,7 @@
 		"doNotShare": "Ne partagez pas vos coordonnées (téléphone, e-mail, etc.), elles seront partagées au sein de la plateforme lors de la réservation.",
 		"driver": "Conducteur",
 		"driverComment": "Commentaire du conducteur",
+		"driverProfile": "Le profil de votre conducteur",
 		"drivingLicense": "Permis de conduire",
 		"edit": "edit",
 		"email": "Courriel",
@@ -152,6 +150,7 @@
 		"firstName": "Prénom",
 		"from": "à partir de",
 		"fullname": "Nom et prénom",
+		"getVerified": "Obtenir une vérification",
 		"given": "Laissés",
 		"goBack": "Retour en arrière",
 		"help": "Aide",

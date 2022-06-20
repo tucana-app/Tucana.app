@@ -208,7 +208,7 @@ const Ride = () => {
                               {rideData.ride.Driver.User.firstName}
                             </p>
                             <DisplayRating
-                              user={rideData.ride.Driver.User}
+                              rating={rideData.ride.Driver.User.Rating}
                               type="driver"
                             />
                           </Col>

@@ -78,9 +78,6 @@
 		"subTitle": "Thank you so much for your consideration",
 		"title": "Donate"
 	},
-	"driverProfile": {
-		"title": "Your driver's profile"
-	},
 	"find": {
 		"catchPhrase": "Find your next trip across Costa Rica",
 		"change": "Change",
@@ -124,6 +121,7 @@
 		"doNotShare": "Do not share any contact info (phone, email, etc), they will be shared within the platform when a booking is made.",
 		"driver": "Driver",
 		"driverComment": "Driver comment",
+		"driverProfile": "Your driver's profile",
 		"drivingLicense": "Driving license",
 		"edit": "Edit",
 		"email": "Email",
@@ -152,6 +150,7 @@
 		"firstName": "First name",
 		"from": "From",
 		"fullname": "Full name",
+		"getVerified": "Get verified",
 		"given": "Given",
 		"goBack": "Go back",
 		"help": "Help",

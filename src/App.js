@@ -30,14 +30,11 @@ import DriverApplication from "./containers/DriverApplication";
 
 // All pages included in the side menu
 import Menu from "./containers/Menu/Menu";
-import RatingsPassenger from "./containers/Menu/RatingsPassenger";
-import RatingsDriver from "./containers/Menu/RatingsDriver";
-import Ratings from "./containers/Menu/Ratings";
 import NewRating from "./containers/Menu/NewRating";
 import Contact from "./containers/Menu/Contact";
 import Notifications from "./containers/Menu/Notifications";
-import PassengerProfile from "./containers/Menu/PassengerProfile";
-import DriverProfile from "./containers/Menu/DriverProfile";
+import Account from "./containers/Menu/Account";
+import Profile from "./containers/Menu/Profile";
 import Legal from "./containers/Menu/Legal";
 import Report from "./containers/Menu/Report";
 import Language from "./containers/Menu/Language";
@@ -49,6 +46,18 @@ import TermsConditions from "./containers/Menu/TermsConditions";
 import DataProtection from "./containers/Menu/DataProtection";
 import FAQ from "./containers/Menu/FAQ";
 import Hiring from "./containers/Menu/Hiring";
+import Verification from "./containers/Menu/Verification";
+import DriverVerification from "./containers/Menu/DriverVerification";
+import PassengerVerification from "./containers/Menu/PassengerVerification";
+
+// Rating
+import RatingsPassenger from "./containers/Menu/RatingsPassenger";
+import RatingsDriver from "./containers/Menu/RatingsDriver";
+import Ratings from "./containers/Menu/Ratings";
+
+// Public Profile
+import PassengerProfile from "./containers/Menu/PassengerProfile";
+import DriverProfile from "./containers/Menu/DriverProfile";
 
 import Donate from "./containers/Donate";
 import Map from "./containers/Map";
@@ -132,13 +141,13 @@ function App() {
             path="/ratings/new-rating/:rideId"
             component={NewRating}
           />
-          <Route exact path="/profile/passenger" component={PassengerProfile} />
+          <Route exact path="/account" component={Account} />
           <Route
             exact
             path="/rides/rides-to-confirm"
             component={RidesToConfirm}
           />
-          <Route exact path="/profile/driver" component={DriverProfile} />
+          <Route exact path="/profile/" component={Profile} />
           <Route exact path="/notifications" component={Notifications} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/donate" component={Donate} />
@@ -156,6 +165,17 @@ function App() {
           <Route exact path="/how-it-works" component={HowItWorks} />
           <Route exact path="/faq" component={FAQ} />
           <Route exact path="/hiring" component={Hiring} />
+          <Route exact path="/verification" component={Verification} />
+          <Route
+            exact
+            path="/passenger-verification"
+            component={DriverVerification}
+          />
+          <Route
+            exact
+            path="/driver-verification"
+            component={PassengerVerification}
+          />
 
           <Route exact path="/coming-soon" component={ComingSoon} />
 

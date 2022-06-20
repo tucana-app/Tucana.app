@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
-import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
+import {
+  ChevronRightIcon,
+  DotFillIcon,
+  StarFillIcon,
+} from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 
@@ -59,13 +63,19 @@ function Ratings() {
             <Container className="p-0">
               <Row>
                 <Col>
-                  <h1 className="fw-bold mb-0">
-                    {currentUser.passengerRating > 0 ? (
-                      <span>{currentUser.passengerRating}</span>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </h1>
+                  {currentUser.Rating.passengerRating > 0 ? (
+                    <div className="d-inline-flex align-items-center">
+                      <StarFillIcon size={26} className="text-warning me-2" />
+                      <h1 className="fw-bold mb-0">
+                        {currentUser.Rating.passengerRating}{" "}
+                      </h1>
+                    </div>
+                  ) : (
+                    <div className="d-inline-flex align-items-center">
+                      <h1 className="fw-bold mb-0">-</h1>
+                    </div>
+                  )}
+
                   <p className="lead">{t("translation:global.passenger")}</p>
 
                   <LinkContainer to="/profile/passenger/ratings">
@@ -76,13 +86,24 @@ function Ratings() {
                 </Col>
                 {currentUser.Driver ? (
                   <Col>
-                    <h1 className="fw-bold mb-0">
-                      {currentUser.driverRating > 0 ? (
-                        <span>{currentUser.driverRating}</span>
+                    <div className="d-inline-flex align-items-center">
+                      {currentUser.Rating.driverRating > 0 ? (
+                        <div className="d-inline-flex align-items-center">
+                          <StarFillIcon
+                            size={26}
+                            className="text-warning me-2"
+                          />
+                          <h1 className="fw-bold mb-0">
+                            {currentUser.Rating.driverRating}{" "}
+                          </h1>
+                        </div>
                       ) : (
-                        <span>-</span>
+                        <div className="d-inline-flex align-items-center">
+                          <h1 className="fw-bold mb-0">-</h1>
+                        </div>
                       )}
-                    </h1>
+                    </div>
+
                     <p className="lead">{t("translation:global.driver")}</p>
 
                     <LinkContainer to="/profile/driver/ratings">

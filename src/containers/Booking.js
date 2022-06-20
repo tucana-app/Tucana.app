@@ -194,7 +194,7 @@ const Booking = () => {
                               {bookingData.Ride.Driver.User.firstName}
                             </p>
                             <DisplayRating
-                              user={bookingData.Ride.Driver.User}
+                              rating={bookingData.Ride.Driver.User.Rating}
                               type="driver"
                             />
                           </Col>

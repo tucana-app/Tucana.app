@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import GoBack from "../../components/GoBack";
 
-function PassengerProfile(props) {
+function DriverVerification(props) {
   const { t } = useTranslation();
 
   return (
@@ -36,4 +36,4 @@ function PassengerProfile(props) {
   );
 }
 
-export default PassengerProfile;
+export default DriverVerification;

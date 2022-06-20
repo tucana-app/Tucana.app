@@ -2,7 +2,11 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { ChevronRightIcon, LinkExternalIcon } from "@primer/octicons-react";
+import {
+  ChevronRightIcon,
+  LinkExternalIcon,
+  CheckCircleFillIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
@@ -59,7 +63,7 @@ const Menu = () => {
         <Row className="my-4">
           <Col className="text-center">
             <p>
-              <Link to="/profile/passenger" className="text-decoration-none">
+              <Link to="/account" className="text-decoration-none">
                 <PersonCircle size={62} className="text-secondary me-2" />
               </Link>
             </p>
@@ -81,7 +85,7 @@ const Menu = () => {
               <>
                 <hr className="my-2" />
 
-                <Link to="/profile/passenger" className="text-decoration-none">
+                <Link to="/account" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">{t("translation:menu.account")}</p>
@@ -91,10 +95,12 @@ const Menu = () => {
                 </Link>
 
                 {currentUser.Driver ? (
-                  <Link to="/profile/driver" className="text-decoration-none">
+                  <Link to="/profile/" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="mb-0">{t("translation:menu.profile")}</p>
+                        <p className="mb-0">
+                          {t("translation:global.driverProfile")}
+                        </p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />
                       </div>
                     </ListGroup.Item>
@@ -111,6 +117,23 @@ const Menu = () => {
                     </ListGroup.Item>
                   </Link>
                 )}
+
+                <hr className="my-2" />
+
+                <Link to="/verification" className="text-decoration-none">
+                  <ListGroup.Item className="border-0">
+                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                      <p className="mb-0">
+                        {t("translation:global.getVerified")}{" "}
+                        <CheckCircleFillIcon
+                          size={24}
+                          className="text-success"
+                        />
+                      </p>
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
+                </Link>
 
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
