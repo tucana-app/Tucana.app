@@ -155,12 +155,24 @@ export const sendMessageRequested = () => {
   };
 };
 
-export const sendMessage = (senderId, receiverId, message, conversationId) => {
+export const sendMessage = (
+  senderId,
+  receiverId,
+  message,
+  conversationId,
+  googleMapsLink
+) => {
   return (dispatch) => {
     if (message.length !== 0) {
       dispatch(sendMessageRequested());
 
-      const parsingResult = parseText(message);
+      let parsingResult = {};
+
+      if (googleMapsLink) {
+        parsingResult = { value: 0 };
+      } else {
+        parsingResult = parseText(message);
+      }
 
       if (parsingResult.value === 0) {
         axios

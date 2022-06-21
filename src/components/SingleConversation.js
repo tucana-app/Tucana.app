@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
@@ -8,19 +8,24 @@ import {
   Form,
   InputGroup,
   ListGroup,
+  Offcanvas,
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { PaperAirplaneIcon, ChevronLeftIcon } from "@primer/octicons-react";
-import { PersonCircle } from "react-bootstrap-icons";
+import { PersonCircle, PinMap } from "react-bootstrap-icons";
+import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 
 import {
   resetConversationView,
   sendMessage,
   getAllUserMessages,
+  displayNavBar,
 } from "../redux";
 
 import dateFormat from "dateformat";
 import LoadingSpinner from "./LoadingSpinner";
+
+import { findLinks } from "../helpers";
 
 const SingleConversation = ({ conversation }) => {
   const { t } = useTranslation();
@@ -32,6 +37,7 @@ const SingleConversation = ({ conversation }) => {
   const messagesEndRef = useRef(null);
 
   const [message, setMessage] = useState("");
+  const [showOffcanvaMap, setShowOffcanvaMap] = useState(false);
 
   // Get receiver's information
   const receiver = !(conversation.UserId === currentUser.id)
@@ -47,17 +53,66 @@ const SingleConversation = ({ conversation }) => {
 
   const form = useRef("");
 
-  useEffect(() => {
-    scrollToBottom();
+  // Google Map
+
+  const containerStyle = {
+    // width: "500px",
+    height: "100vh",
+  };
+
+  const center = {
+    lat: 9.9356284,
+    lng: -84.1483647,
+  };
+
+  const [map, setMap] = useState(null);
+  const [marker, setMarker] = useState({ lat: 9.9356284, lng: -84.1483647 });
+
+  const onLoad = useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSubmit = (event) => {
+  const changeMarker = (e) => {
+    setMarker({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    setMessage(
+      `http://maps.google.com/maps?q=${e.latLng.lat()},${e.latLng.lng()}`
+    );
+  };
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
+  const handleSendPin = (event) => {
+    handleSubmit(event, true);
+    setShowOffcanvaMap(false);
+    scrollToBottom();
+  };
+
+  // End Google Map
+
+  const handleSubmit = (event, googleMapsLink) => {
     event.preventDefault();
 
-    dispatch(sendMessage(currentUser.id, receiverId, message, conversation.id));
+    dispatch(
+      sendMessage(
+        currentUser.id,
+        receiverId,
+        message,
+        conversation.id,
+        googleMapsLink
+      )
+    );
     scrollToBottom();
     form.current.reset();
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
 
   return (
     <div>
@@ -66,15 +121,16 @@ const SingleConversation = ({ conversation }) => {
           onClick={() => {
             dispatch(getAllUserMessages(currentUser.id));
             dispatch(resetConversationView(currentUser.id));
+            dispatch(displayNavBar(true));
           }}
-          className="rounded-0 border border-top-0 border-start-0
+          className="bg-light rounded-0 border border-top-0 border-start-0
           border-end-0 py-3"
         >
-          <span>
+          <div className="d-inline-flex align-items-center">
             <ChevronLeftIcon size={28} className="text-success" />
-            <PersonCircle size={24} className="mb-1 me-2" />
-            <span className="h2">{receiver}</span>
-          </span>
+            <PersonCircle size={28} className="text-secondary me-2" />
+            <h2 className="mb-0">{receiver}</h2>
+          </div>
         </ListGroup.Item>
       </ListGroup>
 
@@ -93,7 +149,21 @@ const SingleConversation = ({ conversation }) => {
                     {message.SenderId === currentUser.id ? (
                       // The sender's messages
                       <>
-                        <p className="from-me mb-0">{message.body} </p>
+                        {findLinks(message.body) ? (
+                          <p className="from-me mb-0">
+                            <a
+                              href={message.body}
+                              alt=""
+                              rel="noreferrer"
+                              target="_blank"
+                              className="link link-light"
+                            >
+                              {message.body}
+                            </a>
+                          </p>
+                        ) : (
+                          <p className="from-me mb-0">{message.body} </p>
+                        )}
                         <p className="small text-secondary text-end w-100 mt-1 pe-0 py-0">
                           {dateFormat(message.createdAt, "dd/mm/yy hh:MM TT")}{" "}
                           {messageStatusIcon(message.MessageStatusId)}
@@ -102,8 +172,21 @@ const SingleConversation = ({ conversation }) => {
                     ) : (
                       // The receiver's messages
                       <>
-                        <p className="from-them mb-0">{message.body}</p>
-                        {/* <p className="small text-secondary w-100 ps-0 my-0"> */}
+                        {findLinks(message.body) ? (
+                          <p className="from-them mb-0">
+                            <a
+                              href={message.body}
+                              alt=""
+                              rel="noreferrer"
+                              target="_blank"
+                              className="link link-dark"
+                            >
+                              {message.body}
+                            </a>
+                          </p>
+                        ) : (
+                          <p className="from-them mb-0">{message.body} </p>
+                        )}
                         <p className="small text-secondary w-100 mt-1 ps-0 py-0">
                           {dateFormat(message.createdAt, "dd/mm/yy hh:MM TT")}
                         </p>
@@ -117,11 +200,24 @@ const SingleConversation = ({ conversation }) => {
         <div ref={messagesEndRef} />
       </Container>
 
-      <Form onSubmit={handleSubmit} className="message-form px-2" ref={form}>
+      <Form
+        onSubmit={(event) => handleSubmit(event, false)}
+        className="message-form bg-light px-2"
+        ref={form}
+      >
         <Container>
           <Row>
             <Col xs={12} sm={10} md={8} lg={8} className="mx-auto">
               <InputGroup className="mx-auto">
+                <Button
+                  type="button"
+                  variant="light"
+                  size="lg"
+                  className="border pt-0"
+                  onClick={() => setShowOffcanvaMap(true)}
+                >
+                  <PinMap size={24} />
+                </Button>
                 <Form.Control
                   name="message"
                   placeholder={t("translation:singleConversation.sendMessage")}
@@ -138,11 +234,7 @@ const SingleConversation = ({ conversation }) => {
                   {isLoadingSendMessage ? (
                     <LoadingSpinner size={"sm"} />
                   ) : (
-                    <PaperAirplaneIcon
-                      size={24}
-                      verticalAlign="middle"
-                      className="mb-1"
-                    />
+                    <PaperAirplaneIcon size={24} className="mb-1" />
                   )}
                 </Button>
               </InputGroup>
@@ -150,8 +242,54 @@ const SingleConversation = ({ conversation }) => {
           </Row>
         </Container>
       </Form>
+
+      <Offcanvas
+        show={showOffcanvaMap}
+        onHide={() => setShowOffcanvaMap(false)}
+        placement="bottom"
+        className="vh-100"
+      >
+        <Container fluid className="px-0">
+          <Row>
+            <Col>
+              <Offcanvas.Header
+                closeButton
+                className="position-absolute text-center bg-white w-100"
+                style={{ zIndex: 99999 }}
+              >
+                <Offcanvas.Title>
+                  <h1>{t("translation:singleConversation.titleOffCanva")}</h1>
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body className="text-center p-0">
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  center={marker}
+                  zoom={7}
+                  onLoad={onLoad}
+                  onUnmount={onUnmount}
+                  onClick={changeMarker}
+                  options={{ scrollwheel: true }}
+                >
+                  <Marker position={{ lat: marker.lat, lng: marker.lng }}>
+                    <InfoWindow center={{ lat: marker.lat, lng: marker.lng }}>
+                      <Button
+                        onClick={handleSendPin}
+                        variant="success"
+                        size="lg"
+                      >
+                        {t("translation:singleConversation.sendPin")}
+                      </Button>
+                    </InfoWindow>
+                  </Marker>
+                </GoogleMap>
+              </Offcanvas.Body>
+            </Col>
+          </Row>
+        </Container>
+      </Offcanvas>
     </div>
   );
 };
 
-export default SingleConversation;
+export default React.memo(SingleConversation);

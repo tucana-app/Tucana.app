@@ -402,6 +402,8 @@
 		"title": "Sign up successful"
 	},
 	"singleConversation": {
-		"sendMessage": "Send a message"
+		"sendMessage": "Send a message",
+		"sendPin": "Send this pin",
+		"titleOffCanva": "Send a pin"
 	}
 }

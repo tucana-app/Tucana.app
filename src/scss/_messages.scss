@@ -132,10 +132,14 @@ p[class^="from-"].emoji::before {
 
 .message-form {
   position: fixed;
+  bottom: 0;
   right: 0;
-  bottom: $navbarHeight + 15px;
   left: 0;
-  z-index: 1030;
+  @extend .py-3;
+  @extend .border;
+  @extend .border-end-0;
+  @extend .border-bottom-0;
+  @extend .border-start-0;
 }
 
 @media screen and (max-width: 800px) {

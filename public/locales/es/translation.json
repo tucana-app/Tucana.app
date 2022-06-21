@@ -402,6 +402,8 @@
 		"title": ""
 	},
 	"singleConversation": {
-		"sendMessage": "Enviar un mensaje"
+		"sendMessage": "Enviar un mensaje",
+		"sendPin": "",
+		"titleOffCanva": ""
 	}
 }

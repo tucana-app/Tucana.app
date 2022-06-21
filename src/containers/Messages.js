@@ -9,7 +9,11 @@ import { PersonCircle } from "react-bootstrap-icons";
 import LoadingSpinner from "../components/LoadingSpinner";
 import SingleConversation from "../components/SingleConversation";
 
-import { getAllUserMessages, changeConversationView } from "../redux";
+import {
+  getAllUserMessages,
+  changeConversationView,
+  displayNavBar,
+} from "../redux";
 
 function Messages() {
   const { t } = useTranslation();
@@ -94,23 +98,24 @@ function Messages() {
                         <ListGroup.Item
                           key={index}
                           className="cursor-pointer border border-top-0 border-start-0 border-end-0"
-                          onClick={() =>
+                          onClick={() => {
                             dispatch(
                               changeConversationView(
                                 conversation.UUID,
                                 currentUser.id,
                                 conversation.id
                               )
-                            )
-                          }
+                            );
+                            dispatch(displayNavBar(false));
+                          }}
                         >
                           <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
-                            <div className="position-relative">
+                            <div className="d-inline-flex align-items-center">
                               <PersonCircle
                                 size={28}
-                                className="text-secondary mb-2 me-2"
+                                className="text-secondary me-2"
                               />
-                              <span className="h2">
+                              <span className="h2 mb-0">
                                 {getSenderUsername(conversation)}
                               </span>
                               {countUnreadMessages(conversation) > 0 ? (
@@ -122,10 +127,7 @@ function Messages() {
                                 </Badge>
                               ) : null}
                             </div>
-                            <ChevronRightIcon
-                              size={24}
-                              verticalAlign="middle"
-                            />
+                            <ChevronRightIcon size={24} />
                           </div>
                         </ListGroup.Item>
                       ) : null
