@@ -110,14 +110,17 @@ function Messages() {
                           }}
                         >
                           <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
-                            <div className="d-inline-flex align-items-center">
-                              <PersonCircle
-                                size={28}
-                                className="text-secondary me-2"
-                              />
-                              <span className="h2 mb-0">
-                                {getSenderUsername(conversation)}
-                              </span>
+                            <div className="position-relative">
+                              <div className="d-flex align-items-center">
+                                <PersonCircle
+                                  size={28}
+                                  className="text-secondary me-2"
+                                />
+                                <h2 className="mb-0">
+                                  {getSenderUsername(conversation)}
+                                </h2>
+                              </div>
+
                               {countUnreadMessages(conversation) > 0 ? (
                                 <Badge
                                   bg="danger"
