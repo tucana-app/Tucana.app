@@ -38,6 +38,7 @@
 		"pastApplications": "Past applications",
 		"request": "Request",
 		"thankYou": "Thank you for applying. A moderator will review your submission",
+		"typeMaker": "Type the car maker",
 		"underReview": "Under review"
 	},
 	"booking": {
@@ -144,7 +145,7 @@
 			"passwordsMatch": "Passwords must match",
 			"validEmail": "Please enter a valid email address",
 			"validName": "Please enter a valid name",
-			"validNumberPlage": "Enter a valid number plate",
+			"validNumberPlate": "Enter a valid number plate",
 			"validPhone": "Please enter a valid phone number",
 			"validUsername": "Please enter a valid username (only letters and numbers)",
 			"validYear": "Enter a valid year"

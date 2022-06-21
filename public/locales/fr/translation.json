@@ -38,6 +38,7 @@
 		"pastApplications": "Demandes antérieures",
 		"request": "Demande",
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
+		"typeMaker": "Tapez le nom du constructeur automobile",
 		"underReview": "En cours d'examen"
 	},
 	"booking": {
@@ -144,7 +145,7 @@
 			"passwordsMatch": "",
 			"validEmail": "Veuillez saisir une adresse électronique valide",
 			"validName": "Veuillez entrer un nom valide",
-			"validNumberPlage": "Entrez une plaque d'immatriculation valide",
+			"validNumberPlate": "Entrez une plaque d'immatriculation valide",
 			"validPhone": "Veuillez entrer un numéro de téléphone valide",
 			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
 			"validYear": ""

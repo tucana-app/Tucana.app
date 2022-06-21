@@ -274,7 +274,11 @@ const SingleConversation = ({ conversation }) => {
                 >
                   <Marker position={{ lat: marker.lat, lng: marker.lng }}>
                     <InfoWindow center={{ lat: marker.lat, lng: marker.lng }}>
-                      <Button onClick={handleSendPin} variant="success">
+                      <Button
+                        onClick={handleSendPin}
+                        variant="success"
+                        className="m-3"
+                      >
                         {t("translation:singleConversation.sendPin")}
                       </Button>
                     </InfoWindow>

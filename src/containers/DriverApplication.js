@@ -17,6 +17,7 @@ import {
   setApplicationLicenseNumber,
   setApplicationLicenseCountry,
   setApplicationCarMaker,
+  setApplicationCarModel,
   setApplicationNumberPlate,
   resetApplicationForm,
   submitFormBecomeDriver,
@@ -33,7 +34,7 @@ const DriverApplication = () => {
     submitFormBecomeDriverSuccess,
     formApplyDriver,
   } = useSelector((state) => state.user);
-  const { isLoadingCountries, countries } = useSelector(
+  const { isLoadingCountries, countries, carMakers } = useSelector(
     (state) => state.global
   );
 
@@ -52,11 +53,23 @@ const DriverApplication = () => {
     formApplyDriver.license.country
   );
   const [carMaker, setCarMaker] = useState(formApplyDriver.car.maker);
+  const [carMakerFromUser, setCarMakerFromUser] = useState(
+    formApplyDriver.car.maker
+  );
+  const [carModel, setCarModel] = useState(formApplyDriver.car.model);
   const [numberPlate, setNumberPlate] = useState(
     formApplyDriver.car.numberPlate
   );
 
   const countriesSelect = useRef([]);
+  const selectCarMakers = [];
+
+  carMakers.map((carMaker) => {
+    return selectCarMakers.push({
+      value: carMaker,
+      label: carMaker,
+    });
+  });
 
   const backButton = (handleBackToStep) => {
     return (
@@ -146,8 +159,21 @@ const DriverApplication = () => {
 
   // Step 3
   const handleChangeCarMaker = (e) => {
-    setCarMaker(e.target.value);
-    dispatch(setApplicationCarMaker(e.target.value));
+    setCarMaker(e);
+    setCarMakerFromUser(e);
+    dispatch(setApplicationCarMaker(e));
+  };
+
+  const handleChangeCarMakerFromUser = (e) => {
+    setCarMakerFromUser({ value: e.target.value, label: e.target.value });
+    dispatch(
+      setApplicationCarMaker({ value: e.target.value, label: e.target.value })
+    );
+  };
+
+  const handleChangeCarModel = (e) => {
+    setCarModel(e.target.value);
+    dispatch(setApplicationCarModel(e.target.value));
   };
 
   const handleChangeNumberPlate = (e) => {
@@ -176,7 +202,12 @@ const DriverApplication = () => {
   };
 
   const handleSubmit = () => {
-    if (carMaker !== "" && numberPlate !== "") {
+    if (
+      carMaker.value !== "" &&
+      carMakerFromUser.value !== "" &&
+      carModel !== "" &&
+      numberPlate !== ""
+    ) {
       // If the number plate has the correct format
       if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
         dispatch(submitFormBecomeDriver(currentUser, formApplyDriver));
@@ -188,7 +219,7 @@ const DriverApplication = () => {
           setToast({
             show: true,
             headerText: t("translation:global.errors.error"),
-            bodyText: t("translation:global.errors.validNumberPlage"),
+            bodyText: t("translation:global.errors.validNumberPlate"),
             variant: "warning",
           })
         );
@@ -566,12 +597,43 @@ const DriverApplication = () => {
                       <span className="text-danger">*</span>
                     </p>
                     <Form.Group>
+                      <Select
+                        value={carMaker}
+                        name="carMaker"
+                        placeholder={`${t("translation:global.search")}...`}
+                        onChange={handleChangeCarMaker}
+                        options={selectCarMakers}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  {carMaker.value === "Other" ? (
+                    <Col xs={12} className="mb-3">
+                      <Form.Group>
+                        <Form.Control
+                          type="text"
+                          name="carMakerFromUser"
+                          placeholder={t("translation:becomeDriver.typeMaker")}
+                          value={carMakerFromUser.value}
+                          onChange={handleChangeCarMakerFromUser}
+                          maxLength={30}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  ) : null}
+                  <Col xs={12} className="mb-3">
+                    <p className="small ms-2 mb-0">
+                      {t("translation:global.model")}
+                      <span className="text-danger">*</span>
+                    </p>
+                    <Form.Group>
                       <Form.Control
                         type="text"
-                        name="carMaker"
-                        placeholder="Toyota, Dodge, etc."
-                        value={carMaker}
-                        onChange={handleChangeCarMaker}
+                        name="carModel"
+                        placeholder="RAV4, Trooper, Wrangler, etc. "
+                        value={carModel}
+                        onChange={handleChangeCarModel}
                         maxLength={30}
                         required
                       />
@@ -620,6 +682,7 @@ const DriverApplication = () => {
                       className="hvr-icon-forward ms-2"
                       disabled={
                         formApplyDriver.car.maker === "" ||
+                        formApplyDriver.car.model === "" ||
                         formApplyDriver.car.numberPlate === ""
                       }
                     >

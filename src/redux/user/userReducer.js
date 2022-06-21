@@ -62,6 +62,7 @@ initialState = {
     },
     car: {
       maker: "",
+      model: "",
       numberPlate: "",
     },
   },
@@ -318,6 +319,18 @@ function userReducer(state = initialState, action) {
         },
       };
 
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_MODEL:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            model: action.payload,
+          },
+        },
+      };
+
     case userTypes.SET_FORM_BECOME_DRIVER_NUMBER_PLATE:
       return {
         ...state,
@@ -345,6 +358,7 @@ function userReducer(state = initialState, action) {
           },
           car: {
             maker: "",
+            model: "",
             numberPlate: "",
           },
         },

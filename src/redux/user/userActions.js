@@ -642,6 +642,14 @@ export const setApplicationCarMaker = (maker) => {
   };
 };
 
+// Set the car maker
+export const setApplicationCarModel = (model) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_MODEL,
+    payload: model,
+  };
+};
+
 // Set the number plate
 export const setApplicationNumberPlate = (numberPlate) => {
   return {

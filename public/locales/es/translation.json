@@ -38,6 +38,7 @@
 		"pastApplications": "Solicitudes anteriores",
 		"request": "Solicite",
 		"thankYou": "Gracias por solicitarlo. Un moderador revisará su solicitud",
+		"typeMaker": "Escriba el fabricante del carro",
 		"underReview": "En revisión"
 	},
 	"booking": {
@@ -144,7 +145,7 @@
 			"passwordsMatch": "",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
-			"validNumberPlage": "Introduzca una matrícula válida",
+			"validNumberPlate": "Introduzca una matrícula válida",
 			"validPhone": "Por favor, introduzca un número de teléfono válido",
 			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)",
 			"validYear": ""
