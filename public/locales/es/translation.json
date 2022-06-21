@@ -403,7 +403,7 @@
 	},
 	"singleConversation": {
 		"sendMessage": "Enviar un mensaje",
-		"sendPin": "",
-		"titleOffCanva": ""
+		"sendPin": "Enviar este pin",
+		"titleOffCanva": "Enviar una ubicación"
 	}
 }

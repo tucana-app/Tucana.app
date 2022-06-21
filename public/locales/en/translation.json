@@ -404,6 +404,6 @@
 	"singleConversation": {
 		"sendMessage": "Send a message",
 		"sendPin": "Send this pin",
-		"titleOffCanva": "Send a pin"
+		"titleOffCanva": "Send a location"
 	}
 }

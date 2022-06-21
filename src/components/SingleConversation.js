@@ -65,6 +65,7 @@ const SingleConversation = ({ conversation }) => {
     lng: -84.1483647,
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState({ lat: 9.9356284, lng: -84.1483647 });
 
@@ -273,11 +274,7 @@ const SingleConversation = ({ conversation }) => {
                 >
                   <Marker position={{ lat: marker.lat, lng: marker.lng }}>
                     <InfoWindow center={{ lat: marker.lat, lng: marker.lng }}>
-                      <Button
-                        onClick={handleSendPin}
-                        variant="success"
-                        size="lg"
-                      >
+                      <Button onClick={handleSendPin} variant="success">
                         {t("translation:singleConversation.sendPin")}
                       </Button>
                     </InfoWindow>
