@@ -137,6 +137,8 @@
 			"chooseTime": "You need to pick a time",
 			"dateFuture": "The date needs to be in the future",
 			"error": "Error",
+			"errorFallback": "There has been an error.",
+			"errorPersist": "If the error persists, please contact us.",
 			"max20characters": "Max. 20 characters",
 			"min4characters": "Min. 4 characters",
 			"missingComment": "You need to write a comment (min. 10 characters)",

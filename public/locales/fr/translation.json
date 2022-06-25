@@ -137,6 +137,8 @@
 			"chooseTime": "Vous devez choisir une heure",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
+			"errorFallback": "Il y a eu une erreur.",
+			"errorPersist": "Si l'erreur persiste, veuillez nous contacter.",
 			"max20characters": "Max. 20 caractères",
 			"min4characters": "Min. 4 caractères",
 			"missingComment": "Vous devez écrire un commentaire (10 caractères min.)",

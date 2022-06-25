@@ -28,6 +28,7 @@
     "react-country-flag": "^3.0.2",
     "react-datepicker": "^4.8.0",
     "react-dom": "^16.14.0",
+    "react-error-boundary": "^3.1.4",
     "react-https-redirect": "^1.1.0",
     "react-i18next": "^11.11.2",
     "react-phone-number-input": "^3.1.52",

@@ -111,8 +111,7 @@ function Home() {
                   </LinkContainer>
                   {/* <p className="text-light mb-0">
                     {t("translation:homepage.paragraph")}
-                  </p>
-                  */}
+                  </p> */}
                 </Col>
               </Row>
             </Container>
