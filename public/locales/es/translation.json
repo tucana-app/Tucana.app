@@ -398,9 +398,9 @@
 		"title": ""
 	},
 	"signUpSuccess": {
-		"subTitle": "",
-		"text": "",
-		"title": ""
+		"subTitle": "Bienvenido a nuestra plataforma 🎉",
+		"text": "Busque el enlace de confirmación en su buzón de correo electrónico y en su carpeta de spam para confirmar su cuenta",
+		"title": "Inscribirse con éxito"
 	},
 	"singleConversation": {
 		"sendMessage": "Enviar un mensaje",
