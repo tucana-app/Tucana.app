@@ -239,16 +239,6 @@ const Menu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <div className="mb-0">
-                    {i18n.language === "en" ? (
-                      <>
-                        {t("translation:global.currentLanguage")}
-                        <ReactCountryFlag
-                          countryCode="US"
-                          className="ms-2 mb-1"
-                          svg
-                        />
-                      </>
-                    ) : null}
                     {i18n.language === "es" ? (
                       <>
                         {t("translation:global.currentLanguage")}
@@ -258,8 +248,7 @@ const Menu = () => {
                           svg
                         />
                       </>
-                    ) : null}
-                    {i18n.language === "fr" ? (
+                    ) : i18n.language === "fr" ? (
                       <>
                         {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
@@ -268,7 +257,16 @@ const Menu = () => {
                           svg
                         />
                       </>
-                    ) : null}
+                    ) : (
+                      <>
+                        {t("translation:global.currentLanguage")}
+                        <ReactCountryFlag
+                          countryCode="US"
+                          className="ms-2 mb-1"
+                          svg
+                        />
+                      </>
+                    )}
                   </div>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
