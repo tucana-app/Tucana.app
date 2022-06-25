@@ -23,7 +23,7 @@ const Donate = () => {
           <Col className="text-center">
             <a
               href="https://giveth.io/project/Carpooling-App-in-Costa-Rica-0"
-              target={"blank"}
+              target="blank"
               className="me-3"
             >
               <Button variant="warning" size={"lg"}>
@@ -33,7 +33,7 @@ const Donate = () => {
 
             <a
               href="https://www.paypal.com/donate/?hosted_button_id=M4QRJF5GDHCKA"
-              target={"blank"}
+              target="blank"
               className="me-3"
             >
               <Button variant="success" size={"lg"}>
@@ -44,7 +44,7 @@ const Donate = () => {
         </Row>
         <Row>
           <Col className="text-center">
-            <a href="http://ridecr.atwebpages.com" target={"blank"}>
+            <a href="https://fund.tucana.app" target="blank">
               <Button variant="outline-success" size={"lg"}>
                 {t("translation:donate.crowdfunding")}
               </Button>

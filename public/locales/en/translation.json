@@ -270,7 +270,8 @@
 	"menu": {
 		"about": "About Us",
 		"account": "Account",
-		"donate": "Donate",
+		"donate": "Support the app",
+		"feedback": "Give us your feedback",
 		"legal": "Legal",
 		"logOut": "Log Out",
 		"memberSince": "Member since",

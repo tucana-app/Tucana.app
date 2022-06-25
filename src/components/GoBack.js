@@ -11,9 +11,9 @@ function GoBack(props) {
   };
 
   return (
-    <Row className="mb-2 mx-1 mx-sm-0">
+    <Row className="mx-1 mx-sm-0">
       <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-        <Container className="mt-3 py-3 px-2">
+        <Container className="mt-4 px-2">
           <Row>
             <Col xs={1}>
               <div onClick={handleGoBack} className="cursor-pointer">

@@ -38,7 +38,7 @@ const RidesBookings = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="mt-4 mb-5">
+      <Container className="mb-5">
         {isLoadingDriverBookingsList ? (
           <Row>
             <Col className="text-center">

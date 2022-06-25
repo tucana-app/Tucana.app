@@ -5,7 +5,7 @@ import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
   LinkExternalIcon,
-  CheckCircleFillIcon,
+  // CheckCircleFillIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
@@ -120,7 +120,7 @@ const Menu = () => {
 
                 <hr className="my-2" />
 
-                <Link to="/verification" className="text-decoration-none">
+                {/* <Link to="/verification" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">
@@ -133,12 +133,13 @@ const Menu = () => {
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
-                </Link>
+                </Link> */}
 
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <p className="mb-0">{t("translation:menu.ratings")}</p>
+
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
@@ -305,8 +306,22 @@ const Menu = () => {
             </Link>
 
             <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe5ryLUu84X7IELlLQO3XWfYajW4wj47Y-CkhVBQJsWGoh_4Q/viewform?usp=sf_link"
+              target="_blank"
+              rel="noreferrer"
+              className="text-decoration-none"
+            >
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">{t("translation:menu.feedback")}</p>
+                  <LinkExternalIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </a>
+
+            <a
               href="https://fund.tucana.app"
-              target={"_blank"}
+              target="_blank"
               rel="noreferrer"
               className="text-decoration-none"
             >

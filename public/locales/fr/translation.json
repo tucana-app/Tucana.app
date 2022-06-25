@@ -270,7 +270,8 @@
 	"menu": {
 		"about": "À propos de nous",
 		"account": "Compte",
-		"donate": "Faire un don",
+		"donate": "Soutenez l'application",
+		"feedback": "Donne-nous ton avis",
 		"legal": "juridique",
 		"logOut": "Déconnexion",
 		"memberSince": "Membre depuis",
