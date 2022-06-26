@@ -80,7 +80,7 @@ const initialState = {
     date: "",
     time: "",
     seats: 1,
-    price: 500,
+    price: 2000,
     comment: "",
   },
 

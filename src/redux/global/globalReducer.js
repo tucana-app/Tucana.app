@@ -1,7 +1,7 @@
 import globalTypes from "./globalTypes";
 
 const initialState = {
-  seatsMax: 6,
+  seatsMax: 3,
 
   labelStringField: "You must enter a string",
   labelRequiredField: "This field is required",
@@ -44,7 +44,7 @@ const initialState = {
     "Other",
   ],
 
-  priceMin: 500,
+  priceMin: 2000,
   priceMax: 50000,
 
   isLoadingCountries: false,
