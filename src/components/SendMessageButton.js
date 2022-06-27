@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { CommentDiscussionIcon } from "@primer/octicons-react";
 
-import { startConversation } from "../redux";
+import { startConversation, displayNavBar } from "../redux";
 
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -25,7 +25,10 @@ function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
 
   return type === "link" ? (
     <Button
-      onClick={handleStartConversation}
+      onClick={() => {
+        dispatch(displayNavBar(false));
+        handleStartConversation();
+      }}
       variant="white"
       disabled={isLoadingStartConversation}
       className="p-0 me-2"
@@ -36,7 +39,10 @@ function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
     </Button>
   ) : (
     <Button
-      onClick={handleStartConversation}
+      onClick={() => {
+        dispatch(displayNavBar(false));
+        handleStartConversation();
+      }}
       variant="success"
       disabled={isLoadingStartConversation}
     >

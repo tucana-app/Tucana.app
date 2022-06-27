@@ -33,7 +33,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
                   <p>{t("translation:global.errors.errorPersist")}</p>
                   <p>
                     <a
-                      href={process.env.REACT_APP_URL}
+                      href={process.env.REACT_APP_URL_CLIENT}
                       className="link-success me-2"
                       alt=""
                       onClick={() => resetErrorBoundary()}

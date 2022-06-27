@@ -1,8 +1,4 @@
-import {
-  CheckCircleFillIcon,
-  CheckCircleIcon,
-  CheckIcon,
-} from "@primer/octicons-react";
+import { Check2, Check2All } from "react-bootstrap-icons";
 import messageTypes from "./messageTypes";
 
 const initialState = {
@@ -29,24 +25,16 @@ const initialState = {
 
     switch (status) {
       case 1:
-        return (
-          <CheckIcon size={24} className={`text-${variant[status - 1]}`} />
-        );
+        return <Check2 size={24} className={`text-${variant[status - 1]}`} />;
 
       case 2:
         return (
-          <CheckCircleIcon
-            size={24}
-            className={`text-${variant[status - 1]}`}
-          />
+          <Check2All size={24} className={`text-${variant[status - 1]}`} />
         );
 
       case 3:
         return (
-          <CheckCircleFillIcon
-            size={24}
-            className={`text-${variant[status - 1]}`}
-          />
+          <Check2All size={24} className={`text-${variant[status - 1]}`} />
         );
 
       default:
