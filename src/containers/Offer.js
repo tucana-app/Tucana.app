@@ -168,8 +168,10 @@ const Offer = () => {
         })
       );
     } else {
-      timeOrigin.current.setHours(time.value.slice(0, 2));
-      timeOrigin.current.setMinutes(time.value.slice(3, 5));
+      timeOrigin.current.setHours(time.value.slice(0, time.value.indexOf(":")));
+      timeOrigin.current.setMinutes(
+        time.value.slice(time.value.indexOf(":") + 1, time.value.length)
+      );
 
       setStepFour(false);
       setStepFive(true);

@@ -65,10 +65,10 @@
 		"title": "Póngase en contacto con nosotros"
 	},
 	"createNewPassword": {
-		"linkDeprecated": "",
-		"reset": "",
-		"retypePassword": "",
-		"title": ""
+		"linkDeprecated": "Este enlace está obsoleto",
+		"reset": "Restablecer contraseña",
+		"retypePassword": "Repita la contraseña",
+		"title": "Crear una nueva contraseña"
 	},
 	"dataProtection": {
 		"title": "Protección de Datos"
@@ -114,14 +114,14 @@
 		"congratulations": "felicitaciones",
 		"contact": "Contacte",
 		"contactUs": "Contáctenos",
-		"continue": "",
+		"continue": "Continuar",
 		"country": "País",
-		"credits": "Creditos",
+		"credits": "Créditos",
 		"currentLanguage": "Español",
 		"date": "Fecha",
 		"day": "Día",
 		"destination": "destino",
-		"distance": "",
+		"distance": "Distancia",
 		"doNotShare": "No comparta ninguna información de contacto (teléfono, correo electrónico, etc.), se compartirán dentro de la plataforma cuando se realice una reserva.",
 		"driver": "Conductor",
 		"driverComment": "Comentario del conductor",
@@ -144,13 +144,13 @@
 			"missingComment": "Tienes que escribir un comentario (mín. 10 caracteres)",
 			"missingInfo": "Por favor, rellene toda la información",
 			"missingRating": "Asegúrese de dar una calificación",
-			"passwordsMatch": "",
+			"passwordsMatch": "Las contraseñas deben coincidir",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
 			"validNumberPlate": "Introduzca una matrícula válida",
 			"validPhone": "Por favor, introduzca un número de teléfono válido",
 			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)",
-			"validYear": ""
+			"validYear": "Introduzca un año válido"
 		},
 		"faq": "Preguntas frecuentes",
 		"firstName": "Nombre",
@@ -198,7 +198,7 @@
 		"report": "Informar de un problema",
 		"resendLink": "Reenviar el enlace de confirmación",
 		"reset": "Reiniciar",
-		"returnLogin": "",
+		"returnLogin": "Volver a la <2>página de inicio de sesión</2>",
 		"ride": "Montar",
 		"search": "Busca en",
 		"searchResults": "Resultados de la búsqueda",
@@ -211,7 +211,7 @@
 		"selected": "Seleccionado",
 		"send": "Envía",
 		"settings": "Ajustes",
-		"signUp": "Inscríbete",
+		"signUp": "Inscribite",
 		"slogan": "Comparte tus viajes en Costa Rica",
 		"status": "Estado",
 		"submit": "Envíe",
@@ -278,7 +278,7 @@
 		"payments": "Pagos",
 		"profile": "Perfil",
 		"ratings": "Calificaciones",
-		"refunds": "reembolsos"
+		"refunds": "Reembolsos"
 	},
 	"messageEmpty": {
 		"bookRide": "Reserve su próximo viaje",
@@ -312,10 +312,10 @@
 		"chooseTime": "Elige una hora",
 		"comment": "¿Algún comentario?",
 		"details": "Detalles de su viaje",
-		"estimatedDistance": "",
-		"estimatedTime": "",
+		"estimatedDistance": "Distancia estimada",
+		"estimatedTime": "Tiempo estimado",
 		"findRide": "Encontrar un viaje",
-		"onlyVerifiedDriver": "Sólo puedes ofrecer viajes si eres un conductor verificado",
+		"onlyVerifiedDriver": "Solo puedes ofrecer viajes si eres un conductor verificado",
 		"placeholderComment": "¿Quieres compartir el camino que vas a tomar o una precisión sobre tu destino?",
 		"preview": "Vista previa en Google Maps",
 		"previewTrip": "Previsualización de la ruta",
@@ -324,7 +324,7 @@
 		"rideOnline2": "aquí",
 		"seatsAvailable": "¿Cuántos asientos tienes?",
 		"selectNumber": "Seleccione un número",
-		"step": "STEP",
+		"step": "Etapa",
 		"summary": "Resumen",
 		"title": "Ofrecer un paseo",
 		"whatTime": "A que hora?",
@@ -348,17 +348,17 @@
 		"toDo": "Calificaciones para hacer"
 	},
 	"refundPolicy": {
-		"title": "Politica de reembolso"
+		"title": "Política de reembolso"
 	},
 	"report": {
 		"behavior": "Denunciar un comportamiento",
-		"problemApp": ""
+		"problemApp": "Un problema con la aplicación"
 	},
 	"resetPassword": {
-		"sendLink": "",
-		"subTitle": "",
-		"title": "",
-		"typeEmail": ""
+		"sendLink": "Enviar enlace de restablecimiento",
+		"subTitle": "Introduzca su dirección de correo electrónico para recibir un enlace",
+		"title": "Restablecer la contraseña",
+		"typeEmail": "Escriba aquí su dirección de correo electrónico"
 	},
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
@@ -376,19 +376,19 @@
 		"ridesToConfirm": "Viajes a confirmar"
 	},
 	"ridesBookings": {
-		"subTitle": "",
-		"summary": "",
-		"title": ""
+		"subTitle": "Encuentre a su pasajero potencial aquí",
+		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
+		"title": "Reservas para sus rides"
 	},
 	"ridesDriver": {
-		"subTitle": "",
-		"summary": "",
-		"title": ""
+		"subTitle": "Todos los rides que has presentado",
+		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
+		"title": "Rides ofrecidos"
 	},
 	"ridesToConfirm": {
-		"goBack": "",
-		"noRides": "",
-		"title": ""
+		"goBack": "Vuelve a tus rides",
+		"noRides": "No hay rides para confirmar",
+		"title": "Rides para confirmar"
 	},
 	"signUp": {
 		"agreement": "Estoy de acuerdo con los <2>términos y condiciones</2> y la <6>política de privacidad</6>",
@@ -397,8 +397,8 @@
 		"subTitle": "Regístrese para acceder a la plataforma"
 	},
 	"signUpConfirm": {
-		"loginNow": "",
-		"title": ""
+		"loginNow": "Ahora puedes <2><1>iniciar sesión</1></2>",
+		"title": "Confirme su dirección de correo electrónico"
 	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenido a nuestra plataforma 🎉",

@@ -23,7 +23,7 @@
 	},
 	"PassengersDetails": {
 		"noPassengers": "Vous n'avez pas encore de passagers pour ce trajet",
-		"summary": ""
+		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
 	"becomeDriver": {
 		"applicationForm": "Formulaire de demande",
@@ -65,10 +65,10 @@
 		"title": "Prenez contact"
 	},
 	"createNewPassword": {
-		"linkDeprecated": "",
-		"reset": "",
-		"retypePassword": "",
-		"title": ""
+		"linkDeprecated": "Ce lien est obsolète",
+		"reset": "Réinitialiser le mot de passe",
+		"retypePassword": "Retapez le mot de passe",
+		"title": "Créer un nouveau mot de passe"
 	},
 	"dataProtection": {
 		"title": "Protection des données"
@@ -114,20 +114,20 @@
 		"congratulations": "Félicitations ",
 		"contact": "Contacter",
 		"contactUs": "Contactez-nous",
-		"continue": "",
+		"continue": "Continuer",
 		"country": "Pays",
 		"credits": "Crédits",
 		"currentLanguage": "Français",
 		"date": "Date",
 		"day": "journée",
 		"destination": "Destination",
-		"distance": "",
+		"distance": "Distance",
 		"doNotShare": "Ne partagez pas vos coordonnées (téléphone, e-mail, etc.), elles seront partagées au sein de la plateforme lors de la réservation.",
 		"driver": "Conducteur",
 		"driverComment": "Commentaire du conducteur",
 		"driverProfile": "Le profil de votre conducteur",
 		"drivingLicense": "Permis de conduire",
-		"edit": "edit",
+		"edit": "Éditer",
 		"email": "Courriel",
 		"errors": {
 			"acceptTerms": "Pour utiliser nos services, vous devez accepter nos conditions générales et notre politique de confidentialité.",
@@ -144,13 +144,13 @@
 			"missingComment": "Vous devez écrire un commentaire (10 caractères min.)",
 			"missingInfo": "Veuillez remplir toutes les informations",
 			"missingRating": "Assurez-vous de donner une note",
-			"passwordsMatch": "",
+			"passwordsMatch": "Les mots de passe doivent correspondre",
 			"validEmail": "Veuillez saisir une adresse électronique valide",
 			"validName": "Veuillez entrer un nom valide",
 			"validNumberPlate": "Entrez une plaque d'immatriculation valide",
 			"validPhone": "Veuillez entrer un numéro de téléphone valide",
 			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
-			"validYear": ""
+			"validYear": "Entrez une année valide"
 		},
 		"faq": "FAQ",
 		"firstName": "Prénom",
@@ -198,7 +198,7 @@
 		"report": "Signaler un problème",
 		"resendLink": "Renvoyez le lien de confirmation",
 		"reset": "Recommencer",
-		"returnLogin": "",
+		"returnLogin": "Retourner à la <2>page de connexion</2>.",
 		"ride": "Ride",
 		"search": "Recherchez",
 		"searchResults": "Résultats de la recherche",
@@ -312,8 +312,8 @@
 		"chooseTime": "Choisir une heure",
 		"comment": "Des commentaires ?",
 		"details": "Détails sur votre trajet",
-		"estimatedDistance": "",
-		"estimatedTime": "",
+		"estimatedDistance": "Distance estimée",
+		"estimatedTime": "Durée estimée",
 		"findRide": "Trouver un transport",
 		"onlyVerifiedDriver": "Vous ne pouvez proposer des trajets que si vous êtes un conducteur vérifié.",
 		"placeholderComment": "Vous voulez partager la route que vous allez prendre ou une précision sur votre destination ?",
@@ -352,13 +352,13 @@
 	},
 	"report": {
 		"behavior": "Signaler un comportement",
-		"problemApp": ""
+		"problemApp": "Un problème avec l'application"
 	},
 	"resetPassword": {
-		"sendLink": "",
-		"subTitle": "",
-		"title": "",
-		"typeEmail": ""
+		"sendLink": "Envoyer le lien de réinitialisation",
+		"subTitle": "Veuillez saisir votre adresse électronique pour recevoir un lien",
+		"title": "Réinitialiser votre mot de passe",
+		"typeEmail": "Tapez votre adresse électronique ici"
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
@@ -376,19 +376,19 @@
 		"ridesToConfirm": "Manèges à confirmer"
 	},
 	"ridesBookings": {
-		"subTitle": "",
-		"summary": "",
-		"title": ""
+		"subTitle": "Trouvez votre passager potentiel ici",
+		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}</2>.",
+		"title": "Réservations pour vos trajets"
 	},
 	"ridesDriver": {
-		"subTitle": "",
-		"summary": "",
-		"title": ""
+		"subTitle": "Tous les trajets que vous avez soumis",
+		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}</2>.",
+		"title": "Trajets proposés"
 	},
 	"ridesToConfirm": {
-		"goBack": "",
-		"noRides": "",
-		"title": ""
+		"goBack": "Retournez à vos trajets.",
+		"noRides": "Aucun trajet à confirmer",
+		"title": "Trajets à confirmer"
 	},
 	"signUp": {
 		"agreement": "J'accepte les <2>termes et conditions</2> et la <6>politique de confidentialité</6>",
@@ -397,8 +397,8 @@
 		"subTitle": "S'inscrire pour accéder à la plateforme"
 	},
 	"signUpConfirm": {
-		"loginNow": "",
-		"title": ""
+		"loginNow": "Vous pouvez maintenant <2><1>vous connecter</1></2>",
+		"title": "Confirmez votre adresse électronique"
 	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenue sur notre plateforme 🎉",
