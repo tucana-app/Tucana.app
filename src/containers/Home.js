@@ -63,58 +63,46 @@ function Home() {
           </Nav>
         </Row>
         <Row className="justify-content-center align-content-center pt-5 pt-md-0 mt-5">
-          <Col xs={12} sm={10} md={8} className="mx-auto">
-            <Container>
-              <Row className="mb-3">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  xl={6}
-                  className="text-center mx-auto"
-                >
-                  <img
-                    src={logo}
-                    width={150}
-                    alt="Tucána logo"
-                    className="img-fluid"
-                  />
-                  <p className="lead text-light mb-0">
-                    {t("translation:global.slogan")}
-                  </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  xl={6}
-                  className="text-center mx-auto"
-                >
-                  <h1 className="title">
-                    {t("translation:homepage.catchPhrase")}
-                  </h1>
-                  <LinkContainer
-                    to="/login"
-                    href="/login"
-                    className="hvr-icon-forward my-2"
-                  >
-                    <Button variant="success" size="lg">
-                      {t("translation:homepage.start")}
-                      <ArrowRightIcon
-                        size={24}
-                        verticalAlign="middle"
-                        className="hvr-icon mb-1 ms-2"
-                      />
-                    </Button>
-                  </LinkContainer>
-                  {/* <p className="text-light mb-0">
-                    {t("translation:homepage.paragraph")}
-                  </p> */}
-                </Col>
-              </Row>
-            </Container>
+          <Col md={2} />
+          <Col xs={12} md={4} className="text-center">
+            <img
+              src={logo}
+              width={300}
+              alt="Tucána logo"
+              className="img-fluid"
+            />
+            <p className="lead text-light mb-0">
+              {t("translation:global.slogan")}
+            </p>
+          </Col>
+          <Col
+            xs={12}
+            md={4}
+            className="d-flex align-items-center text-center mt-3 mt-md-0"
+          >
+            <h1 className="title">{t("translation:homepage.catchPhrase")}</h1>
+            {/* <p className="text-light mb-0">
+              {t("translation:homepage.paragraph")}
+            </p> */}
+          </Col>
+          <Col md={2} />
+        </Row>
+        <Row className="mt-3">
+          <Col xs={12} className="text-center mx-auto">
+            <LinkContainer
+              to="/login"
+              href="/login"
+              className="hvr-icon-forward my-2"
+            >
+              <Button variant="success" size="lg">
+                {t("translation:homepage.start")}
+                <ArrowRightIcon
+                  size={24}
+                  verticalAlign="middle"
+                  className="hvr-icon mb-1 ms-2"
+                />
+              </Button>
+            </LinkContainer>
           </Col>
         </Row>
       </Container>

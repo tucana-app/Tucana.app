@@ -291,7 +291,7 @@ const SignUp = () => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Col>
-                  <Col xs={12}>
+                  {/* <Col xs={12}>
                     <Form.Group>
                       <Form.Check
                         type="checkbox"
@@ -309,7 +309,7 @@ const SignUp = () => {
                         {errors.checkNewsletter}
                       </Form.Control.Feedback>
                     </Form.Group>
-                  </Col>
+                  </Col> */}
                 </Row>
 
                 {signupErrorData ? (
