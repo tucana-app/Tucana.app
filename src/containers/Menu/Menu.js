@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { logout } from "../../redux";
 
 // Importing assets
-import logo from "../../assets/images/OPTI_noir.png";
+import logo from "../../assets/images/logo-black.png";
 import SocialIcons from "../../components/SocialIcons";
 import { PersonCircle } from "react-bootstrap-icons";
 
@@ -191,7 +191,7 @@ const Menu = () => {
             ) : (
               <>
                 <Link to="/" className="text-decoration-none">
-                  <ListGroup.Item className="text-center border-0 py-4">
+                  <ListGroup.Item className="text-center border-0 py-3">
                     <div className="d-inline mx-auto">
                       <img
                         src={logo}
