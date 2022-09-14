@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 import { useTranslation } from "react-i18next";
 
-import map1 from "../assets/images/maps/costa_rica_political_map_1_worldometers.info.jpg";
-import map2 from "../assets/images/maps/costa_rica_political_map_2_costaricalaw.com.jpg";
-import map3 from "../assets/images/maps/costa_rica_political_map_3_orangesmile.com.jpg";
+import map1 from "../../assets/images/maps/costa_rica_political_map_1_worldometers.info.jpg";
+import map2 from "../../assets/images/maps/costa_rica_political_map_2_costaricalaw.com.jpg";
+import map3 from "../../assets/images/maps/costa_rica_political_map_3_orangesmile.com.jpg";
 
 const Map = () => {
   const { t } = useTranslation();

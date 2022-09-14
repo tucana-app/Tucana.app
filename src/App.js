@@ -46,7 +46,7 @@ import FAQ from "./containers/Menu/FAQ";
 import Hiring from "./containers/Menu/Hiring";
 import Contact from "./containers/Menu/Contact";
 import Donate from "./containers/Donate";
-import Map from "./containers/Map";
+import Map from "./containers/Menu/Map";
 import Help from "./containers/Help";
 import Page404 from "./containers/Page404";
 import ComingSoon from "./containers/ComingSoon";

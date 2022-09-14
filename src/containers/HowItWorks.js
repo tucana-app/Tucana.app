@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, Row, Col, Offcanvas, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Offcanvas,
+  Button,
+  ListGroupItem,
+  ListGroup,
+} from "react-bootstrap";
 import { ArrowLeft, ArrowRight, Check2Square } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +22,8 @@ import passengers from "../assets/images/undraw_Select.png";
 import prepare from "../assets/images/undraw_adventure_map.png";
 import finish from "../assets/images/undraw_Best_place.png";
 import { LinkContainer } from "react-router-bootstrap";
+import { ChevronRightIcon } from "@primer/octicons-react";
+import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
   const { t } = useTranslation();
@@ -36,14 +46,9 @@ const HowItWorks = () => {
   };
 
   // Step 2
-  const handleClickStepTwoDriver = () => {
+  const handleClickStepTwo = () => {
     setStepTwo(false);
     setStepThree(true);
-  };
-
-  const handleClickStepTwoPassenger = () => {
-    setStepTwo(false);
-    setStepFour(true);
   };
 
   const handleBackToStepOne = () => {
@@ -68,9 +73,9 @@ const HowItWorks = () => {
     setStepFive(true);
   };
 
-  const handleBackToStepFour = () => {
-    setStepFour(true);
-    setStepFive(false);
+  const handleBackToStepThree = () => {
+    setStepThree(true);
+    setStepFour(false);
   };
 
   // Step 5
@@ -79,9 +84,9 @@ const HowItWorks = () => {
     setStepSix(true);
   };
 
-  const handleBackToStepFive = () => {
-    setStepFive(true);
-    setStepSix(false);
+  const handleBackToStepFour = () => {
+    setStepFour(true);
+    setStepFive(false);
   };
 
   // Handlers
@@ -128,14 +133,14 @@ const HowItWorks = () => {
         placement="bottom"
         className="vh-100"
       >
-        <Container>
+        <Container className="px-0">
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
               <Offcanvas.Header closeButton>‎</Offcanvas.Header>
               <Offcanvas.Body>
                 {stepOne ? (
                   <>
-                    <Container>
+                    <Container fluid>
                       <Row>
                         <Col className="text-center">
                           <h1 className="title mb-0 pb-0">
@@ -151,30 +156,55 @@ const HowItWorks = () => {
                           <img
                             src={authentication}
                             alt="Sign Up"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Col>
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.signUpFree")}
-                          </p>
-                          <p className="fw-bold mb-0">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.verifyEmail")}
-                          </p>
+                        <Link
+                          to="/signup"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+
+                                {t("translation:howItWorks.signUpFree")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <ListGroup.Item className="border-0 px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100">
+                            <p className="fw-bold mb-0">
+                              <Check2Square
+                                size="24"
+                                className="text-success align-text-top me-2"
+                              />
+                              {t("translation:howItWorks.verifyEmail")}
+                            </p>
+                          </div>
                           <small>
                             {t("translation:howItWorks.verifyEmail2")}
                           </small>
-                        </Col>
+                        </ListGroup.Item>
                       </Row>
                     </Container>
 
@@ -207,35 +237,67 @@ const HowItWorks = () => {
                           <img
                             src={select}
                             alt="Sign Up"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
-                      <Row className="text-center mt-3">
-                        <Col xs={6}>
-                          <Button
-                            size={"lg"}
-                            onClick={handleClickStepTwoDriver}
-                            variant="success"
-                          >
-                            {t("translation:howItWorks.offerRides")}
-                          </Button>
-                          <p className="mb-0">
-                            {t("translation:howItWorks.beDriver")}
-                          </p>
-                        </Col>
-                        <Col xs={6}>
-                          <Button
-                            size={"lg"}
-                            onClick={handleClickStepTwoPassenger}
-                            variant="success"
-                          >
-                            {t("translation:howItWorks.takeRides")}
-                          </Button>
-                          <p className="mb-0">
-                            {t("translation:howItWorks.bePassenger")}
-                          </p>
-                        </Col>
+                      <Row className="mt-3">
+                        <Link to="/offer" className="text-decoration-none px-0">
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.offerRides")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                            <small>
+                              {t("translation:howItWorks.beDriver")}
+                            </small>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <Link to="/find" className="text-decoration-none px-0">
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.takeRides")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                            <small>
+                              {t("translation:howItWorks.bePassenger")}
+                            </small>
+                          </ListGroup.Item>
+                        </Link>
                       </Row>
                       <Row className="mt-3">
                         <Col className="text-secondary text-center">
@@ -248,10 +310,17 @@ const HowItWorks = () => {
                       <Button
                         onClick={handleBackToStepOne}
                         variant="warning"
-                        className="hvr-icon-backward me-3"
+                        className="me-3"
                       >
-                        <ArrowLeft size="24" className="hvr-icon" />{" "}
-                        {t("translation:global.goBack")}
+                        <ArrowLeft size="24" /> {t("translation:global.goBack")}
+                      </Button>
+                      <Button
+                        onClick={handleClickStepTwo}
+                        variant="success"
+                        className="hvr-icon-forward"
+                      >
+                        {t("translation:global.next")}{" "}
+                        <ArrowRight size="24" className="hvr-icon" />
                       </Button>
                     </div>
                   </>
@@ -273,38 +342,85 @@ const HowItWorks = () => {
                           <img
                             src={drivers}
                             alt="Drivers"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Col>
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.fillUp")}
+                        <Col xs={12}>
+                          <p className="mb-0">
+                            {t("translation:howItWorks.ifDriver")}:
                           </p>
-                          <p className="fw-bold mb-0">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.getVerified")}
-                          </p>
+                        </Col>
+
+                        <Link
+                          to="/become-driver"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.fillUp")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <ListGroup.Item className="border-0 px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100">
+                            <p className="fw-bold mb-0">
+                              <Check2Square
+                                size="24"
+                                className="text-success align-text-top me-2"
+                              />
+                              {t("translation:howItWorks.getVerified")}
+                            </p>
+                          </div>
                           <small>
                             {t("translation:howItWorks.getVerified2")}
                           </small>
+                        </ListGroup.Item>
 
-                          <p className="fw-bold mt-2">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.publishRides")}
-                          </p>
-                        </Col>
+                        <Link to="/offer" className="text-decoration-none px-0">
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.publishRides")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
                       </Row>
                     </Container>
 
@@ -345,46 +461,94 @@ const HowItWorks = () => {
                           <img
                             src={passengers}
                             alt="Passenger"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Col>
-                          <p className="fw-bold mb-0">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.bookRide")}
+                        <Col xs={12}>
+                          <p className="mb-0">
+                            {t("translation:howItWorks.ifPassenger")}:
                           </p>
-                          <small>{t("translation:howItWorks.bookRide2")}</small>
+                        </Col>
 
-                          <p className="fw-bold mt-2 mb-0">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.giveDetails")}
-                          </p>
+                        <Link to="/find" className="text-decoration-none px-0">
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.bookRide")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                            <small>
+                              {t("translation:howItWorks.bookRide2")}
+                            </small>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <ListGroup.Item className="border-0 px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100">
+                            <p className="fw-bold mb-0">
+                              <Check2Square
+                                size="24"
+                                className="text-success align-text-top me-2"
+                              />
+                              {t("translation:howItWorks.giveDetails")}
+                            </p>
+                          </div>
                           <small>
                             {t("translation:howItWorks.giveDetails2")}
                           </small>
+                        </ListGroup.Item>
 
-                          <p className="fw-bold mt-2">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.contactDriver")}
-                          </p>
-                        </Col>
+                        <Link
+                          to="/messages"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.contactDriver")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
                       </Row>
                     </Container>
 
                     <div className="fixed-bottom d-flex justify-content-center mb-5">
                       <Button
-                        onClick={handleBackToStepTwo}
+                        onClick={handleBackToStepThree}
                         variant="warning"
                         className="me-2"
                       >
@@ -419,28 +583,36 @@ const HowItWorks = () => {
                           <img
                             src={prepare}
                             alt="Passenger"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Col>
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.chat")}
-                          </p>
-                          <p className="fw-bold mb-0">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.points")}
-                          </p>
+                        <ListGroup.Item className="border-0 px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100">
+                            <p className="fw-bold mb-0">
+                              <Check2Square
+                                size="24"
+                                className="text-success align-text-top me-2"
+                              />
+                              {t("translation:howItWorks.chat")}
+                            </p>
+                          </div>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item className="border-0 px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100">
+                            <p className="fw-bold mb-0">
+                              <Check2Square
+                                size="24"
+                                className="text-success align-text-top me-2"
+                              />
+                              {t("translation:howItWorks.points")}
+                            </p>
+                          </div>
                           <small>{t("translation:howItWorks.points2")}</small>
-                        </Col>
+                        </ListGroup.Item>
                       </Row>
                     </Container>
 
@@ -481,44 +653,125 @@ const HowItWorks = () => {
                           <img
                             src={finish}
                             alt="Passenger"
+                            width="200"
                             className="img-fluid"
                           />
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Col>
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.confirm")}
-                          </p>
+                        <Link
+                          to="/rides/rides-to-confirm"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.confirm")}
+                              </p>
 
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.review")}
-                          </p>
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
 
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:howItWorks.feedback")}
-                          </p>
+                        <Link
+                          to="/ratings"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.review")}
+                              </p>
 
-                          <p className="fw-bold">
-                            <Check2Square
-                              size="24"
-                              className="text-success me-2"
-                            />
-                            {t("translation:global.contactUs")}
-                          </p>
-                        </Col>
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <a
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSe5ryLUu84X7IELlLQO3XWfYajW4wj47Y-CkhVBQJsWGoh_4Q/viewform?usp=sf_link"
+                          className="text-decoration-none px-0"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:howItWorks.feedback")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </a>
+
+                        <Link
+                          to="/contact"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t("translation:global.contactUs")}
+                              </p>
+
+                              <Button
+                                variant="outline-success"
+                                size="sm"
+                                className="m-0"
+                              >
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
                       </Row>
                     </Container>
 
