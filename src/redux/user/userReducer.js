@@ -21,6 +21,10 @@ initialState = {
   signupErrorMessage: "",
   loginErrorData: "",
 
+  isLoadingConfirmEmail: false,
+  confirmEmailData: "",
+  confirmEmailError: "",
+
   isLoadingSendEmailForgotPassword: false,
   sendEmailForgotPasswordData: [],
   sendEmailForgotPasswordError: "",
@@ -70,6 +74,7 @@ initialState = {
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
+    // Register User
     case userTypes.REGISTER_USER_REQUESTED:
       return {
         ...state,
@@ -95,6 +100,8 @@ function userReducer(state = initialState, action) {
         signupErrorData: action.payload,
       };
 
+    // Login user
+
     case userTypes.LOGIN_REQUESTED:
       return {
         ...state,
@@ -119,10 +126,36 @@ function userReducer(state = initialState, action) {
         loginErrorData: action.payload,
       };
 
+    // Log out User
+
     case userTypes.LOGOUT:
       return {
         isLoggedIn: false,
         user: null,
+      };
+
+    // Confirm email
+
+    case userTypes.CONFIRM_EMAIL_REQUESTED:
+      return {
+        ...state,
+        isLoadingConfirmEmail: true,
+      };
+
+    case userTypes.CONFIRM_EMAIL_DATA:
+      return {
+        ...state,
+        isLoadingConfirmEmail: false,
+        confirmEmailData: action.payload,
+        confirmEmailError: "",
+      };
+
+    case userTypes.CONFIRM_EMAIL_ERROR:
+      return {
+        ...state,
+        isLoadingConfirmEmail: false,
+        confirmEmailData: "",
+        confirmEmailError: action.payload,
       };
 
     // Forgot password

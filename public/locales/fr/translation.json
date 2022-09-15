@@ -431,10 +431,6 @@
 		"paragraphInfo": "Les informations que vous fournissez seront vérifiées ultérieurement par un modérateur. Veuillez vous assurer qu'elles sont les plus précises possibles.",
 		"subTitle": "S'inscrire pour accéder à la plateforme"
 	},
-	"signUpConfirm": {
-		"loginNow": "Vous pouvez maintenant <2><1>vous connecter</1></2>",
-		"title": "Confirmez votre adresse électronique"
-	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenue sur notre plateforme 🎉",
 		"text": "Vérifiez le lien de confirmation dans votre boîte aux lettres électronique et dans votre dossier spam pour confirmer votre compte.",

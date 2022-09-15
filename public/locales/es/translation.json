@@ -431,10 +431,6 @@
 		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
 		"subTitle": "Regístrese para acceder a la plataforma"
 	},
-	"signUpConfirm": {
-		"loginNow": "Ahora puedes <2><1>iniciar sesión</1></2>",
-		"title": "Confirme su dirección de correo electrónico"
-	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenido a nuestra plataforma 🎉",
 		"text": "Busque el enlace de confirmación en su buzón de correo electrónico y en su carpeta de spam para confirmar su cuenta",

@@ -184,7 +184,7 @@ const Find = () => {
                             <Col xs={2} className="px-0">
                               <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
-                                  ride.rideDetails.dateTimeOrigin,
+                                  ride.rideDetails.dateTimeDestination,
                                   "hh:MM TT"
                                 )}
                               </p>

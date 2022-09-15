@@ -6,7 +6,6 @@ import {
   Col,
   Offcanvas,
   Button,
-  ListGroupItem,
   ListGroup,
 } from "react-bootstrap";
 import { ArrowLeft, ArrowRight, Check2Square } from "react-bootstrap-icons";

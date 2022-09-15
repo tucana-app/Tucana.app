@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 
 import { confirmEmail } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import logo from "../../assets/images/logo-black.png";
 
 const SignUpConfirm = () => {
   const { t } = useTranslation();
@@ -13,7 +14,8 @@ const SignUpConfirm = () => {
 
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingConfirmEmail } = useSelector((state) => state.user);
+  const { isLoadingConfirmEmail, confirmEmailData, confirmEmailError } =
+    useSelector((state) => state.user);
 
   useEffect(() => {
     if (!isLoggedIn) dispatch(confirmEmail(uuid));
@@ -27,34 +29,45 @@ const SignUpConfirm = () => {
 
   return (
     <Container data-aos="fade-in">
-      <Row className="py-5 text-center">
+      <Row className="my-5">
         <Col className="text-center">
-          <div>
-            <h1 className="display-4 mb-5">
-              {t("translation:signUpConfirm.title")}
-            </h1>
-            <h3 className="fw-light">
-              <Trans i18nKey="translation:global.returnLogin">
-                You can now{" "}
-                <Link
-                  to="/login"
-                  className="link-success cursor-pointer text-decoration-underline"
-                >
-                  login
-                </Link>
-              </Trans>
-            </h3>
-          </div>
+          <img
+            src={logo}
+            alt="Tucána logo"
+            className="img-fluid"
+            style={{ maxWidth: "300px" }}
+          />
         </Col>
       </Row>
 
-      <Row>
-        {isLoadingConfirmEmail ? (
-          <Col className="text-center">
-            <LoadingSpinner />
+      {isLoadingConfirmEmail ? (
+        <Col className="text-center">
+          <LoadingSpinner />
+        </Col>
+      ) : (
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={8}
+            xl={6}
+            className="text-center mx-auto"
+          >
+            {confirmEmailData.message ? (
+              <Alert variant="success">{confirmEmailData.message}</Alert>
+            ) : confirmEmailError ? (
+              <Alert variant="danger">{confirmEmailError}</Alert>
+            ) : null}
+
+            <Link to="/login" className="text-decoration-none px-0">
+              <Button variant="success" size="lg">
+                {t("translation:global.logIn")}
+              </Button>
+            </Link>
           </Col>
-        ) : null}
-      </Row>
+        </Row>
+      )}
     </Container>
   );
 };

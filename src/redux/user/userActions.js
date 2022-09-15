@@ -100,7 +100,7 @@ export const registerUserFail = (data) => {
 
 export const confirmEmailRequested = () => {
   return {
-    type: userTypes.CONFIRM_EMAIL_REQUEST,
+    type: userTypes.CONFIRM_EMAIL_REQUESTED,
   };
 };
 
@@ -181,14 +181,14 @@ export const confirmEmail = (uuid) => {
 
 export const confirmEmailSuccess = (message) => {
   return {
-    type: userTypes.CONFIRM_EMAIL_SUCCESS,
+    type: userTypes.CONFIRM_EMAIL_DATA,
     payload: message,
   };
 };
 
 export const confirmEmailFail = (message) => {
   return {
-    type: userTypes.CONFIRM_EMAIL_FAIL,
+    type: userTypes.CONFIRM_EMAIL_ERROR,
     payload: message,
   };
 };
