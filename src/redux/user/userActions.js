@@ -642,7 +642,7 @@ export const setApplicationCarMaker = (maker) => {
   };
 };
 
-// Set the car maker
+// Set the car model
 export const setApplicationCarModel = (model) => {
   return {
     type: userTypes.SET_FORM_BECOME_DRIVER_CAR_MODEL,
@@ -655,6 +655,46 @@ export const setApplicationNumberPlate = (numberPlate) => {
   return {
     type: userTypes.SET_FORM_BECOME_DRIVER_NUMBER_PLATE,
     payload: numberPlate,
+  };
+};
+
+// Set the car year
+export const setApplicationCarYear = (year) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_YEAR,
+    payload: year,
+  };
+};
+
+// Set the car color
+export const setApplicationCarColor = (color) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_COLOR,
+    payload: color,
+  };
+};
+
+// Set the car marchamo
+export const setApplicationCarMarchamo = (marchamo) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_MARCHAMO,
+    payload: marchamo,
+  };
+};
+
+// Set the car riteve month
+export const setApplicationCarRiteveMonth = (month) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_RITEVE_MONTH,
+    payload: month,
+  };
+};
+
+// Set the car riteve year
+export const setApplicationCarRiteveYear = (year) => {
+  return {
+    type: userTypes.SET_FORM_BECOME_DRIVER_CAR_RITEVE_YEAR,
+    payload: year,
   };
 };
 

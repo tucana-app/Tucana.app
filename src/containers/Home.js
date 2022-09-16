@@ -89,19 +89,29 @@ function Home() {
         </Row>
         <Row className="mt-3">
           <Col xs={12} className="text-center mx-auto">
+            <p>
+              <LinkContainer
+                to="/login"
+                href="/login"
+                className="hvr-icon-forward my-2"
+              >
+                <Button variant="success" size="lg">
+                  {t("translation:homepage.start")}
+                  <ArrowRightIcon
+                    size={24}
+                    verticalAlign="middle"
+                    className="hvr-icon mb-1 ms-2"
+                  />
+                </Button>
+              </LinkContainer>
+            </p>
+
             <LinkContainer
-              to="/login"
-              href="/login"
-              className="hvr-icon-forward my-2"
+              to="/how-it-works"
+              href="/how-it-works"
+              className="hvr-icon-forward link-light text-decoration-underline cursor-pointer my-2"
             >
-              <Button variant="success" size="lg">
-                {t("translation:homepage.start")}
-                <ArrowRightIcon
-                  size={24}
-                  verticalAlign="middle"
-                  className="hvr-icon mb-1 ms-2"
-                />
-              </Button>
+              <span>{t("translation:global.howItWorks")}</span>
             </LinkContainer>
           </Col>
         </Row>

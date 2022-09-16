@@ -19,6 +19,11 @@ import {
   setApplicationCarMaker,
   setApplicationCarModel,
   setApplicationNumberPlate,
+  setApplicationCarYear,
+  setApplicationCarColor,
+  setApplicationCarMarchamo,
+  setApplicationCarRiteveMonth,
+  setApplicationCarRiteveYear,
   resetApplicationForm,
   submitFormBecomeDriver,
 } from "../redux";
@@ -34,13 +39,14 @@ const DriverApplication = () => {
     submitFormBecomeDriverSuccess,
     formApplyDriver,
   } = useSelector((state) => state.user);
-  const { isLoadingCountries, countries, carMakers } = useSelector(
+  const { isLoadingCountries, countries, carMakers, months } = useSelector(
     (state) => state.global
   );
 
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
   const [stepThree, setStepThree] = useState(false);
+  const [stepFour, setStepFour] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const [idType, setIdType] = useState(formApplyDriver.id.type);
@@ -60,9 +66,19 @@ const DriverApplication = () => {
   const [numberPlate, setNumberPlate] = useState(
     formApplyDriver.car.numberPlate
   );
+  const [carYear, setCarYear] = useState(formApplyDriver.car.year);
+  const [carColor, setCarColor] = useState(formApplyDriver.car.color);
+  const [carMarchamo, setCarMarchamo] = useState(formApplyDriver.car.marchamo);
+  const [carRiteveMonth, setCarRiteveMonth] = useState(
+    formApplyDriver.car.riteve.month
+  );
+  const [carRiteveYear, setCarRiteveYear] = useState(
+    formApplyDriver.car.riteve.year
+  );
 
   const countriesSelect = useRef([]);
   const selectCarMakers = [];
+  const selectMonths = [];
 
   carMakers.map((carMaker) => {
     return selectCarMakers.push({
@@ -70,6 +86,13 @@ const DriverApplication = () => {
       label: carMaker,
     });
   });
+
+  Object.keys(months).map((month) =>
+    selectMonths.push({
+      value: month,
+      label: months[month],
+    })
+  );
 
   const backButton = (handleBackToStep) => {
     return (
@@ -181,6 +204,16 @@ const DriverApplication = () => {
     dispatch(setApplicationNumberPlate(e.target.value));
   };
 
+  const handleChangeCarYear = (e) => {
+    setCarYear(e.target.value);
+    dispatch(setApplicationCarYear(e.target.value));
+  };
+
+  const handleChangeCarColor = (e) => {
+    setCarColor(e.target.value);
+    dispatch(setApplicationCarColor(e.target.value));
+  };
+
   const handleBackToStepTwo = () => {
     setStepTwo(true);
     setStepThree(false);
@@ -188,7 +221,61 @@ const DriverApplication = () => {
 
   const handleResetStepThree = () => {
     setCarMaker("");
+    setCarModel("");
     setNumberPlate("");
+    setCarYear("");
+    setCarColor("");
+  };
+
+  const handleClickStepThree = () => {
+    if (
+      carMaker.value !== "" &&
+      carMakerFromUser.value !== "" &&
+      carModel !== "" &&
+      numberPlate !== "" &&
+      carYear !== "" &&
+      carYear <= new Date().getFullYear() &&
+      carColor !== ""
+    ) {
+      setStepThree(false);
+      setStepFour(true);
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: t("translation:global.errors.error"),
+          bodyText: t("translation:global.errors.missingInfo"),
+          variant: "warning",
+        })
+      );
+    }
+  };
+
+  // Step 4
+  const handleChangeCarMarchamo = (e) => {
+    setCarMarchamo(e.target.value);
+    dispatch(setApplicationCarMarchamo(e.target.value));
+  };
+
+  const handleChangeCarRiteveMonth = (e) => {
+    setCarRiteveMonth(e);
+    dispatch(setApplicationCarRiteveMonth(e));
+  };
+
+  const handleChangeCarRiteveYear = (e) => {
+    setCarRiteveYear(e.target.value);
+    dispatch(setApplicationCarRiteveYear(e.target.value));
+  };
+
+  const handleBackToStepThree = () => {
+    setStepThree(true);
+    setStepFour(false);
+  };
+
+  const handleResetStepFour = () => {
+    setCarMarchamo("");
+    setCarRiteveMonth("");
+    setCarRiteveYear("");
   };
 
   // Handlers
@@ -199,21 +286,22 @@ const DriverApplication = () => {
     handleResetStepOne();
     handleResetStepTwo();
     handleResetStepThree();
+    handleResetStepFour();
   };
 
   const handleSubmit = () => {
     if (
-      carMaker.value !== "" &&
-      carMakerFromUser.value !== "" &&
-      carModel !== "" &&
-      numberPlate !== ""
+      carMarchamo !== "" &&
+      carMarchamo <= new Date().getFullYear() &&
+      carRiteveMonth !== "" &&
+      carRiteveYear !== ""
     ) {
       // If the number plate has the correct format
       if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
         dispatch(submitFormBecomeDriver(currentUser, formApplyDriver));
 
         setSubmitted(true);
-        setStepThree(false);
+        setStepFour(false);
       } else {
         dispatch(
           setToast({
@@ -261,6 +349,7 @@ const DriverApplication = () => {
         };
       });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries]);
 
@@ -382,11 +471,7 @@ const DriverApplication = () => {
                     <Row className="mt-3 mb-5">
                       <Col className="text-center line-height-sm">
                         <small className="smaller text-secondary">
-                          <Trans i18nKey="translation:becomeDriver.disclaimer">
-                            We do not any disclose information about your
-                            country of origin. This is solely for verification
-                            purposes
-                          </Trans>
+                          {t("translation:becomeDriver.disclaimer")}
                         </small>
                       </Col>
                     </Row>
@@ -591,7 +676,7 @@ const DriverApplication = () => {
                 </Row>
 
                 <Row className="mb-5">
-                  <Col xs={12} className="mb-3">
+                  <Col xs={6} className="mb-3">
                     <p className="small ms-2 mb-0">
                       {t("translation:global.maker")}
                       <span className="text-danger">*</span>
@@ -603,6 +688,23 @@ const DriverApplication = () => {
                         placeholder={`${t("translation:global.search")}...`}
                         onChange={handleChangeCarMaker}
                         options={selectCarMakers}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={6} className="mb-3">
+                    <p className="small ms-2 mb-0">
+                      {t("translation:global.model")}
+                      <span className="text-danger">*</span>
+                    </p>
+                    <Form.Group>
+                      <Form.Control
+                        type="text"
+                        name="carModel"
+                        placeholder="RAV4, Trooper, Wrangler, etc. "
+                        value={carModel}
+                        onChange={handleChangeCarModel}
+                        maxLength={30}
                         required
                       />
                     </Form.Group>
@@ -623,23 +725,6 @@ const DriverApplication = () => {
                     </Col>
                   ) : null}
                   <Col xs={12} className="mb-3">
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.model")}
-                      <span className="text-danger">*</span>
-                    </p>
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        name="carModel"
-                        placeholder="RAV4, Trooper, Wrangler, etc. "
-                        value={carModel}
-                        onChange={handleChangeCarModel}
-                        maxLength={30}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12}>
                     <Form.Group>
                       <p className="small ms-2 mb-0">
                         {t("translation:global.numberPlate")}
@@ -652,6 +737,165 @@ const DriverApplication = () => {
                         value={numberPlate}
                         onChange={handleChangeNumberPlate}
                         maxLength={6}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={6}>
+                    <Form.Group>
+                      <p className="small ms-2 mb-0">
+                        {t("translation:global.color")}
+                        <span className="text-danger">*</span>
+                      </p>
+                      <Form.Control
+                        type="text"
+                        name="carColor"
+                        placeholder={t(
+                          "translation:becomeDriver.colorPlaceholder"
+                        )}
+                        value={carColor}
+                        onChange={handleChangeCarColor}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={6}>
+                    <Form.Group>
+                      <p className="small ms-2 mb-0">
+                        {t("translation:global.year")}
+                        <span className="text-danger">*</span>
+                      </p>
+                      <Form.Control
+                        type="number"
+                        name="carYear"
+                        value={carYear}
+                        onChange={handleChangeCarYear}
+                        min={1960}
+                        max={new Date().getFullYear()}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col className="text-start">
+                    <Link to="/become-driver">
+                      <Button
+                        onClick={handleClickCancel}
+                        variant="danger"
+                        className="hvr-icon-shrink ms-2"
+                      >
+                        <XIcon
+                          size={18}
+                          verticalAlign="middle"
+                          className="hvr-icon me-2"
+                        />
+                        {t("translation:global.cancel")}
+                      </Button>
+                    </Link>
+                  </Col>
+
+                  <Col className="text-end">
+                    <Button
+                      onClick={handleClickStepThree}
+                      variant="success"
+                      className="hvr-icon-forward ms-2"
+                      disabled={
+                        formApplyDriver.car.maker === "" ||
+                        formApplyDriver.car.model === "" ||
+                        formApplyDriver.car.numberPlate === "" ||
+                        formApplyDriver.car.year === "" ||
+                        formApplyDriver.car.color === ""
+                      }
+                    >
+                      {t("translation:global.next")}
+                      <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
+            </Col>
+          </Row>
+
+          <Row className="mt-3 mb-5">
+            <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
+              <p className="small text-secondary mb-0">
+                {t("translation:becomeDriver.message")}
+              </p>
+            </Col>
+          </Row>
+        </>
+      ) : stepFour ? (
+        <>
+          <Row className="mx-1 mx-sm-0">
+            <Col
+              xs={12}
+              md={10}
+              sm={8}
+              lg={6}
+              xl={4}
+              className="bg-light border shadow rounded-5 py-3 mx-auto"
+            >
+              <Container className="px-0 px-md-2">
+                <Row className="mb-3">
+                  {backButton(handleBackToStepThree)}
+
+                  <Col className="text-center">
+                    <h3>4. {t("translation:global.yourVehicle")}</h3>
+                  </Col>
+                </Row>
+                <Row className="align-items-center">
+                  <Col className="text-center"></Col>
+                </Row>
+
+                <Row className="mb-5">
+                  <Col xs={12} className="mb-3">
+                    <p className="small ms-2 mb-0">
+                      {t("translation:global.marchamo")}
+                      <span className="text-danger">*</span>
+                    </p>
+                    <Form.Group>
+                      <Form.Control
+                        type="number"
+                        name="carMarchamo"
+                        placeholder={t("translation:global.year")}
+                        value={carMarchamo}
+                        onChange={handleChangeCarMarchamo}
+                        min="2000"
+                        max={new Date().getFullYear()}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={12}>
+                    <p className="small ms-2 mb-0">
+                      {t("translation:global.riteve")}
+                      <span className="text-danger">*</span>
+                    </p>
+                  </Col>
+                  <Col xs={6} className="mb-3">
+                    <Form.Group>
+                      <Select
+                        value={carRiteveMonth}
+                        name="carRiteveMonth"
+                        placeholder={t("translation:global.month")}
+                        onChange={handleChangeCarRiteveMonth}
+                        options={selectMonths}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={6} className="mb-3">
+                    <Form.Group>
+                      <Form.Control
+                        type="number"
+                        name="carRiteveYear"
+                        placeholder={t("translation:global.year")}
+                        value={carRiteveYear}
+                        onChange={handleChangeCarRiteveYear}
+                        min="2000"
+                        max={new Date().getFullYear()}
                         required
                       />
                     </Form.Group>
@@ -681,9 +925,9 @@ const DriverApplication = () => {
                       variant="success"
                       className="hvr-icon-forward ms-2"
                       disabled={
-                        formApplyDriver.car.maker === "" ||
-                        formApplyDriver.car.model === "" ||
-                        formApplyDriver.car.numberPlate === ""
+                        formApplyDriver.car.marchamo === "" ||
+                        formApplyDriver.car.riteve.month === "" ||
+                        formApplyDriver.car.riteve.year === ""
                       }
                     >
                       {t("translation:global.submit")}

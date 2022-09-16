@@ -68,6 +68,13 @@ initialState = {
       maker: "",
       model: "",
       numberPlate: "",
+      year: "",
+      color: "",
+      marchamo: "",
+      riteve: {
+        month: "",
+        year: "",
+      },
     },
   },
 };
@@ -376,6 +383,72 @@ function userReducer(state = initialState, action) {
         },
       };
 
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_YEAR:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            year: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_COLOR:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            color: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_MARCHAMO:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            marchamo: action.payload,
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_RITEVE_MONTH:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            riteve: {
+              ...state.formApplyDriver.car.riteve,
+              month: action.payload,
+            },
+          },
+        },
+      };
+
+    case userTypes.SET_FORM_BECOME_DRIVER_CAR_RITEVE_YEAR:
+      return {
+        ...state,
+        formApplyDriver: {
+          ...state.formApplyDriver,
+          car: {
+            ...state.formApplyDriver.car,
+            riteve: {
+              ...state.formApplyDriver.car.riteve,
+              year: action.payload,
+            },
+          },
+        },
+      };
+
     case userTypes.RESET_APPLICATION_FORM_BECOME_DRIVER:
       return {
         ...state,
@@ -393,6 +466,13 @@ function userReducer(state = initialState, action) {
             maker: "",
             model: "",
             numberPlate: "",
+            year: "",
+            color: "",
+            marchamo: "",
+            riteve: {
+              month: "",
+              year: "",
+            },
           },
         },
       };

@@ -784,11 +784,27 @@ const HowItWorks = () => {
                           {t("translation:global.finish")}
                         </Button>
                       ) : (
-                        <LinkContainer to="/signup">
-                          <Button variant="success" size="lg" className="me-2">
-                            {t("translation:global.signUp")}
-                          </Button>
-                        </LinkContainer>
+                        <>
+                          <LinkContainer to="/login" className="me-2">
+                            <Button
+                              variant="outline-success"
+                              size="lg"
+                              className="me-2"
+                            >
+                              {t("translation:global.logIn")}
+                            </Button>
+                          </LinkContainer>
+
+                          <LinkContainer to="/signup">
+                            <Button
+                              variant="success"
+                              size="lg"
+                              className="me-2"
+                            >
+                              {t("translation:global.signUp")}
+                            </Button>
+                          </LinkContainer>
+                        </>
                       )}
                     </div>
                   </>
