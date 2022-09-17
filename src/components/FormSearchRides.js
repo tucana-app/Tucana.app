@@ -265,7 +265,7 @@ const FormSearchRides = () => {
         placement="bottom"
         className="vh-100"
       >
-        <Container>
+        <Container className="px-0">
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
               <Offcanvas.Header closeButton>

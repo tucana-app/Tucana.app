@@ -98,6 +98,7 @@
 		"accepted": "Aceptado",
 		"alreadyBooking": "Ya tiene reserva(s) para este viaje",
 		"becomeDriver": "Conviértase en conductor",
+		"bio": "Biografía",
 		"book": "Reserva",
 		"bookRide": "Reservar un viaje",
 		"bookThisRide": "Reservar este viaje",
@@ -218,6 +219,7 @@
 		"send": "Envía",
 		"settings": "Ajustes",
 		"signUp": "Inscribite",
+		"skip": "Omitir",
 		"slogan": "Comparte tus viajes en Costa Rica",
 		"status": "Estado",
 		"step": "Etapa",
@@ -229,6 +231,7 @@
 		"vehicle": "Vehículo",
 		"verify": "Verifique",
 		"view": "Vea",
+		"welcome": "Bienvenido",
 		"year": "Año",
 		"yes": "Sí",
 		"yourIdentity": "Tu identidad",
@@ -299,8 +302,14 @@
 		"title": "Aviso legal"
 	},
 	"logIn": {
+		"bioPlaceholder": "Ej: Viajo mucho a San José y me encantan los perros",
+		"chooseAvatar": "Elige tu avatar",
 		"credential": "Correo electrónico o nombre de usuario",
-		"forgotPassword": "¿Olvidó su contraseña?"
+		"finish": "Ya puedes empezar a utilizar la plataforma. ¿Qué te gustaría hacer?",
+		"forgotPassword": "¿Olvidó su contraseña?",
+		"setUpAccount": "Comience por configurar su cuenta",
+		"welcomeMessage": "Ahora eres un miembro de la comunidad de conductores y pasajeros en Costa Rica, a los que les encanta compartir viajes y ayudarse mutuamente.",
+		"yourAccount": "Tu cuenta"
 	},
 	"maps": {
 		"courtesy": "Fotografía por cortesía de",

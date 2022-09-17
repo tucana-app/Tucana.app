@@ -147,6 +147,21 @@ body {
   @extend .border-end-0;
 }
 
+.img-avatar {
+  max-width: 75px;
+}
+
+.avatar-parent {
+  position: relative;
+}
+
+.avatar-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+//  background-image: url("/assets/images/filter-shield.png");
+
 // ####################################################################
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE

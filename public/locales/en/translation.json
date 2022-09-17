@@ -98,6 +98,7 @@
 		"accepted": "Accepted",
 		"alreadyBooking": "You already have booking(s) for this ride",
 		"becomeDriver": "Become a driver",
+		"bio": "Biography",
 		"book": "Book",
 		"bookRide": "Book a ride",
 		"bookThisRide": "Book this ride",
@@ -218,6 +219,7 @@
 		"send": "Send",
 		"settings": "Settings",
 		"signUp": "Sign Up",
+		"skip": "Skip",
 		"slogan": "Share your rides in Costa Rica",
 		"status": "Status",
 		"step": "Step",
@@ -229,6 +231,7 @@
 		"vehicle": "Vehicle",
 		"verify": "Verify",
 		"view": "View",
+		"welcome": "Welcome",
 		"year": "Year",
 		"yes": "Yes",
 		"yourIdentity": "Your identity",
@@ -299,8 +302,14 @@
 		"title": "Legal Notice"
 	},
 	"logIn": {
+		"bioPlaceholder": "Ex: I travel a lot to San José & I love dogs",
+		"chooseAvatar": "Choose your avatar",
 		"credential": "Email or Username",
-		"forgotPassword": "Forgot your password?"
+		"finish": "You can start using the platform now. What would you like to do?",
+		"forgotPassword": "Forgot your password?",
+		"setUpAccount": "Start by setting up your account",
+		"welcomeMessage": "You are now a member of the community of drivers and passengers in Costa Rica, that love to share rides and helping each other out!",
+		"yourAccount": "Your account"
 	},
 	"maps": {
 		"courtesy": "Photo courtesy of",

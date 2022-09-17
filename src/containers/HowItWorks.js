@@ -175,17 +175,18 @@ const HowItWorks = () => {
 
                                 {t("translation:howItWorks.signUpFree")}
                               </p>
-
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {!isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -252,17 +253,18 @@ const HowItWorks = () => {
                                 />
                                 {t("translation:howItWorks.offerRides")}
                               </p>
-
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                             <small>
                               {t("translation:howItWorks.beDriver")}
@@ -280,17 +282,18 @@ const HowItWorks = () => {
                                 />
                                 {t("translation:howItWorks.takeRides")}
                               </p>
-
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                             <small>
                               {t("translation:howItWorks.bePassenger")}
@@ -367,16 +370,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.fillUp")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -407,16 +412,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.publishRides")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -483,16 +490,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.bookRide")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                             <small>
                               {t("translation:howItWorks.bookRide2")}
@@ -529,16 +538,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.contactDriver")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -672,16 +683,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.confirm")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -700,16 +713,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.review")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </Link>
@@ -730,16 +745,18 @@ const HowItWorks = () => {
                                 {t("translation:howItWorks.feedback")}
                               </p>
 
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="m-0"
-                              >
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </Button>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
                             </div>
                           </ListGroup.Item>
                         </a>

@@ -294,6 +294,14 @@ export const logout = () => (dispatch) => {
   );
 };
 
+// Set the user's avatar
+export const setUserAvatar = (avatar) => {
+  return {
+    type: userTypes.SET_FORM_USER_AVATAR,
+    payload: avatar,
+  };
+};
+
 // Handle sending email for a forgotten password
 
 export const submitEmailForgotPasswordRequested = () => {

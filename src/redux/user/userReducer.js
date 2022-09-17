@@ -77,6 +77,10 @@ initialState = {
       },
     },
   },
+
+  formUser: {
+    avatar: "",
+  },
 };
 
 function userReducer(state = initialState, action) {
@@ -131,6 +135,15 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         user: null,
         loginErrorData: action.payload,
+      };
+
+    case userTypes.SET_FORM_USER_AVATAR:
+      return {
+        ...state,
+        formUser: {
+          ...state.formUser,
+          avatar: action.payload,
+        },
       };
 
     // Log out User

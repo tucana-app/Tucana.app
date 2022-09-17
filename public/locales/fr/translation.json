@@ -98,6 +98,7 @@
 		"accepted": "Accepté",
 		"alreadyBooking": "Vous avez déjà une ou plusieurs réservations pour ce trajet.",
 		"becomeDriver": "Devenir chauffeur",
+		"bio": "Biographie",
 		"book": "Réserver",
 		"bookRide": "Réserver un trajet",
 		"bookThisRide": "Réservez ce tour",
@@ -218,6 +219,7 @@
 		"send": "Envoyer",
 		"settings": "Paramètres",
 		"signUp": "S'inscrire",
+		"skip": "Passer",
 		"slogan": "Partagez vos balades au Costa Rica",
 		"status": "Statut",
 		"step": "Étape",
@@ -229,6 +231,7 @@
 		"vehicle": "Véhicule",
 		"verify": "vérifier",
 		"view": "Voir",
+		"welcome": "Bienvenue",
 		"year": "Année",
 		"yes": "Oui",
 		"yourIdentity": "Ton identité",
@@ -299,8 +302,14 @@
 		"title": "Avis juridique"
 	},
 	"logIn": {
+		"bioPlaceholder": "Ex: Je voyage beaucoup à San José et j'aime les chiens.",
+		"chooseAvatar": "Choisis ton avatar",
 		"credential": "Courriel ou nom d'utilisateur",
-		"forgotPassword": "Vous avez oublié votre mot de passe ?"
+		"finish": "Tu peux maintenant commencer à utiliser la plateforme. Que veux-tu faire ?",
+		"forgotPassword": "Vous avez oublié votre mot de passe ?",
+		"setUpAccount": "Commence par configurer ton compte",
+		"welcomeMessage": "Tu es maintenant membre de la communauté des conducteurs et passagers du Costa Rica, qui aiment partager des trajets et s'entraider !",
+		"yourAccount": "Ton compte"
 	},
 	"maps": {
 		"courtesy": "Avec l'aimable autorisation de",
