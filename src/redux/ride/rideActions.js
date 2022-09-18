@@ -1197,3 +1197,55 @@ export const resetSearch = () => {
     type: rideTypes.RESET_SEARCH,
   };
 };
+
+// Get a driver's profile
+
+export const getDriverProfileRequested = () => {
+  return {
+    type: rideTypes.GET_DRIVER_PROFILE_REQUEST,
+  };
+};
+
+export const getDriverProfile = (username) => {
+  return (dispatch) => {
+    dispatch(getDriverProfileRequested());
+
+    axios
+      .get(URL_API + "/driver/" + username)
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getDriverProfileSuccess(response.data));
+        } else {
+          dispatch(getDriverProfileFail("Booking not found"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getDriverProfileFail(message));
+      });
+  };
+};
+
+export const getDriverProfileSuccess = (data) => {
+  return {
+    type: rideTypes.GET_DRIVER_PROFILE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverProfileFail = (error) => {
+  return {
+    type: rideTypes.GET_DRIVER_PROFILE_FAIL,
+    payload: error,
+  };
+};

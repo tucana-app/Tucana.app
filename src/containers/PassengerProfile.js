@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import GoBack from "../../components/GoBack";
+import GoBack from "../components/GoBack";
 
 function PassengerProfile(props) {
   const { t } = useTranslation();

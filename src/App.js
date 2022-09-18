@@ -72,8 +72,8 @@ import RatingsDriver from "./containers/Menu/RatingsDriver";
 import Ratings from "./containers/Menu/Ratings";
 
 // Public Profile
-import PassengerProfile from "./containers/Menu/PassengerProfile";
-import DriverProfile from "./containers/Menu/DriverProfile";
+import PassengerProfile from "./containers/PassengerProfile";
+import DriverProfile from "./containers/DriverProfile";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";

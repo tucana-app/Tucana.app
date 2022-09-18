@@ -137,7 +137,6 @@ const SingleConversation = ({ conversation }) => {
               src={srcAvatar(receiver)}
               alt="Avatar"
               className="img-fluid rounded-round cursor-pointer img-avatar mx-2"
-              width="50px"
             />
             <h2 className="mb-0">{receiverFirstName}</h2>
           </div>
