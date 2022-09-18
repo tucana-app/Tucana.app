@@ -79,20 +79,14 @@ const Booking = () => {
                             t("translation:booking.summary1")
                           ) : (
                             <>
-                              <span className="text-success">
-                                {bookingData.User.firstName}{" "}
-                              </span>{" "}
+                              <strong>{bookingData.User.firstName} </strong>{" "}
                               {t("translation:booking.summary2")}
                             </>
                           )}{" "}
-                          <span className="text-success">
-                            {bookingData.seatsBooked}
-                          </span>{" "}
+                          <strong>{bookingData.seatsBooked}</strong>{" "}
                           {t("translation:global.seat")}
                           {bookingData.seatsBooked > 1 ? "s" : null} to{" "}
-                          <span className="text-success">
-                            {bookingData.Ride.destination.city}
-                          </span>{" "}
+                          <strong>{bookingData.Ride.destination.city}</strong>{" "}
                           {t("translation:booking.summary4")}{" "}
                           {dateFormat(
                             bookingData.Ride.dateTimeOrigin,
@@ -102,7 +96,7 @@ const Booking = () => {
                         <p className="mb-0">
                           {t("translation:global.status")}:{" "}
                           <span
-                            className={`text-${bookingStatusVariant(
+                            className={`fw-bold text-${bookingStatusVariant(
                               bookingData.BookingStatusId
                             )}`}
                           >

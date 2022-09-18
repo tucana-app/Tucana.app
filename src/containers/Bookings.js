@@ -123,7 +123,7 @@ const Bookings = () => {
                   <Row>
                     <Col className="text-center">
                       <LinkContainer to={`/ride/${booking.RideId}`}>
-                        <Button variant="light" className="me-2">
+                        <Button variant="outline-success" className="me-2">
                           {t("translation:global.seeRide")}
                         </Button>
                       </LinkContainer>

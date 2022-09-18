@@ -100,17 +100,20 @@ const HowItWorks = () => {
 
       <Container>
         <Row>
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="text-center mx-auto"
-          >
+          <Col className="text-center">
             <h1 className="title">{t("translation:global.howItWorks")}</h1>
+            <p>{t("translation:howItWorks.stepsService")}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <img src={steps} alt="Car" width="150" className="img-fluid" />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col className="text-center">
             <Button
-              size={"lg"}
+              size="lg"
               onClick={handleStartTutorial}
               variant="success"
               className="mt-5"
@@ -120,8 +123,10 @@ const HowItWorks = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="text-center mt-5">
-            <img src={steps} alt="Car" width={200} className="img-fluid" />
+          <Col className="text-center">
+            <Link to="/faq" className="link-success">
+              {t("translation:howItWorks.checkFaq")}
+            </Link>
           </Col>
         </Row>
       </Container>
@@ -251,7 +256,7 @@ const HowItWorks = () => {
                                   size="24"
                                   className="text-success align-text-top me-2"
                                 />
-                                {t("translation:howItWorks.offerRides")}
+                                {t("translation:offer.title")}
                               </p>
                               {isLoggedIn ? (
                                 <Button
@@ -280,7 +285,7 @@ const HowItWorks = () => {
                                   size="24"
                                   className="text-success align-text-top me-2"
                                 />
-                                {t("translation:howItWorks.takeRides")}
+                                {t("translation:howItWorks.bookRide")}
                               </p>
                               {isLoggedIn ? (
                                 <Button
@@ -383,6 +388,7 @@ const HowItWorks = () => {
                                 </Button>
                               ) : null}
                             </div>
+                            <small>{t("translation:howItWorks.fillUp2")}</small>
                           </ListGroup.Item>
                         </Link>
 
@@ -409,7 +415,7 @@ const HowItWorks = () => {
                                   size="24"
                                   className="text-success align-text-top me-2"
                                 />
-                                {t("translation:howItWorks.publishRides")}
+                                {t("translation:howItWorks.publishRide")}
                               </p>
 
                               {isLoggedIn ? (
@@ -425,6 +431,9 @@ const HowItWorks = () => {
                                 </Button>
                               ) : null}
                             </div>
+                            <small>
+                              {t("translation:howItWorks.publishRide2")}
+                            </small>
                           </ListGroup.Item>
                         </Link>
                       </Row>
@@ -623,6 +632,68 @@ const HowItWorks = () => {
                           </div>
                           <small>{t("translation:howItWorks.points2")}</small>
                         </ListGroup.Item>
+
+                        <Link
+                          to="/rides/bookings"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t(
+                                  "translation:howItWorks.manageBookingsDriver"
+                                )}
+                              </p>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
+
+                        <Link
+                          to="/bookings"
+                          className="text-decoration-none px-0"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <p className="fw-bold mb-0">
+                                <Check2Square
+                                  size="24"
+                                  className="text-success align-text-top me-2"
+                                />
+                                {t(
+                                  "translation:howItWorks.manageBookingsPassenger"
+                                )}
+                              </p>
+                              {isLoggedIn ? (
+                                <Button
+                                  variant="outline-success"
+                                  size="sm"
+                                  className="m-0"
+                                >
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </Button>
+                              ) : null}
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
                       </Row>
                     </Container>
 
@@ -696,6 +767,9 @@ const HowItWorks = () => {
                                 </Button>
                               ) : null}
                             </div>
+                            <small>
+                              {t("translation:howItWorks.confirm2")}
+                            </small>
                           </ListGroup.Item>
                         </Link>
 
@@ -726,6 +800,7 @@ const HowItWorks = () => {
                                 </Button>
                               ) : null}
                             </div>
+                            <small>{t("translation:howItWorks.review2")}</small>
                           </ListGroup.Item>
                         </Link>
 
@@ -758,6 +833,9 @@ const HowItWorks = () => {
                                 </Button>
                               ) : null}
                             </div>
+                            <small>
+                              {t("translation:howItWorks.feedback2")}
+                            </small>
                           </ListGroup.Item>
                         </a>
 

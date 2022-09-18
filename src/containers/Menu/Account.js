@@ -148,11 +148,11 @@ function Account() {
               </Row>
               <Row className="align-items-center">
                 <Col xs={6}>
-                  {currentUser.passengerRating > 0 ? (
+                  {currentUser.Rating.passengerRating > 0 ? (
                     <div className="d-inline-flex align-items-center">
                       <StarFillIcon size={26} className="text-warning me-2" />
                       <h1 className="fw-bold mb-0">
-                        {currentUser.passengerRating}{" "}
+                        {currentUser.Rating.passengerRating}{" "}
                       </h1>
                     </div>
                   ) : (

@@ -6,7 +6,6 @@ import {
   SearchIcon,
   PlusCircleIcon,
   CommentDiscussionIcon,
-  PersonIcon,
   ZapIcon,
   ThreeBarsIcon,
   HomeIcon,
@@ -93,9 +92,9 @@ function NavigationBar() {
                 <IndexLinkContainer to="/menu" href="/menu" className="px-0">
                   <Nav.Link>
                     <div className="position-relative">
-                      <PersonIcon size={24} className="mb-1" />
+                      <ThreeBarsIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("translation:navigationBar.account")}
+                        {t("translation:navigationBar.menu")}
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}

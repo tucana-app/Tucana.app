@@ -80,26 +80,25 @@ const RidesBookings = () => {
                           <Row className="align-items-center">
                             <Col>
                               <p>
-                                {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
                                 <Trans i18nKey="translation:ridesBookings.summary">
-                                  <span className="text-success">
+                                  <strong>
                                     {{ firstName: booking.User.firstName }}
-                                  </span>
+                                  </strong>
                                   booked
-                                  <span className="text-success">
+                                  <strong>
                                     {{ seatsBooked: booking.seatsBooked }}
-                                  </span>{" "}
+                                  </strong>{" "}
                                   seat(s) from{" "}
-                                  <span className="text-success">
+                                  <strong>
                                     {{ cityOrigin: booking.Ride.origin.city }}
-                                  </span>{" "}
+                                  </strong>{" "}
                                   to{" "}
-                                  <span className="text-success">
+                                  <strong>
                                     {{
                                       cityDestination:
                                         booking.Ride.destination.city,
                                     }}
-                                  </span>
+                                  </strong>
                                 </Trans>
                               </p>
                             </Col>
@@ -108,26 +107,29 @@ const RidesBookings = () => {
                             <Col>
                               <p>
                                 <span className="text-secondary">
+                                  {t("translation:global.date")}:
+                                </span>{" "}
+                                {dateFormat(booking.createdAt, "dd/mm/yyyy")}
+                              </p>
+                              <p>
+                                <span className="text-secondary">
                                   {t("translation:global.booking")}:
                                 </span>{" "}
                                 <span
-                                  className={`text-${bookingStatusVariant(
+                                  className={`fw-bold text-${bookingStatusVariant(
                                     booking.BookingStatusId
                                   )}`}
                                 >
                                   {booking.BookingStatus.name}
                                 </span>
                               </p>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
+
                               <p>
                                 <span className="text-secondary">
                                   {t("translation:global.ride")}:
                                 </span>{" "}
                                 <span
-                                  className={`text-${rideStatusVariant(
+                                  className={`fw-bold text-${rideStatusVariant(
                                     booking.Ride.RideStatusId
                                   )}`}
                                 >
@@ -143,7 +145,7 @@ const RidesBookings = () => {
                                 to={`/ride/${booking.RideId}`}
                                 className="me-3"
                               >
-                                <Button variant="light">
+                                <Button variant="outline-success">
                                   {t("translation:global.seeRide")}
                                 </Button>
                               </LinkContainer>
