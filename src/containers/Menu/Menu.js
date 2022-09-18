@@ -16,13 +16,13 @@ import { logout } from "../../redux";
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
 import SocialIcons from "../../components/SocialIcons";
-import { PersonCircle } from "react-bootstrap-icons";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { srcAvatar } = useSelector((state) => state.global);
   const history = useHistory();
   const {
     isLoadingDriverNewRidesRequests,
@@ -60,22 +60,29 @@ const Menu = () => {
   return (
     <Container fluid data-aos="fade-in" className="pb-4">
       {isLoggedIn ? (
-        <Row className="my-4">
-          <Col className="text-center">
-            <p>
-              <Link to="/account" className="text-decoration-none">
-                <PersonCircle size={62} className="text-secondary me-2" />
-              </Link>
-            </p>
-            <h3 className="mb-0">{currentUser.firstName}</h3>
-            <p className="lead">{currentUser.email}</p>
+        <>
+          <Row className="my-4">
+            <Col className="text-center">
+              <p>
+                <Link to="/account" className="text-decoration-none">
+                  <img
+                    src={srcAvatar(currentUser)}
+                    alt="Avatar"
+                    className="img-fluid rounded-round cursor-pointer img-avatar"
+                  />
+                </Link>
+              </p>
 
-            <p className="small text-secondary mb-0">
-              {t("translation:menu.memberSince")}:{" "}
-              {dateFormat(currentUser.createdAt, "mm/yyyy")}
-            </p>
-          </Col>
-        </Row>
+              <h3 className="mb-0">{currentUser.firstName}</h3>
+              <p className="lead">{currentUser.email}</p>
+
+              <p className="small text-secondary mb-0">
+                {t("translation:menu.memberSince")}:{" "}
+                {dateFormat(currentUser.createdAt, "mm/yyyy")}
+              </p>
+            </Col>
+          </Row>
+        </>
       ) : null}
 
       <Row>

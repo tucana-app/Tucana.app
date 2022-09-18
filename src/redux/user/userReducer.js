@@ -25,6 +25,14 @@ initialState = {
   confirmEmailData: "",
   confirmEmailError: "",
 
+  isLoadingSetUserAvatar: false,
+  setUserAvatarData: "",
+  setUserAvatarError: "",
+
+  isLoadingSetUserFirstSetup: false,
+  setUserFirstSetupData: "",
+  setUserFirstSetupError: "",
+
   isLoadingSendEmailForgotPassword: false,
   sendEmailForgotPasswordData: [],
   sendEmailForgotPasswordError: "",
@@ -76,10 +84,6 @@ initialState = {
         year: "",
       },
     },
-  },
-
-  formUser: {
-    avatar: "",
   },
 };
 
@@ -137,21 +141,68 @@ function userReducer(state = initialState, action) {
         loginErrorData: action.payload,
       };
 
-    case userTypes.SET_FORM_USER_AVATAR:
-      return {
-        ...state,
-        formUser: {
-          ...state.formUser,
-          avatar: action.payload,
-        },
-      };
-
     // Log out User
 
     case userTypes.LOGOUT:
       return {
         isLoggedIn: false,
         user: null,
+      };
+
+    // Set user's avatar
+
+    case userTypes.SET_USER_AVATAR_REQUESTED:
+      return {
+        ...state,
+        isLoadingSetUserAvatar: true,
+      };
+
+    case userTypes.SET_USER_AVATAR_DATA:
+      return {
+        ...state,
+        isLoadingSetUserAvatar: false,
+        setUserAvatarData: action.payload,
+        setUserAvatarError: "",
+        user: {
+          ...state.user,
+          avatar: action.payload.avatar,
+        },
+      };
+
+    case userTypes.SET_USER_AVATAR_ERROR:
+      return {
+        ...state,
+        isLoadingSetUserAvatar: false,
+        setUserAvatarData: "",
+        setUserAvatarError: action.payload,
+      };
+
+    // Change user's first setup
+
+    case userTypes.SET_USER_FIRST_SETUP_REQUESTED:
+      return {
+        ...state,
+        isLoadingSetUserFirstSetup: true,
+      };
+
+    case userTypes.SET_USER_FIRST_SETUP_DATA:
+      return {
+        ...state,
+        isLoadingSetUserFirstSetup: false,
+        setUserFirstSetupData: action.payload,
+        setUserFirstSetupError: "",
+        user: {
+          ...state.user,
+          firstSetUp: false,
+        },
+      };
+
+    case userTypes.SET_USER_FIRST_SETUP_ERROR:
+      return {
+        ...state,
+        isLoadingSetUserFirstSetup: false,
+        setUserFirstSetupData: "",
+        setUserFirstSetupError: action.payload,
       };
 
     // Confirm email

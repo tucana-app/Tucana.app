@@ -4,7 +4,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { PersonCircle } from "react-bootstrap-icons";
 import { ChevronRightIcon, AlertIcon } from "@primer/octicons-react";
 
 import ManageDriverBooking from "../components/ManageDriverBooking";
@@ -35,7 +34,7 @@ const Ride = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { rideStatusVariant } = useSelector((state) => state.global);
+  const { rideStatusVariant, srcAvatar } = useSelector((state) => state.global);
   const {
     isloadingRide,
     rideData,
@@ -222,9 +221,11 @@ const Ride = () => {
                       >
                         <Row className="align-items-center">
                           <Col xs={3} md={2} className="text-end pe-0">
-                            <PersonCircle
-                              size={48}
-                              className="text-secondary"
+                            <img
+                              src={srcAvatar(rideData.ride.Driver.User)}
+                              alt="Avatar"
+                              className="img-fluid rounded-round cursor-pointer img-avatar mx-2"
+                              width="50px"
                             />
                           </Col>
                           <Col xs={6} className="text-start">

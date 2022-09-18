@@ -147,8 +147,12 @@ body {
   @extend .border-end-0;
 }
 
+.img-avatar-first {
+  width: 75px;
+}
+
 .img-avatar {
-  max-width: 75px;
+  width: 50px;
 }
 
 .avatar-parent {

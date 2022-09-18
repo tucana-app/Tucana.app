@@ -6,7 +6,6 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import { ArrowDownIcon, ArrowRightIcon } from "@primer/octicons-react";
-import { PersonCircle } from "react-bootstrap-icons";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
@@ -21,7 +20,7 @@ const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { commission } = useSelector((state) => state.global);
+  const { commission, srcAvatar } = useSelector((state) => state.global);
   const {
     isloadingFilteredRides,
     filteredRidesData,
@@ -213,9 +212,10 @@ const Find = () => {
                           <Row className="align-items-center">
                             <Col xs={3} className="pe-0">
                               <p className="text-end mb-0">
-                                <PersonCircle
-                                  size={48}
-                                  className="text-secondary me-2"
+                                <img
+                                  src={srcAvatar(ride.rideDetails.Driver.User)}
+                                  alt="Avatar"
+                                  className="img-fluid rounded-round cursor-pointer img-avatar"
                                 />
                               </p>
                             </Col>

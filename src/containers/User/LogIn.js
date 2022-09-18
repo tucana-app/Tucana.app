@@ -18,7 +18,12 @@ import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { login, resendConfirmationLink, setUserAvatar } from "../../redux";
+import {
+  login,
+  resendConfirmationLink,
+  setUserAvatar,
+  setUserFirstSetup,
+} from "../../redux";
 import { ArrowRightIcon, ChevronRightIcon } from "@primer/octicons-react";
 import { ArrowLeft, Check2Square } from "react-bootstrap-icons";
 
@@ -42,7 +47,7 @@ const Login = () => {
     isloadingLogin,
     isLoggedIn,
     loginErrorData,
-    formUser,
+    isLoadingSetUserAvatar,
   } = useSelector((state) => state.user);
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
@@ -54,9 +59,7 @@ const Login = () => {
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
 
-  const [avatar, setAvatar] = useState(formUser.avatar);
-  // const avatars1 = ["toucan", "iguana", "sloth", "macaw", "monkey"];
-  // const avatars2 = ["crocodile", "turtle", "jaguar", "dolphin", "whale"];
+  const [avatar, setAvatar] = useState("");
 
   const schema = Yup.object().shape({
     credential: Yup.string(labelStringField).required(labelRequiredField),
@@ -65,18 +68,20 @@ const Login = () => {
   });
 
   // Step 1
+  const handleChangeAvatar = (name) => {
+    setAvatar(name);
+  };
+
   const handleClickStepOne = () => {
-    setStepOne(false);
-    setStepTwo(true);
+    if (avatar !== "") {
+      dispatch(setUserAvatar(currentUser, avatar));
+
+      setStepOne(false);
+      setStepTwo(true);
+    }
   };
 
   // Step 2
-  const handleChangeAvatar = (name) => {
-    console.log(name);
-    setAvatar(name);
-    dispatch(setUserAvatar(name));
-  };
-
   const handleBackToStepOne = () => {
     setStepOne(true);
     setStepTwo(false);
@@ -86,6 +91,10 @@ const Login = () => {
   const handleSubmit = (values, formikBag) => {
     dispatch(login(values));
     formikBag.setSubmitting(false);
+  };
+
+  const handleLeave = () => {
+    dispatch(setUserFirstSetup(currentUser));
   };
 
   useEffect(() => {
@@ -100,85 +109,102 @@ const Login = () => {
     return (
       <>
         <Container className="py-5">
-          <Row>
-            <Col className="text-center">{t("translation:logIn.finish")}</Col>
+          <Row className="mb-3">
+            <Col
+              xs={12}
+              sm={10}
+              md={8}
+              lg={6}
+              xl={4}
+              className="text-center mx-auto"
+            >
+              {t("translation:logIn.finish")}
+            </Col>
           </Row>
           <Row className="mb-5">
-            <Link to="/how-it-works" className="text-decoration-none px-0">
-              <ListGroup.Item className="border-0 px-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100">
-                  <p className="fw-bold mb-0">
-                    <Check2Square
-                      size="24"
-                      className="text-success align-text-top me-2"
-                    />
-                    {t("translation:global.howItWorks")}
-                  </p>
-                  {isLoggedIn ? (
-                    <Button variant="outline-success" size="sm" className="m-0">
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </Button>
-                  ) : null}
-                </div>
-              </ListGroup.Item>
-            </Link>
+            <Col
+              xs={12}
+              sm={10}
+              md={8}
+              lg={6}
+              xl={4}
+              className="text-center mx-auto"
+            >
+              <Link to="/how-it-works" className="text-center">
+                <Button variant="success" size="lg" className="mb-3">
+                  {t("translation:global.howItWorks")}
+                </Button>
+              </Link>
 
-            <Link to="/apply-driver" className="text-decoration-none px-0">
-              <ListGroup.Item className="border-0 px-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100">
-                  <p className="fw-bold mb-0">
-                    <Check2Square
-                      size="24"
-                      className="text-success align-text-top me-2"
-                    />
-                    {t("translation:global.becomeDriver")}
-                  </p>
-                  {isLoggedIn ? (
-                    <Button variant="outline-success" size="sm" className="m-0">
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </Button>
-                  ) : null}
-                </div>
-              </ListGroup.Item>
-            </Link>
+              <Link to="/apply-driver" className="text-decoration-none px-0">
+                <ListGroup.Item className="border-0 px-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100">
+                    <p className="fw-bold mb-0">
+                      <Check2Square
+                        size="24"
+                        className="text-success align-text-top me-2"
+                      />
+                      {t("translation:global.becomeDriver")}
+                    </p>
+                    {isLoggedIn ? (
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        className="m-0"
+                      >
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </Button>
+                    ) : null}
+                  </div>
+                </ListGroup.Item>
+              </Link>
 
-            <Link to="/find" className="text-decoration-none px-0">
-              <ListGroup.Item className="border-0 px-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100">
-                  <p className="fw-bold mb-0">
-                    <Check2Square
-                      size="24"
-                      className="text-success align-text-top me-2"
-                    />
-                    {t("translation:offer.findRide")}
-                  </p>
-                  {isLoggedIn ? (
-                    <Button variant="outline-success" size="sm" className="m-0">
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </Button>
-                  ) : null}
-                </div>
-              </ListGroup.Item>
-            </Link>
+              <Link to="/find" className="text-decoration-none px-0">
+                <ListGroup.Item className="border-0 px-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100">
+                    <p className="fw-bold mb-0">
+                      <Check2Square
+                        size="24"
+                        className="text-success align-text-top me-2"
+                      />
+                      {t("translation:offer.findRide")}
+                    </p>
+                    {isLoggedIn ? (
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        className="m-0"
+                      >
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </Button>
+                    ) : null}
+                  </div>
+                </ListGroup.Item>
+              </Link>
 
-            <Link to="/account" className="text-decoration-none px-0">
-              <ListGroup.Item className="border-0 px-0">
-                <div className="d-inline-flex justify-content-between align-items-center w-100">
-                  <p className="fw-bold mb-0">
-                    <Check2Square
-                      size="24"
-                      className="text-success align-text-top me-2"
-                    />
-                    {t("translation:logIn.yourAccount")}
-                  </p>
-                  {isLoggedIn ? (
-                    <Button variant="outline-success" size="sm" className="m-0">
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </Button>
-                  ) : null}
-                </div>
-              </ListGroup.Item>
-            </Link>
+              <Link to="/account" className="text-decoration-none px-0">
+                <ListGroup.Item className="border-0 px-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100">
+                    <p className="fw-bold mb-0">
+                      <Check2Square
+                        size="24"
+                        className="text-success align-text-top me-2"
+                      />
+                      {t("translation:logIn.yourAccount")}
+                    </p>
+                    {isLoggedIn ? (
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        className="m-0"
+                      >
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </Button>
+                    ) : null}
+                  </div>
+                </ListGroup.Item>
+              </Link>
+            </Col>
           </Row>
         </Container>
 
@@ -217,17 +243,17 @@ const Login = () => {
 
                       <Row className="mb-4">
                         <Col className="d-flex justify-content-around">
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={crocodile}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("crocodile")}
                             />
                             {avatar === "crocodile" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -240,17 +266,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={dolphin}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("dolphin")}
                             />
                             {avatar === "dolphin" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -261,17 +287,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={iguana}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("iguana")}
                             />
                             {avatar === "iguana" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -282,17 +308,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={jaguar}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("jaguar")}
                             />
                             {avatar === "jaguar" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -303,17 +329,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={macaw}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("macaw")}
                             />
                             {avatar === "macaw" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -328,17 +354,17 @@ const Login = () => {
 
                       <Row className="mb-5">
                         <Col className="d-flex justify-content-around">
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={monkey}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("monkey")}
                             />
                             {avatar === "monkey" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -349,17 +375,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={sloth}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("sloth")}
                             />
                             {avatar === "sloth" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -370,17 +396,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={toucan}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("toucan")}
                             />
                             {avatar === "toucan" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -391,17 +417,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={turtle}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("turtle")}
                             />
                             {avatar === "turtle" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -412,17 +438,17 @@ const Login = () => {
                             ) : null}
                           </div>
 
-                          <div class="avatar-parent">
+                          <div className="avatar-parent">
                             <img
                               src={whale}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar"
+                                "img-fluid rounded-round cursor-pointer img-avatar-first"
                               }
                               onClick={() => handleChangeAvatar("whale")}
                             />
                             {avatar === "whale" ? (
-                              <div class="avatar-child">
+                              <div className="avatar-child">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -435,25 +461,27 @@ const Login = () => {
                         </Col>
                       </Row>
 
-                      <Row>
-                        <Col className="text-end">
-                          <Button
-                            onClick={handleClickStepOne}
-                            variant="success"
-                            className="hvr-icon-forward ms-2"
-                          >
-                            {t("translation:global.next")}
-                            <ArrowRightIcon
-                              size={24}
-                              className="hvr-icon ms-2"
-                            />
-                          </Button>
-                        </Col>
-                      </Row>
+                      <div className="fixed-bottom d-flex justify-content-center mb-5">
+                        <Button
+                          onClick={handleClickStepOne}
+                          variant="success"
+                          size="lg"
+                          className="hvr-icon-forward ms-2"
+                          disabled={avatar === ""}
+                        >
+                          {isLoadingSetUserAvatar ? (
+                            <span className="me-2">
+                              <LoadingSpinner className="me-2" />
+                            </span>
+                          ) : null}
+                          {t("translation:global.next")}
+                          <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                        </Button>
+                      </div>
                     </Container>
                   ) : stepTwo ? (
                     <Container>
-                      <Row>
+                      <Row className="mb-3">
                         <Col className="text-center">
                           {t("translation:logIn.finish")}
                         </Col>
@@ -461,36 +489,18 @@ const Login = () => {
                       <Row className="mb-5">
                         <Link
                           to="/how-it-works"
-                          className="text-decoration-none px-0"
+                          className="text-center mb-3"
+                          onClick={handleLeave}
                         >
-                          <ListGroup.Item className="border-0 px-0">
-                            <div className="d-inline-flex justify-content-between align-items-center w-100">
-                              <p className="fw-bold mb-0">
-                                <Check2Square
-                                  size="24"
-                                  className="text-success align-text-top me-2"
-                                />
-                                {t("translation:global.howItWorks")}
-                              </p>
-                              {isLoggedIn ? (
-                                <Button
-                                  variant="outline-success"
-                                  size="sm"
-                                  className="m-0"
-                                >
-                                  <ChevronRightIcon
-                                    size={24}
-                                    verticalAlign="middle"
-                                  />
-                                </Button>
-                              ) : null}
-                            </div>
-                          </ListGroup.Item>
+                          <Button variant="success" size="lg">
+                            {t("translation:global.howItWorks")}
+                          </Button>
                         </Link>
 
                         <Link
                           to="/apply-driver"
                           className="text-decoration-none px-0"
+                          onClick={handleLeave}
                         >
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
@@ -517,7 +527,11 @@ const Login = () => {
                           </ListGroup.Item>
                         </Link>
 
-                        <Link to="/find" className="text-decoration-none px-0">
+                        <Link
+                          to="/find"
+                          className="text-decoration-none px-0"
+                          onClick={handleLeave}
+                        >
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
                               <p className="fw-bold mb-0">
@@ -546,6 +560,7 @@ const Login = () => {
                         <Link
                           to="/account"
                           className="text-decoration-none px-0"
+                          onClick={handleLeave}
                         >
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
@@ -573,18 +588,17 @@ const Login = () => {
                         </Link>
                       </Row>
 
-                      <Row>
-                        <Col className="text-start">
-                          <Button
-                            onClick={handleBackToStepOne}
-                            variant="warning"
-                            className="hvr-icon-shrink ms-2"
-                          >
-                            <ArrowLeft size={18} className="hvr-icon me-2" />
-                            {t("translation:global.goBack")}
-                          </Button>
-                        </Col>
-                      </Row>
+                      <div className="fixed-bottom d-flex justify-content-center mb-5">
+                        <Button
+                          onClick={handleBackToStepOne}
+                          variant="outline-warning"
+                          className="ms-2"
+                          disabled={avatar === ""}
+                        >
+                          <ArrowLeft size={18} className="me-2" />
+                          {t("translation:global.goBack")}
+                        </Button>
+                      </div>
                     </Container>
                   ) : null}
                 </Offcanvas.Body>

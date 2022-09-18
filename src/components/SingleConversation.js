@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { PaperAirplaneIcon, ChevronLeftIcon } from "@primer/octicons-react";
-import { PersonCircle, PinMap } from "react-bootstrap-icons";
+import { PinMap } from "react-bootstrap-icons";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 
 import {
@@ -31,6 +31,7 @@ const SingleConversation = ({ conversation }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.user);
+  const { srcAvatar } = useSelector((state) => state.global);
   const { messageStatusIcon, isLoadingSendMessage } = useSelector(
     (state) => state.message
   );
@@ -41,6 +42,9 @@ const SingleConversation = ({ conversation }) => {
 
   // Get receiver's information
   const receiver = !(conversation.UserId === currentUser.id)
+    ? conversation.User
+    : conversation.Driver.User;
+  const receiverFirstName = !(conversation.UserId === currentUser.id)
     ? conversation.User.firstName
     : conversation.Driver.User.firstName;
   const receiverId = !(conversation.UserId === currentUser.id)
@@ -129,8 +133,13 @@ const SingleConversation = ({ conversation }) => {
         >
           <div className="d-flex align-items-center">
             <ChevronLeftIcon size={28} className="text-success" />
-            <PersonCircle size={28} className="text-secondary me-2" />
-            <h2 className="mb-0">{receiver}</h2>
+            <img
+              src={srcAvatar(receiver)}
+              alt="Avatar"
+              className="img-fluid rounded-round cursor-pointer img-avatar mx-2"
+              width="50px"
+            />
+            <h2 className="mb-0">{receiverFirstName}</h2>
           </div>
         </ListGroup.Item>
       </ListGroup>

@@ -9,11 +9,11 @@ import dateFormat from "dateformat";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 import GoBack from "../../components/GoBack";
-import { PersonCircle } from "react-bootstrap-icons";
 
 function Account() {
   const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { srcAvatar } = useSelector((state) => state.global);
 
   const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
   const [showModalRequestData, setShowModalRequestData] = useState(false);
@@ -30,7 +30,11 @@ function Account() {
         <Row>
           <Col className="text-center">
             <p>
-              <PersonCircle size={62} className="text-secondary me-2" />
+              <img
+                src={srcAvatar(currentUser)}
+                alt="Avatar"
+                className="img-fluid rounded-round cursor-pointer img-avatar"
+              />
             </p>
             <h3 className="mb-0">
               {currentUser.firstName} {currentUser.lastName}{" "}

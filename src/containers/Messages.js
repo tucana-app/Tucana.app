@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ChevronRightIcon } from "@primer/octicons-react";
-import { PersonCircle } from "react-bootstrap-icons";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import SingleConversation from "../components/SingleConversation";
@@ -19,6 +18,7 @@ function Messages() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { srcAvatar } = useSelector((state) => state.global);
 
   const { isLoadingAllUserMessages, allUserMessagesData, currentView } =
     useSelector((state) => state.message);
@@ -34,6 +34,14 @@ function Messages() {
       return conversation.User.firstName;
     } else {
       return conversation.Driver.User.firstName;
+    }
+  };
+
+  const getSenderAvatar = (conversation) => {
+    if (!(conversation.UserId === currentUser.id)) {
+      return conversation.User;
+    } else {
+      return conversation.Driver.User;
     }
   };
 
@@ -111,9 +119,10 @@ function Messages() {
                         >
                           <div className="d-inline-flex align-items-center justify-content-between w-100 py-2">
                             <div className="d-inline-flex align-items-center">
-                              <PersonCircle
-                                size={28}
-                                className="text-secondary me-2"
+                              <img
+                                src={srcAvatar(getSenderAvatar(conversation))}
+                                alt="Avatar"
+                                className="img-fluid rounded-round cursor-pointer img-avatar me-2"
                               />
                               <h2 className="mb-0">
                                 {getSenderUsername(conversation)}

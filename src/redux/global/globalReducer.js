@@ -1,5 +1,18 @@
 import globalTypes from "./globalTypes";
 
+import crocodile from "../../assets/images/avatars/crocodile.png";
+import dolphin from "../../assets/images/avatars/dolphin.png";
+import iguana from "../../assets/images/avatars/iguana.png";
+import jaguar from "../../assets/images/avatars/jaguar.png";
+import macaw from "../../assets/images/avatars/macaw.png";
+import monkey from "../../assets/images/avatars/monkey.png";
+import sloth from "../../assets/images/avatars/sloth.png";
+import toucan from "../../assets/images/avatars/toucan.png";
+import turtle from "../../assets/images/avatars/turtle.png";
+import whale from "../../assets/images/avatars/whale.png";
+import none from "../../assets/images/avatars/default.svg";
+// import filter from "../../assets/images/filter-select.png";
+
 const initialState = {
   seatsMax: 3,
 
@@ -102,6 +115,46 @@ const initialState = {
     10: "10-October",
     11: "11-November",
     12: "12-December",
+  },
+
+  srcAvatar: (user) => {
+    switch (user.avatar) {
+      case "crocodile":
+        return crocodile;
+
+      case "dolphin":
+        return dolphin;
+
+      case "iguana":
+        return iguana;
+
+      case "jaguar":
+        return jaguar;
+
+      case "macaw":
+        return macaw;
+
+      case "monkey":
+        return monkey;
+
+      case "sloth":
+        return sloth;
+
+      case "toucan":
+        return toucan;
+
+      case "turtle":
+        return turtle;
+
+      case "whale":
+        return whale;
+
+      case "none":
+        return none;
+
+      default:
+        break;
+    }
   },
 };
 

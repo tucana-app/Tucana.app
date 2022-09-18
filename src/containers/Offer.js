@@ -101,7 +101,7 @@ const Offer = () => {
             variant="outline-secondary"
           >
             <ArrowLeftIcon size={24} className="me-2" />
-            Back
+            {t("translation:global.goBack")}
           </Button>
         </Col>
       </Row>

@@ -17,7 +17,6 @@ import DisplayRating from "../components/DisplayRating";
 import { getBooking } from "../redux";
 import { formatPrice, isDateInPast } from "../helpers";
 import RideDetails from "../components/RideDetails";
-import { PersonCircle } from "react-bootstrap-icons";
 
 const Booking = () => {
   const { t } = useTranslation();
@@ -25,6 +24,7 @@ const Booking = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { srcAvatar } = useSelector((state) => state.global);
   const { bookingStatusVariant, rideStatusVariant } = useSelector(
     (state) => state.global
   );
@@ -212,9 +212,10 @@ const Booking = () => {
                       >
                         <Row className="align-items-center">
                           <Col xs={3} md={2} className="text-end pe-0">
-                            <PersonCircle
-                              size={48}
-                              className="text-secondary"
+                            <img
+                              src={srcAvatar(bookingData.Ride.Driver.User)}
+                              alt="Avatar"
+                              className="img-fluid rounded-round cursor-pointer img-avatar"
                             />
                           </Col>
                           <Col xs={6} className="text-start">

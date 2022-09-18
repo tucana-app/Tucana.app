@@ -294,11 +294,98 @@ export const logout = () => (dispatch) => {
   );
 };
 
-// Set the user's avatar
-export const setUserAvatar = (avatar) => {
+// Set user's avatar
+
+export const setUserAvatarRequested = () => {
   return {
-    type: userTypes.SET_FORM_USER_AVATAR,
-    payload: avatar,
+    type: userTypes.SET_USER_AVATAR_REQUESTED,
+  };
+};
+
+export const setUserAvatar = (user, avatar) => {
+  return (dispatch) => {
+    dispatch(setUserAvatarRequested());
+
+    axios
+      .post(URL_API + "/user/set-user-avatar", {
+        user,
+        avatar,
+      })
+      .then((response) => {
+        dispatch(setUserAvatarSuccess(response.data, avatar));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+
+        dispatch(setUserAvatarFail(message));
+      });
+  };
+};
+
+export const setUserAvatarSuccess = (data, avatar) => {
+  return {
+    type: userTypes.SET_USER_AVATAR_DATA,
+    payload: { data, avatar },
+  };
+};
+
+export const setUserAvatarFail = (error) => {
+  return {
+    type: userTypes.SET_USER_AVATAR_ERROR,
+    payload: error,
+  };
+};
+
+// Set user's first setup
+
+export const setUserFirstSetupRequested = () => {
+  return {
+    type: userTypes.SET_USER_FIRST_SETUP_REQUESTED,
+  };
+};
+
+export const setUserFirstSetup = (user) => {
+  return (dispatch) => {
+    dispatch(setUserFirstSetupRequested());
+
+    axios
+      .post(URL_API + "/user/set-user-first-setup", {
+        user,
+      })
+      .then((response) => {
+        dispatch(setUserFirstSetupSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(setUserFirstSetupFail());
+      });
+  };
+};
+
+export const setUserFirstSetupSuccess = (data) => {
+  return {
+    type: userTypes.SET_USER_FIRST_SETUP_DATA,
+    payload: data,
+  };
+};
+
+export const setUserFirstSetupFail = (error) => {
+  return {
+    type: userTypes.SET_USER_FIRST_SETUP_ERROR,
+    payload: error,
   };
 };
 
