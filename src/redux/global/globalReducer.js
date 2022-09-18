@@ -153,7 +153,7 @@ const initialState = {
         return none;
 
       default:
-        break;
+        return none;
     }
   },
 };
