@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import dateFormat from "dateformat";
-import { AlertIcon, ChevronRightIcon } from "@primer/octicons-react";
+import { AlertIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -18,7 +17,7 @@ const DriverProfile = () => {
   const { username } = useParams();
 
   const dispatch = useDispatch();
-  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
   const { isloadingDriverProfile, driverProfileData, driverProfileError } =
     useSelector((state) => state.ride);
