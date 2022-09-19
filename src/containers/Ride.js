@@ -199,9 +199,6 @@ const Ride = () => {
                           <img src={car} alt="" height={36} />
                         </Col>
                         <Col>
-                          <p className="lead mb-0">
-                            {t("translation:global.vehicle")}
-                          </p>
                           <p className="mb-0">
                             {rideData.ride.Driver.Car.maker}{" "}
                             {rideData.ride.Driver.Car.model}

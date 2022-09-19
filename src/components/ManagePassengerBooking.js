@@ -5,8 +5,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 
-import dateFormat from "dateformat";
-
 function ManagePassengerBooking({ rideId }) {
   const { t } = useTranslation();
   const { bookingStatusVariant } = useSelector((state) => state.global);
@@ -26,7 +24,6 @@ function ManagePassengerBooking({ rideId }) {
             >
               <Row className="align-items-center mb-2">
                 <Col xs={11}>
-                  {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
                   {t("translation:booking.summary1")}{" "}
                   <span className="text-success">{booking.seatsBooked}</span>{" "}
                   <span className="text-lowercase">

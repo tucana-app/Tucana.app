@@ -7,10 +7,10 @@ import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
-import LoadingSpinner from "../../components/LoadingSpinner";
-import GoBack from "../../components/GoBack";
+import LoadingSpinner from "../components/LoadingSpinner";
+import GoBack from "../components/GoBack";
 
-import { getRidesToConfirm } from "../../redux";
+import { getRidesToConfirm } from "../redux";
 
 function RidesToConfirm() {
   const { t } = useTranslation();

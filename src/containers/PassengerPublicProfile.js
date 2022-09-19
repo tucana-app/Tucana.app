@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import GoBack from "../components/GoBack";
 
-function PassengerProfile(props) {
+function PassengerPublicProfile(props) {
   const { t } = useTranslation();
   const { username } = useParams();
 
@@ -36,4 +36,4 @@ function PassengerProfile(props) {
   );
 }
 
-export default PassengerProfile;
+export default PassengerPublicProfile;

@@ -25,9 +25,7 @@ const Booking = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
-  const { bookingStatusVariant, rideStatusVariant } = useSelector(
-    (state) => state.global
-  );
+  const { bookingStatusVariant } = useSelector((state) => state.global);
   const { isloadingBooking, bookingData, bookingError } = useSelector(
     (state) => state.ride
   );

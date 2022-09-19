@@ -640,7 +640,7 @@ const HowItWorks = () => {
                         </ListGroup.Item>
 
                         <Link
-                          to="/rides/bookings"
+                          to="/driver/bookings"
                           className="text-decoration-none px-0"
                         >
                           <ListGroup.Item className="border-0 px-0">

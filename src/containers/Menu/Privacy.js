@@ -39,7 +39,7 @@ const Privacy = () => {
                         <span className="font-size: 15px;">
                           <span data-custom-classname="subtitle">
                             Last updated{" "}
-                            <bdt className="question">June 27, 2022</bdt>
+                            <span className="question">June 27, 2022</span>
                           </span>
                         </span>
                       </strong>
@@ -59,29 +59,30 @@ const Privacy = () => {
                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                         <span data-custom-classname="body_text">
                           This privacy notice for{" "}
-                          <bdt className="question">Tucána</bdt>
+                          <span className="question">Tucána</span>
                           <span className="color: rgb(89, 89, 89);">
                             <span data-custom-classname="body_text">
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>{" "}
-                          (<bdt className="block-component"></bdt>"
-                          <bdt className="block-component"></bdt>
+                          (<span className="block-component"></span>"
+                          <span className="block-component"></span>
                           <strong>Company</strong>
-                          <bdt className="statement-end-if-in-editor"></bdt>," "
-                          <strong>we</strong>," "<strong>us</strong>," or "
+                          <span className="statement-end-if-in-editor"></span>,"
+                          "<strong>we</strong>," "<strong>us</strong>," or "
                           <strong>our</strong>"
-                          <bdt className="statement-end-if-in-editor"></bdt>
+                          <span className="statement-end-if-in-editor"></span>
                         </span>
                         <span data-custom-classname="body_text">
                           ), describes how and why we might collect, store, use,
-                          and/or share (<bdt className="block-component"></bdt>"
+                          and/or share (
+                          <span className="block-component"></span>"
                           <strong>process</strong>"
-                          <bdt className="statement-end-if-in-editor"></bdt>)
+                          <span className="statement-end-if-in-editor"></span>)
                           your information when you use our services (
-                          <bdt className="block-component"></bdt>"
+                          <span className="block-component"></span>"
                           <strong>Services</strong>"
-                          <bdt className="statement-end-if-in-editor"></bdt>),
+                          <span className="statement-end-if-in-editor"></span>),
                           such as when you:
                         </span>
                       </span>
@@ -91,7 +92,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="color: rgb(89, 89, 89);">
                             <span data-custom-classname="body_text">
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -104,8 +105,8 @@ const Privacy = () => {
                         <span className="font-size: 15px; color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             Visit our website
-                            <bdt className="block-component"></bdt> at{" "}
-                            <bdt className="question">
+                            <span className="block-component"></span> at{" "}
+                            <span className="question">
                               <a
                                 href="https://tucana.app"
                                 target="_blank"
@@ -114,16 +115,16 @@ const Privacy = () => {
                               >
                                 https://tucana.app
                               </a>
-                            </bdt>
+                            </span>
                             <span className="font-size: 15px;">
                               <span className="color: rgb(89, 89, 89);">
                                 <span data-custom-classname="body_text">
                                   <span className="font-size: 15px;">
                                     <span className="color: rgb(89, 89, 89);">
-                                      <bdt className="statement-end-if-in-editor">
+                                      <span className="statement-end-if-in-editor">
                                         , or any website of ours that links to
                                         this privacy notice
-                                      </bdt>
+                                      </span>
                                     </span>
                                   </span>
                                 </span>
@@ -135,21 +136,21 @@ const Privacy = () => {
                     </li>
                   </ul>
                   <div>
-                    <bdt className="block-component">
+                    <span className="block-component">
                       <span className="font-size: 15px;">
                         <span className="font-size: 15px;">
                           <span className="color: rgb(127, 127, 127);">
                             <span data-custom-classname="body_text">
                               <span className="color: rgb(89, 89, 89);">
                                 <span data-custom-classname="body_text">
-                                  <bdt className="block-component"></bdt>
+                                  <span className="block-component"></span>
                                 </span>
                               </span>
                             </span>
                           </span>
                         </span>
                       </span>
-                    </bdt>
+                    </span>
                   </div>
                   <ul>
                     <li className="line-height: 1.5;">
@@ -157,10 +158,10 @@ const Privacy = () => {
                         <span className="font-size: 15px; color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             Download and use
-                            <bdt className="block-component"></bdt> our mobile
+                            <span className="block-component"></span> our mobile
                             application
-                            <bdt className="block-component"></bdt> (
-                            <bdt className="question">
+                            <span className="block-component"></span> (
+                            <span className="question">
                               Tucána)
                               <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                 <span className="font-size: 15px; color: rgb(89, 89, 89);">
@@ -170,9 +171,9 @@ const Privacy = () => {
                                         <span data-custom-classname="body_text">
                                           <span className="font-size: 15px;">
                                             <span className="color: rgb(89, 89, 89);">
-                                              <bdt className="statement-end-if-in-editor">
+                                              <span className="statement-end-if-in-editor">
                                                 ,
-                                              </bdt>
+                                              </span>
                                             </span>
                                           </span>
                                         </span>
@@ -181,7 +182,7 @@ const Privacy = () => {
                                   </span>
                                 </span>
                               </span>
-                            </bdt>
+                            </span>
                           </span>
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
@@ -189,13 +190,13 @@ const Privacy = () => {
                                 <span data-custom-classname="body_text">
                                   <span className="font-size: 15px;">
                                     <span className="color: rgb(89, 89, 89);">
-                                      <bdt className="statement-end-if-in-editor">
-                                        <bdt className="block-component">
+                                      <span className="statement-end-if-in-editor">
+                                        <span className="block-component">
                                           {" "}
                                           or any other application of ours that
                                           links to this privacy notice
-                                        </bdt>
-                                      </bdt>
+                                        </span>
+                                      </span>
                                     </span>
                                   </span>
                                 </span>
@@ -212,7 +213,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="color: rgb(89, 89, 89);">
                             <span data-custom-classname="body_text">
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -231,7 +232,7 @@ const Privacy = () => {
                                 <span data-custom-classname="body_text">
                                   <span className="font-size: 15px;">
                                     <span className="color: rgb(89, 89, 89);">
-                                      <bdt className="statement-end-if-in-editor"></bdt>
+                                      <span className="statement-end-if-in-editor"></span>
                                     </span>
                                   </span>
                                 </span>
@@ -252,7 +253,7 @@ const Privacy = () => {
                           our policies and practices, please do not use our
                           Services. If you still have any questions or concerns,
                           please contact us at{" "}
-                          <bdt className="question">info@tucana.app</bdt>.
+                          <span className="question">info@tucana.app</span>.
                         </span>
                       </span>
                     </span>
@@ -320,9 +321,9 @@ const Privacy = () => {
                         </strong>{" "}
                         When you visit, use, or navigate our Services, we may
                         process personal information depending on how you
-                        interact with <bdt className="block-component"></bdt>
-                        <bdt className="question">Tucána</bdt>
-                        <bdt className="statement-end-if-in-editor"></bdt> and
+                        interact with <span className="block-component"></span>
+                        <span className="question">Tucána</span>
+                        <span className="statement-end-if-in-editor"></span> and
                         the Services, the choices you make, and the products and
                         features you use. Click&nbsp;
                       </span>
@@ -347,7 +348,7 @@ const Privacy = () => {
                         <strong>
                           Do we process any sensitive personal information?
                         </strong>{" "}
-                        <bdt className="block-component"></bdt>We may process
+                        <span className="block-component"></span>We may process
                         sensitive personal information when necessary with your
                         consent or as otherwise permitted by applicable law.
                         Click&nbsp;
@@ -361,7 +362,7 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         &nbsp;to learn more.
-                        <bdt className="statement-end-if-in-editor"></bdt>
+                        <span className="statement-end-if-in-editor"></span>
                       </span>
                     </span>
                   </div>
@@ -374,9 +375,9 @@ const Privacy = () => {
                         <strong>
                           Do we receive any information from third parties?
                         </strong>{" "}
-                        <bdt className="block-component"></bdt>We do not receive
-                        any information from third parties.
-                        <bdt className="else-block"></bdt>
+                        <span className="block-component"></span>We do not
+                        receive any information from third parties.
+                        <span className="else-block"></span>
                       </span>
                     </span>
                   </div>
@@ -414,11 +415,11 @@ const Privacy = () => {
                       <span data-custom-classname="body_text">
                         <strong>
                           In what situations and with which{" "}
-                          <bdt className="block-component"></bdt>parties do we
+                          <span className="block-component"></span>parties do we
                           share personal information?
                         </strong>{" "}
                         We may share information in specific situations and with
-                        specific <bdt className="block-component"></bdt>third
+                        specific <span className="block-component"></span>third
                         parties. Click&nbsp;
                       </span>
                     </span>
@@ -430,7 +431,7 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         &nbsp;to learn more.
-                        <bdt className="block-component"></bdt>
+                        <span className="block-component"></span>
                       </span>
                     </span>
                   </div>
@@ -441,19 +442,19 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         <strong>How do we keep your information safe?</strong>{" "}
-                        We have <bdt className="block-component"></bdt>
+                        We have <span className="block-component"></span>
                         organizational
-                        <bdt className="statement-end-if-in-editor"></bdt> and
+                        <span className="statement-end-if-in-editor"></span> and
                         technical processes and procedures in place to protect
                         your personal information. However, no electronic
                         transmission over the internet or information storage
                         technology can be guaranteed to be 100% secure, so we
                         cannot promise or guarantee that hackers,
                         cybercriminals, or other{" "}
-                        <bdt className="block-component"></bdt>unauthorized
-                        <bdt className="statement-end-if-in-editor"></bdt> third
-                        parties will not be able to defeat our security and
-                        improperly collect, access, steal, or modify your
+                        <span className="block-component"></span>unauthorized
+                        <span className="statement-end-if-in-editor"></span>{" "}
+                        third parties will not be able to defeat our security
+                        and improperly collect, access, steal, or modify your
                         information. Click&nbsp;
                       </span>
                     </span>
@@ -465,7 +466,7 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         &nbsp;to learn more.
-                        <bdt className="statement-end-if-in-editor"></bdt>
+                        <span className="statement-end-if-in-editor"></span>
                       </span>
                     </span>
                   </div>
@@ -501,8 +502,8 @@ const Privacy = () => {
                         <strong>How do you exercise your rights?</strong> The
                         easiest way to exercise your rights is by filling out
                         our data subject request form available{" "}
-                        <bdt className="block-component"></bdt>here:{" "}
-                        <bdt className="question">
+                        <span className="block-component"></span>here:{" "}
+                        <span className="question">
                           <a
                             href="https://tucana.app/contact"
                             target="_blank"
@@ -511,10 +512,10 @@ const Privacy = () => {
                           >
                             https://tucana.app/contact
                           </a>
-                        </bdt>
-                        <bdt className="else-block"></bdt>, or by contacting us.
-                        We will consider and act upon any request in accordance
-                        with applicable data protection laws.
+                        </span>
+                        <span className="else-block"></span>, or by contacting
+                        us. We will consider and act upon any request in
+                        accordance with applicable data protection laws.
                       </span>
                     </span>
                   </div>
@@ -525,10 +526,10 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         Want to learn more about what{" "}
-                        <bdt className="block-component"></bdt>
-                        <bdt className="question">Tucána</bdt>
-                        <bdt className="statement-end-if-in-editor"></bdt> does
-                        with any information we collect? Click&nbsp;
+                        <span className="block-component"></span>
+                        <span className="question">Tucána</span>
+                        <span className="statement-end-if-in-editor"></span>{" "}
+                        does with any information we collect? Click&nbsp;
                       </span>
                     </span>
                     <a data-custom-classname="link" href="#toc">
@@ -578,7 +579,7 @@ const Privacy = () => {
                       <a data-custom-classname="link" href="#infouse">
                         <span className="color: rgb(89, 89, 89);">
                           2. HOW DO WE PROCESS YOUR INFORMATION?
-                          <bdt className="block-component"></bdt>
+                          <span className="block-component"></span>
                         </span>
                       </a>
                     </span>
@@ -592,13 +593,13 @@ const Privacy = () => {
                         </a>
                       </span>
                       <span data-custom-classname="body_text">
-                        <bdt className="block-component"></bdt>
+                        <span className="block-component"></span>
                       </span>
                       <span className="color: rgb(127, 127, 127);">
                         <span className="color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -616,17 +617,17 @@ const Privacy = () => {
                         <span className="color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
-                              <bdt className="statement-end-if-in-editor"></bdt>
+                              <span className="statement-end-if-in-editor"></span>
                             </span>
                           </span>
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
                               <span className="color: rgb(89, 89, 89);">
                                 <span className="color: rgb(89, 89, 89);">
-                                  <bdt className="block-component"></bdt>
+                                  <span className="block-component"></span>
                                 </span>
                               </span>
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -645,7 +646,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
                               <span className="color: rgb(89, 89, 89);">
-                                <bdt className="block-component"></bdt>
+                                <span className="block-component"></span>
                               </span>
                             </span>
                           </span>
@@ -664,8 +665,8 @@ const Privacy = () => {
                         <span className="color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
-                              <bdt className="statement-end-if-in-editor"></bdt>
-                              <bdt className="block-component"></bdt>
+                              <span className="statement-end-if-in-editor"></span>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -683,7 +684,7 @@ const Privacy = () => {
                         <span className="color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
                             <span className="color: rgb(89, 89, 89);">
-                              <bdt className="statement-end-if-in-editor"></bdt>
+                              <span className="statement-end-if-in-editor"></span>
                             </span>
                           </span>
                         </span>
@@ -822,14 +823,14 @@ const Privacy = () => {
                           We collect personal information that you voluntarily
                           provide to us when you{" "}
                           <span className="font-size: 15px;">
-                            <bdt className="block-component"></bdt>
+                            <span className="block-component"></span>
                           </span>
                           register on the Services,&nbsp;
                         </span>
                         <span className="font-size: 15px;">
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
-                              <bdt className="statement-end-if-in-editor"></bdt>
+                              <span className="statement-end-if-in-editor"></span>
                             </span>
                           </span>
                           <span data-custom-classname="body_text">
@@ -850,7 +851,7 @@ const Privacy = () => {
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
-                            <bdt className="block-component"></bdt>
+                            <span className="block-component"></span>
                           </span>
                         </span>
                       </span>
@@ -868,7 +869,7 @@ const Privacy = () => {
                           may include the following:
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -882,7 +883,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">names</bdt>
+                                <span className="question">names</span>
                               </span>
                             </span>
                           </span>
@@ -896,7 +897,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -910,7 +911,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">phone numbers</bdt>
+                                <span className="question">phone numbers</span>
                               </span>
                             </span>
                           </span>
@@ -924,7 +925,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -938,7 +939,9 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">email addresses</bdt>
+                                <span className="question">
+                                  email addresses
+                                </span>
                               </span>
                             </span>
                           </span>
@@ -952,7 +955,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -966,7 +969,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">usernames</bdt>
+                                <span className="question">usernames</span>
                               </span>
                             </span>
                           </span>
@@ -980,7 +983,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -994,7 +997,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">passwords</bdt>
+                                <span className="question">passwords</span>
                               </span>
                             </span>
                           </span>
@@ -1008,7 +1011,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -1022,9 +1025,9 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">
+                                <span className="question">
                                   debit/credit card numbers
-                                </bdt>
+                                </span>
                               </span>
                             </span>
                           </span>
@@ -1038,7 +1041,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -1052,7 +1055,9 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">driver's license</bdt>
+                                <span className="question">
+                                  driver's license
+                                </span>
                               </span>
                             </span>
                           </span>
@@ -1066,7 +1071,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                           </span>
                         </span>
@@ -1080,7 +1085,7 @@ const Privacy = () => {
                           <span data-custom-classname="body_text">
                             <span className="font-size: 15px;">
                               <span data-custom-classname="body_text">
-                                <bdt className="question">passport</bdt>
+                                <span className="question">passport</span>
                               </span>
                             </span>
                           </span>
@@ -1094,10 +1099,10 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="forloop-component"></bdt>
+                              <span className="forloop-component"></span>
                             </span>
                             <span data-custom-classname="body_text">
-                              <bdt className="statement-end-if-in-editor"></bdt>
+                              <span className="statement-end-if-in-editor"></span>
                             </span>
                           </span>
                         </span>
@@ -1108,11 +1113,11 @@ const Privacy = () => {
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
                         <strong>Sensitive Information.</strong>{" "}
-                        <bdt className="block-component"></bdt>When necessary,
+                        <span className="block-component"></span>When necessary,
                         with your consent or as otherwise permitted by
                         applicable law, we process the following categories of
                         sensitive information:
-                        <bdt className="forloop-component"></bdt>
+                        <span className="forloop-component"></span>
                       </span>
                     </span>
                   </div>
@@ -1120,7 +1125,7 @@ const Privacy = () => {
                     <li className="line-height: 1.5;">
                       <span className="font-size: 15px;">
                         <span data-custom-classname="body_text">
-                          <bdt className="question">passport</bdt>
+                          <span className="question">passport</span>
                         </span>
                       </span>
                     </li>
@@ -1128,10 +1133,10 @@ const Privacy = () => {
                   <div>
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
-                        <bdt className="forloop-component"></bdt>
+                        <span className="forloop-component"></span>
                       </span>
                       <span data-custom-classname="body_text">
-                        <bdt className="statement-end-if-in-editor"></bdt>
+                        <span className="statement-end-if-in-editor"></span>
                       </span>
                     </span>
                     <span className="font-size: 15px; color: rgb(89, 89, 89);">
@@ -1139,7 +1144,7 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="block-component"></bdt>
+                              <span className="block-component"></span>
                             </span>
                           </span>
                         </span>
@@ -1156,19 +1161,19 @@ const Privacy = () => {
                           (such as a credit card number), and the security code
                           associated with your payment instrument. All payment
                           data is stored by
-                          <bdt className="forloop-component"></bdt>
+                          <span className="forloop-component"></span>
                           <span className="font-size: 15px; color: rgb(89, 89, 89);">
                             <span className="font-size: 15px; color: rgb(89, 89, 89);">
                               <span data-custom-classname="body_text">
                                 <span className="font-size: 15px;">
                                   <span data-custom-classname="body_text">
-                                    <bdt className="block-component"></bdt>
+                                    <span className="block-component"></span>
                                   </span>
                                 </span>
                               </span>
                             </span>
                           </span>{" "}
-                          <bdt className="question">4geeks.io</bdt>
+                          <span className="question">4geeks.io</span>
                           <span className="font-size: 15px; color: rgb(89, 89, 89);">
                             <span className="font-size: 15px; color: rgb(89, 89, 89);">
                               <span data-custom-classname="body_text">
@@ -1177,7 +1182,7 @@ const Privacy = () => {
                                     <span data-custom-classname="body_text">
                                       <span className="font-size: 15px;">
                                         <span data-custom-classname="body_text">
-                                          <bdt className="block-component"></bdt>
+                                          <span className="block-component"></span>
                                         </span>
                                       </span>
                                     </span>
@@ -1191,7 +1196,7 @@ const Privacy = () => {
                                                   <span className="color: rgb(89, 89, 89);">
                                                     <span className="font-size: 15px;">
                                                       <span data-custom-classname="body_text">
-                                                        <bdt className="forloop-component"></bdt>
+                                                        <span className="forloop-component"></span>
                                                       </span>
                                                     </span>
                                                   </span>
@@ -1209,13 +1214,13 @@ const Privacy = () => {
                                 <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                   <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                     <span data-custom-classname="body_text">
-                                      <bdt className="forloop-component"></bdt>
+                                      <span className="forloop-component"></span>
                                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                         <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                           <span data-custom-classname="body_text">
                                             <span className="font-size: 15px;">
                                               <span data-custom-classname="body_text">
-                                                <bdt className="block-component"></bdt>
+                                                <span className="block-component"></span>
                                               </span>
                                             </span>
                                           </span>
@@ -1224,7 +1229,7 @@ const Privacy = () => {
                                     </span>
                                   </span>
                                 </span>{" "}
-                                <bdt className="question">
+                                <span className="question">
                                   <a
                                     href="https://4geeks.io/privacy"
                                     target="_blank"
@@ -1233,7 +1238,7 @@ const Privacy = () => {
                                   >
                                     https://4geeks.io/privacy
                                   </a>
-                                </bdt>
+                                </span>
                                 <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                   <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                     <span data-custom-classname="body_text">
@@ -1245,7 +1250,7 @@ const Privacy = () => {
                                                 <span data-custom-classname="body_text">
                                                   <span className="font-size: 15px;">
                                                     <span data-custom-classname="body_text">
-                                                      <bdt className="block-component"></bdt>
+                                                      <span className="block-component"></span>
                                                     </span>
                                                   </span>
                                                 </span>
@@ -1254,7 +1259,7 @@ const Privacy = () => {
                                           </span>
                                         </span>
                                       </span>
-                                      <bdt className="forloop-component"></bdt>
+                                      <span className="forloop-component"></span>
                                       <span className="font-size: 15px;">
                                         <span data-custom-classname="body_text">
                                           .
@@ -1279,17 +1284,17 @@ const Privacy = () => {
                         <span data-custom-classname="body_text">
                           <span className="font-size: 15px;">
                             <span data-custom-classname="body_text">
-                              <bdt className="statement-end-if-in-editor">
-                                <bdt className="block-component"></bdt>
-                              </bdt>
+                              <span className="statement-end-if-in-editor">
+                                <span className="block-component"></span>
+                              </span>
                             </span>
                           </span>
                         </span>
                       </span>
-                      <bdt className="block-component">
+                      <span className="block-component">
                         {" "}
-                        <bdt className="block-component"></bdt>
-                      </bdt>
+                        <span className="block-component"></span>
+                      </span>
                     </span>
                   </div>
                   <div className="line-height: 1.5;">
@@ -1310,16 +1315,16 @@ const Privacy = () => {
                     <span className="font-size: 15px; color: rgb(89, 89, 89);">
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span data-custom-classname="body_text">
-                          <bdt className="block-component"></bdt>
+                          <span className="block-component"></span>
                         </span>
                         <span data-custom-classname="body_text">
                           <span className="color: rgb(89, 89, 89); font-size: 15px;">
                             <span data-custom-classname="body_text">
                               <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                 <span data-custom-classname="body_text">
-                                  <bdt className="statement-end-if-in-editor">
-                                    <bdt className="block-component"></bdt>
-                                  </bdt>
+                                  <span className="statement-end-if-in-editor">
+                                    <span className="block-component"></span>
+                                  </span>
                                 </span>
                               </span>
                             </span>
@@ -1329,7 +1334,7 @@ const Privacy = () => {
                     </span>
                     <span className="font-size: 15px;">
                       <span data-custom-classname="body_text">
-                        <bdt className="block-component"></bdt>
+                        <span className="block-component"></span>
                       </span>
                     </span>
                   </div>
@@ -1392,7 +1397,7 @@ const Privacy = () => {
                             of reasons, depending on how you interact with our
                             Services, including:
                           </strong>
-                          <bdt className="block-component"></bdt>
+                          <span className="block-component"></span>
                         </span>
                       </span>
                     </span>
@@ -1418,7 +1423,7 @@ const Privacy = () => {
                                         <span className="font-size: 15px;">
                                           <span className="color: rgb(89, 89, 89);">
                                             <span data-custom-classname="body_text">
-                                              <bdt className="statement-end-if-in-editor"></bdt>
+                                              <span className="statement-end-if-in-editor"></span>
                                             </span>
                                           </span>
                                         </span>
@@ -1437,7 +1442,7 @@ const Privacy = () => {
                     <span className="font-size: 15px; color: rgb(89, 89, 89);">
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span data-custom-classname="body_text">
-                          <bdt className="block-component"></bdt>
+                          <span className="block-component"></span>
                         </span>
                       </span>
                     </span>
@@ -1465,7 +1470,7 @@ const Privacy = () => {
                                               <span className="font-size: 15px;">
                                                 <span className="color: rgb(89, 89, 89);">
                                                   <span data-custom-classname="body_text">
-                                                    <bdt className="statement-end-if-in-editor"></bdt>
+                                                    <span className="statement-end-if-in-editor"></span>
                                                   </span>
                                                 </span>
                                               </span>
@@ -1487,7 +1492,7 @@ const Privacy = () => {
                     <span className="font-size: 15px; color: rgb(89, 89, 89);">
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span data-custom-classname="body_text">
-                          <bdt className="block-component"></bdt>
+                          <span className="block-component"></span>
                         </span>
                       </span>
                     </span>
@@ -1495,7 +1500,7 @@ const Privacy = () => {
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span className="font-size: 15px; color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
-                            <bdt className="block-component"></bdt>
+                            <span className="block-component"></span>
                           </span>
                         </span>
                       </span>
@@ -1521,7 +1526,7 @@ const Privacy = () => {
                                           <span className="font-size: 15px;">
                                             <span className="color: rgb(89, 89, 89);">
                                               <span data-custom-classname="body_text">
-                                                <bdt className="statement-end-if-in-editor"></bdt>
+                                                <span className="statement-end-if-in-editor"></span>
                                               </span>
                                             </span>
                                           </span>
@@ -1540,32 +1545,32 @@ const Privacy = () => {
                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
                         <span className="font-size: 15px; color: rgb(89, 89, 89);">
                           <span data-custom-classname="body_text">
-                            <bdt className="block-component"></bdt>
+                            <span className="block-component"></span>
                           </span>
                         </span>
                       </span>
                       <div className="line-height: 1.5;">
-                        <bdt className="block-component">
+                        <span className="block-component">
                           <span className="font-size: 15px;"></span>
-                        </bdt>
+                        </span>
                         <div className="line-height: 1.5;">
-                          <bdt className="block-component">
+                          <span className="block-component">
                             <span className="font-size: 15px;"></span>
-                          </bdt>
+                          </span>
                           <div className="line-height: 1.5;">
-                            <bdt className="block-component">
+                            <span className="block-component">
                               <span className="font-size: 15px;"></span>
-                            </bdt>
+                            </span>
                             <div className="line-height: 1.5;">
-                              <bdt className="block-component">
+                              <span className="block-component">
                                 <span className="font-size: 15px;">
                                   <span data-custom-classname="body_text"></span>
                                 </span>
-                              </bdt>
+                              </span>
                               <p className="font-size: 15px; line-height: 1.5;">
-                                <bdt className="block-component">
+                                <span className="block-component">
                                   <span className="font-size: 15px;"></span>
-                                </bdt>
+                                </span>
                               </p>
                               <ul>
                                 <li className="line-height: 1.5;">
@@ -1588,7 +1593,7 @@ const Privacy = () => {
                                                   <span data-custom-classname="body_text">
                                                     <span className="color: rgb(89, 89, 89);">
                                                       <span data-custom-classname="body_text">
-                                                        <bdt className="statement-end-if-in-editor"></bdt>
+                                                        <span className="statement-end-if-in-editor"></span>
                                                       </span>
                                                     </span>
                                                   </span>
@@ -1603,46 +1608,46 @@ const Privacy = () => {
                                 </li>
                               </ul>
                               <p className="font-size: 15px; line-height: 1.5;">
-                                <bdt className="block-component">
+                                <span className="block-component">
                                   <span className="font-size: 15px;"></span>
-                                </bdt>
+                                </span>
                               </p>
                               <p className="font-size: 15px; line-height: 1.5;">
-                                <bdt className="block-component"></bdt>
+                                <span className="block-component"></span>
                               </p>
                               <p className="font-size: 15px; line-height: 1.5;">
-                                <bdt className="block-component"></bdt>
+                                <span className="block-component"></span>
                               </p>
                               <div className="line-height: 1.5;">
-                                <bdt className="block-component">
+                                <span className="block-component">
                                   <span className="font-size: 15px;"></span>
-                                </bdt>
+                                </span>
                                 <div className="line-height: 1.5;">
-                                  <bdt className="block-component">
+                                  <span className="block-component">
                                     <span className="font-size: 15px;"></span>
-                                  </bdt>
+                                  </span>
                                   <div className="line-height: 1.5;">
-                                    <bdt className="block-component">
+                                    <span className="block-component">
                                       <span className="font-size: 15px;"></span>
-                                    </bdt>
+                                    </span>
                                     <div className="line-height: 1.5;">
                                       <span className="font-size: 15px;">
-                                        <bdt className="block-component">
+                                        <span className="block-component">
                                           <span data-custom-classname="body_text"></span>
-                                        </bdt>
+                                        </span>
                                       </span>
                                       <div className="line-height: 1.5;">
-                                        <bdt className="block-component">
+                                        <span className="block-component">
                                           <span className="font-size: 15px;">
                                             <span data-custom-classname="body_text"></span>
                                           </span>
-                                        </bdt>
+                                        </span>
                                         <div className="line-height: 1.5;">
-                                          <bdt className="block-component">
+                                          <span className="block-component">
                                             <span className="font-size: 15px;">
                                               <span data-custom-classname="body_text"></span>
                                             </span>
-                                          </bdt>
+                                          </span>
                                         </div>
                                         <ul>
                                           <li className="line-height: 1.5;">
@@ -1658,61 +1663,61 @@ const Privacy = () => {
                                                 prevention.
                                               </span>
                                             </span>
-                                            <bdt className="statement-end-if-in-editor">
+                                            <span className="statement-end-if-in-editor">
                                               <span className="font-size: 15px;">
                                                 <span data-custom-classname="body_text"></span>
                                               </span>
-                                            </bdt>
+                                            </span>
                                           </li>
                                         </ul>
                                         <div className="line-height: 1.5;">
-                                          <bdt className="block-component">
+                                          <span className="block-component">
                                             <span className="font-size: 15px;">
                                               <span data-custom-classname="body_text"></span>
                                             </span>
-                                          </bdt>
+                                          </span>
                                           <div className="line-height: 1.5;">
-                                            <bdt className="block-component">
+                                            <span className="block-component">
                                               <span className="font-size: 15px;">
                                                 <span data-custom-classname="body_text"></span>
                                               </span>
-                                            </bdt>
+                                            </span>
                                             <div className="line-height: 1.5;">
-                                              <bdt className="block-component">
+                                              <span className="block-component">
                                                 <span className="font-size: 15px;">
                                                   <span data-custom-classname="body_text"></span>
                                                 </span>
-                                              </bdt>
+                                              </span>
                                               <div className="line-height: 1.5;">
-                                                <bdt className="block-component">
+                                                <span className="block-component">
                                                   <span className="font-size: 15px;">
                                                     <span data-custom-classname="body_text"></span>
                                                   </span>
-                                                </bdt>
+                                                </span>
                                                 <div className="line-height: 1.5;">
-                                                  <bdt className="block-component">
+                                                  <span className="block-component">
                                                     <span className="font-size: 15px;">
                                                       <span data-custom-classname="body_text"></span>
                                                     </span>
-                                                  </bdt>
+                                                  </span>
                                                   <div className="line-height: 1.5;">
-                                                    <bdt className="block-component">
+                                                    <span className="block-component">
                                                       <span className="font-size: 15px;">
                                                         <span data-custom-classname="body_text"></span>
                                                       </span>
-                                                    </bdt>
+                                                    </span>
                                                     <div className="line-height: 1.5;">
-                                                      <bdt className="block-component">
+                                                      <span className="block-component">
                                                         <span className="font-size: 15px;">
                                                           <span data-custom-classname="body_text"></span>
                                                         </span>
-                                                      </bdt>
+                                                      </span>
                                                       <div className="line-height: 1.5;">
-                                                        <bdt className="block-component">
+                                                        <span className="block-component">
                                                           <span className="font-size: 15px;">
                                                             <span data-custom-classname="body_text"></span>
                                                           </span>
-                                                        </bdt>
+                                                        </span>
                                                       </div>
                                                       <ul>
                                                         <li className="line-height: 1.5;">
@@ -1733,38 +1738,38 @@ const Privacy = () => {
                                                               establish, or
                                                               defend our legal
                                                               rights.
-                                                              <bdt className="statement-end-if-in-editor"></bdt>
+                                                              <span className="statement-end-if-in-editor"></span>
                                                             </span>
                                                           </span>
                                                         </li>
                                                       </ul>
                                                       <div className="line-height: 1.5;">
-                                                        <bdt className="block-component">
+                                                        <span className="block-component">
                                                           <span className="font-size: 15px;">
                                                             <span data-custom-classname="body_text"></span>
                                                           </span>
-                                                        </bdt>
+                                                        </span>
                                                         <div className="line-height: 1.5;">
-                                                          <bdt className="block-component">
+                                                          <span className="block-component">
                                                             <span className="font-size: 15px;">
                                                               <span data-custom-classname="body_text"></span>
                                                             </span>
-                                                          </bdt>
-                                                          <bdt className="block-component">
+                                                          </span>
+                                                          <span className="block-component">
                                                             <span className="font-size: 15px;">
                                                               <span data-custom-classname="body_text"></span>
                                                             </span>
-                                                          </bdt>
-                                                          <bdt className="block-component">
+                                                          </span>
+                                                          <span className="block-component">
                                                             <span className="font-size: 15px;">
                                                               <span data-custom-classname="body_text"></span>
                                                             </span>
-                                                          </bdt>
-                                                          <bdt className="block-component">
+                                                          </span>
+                                                          <span className="block-component">
                                                             <span className="font-size: 15px;">
                                                               <span data-custom-classname="body_text"></span>
                                                             </span>
-                                                          </bdt>
+                                                          </span>
                                                         </div>
                                                         <div className="line-height: 1.5;">
                                                           <br />
@@ -1820,7 +1825,7 @@ const Privacy = () => {
                                                                   this section
                                                                   and/or with
                                                                   the following{" "}
-                                                                  <bdt className="block-component"></bdt>
+                                                                  <span className="block-component"></span>
                                                                   third parties.
                                                                 </em>
                                                               </span>
@@ -1831,7 +1836,7 @@ const Privacy = () => {
                                                           <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                             <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                               <span data-custom-classname="body_text">
-                                                                <bdt className="block-component"></bdt>
+                                                                <span className="block-component"></span>
                                                               </span>
                                                             </span>
                                                           </span>
@@ -1843,7 +1848,7 @@ const Privacy = () => {
                                                           <span className="font-size: 15px;">
                                                             <span data-custom-classname="body_text">
                                                               We{" "}
-                                                              <bdt className="block-component"></bdt>
+                                                              <span className="block-component"></span>
                                                               may need to share
                                                               your personal
                                                               information in the
@@ -1882,7 +1887,7 @@ const Privacy = () => {
                                                         <div className="line-height: 1.5;">
                                                           <span className="font-size: 15px;">
                                                             <span data-custom-classname="body_text">
-                                                              <bdt className="block-component"></bdt>
+                                                              <span className="block-component"></span>
                                                             </span>
                                                           </span>
                                                         </div>
@@ -1901,9 +1906,9 @@ const Privacy = () => {
                                                                 Google Maps
                                                                 Platform APIs
                                                                 (e.g.
-                                                                <bdt className="block-component"></bdt>
+                                                                <span className="block-component"></span>
                                                                 ,
-                                                                <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                <span className="statement-end-if-in-editor"></span>{" "}
                                                                 Google Maps API,
                                                                 Places API). To
                                                                 find out more
@@ -1928,31 +1933,31 @@ const Privacy = () => {
                                                             <span className="font-size: 15px;">
                                                               <span data-custom-classname="body_text">
                                                                 .
-                                                                <bdt className="block-component"></bdt>
-                                                                <bdt className="block-component"></bdt>
-                                                                <bdt className="block-component"></bdt>
+                                                                <span className="block-component"></span>
+                                                                <span className="block-component"></span>
+                                                                <span className="block-component"></span>
                                                               </span>
                                                             </span>
                                                           </li>
                                                         </ul>
                                                         <div className="line-height: 1.5;">
                                                           <span className="font-size: 15px;">
-                                                            <bdt className="block-component">
+                                                            <span className="block-component">
                                                               <span data-custom-classname="body_text"></span>
-                                                            </bdt>
+                                                            </span>
                                                           </span>
                                                           <div className="line-height: 1.5;">
-                                                            <bdt className="block-component">
+                                                            <span className="block-component">
                                                               <span className="font-size: 15px;">
                                                                 <span data-custom-classname="body_text"></span>
                                                               </span>
-                                                            </bdt>
+                                                            </span>
                                                             <div className="line-height: 1.5;">
-                                                              <bdt className="block-component">
+                                                              <span className="block-component">
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text"></span>
                                                                 </span>
-                                                              </bdt>
+                                                              </span>
                                                             </div>
                                                             <ul>
                                                               <li className="line-height: 1.5;">
@@ -1966,7 +1971,7 @@ const Privacy = () => {
                                                                     share
                                                                     personal
                                                                     information
-                                                                    <bdt className="block-component"></bdt>{" "}
+                                                                    <span className="block-component"></span>{" "}
                                                                     (for
                                                                     example, by
                                                                     posting
@@ -1976,7 +1981,7 @@ const Privacy = () => {
                                                                     content to
                                                                     the
                                                                     Services)
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                    <span className="statement-end-if-in-editor"></span>{" "}
                                                                     or otherwise
                                                                     interact
                                                                     with public
@@ -1995,7 +2000,7 @@ const Privacy = () => {
                                                                     outside the
                                                                     Services in
                                                                     perpetuity.
-                                                                    <bdt className="block-component"></bdt>{" "}
+                                                                    <span className="block-component"></span>{" "}
                                                                     Similarly,
                                                                     other users
                                                                     will be able
@@ -2010,41 +2015,41 @@ const Privacy = () => {
                                                                     and view
                                                                     your
                                                                     profile.
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>
+                                                                    <span className="statement-end-if-in-editor"></span>
                                                                   </span>
                                                                 </span>
                                                               </li>
                                                             </ul>
                                                             <div className="line-height: 1.5;">
-                                                              <bdt className="block-component">
+                                                              <span className="block-component">
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text"></span>
-                                                                </span>
-                                                              </bdt>
-                                                              <span data-custom-classname="body_text">
-                                                                <span className="font-size: 15px;">
-                                                                  <bdt className="block-component"></bdt>
                                                                 </span>
                                                               </span>
-                                                              <bdt className="statement-end-if-in-editor">
+                                                              <span data-custom-classname="body_text">
+                                                                <span className="font-size: 15px;">
+                                                                  <span className="block-component"></span>
+                                                                </span>
+                                                              </span>
+                                                              <span className="statement-end-if-in-editor">
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text"></span>
                                                                 </span>
-                                                              </bdt>
+                                                              </span>
                                                               <div className="line-height: 1.5;">
-                                                                <bdt className="block-component">
+                                                                <span className="block-component">
                                                                   <span className="font-size: 15px;">
                                                                     <span data-custom-classname="body_text"></span>
                                                                   </span>
-                                                                </bdt>
+                                                                </span>
                                                                 <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                   <span className="font-size: 15px;">
                                                                     <span className="color: rgb(89, 89, 89);">
                                                                       <span className="font-size: 15px;">
                                                                         <span className="color: rgb(89, 89, 89);">
-                                                                          <bdt className="block-component">
+                                                                          <span className="block-component">
                                                                             <span data-custom-classname="heading_1"></span>
-                                                                          </bdt>
+                                                                          </span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -2153,7 +2158,7 @@ const Privacy = () => {
                                                                       Notice
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                           .
                                                                         </span>
                                                                         <span className="color: rgb(89, 89, 89); font-size: 15px;">
@@ -2162,7 +2167,7 @@ const Privacy = () => {
                                                                               <span className="font-size: 15px;">
                                                                                 <span className="color: rgb(89, 89, 89);">
                                                                                   <span data-custom-classname="body_text">
-                                                                                    <bdt className="statement-end-if-in-editor"></bdt>
+                                                                                    <span className="statement-end-if-in-editor"></span>
                                                                                   </span>
                                                                                 </span>
                                                                               </span>
@@ -2180,13 +2185,13 @@ const Privacy = () => {
                                                                                 <span className="font-size: 15px;">
                                                                                   <span className="color: rgb(89, 89, 89);">
                                                                                     <span data-custom-classname="body_text">
-                                                                                      <bdt className="block-component"></bdt>
+                                                                                      <span className="block-component"></span>
                                                                                     </span>
-                                                                                    <bdt className="block-component">
+                                                                                    <span className="block-component">
                                                                                       <span data-custom-classname="body_text">
-                                                                                        <bdt className="block-component"></bdt>
+                                                                                        <span className="block-component"></span>
                                                                                       </span>
-                                                                                    </bdt>
+                                                                                    </span>
                                                                                   </span>
                                                                                 </span>
                                                                               </span>
@@ -2252,9 +2257,9 @@ const Privacy = () => {
                                                                         long as
                                                                         necessary
                                                                         to{" "}
-                                                                        <bdt className="block-component"></bdt>
+                                                                        <span className="block-component"></span>
                                                                         fulfill
-                                                                        <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                        <span className="statement-end-if-in-editor"></span>{" "}
                                                                         the
                                                                         purposes
                                                                         outlined
@@ -2320,26 +2325,26 @@ const Privacy = () => {
                                                                       <span className="font-size: 15px;">
                                                                         <span className="color: rgb(89, 89, 89);">
                                                                           <span data-custom-classname="body_text">
-                                                                            <bdt className="block-component"></bdt>
+                                                                            <span className="block-component"></span>
                                                                           </span>
                                                                         </span>
                                                                       </span>
-                                                                      <bdt className="block-component"></bdt>
-                                                                      <bdt className="question">
+                                                                      <span className="block-component"></span>
+                                                                      <span className="question">
                                                                         twelve
                                                                         (12)
-                                                                      </bdt>{" "}
+                                                                      </span>{" "}
                                                                       months
                                                                       past the
                                                                       termination
                                                                       of the
                                                                       user's
                                                                       account
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       <span className="font-size: 15px;">
                                                                         <span className="color: rgb(89, 89, 89);">
                                                                           <span data-custom-classname="body_text">
-                                                                            <bdt className="else-block"></bdt>
+                                                                            <span className="else-block"></span>
                                                                           </span>
                                                                         </span>
                                                                       </span>
@@ -2368,9 +2373,9 @@ const Privacy = () => {
                                                                       we will
                                                                       either
                                                                       delete or{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       anonymize
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       such
                                                                       information,
                                                                       or, if
@@ -2403,7 +2408,7 @@ const Privacy = () => {
                                                                       is
                                                                       possible.
                                                                       <span className="color: rgb(89, 89, 89);">
-                                                                        <bdt className="block-component"></bdt>
+                                                                        <span className="block-component"></span>
                                                                       </span>
                                                                     </span>
                                                                   </span>
@@ -2465,9 +2470,9 @@ const Privacy = () => {
                                                                         through
                                                                         a system
                                                                         of{" "}
-                                                                        <bdt className="block-component"></bdt>
+                                                                        <span className="block-component"></span>
                                                                         organizational
-                                                                        <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                        <span className="statement-end-if-in-editor"></span>{" "}
                                                                         and
                                                                         technical
                                                                         security
@@ -2491,9 +2496,9 @@ const Privacy = () => {
                                                                       reasonable
                                                                       technical
                                                                       and{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       organizational
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       security
                                                                       measures
                                                                       designed
@@ -2534,9 +2539,9 @@ const Privacy = () => {
                                                                       hackers,
                                                                       cybercriminals,
                                                                       or other{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       unauthorized
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       third
                                                                       parties
                                                                       will not
@@ -2575,11 +2580,11 @@ const Privacy = () => {
                                                                       secure
                                                                       environment.
                                                                       <span className="color: rgb(89, 89, 89);">
-                                                                        <bdt className="statement-end-if-in-editor"></bdt>
+                                                                        <span className="statement-end-if-in-editor"></span>
                                                                       </span>
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -2723,18 +2728,18 @@ const Privacy = () => {
                                                                       at{" "}
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
-                                                                          <bdt className="question">
+                                                                          <span className="block-component"></span>
+                                                                          <span className="question">
                                                                             info@tucana.app
-                                                                          </bdt>
-                                                                          <bdt className="else-block"></bdt>
+                                                                          </span>
+                                                                          <span className="else-block"></span>
                                                                         </span>
                                                                       </span>
                                                                       .
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                           <span data-custom-classname="body_text">
-                                                                            <bdt className="statement-end-if-in-editor"></bdt>
+                                                                            <span className="statement-end-if-in-editor"></span>
                                                                           </span>
                                                                         </span>
                                                                       </span>
@@ -2792,7 +2797,7 @@ const Privacy = () => {
                                                                           <span className="font-size: 15px;">
                                                                             <span data-custom-classname="body_text">
                                                                               <em>
-                                                                                <bdt className="block-component"></bdt>
+                                                                                <span className="block-component"></span>
                                                                               </em>
                                                                             </span>
                                                                           </span>
@@ -2810,7 +2815,7 @@ const Privacy = () => {
                                                                       </em>
                                                                       <span className="color: rgb(89, 89, 89);">
                                                                         <span className="font-size: 15px;">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -2946,7 +2951,7 @@ const Privacy = () => {
                                                                       your
                                                                       personal
                                                                       information,
-                                                                      <bdt className="block-component"></bdt>{" "}
+                                                                      <span className="block-component"></span>{" "}
                                                                       which may
                                                                       be express
                                                                       and/or
@@ -2956,7 +2961,7 @@ const Privacy = () => {
                                                                       on the
                                                                       applicable
                                                                       law,
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       you have
                                                                       the right
                                                                       to
@@ -2978,9 +2983,9 @@ const Privacy = () => {
                                                                       provided
                                                                       in the
                                                                       section{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       "
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>
+                                                                      <span className="statement-end-if-in-editor"></span>
                                                                     </span>
                                                                   </span>
                                                                 </span>
@@ -3004,11 +3009,11 @@ const Privacy = () => {
                                                                 <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                                   <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                                     <span data-custom-classname="body_text">
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       "
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       below
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       .
                                                                     </span>
                                                                   </span>
@@ -3031,11 +3036,11 @@ const Privacy = () => {
                                                                     before its
                                                                     withdrawal,
                                                                     nor
-                                                                    <bdt className="block-component"></bdt>{" "}
+                                                                    <span className="block-component"></span>{" "}
                                                                     when
                                                                     applicable
                                                                     law allows,
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                    <span className="statement-end-if-in-editor"></span>{" "}
                                                                     will it
                                                                     affect the
                                                                     processing
@@ -3049,7 +3054,7 @@ const Privacy = () => {
                                                                     grounds
                                                                     other than
                                                                     consent.
-                                                                    <bdt className="block-component"></bdt>
+                                                                    <span className="block-component"></span>
                                                                   </span>
                                                                 </span>
                                                               </div>
@@ -3083,25 +3088,25 @@ const Privacy = () => {
                                                                     communications
                                                                     at any time
                                                                     by
-                                                                    <bdt className="block-component"></bdt>{" "}
+                                                                    <span className="block-component"></span>{" "}
                                                                     clicking on
                                                                     the
                                                                     unsubscribe
                                                                     link in the
                                                                     emails that
                                                                     we send,
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>
-                                                                    <bdt className="block-component"></bdt>
-                                                                    <bdt className="block-component"></bdt>{" "}
+                                                                    <span className="statement-end-if-in-editor"></span>
+                                                                    <span className="block-component"></span>
+                                                                    <span className="block-component"></span>{" "}
                                                                     or by
                                                                     contacting
                                                                     us using the
                                                                     details
                                                                     provided in
                                                                     the section{" "}
-                                                                    <bdt className="block-component"></bdt>
+                                                                    <span className="block-component"></span>
                                                                     "
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>
+                                                                    <span className="statement-end-if-in-editor"></span>
                                                                   </span>
                                                                 </span>
                                                                 <a
@@ -3120,9 +3125,9 @@ const Privacy = () => {
                                                                 </a>
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text">
-                                                                    <bdt className="block-component"></bdt>
+                                                                    <span className="block-component"></span>
                                                                     "
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                    <span className="statement-end-if-in-editor"></span>{" "}
                                                                     below. You
                                                                     will then be
                                                                     removed from
@@ -3152,14 +3157,14 @@ const Privacy = () => {
                                                                     purposes.
                                                                   </span>
                                                                   <span data-custom-classname="body_text">
-                                                                    <bdt className="statement-end-if-in-editor"></bdt>
+                                                                    <span className="statement-end-if-in-editor"></span>
                                                                   </span>
                                                                 </span>
-                                                                <bdt className="block-component">
+                                                                <span className="block-component">
                                                                   <span className="font-size: 15px;">
                                                                     <span data-custom-classname="body_text"></span>
                                                                   </span>
-                                                                </bdt>
+                                                                </span>
                                                               </div>
                                                               <div className="line-height: 1.5;">
                                                                 <br />
@@ -3192,7 +3197,7 @@ const Privacy = () => {
                                                                     your
                                                                     account, you
                                                                     can:
-                                                                    <bdt className="forloop-component"></bdt>
+                                                                    <span className="forloop-component"></span>
                                                                   </span>
                                                                 </span>
                                                               </div>
@@ -3200,14 +3205,14 @@ const Privacy = () => {
                                                                 <li className="line-height: 1.5;">
                                                                   <span data-custom-classname="body_text">
                                                                     <span className="font-size: 15px;">
-                                                                      <bdt className="question">
+                                                                      <span className="question">
                                                                         Contact
                                                                         us using
                                                                         the
                                                                         contact
                                                                         information
                                                                         provided.
-                                                                      </bdt>
+                                                                      </span>
                                                                     </span>
                                                                   </span>
                                                                 </li>
@@ -3215,7 +3220,7 @@ const Privacy = () => {
                                                               <div className="line-height: 1.5;">
                                                                 <span data-custom-classname="body_text">
                                                                   <span className="font-size: 15px;">
-                                                                    <bdt className="forloop-component"></bdt>
+                                                                    <span className="forloop-component"></span>
                                                                   </span>
                                                                 </span>
                                                               </div>
@@ -3223,7 +3228,7 @@ const Privacy = () => {
                                                                 <li className="line-height: 1.5;">
                                                                   <span data-custom-classname="body_text">
                                                                     <span className="font-size: 15px;">
-                                                                      <bdt className="question">
+                                                                      <span className="question">
                                                                         Log in
                                                                         to your
                                                                         account
@@ -3233,7 +3238,7 @@ const Privacy = () => {
                                                                         your
                                                                         user
                                                                         account.
-                                                                      </bdt>
+                                                                      </span>
                                                                     </span>
                                                                   </span>
                                                                 </li>
@@ -3241,7 +3246,7 @@ const Privacy = () => {
                                                               <div className="line-height: 1.5;">
                                                                 <span data-custom-classname="body_text">
                                                                   <span className="font-size: 15px;">
-                                                                    <bdt className="forloop-component"></bdt>
+                                                                    <span className="forloop-component"></span>
                                                                   </span>
                                                                 </span>
                                                               </div>
@@ -3283,11 +3288,11 @@ const Privacy = () => {
                                                                     requirements.
                                                                   </span>
                                                                 </span>
-                                                                <bdt className="statement-end-if-in-editor">
+                                                                <span className="statement-end-if-in-editor">
                                                                   <span className="font-size: 15px;">
                                                                     <span data-custom-classname="body_text"></span>
                                                                   </span>
-                                                                </bdt>
+                                                                </span>
                                                                 <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                                   <span className="font-size: 15px; color: rgb(89, 89, 89);">
                                                                     <span data-custom-classname="body_text">
@@ -3298,7 +3303,7 @@ const Privacy = () => {
                                                                               <span data-custom-classname="body_text">
                                                                                 <span className="font-size: 15px;">
                                                                                   <span className="color: rgb(89, 89, 89);">
-                                                                                    <bdt className="block-component"></bdt>
+                                                                                    <span className="block-component"></span>
                                                                                   </span>
                                                                                 </span>
                                                                               </span>
@@ -3309,11 +3314,11 @@ const Privacy = () => {
                                                                     </span>
                                                                   </span>
                                                                 </span>
-                                                                <bdt className="block-component">
+                                                                <span className="block-component">
                                                                   <span className="font-size: 15px;">
                                                                     <span data-custom-classname="body_text"></span>
                                                                   </span>
-                                                                </bdt>
+                                                                </span>
                                                               </div>
                                                               <div className="line-height: 1.5;">
                                                                 <br />
@@ -3329,17 +3334,17 @@ const Privacy = () => {
                                                                     rights, you
                                                                     may email us
                                                                     at{" "}
-                                                                    <bdt className="question">
+                                                                    <span className="question">
                                                                       info@tucana.app
-                                                                    </bdt>
+                                                                    </span>
                                                                     .
                                                                   </span>
                                                                 </span>
-                                                                <bdt className="statement-end-if-in-editor">
+                                                                <span className="statement-end-if-in-editor">
                                                                   <span className="font-size: 15px;">
                                                                     <span data-custom-classname="body_text"></span>
                                                                   </span>
-                                                                </bdt>
+                                                                </span>
                                                               </div>
                                                               <div className="line-height: 1.5;">
                                                                 <br />
@@ -3389,9 +3394,9 @@ const Privacy = () => {
                                                                       include a
                                                                       Do-Not-Track
                                                                       (
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       "DNT"
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>
+                                                                      <span className="statement-end-if-in-editor"></span>
                                                                       ) feature
                                                                       or setting
                                                                       you can
@@ -3415,17 +3420,17 @@ const Privacy = () => {
                                                                       technology
                                                                       standard
                                                                       for{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       recognizing
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       and
                                                                       implementing
                                                                       DNT
                                                                       signals
                                                                       has been{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       finalized
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>
+                                                                      <span className="statement-end-if-in-editor"></span>
                                                                       . As such,
                                                                       we do not
                                                                       currently
@@ -3546,10 +3551,10 @@ const Privacy = () => {
                                                                       1798.83,
                                                                       also known
                                                                       as the{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       "Shine The
                                                                       Light"
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       law,
                                                                       permits
                                                                       our users
@@ -3685,14 +3690,14 @@ const Privacy = () => {
                                                                       our
                                                                       systems
                                                                       (e.g.
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       ,
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       backups,
                                                                       etc.).
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -3782,9 +3787,9 @@ const Privacy = () => {
                                                                       indicated
                                                                       by an
                                                                       updated{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                       "Revised"
-                                                                      <bdt className="statement-end-if-in-editor"></bdt>{" "}
+                                                                      <span className="statement-end-if-in-editor"></span>{" "}
                                                                       date and
                                                                       the
                                                                       updated
@@ -3883,13 +3888,13 @@ const Privacy = () => {
                                                                       you may{" "}
                                                                       <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                           email
                                                                           us at{" "}
-                                                                          <bdt className="question">
+                                                                          <span className="question">
                                                                             info@tucana.app
-                                                                          </bdt>
-                                                                          <bdt className="statement-end-if-in-editor"></bdt>
+                                                                          </span>
+                                                                          <span className="statement-end-if-in-editor"></span>
                                                                         </span>
                                                                       </span>
                                                                       <span className="font-size: 15px; color: rgb(89, 89, 89);">
@@ -3917,9 +3922,9 @@ const Privacy = () => {
                                                                         <span className="color: rgb(89, 89, 89);">
                                                                           <span className="color: rgb(89, 89, 89);">
                                                                             <span data-custom-classname="body_text">
-                                                                              <bdt className="question">
+                                                                              <span className="question">
                                                                                 Tucána
-                                                                              </bdt>
+                                                                              </span>
                                                                             </span>
                                                                           </span>
                                                                         </span>
@@ -3928,7 +3933,7 @@ const Privacy = () => {
                                                                     <span data-custom-classname="body_text">
                                                                       <span className="color: rgb(89, 89, 89);">
                                                                         <span data-custom-classname="body_text">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -3938,17 +3943,17 @@ const Privacy = () => {
                                                               <div className="line-height: 1.5;">
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text">
-                                                                    <bdt className="question">
+                                                                    <span className="question">
                                                                       San
                                                                       Salvador
                                                                       de Barú,
                                                                       Perez
                                                                       Zeledon,
                                                                       Costa Rica
-                                                                    </bdt>
+                                                                    </span>
                                                                     <span className="color: rgb(89, 89, 89);">
                                                                       <span className="font-size: 15px;">
-                                                                        <bdt className="block-component"></bdt>
+                                                                        <span className="block-component"></span>
                                                                       </span>
                                                                     </span>
                                                                   </span>
@@ -3957,26 +3962,26 @@ const Privacy = () => {
                                                               <div className="line-height: 1.5;">
                                                                 <span className="font-size: 15px;">
                                                                   <span data-custom-classname="body_text">
-                                                                    <bdt className="question">
+                                                                    <span className="question">
                                                                       San
                                                                       Salvador
-                                                                    </bdt>
+                                                                    </span>
                                                                     <span className="color: rgb(89, 89, 89);">
                                                                       <span className="font-size: 15px;">
-                                                                        <bdt className="block-component"></bdt>
+                                                                        <span className="block-component"></span>
                                                                         ,{" "}
-                                                                        <bdt className="question">
+                                                                        <span className="question">
                                                                           San
                                                                           José
-                                                                        </bdt>
-                                                                        <bdt className="statement-end-if-in-editor"></bdt>
-                                                                        <bdt className="block-component"></bdt>{" "}
-                                                                        <bdt className="question">
+                                                                        </span>
+                                                                        <span className="statement-end-if-in-editor"></span>
+                                                                        <span className="block-component"></span>{" "}
+                                                                        <span className="question">
                                                                           11909
-                                                                        </bdt>
-                                                                        <bdt className="statement-end-if-in-editor"></bdt>
-                                                                        <bdt className="block-component"></bdt>
-                                                                        <bdt className="block-component"></bdt>
+                                                                        </span>
+                                                                        <span className="statement-end-if-in-editor"></span>
+                                                                        <span className="block-component"></span>
+                                                                        <span className="block-component"></span>
                                                                       </span>
                                                                     </span>
                                                                   </span>
@@ -3988,41 +3993,41 @@ const Privacy = () => {
                                                                     <span className="font-size: 15px;">
                                                                       <span data-custom-classname="body_text">
                                                                         <span className="color: rgb(89, 89, 89);">
-                                                                          <bdt className="block-component"></bdt>
+                                                                          <span className="block-component"></span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
-                                                                    <bdt className="question">
+                                                                    <span className="question">
                                                                       Costa Rica
-                                                                    </bdt>
+                                                                    </span>
                                                                     <span className="font-size: 15px;">
                                                                       <span data-custom-classname="body_text">
                                                                         <span className="color: rgb(89, 89, 89);">
-                                                                          <bdt className="statement-end-if-in-editor">
+                                                                          <span className="statement-end-if-in-editor">
                                                                             <span className="font-size: 15px;">
                                                                               <span data-custom-classname="body_text">
                                                                                 <span className="color: rgb(89, 89, 89);">
-                                                                                  <bdt className="statement-end-if-in-editor">
+                                                                                  <span className="statement-end-if-in-editor">
                                                                                     <span className="font-size: 15px;">
                                                                                       <span data-custom-classname="body_text">
                                                                                         <span className="color: rgb(89, 89, 89);">
-                                                                                          <bdt className="statement-end-if-in-editor"></bdt>
+                                                                                          <span className="statement-end-if-in-editor"></span>
                                                                                         </span>
                                                                                       </span>
                                                                                     </span>
-                                                                                  </bdt>
-                                                                                  <bdt className="statement-end-if-in-editor"></bdt>
+                                                                                  </span>
+                                                                                  <span className="statement-end-if-in-editor"></span>
                                                                                 </span>
                                                                               </span>
                                                                             </span>
                                                                             <span data-custom-classname="body_text">
                                                                               <span className="color: rgb(89, 89, 89);">
                                                                                 <span className="font-size: 15px;">
-                                                                                  <bdt className="statement-end-if-in-editor"></bdt>
+                                                                                  <span className="statement-end-if-in-editor"></span>
                                                                                 </span>
                                                                               </span>
                                                                             </span>
-                                                                          </bdt>
+                                                                          </span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -4031,17 +4036,17 @@ const Privacy = () => {
                                                                     <span className="font-size: 15px;">
                                                                       <span data-custom-classname="body_text">
                                                                         <span className="color: rgb(89, 89, 89);">
-                                                                          <bdt className="statement-end-if-in-editor">
+                                                                          <span className="statement-end-if-in-editor">
                                                                             <span className="color: rgb(89, 89, 89);">
                                                                               <span className="font-size: 15px;">
                                                                                 <span data-custom-classname="body_text">
-                                                                                  <bdt className="block-component">
-                                                                                    <bdt className="block-component"></bdt>
-                                                                                  </bdt>
+                                                                                  <span className="block-component">
+                                                                                    <span className="block-component"></span>
+                                                                                  </span>
                                                                                 </span>
                                                                               </span>
                                                                             </span>
-                                                                          </bdt>
+                                                                          </span>
                                                                         </span>
                                                                       </span>
                                                                     </span>
@@ -4050,9 +4055,9 @@ const Privacy = () => {
                                                                         <span className="color: rgb(89, 89, 89); font-size: 15px;">
                                                                           <span className="font-size: 15px;">
                                                                             <span data-custom-classname="body_text">
-                                                                              <bdt className="statement-end-if-in-editor">
-                                                                                <bdt className="block-component"></bdt>
-                                                                              </bdt>
+                                                                              <span className="statement-end-if-in-editor">
+                                                                                <span className="block-component"></span>
+                                                                              </span>
                                                                             </span>
                                                                           </span>
                                                                         </span>
@@ -4136,11 +4141,11 @@ const Privacy = () => {
                                                                       personal
                                                                       information,
                                                                       please{" "}
-                                                                      <bdt className="block-component"></bdt>
+                                                                      <span className="block-component"></span>
                                                                     </span>
                                                                     <span data-custom-classname="body_text">
                                                                       visit:{" "}
-                                                                      <bdt className="question">
+                                                                      <span className="question">
                                                                         <a
                                                                           href="https://tucana.app/contact"
                                                                           target="_blank"
@@ -4149,8 +4154,8 @@ const Privacy = () => {
                                                                         >
                                                                           https://tucana.app/contact
                                                                         </a>
-                                                                      </bdt>
-                                                                      <bdt className="else-block"></bdt>
+                                                                      </span>
+                                                                      <span className="else-block"></span>
                                                                     </span>
                                                                   </span>
                                                                   <span data-custom-classname="body_text">

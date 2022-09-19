@@ -875,7 +875,7 @@ const Offer = () => {
                   <p>
                     {t("translation:offer.rideOnline1")}{" "}
                     <LinkContainer
-                      to="/rides/driver"
+                      to="/driver/rides"
                       className="cursor-pointer"
                     >
                       <u className="link-primary">

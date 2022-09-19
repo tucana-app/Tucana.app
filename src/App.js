@@ -21,25 +21,29 @@ import Messages from "./containers/Messages";
 
 import Ride from "./containers/Ride";
 import Rides from "./containers/Rides";
-import RidesDriver from "./containers/Rides/RidesDriver";
-import RidesBookings from "./containers/Rides/RidesBookings";
-import RidesToConfirm from "./containers/Rides/RidesToConfirm";
+import DriverRides from "./containers/Driver/DriverRides";
+import DriverBookings from "./containers/Driver/DriverBookings";
+import DriverPastRides from "./containers/Driver/DriverPastRides";
+import DriverPastBookings from "./containers/Driver/DriverPastBookings";
+import DriverProfile from "./containers/Driver/DriverProfile";
+import DriverCar from "./containers/Driver/DriverCar";
 
 import Bookings from "./containers/Bookings";
 import Booking from "./containers/Booking";
 import Book from "./containers/Book";
+import UserPastBookings from "./containers/UserPastBookings";
+import RidesToConfirm from "./containers/RidesToConfirm";
 
 import Offer from "./containers/Offer";
 import HowItWorks from "./containers/HowItWorks";
 
 import BecomeDriver from "./containers/BecomeDriver";
-import DriverApplication from "./containers/DriverApplication";
+import DriverApplication from "./containers/Driver/DriverApplication";
 
 // All pages included in the side menu
 import Menu from "./containers/Menu/Menu";
 import Notifications from "./containers/Menu/Notifications";
 import Account from "./containers/Menu/Account";
-import Profile from "./containers/Menu/Profile";
 import Language from "./containers/Menu/Language";
 import Report from "./containers/Menu/Report";
 import FAQ from "./containers/Menu/FAQ";
@@ -72,8 +76,8 @@ import RatingsDriver from "./containers/Menu/RatingsDriver";
 import Ratings from "./containers/Menu/Ratings";
 
 // Public Profile
-import PassengerProfile from "./containers/PassengerProfile";
-import DriverProfile from "./containers/DriverProfile";
+import PassengerPublicProfile from "./containers/PassengerPublicProfile";
+import DriverPublicProfile from "./containers/Driver/DriverPublicProfile";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -135,11 +139,23 @@ function App() {
 
             <Route exact path="/ride/:rideId" component={Ride} />
             <Route exact path="/rides" component={Rides} />
-            <Route exact path="/rides/driver" component={RidesDriver} />
-            <Route exact path="/rides/bookings" component={RidesBookings} />
+            <Route exact path="/driver/rides" component={DriverRides} />
+            <Route exact path="/driver/bookings" component={DriverBookings} />
+            <Route exact path="/driver/car" component={DriverCar} />
             <Route exact path="/bookings" component={Bookings} />
             <Route exact path="/booking/:bookingId" component={Booking} />
             <Route exact path="/book/:rideId" component={Book} />
+            <Route exact path="/past-bookings" component={UserPastBookings} />
+            <Route
+              exact
+              path="/driver/past-rides"
+              component={DriverPastRides}
+            />
+            <Route
+              exact
+              path="/driver/past-bookings"
+              component={DriverPastBookings}
+            />
 
             <Route exact path="/menu" component={Menu} />
             <Route
@@ -164,7 +180,7 @@ function App() {
               path="/rides/rides-to-confirm"
               component={RidesToConfirm}
             />
-            <Route exact path="/profile/" component={Profile} />
+            <Route exact path="/profile/" component={DriverProfile} />
             <Route exact path="/notifications" component={Notifications} />
             <Route exact path="/help" component={Help} />
             <Route exact path="/donate" component={Donate} />
@@ -197,11 +213,15 @@ function App() {
             />
 
             {/* Public profile */}
-            <Route exact path="/driver/:username" component={DriverProfile} />
+            <Route
+              exact
+              path="/driver/:username"
+              component={DriverPublicProfile}
+            />
             <Route
               exact
               path="/passenger/:username"
-              component={PassengerProfile}
+              component={PassengerPublicProfile}
             />
 
             <Route exact path="/coming-soon" component={ComingSoon} />

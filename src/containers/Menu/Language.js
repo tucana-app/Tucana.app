@@ -29,7 +29,9 @@ function Language() {
           <Col className="text-center">
             <p>
               {t("translation:languagePage.current")}:{" "}
-              {t("translation:global.currentLanguage")}
+              <span className="fw-bold">
+                {t("translation:global.currentLanguage")}
+              </span>
             </p>
             <Button
               onClick={() => changeLanguage("en")}

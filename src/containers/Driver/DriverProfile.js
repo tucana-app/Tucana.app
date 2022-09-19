@@ -6,9 +6,10 @@ import { useTranslation } from "react-i18next";
 import { LinkContainer } from "react-router-bootstrap";
 
 import GoBack from "../../components/GoBack";
-import { StarFillIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, StarFillIcon } from "@primer/octicons-react";
+import car from "../../assets/images/car.png";
 
-function Profile(props) {
+function DriverProfile(props) {
   const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
 
@@ -23,7 +24,7 @@ function Profile(props) {
         <Row className="mb-5">
           <Col>
             <h1 className="title text-center">
-              {t("translation:global.driverProfile")}
+              {t("translation:global.profile")}
             </h1>
           </Col>
         </Row>
@@ -85,14 +86,30 @@ function Profile(props) {
                   <p className="fw-bold">
                     {t("translation:global.yourVehicle")}
                   </p>
-                  <p>
-                    {t("translation:global.maker")}:{" "}
-                    {currentUser.Driver.Car.maker}
-                  </p>
-                  <p className="mb-0">
-                    {t("translation:global.numberPlate")}:{" "}
-                    {currentUser.Driver.Car.numberPlate}
-                  </p>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <LinkContainer to="/driver/car" className="cursor-pointer">
+                    <Row className="align-items-center mb-2">
+                      <Col xs={2} className="text-center pe-0">
+                        <img src={car} alt="" height={36} />
+                      </Col>
+                      <Col>
+                        <p className="mb-0">{currentUser.Driver.Car.maker}</p>
+                        <p className="mb-0">{currentUser.Driver.Car.model}</p>
+                      </Col>
+                      <Col>
+                        <p className="mb-0">
+                          <strong>{currentUser.Driver.Car.numberPlate}</strong>
+                        </p>
+                      </Col>
+                      <Col xs={1} className="text-start ps-0">
+                        <ChevronRightIcon size={24} verticalAlign="middle" />
+                      </Col>
+                    </Row>
+                  </LinkContainer>
                 </Col>
               </Row>
             </Container>
@@ -165,4 +182,4 @@ function Profile(props) {
   );
 }
 
-export default Profile;
+export default DriverProfile;

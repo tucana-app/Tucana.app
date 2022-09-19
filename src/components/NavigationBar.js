@@ -16,12 +16,12 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   const { user: currentUser } = useSelector((state) => state.user);
-  const { driverNewRidesRequestsData, passengerBookingsResponsesData } =
-    useSelector((state) => state.notification);
+  // const { driverNewRidesRequestsData, passengerBookingsResponsesData } =
+  //   useSelector((state) => state.notification);
   const { userNewMessagesData } = useSelector((state) => state.message);
 
-  var notifications =
-    driverNewRidesRequestsData.count + passengerBookingsResponsesData.count;
+  // var notifications =
+  //   driverNewRidesRequestsData.count + passengerBookingsResponsesData.count;
   var messages = userNewMessagesData.count;
 
   return currentUser ? (
@@ -95,19 +95,19 @@ function NavigationBar() {
                       <ThreeBarsIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
                         {t("translation:navigationBar.menu")}
+                        {/* {notifications > 0 ? (
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
+                            {notifications}
+                          </span>
+                        ) : null} */}
+                      </p>
+                      {/* <p className="text-icon-nav-bar d-xs-screen mb-0">
                         {notifications > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notifications}
                           </span>
                         ) : null}
-                      </p>
-                      <p className="text-icon-nav-bar d-xs-screen mb-0">
-                        {notifications > 0 ? (
-                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
-                            {notifications}
-                          </span>
-                        ) : null}
-                      </p>
+                      </p> */}
                     </div>
                   </Nav.Link>
                 </IndexLinkContainer>

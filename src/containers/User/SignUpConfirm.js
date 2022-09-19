@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import { confirmEmail } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";

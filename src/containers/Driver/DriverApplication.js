@@ -6,7 +6,7 @@ import Select from "react-select";
 import { Link, Redirect } from "react-router-dom";
 import { ArrowLeftIcon, ArrowRightIcon, XIcon } from "@primer/octicons-react";
 
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 import {
   setToast,
@@ -26,7 +26,7 @@ import {
   setApplicationCarRiteveYear,
   resetApplicationForm,
   submitFormBecomeDriver,
-} from "../redux";
+} from "../../redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 const DriverApplication = () => {
@@ -94,13 +94,17 @@ const DriverApplication = () => {
     })
   );
 
-  const backButton = (handleBackToStep) => {
+  const cancelButton = () => {
     return (
-      <Col xs={1} className="text-start" style={{ position: "absolute" }}>
-        <div className="cursor-pointer" onClick={handleBackToStep}>
-          <ArrowLeftIcon size={28} className="text-success" />
-        </div>
-      </Col>
+      <LinkContainer to="/become-driver">
+        <Col
+          xs={2}
+          className="cursor-pointer text-secondary"
+          onClick={handleClickCancel}
+        >
+          <XIcon size="28" />
+        </Col>
+      </LinkContainer>
     );
   };
 
@@ -290,12 +294,7 @@ const DriverApplication = () => {
   };
 
   const handleSubmit = () => {
-    if (
-      carMarchamo !== "" &&
-      carMarchamo <= new Date().getFullYear() &&
-      carRiteveMonth !== "" &&
-      carRiteveYear !== ""
-    ) {
+    if (carMarchamo !== "" && carRiteveMonth !== "" && carRiteveYear !== "") {
       // If the number plate has the correct format
       if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
         dispatch(submitFormBecomeDriver(currentUser, formApplyDriver));
@@ -379,14 +378,14 @@ const DriverApplication = () => {
               className="bg-light border shadow rounded-5 py-3 mx-auto"
             >
               <Container className="px-0 px-md-2">
-                <Row className="mb-3">
-                  <Col className="text-center">
+                <Row className="align-items-center mb-3">
+                  <Col xs={10} className="text-center">
                     <h3>1. {t("translation:global.yourIdentity")}</h3>
                   </Col>
+
+                  {cancelButton()}
                 </Row>
-                <Row className="align-items-center">
-                  <Col className="text-center"></Col>
-                </Row>
+
                 <Row className="mb-3">
                   <Col className="text-center">
                     <Form.Group>
@@ -479,22 +478,6 @@ const DriverApplication = () => {
                 ) : null}
 
                 <Row>
-                  <Col className="text-start">
-                    <Link to="/become-driver">
-                      <Button
-                        onClick={handleClickCancel}
-                        variant="danger"
-                        className="hvr-icon-shrink ms-2"
-                      >
-                        <XIcon
-                          size={18}
-                          verticalAlign="middle"
-                          className="hvr-icon me-2"
-                        />
-                        {t("translation:global.cancel")}
-                      </Button>
-                    </Link>
-                  </Col>
                   <Col className="text-end">
                     <Button
                       onClick={handleClickStepOne}
@@ -535,94 +518,87 @@ const DriverApplication = () => {
               className="bg-light border shadow rounded-5 py-3 mx-auto"
             >
               <Container className="px-0 px-md-2">
-                <Row className="mb-3">
-                  {backButton(handleBackToStepOne)}
-
-                  <Col className="text-center">
+                <Row className="align-items-center mb-3">
+                  <Col xs={10} className="text-center">
                     <h3>2. {t("translation:global.yourLicense")}</h3>
                   </Col>
-                </Row>
-                <Row className="align-items-center">
-                  <Col className="text-center"></Col>
+
+                  {cancelButton()}
                 </Row>
 
-                <>
-                  <Row>
-                    <Col xs={12} className="mb-3">
+                <Row>
+                  <Col xs={12} className="mb-3">
+                    <p className="small ms-2 mb-0">
+                      {t("translation:global.number")}
+                      <span className="text-danger">*</span>
+                    </p>
+                    <Form.Group>
+                      <Form.Control
+                        type="text"
+                        name="licenseNumber"
+                        placeholder="11AA22333, 123W333, etc."
+                        value={licenseNumber}
+                        onChange={handleChangeLicenseNumber}
+                        maxLength={30}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={12}>
+                    <Form.Group>
                       <p className="small ms-2 mb-0">
-                        {t("translation:global.number")}
+                        {t("translation:becomeDriver.countryIssue")}
                         <span className="text-danger">*</span>
                       </p>
-                      <Form.Group>
-                        <Form.Control
-                          type="text"
-                          name="licenseNumber"
-                          placeholder="11AA22333, 123W333, etc."
-                          value={licenseNumber}
-                          onChange={handleChangeLicenseNumber}
-                          maxLength={30}
-                          required
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col xs={12}>
-                      <Form.Group>
-                        <p className="small ms-2 mb-0">
-                          {t("translation:becomeDriver.countryIssue")}
-                          <span className="text-danger">*</span>
-                        </p>
-                        <Select
-                          value={licenseCountry}
-                          name="licenseCountry"
-                          placeholder={`${t("translation:global.search")}...`}
-                          onChange={handleChangeLicenseCountry}
-                          options={countriesSelect.current}
-                          isDisabled={isLoadingCountries}
-                          formatOptionLabel={(country) => (
-                            <div className="d-inline-flex align-items-center mb-0">
-                              <img
-                                src={country.image}
-                                alt=""
-                                height={"20"}
-                                className="me-2"
-                              />
-                              <span>{country.label}</span>
-                            </div>
-                          )}
-                          required
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                      <Select
+                        value={licenseCountry}
+                        name="licenseCountry"
+                        placeholder={`${t("translation:global.search")}...`}
+                        onChange={handleChangeLicenseCountry}
+                        options={countriesSelect.current}
+                        isDisabled={isLoadingCountries}
+                        formatOptionLabel={(country) => (
+                          <div className="d-inline-flex align-items-center mb-0">
+                            <img
+                              src={country.image}
+                              alt=""
+                              height={"20"}
+                              className="me-2"
+                            />
+                            <span>{country.label}</span>
+                          </div>
+                        )}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
 
-                  <Row className="mt-3 mb-5">
-                    <Col className="text-center line-height-sm">
-                      <small className="smaller text-secondary">
-                        <Trans i18nKey="translation:becomeDriver.disclaimer">
-                          We do not disclose any information about your country
-                          of origin. This is solely for verification purposes
-                        </Trans>
-                      </small>
-                    </Col>
-                  </Row>
-                </>
+                <Row className="mt-3 mb-5">
+                  <Col className="text-center line-height-sm">
+                    <small className="smaller text-secondary">
+                      <Trans i18nKey="translation:becomeDriver.disclaimer">
+                        We do not disclose any information about your country of
+                        origin. This is solely for verification purposes
+                      </Trans>
+                    </small>
+                  </Col>
+                </Row>
 
                 <Row>
                   <Col className="text-start">
-                    <Link to="/become-driver">
-                      <Button
-                        onClick={handleClickCancel}
-                        variant="danger"
-                        className="hvr-icon-shrink ms-2"
-                      >
-                        <XIcon
-                          size={18}
-                          verticalAlign="middle"
-                          className="hvr-icon me-2"
-                        />
-                        {t("translation:global.cancel")}
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={handleBackToStepOne}
+                      variant="outline-warning"
+                      className="ms-2"
+                    >
+                      <ArrowLeftIcon
+                        size={18}
+                        verticalAlign="middle"
+                        className="me-2"
+                      />
+                      {t("translation:global.goBack")}
+                    </Button>
                   </Col>
                   <Col className="text-end">
                     <Button
@@ -664,15 +640,12 @@ const DriverApplication = () => {
               className="bg-light border shadow rounded-5 py-3 mx-auto"
             >
               <Container className="px-0 px-md-2">
-                <Row className="mb-3">
-                  {backButton(handleBackToStepTwo)}
-
-                  <Col className="text-center">
+                <Row className="align-items-center mb-3">
+                  <Col xs={10} className="text-center">
                     <h3>3. {t("translation:global.yourVehicle")}</h3>
                   </Col>
-                </Row>
-                <Row className="align-items-center">
-                  <Col className="text-center"></Col>
+
+                  {cancelButton()}
                 </Row>
 
                 <Row className="mb-5">
@@ -780,20 +753,18 @@ const DriverApplication = () => {
 
                 <Row>
                   <Col className="text-start">
-                    <Link to="/become-driver">
-                      <Button
-                        onClick={handleClickCancel}
-                        variant="danger"
-                        className="hvr-icon-shrink ms-2"
-                      >
-                        <XIcon
-                          size={18}
-                          verticalAlign="middle"
-                          className="hvr-icon me-2"
-                        />
-                        {t("translation:global.cancel")}
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={handleBackToStepTwo}
+                      variant="outline-warning"
+                      className="ms-2"
+                    >
+                      <ArrowLeftIcon
+                        size={18}
+                        verticalAlign="middle"
+                        className="me-2"
+                      />
+                      {t("translation:global.goBack")}
+                    </Button>
                   </Col>
 
                   <Col className="text-end">
@@ -838,18 +809,15 @@ const DriverApplication = () => {
               className="bg-light border shadow rounded-5 py-3 mx-auto"
             >
               <Container className="px-0 px-md-2">
-                <Row className="mb-3">
-                  {backButton(handleBackToStepThree)}
-
-                  <Col className="text-center">
+                <Row className="align-items-center mb-3">
+                  <Col xs={10} className="text-center">
                     <h3>4. {t("translation:global.yourVehicle")}</h3>
                   </Col>
-                </Row>
-                <Row className="align-items-center">
-                  <Col className="text-center"></Col>
+
+                  {cancelButton()}
                 </Row>
 
-                <Row className="mb-5">
+                <Row className="mb-4">
                   <Col xs={12} className="mb-3">
                     <p className="small ms-2 mb-0">
                       {t("translation:global.marchamo")}
@@ -904,20 +872,18 @@ const DriverApplication = () => {
 
                 <Row>
                   <Col className="text-start">
-                    <Link to="/become-driver">
-                      <Button
-                        onClick={handleClickCancel}
-                        variant="danger"
-                        className="hvr-icon-shrink ms-2"
-                      >
-                        <XIcon
-                          size={18}
-                          verticalAlign="middle"
-                          className="hvr-icon me-2"
-                        />
-                        {t("translation:global.cancel")}
-                      </Button>
-                    </Link>
+                    <Button
+                      onClick={handleBackToStepThree}
+                      variant="outline-warning"
+                      className="ms-2"
+                    >
+                      <ArrowLeftIcon
+                        size={18}
+                        verticalAlign="middle"
+                        className="me-2"
+                      />
+                      {t("translation:global.goBack")}
+                    </Button>
                   </Col>
                   <Col className="text-end">
                     <Button

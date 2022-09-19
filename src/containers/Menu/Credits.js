@@ -42,9 +42,19 @@ const Credits = () => {
               <ListGroup.Item>
                 <a
                   href="https://www.flaticon.com/free-icons/car"
-                  title="car icons"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Car icons created by Kiranshastry - Flaticon
+                </a>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <a
+                  href="https://undraw.co/illustrations"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Illustrations from UnDraw.co
                 </a>
               </ListGroup.Item>
             </ListGroup>

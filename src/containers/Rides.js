@@ -21,8 +21,6 @@ import {
   countDriverBookings,
 } from "../helpers";
 
-import car from "../assets/images/undraw_Order_ride.svg";
-
 const Rides = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -69,7 +67,9 @@ const Rides = () => {
     <Container fluid data-aos="fade-in">
       <Row className="my-4">
         <Col className="text-center">
-          <img src={car} alt="Car" width={400} className="img-fluid" />
+          <h2 className="title text-center mb-0">
+            {t("translation:rides.ridesBookings")}
+          </h2>
         </Col>
       </Row>
       <Row>
@@ -104,7 +104,7 @@ const Rides = () => {
             {currentUser.Driver ? (
               <>
                 <Link
-                  to="/rides/driver"
+                  to="/driver/rides"
                   className="text-light text-decoration-none"
                 >
                   <ListGroup.Item className="border-0">
@@ -129,7 +129,7 @@ const Rides = () => {
                 </Link>
 
                 <Link
-                  to="/rides/bookings"
+                  to="/driver/bookings"
                   className="text-light text-decoration-none"
                 >
                   <ListGroup.Item className="border-0 ">
