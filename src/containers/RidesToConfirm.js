@@ -5,7 +5,6 @@ import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import {
-  ArrowLeftIcon,
   ArrowRightIcon,
   ChevronRightIcon,
   DotFillIcon,

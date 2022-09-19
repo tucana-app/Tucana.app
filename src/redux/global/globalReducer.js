@@ -1,15 +1,15 @@
 import globalTypes from "./globalTypes";
 
-import crocodile from "../../assets/images/avatars/crocodile.png";
-import dolphin from "../../assets/images/avatars/dolphin.png";
-import iguana from "../../assets/images/avatars/iguana.png";
-import jaguar from "../../assets/images/avatars/jaguar.png";
-import macaw from "../../assets/images/avatars/macaw.png";
-import monkey from "../../assets/images/avatars/monkey.png";
-import sloth from "../../assets/images/avatars/sloth.png";
-import toucan from "../../assets/images/avatars/toucan.png";
-import turtle from "../../assets/images/avatars/turtle.png";
-import whale from "../../assets/images/avatars/whale.png";
+import crocodile from "../../assets/images/avatars/crocodile.jpg";
+import dolphin from "../../assets/images/avatars/dolphin.jpg";
+import iguana from "../../assets/images/avatars/iguana.jpg";
+import jaguar from "../../assets/images/avatars/jaguar.jpg";
+import macaw from "../../assets/images/avatars/macaw.jpg";
+import monkey from "../../assets/images/avatars/monkey.jpg";
+import sloth from "../../assets/images/avatars/sloth.jpg";
+import toucan from "../../assets/images/avatars/toucan.jpg";
+import turtle from "../../assets/images/avatars/turtle.jpg";
+import whale from "../../assets/images/avatars/whale.jpg";
 import none from "../../assets/images/avatars/default.svg";
 // import filter from "../../assets/images/filter-select.png";
 
