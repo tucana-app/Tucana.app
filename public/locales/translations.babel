@@ -3305,6 +3305,27 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
+                                <name>notVerified</name>
+                                <definition_loaded>false</definition_loaded>
+                                <description/>
+                                <comment/>
+                                <default_text/>
+                                <translations>
+                                    <translation>
+                                        <language>en-US</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>es-CR</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>fr-FR</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                </translations>
+                            </concept_node>
+                            <concept_node>
                                 <name>number</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
@@ -3557,7 +3578,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>phoneVerified</name>
+                                <name>phone</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>
@@ -4335,6 +4356,27 @@
                             </concept_node>
                             <concept_node>
                                 <name>vehicle</name>
+                                <definition_loaded>false</definition_loaded>
+                                <description/>
+                                <comment/>
+                                <default_text/>
+                                <translations>
+                                    <translation>
+                                        <language>en-US</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>es-CR</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>fr-FR</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                </translations>
+                            </concept_node>
+                            <concept_node>
+                                <name>verified</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>

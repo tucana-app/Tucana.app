@@ -4,7 +4,11 @@ import { Redirect, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { CheckIcon, StarFillIcon } from "@primer/octicons-react";
+import {
+  CheckIcon,
+  StarFillIcon,
+  XCircleFillIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 
@@ -55,75 +59,81 @@ function Account() {
             className="border shadow rounded-5 mx-auto"
           >
             <Container className="p-3">
-              <Row>
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">
+              <Row className="align-items-center mb-3">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
                     {t("translation:global.username")}
                   </p>
                 </Col>
                 <Col>
-                  <p>{currentUser.username}</p>
+                  <p className="mb-0">{currentUser.username}</p>
                 </Col>
               </Row>
 
-              <Row>
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">
+              <Row className="align-items-center mb-3">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
                     {t("translation:global.email")}
                   </p>
                 </Col>
                 <Col>
-                  <p>{currentUser.email}</p>
+                  <p className="mb-0">{currentUser.email}</p>
                 </Col>
               </Row>
 
-              <Row>
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">Phone number</p>
-                </Col>
-                <Col>
-                  <p>{formatPhoneNumberIntl(currentUser.phoneNumber)}</p>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">Biography</p>
+              <Row className="align-items-center mb-3">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
+                    {t("translation:global.bio")}
+                  </p>
                 </Col>
                 <Col>
                   {currentUser.biography && currentUser.biography !== "" ? (
-                    <p>{currentUser.biography}</p>
+                    <p className="mb-0">{currentUser.biography}</p>
                   ) : (
-                    <p>-</p>
+                    <p className="mb-0">-</p>
                   )}
                 </Col>
               </Row>
 
-              <Row>
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">
-                    {t("translation:global.phoneVerified")}
+              <Row className="align-items-center mb-3">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
+                    {t("translation:global.phone")}
                   </p>
                 </Col>
                 <Col>
+                  <p className="mb-0">
+                    {formatPhoneNumberIntl(currentUser.phoneNumber)}
+                  </p>
                   {currentUser.phoneConfirmed ? (
-                    <p className="text-success">
-                      <CheckIcon size={24} className="me-2" />
-                      {t("translation:global.yes")}
+                    <p className="small text-secondary mb-0">
+                      <CheckIcon size={24} className="text-success me-2" />
+                      {t("translation:global.verified")}
                     </p>
                   ) : (
-                    <p>{t("translation:global.no")}</p>
+                    <p className="small text-secondary mb-0">
+                      <XCircleFillIcon
+                        verticalAlign="middle"
+                        className="text-warning me-2"
+                      />
+                      {t("translation:global.notVerified")}
+                    </p>
                   )}
                 </Col>
               </Row>
 
-              <Row className="">
-                <Col xs={12} md={6}>
-                  <p className="text-secondary mb-0 mb-md-3">
+              <Row className="align-items-center">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
                     {t("translation:global.memberSince")}
                   </p>
                 </Col>
-                <Col>{dateFormat(currentUser.createdAt, "dd/mm/yyyy")}</Col>
+                <Col>
+                  <p className="mb-0">
+                    {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
+                  </p>
+                </Col>
               </Row>
             </Container>
           </Col>
