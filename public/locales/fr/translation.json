@@ -438,7 +438,7 @@
 	},
 	"ridesBookings": {
 		"subTitle": "Trouvez votre passager potentiel ici",
-		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}</2>.",
+		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}}</2>.",
 		"title": "Réservations pour vos trajets"
 	},
 	"ridesDriver": {

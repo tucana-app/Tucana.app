@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 
@@ -11,6 +10,8 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverBookings } from "../../redux";
+import { DotFillIcon } from "@primer/octicons-react";
+import { ArrowRight } from "react-bootstrap-icons";
 
 const RidesBookings = () => {
   const { t } = useTranslation();
@@ -39,138 +40,120 @@ const RidesBookings = () => {
       <GoBack />
 
       <Container className="mb-5">
+        <Row className="justify-content-center text-center">
+          <Col>
+            <h1 className="title text-success mb-0">
+              {t("translation:ridesBookings.title")}
+            </h1>
+            <p className="lead">{t("translation:ridesBookings.subTitle")}</p>
+          </Col>
+        </Row>
         {isLoadingDriverBookingsList ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : (
-          <>
-            <Row className="justify-content-center">
-              <Col>
-                <div className="text-center mb-4">
-                  <h1 className="title text-success mb-0">
-                    {t("translation:ridesBookings.title")}
-                  </h1>
-                  <p className="lead">
-                    {t("translation:ridesBookings.subTitle")}
-                  </p>
-                </div>
-              </Col>
-            </Row>
-
-            {driverBookingsData.length > 0 ? (
-              <>
-                {driverBookingsData.map(
-                  (booking, index) => (
-                    // !isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
-                    // booking.BookingStatusId < 3 &&
-                    // booking.Ride.seatsLeft > 0 ? (
-                    <Row key={index} className="mb-2 mx-1 mx-sm-0">
-                      <Col
-                        xs={12}
-                        sm={10}
-                        md={8}
-                        lg={6}
-                        xl={4}
-                        className="border shadow-sm rounded mx-auto"
-                      >
-                        <Container className="py-3 px-2">
-                          <Row className="align-items-center">
-                            <Col>
-                              <p>
-                                <Trans i18nKey="translation:ridesBookings.summary">
-                                  <strong>
-                                    {{ firstName: booking.User.firstName }}
-                                  </strong>
-                                  booked
-                                  <strong>
-                                    {{ seatsBooked: booking.seatsBooked }}
-                                  </strong>{" "}
-                                  seat(s) from{" "}
-                                  <strong>
-                                    {{ cityOrigin: booking.Ride.origin.city }}
-                                  </strong>{" "}
-                                  to{" "}
-                                  <strong>
-                                    {{
-                                      cityDestination:
-                                        booking.Ride.destination.city,
-                                    }}
-                                  </strong>
-                                </Trans>
-                              </p>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <p>
-                                <span className="text-secondary">
-                                  {t("translation:global.date")}:
-                                </span>{" "}
-                                {dateFormat(booking.createdAt, "dd/mm/yyyy")}
-                              </p>
-                              <p>
-                                <span className="text-secondary">
-                                  {t("translation:global.booking")}:
-                                </span>{" "}
-                                <span
-                                  className={`fw-bold text-${bookingStatusVariant(
-                                    booking.BookingStatusId
-                                  )}`}
-                                >
-                                  {booking.BookingStatus.name}
-                                </span>
-                              </p>
-
-                              <p>
-                                <span className="text-secondary">
-                                  {t("translation:global.ride")}:
-                                </span>{" "}
-                                <span
-                                  className={`fw-bold text-${rideStatusVariant(
-                                    booking.Ride.RideStatusId
-                                  )}`}
-                                >
-                                  {booking.Ride.RideStatus.name}
-                                </span>
-                              </p>
-                            </Col>
-                          </Row>
-
-                          <Row>
-                            <Col xs={12} className="text-center mb-2">
-                              <LinkContainer
-                                to={`/ride/${booking.RideId}`}
-                                className="me-3"
-                              >
-                                <Button variant="outline-success">
-                                  {t("translation:global.seeRide")}
-                                </Button>
-                              </LinkContainer>
-                              <LinkContainer to={`/booking/${booking.id}`}>
-                                <Button variant="success">
-                                  {t("translation:global.seeBooking")}
-                                </Button>
-                              </LinkContainer>
-                            </Col>
-                          </Row>
-                        </Container>
+        ) : driverBookingsData.length > 0 ? (
+          driverBookingsData.map((booking, index) => (
+            // !isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
+            // booking.BookingStatusId < 3 &&
+            // booking.Ride.seatsLeft > 0 ? (
+            <Row key={index} className="mb-2 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="border shadow-sm rounded mx-auto px-0 mb-2"
+              >
+                <Container className="mt-1 px-0">
+                  <Link
+                    to={`/booking/${booking.id}`}
+                    className="text-decoration-none link-dark"
+                  >
+                    <Row className="align-items-center mx-0">
+                      <Col className="ms-2">
+                        <small className="text-secondary">
+                          {dateFormat(booking.createdAt, "dd/mm/yyyy")}
+                        </small>
+                        <p className="mb-1">
+                          <Trans i18nKey="translation:ridesBookings.summary">
+                            <strong>
+                              {{ firstName: booking.User.firstName }}
+                            </strong>
+                            booked
+                            <strong>
+                              {{ seatsBooked: booking.seatsBooked }}
+                            </strong>{" "}
+                            seat(s) from{" "}
+                            <strong>
+                              {{ cityOrigin: booking.Ride.origin.city }}
+                            </strong>{" "}
+                            to{" "}
+                            <strong>
+                              {{
+                                cityDestination: booking.Ride.destination.city,
+                              }}
+                            </strong>
+                          </Trans>
+                        </p>
+                      </Col>
+                      <Col xs={2} className="text-center rounded">
+                        <ArrowRight size="24" />
                       </Col>
                     </Row>
-                  )
-                  // ) : null
-                )}
-              </>
-            ) : (
-              <Row>
-                <Col className="text-center">
-                  <MessageEmpty title="bookings" />
-                </Col>
-              </Row>
-            )}
-          </>
+                  </Link>
+
+                  <Row className="justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0">
+                    <Col className="ms-2">
+                      <small className="text-secondary mb-0">
+                        {t("translation:global.booking")}:
+                      </small>
+                      <small
+                        className={`text-${bookingStatusVariant(
+                          booking.BookingStatusId
+                        )}`}
+                      >
+                        <DotFillIcon size="16" verticalAlign="middle" />
+                        {booking.BookingStatus.name}
+                      </small>
+                    </Col>
+                    <Col>
+                      <Link
+                        to={`/ride/${booking.RideId}`}
+                        className="text-decoration-none text-black me-3"
+                      >
+                        <>
+                          <small className="text-secondary mb-0">
+                            {t("translation:global.ride")}:
+                          </small>
+                          <small
+                            className={`text-${rideStatusVariant(
+                              booking.Ride.RideStatusId
+                            )}`}
+                          >
+                            <DotFillIcon size="16" verticalAlign="middle" />
+                            {booking.Ride.RideStatus.name}
+                          </small>{" "}
+                          <small className="text-secondary text-decoration-underline text-lowercase">
+                            ({t("translation:global.view")})
+                          </small>
+                        </>
+                      </Link>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+          ))
+        ) : (
+          <Row>
+            <Col className="text-center">
+              <MessageEmpty title="bookings" />
+            </Col>
+          </Row>
         )}
       </Container>
     </div>

@@ -16,7 +16,7 @@ import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
 import DisplayRating from "../components/DisplayRating";
 
-import { formatPrice, isDateInPast } from "../helpers";
+import { isDateInPast } from "../helpers";
 
 import {
   getRide,
@@ -34,7 +34,7 @@ const Ride = () => {
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { rideStatusVariant, srcAvatar } = useSelector((state) => state.global);
+  const { srcAvatar } = useSelector((state) => state.global);
   const {
     isloadingRide,
     rideData,
@@ -70,7 +70,8 @@ const Ride = () => {
 
       {rideData.ride &&
       !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
-      rideData.ride.seatsLeft > 0 ? (
+      rideData.ride.seatsLeft > 0 &&
+      currentUser.id !== rideData.ride.Driver.User.id ? (
         <div className="book-button">
           <Link to={`/book/${rideData.ride.id}`}>
             <Button variant="success" size="lg">
@@ -129,76 +130,11 @@ const Ride = () => {
                 </Col>
               </Row>
             ) : null}
-
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="border shadow rounded-5 mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row>
-                    <Col xs={8}>
-                      {t("translation:global.price")}{" "}
-                      {t("translation:global.perSeat")}
-                    </Col>
-                    <Col xs={4} className="text-center">
-                      <strong>{formatPrice(rideData.ride.price)}</strong>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
-
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="border shadow rounded-5 mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <Row>
-                    <Col xs={6}>
-                      <p className="mb-0">
-                        {t("translation:global.seatsAvailable")}:
-                      </p>
-                      <p className="mb-0">
-                        <span className="text-success">
-                          {rideData.ride.seatsLeft}
-                        </span>{" "}
-                        / {rideData.ride.seatsAvailable}
-                      </p>
-                    </Col>
-                    <Col xs={6}>
-                      <p className="mb-0">
-                        {t("translation:global.status")}:{" "}
-                        <span
-                          className={`text-${rideStatusVariant(
-                            rideData.ride.RideStatus.id
-                          )}`}
-                        >
-                          {rideData.ride.RideStatus.name}
-                        </span>
-                      </p>
-                    </Col>
-                  </Row>
-                  {!(rideData.ride.comment === "") ? (
-                    <Row className="mt-3">
-                      <Col>
-                        <p className="mb-0">
-                          {t("translation:global.comment")}:{" "}
-                          {rideData.ride.comment}
-                        </p>
-                      </Col>
-                    </Row>
-                  ) : null}
-                </Container>
+            <Row>
+              <Col>
+                <h4 className="text-success text-center mt-3">
+                  {t("translation:global.bookings")}
+                </h4>
               </Col>
             </Row>
 
@@ -258,7 +194,7 @@ const Ride = () => {
                           <hr />
                         </Col>
                       </Row>
-                      <Row className="align-items-center">
+                      <Row className="align-items-center my-0 py-0">
                         <Col xs={3} md={2} className="text-center pe-0">
                           <img src={car} alt="" height={36} />
                         </Col>
@@ -267,7 +203,8 @@ const Ride = () => {
                             {t("translation:global.vehicle")}
                           </p>
                           <p className="mb-0">
-                            {rideData.ride.Driver.Car.maker}
+                            {rideData.ride.Driver.Car.maker}{" "}
+                            {rideData.ride.Driver.Car.model}
                           </p>
                         </Col>
                       </Row>

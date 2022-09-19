@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ArrowDownIcon } from "@primer/octicons-react";
+import { ArrowRightIcon, DotFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
@@ -20,6 +20,7 @@ const RidesDriver = () => {
   const { isLoadingDriverRides, driverRidesData } = useSelector(
     (state) => state.ride
   );
+  const { rideStatusVariant } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -36,7 +37,7 @@ const RidesDriver = () => {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="mt-4 mb-5">
+      <Container className="mb-5">
         {isLoadingDriverRides ? (
           <Row>
             <Col className="text-center">
@@ -68,35 +69,24 @@ const RidesDriver = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow-sm rounded pb-3 mx-auto"
+                      className="border shadow-sm rounded mx-auto px-0 mb-2"
                     >
                       <LinkContainer
                         to={`/ride/${ride.id}`}
                         className="cursor-pointer"
                       >
-                        <Container className="p-2">
-                          <Row className="mb-2">
-                            <Col className="text-center">
-                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
-                            </Col>
-                          </Row>
-                          <Row className="mb-4">
-                            <Col xs={2}>
-                              <p className="text-end mb-0">
-                                {dateFormat(ride.dateTimeOrigin, "hh:MM TT")}
-                              </p>
-                            </Col>
-                            <Col xs={7}>
+                        <Container className="mt-1 px-0">
+                          <Row className="align-items-center mx-2 my-1">
+                            <Col xs={5} className="text-center">
                               <p className="fw-bold mb-0">{ride.origin.city}</p>
                               <p className="small mb-0">
                                 {ride.origin.province}
                               </p>
-
-                              <ArrowDownIcon
-                                size={24}
-                                className="text-success"
-                              />
-
+                            </Col>
+                            <Col xs={1} className="text-lowercase">
+                              {t("translation:global.to")}
+                            </Col>
+                            <Col xs={5} className="text-center">
                               <p className="fw-bold mb-0">
                                 {ride.destination.city}
                               </p>
@@ -104,23 +94,39 @@ const RidesDriver = () => {
                                 {ride.destination.province}
                               </p>
                             </Col>
-                            <Col xs={3} className="text-center mx-auto">
-                              <p className="mb-0">Seats</p>
-                              <p>
+                            <Col xs={1}>
+                              <ArrowRightIcon
+                                size={24}
+                                className="text-success"
+                              />
+                            </Col>
+                          </Row>
+
+                          <Row className="text-center justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0 py-1">
+                            <Col>
+                              <p className="mb-0">
+                                {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
+                              </p>
+                            </Col>
+                            <Col>
+                              <small
+                                className={`text-${rideStatusVariant(
+                                  ride.RideStatusId
+                                )}`}
+                              >
+                                <DotFillIcon size="16" verticalAlign="middle" />
+                                {ride.RideStatus.name}
+                              </small>
+                            </Col>
+                            <Col>
+                              <p className="mb-0">
+                                {t("translation:global.seat")}
+                                {ride.seatsAvailable > 1 ? "s" : null}:{" "}
                                 <span className="text-success">
                                   {ride.seatsLeft}
                                 </span>
                                 /{ride.seatsAvailable}
                               </p>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col className="text-center">
-                              <LinkContainer to={`/ride/${ride.id}`}>
-                                <Button variant="success" className="me-2">
-                                  {t("translation:global.seeRide")}
-                                </Button>
-                              </LinkContainer>
                             </Col>
                           </Row>
                         </Container>

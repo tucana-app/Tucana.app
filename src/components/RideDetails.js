@@ -1,12 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ArrowDownIcon, LinkExternalIcon } from "@primer/octicons-react";
+import {
+  ArrowDownIcon,
+  DotFillIcon,
+  LinkExternalIcon,
+} from "@primer/octicons-react";
 import dateFormat from "dateformat";
-import { formatDistance, formatTimeSecond } from "../helpers";
+import { formatDistance, formatPrice, formatTimeSecond } from "../helpers";
 
 function RideDetails({ ride }) {
   const { t } = useTranslation();
+  const { rideStatusVariant } = useSelector((state) => state.global);
 
   return (
     <Row className="mb-3 mx-1 mx-sm-0">
@@ -82,6 +88,45 @@ function RideDetails({ ride }) {
               </a>
             </Col>
           </Row>
+          <hr />
+          <Row>
+            <Col xs={8}>
+              {t("translation:global.price")} {t("translation:global.perSeat")}
+            </Col>
+            <Col xs={4} className="text-center">
+              <strong>{formatPrice(ride.price)}</strong>
+            </Col>
+          </Row>
+          <hr />
+          <Row>
+            <Col xs={6}>
+              <p className="mb-0">
+                {t("translation:global.status")}:{" "}
+                <span
+                  className={`text-${rideStatusVariant(ride.RideStatus.id)}`}
+                >
+                  <DotFillIcon size="16" verticalAlign="middle" />
+                  {ride.RideStatus.name}
+                </span>
+              </p>
+            </Col>
+            <Col xs={6}>
+              <p className="mb-0">
+                {t("translation:global.seatsAvailable")}:{" "}
+                <span className="text-success">{ride.seatsLeft}</span>/
+                {ride.seatsAvailable}
+              </p>
+            </Col>
+          </Row>
+          {!(ride.comment === "") ? (
+            <Row className="mt-3">
+              <Col>
+                <p className="mb-0">
+                  {t("translation:global.comment")}: {ride.comment}
+                </p>
+              </Col>
+            </Row>
+          ) : null}
         </Container>
       </Col>
     </Row>

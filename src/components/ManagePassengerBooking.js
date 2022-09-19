@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 
 import dateFormat from "dateformat";
 
@@ -26,16 +26,19 @@ function ManagePassengerBooking({ rideId }) {
             >
               <Row className="align-items-center mb-2">
                 <Col xs={11}>
-                  {dateFormat(booking.createdAt, "dd/mm")}:{" "}
-                  {t("translation:global.seat")}
-                  {booking.seatsBooked > 1 ? "s" : null}:{" "}
-                  <span className="text-success">{booking.seatsBooked}</span> |{" "}
-                  {t("translation:global.status")}:{" "}
+                  {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
+                  {t("translation:booking.summary1")}{" "}
+                  <span className="text-success">{booking.seatsBooked}</span>{" "}
+                  <span className="text-lowercase">
+                    {t("translation:global.seat")}
+                    {booking.seatsBooked > 1 ? "s" : null}:{" "}
+                  </span>{" "}
                   <span
                     className={`text-${bookingStatusVariant(
                       booking.BookingStatusId
                     )}`}
                   >
+                    <DotFillIcon size="16" verticalAlign="middle" />
                     {booking.BookingStatus.name}
                   </span>
                 </Col>

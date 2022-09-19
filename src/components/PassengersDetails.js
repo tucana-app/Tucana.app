@@ -87,7 +87,7 @@ const PassengersDetails = ({ rideId, booking }) => {
           ))}
         </>
       ) : (
-        <Row>
+        <Row className="mt-3">
           <Col>
             <p className="mb-0">
               {t("translation:PassengersDetails.noPassengers")}

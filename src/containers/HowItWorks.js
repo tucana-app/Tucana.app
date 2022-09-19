@@ -88,6 +88,12 @@ const HowItWorks = () => {
     setStepFive(false);
   };
 
+  // Step 6
+  const handleBackToStepFive = () => {
+    setStepFive(true);
+    setStepSix(false);
+  };
+
   // Handlers
   const handleStartTutorial = () => {
     setShowTutorial(true);
@@ -870,11 +876,17 @@ const HowItWorks = () => {
                     </Container>
 
                     <div className="fixed-bottom d-flex justify-content-center mb-5">
+                      <Button
+                        onClick={handleBackToStepFive}
+                        variant="warning"
+                        className="me-3"
+                      >
+                        <ArrowLeft size="24" /> {t("translation:global.goBack")}
+                      </Button>
                       {isLoggedIn ? (
                         <Button
                           onClick={() => setShowTutorial(false)}
                           variant="success"
-                          size="lg"
                         >
                           {t("translation:global.finish")}
                         </Button>

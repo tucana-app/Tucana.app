@@ -92,9 +92,9 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                       </p>
                       <CommentIcon size={24} className="text-success me-2" />
                       {t("translation:global.comment")}{" "}
-                      <span className="text-secondary">
+                      <small className="text-secondary">
                         {t("translation:global.notMandatory")}
-                      </span>
+                      </small>
                     </Form.Label>
                     <Form.Control
                       name="comment"

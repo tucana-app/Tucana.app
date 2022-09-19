@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -100,6 +100,7 @@ const Booking = () => {
                               bookingData.BookingStatusId
                             )}`}
                           >
+                            <DotFillIcon size="16" verticalAlign="middle" />
                             {bookingData.BookingStatus.name}
                           </span>
                         </p>
@@ -205,14 +206,14 @@ const Booking = () => {
                         className="cursor-pointer"
                       >
                         <Row className="align-items-center">
-                          <Col xs={3} md={2} className="text-end pe-0">
+                          <Col xs={3} md={2} className="pe-0">
                             <img
                               src={srcAvatar(bookingData.Ride.Driver.User)}
                               alt="Avatar"
                               className="img-fluid rounded-round cursor-pointer img-avatar"
                             />
                           </Col>
-                          <Col xs={6} className="text-start">
+                          <Col xs={6} className="text-start ps-0">
                             <p className="mb-0">
                               {bookingData.Ride.Driver.User.firstName}
                             </p>
@@ -249,60 +250,26 @@ const Booking = () => {
                 </Row>
               ) : null}
 
-              <h2 className="text-success text-center mt-3">
-                {t("translation:booking.rideDetails")}
-              </h2>
+              <Row>
+                <Col>
+                  <h4 className="text-success text-center mt-3">
+                    {t("translation:booking.rideDetails")}
+                  </h4>
+                </Col>
+              </Row>
 
               <RideDetails ride={bookingData.Ride} />
 
-              <Row className="mb-3 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  xl={4}
-                  className="border shadow rounded-5 mx-auto"
-                >
-                  <Container className="py-3 px-2">
-                    <Row className="align-items-center">
-                      <Col xs={6} className="text-center">
-                        <p className="mb-0">
-                          {t("translation:global.seatsAvailable")}:
-                        </p>
-                        <p className="mb-0">
-                          <span className="text-success">
-                            {bookingData.Ride.seatsLeft}
-                          </span>{" "}
-                          / {bookingData.Ride.seatsAvailable}
-                        </p>
-                      </Col>
-                      <Col xs={6} className="text-center">
-                        <p className="mb-0">
-                          {t("translation:global.status")}:{" "}
-                          <span
-                            className={`text-${rideStatusVariant(
-                              bookingData.Ride.RideStatus.id
-                            )}`}
-                          >
-                            {bookingData.Ride.RideStatus.name}
-                          </span>
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row className="mt-3">
-                      <Col className="text-center">
-                        <LinkContainer
-                          to={`/ride/${bookingData.RideId}`}
-                          className="cursor-pointer"
-                        >
-                          <Button variant="success">
-                            {t("translation:global.seeRide")}
-                          </Button>
-                        </LinkContainer>
-                      </Col>
-                    </Row>
-                  </Container>
+              <Row>
+                <Col className="text-center">
+                  <LinkContainer
+                    to={`/ride/${bookingData.RideId}`}
+                    className="cursor-pointer"
+                  >
+                    <Button variant="success">
+                      {t("translation:global.seeRide")}
+                    </Button>
+                  </LinkContainer>
                 </Col>
               </Row>
             </div>

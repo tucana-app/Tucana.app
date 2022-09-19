@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ChevronRightIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 
 import { getDriverBookingRide } from "../redux";
 import dateFormat from "dateformat";
@@ -37,19 +37,20 @@ function ManageDriverBooking({ rideId }) {
             >
               <Row className="align-items-center mb-2">
                 <Col xs={11}>
-                  {dateFormat(booking.createdAt, "dd/mm")}:{" "}
-                  {t("translation:global.seat")}
+                  {dateFormat(booking.createdAt, "dd/mm/yyyy")}:{" "}
+                  <strong>{booking.User.firstName}</strong>{" "}
+                  {t("translation:booking.summary2")}{" "}
+                  <span className="text-success">{booking.seatsBooked}</span>{" "}
+                  <span className="text-lowercase">
+                    {t("translation:global.seat")}
+                  </span>
                   {booking.seatsBooked > 1 ? "s" : null}:{" "}
-                  <span className="text-success">{booking.seatsBooked}</span> |{" "}
-                  <span>
-                    {t("translation:global.by")}: {booking.User.firstName}
-                  </span>{" "}
-                  | {t("translation:global.status")}:{" "}
                   <span
                     className={`text-${bookingStatusVariant(
                       booking.BookingStatusId
                     )}`}
                   >
+                    <DotFillIcon size="16" verticalAlign="middle" />
                     {booking.BookingStatus.name}
                   </span>
                 </Col>

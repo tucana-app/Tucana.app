@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ArrowRightIcon } from "@primer/octicons-react";
+import { ArrowRightIcon, DotFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
 import GoBack from "../components/GoBack";
@@ -17,7 +17,9 @@ const Bookings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { bookingStatusVariant } = useSelector((state) => state.global);
+  const { bookingStatusVariant, rideStatusVariant } = useSelector(
+    (state) => state.global
+  );
   const { isLoadingUserBookings, userBookingsData } = useSelector(
     (state) => state.ride
   );
@@ -38,12 +40,10 @@ const Bookings = () => {
       <GoBack />
 
       <Container className="mb-5">
-        <Row className="justify-content-center mb-4">
-          <Col className="text-center">
-            <div>
-              <h1 className="title mb-0">{t("translation:global.bookings")}</h1>
-              <p className="lead">{t("translation:bookings.subTitle")}</p>
-            </div>
+        <Row className="justify-content-center text-center mb-3">
+          <Col>
+            <h1 className="title mb-0">{t("translation:global.bookings")}</h1>
+            <p className="lead">{t("translation:bookings.subTitle")}</p>
           </Col>
         </Row>
 
@@ -62,76 +62,89 @@ const Bookings = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border shadow-sm rounded mx-auto"
+                className="border shadow-sm rounded mx-auto px-0 mb-2"
               >
-                <Container className="py-3 px-2">
-                  <Row className="mb-3">
-                    <Col>
-                      <h4 className="text-center">
-                        {dateFormat(booking.createdAt, "dd/mm/yyyy")}
-                      </h4>
-                    </Col>
-                  </Row>
-                  <Row className="align-items-center">
-                    <Col className="text-center">
-                      <p className="mb-0">
-                        <span className="fw-bold">
+                <Container className="mt-1 px-0">
+                  <LinkContainer
+                    to={`/booking/${booking.id}`}
+                    className="cursor-pointer"
+                  >
+                    <Row className="align-items-center mx-2 my-1">
+                      <Col xs={5} className="text-center">
+                        <p className="fw-bold mb-0">
                           {booking.Ride.origin.city}
-                        </span>
-                        <ArrowRightIcon
-                          size={24}
-                          className="text-success ms-1"
-                        />{" "}
-                        <span className="fw-bold">
+                        </p>
+                        <p className="small mb-0">
+                          {booking.Ride.origin.province}
+                        </p>
+                      </Col>
+                      <Col xs={1} className="text-lowercase">
+                        {t("translation:global.to")}
+                      </Col>
+                      <Col xs={5} className="text-center">
+                        <p className="fw-bold mb-0">
                           {booking.Ride.destination.city}
-                        </span>
-                      </p>
-                      <p
-                        className={
-                          isDateInPast(booking.Ride.dateTimeOrigin, new Date())
-                            ? "text-warning"
-                            : null
-                        }
-                      >
-                        ({dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yy")})
+                        </p>
+                        <p className="small mb-0">
+                          {booking.Ride.destination.province}
+                        </p>
+                      </Col>
+                      <Col xs={1}>
+                        <ArrowRightIcon size={24} className="text-success" />
+                      </Col>
+                    </Row>
+                  </LinkContainer>
+
+                  <Row className="justify-content-center border border-start-0 border-end-0 mx-0 py-1">
+                    <Col xs={2}>{t("translation:global.booking")}:</Col>
+
+                    <Col xs={4}>
+                      <p className="mb-0">
+                        {dateFormat(booking.createdAt, "dd/mm/yyyy")}
                       </p>
                     </Col>
-                  </Row>
-                  <Row className="align-items-center mb-3">
-                    <Col xs={6} className="text-center">
-                      <h4>
-                        {t("translation:global.seat")}
-                        {booking.seatsBooked > 1 ? "s" : null}:{" "}
-                        <span className="text-success">
-                          {booking.seatsBooked}
-                        </span>
-                      </h4>
-                    </Col>
-                    <Col xs={6} className="text-center">
-                      <h4>
+
+                    <Col xs={6}>
+                      <p className="mb-0">
                         {t("translation:global.status")}:{" "}
                         <span
                           className={`text-${bookingStatusVariant(
                             booking.BookingStatus.id
                           )}`}
                         >
+                          <DotFillIcon size="16" verticalAlign="middle" />
                           {booking.BookingStatus.name}
                         </span>
-                      </h4>
+                      </p>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col className="text-center">
-                      <LinkContainer to={`/ride/${booking.RideId}`}>
-                        <Button variant="outline-success" className="me-2">
-                          {t("translation:global.seeRide")}
-                        </Button>
-                      </LinkContainer>
-                      <LinkContainer to={`/booking/${booking.id}`}>
-                        <Button variant="success">
-                          {t("translation:global.seeBooking")}
-                        </Button>
-                      </LinkContainer>
+
+                  <Row className="text-secondary justify-content-center mx-0 py-1">
+                    <Col xs={2}>{t("translation:global.ride")}:</Col>
+
+                    <Col xs={4}>
+                      <p className="mb-0">
+                        {dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yyyy")}
+                      </p>
+                    </Col>
+                    <Col xs={6}>
+                      {t("translation:global.status")}:{" "}
+                      <span
+                        className={`text-${rideStatusVariant(
+                          booking.Ride.RideStatusId
+                        )}`}
+                      >
+                        <DotFillIcon size="16" verticalAlign="middle" />
+                        {booking.Ride.RideStatus.name}
+                      </span>{" "}
+                      <Link
+                        to={`/ride/${booking.RideId}`}
+                        className="cursor-pointer"
+                      >
+                        <small className="text-secondary text-decoration-underline text-lowercase">
+                          ({t("translation:global.view")})
+                        </small>
+                      </Link>
                     </Col>
                   </Row>
                 </Container>
