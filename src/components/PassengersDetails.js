@@ -58,11 +58,13 @@ const PassengersDetails = ({ rideId, booking }) => {
             <Row key={index} className="mb-2">
               <Col className="d-inline-flex align-items-center">
                 <p className="flex-grow-1 mb-0">
-                  {t("translation:global.passenger")}:{" "}
-                  <span className="text-success">{booking.User.firstName}</span>{" "}
-                  | {t("translation:global.seat")}
-                  {booking.seatsBooked > 1 ? "s" : null}:{" "}
+                  <strong>{booking.User.firstName}</strong>{" "}
+                  {t("translation:booking.summary2")}{" "}
                   <span className="text-success">{booking.seatsBooked}</span>{" "}
+                  <span className="text-lowercase">
+                    {t("translation:global.seat")}
+                    {booking.seatsBooked > 1 ? "s" : null}
+                  </span>
                 </p>
                 <div className="d-xs-screen text-end">
                   <SendMessageButton

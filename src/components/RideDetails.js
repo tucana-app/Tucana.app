@@ -110,7 +110,7 @@ function RideDetails({ ride }) {
                 </span>
               </p>
             </Col>
-            <Col xs={6}>
+            <Col xs={6} className="text-center">
               <p className="mb-0">
                 {t("translation:global.seatsAvailable")}:{" "}
                 <span className="text-success">{ride.seatsLeft}</span>/

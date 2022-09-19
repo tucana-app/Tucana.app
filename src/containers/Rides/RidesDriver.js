@@ -12,6 +12,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverRides } from "../../redux";
+import { ChevronRight } from "react-bootstrap-icons";
 
 const RidesDriver = () => {
   const { t } = useTranslation();
@@ -95,10 +96,7 @@ const RidesDriver = () => {
                               </p>
                             </Col>
                             <Col xs={1}>
-                              <ArrowRightIcon
-                                size={24}
-                                className="text-success"
-                              />
+                              <ChevronRight />
                             </Col>
                           </Row>
 

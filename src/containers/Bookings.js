@@ -12,6 +12,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { isDateInPast } from "../helpers";
 
 import { getUserBookings } from "../redux";
+import { ChevronRight } from "react-bootstrap-icons";
 
 const Bookings = () => {
   const { t } = useTranslation();
@@ -90,15 +91,13 @@ const Bookings = () => {
                         </p>
                       </Col>
                       <Col xs={1}>
-                        <ArrowRightIcon size={24} className="text-success" />
+                        <ChevronRight />
                       </Col>
                     </Row>
                   </LinkContainer>
 
-                  <Row className="justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                    <Col xs={2}>{t("translation:global.booking")}:</Col>
-
-                    <Col xs={4}>
+                  <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
+                    <Col xs={5}>
                       <p className="mb-0">
                         {dateFormat(booking.createdAt, "dd/mm/yyyy")}
                       </p>
@@ -116,35 +115,6 @@ const Bookings = () => {
                           {booking.BookingStatus.name}
                         </span>
                       </p>
-                    </Col>
-                  </Row>
-
-                  <Row className="text-secondary justify-content-center mx-0 py-1">
-                    <Col xs={2}>{t("translation:global.ride")}:</Col>
-
-                    <Col xs={4}>
-                      <p className="mb-0">
-                        {dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yyyy")}
-                      </p>
-                    </Col>
-                    <Col xs={6}>
-                      {t("translation:global.status")}:{" "}
-                      <span
-                        className={`text-${rideStatusVariant(
-                          booking.Ride.RideStatusId
-                        )}`}
-                      >
-                        <DotFillIcon size="16" verticalAlign="middle" />
-                        {booking.Ride.RideStatus.name}
-                      </span>{" "}
-                      <Link
-                        to={`/ride/${booking.RideId}`}
-                        className="cursor-pointer"
-                      >
-                        <small className="text-secondary text-decoration-underline text-lowercase">
-                          ({t("translation:global.view")})
-                        </small>
-                      </Link>
                     </Col>
                   </Row>
                 </Container>

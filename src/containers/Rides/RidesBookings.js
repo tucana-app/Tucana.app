@@ -11,7 +11,7 @@ import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverBookings } from "../../redux";
 import { DotFillIcon } from "@primer/octicons-react";
-import { ArrowRight } from "react-bootstrap-icons";
+import { ArrowRight, ChevronRight } from "react-bootstrap-icons";
 
 const RidesBookings = () => {
   const { t } = useTranslation();
@@ -101,7 +101,7 @@ const RidesBookings = () => {
                         </p>
                       </Col>
                       <Col xs={2} className="text-center rounded">
-                        <ArrowRight size="24" />
+                        <ChevronRight />
                       </Col>
                     </Row>
                   </Link>

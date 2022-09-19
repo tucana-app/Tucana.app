@@ -229,7 +229,7 @@
 		"step": "Étape",
 		"submit": "Soumettre",
 		"time": "heure",
-		"to": "À l'adresse suivante :",
+		"to": "à",
 		"total": "Total",
 		"username": "Nom d'utilisateur",
 		"vehicle": "Véhicule",
@@ -443,7 +443,7 @@
 	},
 	"ridesDriver": {
 		"subTitle": "Tous les trajets que vous avez soumis",
-		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}</2>.",
+		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}}</2>.",
 		"title": "Trajets proposés"
 	},
 	"ridesToConfirm": {

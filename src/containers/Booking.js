@@ -84,7 +84,9 @@ const Booking = () => {
                             </>
                           )}{" "}
                           <strong>{bookingData.seatsBooked}</strong>{" "}
-                          {t("translation:global.seat")}
+                          <span className="text-lowercase">
+                            {t("translation:global.seat")}
+                          </span>
                           {bookingData.seatsBooked > 1 ? "s" : null} to{" "}
                           <strong>{bookingData.Ride.destination.city}</strong>{" "}
                           {t("translation:booking.summary4")}{" "}
