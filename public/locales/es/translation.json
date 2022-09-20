@@ -60,7 +60,7 @@
 		"complaint": "Tengo una queja",
 		"confirm": "Confirmo",
 		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
-		"confirmRideMessage": "¿Tuvo lugar la ride en el <2>{{date}}</2>?",
+		"confirmRideMessage": "¿Ha tenido lugar la ride?",
 		"message": "Ahora tienes que contarnos si todo fue bien, y si hiciste este ride",
 		"title": "Confirmar la ride"
 	},

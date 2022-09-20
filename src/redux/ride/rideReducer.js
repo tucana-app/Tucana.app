@@ -9,7 +9,7 @@ const initialState = {
   submitFormOfferRideSuccess: false,
   submitFormOfferRideFail: "",
 
-  isloadingRide: false,
+  isLoadingRide: false,
   rideData: {},
   rideError: "",
 
@@ -183,13 +183,13 @@ function rideReducer(state = initialState, action) {
     case rideTypes.GET_RIDE_REQUEST:
       return {
         ...state,
-        isloadingRide: true,
+        isLoadingRide: true,
       };
 
     case rideTypes.GET_RIDE_SUCCESS:
       return {
         ...state,
-        isloadingRide: false,
+        isLoadingRide: false,
         rideData: action.payload,
         rideError: "",
       };
@@ -197,7 +197,7 @@ function rideReducer(state = initialState, action) {
     case rideTypes.GET_RIDE_FAIL:
       return {
         ...state,
-        isloadingRide: false,
+        isLoadingRide: false,
         rideData: {},
         rideError: action.payload,
       };

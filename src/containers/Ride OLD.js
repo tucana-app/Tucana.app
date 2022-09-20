@@ -36,7 +36,7 @@ const Ride = () => {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
   const {
-    isloadingRide,
+    isLoadingRide,
     rideData,
     rideError,
     isloadingUserRideBookingList,
@@ -88,7 +88,7 @@ const Ride = () => {
       ) : null}
 
       <Container className="mb-5">
-        {isloadingRide ? (
+        {isLoadingRide ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />

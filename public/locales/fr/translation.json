@@ -60,7 +60,7 @@
 		"complaint": "Je souhaite déposer une plainte",
 		"confirm": "je confirme",
 		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
-		"confirmRideMessage": "Le trajet le <2>{{date}}</2> a t-il eu lieu ?",
+		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
 		"message": "Maintenant, tu dois nous dire si tout s'est bien passé et si tu as fait ce trajet.",
 		"title": "Confirmer le trajet"
 	},

@@ -60,7 +60,7 @@
 		"complaint": "I have a complaint",
 		"confirm": "I confirm",
 		"confirmNoRide": "Please confirm that the ride didn't take place",
-		"confirmRideMessage": "Did the ride on the <2>{{date}}</2> took place?",
+		"confirmRideMessage": "Did the ride took place?",
 		"message": "Now you have to let us know if everything went well, and if you did this ride",
 		"title": "Confirm the ride"
 	},

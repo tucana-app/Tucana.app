@@ -10,7 +10,6 @@ import {
   StarFillIcon,
 } from "@primer/octicons-react";
 import { LinkContainer } from "react-router-bootstrap";
-import dateFormat from "dateformat";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
@@ -26,15 +25,14 @@ const ConfirmRide = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
-    isloadingRide,
-    isloadingSubmitFormConfirmRide,
-    submitFormConfirmRideData,
-    submitFormConfirmRideError,
     isLoadingRide,
     rideData,
     rideError,
     isLoadingRidesToConfirm,
     ridesToConfirmData,
+    isloadingSubmitFormConfirmRide,
+    submitFormConfirmRideData,
+    submitFormConfirmRideError,
   } = useSelector((state) => state.ride);
 
   const [submitted, setSubmitted] = useState(false);
@@ -70,13 +68,13 @@ const ConfirmRide = () => {
       <GoBack />
 
       <Container className="mb-5">
-        {isloadingRide ? (
+        {isLoadingRide ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : !isLoadingRidesToConfirm && rideToConfirm() ? (
+        ) : rideData.ride && !isLoadingRidesToConfirm && rideToConfirm() ? (
           <div data-aos="fade-in">
             <Row>
               <Col
@@ -145,18 +143,7 @@ const ConfirmRide = () => {
                       <Row>
                         <Col className="mx-auto">
                           <p className="text-center">
-                            <Trans i18nKey="translation:confirmRide.confirmRideMessage">
-                              Did the ride on the{" "}
-                              <strong>
-                                {{
-                                  date: dateFormat(
-                                    rideData.ride.dateTimeOrigin,
-                                    "dd/mm/yyyy"
-                                  ),
-                                }}
-                              </strong>{" "}
-                              took place?
-                            </Trans>
+                            {t("translation:confirmRide.confirmRideMessage")}
                           </p>
                         </Col>
                       </Row>
@@ -258,7 +245,7 @@ const ConfirmRide = () => {
         ) : rideError ? (
           <Redirect to="/" />
         ) : (
-          <Redirect to="/rides" />
+          <GoBack />
         )}
       </Container>
     </div>
