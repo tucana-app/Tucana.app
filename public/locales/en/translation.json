@@ -457,7 +457,7 @@
 	"rides": {
 		"bookingsReceived": "Bookings received",
 		"ridesBookings": "Your rides & bookings",
-		"ridesOffered": "Rides offered",
+		"ridesOffered": "Ride(s) offered",
 		"ridesToConfirm": "Rides to confirm"
 	},
 	"ridesBookings": {

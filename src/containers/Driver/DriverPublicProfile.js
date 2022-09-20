@@ -74,12 +74,29 @@ const DriverPublicProfile = () => {
               >
                 <Container className="py-3 px-2">
                   <Row className="align-items-center">
-                    <Col>
-                      <p>{t("translation:global.ratings")}</p>
+                    <Col xs={12}>
+                      <p className="fw-bold mb-1">
+                        {t("translation:global.bio")}
+                      </p>
+                    </Col>
+                    <Col xs={12}>
+                      <p className="mb-0">
+                        {driverProfileData.user.biography &&
+                        driverProfileData.user.biography !== "" ? (
+                          <p>{driverProfileData.user.biography}</p>
+                        ) : (
+                          "-"
+                        )}
+                      </p>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className="align-items-center">
+                    <Col xs={12}>
+                      <p className="fw-bold mb-0">
+                        {t("translation:global.ratings")}
+                      </p>
+                    </Col>
+                    <Col xs={12}>
                       <DisplayRating
                         rating={driverProfileData.user.Rating}
                         type="driver"
@@ -103,7 +120,7 @@ const DriverPublicProfile = () => {
                   <Row className="align-items-center">
                     <Col>
                       <p className="text-lowercase">
-                        {driverProfileData.ridesCount}{" "}
+                        <strong>{driverProfileData.ridesCount}</strong>{" "}
                         {t("translation:rides.ridesOffered")}
                       </p>
                       <p className="mb-0">

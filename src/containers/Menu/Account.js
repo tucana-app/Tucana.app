@@ -108,7 +108,7 @@ function Account() {
                 </Col>
               </Row>
 
-              <Row className="align-items-center">
+              <Row className="align-items-center mb-3">
                 <Col xs={12} md={4}>
                   <p className="text-secondary mb-0">
                     {t("translation:global.memberSince")}
@@ -118,6 +118,21 @@ function Account() {
                   <p className="mb-0">
                     {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
                   </p>
+                </Col>
+              </Row>
+
+              <Row className="align-items-center">
+                <Col xs={12} md={4}>
+                  <p className="text-secondary mb-0">
+                    {t("translation:global.bio")}
+                  </p>
+                </Col>
+                <Col>
+                  {currentUser.biography && currentUser.biography !== "" ? (
+                    <p className="mb-0">{currentUser.biography}</p>
+                  ) : (
+                    <p className="mb-0">-</p>
+                  )}
                 </Col>
               </Row>
             </Container>
@@ -160,34 +175,6 @@ function Account() {
                       {t("translation:global.view")}
                     </Button>
                   </LinkContainer>
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-
-        <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
-            <Container className="p-3">
-              <Row className="align-items-center mb-3">
-                <Col xs={12} md={4}>
-                  <p className="text-secondary mb-0">
-                    {t("translation:global.bio")}
-                  </p>
-                </Col>
-                <Col>
-                  {currentUser.biography && currentUser.biography !== "" ? (
-                    <p className="mb-0">{currentUser.biography}</p>
-                  ) : (
-                    <p className="mb-0">-</p>
-                  )}
                 </Col>
               </Row>
             </Container>
