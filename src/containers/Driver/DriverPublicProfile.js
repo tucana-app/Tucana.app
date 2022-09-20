@@ -80,9 +80,6 @@ const DriverPublicProfile = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <p className="mb-0">
-                        {t("translation:ratings.asDriver")}:
-                      </p>
                       <DisplayRating
                         rating={driverProfileData.user.Rating}
                         type="driver"

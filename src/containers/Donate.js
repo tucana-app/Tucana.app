@@ -14,29 +14,29 @@ const Donate = () => {
       <Container data-aos="fade-in">
         <Row>
           <Col className="text-center">
-            <h1 className="title">{t("translation:donate.title")}</h1>
-            <p className="lead">{t("translation:donate.subTitle")}</p>
-            <p className="lead">{t("translation:donate.paragraph")}</p>
+            <h1 className="title mb-0">{t("translation:donate.title")}</h1>
+            <p>{t("translation:donate.subTitle")}</p>
+            <p>{t("translation:donate.paragraph")}</p>
           </Col>
         </Row>
-        <Row className="mb-3">
-          <Col className="text-center">
+        <Row className="justify-content-around mb-3">
+          <Col className="text-end">
             <a
               href="https://giveth.io/project/Carpooling-App-in-Costa-Rica-0"
               target="blank"
-              className="me-3"
             >
               <Button variant="warning" size={"lg"}>
                 Giveth.io
               </Button>
             </a>
-
+          </Col>
+          <Col className="text-start">
             <a
               href="https://www.paypal.com/donate/?hosted_button_id=M4QRJF5GDHCKA"
               target="blank"
               className="me-3"
             >
-              <Button variant="success" size={"lg"}>
+              <Button variant="success" size="lg" className="px-4">
                 PayPal
               </Button>
             </a>
@@ -45,7 +45,7 @@ const Donate = () => {
         <Row>
           <Col className="text-center">
             <a href="https://fund.tucana.app" target="blank">
-              <Button variant="outline-success" size={"lg"}>
+              <Button variant="primary" size={"lg"}>
                 {t("translation:donate.crowdfunding")}
               </Button>
             </a>

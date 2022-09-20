@@ -29,7 +29,7 @@ function ManageDriverBooking({ rideId }) {
       {!isloadingDriverRideBookings && driverRideBookingsData.length > 0 ? (
         <>
           {driverRideBookingsData.map((booking, index) =>
-            booking.BookingStatus.id < 3 ? (
+            booking.BookingStatus.id !== 4 ? (
               <LinkContainer
                 to={`/booking/${booking.id}`}
                 className="cursor-pointer"

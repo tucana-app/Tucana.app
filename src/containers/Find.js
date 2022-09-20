@@ -123,7 +123,7 @@ const Find = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="bg-light border shadow rounded-5 pb-3 mx-auto hvr-grow hvr-grow-sm"
+                      className="bg-light border shadow rounded-5 pb-1 mx-auto hvr-grow hvr-grow-sm"
                     >
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
@@ -131,12 +131,14 @@ const Find = () => {
                         className="cursor-pointer"
                       >
                         <Container className="p-2">
-                          <Row className="mb-3">
+                          <Row>
                             <Col className="text-center">
-                              {dateFormat(
-                                ride.rideDetails.dateTimeOrigin,
-                                "dd/mm/yyyy"
-                              )}
+                              <p className="small mb-2">
+                                {dateFormat(
+                                  ride.rideDetails.dateTimeOrigin,
+                                  "dd/mm/yyyy"
+                                )}
+                              </p>
                             </Col>
                           </Row>
                           <Row>
@@ -155,9 +157,7 @@ const Find = () => {
                             </Col>
                             <Col>
                               <p className="line-height-md mb-0">
-                                <strong>
-                                  {ride.rideDetails.origin.city},{" "}
-                                </strong>
+                                <strong>{ride.rideDetails.origin.city}</strong>,{" "}
                                 <small>
                                   {ride.rideDetails.origin.province}
                                 </small>
@@ -171,7 +171,7 @@ const Find = () => {
                                 </span>{" "}
                                 km {t("translation:find.distanceOrigin")}
                               </small>
-                              <p>
+                              <p className="mb-0">
                                 <ArrowDownIcon
                                   size={24}
                                   className="text-success"
@@ -179,7 +179,7 @@ const Find = () => {
                               </p>
                             </Col>
                           </Row>
-                          <Row className="mb-4">
+                          <Row className="mb-2">
                             <Col xs={2} className="px-0">
                               <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
@@ -188,11 +188,12 @@ const Find = () => {
                                 )}
                               </p>
                             </Col>
-                            <Col xs={7}>
+                            <Col>
                               <p className="line-height-md mb-0">
                                 <strong>
-                                  {ride.rideDetails.destination.city},{" "}
+                                  {ride.rideDetails.destination.city}
                                 </strong>
+                                ,{" "}
                                 <small>
                                   {ride.rideDetails.destination.province}
                                 </small>
@@ -207,10 +208,9 @@ const Find = () => {
                                 km {t("translation:find.distanceDestination")}
                               </small>
                             </Col>
-                            <Col xs={3}></Col>
                           </Row>
                           <Row className="align-items-center">
-                            <Col xs={3} className="pe-0">
+                            <Col xs={2} className="px-0 mx-0">
                               <p className="text-end mb-0">
                                 <img
                                   src={srcAvatar(ride.rideDetails.Driver.User)}
@@ -219,7 +219,7 @@ const Find = () => {
                                 />
                               </p>
                             </Col>
-                            <Col xs={5} className="ps-0">
+                            <Col xs={6} className="ps-0">
                               <p className="mb-0">
                                 {ride.rideDetails.Driver.User.firstName}
                               </p>
@@ -228,7 +228,7 @@ const Find = () => {
                                 type="driver"
                               />
                             </Col>
-                            <Col xs={4} className="text-center mx-auto">
+                            <Col xs={4} className="text-center">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
                                   {formatPrice(

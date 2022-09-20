@@ -7,7 +7,9 @@
 	},
 	"FAQ": {
 		"answer1": "As for now, all payments are made with cash money. You can arrange directly with the driver or your passengers for the currency, in CRC (Costa Rican Colones) or in USD (US dollars)",
+		"answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
 		"question1": "How the payment works?",
+		"question2": "How does refund works?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -57,11 +59,15 @@
 		"title": "Coming soon"
 	},
 	"confirmRide": {
+		"answer": "Thank you for submitting your answer",
+		"answerNo": "Can you tell us what went wrong? We would love to hear why you couldn't ride",
 		"complaint": "I have a complaint",
 		"confirm": "I confirm",
 		"confirmNoRide": "Please confirm that the ride didn't take place",
 		"confirmRideMessage": "Did the ride took place?",
 		"message": "Now you have to let us know if everything went well, and if you did this ride",
+		"rateRide": "Rate your ride",
+		"tellUsWhy": "Tell us why",
 		"title": "Confirm the ride"
 	},
 	"contact": {
@@ -427,6 +433,7 @@
 		"toDo": "Ratings to do"
 	},
 	"refundPolicy": {
+		"message": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
 		"title": "Refund Policy"
 	},
 	"report": {
@@ -441,10 +448,8 @@
 	},
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
-		"answer": "Your answer has been submitted",
 		"feedback": "Leave us a feedback",
 		"manageBookingRequests": "Manage your booking requests",
-		"rateRide": "Rate your ride",
 		"reviewRide": "Review the ride",
 		"title": "Ride",
 		"viewTrip": "View trip"

@@ -22,7 +22,7 @@ const RefundPolicy = () => {
             className="text-center mx-auto"
           >
             <h1 className="title">{t("translation:refundPolicy.title")}</h1>
-            <p>{t("translation:global.comingSoon")}</p>
+            <p>{t("translation:refundPolicy.message")}</p>
           </Col>
         </Row>
       </Container>

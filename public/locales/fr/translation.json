@@ -7,7 +7,9 @@
 	},
 	"FAQ": {
 		"answer1": "Pour l'instant, tous les paiements se font en espèces. Vous pouvez convenir directement avec le chauffeur ou vos passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer2": "Pour l'instant, la plateforme ne gère pas les remboursements car nous ne gérons pas les paiements. Vous pouvez contacter les personnes directement avec la fonction de messagerie dès l'application.",
 		"question1": "Comment fonctionne le paiement?",
+		"question2": "Comment fonctionne le remboursement ?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -57,11 +59,15 @@
 		"title": "À venir"
 	},
 	"confirmRide": {
+		"answer": "Merci d'avoir soumis ta réponse",
+		"answerNo": "Peux-tu nous dire ce qui a mal tourné ? Nous aimerions savoir pourquoi tu n'as pas pu faire le trajet.",
 		"complaint": "Je souhaite déposer une plainte",
-		"confirm": "je confirme",
+		"confirm": "Je confirme",
 		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
 		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
 		"message": "Maintenant, tu dois nous dire si tout s'est bien passé et si tu as fait ce trajet.",
+		"rateRide": "Note ton trajet",
+		"tellUsWhy": "Dis nous pourquoi",
 		"title": "Confirmer le trajet"
 	},
 	"contact": {
@@ -122,7 +128,7 @@
 		"comingSoon": "À venir",
 		"comment": "Commentaire",
 		"confirm": "Confirmer",
-		"confirmingRide": "Vous avez confirmé le trajet.",
+		"confirmingRide": "Tu as confirmé le trajet",
 		"congratulations": "Félicitations ",
 		"contact": "Contacter",
 		"contactUs": "Contactez-nous",
@@ -427,6 +433,7 @@
 		"toDo": "Cotes à faire"
 	},
 	"refundPolicy": {
+		"message": "Pour l'instant, la plateforme ne gère pas les remboursements car nous ne gérons pas les paiements. Vous pouvez contacter les personnes directement avec la fonction de messagerie dès l'application.",
 		"title": "Politique de remboursement"
 	},
 	"report": {
@@ -441,10 +448,8 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
-		"answer": "Ta réponse a été envoyée",
 		"feedback": "Laisse-nous un commentaire",
 		"manageBookingRequests": "Gérez vos demandes de réservation",
-		"rateRide": "Note ton trajet",
 		"reviewRide": "Revoir le trajet",
 		"title": "Ride",
 		"viewTrip": "Voir le voyage"
@@ -452,8 +457,8 @@
 	"rides": {
 		"bookingsReceived": "Réservations reçues",
 		"ridesBookings": "Tes trajets & réservations",
-		"ridesOffered": "Manèges proposés",
-		"ridesToConfirm": "Manèges à confirmer"
+		"ridesOffered": "Trajets proposés",
+		"ridesToConfirm": "Trajets à confirmer"
 	},
 	"ridesBookings": {
 		"subTitle": "Trouvez votre passager potentiel ici",

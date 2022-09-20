@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {
   ArrowLeftIcon,
   XIcon,
@@ -68,13 +68,13 @@ const ConfirmRide = () => {
       <GoBack />
 
       <Container className="mb-5">
-        {isLoadingRide ? (
+        {isLoadingRide || isLoadingRidesToConfirm ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : rideData.ride && !isLoadingRidesToConfirm && rideToConfirm() ? (
+        ) : rideData.ride && rideToConfirm() ? (
           <div data-aos="fade-in">
             <Row>
               <Col
@@ -99,16 +99,16 @@ const ConfirmRide = () => {
                 xl={4}
                 className="border border-2 border-warning shadow rounded-5 mx-auto"
               >
-                <Container className="py-3 px-2">
+                <Container className="py-5 px-2">
                   {!isloadingSubmitFormConfirmRide &&
                   submittedNo &&
                   (submitFormConfirmRideError !== "" ||
                     submitFormConfirmRideData.flag !== "SUCCESS") ? (
                     <Row data-aos="fade-in">
-                      <Col className="text-center mx-auto">
-                        <p className="text-center">
+                      <Col className="text-center px-0 mx-auto">
+                        <h3 className="text-center mb-3">
                           {t("translation:confirmRide.confirmNoRide")}
-                        </p>
+                        </h3>
 
                         <Button
                           variant="warning"
@@ -142,9 +142,9 @@ const ConfirmRide = () => {
                     <div data-aos="fade-in">
                       <Row>
                         <Col className="mx-auto">
-                          <p className="text-center">
+                          <h3 className="text-center mb-3">
                             {t("translation:confirmRide.confirmRideMessage")}
-                          </p>
+                          </h3>
                         </Col>
                       </Row>
                       <Row>
@@ -187,37 +187,56 @@ const ConfirmRide = () => {
                   ) : (
                     <Row data-aos="fade-in">
                       <Col xs={12} className="text-center">
-                        <p>{t("translation:ride.answer")}</p>
+                        <h3 className="text-center mb-3">
+                          {t("translation:confirmRide.answer")} 🎉
+                        </h3>
                       </Col>
-                      <Col
-                        xs={12}
-                        md={6}
-                        className="text-center text-md-end mb-3 mb-md-0"
-                      >
-                        <LinkContainer to="/ratings">
-                          <Button
-                            variant="success"
-                            className="hvr-icon-grow me-2"
-                          >
-                            {t("translation:ride.rateRide")}
-                            <StarFillIcon
-                              size={24}
-                              className="hvr-icon text-warning ms-2"
-                            />
-                          </Button>
-                        </LinkContainer>
-                      </Col>
-                      <Col xs={12} md={6} className="text-center text-md-start">
-                        <a
-                          href="https://forms.gle/Fi5ek3ZTATc1DcG36"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button variant="warning">
-                            {t("translation:ride.feedback")}
-                          </Button>
-                        </a>
-                      </Col>
+
+                      {submittedNo ? (
+                        <>
+                          <Col xs={12} className="text-center mb-3">
+                            {t("translation:confirmRide.answerNo")}
+                          </Col>
+                          <Col xs={12} className="text-center">
+                            <LinkContainer to="/contact">
+                              <Button variant="success" size="lg">
+                                {t("translation:confirmRide.tellUsWhy")}
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        </>
+                      ) : (
+                        <>
+                          <Col xs={12} className="text-center mb-3">
+                            <LinkContainer to="/ratings">
+                              <Button
+                                variant="outline-dark"
+                                size="lg"
+                                className="animate__animated animate__heartBeat animate__slower animate__infinite me-2"
+                              >
+                                {t("translation:confirmRide.rateRide")}
+                                <StarFillIcon
+                                  size={24}
+                                  className="text-warning ms-2"
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+
+                          <Col xs={12} className="text-center">
+                            <a
+                              href="https://forms.gle/Fi5ek3ZTATc1DcG36"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button variant="warning">
+                                {t("translation:ride.feedback")}
+                              </Button>
+                            </a>
+                          </Col>
+                        </>
+                      )}
                     </Row>
                   )}
                 </Container>
@@ -226,9 +245,11 @@ const ConfirmRide = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <Link to="/contact" className="text-secondary">
-                  <p>{t("translation:confirmRide.complaint")}</p>
-                </Link>
+                <p>
+                  <Link to="/contact" className="text-secondary">
+                    {t("translation:confirmRide.complaint")}
+                  </Link>
+                </p>
               </Col>
             </Row>
 
@@ -245,7 +266,7 @@ const ConfirmRide = () => {
         ) : rideError ? (
           <Redirect to="/" />
         ) : (
-          <GoBack />
+          <Redirect to="/rides/rides-to-confirm" />
         )}
       </Container>
     </div>

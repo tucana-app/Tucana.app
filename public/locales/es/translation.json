@@ -7,7 +7,9 @@
 	},
 	"FAQ": {
 		"answer1": "Por ahora, todos los pagos se realizan con dinero en efectivo. Puede acordar directamente con el conductor o sus pasajeros la moneda, en CRC (colones costarricenses) o en USD (dólares estadounidenses)",
+		"answer2": "Por ahora, la plataforma no gestiona el reembolso porque no gestionamos el pago. Puedes ponerte en contacto con la gente directamente con la función de mensajería de la aplicación.",
 		"question1": "Cómo funciona el pago",
+		"question2": "¿Cómo funciona el reembolso?",
 		"title": "Preguntas frecuentes"
 	},
 	"FormDriverResponseBooking": {
@@ -57,11 +59,15 @@
 		"title": "Próximamente"
 	},
 	"confirmRide": {
+		"answer": "Gracias por enviar su respuesta",
+		"answerNo": "¿Puedes decirnos qué fue lo que falló? Nos encantaría saber por qué no pudiste hacer la ride",
 		"complaint": "Tengo una queja",
 		"confirm": "Confirmo",
 		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
 		"confirmRideMessage": "¿Ha tenido lugar la ride?",
 		"message": "Ahora tienes que contarnos si todo fue bien, y si hiciste este ride",
+		"rateRide": "Clasifica tu ride",
+		"tellUsWhy": "Díganos por qué",
 		"title": "Confirmar la ride"
 	},
 	"contact": {
@@ -122,7 +128,7 @@
 		"comingSoon": "Próximamente",
 		"comment": "Comentario",
 		"confirm": "Confirme",
-		"confirmingRide": "Has confirmado el ride",
+		"confirmingRide": "Has confirmado la ride",
 		"congratulations": "felicitaciones",
 		"contact": "Contacte",
 		"contactUs": "Contáctenos",
@@ -427,6 +433,7 @@
 		"toDo": "Calificaciones para hacer"
 	},
 	"refundPolicy": {
+		"message": "Por ahora, la plataforma no gestiona el reembolso porque no gestionamos el pago. Puedes ponerte en contacto con la gente directamente con la función de mensajería de la aplicación.",
 		"title": "Política de reembolso"
 	},
 	"report": {
@@ -441,10 +448,8 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
-		"answer": "Tu respuesta ha sido enviada",
 		"feedback": "Déjanos un comentario",
 		"manageBookingRequests": "Gestione sus solicitudes de reserva",
-		"rateRide": "Clasifica tu ride",
 		"reviewRide": "Revisar el viaje",
 		"title": "Montar",
 		"viewTrip": "Ver viaje"
@@ -453,7 +458,7 @@
 		"bookingsReceived": "Reservas recibidas",
 		"ridesBookings": "Tus rides & reservacíon",
 		"ridesOffered": "Paseos ofrecidos",
-		"ridesToConfirm": "Viajes a confirmar"
+		"ridesToConfirm": "Rides a confirmar"
 	},
 	"ridesBookings": {
 		"subTitle": "Encuentre a su pasajero potencial aquí",
