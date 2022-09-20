@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 
 import GoBack from "../components/GoBack";
 
-import steps from "../assets/images/undraw_fill_form.svg";
 import authentication from "../assets/images/undraw_authentication.png";
 import select from "../assets/images/undraw_My_answer.png";
 import drivers from "../assets/images/undraw_by_my_car.png";
@@ -109,11 +108,6 @@ const HowItWorks = () => {
           <Col className="text-center">
             <h1 className="title">{t("translation:global.howItWorks")}</h1>
             <p>{t("translation:howItWorks.stepsService")}</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="text-center">
-            <img src={steps} alt="Car" width="150" className="img-fluid" />
           </Col>
         </Row>
         <Row className="mb-3">

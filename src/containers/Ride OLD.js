@@ -12,6 +12,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 import PassengersDetails from "../components/PassengersDetails";
 import GoBack from "../components/GoBack";
+import FormConfirmRide from "../components/FormConfirmRide";
 import SendMessageButton from "../components/SendMessageButton";
 import DisplayRating from "../components/DisplayRating";
 
@@ -19,7 +20,7 @@ import { isDateInPast } from "../helpers";
 
 import {
   getRide,
-  getUserBookingsRide,
+  getUserBookingRide,
   getRidesToConfirm,
   displayNavBar,
 } from "../redux";
@@ -38,18 +39,24 @@ const Ride = () => {
     isloadingRide,
     rideData,
     rideError,
-    isloadingUserRideBookings,
-    userRideBookingsData,
+    isloadingUserRideBookingList,
+    userRideBookingData,
+    isLoadingRidesToConfirm,
+    ridesToConfirmData,
   } = useSelector((state) => state.ride);
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getRide(rideId));
       dispatch(getRidesToConfirm(currentUser.id));
-      dispatch(getUserBookingsRide(currentUser.id, rideId));
+      dispatch(getUserBookingRide(currentUser.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const rideToConfirm = () => {
+    return ridesToConfirmData.find((ride) => ride.id === parseInt(rideId));
+  };
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -71,7 +78,7 @@ const Ride = () => {
               {t("translation:global.bookThisRide")}
             </Button>
           </Link>
-          {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
+          {!isloadingUserRideBookingList && userRideBookingData.length > 0 ? (
             <p className="smaller text-center text-warning mb-0">
               <AlertIcon size={24} className="me-2" />
               {t("translation:global.alreadyBooking")}
@@ -99,6 +106,30 @@ const Ride = () => {
 
             <RideDetails ride={rideData.ride} />
 
+            {!isLoadingRidesToConfirm && rideToConfirm() ? (
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="border border-2 border-warning shadow rounded-5 mx-auto"
+                >
+                  <Container className="py-3 px-2">
+                    <Row>
+                      <Col>
+                        <h3 className="text-center">
+                          {t("translation:ride.reviewRide")}
+                        </h3>
+                      </Col>
+                    </Row>
+
+                    <FormConfirmRide ride={rideToConfirm()} />
+                  </Container>
+                </Col>
+              </Row>
+            ) : null}
             <Row>
               <Col>
                 <h4 className="text-success text-center mt-3">
@@ -178,8 +209,8 @@ const Ride = () => {
                   </Col>
                 </Row>
 
-                {!isloadingUserRideBookings &&
-                userRideBookingsData.length > 0 ? (
+                {!isloadingUserRideBookingList &&
+                userRideBookingData.length > 0 ? (
                   <Row className="mb-3 mx-1 mx-sm-0">
                     <Col
                       xs={12}

@@ -11,13 +11,14 @@ import toucan from "../../assets/images/avatars/toucan.jpg";
 import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
 import none from "../../assets/images/avatars/default.svg";
+import { t } from "i18next";
 // import filter from "../../assets/images/filter-select.png";
 
 const initialState = {
   seatsMax: 3,
 
-  labelStringField: "You must enter a string",
-  labelRequiredField: "This field is required",
+  labelStringField: t("translation:global.errors.labelStringField"),
+  labelRequiredField: t("translation:global.errors.fieldRequired"),
 
   feedback: {},
 

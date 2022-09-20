@@ -8,15 +8,15 @@ import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 function ManagePassengerBooking({ rideId }) {
   const { t } = useTranslation();
   const { bookingStatusVariant } = useSelector((state) => state.global);
-  const { isloadingUserRideBookingList, userRideBookingData } = useSelector(
+  const { isloadingUserRideBookings, userRideBookingsData } = useSelector(
     (state) => state.ride
   );
 
   return (
     <>
-      {!isloadingUserRideBookingList && userRideBookingData.length > 0 ? (
+      {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
         <>
-          {userRideBookingData.map((booking, index) => (
+          {userRideBookingsData.map((booking, index) => (
             <LinkContainer
               to={`/booking/${booking.id}`}
               className="cursor-pointer"

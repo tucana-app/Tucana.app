@@ -3,6 +3,7 @@ import axios from "axios";
 import { getNotifications, setToast } from "../index";
 import { parseText } from "../../helpers";
 import * as Yup from "yup";
+import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -267,7 +268,7 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: "Your ride is now online",
+              bodyText: t("translation:global.rideOnline"),
               variant: "success",
             })
           );
@@ -411,12 +412,12 @@ export const getBookingRequested = () => {
   };
 };
 
-export const getBooking = (rideId) => {
+export const getBooking = (bookingId) => {
   return (dispatch) => {
     dispatch(getBookingRequested());
 
     axios
-      .get(URL_API + "/booking/" + rideId)
+      .get(URL_API + "/booking/" + bookingId)
       .then((response) => {
         // console.log(response.data);
 
@@ -638,13 +639,13 @@ export const submitFormBookRide = (
           setToast({
             show: true,
             headerText: "Success",
-            bodyText: "Your booking has been submitted to the driver",
+            bodyText: t("translation:global.bookingSubmitted"),
             variant: "success",
           })
         );
 
         // Refresh everything
-        dispatch(getUserBookingRide(user.id, ride.id));
+        dispatch(getUserBookingsRide(user.id, ride.id));
         dispatch(getUserBookings(user.id));
         dispatch(submitFormBookRideSuccess(response.data));
       })
@@ -711,7 +712,7 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
               setToast({
                 show: true,
                 headerText: "Success",
-                bodyText: "You have accepted the booking",
+                bodyText: t("translation:global.acceptingBooking"),
                 variant: "success",
               })
             );
@@ -786,18 +787,18 @@ export const submitFormDriverResponseBookingFail = (error) => {
 
 // Get all the booking from one user on the ride's page
 
-export const getUserBookingRideRequested = () => {
+export const getUserBookingsRideRequested = () => {
   return {
     type: rideTypes.GET_USER_RIDE_BOOKING_REQUEST,
   };
 };
 
-export const getUserBookingRide = (userId, rideId) => {
+export const getUserBookingsRide = (userId, rideId) => {
   return (dispatch) => {
-    dispatch(getUserBookingRideRequested());
+    dispatch(getUserBookingsRideRequested());
 
     axios
-      .get(URL_API + "/ride/user-booking-ride", {
+      .get(URL_API + "/ride/user-bookings-ride", {
         params: {
           userId,
           rideId,
@@ -805,7 +806,7 @@ export const getUserBookingRide = (userId, rideId) => {
       })
       .then((response) => {
         // console.log(response);
-        dispatch(getUserBookingRideSuccess(response.data));
+        dispatch(getUserBookingsRideSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -817,19 +818,19 @@ export const getUserBookingRide = (userId, rideId) => {
           error.message ||
           error.toString();
 
-        dispatch(getUserBookingRideFail(message));
+        dispatch(getUserBookingsRideFail(message));
       });
   };
 };
 
-export const getUserBookingRideSuccess = (data) => {
+export const getUserBookingsRideSuccess = (data) => {
   return {
     type: rideTypes.GET_USER_RIDE_BOOKING_SUCCESS,
     payload: data,
   };
 };
 
-export const getUserBookingRideFail = (error) => {
+export const getUserBookingsRideFail = (error) => {
   return {
     type: rideTypes.GET_USER_RIDE_BOOKING_FAIL,
     payload: error,
@@ -932,18 +933,18 @@ export const getDriverBookingsFail = (error) => {
 
 // Get all the booking from one user on the ride's page
 
-export const getDriverBookingRideRequested = () => {
+export const getDriverBookingsRideRequested = () => {
   return {
     type: rideTypes.GET_DRIVER_RIDE_BOOKING_REQUEST,
   };
 };
 
-export const getDriverBookingRide = (driverId, rideId) => {
+export const getDriverBookingsRide = (driverId, rideId) => {
   return (dispatch) => {
-    dispatch(getDriverBookingRideRequested());
+    dispatch(getDriverBookingsRideRequested());
 
     axios
-      .get(URL_API + "/ride/driver-booking-ride", {
+      .get(URL_API + "/ride/driver-bookings-ride", {
         params: {
           driverId,
           rideId,
@@ -952,7 +953,7 @@ export const getDriverBookingRide = (driverId, rideId) => {
       .then((response) => {
         // console.log(response);
 
-        dispatch(getDriverBookingRideSuccess(response.data));
+        dispatch(getDriverBookingsRideSuccess(response.data));
       })
       .catch((error) => {
         const message =
@@ -973,19 +974,19 @@ export const getDriverBookingRide = (driverId, rideId) => {
           })
         );
 
-        dispatch(getDriverBookingRideFail(error));
+        dispatch(getDriverBookingsRideFail(error));
       });
   };
 };
 
-export const getDriverBookingRideSuccess = (data) => {
+export const getDriverBookingsRideSuccess = (data) => {
   return {
     type: rideTypes.GET_DRIVER_RIDE_BOOKING_SUCCESS,
     payload: data,
   };
 };
 
-export const getDriverBookingRideFail = (error) => {
+export const getDriverBookingsRideFail = (error) => {
   return {
     type: rideTypes.GET_DRIVER_RIDE_BOOKING_FAIL,
     payload: error,
@@ -1139,7 +1140,7 @@ export const submitFormConfirmRide = (user, ride, isConfirmed) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: "You have confirmed the ride",
+              bodyText: t("translation:global.confirmingRide"),
               variant: "success",
             })
           );
@@ -1148,7 +1149,7 @@ export const submitFormConfirmRide = (user, ride, isConfirmed) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: "You have rejected the ride",
+              bodyText: t("translation:global.rejectingRide"),
               variant: "warning",
             })
           );

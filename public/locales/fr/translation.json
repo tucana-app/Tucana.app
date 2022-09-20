@@ -10,11 +10,6 @@
 		"question1": "Comment fonctionne le paiement?",
 		"title": "FAQ"
 	},
-	"FormConfirmRide": {
-		"confirm": "je confirme",
-		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
-		"confirmRide": "Confirmez-vous le trajet ?"
-	},
 	"FormDriverResponseBooking": {
 		"manageBooking": "Gérer cette réservation",
 		"message": "{{firstName}} a réservé {{seatsBooked}} siège(s) mais il reste {{seatsLeft}} places, vous ne pouvez pas accepter ou refuser cette réservation.",
@@ -61,6 +56,14 @@
 		"thankYou": "Merci de votre compréhension",
 		"title": "À venir"
 	},
+	"confirmRide": {
+		"complaint": "Je souhaite déposer une plainte",
+		"confirm": "je confirme",
+		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
+		"confirmRideMessage": "Le trajet le <2>{{date}}</2> a t-il eu lieu ?",
+		"message": "Maintenant, tu dois nous dire si tout s'est bien passé et si tu as fait ce trajet.",
+		"title": "Confirmer le trajet"
+	},
 	"contact": {
 		"max1000characters": "Max. 1000 caractères",
 		"min20characters": "Min. 20 caractères",
@@ -98,6 +101,7 @@
 		"about": "A propos",
 		"accept": "Accepter",
 		"accepted": "Accepté",
+		"acceptingBooking": "Tu as accepté la réservation",
 		"alreadyBooking": "Vous avez déjà une ou plusieurs réservations pour ce trajet.",
 		"becomeDriver": "Devenir chauffeur",
 		"bio": "Biographie",
@@ -105,6 +109,7 @@
 		"bookRide": "Réserver un trajet",
 		"bookThisRide": "Réservez ce tour",
 		"booking": "Réservation",
+		"bookingSubmitted": "Votre réservation a été soumise au conducteur",
 		"bookingSuccess": "Votre réservation a été envoyée au chauffeur",
 		"bookings": "Réservations",
 		"by": "Par",
@@ -117,6 +122,7 @@
 		"comingSoon": "À venir",
 		"comment": "Commentaire",
 		"confirm": "Confirmer",
+		"confirmingRide": "Vous avez confirmé le trajet.",
 		"congratulations": "Félicitations ",
 		"contact": "Contacter",
 		"contactUs": "Contactez-nous",
@@ -145,12 +151,15 @@
 			"error": "erreur",
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, veuillez nous contacter.",
+			"fieldRequired": "Ce champ est obligatoire",
+			"labelStringField": "Tu dois entrer des caractères",
 			"max20characters": "Max. 20 caractères",
 			"min4characters": "Min. 4 caractères",
 			"missingComment": "Vous devez écrire un commentaire (10 caractères min.)",
 			"missingInfo": "Veuillez remplir toutes les informations",
 			"missingRating": "Assurez-vous de donner une note",
 			"passwordsMatch": "Les mots de passe doivent correspondre",
+			"sendingMessage": "Votre message n'a pas pu être envoyé",
 			"validEmail": "Veuillez saisir une adresse électronique valide",
 			"validName": "Veuillez entrer un nom valide",
 			"validNumberPlate": "Entrez une plaque d'immatriculation valide",
@@ -210,12 +219,14 @@
 		"refundPolicy": "Politique de remboursement",
 		"refuse": "Refuser",
 		"refused": "refus",
+		"rejectingRide": "Vous avez refusé le trajet",
 		"report": "Signaler un problème",
 		"reportMember": "Signaler ce membre",
 		"resendLink": "Renvoyez le lien de confirmation",
 		"reset": "Recommencer",
 		"returnLogin": "Retourner à la <2>page de connexion</2>.",
 		"ride": "Ride",
+		"rideOnline": "Ton trajet est maintenant en ligne.",
 		"riteve": "Riteve (contrôle technique)",
 		"search": "Recherchez",
 		"searchResults": "Résultats de la recherche",
@@ -255,6 +266,7 @@
 		"message2": "immédiatement, les services d'urgence locaux"
 	},
 	"hiring": {
+		"message": "Nous recherchons des développeurs, des concepteurs, des créateurs de contenu, des gestionnaires, et bien plus encore ! Si vous souhaitez contribuer à rendre les voyages au Costa Rica plus agréables, contactez-nous",
 		"title": "Nous recrutons"
 	},
 	"homepage": {

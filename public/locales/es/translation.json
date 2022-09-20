@@ -10,11 +10,6 @@
 		"question1": "Cómo funciona el pago",
 		"title": "Preguntas frecuentes"
 	},
-	"FormConfirmRide": {
-		"confirm": "Confirmo",
-		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
-		"confirmRide": "¿Confirmas el viaje?"
-	},
 	"FormDriverResponseBooking": {
 		"manageBooking": "Gestionar esta reserva",
 		"message": "{{firstName}} reservó {{seatsBooked}} asiento(s) pero quedan {{seatsLeft}} plazas, no puede aceptar o rechazar esta reserva.",
@@ -61,6 +56,14 @@
 		"thankYou": "Gracias por su comprensión",
 		"title": "Próximamente"
 	},
+	"confirmRide": {
+		"complaint": "Tengo una queja",
+		"confirm": "Confirmo",
+		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
+		"confirmRideMessage": "¿Tuvo lugar la ride en el <2>{{date}}</2>?",
+		"message": "Ahora tienes que contarnos si todo fue bien, y si hiciste este ride",
+		"title": "Confirmar la ride"
+	},
 	"contact": {
 		"max1000characters": "Máx. 1000 caracteres",
 		"min20characters": "Mínimo 20 caracteres",
@@ -98,6 +101,7 @@
 		"about": "Acerca",
 		"accept": "Aceptar",
 		"accepted": "Aceptado",
+		"acceptingBooking": "Ha aceptado la reserva",
 		"alreadyBooking": "Ya tiene reserva(s) para este viaje",
 		"becomeDriver": "Conviértase en conductor",
 		"bio": "Biografía",
@@ -105,6 +109,7 @@
 		"bookRide": "Reservar un viaje",
 		"bookThisRide": "Reservar este viaje",
 		"booking": "Reservación",
+		"bookingSubmitted": "Su reserva ha sido enviada al conductor",
 		"bookingSuccess": "Su reserva ha sido enviada al conductor",
 		"bookings": "reservas",
 		"by": "Por",
@@ -117,6 +122,7 @@
 		"comingSoon": "Próximamente",
 		"comment": "Comentario",
 		"confirm": "Confirme",
+		"confirmingRide": "Has confirmado el ride",
 		"congratulations": "felicitaciones",
 		"contact": "Contacte",
 		"contactUs": "Contáctenos",
@@ -145,12 +151,15 @@
 			"error": "Error",
 			"errorFallback": "Se ha producido un error.",
 			"errorPersist": "Si el error persiste, póngase en contacto con nosotros.",
+			"fieldRequired": "Este campo es obligatorio",
+			"labelStringField": "Debes introducir una cadena",
 			"max20characters": "Máx. 20 caracteres",
 			"min4characters": "Mínimo 4 caracteres",
 			"missingComment": "Tienes que escribir un comentario (mín. 10 caracteres)",
 			"missingInfo": "Por favor, rellene toda la información",
 			"missingRating": "Asegúrese de dar una calificación",
 			"passwordsMatch": "Las contraseñas deben coincidir",
+			"sendingMessage": "Su mensaje no pudo ser enviado",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
 			"validNumberPlate": "Introduzca una matrícula válida",
@@ -210,12 +219,14 @@
 		"refundPolicy": "Politica de reembolso",
 		"refuse": "Rechazar",
 		"refused": "Rechazado",
+		"rejectingRide": "Has rechazado la ride",
 		"report": "Informar de un problema",
 		"reportMember": "Denunciar a este miembro",
 		"resendLink": "Reenviar el enlace de confirmación",
 		"reset": "Reiniciar",
 		"returnLogin": "Volver a la <2>página de inicio de sesión</2>",
 		"ride": "Ride",
+		"rideOnline": "Su ride ya está en línea",
 		"riteve": "Riteve",
 		"search": "Busca en",
 		"searchResults": "Resultados de la búsqueda",
@@ -255,6 +266,7 @@
 		"message2": "inmediatamente, los servicios de emergencia locales"
 	},
 	"hiring": {
+		"message": "Buscamos desarrolladores web, diseñadores, creadores de contenidos, gestores y mucho más. Así que si estás interesado en ayudar a que los viajes en Costa Rica sean divertidos, contáctenos",
 		"title": "Estamos contratando"
 	},
 	"homepage": {

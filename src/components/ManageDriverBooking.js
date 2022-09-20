@@ -4,14 +4,14 @@ import { Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 
-import { getDriverBookingRide } from "../redux";
+import { getDriverBookingsRide } from "../redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 function ManageDriverBooking({ rideId }) {
   const { t } = useTranslation();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { bookingStatusVariant } = useSelector((state) => state.global);
-  const { isloadingDriverRideBookingList, driverRideBookingData } = useSelector(
+  const { isloadingDriverRideBookings, driverRideBookingsData } = useSelector(
     (state) => state.ride
   );
 
@@ -19,16 +19,16 @@ function ManageDriverBooking({ rideId }) {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getDriverBookingRide(currentUser.id, rideId));
+      dispatch(getDriverBookingsRide(currentUser.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {!isloadingDriverRideBookingList && driverRideBookingData.length > 0 ? (
+      {!isloadingDriverRideBookings && driverRideBookingsData.length > 0 ? (
         <>
-          {driverRideBookingData.map((booking, index) =>
+          {driverRideBookingsData.map((booking, index) =>
             booking.BookingStatus.id < 3 ? (
               <LinkContainer
                 to={`/booking/${booking.id}`}

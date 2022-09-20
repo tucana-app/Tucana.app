@@ -33,6 +33,7 @@ import Booking from "./containers/Booking";
 import Book from "./containers/Book";
 import UserPastBookings from "./containers/UserPastBookings";
 import RidesToConfirm from "./containers/RidesToConfirm";
+import ConfirmRide from "./containers/ConfirmRide";
 
 import Offer from "./containers/Offer";
 import HowItWorks from "./containers/HowItWorks";
@@ -180,6 +181,7 @@ function App() {
               path="/rides/rides-to-confirm"
               component={RidesToConfirm}
             />
+            <Route exact path="/ride/confirm/:rideId" component={ConfirmRide} />
             <Route exact path="/profile/" component={DriverProfile} />
             <Route exact path="/notifications" component={Notifications} />
             <Route exact path="/help" component={Help} />

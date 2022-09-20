@@ -7,6 +7,7 @@ import {
   getDriverNewRidesRequests,
   resetNotifications,
 } from "../index";
+import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -949,7 +950,7 @@ export const submitContactForm = (user, values) => {
           setToast({
             show: true,
             headerText: "Error",
-            bodyText: "Your message couldn't be sent",
+            bodyText: t("translation:global.errors.sendingMessage"),
             variant: "danger",
           })
         );

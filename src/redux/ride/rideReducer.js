@@ -29,13 +29,13 @@ const initialState = {
   submitFormDriverResponseBookingSuccess: [],
   submitFormDriverResponseBookingError: "",
 
-  isloadingUserRideBookingList: false,
-  userRideBookingData: [],
-  userRideBookingError: "",
+  isloadingUserRideBookings: false,
+  userRideBookingsData: [],
+  userRideBookingsError: "",
 
-  isloadingDriverRideBookingList: false,
-  driverRideBookingData: [],
-  driverRideBookingError: "",
+  isloadingDriverRideBookings: false,
+  driverRideBookingsData: [],
+  driverRideBookingsError: "",
 
   isLoadingUserBookings: false,
   userBookingsData: [],
@@ -300,45 +300,45 @@ function rideReducer(state = initialState, action) {
     case rideTypes.GET_USER_RIDE_BOOKING_REQUEST:
       return {
         ...state,
-        isloadingUserRideBookingList: true,
+        isloadingUserRideBookings: true,
       };
 
     case rideTypes.GET_USER_RIDE_BOOKING_SUCCESS:
       return {
         ...state,
-        isloadingUserRideBookingList: false,
-        userRideBookingData: action.payload,
-        userRideBookingError: "",
+        isloadingUserRideBookings: false,
+        userRideBookingsData: action.payload,
+        userRideBookingsError: "",
       };
 
     case rideTypes.GET_USER_RIDE_BOOKING_FAIL:
       return {
         ...state,
-        isloadingUserRideBookingList: false,
-        userRideBookingData: [],
-        userRideBookingError: action.payload,
+        isloadingUserRideBookings: false,
+        userRideBookingsData: [],
+        userRideBookingsError: action.payload,
       };
 
     case rideTypes.GET_DRIVER_RIDE_BOOKING_REQUEST:
       return {
         ...state,
-        isloadingDriverRideBookingList: true,
+        isloadingDriverRideBookings: true,
       };
 
     case rideTypes.GET_DRIVER_RIDE_BOOKING_SUCCESS:
       return {
         ...state,
-        isloadingDriverRideBookingList: false,
-        driverRideBookingData: action.payload,
-        driverRideBookingError: "",
+        isloadingDriverRideBookings: false,
+        driverRideBookingsData: action.payload,
+        driverRideBookingsError: "",
       };
 
     case rideTypes.GET_DRIVER_RIDE_BOOKING_FAIL:
       return {
         ...state,
-        isloadingDriverRideBookingList: false,
-        driverRideBookingData: [],
-        driverRideBookingError: action.payload,
+        isloadingDriverRideBookings: false,
+        driverRideBookingsData: [],
+        driverRideBookingsError: action.payload,
       };
 
     case rideTypes.GET_USER_BOOKINGS_REQUEST:

@@ -10,11 +10,6 @@
 		"question1": "How the payment works?",
 		"title": "FAQ"
 	},
-	"FormConfirmRide": {
-		"confirm": "I confirm",
-		"confirmNoRide": "Please confirm that the ride didn't take place",
-		"confirmRide": "Do you confirm the ride?"
-	},
 	"FormDriverResponseBooking": {
 		"manageBooking": "Manage this booking",
 		"message": "{{firstName}} booked {{seatsBooked}} seats but there are {{seatsLeft}} seats left, you cannot accept or refuse this booking.",
@@ -61,6 +56,14 @@
 		"thankYou": "Thank you for your understanding",
 		"title": "Coming soon"
 	},
+	"confirmRide": {
+		"complaint": "I have a complaint",
+		"confirm": "I confirm",
+		"confirmNoRide": "Please confirm that the ride didn't take place",
+		"confirmRideMessage": "Did the ride on the <2>{{date}}</2> took place?",
+		"message": "Now you have to let us know if everything went well, and if you did this ride",
+		"title": "Confirm the ride"
+	},
 	"contact": {
 		"max1000characters": "Max. 1000 characters",
 		"min20characters": "Min. 20 characters",
@@ -98,6 +101,7 @@
 		"about": "About",
 		"accept": "Accept",
 		"accepted": "Accepted",
+		"acceptingBooking": "You have accepted the booking",
 		"alreadyBooking": "You already have booking(s) for this ride",
 		"becomeDriver": "Become a driver",
 		"bio": "Biography",
@@ -105,6 +109,7 @@
 		"bookRide": "Book a ride",
 		"bookThisRide": "Book this ride",
 		"booking": "Booking",
+		"bookingSubmitted": "Your booking has been submitted to the driver",
 		"bookingSuccess": "Your booking has been submitted to the driver",
 		"bookings": "Bookings",
 		"by": "By",
@@ -117,6 +122,7 @@
 		"comingSoon": "Coming soon",
 		"comment": "Comment",
 		"confirm": "Confirm",
+		"confirmingRide": "You have confirmed the ride",
 		"congratulations": "Congratulations",
 		"contact": "Contact",
 		"contactUs": "Contact Us",
@@ -145,12 +151,15 @@
 			"error": "Error",
 			"errorFallback": "There has been an error.",
 			"errorPersist": "If the error persists, please contact us.",
+			"fieldRequired": "This field is required",
+			"labelStringField": "You must enter a string",
 			"max20characters": "Max. 20 characters",
 			"min4characters": "Min. 4 characters",
 			"missingComment": "You need to write a comment (min. 10 characters)",
 			"missingInfo": "Please fill up all the information",
 			"missingRating": "Make sure you give a rating",
 			"passwordsMatch": "Passwords must match",
+			"sendingMessage": "Your message couldn't be sent",
 			"validEmail": "Please enter a valid email address",
 			"validName": "Please enter a valid name",
 			"validNumberPlate": "Enter a valid number plate",
@@ -210,12 +219,14 @@
 		"refundPolicy": "Refund policy",
 		"refuse": "Refuse",
 		"refused": "Refused",
+		"rejectingRide": "You have rejected the ride",
 		"report": "Report a problem",
 		"reportMember": "Report this member",
 		"resendLink": "Resend the confirmation link",
 		"reset": "Reset",
 		"returnLogin": "Return to the <2>login page</2>",
 		"ride": "Ride",
+		"rideOnline": "Your ride is now online",
 		"riteve": "Riteve (car inspection)",
 		"search": "Search",
 		"searchResults": "Search results",
@@ -255,6 +266,7 @@
 		"message2": "immediately, the local emergency services"
 	},
 	"hiring": {
+		"message": "We are looking for developers, designers, content creators, managers, and much more! So if you are interested in helping make travel in Costa Rica fun, reach out to us",
 		"title": "We are hiring"
 	},
 	"homepage": {

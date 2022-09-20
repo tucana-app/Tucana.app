@@ -55,12 +55,12 @@ function RidesToConfirm() {
           </Row>
         ) : ridesToConfirmData.length ? (
           <Row>
-            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0">
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
               <ListGroup variant="flush" className="mx-0 pt-4">
                 {ridesToConfirmData.map((ride, index) => (
                   <Link
                     key={index}
-                    to={`/ride/${ride.id}`}
+                    to={`/ride/confirm/${ride.id}`}
                     className="text-decoration-none"
                   >
                     <ListGroup.Item className="border border-start-0 border-end-0">
