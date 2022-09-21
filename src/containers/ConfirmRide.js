@@ -27,9 +27,9 @@ const ConfirmRide = () => {
   const {
     isLoadingRide,
     rideData,
-    rideError,
     isLoadingRidesToConfirm,
     ridesToConfirmData,
+    ridesToConfirmError,
     isloadingSubmitFormConfirmRide,
     submitFormConfirmRideData,
     submitFormConfirmRideError,
@@ -74,7 +74,7 @@ const ConfirmRide = () => {
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : rideData.ride && rideToConfirm() ? (
+        ) : rideToConfirm() ? (
           <div data-aos="fade-in">
             <Row>
               <Col
@@ -261,9 +261,9 @@ const ConfirmRide = () => {
               </Col>
             </Row>
 
-            <RideDetails ride={rideData.ride} />
+            {rideData.ride ? <RideDetails ride={rideData.ride} /> : null}
           </div>
-        ) : rideError ? (
+        ) : ridesToConfirmError ? (
           <Redirect to="/" />
         ) : (
           <Redirect to="/rides/rides-to-confirm" />

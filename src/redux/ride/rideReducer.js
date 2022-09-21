@@ -6,8 +6,8 @@ const initialState = {
   driverRidesError: "",
 
   isLoadingSubmitFormOfferRide: false,
-  submitFormOfferRideSuccess: false,
-  submitFormOfferRideFail: "",
+  submitFormOfferRideData: false,
+  submitFormOfferRideError: "",
 
   isLoadingRide: false,
   rideData: {},
@@ -51,7 +51,7 @@ const initialState = {
 
   isLoadingRidesToConfirm: false,
   ridesToConfirmData: [],
-  ridesToFeedbackError: "",
+  ridesToConfirmError: "",
 
   isloadingSubmitFormConfirmRide: false,
   submitFormConfirmRideData: [],
@@ -168,16 +168,16 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSubmitFormOfferRide: false,
-        submitFormOfferRideSuccess: true,
-        submitFormOfferRideFail: "",
+        submitFormOfferRideData: action.payload,
+        submitFormOfferRideError: "",
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL:
       return {
         ...state,
         isLoadingSubmitFormOfferRide: false,
-        submitFormOfferRideSuccess: false,
-        submitFormOfferRideFail: action.payload,
+        submitFormOfferRideData: false,
+        submitFormOfferRideError: action.payload,
       };
 
     case rideTypes.GET_RIDE_REQUEST:
@@ -418,7 +418,7 @@ function rideReducer(state = initialState, action) {
         ...state,
         isLoadingRidesToConfirm: false,
         ridesToConfirmData: action.payload,
-        ridesToFeedbackError: "",
+        ridesToConfirmError: "",
       };
 
     case rideTypes.GET_RIDES_TO_CONFIRM_FAIL:
@@ -426,7 +426,7 @@ function rideReducer(state = initialState, action) {
         ...state,
         isLoadingRidesToConfirm: false,
         ridesToConfirmData: [],
-        ridesToFeedbackError: action.payload,
+        ridesToConfirmError: action.payload,
       };
 
     case rideTypes.SUBMIT_FORM_CONFIRM_RIDE_REQUEST:

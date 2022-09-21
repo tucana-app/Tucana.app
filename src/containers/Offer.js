@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -55,7 +54,7 @@ const Offer = () => {
   const {
     formOfferRide,
     isLoadingSubmitFormOfferRide,
-    submitFormOfferRideSuccess,
+    submitFormOfferRideData,
     isLoadingGetETA,
     getETAData,
   } = useSelector((state) => state.ride);
@@ -861,31 +860,56 @@ const Offer = () => {
         ) : submitted ? (
           <>
             {isLoadingSubmitFormOfferRide ? (
-              <Row>
+              <Row className="mt-5 pt-5">
                 <Col className="text-center">
                   <LoadingSpinner />
                 </Col>
               </Row>
-            ) : submitFormOfferRideSuccess ? (
-              <Row className="mt-5">
+            ) : submitFormOfferRideData.flag === "SUCCESS" ? (
+              <Row className="mt-5 pt-5">
                 <Col className="text-center">
                   <h1 className="text-success">
-                    {t("translation:global.congratulations")}
+                    {t("translation:global.congratulations")} 🎉
                   </h1>
+                  <p>{t("translation:global.rideOnline")}</p>
                   <p>
-                    {t("translation:offer.rideOnline1")}{" "}
-                    <LinkContainer
-                      to="/driver/rides"
+                    <Link
+                      to={`/ride/${submitFormOfferRideData.ride.id}`}
                       className="cursor-pointer"
                     >
-                      <u className="link-primary">
-                        {t("translation:offer.rideOnline2")}
-                      </u>
-                    </LinkContainer>
+                      <Button variant="success" size="lg">
+                        {t("translation:offer.checkItOut")}
+                      </Button>
+                    </Link>
                   </p>
                 </Col>
               </Row>
-            ) : null}
+            ) : (
+              <Row className="mt-5">
+                <Col className="text-center">
+                  <h1 className="title text-warning">
+                    {t("translation:global.errors.errorFallback")}
+                  </h1>
+                  <p>{t("translation:global.errors.errorPersist")}</p>
+                  <p>
+                    <Link to="/offer" className="link-success me-2">
+                      <Button variant="success">
+                        <ArrowLeftIcon size={24} className="me-2" />
+                        {t("translation:global.goBack")}
+                      </Button>
+                    </Link>
+                    <a
+                      href={`mailto:${process.env.REACT_APP_EMAIL_CONTACT}`}
+                      alt=""
+                    >
+                      <Button variant="warning">
+                        {t("translation:global.contactUs")}
+                      </Button>
+                    </a>
+                  </p>
+                </Col>
+              </Row>
+            )}
           </>
         ) : null
       ) : (

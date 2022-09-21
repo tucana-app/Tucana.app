@@ -398,14 +398,14 @@ export const submitEmailForgotPasswordRequested = () => {
   };
 };
 
-export const submitEmailForgotPassword = (formValue) => {
+export const submitEmailForgotPassword = (form) => {
   return (dispatch) => {
     dispatch(submitEmailForgotPasswordRequested());
 
     axios
       .get(URL_API + "/user/send-email-forgot-password", {
         params: {
-          email: formValue.email,
+          email: form.email.replace(" ", ""),
         },
       })
       .then((response) => {
@@ -437,7 +437,7 @@ export const submitEmailForgotPassword = (formValue) => {
           })
         );
 
-        dispatch(submitEmailForgotPasswordFail(error.response.data.message));
+        dispatch(submitEmailForgotPasswordFail(message));
       });
   };
 };
@@ -450,6 +450,8 @@ export const submitEmailForgotPasswordSuccess = (data) => {
 };
 
 export const submitEmailForgotPasswordFail = (error) => {
+  console.log(error);
+
   return {
     type: userTypes.SEND_EMAIL_FORGOT_PASSWORD_ERROR,
     payload: error,

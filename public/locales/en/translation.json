@@ -251,6 +251,7 @@
 		"status": "Status",
 		"step": "Step",
 		"submit": "Submit",
+		"thankYou": "Thank you",
 		"time": "Time",
 		"to": "To",
 		"total": "Total",
@@ -314,7 +315,7 @@
 		"publishRide": "Publish your ride",
 		"publishRide2": "Set your own price. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
 		"registration": "Registration",
-		"review": "Submit a review for your passengers or driver",
+		"review": "Submit a review for your passengers or the driver",
 		"review2": "To continue to ensure the safety of the community",
 		"signUpFree": "Sign Up for free",
 		"startTutorial": "Start the tutorial",
@@ -385,8 +386,9 @@
 		"rides": "Rides"
 	},
 	"newRating": {
+		"ratingReceived": "Your rating is now under review by a moderator",
 		"rideSummary": "Ride summary",
-		"title": "Note your ride",
+		"title": "Rate your ride",
 		"typeComment": "Type your comment here"
 	},
 	"notifications": {
@@ -395,6 +397,7 @@
 		"title": "Notifications"
 	},
 	"offer": {
+		"checkItOut": "Check it out",
 		"chooseTime": "Choose a time",
 		"comment": "Any comment?",
 		"details": "Details about your ride",
@@ -406,8 +409,6 @@
 		"preview": "Preview on Google Maps",
 		"previewTrip": "Preview trip",
 		"priceTitle": "Price per seats",
-		"rideOnline1": "Your ride is now online. Check it out",
-		"rideOnline2": "here",
 		"seatsAvailable": "How many seats available do you have?",
 		"selectNumber": "Select a number",
 		"summary": "Summary",

@@ -2,6 +2,7 @@ import ratingTypes from "./ratingTypes";
 import axios from "axios";
 import { setToast } from "../index";
 import { parseText } from "../../helpers";
+import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -384,11 +385,12 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
           // console.log(response.data);
 
           dispatch(submitPassengerRatingFormSuccess(response.data));
+
           dispatch(
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: "Rating submitted for review by a moderator",
+              bodyText: t("translation:newRating.ratingReceived"),
               variant: "success",
             })
           );
@@ -470,7 +472,7 @@ export const submitDriverRatingForm = (ride, note, comment) => {
             setToast({
               show: true,
               headerText: "Success",
-              bodyText: "Rating submitted for review by a moderator",
+              bodyText: t("translation:newRating.ratingReceived"),
               variant: "success",
             })
           );

@@ -274,7 +274,7 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
           );
 
           dispatch(resetFormOfferRide());
-          dispatch(submitFormOfferRideSuccess(response.data));
+          dispatch(submitFormOfferRideData(response.data));
           dispatch(getDriverRides(user.id));
         })
         .catch((error) => {
@@ -294,7 +294,7 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
             })
           );
 
-          dispatch(submitFormOfferRideFail(error));
+          dispatch(submitFormOfferRideError(error));
         });
     } else {
       dispatch(
@@ -306,19 +306,19 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
         })
       );
 
-      dispatch(submitFormOfferRideFail(parsingResult.message));
+      dispatch(submitFormOfferRideError(parsingResult.message));
     }
   };
 };
 
-export const submitFormOfferRideSuccess = (data) => {
+export const submitFormOfferRideData = (data) => {
   return {
     type: rideTypes.SUBMIT_FORM_OFFER_RIDE_SUCCESS,
     payload: data,
   };
 };
 
-export const submitFormOfferRideFail = (error) => {
+export const submitFormOfferRideError = (error) => {
   return {
     type: rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL,
     payload: error,

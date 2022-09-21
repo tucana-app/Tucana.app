@@ -11,14 +11,13 @@ import toucan from "../../assets/images/avatars/toucan.jpg";
 import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
 import none from "../../assets/images/avatars/default.svg";
-import { t } from "i18next";
 // import filter from "../../assets/images/filter-select.png";
 
 const initialState = {
   seatsMax: 3,
 
-  labelStringField: t("translation:global.errors.labelStringField"),
-  labelRequiredField: t("translation:global.errors.fieldRequired"),
+  labelStringField: "You must enter a string",
+  labelRequiredField: "This field is required",
 
   feedback: {},
 
@@ -166,14 +165,14 @@ function globalReducer(state = initialState, action) {
         ...state,
       };
 
-    case globalTypes.SET_FEEDBACK:
+    case globalTypes.SET_ALERT:
       return {
         ...state,
         feedback: action.payload,
         variant: action.payload.variant,
       };
 
-    case globalTypes.CLEAR_FEEDBACK:
+    case globalTypes.CLEAR_ALERT:
       return { ...state, feedback: {} };
 
     // Get all countries info

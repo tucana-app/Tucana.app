@@ -113,7 +113,7 @@
 		"bio": "Biografía",
 		"book": "Reserva",
 		"bookRide": "Reservar un viaje",
-		"bookThisRide": "Reservar este viaje",
+		"bookThisRide": "Reservar esta ride",
 		"booking": "Reservación",
 		"bookingSubmitted": "Su reserva ha sido enviada al conductor",
 		"bookingSuccess": "Su reserva ha sido enviada al conductor",
@@ -251,6 +251,7 @@
 		"status": "Estado",
 		"step": "Etapa",
 		"submit": "Envíe",
+		"thankYou": "Gracias",
 		"time": "tiempo",
 		"to": "a",
 		"total": "Total",
@@ -314,7 +315,7 @@
 		"publishRide": "Publica tus ride",
 		"publishRide2": "Fije su propio precio. El pago se realiza en efectivo directamente entre el conductor y los pasajeros. Por el momento, Tucána no aplica ninguna comisión.",
 		"registration": "Inscripción",
-		"review": "Envíe una reseña para sus pasajeros o conductor",
+		"review": "Envíe una reseña para sus pasajeros o el conductor",
 		"review2": "Para seguir garantizando la seguridad de la comunidad",
 		"signUpFree": "Regístrese gratis",
 		"startTutorial": "Iniciar el tutorial",
@@ -385,16 +386,18 @@
 		"rides": "Rides"
 	},
 	"newRating": {
+		"ratingReceived": "Su calificación está siendo revisada por un moderador",
 		"rideSummary": "Resumen del viaje",
 		"title": "Califica tu viaje",
 		"typeComment": "Escriba su comentario aquí"
 	},
 	"notifications": {
 		"answersBookings": "Respuestas de sus reservas",
-		"bookingsRides": "Reservas para su(s) viaje(s)",
+		"bookingsRides": "Reservas para su(s) ride(s)",
 		"title": "Notificaciones"
 	},
 	"offer": {
+		"checkItOut": "Compruébalo",
 		"chooseTime": "Elige una hora",
 		"comment": "¿Algún comentario?",
 		"details": "Detalles de su viaje",
@@ -406,8 +409,6 @@
 		"preview": "Vista previa en Google Maps",
 		"previewTrip": "Previsualización de la ruta",
 		"priceTitle": "Precio por asientos",
-		"rideOnline1": "Su viaje ya está en línea. Compruébalo",
-		"rideOnline2": "aquí",
 		"seatsAvailable": "¿Cuántos asientos tienes?",
 		"selectNumber": "Seleccione un número",
 		"summary": "Resumen",

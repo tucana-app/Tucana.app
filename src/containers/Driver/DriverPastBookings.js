@@ -18,7 +18,7 @@ const DriverPastBookings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isLoadingDriverBookingsList, driverBookingsData } = useSelector(
+  const { isLoadingDriverBookings, driverBookingsData } = useSelector(
     (state) => state.ride
   );
   const { bookingStatusVariant, rideStatusVariant } = useSelector(
@@ -49,7 +49,7 @@ const DriverPastBookings = () => {
           </Col>
         </Row>
 
-        {isLoadingDriverBookingsList ? (
+        {isLoadingDriverBookings ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />

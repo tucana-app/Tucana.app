@@ -99,14 +99,6 @@ const Ride = () => {
 
             <RideDetails ride={rideData.ride} />
 
-            <Row>
-              <Col>
-                <h4 className="text-success text-center mt-3">
-                  {t("translation:global.bookings")}
-                </h4>
-              </Col>
-            </Row>
-
             {/* Display past booking for this ride by this user */}
             {!(rideData.ride.DriverId === currentUser.id) ? (
               <>

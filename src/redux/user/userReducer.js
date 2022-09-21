@@ -34,7 +34,7 @@ initialState = {
   setUserFirstSetupError: "",
 
   isLoadingSendEmailForgotPassword: false,
-  sendEmailForgotPasswordData: [],
+  sendEmailForgotPasswordData: "",
   sendEmailForgotPasswordError: "",
 
   isLoadingCheckDeprecatedLinkResetPassword: false,
@@ -249,7 +249,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSendEmailForgotPassword: false,
-        sendEmailForgotPasswordData: [],
+        sendEmailForgotPasswordData: "",
         sendEmailForgotPasswordError: action.payload,
       };
 
