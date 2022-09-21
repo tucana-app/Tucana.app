@@ -85,7 +85,8 @@ const Booking = () => {
                           <span className="text-lowercase">
                             {t("translation:global.seat")}
                           </span>
-                          {bookingData.seatsBooked > 1 ? "s" : null} to{" "}
+                          {bookingData.seatsBooked > 1 ? "s" : null}{" "}
+                          {t("translation:global.to")}{" "}
                           <strong>{bookingData.Ride.destination.city}</strong>{" "}
                           {t("translation:booking.summary4")}{" "}
                           {dateFormat(
