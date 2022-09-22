@@ -860,7 +860,7 @@ export const submitFormBecomeDriverFail = (error) => {
   };
 };
 
-// Submit form to become a driver
+// Update driver's state
 
 export const updateDriverStateRequested = () => {
   return {
@@ -908,6 +908,58 @@ export const updateDriverStateSuccess = (driver) => {
 export const updateDriverStateFail = (error) => {
   return {
     type: userTypes.UPDATE_DRIVER_STATE_ERROR,
+    payload: error,
+  };
+};
+
+// Update user's ratings
+
+export const updateUserRatingsRequested = () => {
+  return {
+    type: userTypes.UPDATE_USER_RATINGS_REQUESTED,
+  };
+};
+
+export const updateUserRatings = (userId) => {
+  return (dispatch) => {
+    dispatch(updateUserRatingsRequested());
+
+    axios
+      .get(URL_API + "/user/update-ratings", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          dispatch(updateUserRatingsSuccess(response.data));
+        } else {
+          dispatch(updateUserRatingsFail("No updates available"));
+        }
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(updateUserRatingsFail(message));
+      });
+  };
+};
+
+export const updateUserRatingsSuccess = (ratings) => {
+  return {
+    type: userTypes.UPDATE_USER_RATINGS_SUCCESS,
+    payload: ratings,
+  };
+};
+
+export const updateUserRatingsFail = (error) => {
+  return {
+    type: userTypes.UPDATE_USER_RATINGS_ERROR,
     payload: error,
   };
 };

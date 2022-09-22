@@ -85,7 +85,7 @@ import NavigationBar from "./components/NavigationBar";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 
-import { resetConversationView } from "./redux";
+import { resetConversationView, getNotifications } from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -102,6 +102,21 @@ function App() {
         dispatch(resetConversationView(currentUser.id));
       }
     });
+
+    let interval = null;
+
+    if (isLoggedIn) {
+      dispatch(getNotifications(currentUser));
+
+      interval = setInterval(() => {
+        dispatch(getNotifications(currentUser));
+      }, 60000);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

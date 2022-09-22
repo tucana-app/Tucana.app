@@ -377,7 +377,10 @@ const Menu = () => {
         <Row>
           <Col className="text-center">
             <Button
-              onClick={logOut}
+              onClick={() => {
+                logOut();
+                window.location.reload(true);
+              }}
               variant="link"
               className="link-success text-decoration-none mt-4"
             >

@@ -34,6 +34,8 @@ const notificationeReducer = (state = initialState, action) => {
         driverNewRidesRequestsError: action.payload,
       };
 
+    // Get passenger bookings responses
+
     case notificationTypes.GET_PASSENGER_BOOKINGS_RESPONSES_REQUEST:
       return {
         ...state,
@@ -56,6 +58,7 @@ const notificationeReducer = (state = initialState, action) => {
         passengerBookingsResponsesError: action.payload,
       };
 
+    // Reset notifications
     case notificationTypes.RESET_NOTIFICATIONS:
       return {
         ...state,

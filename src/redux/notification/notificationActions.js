@@ -1,14 +1,23 @@
 import notificationTypes from "./notificationTypes";
 import axios from "axios";
-import { getUserNewMessages } from "../index";
+import {
+  getUserNewMessages,
+  updateDriverState,
+  updateUserRatings,
+} from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
-export const getNotifications = (userId) => {
+export const getNotifications = (user) => {
   return (dispatch) => {
-    dispatch(getDriverNewRidesRequests(userId));
-    dispatch(getPassengerBookingsResponses(userId));
-    dispatch(getUserNewMessages(userId));
+    dispatch(getDriverNewRidesRequests(user.id));
+    dispatch(getPassengerBookingsResponses(user.id));
+    dispatch(getUserNewMessages(user.id));
+    dispatch(updateUserRatings(user.id));
+
+    if (!user.Driver) {
+      dispatch(updateDriverState(user.id));
+    }
   };
 };
 

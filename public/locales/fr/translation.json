@@ -78,8 +78,10 @@
 	},
 	"createNewPassword": {
 		"linkDeprecated": "Ce lien est obsolète",
+		"newPassword": "Nouveau mot de passe",
 		"reset": "Réinitialiser le mot de passe",
 		"retypePassword": "Retapez le mot de passe",
+		"success": "Votre mot de passe a été réinitialisé avec succès.",
 		"title": "Créer un nouveau mot de passe"
 	},
 	"dataProtection": {
@@ -182,6 +184,7 @@
 		"getVerified": "Obtenir une vérification",
 		"given": "Laissés",
 		"goBack": "Retour en arrière",
+		"goBackApp": "Vous pouvez maintenant retourner dans l'application",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
 		"idType": "Type d'identité",
@@ -192,6 +195,7 @@
 		"logIn": "Connexion",
 		"maker": "Marque",
 		"manage": "Gérer",
+		"mandatory": "Ce champ est obligatoire",
 		"maps": "Carte du Costa Rica",
 		"marchamo": "Marchamo (assurance du véchicule)",
 		"memberSince": "Membre depuis",
@@ -251,6 +255,7 @@
 		"status": "Statut",
 		"step": "Étape",
 		"submit": "Soumettre",
+		"success": "Succès",
 		"thankYou": "Merci",
 		"time": "heure",
 		"to": "à",

@@ -13,7 +13,11 @@ import dateFormat from "dateformat";
 
 import GoBack from "../../components/GoBack";
 
-import { getRatingsToDoDriver, getRatingsToDoPassenger } from "../../redux";
+import {
+  getRatingsToDoDriver,
+  getRatingsToDoPassenger,
+  updateUserRatings,
+} from "../../redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 function Ratings() {
@@ -31,6 +35,7 @@ function Ratings() {
     if (isLoggedIn) {
       dispatch(getRatingsToDoPassenger(currentUser.id));
       dispatch(getRatingsToDoDriver(currentUser.id));
+      dispatch(updateUserRatings(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

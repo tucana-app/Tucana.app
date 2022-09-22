@@ -58,7 +58,12 @@ initialState = {
   submitFormBecomeDriverError: "",
 
   isLoadingUpdateDriverState: false,
+  updateDriverStateSuccess: false,
   updateDriverStateError: "",
+
+  isLoadingUpdateUserRatingsState: false,
+  updateUserRatingsSuccess: false,
+  updateUserRatingsError: "",
 
   isLoadingSubmitContactForm: false,
 
@@ -600,6 +605,32 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoadingUpdateDriverState: false,
         updateDriverStateError: action.payload,
+      };
+
+    // Update users's ratings
+
+    case userTypes.UPDATE_USER_RATINGS_REQUESTED:
+      return {
+        ...state,
+        isLoadingUpdateUserRatings: true,
+      };
+
+    case userTypes.UPDATE_USER_RATINGS_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdateUserRatings: false,
+        user: {
+          ...user,
+          Rating: action.payload,
+        },
+        updateUserRatingsError: "",
+      };
+
+    case userTypes.UPDATE_USER_RATINGS_ERROR:
+      return {
+        ...state,
+        isLoadingUpdateUserRatings: false,
+        updateUserRatingsError: action.payload,
       };
 
     // Contact form

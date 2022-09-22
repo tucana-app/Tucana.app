@@ -78,8 +78,10 @@
 	},
 	"createNewPassword": {
 		"linkDeprecated": "This link is deprecated",
+		"newPassword": "New password",
 		"reset": "Reset password",
 		"retypePassword": "Retype password",
+		"success": "Your password has been successfully reset.",
 		"title": "Create a new password"
 	},
 	"dataProtection": {
@@ -182,6 +184,7 @@
 		"getVerified": "Get verified",
 		"given": "Given",
 		"goBack": "Go back",
+		"goBackApp": "You can now go back to the app",
 		"help": "Help",
 		"howItWorks": "How does it work?",
 		"idType": "ID Type",
@@ -192,6 +195,7 @@
 		"logIn": "Log In",
 		"maker": "Maker",
 		"manage": "Manage",
+		"mandatory": "This field is mandatory",
 		"maps": "Map of Costa Rica",
 		"marchamo": "Marchamo (car insurance)",
 		"memberSince": "Member since",
@@ -251,6 +255,7 @@
 		"status": "Status",
 		"step": "Step",
 		"submit": "Submit",
+		"success": "Success",
 		"thankYou": "Thank you",
 		"time": "Time",
 		"to": "to",

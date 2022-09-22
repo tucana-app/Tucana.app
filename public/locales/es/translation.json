@@ -78,8 +78,10 @@
 	},
 	"createNewPassword": {
 		"linkDeprecated": "Este enlace está obsoleto",
+		"newPassword": "Nueva contraseña",
 		"reset": "Restablecer contraseña",
 		"retypePassword": "Repita la contraseña",
+		"success": "Su contraseña ha sido restablecida con éxito.",
 		"title": "Crear una nueva contraseña"
 	},
 	"dataProtection": {
@@ -182,6 +184,7 @@
 		"getVerified": "Verificación",
 		"given": "Dejadas",
 		"goBack": "Volver",
+		"goBackApp": "Ahora puedes volver a la aplicación",
 		"help": "Ayuda",
 		"howItWorks": "¿Como funciona?",
 		"idType": "Tipo de identificación",
@@ -192,6 +195,7 @@
 		"logIn": "Ingresar",
 		"maker": "Marca",
 		"manage": "Gestione",
+		"mandatory": "Este campo es obligatorio",
 		"maps": "Mapa de Costa Rica",
 		"marchamo": "Marchamo",
 		"memberSince": "Miembro desde",
@@ -251,6 +255,7 @@
 		"status": "Estado",
 		"step": "Etapa",
 		"submit": "Envíe",
+		"success": "Éxito",
 		"thankYou": "Gracias",
 		"time": "tiempo",
 		"to": "a",
