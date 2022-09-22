@@ -24,7 +24,7 @@ const Notifications = () => {
   } = useSelector((state) => state.notification);
 
   useEffect(() => {
-    if (isLoggedIn) getNotifications(currentUser.id);
+    if (isLoggedIn) getNotifications(currentUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

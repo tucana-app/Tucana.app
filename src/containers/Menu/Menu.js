@@ -54,7 +54,7 @@ const Menu = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getNotifications(currentUser.id));
+      dispatch(getNotifications(currentUser));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

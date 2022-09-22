@@ -695,7 +695,7 @@ export const submitFormDriverResponseBookingRequested = () => {
   };
 };
 
-export const submitFormDriverResponseBooking = (formValues, booking) => {
+export const submitFormDriverResponseBooking = (formValues, user, booking) => {
   return (dispatch) => {
     dispatch(submitFormDriverResponseBookingRequested());
 
@@ -733,7 +733,7 @@ export const submitFormDriverResponseBooking = (formValues, booking) => {
             submitFormDriverResponseBookingSuccess(response.data.message)
           );
           dispatch(getBooking(formValues.bookingId));
-          dispatch(getNotifications(formValues.userId));
+          dispatch(getNotifications(user));
         })
         .catch((error) => {
           // console.log(error);

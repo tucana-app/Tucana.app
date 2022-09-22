@@ -50,7 +50,7 @@ const BecomeDriver = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getApplicationsBecomeDriver(currentUser.id));
-      dispatch(getNotifications(currentUser.id));
+      dispatch(getNotifications(currentUser));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
