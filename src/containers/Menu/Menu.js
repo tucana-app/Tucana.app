@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
@@ -11,7 +11,7 @@ import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
 
-import { logout } from "../../redux";
+import { getNotifications, logout } from "../../redux";
 
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
@@ -51,6 +51,14 @@ const Menu = () => {
         numberDriverNewRidesRequests + numberPassengerBookingsResponses;
     }
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getNotifications(currentUser.id));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const logOut = () => {
     history.push("/");

@@ -9,7 +9,7 @@ import {
   XIcon,
 } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
-import { updateDriverState, getApplicationsBecomeDriver } from "../redux";
+import { getApplicationsBecomeDriver, getNotifications } from "../redux";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -50,9 +50,7 @@ const BecomeDriver = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getApplicationsBecomeDriver(currentUser.id));
-
-      // if (currentUser.Driver === null)
-      dispatch(updateDriverState(currentUser.id));
+      dispatch(getNotifications(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
