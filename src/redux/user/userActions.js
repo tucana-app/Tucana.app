@@ -2,11 +2,7 @@ import axios from "axios";
 import userTypes from "./userTypes";
 import validator from "validator";
 
-import {
-  setToast,
-  getDriverNewRidesRequests,
-  resetNotifications,
-} from "../index";
+import { setToast, getNotifications, resetNotifications } from "../index";
 import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -219,7 +215,7 @@ export const login = (formLogin) => {
             payload: response.data,
           });
 
-          dispatch(getDriverNewRidesRequests(response.data.id));
+          dispatch(getNotifications(response.data));
         } else {
           // If a flag is provided, if not default is "ERROR"
           const flag = response.data.flag || "ERROR";

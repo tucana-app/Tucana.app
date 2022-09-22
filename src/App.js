@@ -105,13 +105,11 @@ function App() {
 
     let interval = null;
 
-    if (isLoggedIn) {
-      dispatch(getNotifications(currentUser));
-
-      interval = setInterval(() => {
+    interval = setInterval(() => {
+      if (isLoggedIn) {
         dispatch(getNotifications(currentUser));
-      }, 60000);
-    }
+      }
+    }, 60000);
 
     return () => {
       clearInterval(interval);

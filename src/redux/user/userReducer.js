@@ -585,7 +585,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoadingUpdateDriverState: false,
         user: {
-          ...user,
+          ...state.user,
           Driver: {
             ...state.user.Driver,
             Car: action.payload.Car,
@@ -620,7 +620,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoadingUpdateUserRatings: false,
         user: {
-          ...user,
+          ...state.user,
           Rating: action.payload,
         },
         updateUserRatingsError: "",
