@@ -72,14 +72,7 @@ function NavigationBar() {
                       <p className="text-icon-nav-bar mb-0">
                         {t("translation:navigationBar.messages")}
                         {messages > 0 ? (
-                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
-                            {messages}
-                          </span>
-                        ) : null}
-                      </p>
-                      <p className="text-icon-nav-bar d-xs-screen mb-0">
-                        {messages > 0 ? (
-                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
+                          <span className="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
                           </span>
                         ) : null}

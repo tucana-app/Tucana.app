@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import Select from "react-select";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { ArrowLeftIcon, ArrowRightIcon, XIcon } from "@primer/octicons-react";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -905,7 +905,7 @@ const DriverApplication = () => {
             </Col>
           </Row>
 
-          <Row className="mt-3 mb-5">
+          <Row className="mt-3 mb-5 pb-5">
             <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
               <p className="small text-secondary mb-0">
                 {t("translation:becomeDriver.message")}
