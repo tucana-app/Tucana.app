@@ -61,11 +61,11 @@ const Ride = () => {
         <GoBack />
       </span>
 
-      {currentUser.Driver &&
-      currentUser.Driver.id !== rideData.ride.Driver.User.id ? (
-        rideData.ride &&
-        !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
-        rideData.ride.seatsLeft > 0 ? (
+      {rideData.ride &&
+      !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
+      rideData.ride.seatsLeft > 0 ? (
+        currentUser.Driver &&
+        currentUser.Driver.id === rideData.ride.Driver.User.id ? null : (
           <div className="book-button">
             <Link to={`/book/${rideData.ride.id}`}>
               <Button variant="success" size="lg">
@@ -79,7 +79,7 @@ const Ride = () => {
               </p>
             ) : null}
           </div>
-        ) : null
+        )
       ) : null}
 
       <Container className="mb-5">
@@ -103,7 +103,84 @@ const Ride = () => {
 
             {/* Display past booking for this ride by this user */}
             {currentUser.Driver &&
-            !(rideData.ride.DriverId === currentUser.Driver.id) ? (
+            rideData.ride.DriverId === currentUser.Driver.id ? (
+              <>
+                <Row className="mb-3 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="border shadow rounded-5 mx-auto"
+                  >
+                    <Container className="py-3 px-2">
+                      <Row>
+                        <Col>
+                          <p className="lead">
+                            {t("translation:ride.manageBookingRequests")}
+                          </p>
+                        </Col>
+                      </Row>
+
+                      <ManageDriverBooking rideId={rideId} />
+                    </Container>
+                  </Col>
+                </Row>
+
+                {!isDateInPast(
+                  new Date(rideData.ride.dateTimeOrigin),
+                  new Date()
+                ) && rideData.ride.seatsLeft === 0 ? (
+                  <Row className="mb-2 mx-1 mx-sm-0">
+                    <Col
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      xl={4}
+                      className="border border-success shadow rounded-5 mx-auto"
+                    >
+                      <Container fluid className="p-2">
+                        <Row>
+                          <Col className="text-center ">
+                            <h1 className="text-success fw-light mb-0">
+                              {t("translation:global.congratulations")}
+                            </h1>
+                            <p className="fw-light mb-0">
+                              {t("translation:ride.allSeatsBooked")}
+                            </p>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Col>
+                  </Row>
+                ) : null}
+
+                <Row className="mb-2 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="border shadow rounded-5 mx-auto"
+                  >
+                    <Container className="py-3 px-2">
+                      <Row>
+                        <Col>
+                          <p className="lead mb-0">
+                            {t("translation:global.passengerDetails")}
+                          </p>
+                        </Col>
+                      </Row>
+
+                      <PassengersDetails rideId={rideId} />
+                    </Container>
+                  </Col>
+                </Row>
+              </>
+            ) : (
               <>
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
@@ -198,83 +275,6 @@ const Ride = () => {
                     </Col>
                   </Row>
                 ) : null}
-              </>
-            ) : (
-              <>
-                <Row className="mb-3 mx-1 mx-sm-0">
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="border shadow rounded-5 mx-auto"
-                  >
-                    <Container className="py-3 px-2">
-                      <Row>
-                        <Col>
-                          <p className="lead">
-                            {t("translation:ride.manageBookingRequests")}
-                          </p>
-                        </Col>
-                      </Row>
-
-                      <ManageDriverBooking rideId={rideId} />
-                    </Container>
-                  </Col>
-                </Row>
-
-                {!isDateInPast(
-                  new Date(rideData.ride.dateTimeOrigin),
-                  new Date()
-                ) && rideData.ride.seatsLeft === 0 ? (
-                  <Row className="mb-2 mx-1 mx-sm-0">
-                    <Col
-                      xs={12}
-                      sm={10}
-                      md={8}
-                      lg={6}
-                      xl={4}
-                      className="border border-success shadow rounded-5 mx-auto"
-                    >
-                      <Container fluid className="p-2">
-                        <Row>
-                          <Col className="text-center ">
-                            <h1 className="text-success fw-light mb-0">
-                              {t("translation:global.congratulations")}
-                            </h1>
-                            <p className="fw-light mb-0">
-                              {t("translation:ride.allSeatsBooked")}
-                            </p>
-                          </Col>
-                        </Row>
-                      </Container>
-                    </Col>
-                  </Row>
-                ) : null}
-
-                <Row className="mb-2 mx-1 mx-sm-0">
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="border shadow rounded-5 mx-auto"
-                  >
-                    <Container className="py-3 px-2">
-                      <Row>
-                        <Col>
-                          <p className="lead mb-0">
-                            {t("translation:global.passengerDetails")}
-                          </p>
-                        </Col>
-                      </Row>
-
-                      <PassengersDetails rideId={rideId} />
-                    </Container>
-                  </Col>
-                </Row>
               </>
             )}
           </div>

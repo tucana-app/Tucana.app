@@ -13,7 +13,7 @@ const SocialIcons = () => {
   return (
     <>
       <a
-        href="https://business.facebook.com/tucanaapp"
+        href="https://facebook.com/tucanaapp"
         target="_blank"
         rel="noopener noreferrer"
         className="hvr-grow text-dark me-3"
