@@ -26,7 +26,7 @@ const DriverPastRides = () => {
 
   useEffect(() => {
     if (isLoggedIn || driverRidesData.length === 0) {
-      dispatch(getDriverRides(currentUser.id));
+      dispatch(getDriverRides(currentUser.Driver.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

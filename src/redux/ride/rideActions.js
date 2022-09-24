@@ -15,14 +15,14 @@ export const getDriverRidesRequested = () => {
   };
 };
 
-export const getDriverRides = (userId) => {
+export const getDriverRides = (driverId) => {
   return (dispatch) => {
     dispatch(getDriverRidesRequested());
 
     axios
-      .get(URL_API + "/ride/user-rides", {
+      .get(URL_API + "/ride/driver-rides", {
         params: {
-          userId,
+          driverId,
         },
       })
       .then((response) => {

@@ -51,7 +51,7 @@ const Rides = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getDriverRides(currentUser.id));
+      dispatch(getDriverRides(currentUser.Driver.id));
       dispatch(getUserBookings(currentUser.id));
       dispatch(getDriverBookings(currentUser.id));
       dispatch(getRidesToConfirm(currentUser.id));
