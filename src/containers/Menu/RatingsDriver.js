@@ -42,7 +42,9 @@ function RatingsDriver() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getRatingsToDoDriver(currentUser.id));
+      if (currentUser.Driver) {
+        dispatch(getRatingsToDoDriver(currentUser.id, currentUser.Driver.id));
+      }
       dispatch(getRatingsReceivedDriver(currentUser.id));
       dispatch(getRatingsGivenDriver(currentUser.id));
     }

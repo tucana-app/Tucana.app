@@ -33,8 +33,10 @@ function Ratings() {
 
   useEffect(() => {
     if (isLoggedIn) {
+      if (currentUser.Driver) {
+        dispatch(getRatingsToDoDriver(currentUser.id, currentUser.Driver.id));
+      }
       dispatch(getRatingsToDoPassenger(currentUser.id));
-      dispatch(getRatingsToDoDriver(currentUser.id));
       dispatch(updateUserRatings(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -182,18 +184,36 @@ function Ratings() {
                     to={`/ratings/new-rating/${ride.id}`}
                     className="text-decoration-none"
                   >
-                    <ListGroup.Item className="border border-start-0 border-end-0 ">
-                      <div className="d-inline-flex justify-content-between w-100 py-2">
-                        <span>
-                          <DotFillIcon
-                            size={24}
-                            className="text-success me-2"
-                          />
-                          {ride.origin.city} - {ride.destination.city} (
-                          {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")})
-                        </span>
-                        <ChevronRightIcon size={24} verticalAlign="middle" />
-                      </div>
+                    <ListGroup.Item className="border border-start-0 border-end-0">
+                      <Container className="mx-0 px-0">
+                        <Row className="align-items-center">
+                          <Col xs={1} className="mx-0 px-0">
+                            <span>
+                              <DotFillIcon
+                                size={24}
+                                className="text-success me-2"
+                              />
+                            </span>
+                          </Col>
+                          <Col className="ps-0">
+                            <p className="mb-0">
+                              {ride.origin.city}{" "}
+                              <ArrowRightIcon verticalAlign="middle" />{" "}
+                              {ride.destination.city}{" "}
+                            </p>
+                            <small>
+                              {t("translation:global.date")}:{" "}
+                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
+                            </small>
+                          </Col>
+                          <Col xs={1} className="mx-0 px-0">
+                            <ChevronRightIcon
+                              size={24}
+                              verticalAlign="middle"
+                            />
+                          </Col>
+                        </Row>
+                      </Container>
                     </ListGroup.Item>
                   </Link>
                 ))}

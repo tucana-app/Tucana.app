@@ -95,6 +95,19 @@ export const countDriverBookings = (driverBookingsData) => {
   return count;
 };
 
+export const countUserBookings = (bookings) => {
+  let count = 0;
+
+  bookings.map((booking, index) => {
+    return booking.BookingStatusId === 3 &&
+      !isDateInPast(booking.Ride.dateTimeOrigin, new Date())
+      ? count++
+      : null;
+  });
+
+  return count;
+};
+
 export const getArrayTimeRide = () => {
   let i,
     j,

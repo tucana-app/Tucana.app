@@ -309,7 +309,7 @@ export const getRatingsToDoDriverRequested = () => {
   };
 };
 
-export const getRatingsToDoDriver = (userId) => {
+export const getRatingsToDoDriver = (userId, driverId) => {
   return (dispatch) => {
     dispatch(getRatingsToDoDriverRequested());
 
@@ -317,6 +317,7 @@ export const getRatingsToDoDriver = (userId) => {
       .get(URL_API + "/rating/get-ratings-to-do-driver", {
         params: {
           userId,
+          driverId,
         },
       })
       .then((response) => {

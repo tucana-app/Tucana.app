@@ -92,7 +92,9 @@ const NewRating = () => {
   useEffect(() => {
     if (isLoggedIn && rideId) {
       dispatch(getRatingsToDoPassenger(currentUser.id));
-      dispatch(getRatingsToDoDriver(currentUser.id));
+      if (currentUser.Driver) {
+        dispatch(getRatingsToDoDriver(currentUser.id, currentUser.Driver.id));
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

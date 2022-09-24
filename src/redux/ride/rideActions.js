@@ -1062,14 +1062,14 @@ export const getRidesToConfirmRequested = () => {
   };
 };
 
-export const getRidesToConfirm = (userId) => {
+export const getRidesToConfirm = (user) => {
   return (dispatch) => {
     dispatch(getRidesToConfirmRequested());
 
     axios
       .get(URL_API + "/ride/rides-to-confirm", {
         params: {
-          userId,
+          user,
         },
       })
       .then((response) => {

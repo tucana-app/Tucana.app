@@ -16,7 +16,7 @@ import {
 import LoadingSpinner from "../components/LoadingSpinner";
 
 import {
-  isDateInPast,
+  countUserBookings,
   countDriverRides,
   countDriverBookings,
 } from "../helpers";
@@ -36,23 +36,10 @@ const Rides = () => {
     driverBookingsData,
   } = useSelector((state) => state.ride);
 
-  const countUserBookings = (userBookingsData) => {
-    let count = 0;
-
-    userBookingsData.map((booking, index) => {
-      return booking.BookingStatusId === 3 &&
-        !isDateInPast(booking.Ride.dateTimeOrigin, new Date())
-        ? count++
-        : null;
-    });
-
-    return count;
-  };
-
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getUserBookings(currentUser.id));
-      dispatch(getRidesToConfirm(currentUser.id));
+      dispatch(getRidesToConfirm(currentUser));
 
       if (currentUser.Driver) {
         dispatch(getDriverRides(currentUser.Driver.id));
