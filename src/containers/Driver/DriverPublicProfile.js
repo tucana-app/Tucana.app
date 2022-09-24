@@ -121,7 +121,7 @@ const DriverPublicProfile = () => {
                     <Col>
                       <p className="text-lowercase">
                         <strong>{driverProfileData.ridesCount}</strong>{" "}
-                        {t("translation:rides.ridesOffered")}
+                        {t("translation:rides.ridesPublished")}
                       </p>
                       <p className="mb-0">
                         {t("translation:global.memberSince")}:{" "}

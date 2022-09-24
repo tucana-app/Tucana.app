@@ -167,7 +167,7 @@ const Login = () => {
                         size="24"
                         className="text-success align-text-top me-2"
                       />
-                      {t("translation:offer.findRide")}
+                      {t("translation:publish.findRide")}
                     </p>
                     {isLoggedIn ? (
                       <Button
@@ -539,7 +539,7 @@ const Login = () => {
                                   size="24"
                                   className="text-success align-text-top me-2"
                                 />
-                                {t("translation:offer.findRide")}
+                                {t("translation:publish.findRide")}
                               </p>
                               {isLoggedIn ? (
                                 <Button

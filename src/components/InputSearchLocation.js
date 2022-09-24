@@ -11,8 +11,8 @@ import { XIcon } from "@primer/octicons-react";
 import {
   setSearchOrigin,
   setSearchDestination,
-  setOfferOrigin,
-  setOfferDestination,
+  setPublishOrigin,
+  setPublishDestination,
 } from "../redux";
 
 function InputSearchLocation(props) {
@@ -98,9 +98,9 @@ function InputSearchLocation(props) {
               );
               break;
 
-            case "offerOrigin":
+            case "publishOrigin":
               dispatch(
-                setOfferOrigin({
+                setPublishOrigin({
                   city,
                   province,
                   address: description,
@@ -110,9 +110,9 @@ function InputSearchLocation(props) {
               );
               break;
 
-            case "offerDestination":
+            case "publishDestination":
               dispatch(
-                setOfferDestination({
+                setPublishDestination({
                   city,
                   province,
                   address: description,

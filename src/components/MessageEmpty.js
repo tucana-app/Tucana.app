@@ -21,9 +21,9 @@ function MessageEmpty(props) {
             {t("translation:messageEmpty.bookRide")}
           </Button>
         </Link>
-        <Link to="/offer" className="text-warning">
+        <Link to="/publish" className="text-warning">
           <Button variant="warning">
-            {t("translation:messageEmpty.offerRide")}
+            {t("translation:messageEmpty.publishRide")}
           </Button>
         </Link>
       </p>

@@ -248,7 +248,10 @@ const HowItWorks = () => {
                         </Col>
                       </Row>
                       <Row className="mt-3">
-                        <Link to="/offer" className="text-decoration-none px-0">
+                        <Link
+                          to="/publish"
+                          className="text-decoration-none px-0"
+                        >
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
                               <p className="fw-bold mb-0">
@@ -256,7 +259,7 @@ const HowItWorks = () => {
                                   size="24"
                                   className="text-success align-text-top me-2"
                                 />
-                                {t("translation:offer.title")}
+                                {t("translation:publish.title")}
                               </p>
                               {isLoggedIn ? (
                                 <Button
@@ -407,7 +410,10 @@ const HowItWorks = () => {
                           </small>
                         </ListGroup.Item>
 
-                        <Link to="/offer" className="text-decoration-none px-0">
+                        <Link
+                          to="/publish"
+                          className="text-decoration-none px-0"
+                        >
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
                               <p className="fw-bold mb-0">

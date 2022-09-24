@@ -41,11 +41,15 @@ function NavigationBar() {
                 </IndexLinkContainer>
               </Col>
               <Col xs={2} className="text-center mx-auto">
-                <IndexLinkContainer to="/offer" href="/offer" className="px-0">
+                <IndexLinkContainer
+                  to="/publish"
+                  href="/publish"
+                  className="px-0"
+                >
                   <Nav.Link className="text-center">
                     <PlusCircleIcon size={24} className="mb-1" />
                     <p className="text-icon-nav-bar mb-0">
-                      {t("translation:navigationBar.offer")}
+                      {t("translation:navigationBar.publish")}
                     </p>
                   </Nav.Link>
                 </IndexLinkContainer>

@@ -1511,7 +1511,7 @@ const Privacy = () => {
                           <span className="font-size: 15px; color: rgb(89, 89, 89);">
                             <span data-custom-classname="body_text">
                               <strong>
-                                To respond to user inquiries/offer support to
+                                To respond to user inquiries/publish support to
                                 users.&nbsp;
                               </strong>
                               We may process your information to respond to your
@@ -1583,7 +1583,7 @@ const Privacy = () => {
                                             communications.&nbsp;
                                           </strong>
                                           We may process your information if you
-                                          choose to use any of our offerings
+                                          choose to use any of our publishings
                                           that allow for communication with
                                           another user.
                                           <span className="color: rgb(89, 89, 89);">

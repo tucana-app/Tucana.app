@@ -54,7 +54,8 @@ const Booking = () => {
           </Row>
         ) : bookingData.id ? (
           currentUser.id === bookingData.User.id ||
-          currentUser.id === bookingData.DriverId ? (
+          (currentUser.Driver &&
+            currentUser.Driver.id === bookingData.DriverId) ? (
             <div data-aos="fade-in">
               <h2 className="text-success text-center">
                 {t("translation:booking.title")}
@@ -125,7 +126,8 @@ const Booking = () => {
                             </p>
                           </>
                         ) : null}
-                        {currentUser.id === bookingData.DriverId ? (
+                        {currentUser.Driver &&
+                        currentUser.Driver.id === bookingData.DriverId ? (
                           <p className="mt-2 mb-0">
                             <SendMessageButton
                               type="link"
@@ -160,7 +162,8 @@ const Booking = () => {
                       </Col>
                       <Col xs={5} className="text-center">
                         <h2 className="mb-0">
-                          {currentUser.id !== bookingData.DriverId
+                          {currentUser.Driver &&
+                          currentUser.Driver.id !== bookingData.DriverId
                             ? formatPrice(bookingData.totalPaidPassenger)
                             : formatPrice(bookingData.totalReceivedDriver)}
                         </h2>
@@ -172,7 +175,8 @@ const Booking = () => {
 
               {/* If not a past booking */}
               {/* and the booking is still pending approval */}
-              {currentUser.id === bookingData.DriverId &&
+              {currentUser.Driver &&
+              currentUser.Driver.id === bookingData.DriverId &&
               !isDateInPast(bookingData.Ride.dateTimeOrigin, new Date()) &&
               bookingData.BookingStatusId === 1 ? (
                 <Row className="mb-3 mx-1 mx-sm-0">
@@ -191,7 +195,8 @@ const Booking = () => {
                 </Row>
               ) : null}
 
-              {currentUser.id !== bookingData.DriverId ? (
+              {currentUser.Driver &&
+              currentUser.Driver.id !== bookingData.DriverId ? (
                 <Row className="mb-4 mx-1 mx-sm-0">
                   <Col
                     xs={12}

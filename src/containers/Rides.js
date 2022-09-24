@@ -113,7 +113,7 @@ const Rides = () => {
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
-                        {t("translation:rides.ridesOffered")}
+                        {t("translation:rides.ridesPublished")}
                         {driverRidesData.length > 0 ? (
                           countDriverRides(driverRidesData) ? (
                             <Badge bg="success" className="text-dark ms-2">

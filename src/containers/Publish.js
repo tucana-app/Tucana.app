@@ -20,14 +20,14 @@ import {
 } from "@primer/octicons-react";
 
 import {
-  resetOfferOrigin,
-  resetOfferDestination,
+  resetPublishOrigin,
+  resetPublishDestination,
   setRideDate,
   setRideTime,
   setRideSeats,
   setRidePrice,
   setRideComment,
-  submitFormOfferRide,
+  submitFormPublishRide,
   getETA,
   setToast,
 } from "../redux";
@@ -47,24 +47,24 @@ registerLocale("en", en);
 registerLocale("es", es);
 registerLocale("fr", fr);
 
-const Offer = () => {
+const Publish = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
-    formOfferRide,
-    isLoadingSubmitFormOfferRide,
-    submitFormOfferRideData,
+    formPublishRide,
+    isLoadingSubmitFormPublishRide,
+    submitFormPublishRideData,
     isLoadingGetETA,
     getETAData,
   } = useSelector((state) => state.ride);
   const { seatsMax, priceMin, priceMax } = useSelector((state) => state.global);
 
-  const [date, setDate] = useState(formOfferRide.date);
-  const [time, setTime] = useState(formOfferRide.time);
-  const [seats, setSeats] = useState(formOfferRide.seats);
-  const [price, setPrice] = useState(formOfferRide.price);
-  const [comment, setComment] = useState(formOfferRide.comment);
+  const [date, setDate] = useState(formPublishRide.date);
+  const [time, setTime] = useState(formPublishRide.time);
+  const [seats, setSeats] = useState(formPublishRide.seats);
+  const [price, setPrice] = useState(formPublishRide.price);
+  const [comment, setComment] = useState(formPublishRide.comment);
 
   const timeOrigin = useRef(new Date());
   const timeDestination = useRef(new Date());
@@ -114,18 +114,18 @@ const Offer = () => {
   };
 
   const handleEditOrigin = () => {
-    dispatch(resetOfferOrigin());
+    dispatch(resetPublishOrigin());
   };
 
   // Step 2
   const handleClickStepTwo = () => {
     setStepTwo(false);
     setStepThree(true);
-    dispatch(getETA(formOfferRide.origin, formOfferRide.destination));
+    dispatch(getETA(formPublishRide.origin, formPublishRide.destination));
   };
 
   const handleEditDestination = () => {
-    dispatch(resetOfferDestination());
+    dispatch(resetPublishDestination());
   };
 
   const handleBackToStepOne = () => {
@@ -262,7 +262,7 @@ const Offer = () => {
   const handleSubmit = () => {
     setStepVerify(false);
     setSubmitted(true);
-    dispatch(submitFormOfferRide(currentUser, formOfferRide, getETAData));
+    dispatch(submitFormPublishRide(currentUser, formPublishRide, getETAData));
   };
 
   // Handlers
@@ -341,7 +341,7 @@ const Offer = () => {
         timeOrigin.current.getTime() + getETAData.durationValue * 1000
       );
     }
-  }, [formOfferRide, getETAData]);
+  }, [formPublishRide, getETAData]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -354,18 +354,18 @@ const Offer = () => {
           <>
             <Row className="mt-5 pt-3 mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.whereFrom")}</h2>
+                <h2>{t("translation:publish.whereFrom")}</h2>
               </Col>
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {formOfferRide.origin.city !== "" ? (
+                {formPublishRide.origin.city !== "" ? (
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
                         <h3 className="mb-0">
-                          <strong>{formOfferRide.origin.city}</strong>,{" "}
-                          <small>{formOfferRide.origin.province}</small>
+                          <strong>{formPublishRide.origin.city}</strong>,{" "}
+                          <small>{formPublishRide.origin.province}</small>
                         </h3>
                       </Col>
                     </Row>
@@ -387,7 +387,7 @@ const Offer = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <InputSearchLocation inputLocation="offerOrigin" />
+                  <InputSearchLocation inputLocation="publishOrigin" />
                 )}
               </Col>
             </Row>
@@ -398,18 +398,18 @@ const Offer = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.whereTo")}</h2>
+                <h2>{t("translation:publish.whereTo")}</h2>
               </Col>
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {formOfferRide.destination.city !== "" ? (
+                {formPublishRide.destination.city !== "" ? (
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
                         <h3 className="mb-0">
-                          <strong>{formOfferRide.destination.city}</strong>,{" "}
-                          <small>{formOfferRide.destination.province}</small>
+                          <strong>{formPublishRide.destination.city}</strong>,{" "}
+                          <small>{formPublishRide.destination.province}</small>
                         </h3>
                       </Col>
                     </Row>
@@ -431,7 +431,7 @@ const Offer = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <InputSearchLocation inputLocation="offerDestination" />
+                  <InputSearchLocation inputLocation="publishDestination" />
                 )}
               </Col>
             </Row>
@@ -442,7 +442,7 @@ const Offer = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.when")}</h2>
+                <h2>{t("translation:publish.when")}</h2>
               </Col>
             </Row>
 
@@ -474,14 +474,14 @@ const Offer = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.whatTime")}</h2>
+                <h2>{t("translation:publish.whatTime")}</h2>
               </Col>
             </Row>
 
             <Row className="mb-4">
               <Col xs={10} md={8} lg={6} xl={4} className="text-center mx-auto">
                 <Select
-                  placeholder={t("translation:offer.chooseTime")}
+                  placeholder={t("translation:publish.chooseTime")}
                   value={time}
                   onChange={handleChangeTime}
                   options={getArrayTimeRide()}
@@ -504,7 +504,7 @@ const Offer = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.seatsAvailable")}</h2>
+                <h2>{t("translation:publish.seatsAvailable")}</h2>
               </Col>
             </Row>
 
@@ -584,7 +584,7 @@ const Offer = () => {
 
             <Row className="mb-3">
               <Col className="text-center">
-                <h2>{t("translation:offer.priceTitle")}</h2>
+                <h2>{t("translation:publish.priceTitle")}</h2>
               </Col>
             </Row>
 
@@ -678,7 +678,7 @@ const Offer = () => {
 
               <Row className="mb-3">
                 <Col className="text-center">
-                  <h2>{t("translation:offer.summary")}</h2>
+                  <h2>{t("translation:publish.summary")}</h2>
                 </Col>
               </Row>
 
@@ -694,7 +694,7 @@ const Offer = () => {
                   <Container className="p-2">
                     <Row className="mb-3">
                       <Col className="text-center">
-                        {dateFormat(formOfferRide.date, "dd/mm/yyyy")}
+                        {dateFormat(formPublishRide.date, "dd/mm/yyyy")}
                       </Col>
                     </Row>
                     <Row>
@@ -708,8 +708,8 @@ const Offer = () => {
                       </Col>
                       <Col xs={8}>
                         <p className="line-height-md mb-1">
-                          <strong>{formOfferRide.origin.city}, </strong>
-                          <small>{formOfferRide.origin.province}</small>
+                          <strong>{formPublishRide.origin.city}, </strong>
+                          <small>{formPublishRide.origin.province}</small>
                         </p>
                         <p className="mb-2">
                           <ArrowDownIcon size={24} className="text-success" />
@@ -724,8 +724,8 @@ const Offer = () => {
                       </Col>
                       <Col xs={7}>
                         <p className="line-height-md mb-0">
-                          <strong>{formOfferRide.destination.city}, </strong>
-                          <small>{formOfferRide.destination.province}</small>
+                          <strong>{formPublishRide.destination.city}, </strong>
+                          <small>{formPublishRide.destination.province}</small>
                         </p>
                       </Col>
                       <Col xs={3}></Col>
@@ -734,13 +734,13 @@ const Offer = () => {
                     <Row className="align-items-center">
                       <Col xs={12} md={8}>
                         <p className="mb-0">
-                          {t("translation:offer.estimatedTime")}:{" "}
+                          {t("translation:publish.estimatedTime")}:{" "}
                           <strong>
                             {formatTimeSecond(getETAData.durationValue)}
                           </strong>
                         </p>
                         <p className="mb-0">
-                          {t("translation:offer.estimatedDistance")}:{" "}
+                          {t("translation:publish.estimatedDistance")}:{" "}
                           <strong>
                             {formatDistance(getETAData.distanceValue)}
                           </strong>
@@ -748,7 +748,7 @@ const Offer = () => {
                       </Col>
                       <Col xs={12} md={4} className="text-center mt-3 mt-md-0">
                         <a
-                          href={`https://www.google.com/maps/dir/?api=1&origin=${formOfferRide.origin.address}&destination=${formOfferRide.destination.address}&travelmode=driving`}
+                          href={`https://www.google.com/maps/dir/?api=1&origin=${formPublishRide.origin.address}&destination=${formPublishRide.destination.address}&travelmode=driving`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -820,7 +820,7 @@ const Offer = () => {
                             type="textarea"
                             value={comment}
                             placeholder={t(
-                              "translation:offer.placeholderComment"
+                              "translation:publish.placeholderComment"
                             )}
                             className="rounded mb-3"
                             onChange={handleChangeComment}
@@ -859,13 +859,13 @@ const Offer = () => {
           )
         ) : submitted ? (
           <>
-            {isLoadingSubmitFormOfferRide ? (
+            {isLoadingSubmitFormPublishRide ? (
               <Row className="mt-5 pt-5">
                 <Col className="text-center">
                   <LoadingSpinner />
                 </Col>
               </Row>
-            ) : submitFormOfferRideData.flag === "SUCCESS" ? (
+            ) : submitFormPublishRideData.flag === "SUCCESS" ? (
               <Row className="mt-5 pt-5">
                 <Col className="text-center">
                   <h1 className="text-success">
@@ -874,11 +874,11 @@ const Offer = () => {
                   <p>{t("translation:global.rideOnline")}</p>
                   <p>
                     <Link
-                      to={`/ride/${submitFormOfferRideData.ride.id}`}
+                      to={`/ride/${submitFormPublishRideData.ride.id}`}
                       className="cursor-pointer"
                     >
                       <Button variant="success" size="lg">
-                        {t("translation:offer.checkItOut")}
+                        {t("translation:publish.checkItOut")}
                       </Button>
                     </Link>
                   </p>
@@ -892,7 +892,7 @@ const Offer = () => {
                   </h1>
                   <p>{t("translation:global.errors.errorPersist")}</p>
                   <p>
-                    <Link to="/offer" className="link-success me-2">
+                    <Link to="/publish" className="link-success me-2">
                       <Button variant="success">
                         <ArrowLeftIcon size={24} className="me-2" />
                         {t("translation:global.goBack")}
@@ -926,10 +926,10 @@ const Offer = () => {
               <Row>
                 <Col>
                   <h1 className="title display-4">
-                    {t("translation:offer.title")}
+                    {t("translation:publish.title")}
                   </h1>
                   <p className="mb-0">
-                    {t("translation:offer.onlyVerifiedDriver")}
+                    {t("translation:publish.onlyVerifiedDriver")}
                   </p>
                 </Col>
               </Row>
@@ -945,7 +945,7 @@ const Offer = () => {
                   <p className="mb-0">
                     <Link to="/find">
                       <Button variant="warning">
-                        {t("translation:offer.findRide")}
+                        {t("translation:publish.findRide")}
                       </Button>
                     </Link>
                   </p>
@@ -959,4 +959,4 @@ const Offer = () => {
   );
 };
 
-export default Offer;
+export default Publish;

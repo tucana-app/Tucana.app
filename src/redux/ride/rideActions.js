@@ -68,7 +68,7 @@ export const getDriverRidesFail = (error) => {
 
 // Form add new ride
 // Set origin with Google Maps
-export const setOfferOrigin = (origin) => {
+export const setPublishOrigin = (origin) => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -82,7 +82,7 @@ export const setOfferOrigin = (origin) => {
 };
 
 // Reset origin
-export const resetOfferOrigin = () => {
+export const resetPublishOrigin = () => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -95,7 +95,7 @@ export const resetOfferOrigin = () => {
 };
 
 // Set destination with Google Maps
-export const setOfferDestination = (destination) => {
+export const setPublishDestination = (destination) => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -109,7 +109,7 @@ export const setOfferDestination = (destination) => {
 };
 
 // Reset origin
-export const resetOfferDestination = () => {
+export const resetPublishDestination = () => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
@@ -162,14 +162,14 @@ export const setRideComment = (comment) => {
 };
 
 // Reset form
-export const resetFormOfferRide = () => {
+export const resetFormPublishRide = () => {
   return (dispatch) => {
     dispatch({
       type: rideTypes.RESET_SEARCH,
     });
 
     dispatch({
-      type: rideTypes.RESET_FORM_OFFER_RIDE,
+      type: rideTypes.RESET_FORM_Publish_RIDE,
     });
   };
 };
@@ -222,24 +222,24 @@ export const getETAFail = (error) => {
 
 // Submit the form to add a new ride
 
-export const submitFormOfferRideRequested = () => {
+export const submitFormPublishRideRequested = () => {
   return {
-    type: rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST,
+    type: rideTypes.SUBMIT_FORM_Publish_RIDE_REQUEST,
   };
 };
 
-export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
+export const submitFormPublishRide = (user, formPublishRide, ETAdata) => {
   return (dispatch) => {
-    dispatch(submitFormOfferRideRequested());
+    dispatch(submitFormPublishRideRequested());
 
-    const parsingResult = parseText(formOfferRide.comment);
+    const parsingResult = parseText(formPublishRide.comment);
 
     // Formatting origin date & time
-    const time = formOfferRide.time.value;
+    const time = formPublishRide.time.value;
     const hours = time.slice(0, time.search(":"));
     const minutes = time.slice(time.search(":") + 1);
-    var dateTimeOrigin = formOfferRide.date.setHours(hours);
-    dateTimeOrigin = formOfferRide.date.setMinutes(minutes);
+    var dateTimeOrigin = formPublishRide.date.setHours(hours);
+    dateTimeOrigin = formPublishRide.date.setMinutes(minutes);
     dateTimeOrigin = new Date(dateTimeOrigin);
 
     // Formatting destination date & time
@@ -249,8 +249,8 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
     );
 
     if (parsingResult.value === 0) {
-      formOfferRide = {
-        ...formOfferRide,
+      formPublishRide = {
+        ...formPublishRide,
         dateTimeOrigin,
         dateTimeDestination,
         ETAdata,
@@ -259,7 +259,7 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
       axios
         .post(URL_API + "/ride/add-ride", {
           user,
-          formOfferRide,
+          formPublishRide,
         })
         .then((response) => {
           // console.log(response.message);
@@ -273,8 +273,8 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
             })
           );
 
-          dispatch(resetFormOfferRide());
-          dispatch(submitFormOfferRideData(response.data));
+          dispatch(resetFormPublishRide());
+          dispatch(submitFormPublishRideData(response.data));
           dispatch(getDriverRides(user.id));
         })
         .catch((error) => {
@@ -294,7 +294,7 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
             })
           );
 
-          dispatch(submitFormOfferRideError(error));
+          dispatch(submitFormPublishRideError(error));
         });
     } else {
       dispatch(
@@ -306,21 +306,21 @@ export const submitFormOfferRide = (user, formOfferRide, ETAdata) => {
         })
       );
 
-      dispatch(submitFormOfferRideError(parsingResult.message));
+      dispatch(submitFormPublishRideError(parsingResult.message));
     }
   };
 };
 
-export const submitFormOfferRideData = (data) => {
+export const submitFormPublishRideData = (data) => {
   return {
-    type: rideTypes.SUBMIT_FORM_OFFER_RIDE_SUCCESS,
+    type: rideTypes.SUBMIT_FORM_Publish_RIDE_SUCCESS,
     payload: data,
   };
 };
 
-export const submitFormOfferRideError = (error) => {
+export const submitFormPublishRideError = (error) => {
   return {
-    type: rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL,
+    type: rideTypes.SUBMIT_FORM_Publish_RIDE_FAIL,
     payload: error,
   };
 };

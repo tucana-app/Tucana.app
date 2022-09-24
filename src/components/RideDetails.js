@@ -67,11 +67,11 @@ function RideDetails({ ride }) {
           <Row className="align-items-center">
             <Col xs={12} md={8}>
               <p className="mb-0">
-                {t("translation:offer.estimatedTime")}:{" "}
+                {t("translation:publish.estimatedTime")}:{" "}
                 <strong>{formatTimeSecond(ride.ETA.durationValue)}</strong>
               </p>
               <p className="mb-0">
-                {t("translation:offer.estimatedDistance")}:{" "}
+                {t("translation:publish.estimatedDistance")}:{" "}
                 <strong>{formatDistance(ride.ETA.distanceValue)}</strong>
               </p>
             </Col>

@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
+  CheckCircleFillIcon,
   CheckIcon,
   StarFillIcon,
   XCircleFillIcon,
@@ -95,7 +96,10 @@ function Account() {
                   </p>
                   {currentUser.phoneConfirmed ? (
                     <p className="small text-secondary mb-0">
-                      <CheckIcon size={24} className="text-success me-2" />
+                      <CheckCircleFillIcon
+                        size={24}
+                        className="text-success me-2"
+                      />
                       {t("translation:global.verified")}
                     </p>
                   ) : (

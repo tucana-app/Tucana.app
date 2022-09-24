@@ -5,9 +5,9 @@ const initialState = {
   driverRidesData: [],
   driverRidesError: "",
 
-  isLoadingSubmitFormOfferRide: false,
-  submitFormOfferRideData: false,
-  submitFormOfferRideError: "",
+  isLoadingSubmitFormPublishRide: false,
+  submitFormPublishRideData: false,
+  submitFormPublishRideError: "",
 
   isLoadingRide: false,
   rideData: {},
@@ -61,7 +61,7 @@ const initialState = {
   getETAData: [],
   getETAError: "",
 
-  formOfferRide: {
+  formPublishRide: {
     origin: {
       city: "",
       province: "",
@@ -161,23 +161,23 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST:
       return {
         ...state,
-        isLoadingSubmitFormOfferRide: true,
+        isLoadingSubmitFormPublishRide: true,
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_SUCCESS:
       return {
         ...state,
-        isLoadingSubmitFormOfferRide: false,
-        submitFormOfferRideData: action.payload,
-        submitFormOfferRideError: "",
+        isLoadingSubmitFormPublishRide: false,
+        submitFormPublishRideData: action.payload,
+        submitFormPublishRideError: "",
       };
 
     case rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL:
       return {
         ...state,
-        isLoadingSubmitFormOfferRide: false,
-        submitFormOfferRideData: false,
-        submitFormOfferRideError: action.payload,
+        isLoadingSubmitFormPublishRide: false,
+        submitFormPublishRideData: false,
+        submitFormPublishRideError: action.payload,
       };
 
     case rideTypes.GET_RIDE_REQUEST:
@@ -478,8 +478,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_ORIGIN:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           origin: {
             city: action.payload.city,
             province: action.payload.province,
@@ -493,8 +493,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.RESET_RIDE_ORIGIN:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           origin: {
             city: "",
             province: "",
@@ -508,8 +508,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_DESTINATION:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           destination: {
             city: action.payload.city,
             province: action.payload.province,
@@ -523,8 +523,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.RESET_RIDE_DESTINATION:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           destination: {
             city: "",
             province: "",
@@ -538,8 +538,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_DATE:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           date: action.payload,
         },
       };
@@ -547,8 +547,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_TIME:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           time: action.payload,
         },
       };
@@ -556,8 +556,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_SEATS:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           seats: action.payload,
         },
       };
@@ -565,8 +565,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_PRICE:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           price: action.payload,
         },
       };
@@ -574,8 +574,8 @@ function rideReducer(state = initialState, action) {
     case rideTypes.SET_RIDE_COMMENT:
       return {
         ...state,
-        formOfferRide: {
-          ...state.formOfferRide,
+        formPublishRide: {
+          ...state.formPublishRide,
           comment: action.payload,
         },
       };
@@ -583,7 +583,7 @@ function rideReducer(state = initialState, action) {
     case rideTypes.RESET_FORM_OFFER_RIDE:
       return {
         ...state,
-        formOfferRide: {
+        formPublishRide: {
           origin: {
             city: "",
             province: "",

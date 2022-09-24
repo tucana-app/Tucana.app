@@ -5782,7 +5782,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>offerRides</name>
+                                <name>publishRides</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>
@@ -6788,7 +6788,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>offerRide</name>
+                                <name>publishRide</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>
@@ -6945,7 +6945,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>offer</name>
+                                <name>publish</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>
@@ -6966,7 +6966,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>offerRide</name>
+                                <name>publishRide</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>
@@ -7167,7 +7167,7 @@
                         </children>
                     </folder_node>
                     <folder_node>
-                        <name>offer</name>
+                        <name>publish</name>
                         <children>
                             <concept_node>
                                 <name>checkItOut</name>
@@ -8192,7 +8192,7 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>ridesOffered</name>
+                                <name>ridesPublished</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
                                 <comment/>

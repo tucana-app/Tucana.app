@@ -35,7 +35,7 @@ import UserPastBookings from "./containers/UserPastBookings";
 import RidesToConfirm from "./containers/RidesToConfirm";
 import ConfirmRide from "./containers/ConfirmRide";
 
-import Offer from "./containers/Offer";
+import Publish from "./containers/Publish";
 import HowItWorks from "./containers/HowItWorks";
 
 import BecomeDriver from "./containers/BecomeDriver";
@@ -145,7 +145,7 @@ function App() {
             <Route exact path="/signup-successful" component={SignUpSuccess} />
             <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
 
-            <Route exact path="/offer" component={Offer} />
+            <Route exact path="/publish" component={Publish} />
             <Route exact path="/find" component={Find} />
             <Route exact path="/messages" component={Messages} />
             <Route exact path="/become-driver" component={BecomeDriver} />
