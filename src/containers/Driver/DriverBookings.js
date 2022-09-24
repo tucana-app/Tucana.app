@@ -46,7 +46,7 @@ const DriverBookings = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getDriverBookings(currentUser.id));
+      dispatch(getDriverBookings(currentUser.Driver.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

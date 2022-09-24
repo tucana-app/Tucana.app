@@ -896,14 +896,14 @@ export const getDriverBookingsRequested = () => {
   };
 };
 
-export const getDriverBookings = (userId) => {
+export const getDriverBookings = (driverId) => {
   return (dispatch) => {
     dispatch(getDriverBookingsRequested());
 
     axios
       .get(URL_API + "/ride/driver-bookings", {
         params: {
-          userId,
+          driverId,
         },
       })
       .then((response) => {

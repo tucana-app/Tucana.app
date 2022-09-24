@@ -53,7 +53,7 @@ const Rides = () => {
     if (isLoggedIn) {
       dispatch(getDriverRides(currentUser.Driver.id));
       dispatch(getUserBookings(currentUser.id));
-      dispatch(getDriverBookings(currentUser.id));
+      dispatch(getDriverBookings(currentUser.Driver.id));
       dispatch(getRidesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -19,7 +19,7 @@ function ManageDriverBooking({ rideId }) {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getDriverBookingsRide(currentUser.id, rideId));
+      dispatch(getDriverBookingsRide(currentUser.Driver.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
