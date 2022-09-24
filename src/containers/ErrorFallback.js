@@ -3,17 +3,11 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "@primer/octicons-react";
 
-import NavigationBar from "../components/NavigationBar";
-
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const { t } = useTranslation();
 
   return (
     <>
-      {console.log(error)}
-
-      <NavigationBar />
-
       <Container className="mt-5 pt-5">
         <Row className="mb-3 mx-1 mx-sm-0">
           <Col

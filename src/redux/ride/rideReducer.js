@@ -158,13 +158,13 @@ function rideReducer(state = initialState, action) {
         getETAError: action.payload,
       };
 
-    case rideTypes.SUBMIT_FORM_OFFER_RIDE_REQUEST:
+    case rideTypes.SUBMIT_FORM_PUBLISH_RIDE_REQUEST:
       return {
         ...state,
         isLoadingSubmitFormPublishRide: true,
       };
 
-    case rideTypes.SUBMIT_FORM_OFFER_RIDE_SUCCESS:
+    case rideTypes.SUBMIT_FORM_PUBLISH_RIDE_SUCCESS:
       return {
         ...state,
         isLoadingSubmitFormPublishRide: false,
@@ -172,7 +172,7 @@ function rideReducer(state = initialState, action) {
         submitFormPublishRideError: "",
       };
 
-    case rideTypes.SUBMIT_FORM_OFFER_RIDE_FAIL:
+    case rideTypes.SUBMIT_FORM_PUBLISH_RIDE_FAIL:
       return {
         ...state,
         isLoadingSubmitFormPublishRide: false,
@@ -580,7 +580,7 @@ function rideReducer(state = initialState, action) {
         },
       };
 
-    case rideTypes.RESET_FORM_OFFER_RIDE:
+    case rideTypes.RESET_FORM_PUBLISH_RIDE:
       return {
         ...state,
         formPublishRide: {

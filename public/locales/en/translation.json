@@ -1,500 +1,500 @@
 {
-  "404": {
-    "back1": "Go back to the",
-    "back2": "homepage",
-    "message": "We couldn't find the page you are looking for.",
-    "notFound": "Page not found"
-  },
-  "FAQ": {
-    "answer1": "As for now, all payments are made with cash money. You can arrange directly with the driver or your passengers for the currency, in CRC (Costa Rican Colones) or in USD (US dollars)",
-    "answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
-    "question1": "How the payment works?",
-    "question2": "How does refund works?",
-    "title": "FAQ"
-  },
-  "FormDriverResponseBooking": {
-    "manageBooking": "Manage this booking",
-    "message": "{{firstName}} booked {{seatsBooked}} seats but there are {{seatsLeft}} seats left, you cannot accept or refuse this booking.",
-    "placeholder": "Give your passenger more details about the booking or the ride"
-  },
-  "ManageDriverBooking": {
-    "noBookings": "You do not have any bookings for this ride yet"
-  },
-  "PassengersDetails": {
-    "noPassengers": "You do not have passengers for this ride yet",
-    "summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
-  },
-  "becomeDriver": {
-    "applicationForm": "Application form",
-    "apply": "Apply",
-    "colorPlaceholder": "Grey, black, white, etc.",
-    "countryIssue": "Country of issue",
-    "disclaimer": "We do not disclose any information about your country of origin. This is solely for verification purposes",
-    "licenseNumber": "Driving license's number",
-    "message": "Build trust with your potential passengers by providing as many authentic proofs of identity.",
-    "nationalId": "National ID",
-    "notDriver": "You can apply to become a driver",
-    "passport": "Passport",
-    "pastApplications": "Past applications",
-    "request": "Request",
-    "thankYou": "Thank you for applying. A moderator will review your submission",
-    "typeMaker": "Type the car maker",
-    "underReview": "Under review"
-  },
-  "booking": {
-    "rideDetails": "Ride details",
-    "summary1": "You booked",
-    "summary2": "booked",
-    "summary3": "seat",
-    "summary4": "on the",
-    "title": "Booking details"
-  },
-  "bookings": {
-    "noBookings": "You haven't made a booking yet",
-    "subTitle": "All the bookings you have made"
-  },
-  "comingSoon": {
-    "subTitle": "This page or feature will soon be available",
-    "thankYou": "Thank you for your understanding",
-    "title": "Coming soon"
-  },
-  "confirmRide": {
-    "answer": "Thank you for submitting your answer",
-    "answerNo": "Can you tell us what went wrong? We would love to hear why you couldn't ride",
-    "complaint": "I have a complaint",
-    "confirm": "I confirm",
-    "confirmNoRide": "Please confirm that the ride didn't take place",
-    "confirmRideMessage": "Did the ride took place?",
-    "message": "Now you have to let us know if everything went well, and if you did this ride",
-    "rateRide": "Rate your ride",
-    "tellUsWhy": "Tell us why",
-    "title": "Confirm the ride"
-  },
-  "contact": {
-    "max1000characters": "Max. 1000 characters",
-    "min20characters": "Min. 20 characters",
-    "subject": "Subject",
-    "title": "Get in touch"
-  },
-  "createNewPassword": {
-    "linkDeprecated": "This link is deprecated",
-    "newPassword": "New password",
-    "reset": "Reset password",
-    "retypePassword": "Retype password",
-    "success": "Your password has been successfully reset.",
-    "title": "Create a new password"
-  },
-  "dataProtection": {
-    "title": "Data Protection"
-  },
-  "donate": {
-    "crowdfunding": "Crowdfunding website",
-    "paragraph": "We are in search for funds to hire more people and improve our platform",
-    "subTitle": "Thank you so much for your consideration",
-    "title": "Donate"
-  },
-  "find": {
-    "catchPhrase": "Find your next trip across Costa Rica",
-    "change": "Change",
-    "distanceDestination": "from your arrival address",
-    "distanceOrigin": "from your starting address"
-  },
-  "formBookRide": {
-    "numberPassengers": "Number of passenger"
-  },
-  "formSearchRide": {
-    "hitEnter": "or hit enter"
-  },
-  "global": {
-    "about": "About",
-    "accept": "Accept",
-    "accepted": "Accepted",
-    "acceptingBooking": "You have accepted the booking",
-    "alreadyBooking": "You already have booking(s) for this ride",
-    "becomeDriver": "Become a driver",
-    "bio": "Biography",
-    "book": "Book",
-    "bookRide": "Book a ride",
-    "bookThisRide": "Book this ride",
-    "booking": "Booking",
-    "bookingSubmitted": "Your booking has been submitted to the driver",
-    "bookingSuccess": "Your booking has been submitted to the driver",
-    "bookings": "Bookings",
-    "by": "By",
-    "cancel": "Cancel",
-    "car": "Car",
-    "city": "City",
-    "click": "Click",
-    "close": "Close",
-    "color": "Color",
-    "comingSoon": "Coming soon",
-    "comment": "Comment",
-    "confirm": "Confirm",
-    "confirmingRide": "You have confirmed the ride",
-    "congratulations": "Congratulations",
-    "contact": "Contact",
-    "contactUs": "Contact Us",
-    "continue": "Continue",
-    "country": "Country",
-    "created": "Created",
-    "credits": "Credits",
-    "currentLanguage": "English",
-    "date": "Date",
-    "day": "Day",
-    "destination": "Destination",
-    "distance": "Distance",
-    "doNotShare": "Do not share any contact info (phone, email, etc), they will be shared within the platform when a booking is made.",
-    "driver": "Driver",
-    "driverComment": "Driver comment",
-    "drivingLicense": "Driving license",
-    "edit": "Edit",
-    "email": "Email",
-    "errors": {
-      "acceptTerms": "To use our services, you need to agree with our Terms & Conditions and our Privacy Policy",
-      "captcha": "Please fill up the captcha",
-      "chooseDate": "You need to pick a day",
-      "chooseSeatsAvailable": "You need to choose the amount of seats you have available",
-      "chooseTime": "You need to pick a time",
-      "dateFuture": "The date needs to be in the future",
-      "error": "Error",
-      "errorFallback": "There has been an error.",
-      "errorPersist": "If the error persists, please contact us.",
-      "fieldRequired": "This field is required",
-      "max20characters": "Max. 20 characters",
-      "min4characters": "Min. 4 characters",
-      "missingComment": "You need to write a comment (min. 10 characters)",
-      "missingInfo": "Please fill up all the information",
-      "missingRating": "Make sure you give a rating",
-      "passwordsMatch": "Passwords must match",
-      "sendingMessage": "Your message couldn't be sent",
-      "stringField": "You must enter a string",
-      "validEmail": "Please enter a valid email address",
-      "validName": "Please enter a valid name",
-      "validNumberPlate": "Enter a valid number plate",
-      "validPhone": "Please enter a valid phone number",
-      "validUsername": "Please enter a valid username (only letters and numbers)",
-      "validYear": "Enter a valid year"
-    },
-    "faq": "FAQ",
-    "finish": "Finish",
-    "firstName": "First name",
-    "from": "From",
-    "fuelType": "Fuel type",
-    "fullname": "Full name",
-    "getVerified": "Get verified",
-    "given": "Given",
-    "goBack": "Go back",
-    "goBackApp": "You can now go back to the app",
-    "help": "Help",
-    "howItWorks": "How does it work?",
-    "idType": "ID Type",
-    "identification": "Identification",
-    "language": "Language",
-    "lastName": "Last name",
-    "learnMore": "Learn more",
-    "logIn": "Log In",
-    "maker": "Maker",
-    "manage": "Manage",
-    "mandatory": "This field is mandatory",
-    "maps": "Map of Costa Rica",
-    "marchamo": "Marchamo (car insurance)",
-    "memberSince": "Member since",
-    "message": "Message",
-    "model": "Model",
-    "month": "Month",
-    "more": "More",
-    "next": "Next",
-    "no": "No",
-    "noRatings": "No ratings",
-    "notMandatory": "Not mandatory",
-    "notVerified": "Not verified",
-    "number": "Number",
-    "numberPlate": "Number plate",
-    "origin": "Origin",
-    "passenger": "Passenger",
-    "passengerComment": "Passenger comment",
-    "passengerDetails": "Passenger details",
-    "passengers": "Passengers",
-    "password": "Password",
-    "pastBookings": "Past bookings",
-    "pastRides": "Past rides",
-    "pending": "Pending",
-    "perSeat": "per seat",
-    "phone": "Phone",
-    "price": "Price",
-    "profile": "Profile",
-    "province": "Province",
-    "ratings": "Ratings",
-    "received": "Received",
-    "refundPolicy": "Refund policy",
-    "refuse": "Refuse",
-    "refused": "Refused",
-    "rejectingRide": "You have rejected the ride",
-    "report": "Report a problem",
-    "reportMember": "Report this member",
-    "resendLink": "Resend the confirmation link",
-    "reset": "Reset",
-    "returnLogin": "Return to the <2>login page</2>",
-    "ride": "Ride",
-    "rideOnline": "Your ride is now online",
-    "riteve": "Riteve (car inspection)",
-    "search": "Search",
-    "searchResults": "Search results",
-    "seat": "Seat",
-    "seats": "Seats",
-    "seatsAvailable": "Seats available",
-    "seeBooking": "See booking",
-    "seeRide": "See ride",
-    "selectOption": "Select an option",
-    "selected": "Selected",
-    "send": "Send",
-    "settings": "Settings",
-    "signUp": "Sign Up",
-    "skip": "Skip",
-    "slogan": "Share your rides in Costa Rica",
-    "status": "Status",
-    "step": "Step",
-    "submit": "Submit",
-    "success": "Success",
-    "thankYou": "Thank you",
-    "time": "Time",
-    "to": "to",
-    "total": "Total",
-    "username": "Username",
-    "vehicle": "Vehicle",
-    "verified": "Verified",
-    "verify": "Verify",
-    "view": "View",
-    "welcome": "Welcome",
-    "year": "Year",
-    "yes": "Yes",
-    "yourIdentity": "Your identity",
-    "yourLicense": "Your driving license",
-    "yourRating": "Your rating",
-    "yourVehicle": "Your vehicle"
-  },
-  "help": {
-    "message1": "If anything happens during your ride, call",
-    "message2": "immediately, the local emergency services"
-  },
-  "hiring": {
-    "message": "We are looking for developers, designers, content creators, managers, and much more! So if you are interested in helping make travel in Costa Rica fun, reach out to us",
-    "title": "We are hiring"
-  },
-  "homepage": {
-    "catchPhrase": "Your companion for all your travels in Costa Rica",
-    "paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
-    "start": "Start"
-  },
-  "howItWorks": {
-    "after": "After the ride",
-    "beDriver": "Be a driver",
-    "bePassenger": "Be a passenger",
-    "bookRide": "Book a ride",
-    "bookRide2": "For you and all your passengers. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
-    "both": "With Tucána, you can do both!",
-    "chat": "Chat with your driver or passengers",
-    "checkFaq": "Check the FAQ",
-    "choose": "Choose",
-    "confirm": "Confirm the ride",
-    "confirm2": "To archive the trip, and in the future, allow the driver to receive the money online.",
-    "contactDriver": "Contact the driver if you need to",
-    "feedback": "Give us a feedback for our service",
-    "feedback2": "To help us improve the platform",
-    "fillUp": "Fill up the registration form",
-    "fillUp2": "With all the relevant information about you and your car in order to keep the community safe",
-    "forDrivers": "For drivers",
-    "forPassengers": "For passengers",
-    "getVerified": "Get verified",
-    "getVerified2": "Your driving license and car are verified by a moderator",
-    "giveDetails": "Detail you needs with your driver",
-    "giveDetails2": "Example: if you transport an animal, a surfboard, or if you don't like the smell of cigarette in the car, etc",
-    "ifDriver": "If you are a driver",
-    "ifPassenger": "If you are a passenger",
-    "manageBookingsDriver": "Manage the booking of your passengers",
-    "manageBookingsPassenger": "Manage your booking",
-    "publishRides": "Publish rides",
-    "points": "Arrange pickup & drop off locations",
-    "points2": "Make sure that you know where the pickup and drop off points are. Use the in-app Google Map pin feature",
-    "prepare": "Prepare your trip",
-    "publishRide": "Publish your ride",
-    "publishRide2": "Set your own price. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
-    "registration": "Registration",
-    "review": "Submit a review for your passengers or the driver",
-    "review2": "To continue to ensure the safety of the community",
-    "signUpFree": "Sign Up for free",
-    "startTutorial": "Start the tutorial",
-    "stepsService": "Learn how simple it is to share a ride with our interactive guide",
-    "verifyEmail": "Verify your account",
-    "verifyEmail2": "With your email address: check your emails (inbox and spam)"
-  },
-  "inputSearchLocation": {
-    "searchCity": "Search a city"
-  },
-  "languagePage": {
-    "current": "Current language"
-  },
-  "legal": {
-    "credits": "Credits",
-    "dataProtection": "Data protection",
-    "legalNotice": "Legal notice",
-    "privacy": "Privacy policy",
-    "terms": "Terms & Conditions"
-  },
-  "legalNotice": {
-    "title": "Legal Notice"
-  },
-  "logIn": {
-    "bioPlaceholder": "Ex: I travel a lot to San José & I love dogs",
-    "chooseAvatar": "Choose your avatar",
-    "credential": "Email or Username",
-    "finish": "You can start using the platform now. What would you like to do?",
-    "forgotPassword": "Forgot your password?",
-    "setUpAccount": "Start by setting up your account",
-    "welcomeMessage": "You are now a member of the community of drivers and passengers in Costa Rica, that love to share rides and helping each other out!",
-    "yourAccount": "Your account"
-  },
-  "maps": {
-    "courtesy": "Photo courtesy of",
-    "map": "Map",
-    "subTitle": "Different maps of Costa Rica",
-    "title": "Maps"
-  },
-  "menu": {
-    "about": "About Us",
-    "account": "Account",
-    "donate": "Support the app",
-    "feedback": "Give us your feedback",
-    "legal": "Legal",
-    "logOut": "Log Out",
-    "memberSince": "Member since",
-    "payments": "Payments",
-    "ratings": "Ratings",
-    "refunds": "Refunds"
-  },
-  "messageEmpty": {
-    "bookRide": "Book your next ride",
-    "message": "No {{title}} found",
-    "publishRide": "Publish a ride"
-  },
-  "messages": {
-    "title": "Messages"
-  },
-  "navigationBar": {
-    "account": "Account",
-    "find": "Find",
-    "home": "Home",
-    "menu": "Menu",
-    "messages": "Messages",
-    "publish": "Publish",
-    "publishRide": "Publish",
-    "rides": "Rides"
-  },
-  "newRating": {
-    "ratingReceived": "Your rating is now under review by a moderator",
-    "rideSummary": "Ride summary",
-    "title": "Rate your ride",
-    "typeComment": "Type your comment here"
-  },
-  "notifications": {
-    "answersBookings": "Answers from your bookings",
-    "bookingsRides": "Bookings for your ride(s)",
-    "title": "Notifications"
-  },
-  "publish": {
-    "checkItOut": "Check it out",
-    "chooseTime": "Choose a time",
-    "comment": "Any comment?",
-    "details": "Details about your ride",
-    "estimatedDistance": "Estimated distance",
-    "estimatedTime": "Estimated time",
-    "findRide": "Find a ride",
-    "onlyVerifiedDriver": "You can publish rides only when you are a verified driver",
-    "placeholderComment": "Want to share the road you'll take or a precision on your destination?",
-    "preview": "Preview on Google Maps",
-    "previewTrip": "Preview trip",
-    "priceTitle": "Price per seats",
-    "seatsAvailable": "How many seats available do you have?",
-    "selectNumber": "Select a number",
-    "summary": "Summary",
-    "title": "Publish a ride",
-    "whatTime": "At what time?",
-    "when": "When are you leaving?",
-    "whereFrom": "Where are you leaving from?",
-    "whereTo": "Where are you heading to?"
-  },
-  "passengerProfile": {
-    "contactRemoveAccount": "Contact us to remove your account",
-    "contactRequestData": "Contact us to download your data collected",
-    "removeAccount": "Remove my account",
-    "requestData": "Request my data"
-  },
-  "ratings": {
-    "asDriver": "As a driver",
-    "asPassenger": "As a passenger",
-    "noRatings": "No ratings found",
-    "noRatingsYou": "It seems that no one has left you a rating yet",
-    "noYouRatings": "It seems that you haven't left a rating yet",
-    "title": "Ratings",
-    "toDo": "Ratings to do"
-  },
-  "refundPolicy": {
-    "message": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
-    "title": "Refund Policy"
-  },
-  "report": {
-    "behavior": "Report a behavior",
-    "problemApp": "A problem with the app"
-  },
-  "resetPassword": {
-    "sendLink": "Send reset link",
-    "subTitle": "Please enter your email address to receive a link",
-    "title": "Reset your password",
-    "typeEmail": "Type your email address here"
-  },
-  "ride": {
-    "allSeatsBooked": "All the seats have been booked",
-    "feedback": "Leave us a feedback",
-    "manageBookingRequests": "Manage your booking requests",
-    "reviewRide": "Review the ride",
-    "title": "Ride",
-    "viewTrip": "View trip"
-  },
-  "rides": {
-    "bookingsReceived": "Bookings received",
-    "ridesBookings": "Your rides & bookings",
-    "ridesPublished": "Ride(s) published",
-    "ridesToConfirm": "Rides to confirm"
-  },
-  "ridesBookings": {
-    "subTitle": "Find your potential passenger here",
-    "summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
-    "title": "Bookings for your rides"
-  },
-  "ridesDriver": {
-    "subTitle": "All the rides you have submitted",
-    "summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
-    "title": "Rides published"
-  },
-  "ridesToConfirm": {
-    "goBack": "Go back to your rides",
-    "noRides": "No rides to confirm",
-    "title": "Rides to confirm"
-  },
-  "signUp": {
-    "agreement": "I agree with the <2>terms & conditions</2> and the <6>privacy policy</6>",
-    "newsletter": "I agree to receive casual newsletter (no spam)",
-    "paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
-    "subTitle": "Sign up to access the platform"
-  },
-  "signUpSuccess": {
-    "subTitle": "Welcome to our platform 🎉",
-    "text": "Check for the confirmation link in your email inbox & your spam folder to confirm your account",
-    "title": "Sign up successful"
-  },
-  "singleConversation": {
-    "sendMessage": "Send a message",
-    "sendPin": "Send this pin",
-    "titleOffCanva": "Send a location"
-  }
+	"404": {
+		"back1": "Go back to the",
+		"back2": "homepage",
+		"message": "We couldn't find the page you are looking for.",
+		"notFound": "Page not found"
+	},
+	"FAQ": {
+		"answer1": "As for now, all payments are made with cash money. You can arrange directly with the driver or your passengers for the currency, in CRC (Costa Rican Colones) or in USD (US dollars)",
+		"answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
+		"question1": "How the payment works?",
+		"question2": "How does refund works?",
+		"title": "FAQ"
+	},
+	"FormDriverResponseBooking": {
+		"manageBooking": "Manage this booking",
+		"message": "{{firstName}} booked {{seatsBooked}} seats but there are {{seatsLeft}} seats left, you cannot accept or refuse this booking.",
+		"placeholder": "Give your passenger more details about the booking or the ride"
+	},
+	"ManageDriverBooking": {
+		"noBookings": "You do not have any bookings for this ride yet"
+	},
+	"PassengersDetails": {
+		"noPassengers": "You do not have passengers for this ride yet",
+		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
+	},
+	"becomeDriver": {
+		"applicationForm": "Application form",
+		"apply": "Apply",
+		"colorPlaceholder": "Grey, black, white, etc.",
+		"countryIssue": "Country of issue",
+		"disclaimer": "We do not disclose any information about your country of origin. This is solely for verification purposes",
+		"licenseNumber": "Driving license's number",
+		"message": "Build trust with your potential passengers by providing as many authentic proofs of identity.",
+		"nationalId": "National ID",
+		"notDriver": "You can apply to become a driver",
+		"passport": "Passport",
+		"pastApplications": "Past applications",
+		"request": "Request",
+		"thankYou": "Thank you for applying. A moderator will review your submission",
+		"typeMaker": "Type the car maker",
+		"underReview": "Under review"
+	},
+	"booking": {
+		"rideDetails": "Ride details",
+		"summary1": "You booked",
+		"summary2": "booked",
+		"summary3": "seat",
+		"summary4": "on the",
+		"title": "Booking details"
+	},
+	"bookings": {
+		"noBookings": "You haven't made a booking yet",
+		"subTitle": "All the bookings you have made"
+	},
+	"comingSoon": {
+		"subTitle": "This page or feature will soon be available",
+		"thankYou": "Thank you for your understanding",
+		"title": "Coming soon"
+	},
+	"confirmRide": {
+		"answer": "Thank you for submitting your answer",
+		"answerNo": "Can you tell us what went wrong? We would love to hear why you couldn't ride",
+		"complaint": "I have a complaint",
+		"confirm": "I confirm",
+		"confirmNoRide": "Please confirm that the ride didn't take place",
+		"confirmRideMessage": "Did the ride took place?",
+		"message": "Now you have to let us know if everything went well, and if you did this ride",
+		"rateRide": "Rate your ride",
+		"tellUsWhy": "Tell us why",
+		"title": "Confirm the ride"
+	},
+	"contact": {
+		"max1000characters": "Max. 1000 characters",
+		"min20characters": "Min. 20 characters",
+		"subject": "Subject",
+		"title": "Get in touch"
+	},
+	"createNewPassword": {
+		"linkDeprecated": "This link is deprecated",
+		"newPassword": "New password",
+		"reset": "Reset password",
+		"retypePassword": "Retype password",
+		"success": "Your password has been successfully reset.",
+		"title": "Create a new password"
+	},
+	"dataProtection": {
+		"title": "Data Protection"
+	},
+	"donate": {
+		"crowdfunding": "Crowdfunding website",
+		"paragraph": "We are in search for funds to hire more people and improve our platform",
+		"subTitle": "Thank you so much for your consideration",
+		"title": "Donate"
+	},
+	"find": {
+		"catchPhrase": "Find your next trip across Costa Rica",
+		"change": "Change",
+		"distanceDestination": "from your arrival address",
+		"distanceOrigin": "from your starting address"
+	},
+	"formBookRide": {
+		"numberPassengers": "Number of passenger"
+	},
+	"formSearchRide": {
+		"hitEnter": "or hit enter"
+	},
+	"global": {
+		"about": "About",
+		"accept": "Accept",
+		"accepted": "Accepted",
+		"acceptingBooking": "You have accepted the booking",
+		"alreadyBooking": "You already have booking(s) for this ride",
+		"becomeDriver": "Become a driver",
+		"bio": "Biography",
+		"book": "Book",
+		"bookRide": "Book a ride",
+		"bookThisRide": "Book this ride",
+		"booking": "Booking",
+		"bookingSubmitted": "Your booking has been submitted to the driver",
+		"bookingSuccess": "Your booking has been submitted to the driver",
+		"bookings": "Bookings",
+		"by": "By",
+		"cancel": "Cancel",
+		"car": "Car",
+		"city": "City",
+		"click": "Click",
+		"close": "Close",
+		"color": "Color",
+		"comingSoon": "Coming soon",
+		"comment": "Comment",
+		"confirm": "Confirm",
+		"confirmingRide": "You have confirmed the ride",
+		"congratulations": "Congratulations",
+		"contact": "Contact",
+		"contactUs": "Contact Us",
+		"continue": "Continue",
+		"country": "Country",
+		"created": "Created",
+		"credits": "Credits",
+		"currentLanguage": "English",
+		"date": "Date",
+		"day": "Day",
+		"destination": "Destination",
+		"distance": "Distance",
+		"doNotShare": "Do not share any contact info (phone, email, etc), they will be shared within the platform when a booking is made.",
+		"driver": "Driver",
+		"driverComment": "Driver comment",
+		"drivingLicense": "Driving license",
+		"edit": "Edit",
+		"email": "Email",
+		"errors": {
+			"acceptTerms": "To use our services, you need to agree with our Terms & Conditions and our Privacy Policy",
+			"captcha": "Please fill up the captcha",
+			"chooseDate": "You need to pick a day",
+			"chooseSeatsAvailable": "You need to choose the amount of seats you have available",
+			"chooseTime": "You need to pick a time",
+			"dateFuture": "The date needs to be in the future",
+			"error": "Error",
+			"errorFallback": "There has been an error.",
+			"errorPersist": "If the error persists, please contact us.",
+			"fieldRequired": "This field is required",
+			"max20characters": "Max. 20 characters",
+			"min4characters": "Min. 4 characters",
+			"missingComment": "You need to write a comment (min. 10 characters)",
+			"missingInfo": "Please fill up all the information",
+			"missingRating": "Make sure you give a rating",
+			"passwordsMatch": "Passwords must match",
+			"sendingMessage": "Your message couldn't be sent",
+			"stringField": "You must enter a string",
+			"validEmail": "Please enter a valid email address",
+			"validName": "Please enter a valid name",
+			"validNumberPlate": "Enter a valid number plate",
+			"validPhone": "Please enter a valid phone number",
+			"validUsername": "Please enter a valid username (only letters and numbers)",
+			"validYear": "Enter a valid year"
+		},
+		"faq": "FAQ",
+		"finish": "Finish",
+		"firstName": "First name",
+		"from": "From",
+		"fuelType": "Fuel type",
+		"fullname": "Full name",
+		"getVerified": "Get verified",
+		"given": "Given",
+		"goBack": "Go back",
+		"goBackApp": "You can now go back to the app",
+		"help": "Help",
+		"howItWorks": "How does it work?",
+		"idType": "ID Type",
+		"identification": "Identification",
+		"language": "Language",
+		"lastName": "Last name",
+		"learnMore": "Learn more",
+		"logIn": "Log In",
+		"maker": "Maker",
+		"manage": "Manage",
+		"mandatory": "This field is mandatory",
+		"maps": "Map of Costa Rica",
+		"marchamo": "Marchamo (car insurance)",
+		"memberSince": "Member since",
+		"message": "Message",
+		"model": "Model",
+		"month": "Month",
+		"more": "More",
+		"next": "Next",
+		"no": "No",
+		"noRatings": "No ratings",
+		"notMandatory": "Not mandatory",
+		"notVerified": "Not verified",
+		"number": "Number",
+		"numberPlate": "Number plate",
+		"origin": "Origin",
+		"passenger": "Passenger",
+		"passengerComment": "Passenger comment",
+		"passengerDetails": "Passenger details",
+		"passengers": "Passengers",
+		"password": "Password",
+		"pastBookings": "Past bookings",
+		"pastRides": "Past rides",
+		"pending": "Pending",
+		"perSeat": "per seat",
+		"phone": "Phone",
+		"price": "Price",
+		"profile": "Profile",
+		"province": "Province",
+		"ratings": "Ratings",
+		"received": "Received",
+		"refundPolicy": "Refund policy",
+		"refuse": "Refuse",
+		"refused": "Refused",
+		"rejectingRide": "You have rejected the ride",
+		"report": "Report a problem",
+		"reportMember": "Report this member",
+		"resendLink": "Resend the confirmation link",
+		"reset": "Reset",
+		"returnLogin": "Return to the <2>login page</2>",
+		"ride": "Ride",
+		"rideOnline": "Your ride is now online",
+		"riteve": "Riteve (car inspection)",
+		"search": "Search",
+		"searchResults": "Search results",
+		"seat": "Seat",
+		"seats": "Seats",
+		"seatsAvailable": "Seats available",
+		"seeBooking": "See booking",
+		"seeRide": "See ride",
+		"selectOption": "Select an option",
+		"selected": "Selected",
+		"send": "Send",
+		"settings": "Settings",
+		"signUp": "Sign Up",
+		"skip": "Skip",
+		"slogan": "Share your rides in Costa Rica",
+		"status": "Status",
+		"step": "Step",
+		"submit": "Submit",
+		"success": "Success",
+		"thankYou": "Thank you",
+		"time": "Time",
+		"to": "to",
+		"total": "Total",
+		"username": "Username",
+		"vehicle": "Vehicle",
+		"verified": "Verified",
+		"verify": "Verify",
+		"view": "View",
+		"welcome": "Welcome",
+		"year": "Year",
+		"yes": "Yes",
+		"yourIdentity": "Your identity",
+		"yourLicense": "Your driving license",
+		"yourRating": "Your rating",
+		"yourVehicle": "Your vehicle"
+	},
+	"help": {
+		"message1": "If anything happens during your ride, call",
+		"message2": "immediately, the local emergency services"
+	},
+	"hiring": {
+		"message": "We are looking for developers, designers, content creators, managers, and much more! So if you are interested in helping make travel in Costa Rica fun, reach out to us",
+		"title": "We are hiring"
+	},
+	"homepage": {
+		"catchPhrase": "Your companion for all your travels in Costa Rica",
+		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
+		"start": "Start"
+	},
+	"howItWorks": {
+		"after": "After the ride",
+		"beDriver": "Be a driver",
+		"bePassenger": "Be a passenger",
+		"bookRide": "Book a ride",
+		"bookRide2": "For you and all your passengers. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
+		"both": "With Tucána, you can do both!",
+		"chat": "Chat with your driver or passengers",
+		"checkFaq": "Check the FAQ",
+		"choose": "Choose",
+		"confirm": "Confirm the ride",
+		"confirm2": "To archive the trip, and in the future, allow the driver to receive the money online.",
+		"contactDriver": "Contact the driver if you need to",
+		"feedback": "Give us a feedback for our service",
+		"feedback2": "To help us improve the platform",
+		"fillUp": "Fill up the registration form",
+		"fillUp2": "With all the relevant information about you and your car in order to keep the community safe",
+		"forDrivers": "For drivers",
+		"forPassengers": "For passengers",
+		"getVerified": "Get verified",
+		"getVerified2": "Your driving license and car are verified by a moderator",
+		"giveDetails": "Detail you needs with your driver",
+		"giveDetails2": "Example: if you transport an animal, a surfboard, or if you don't like the smell of cigarette in the car, etc",
+		"ifDriver": "If you are a driver",
+		"ifPassenger": "If you are a passenger",
+		"manageBookingsDriver": "Manage the booking of your passengers",
+		"manageBookingsPassenger": "Manage your booking",
+		"points": "Arrange pickup & drop off locations",
+		"points2": "Make sure that you know where the pickup and drop off points are. Use the in-app Google Map pin feature",
+		"prepare": "Prepare your trip",
+		"publishRide": "Publish your ride",
+		"publishRide2": "Set your own price. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
+		"publishRides": "Publish rides",
+		"registration": "Registration",
+		"review": "Submit a review for your passengers or the driver",
+		"review2": "To continue to ensure the safety of the community",
+		"signUpFree": "Sign Up for free",
+		"startTutorial": "Start the tutorial",
+		"stepsService": "Learn how simple it is to share a ride with our interactive guide",
+		"verifyEmail": "Verify your account",
+		"verifyEmail2": "With your email address: check your emails (inbox and spam)"
+	},
+	"inputSearchLocation": {
+		"searchCity": "Search a city"
+	},
+	"languagePage": {
+		"current": "Current language"
+	},
+	"legal": {
+		"credits": "Credits",
+		"dataProtection": "Data protection",
+		"legalNotice": "Legal notice",
+		"privacy": "Privacy policy",
+		"terms": "Terms & Conditions"
+	},
+	"legalNotice": {
+		"title": "Legal Notice"
+	},
+	"logIn": {
+		"bioPlaceholder": "Ex: I travel a lot to San José & I love dogs",
+		"chooseAvatar": "Choose your avatar",
+		"credential": "Email or Username",
+		"finish": "You can start using the platform now. What would you like to do?",
+		"forgotPassword": "Forgot your password?",
+		"setUpAccount": "Start by setting up your account",
+		"welcomeMessage": "You are now a member of the community of drivers and passengers in Costa Rica, that love to share rides and helping each other out!",
+		"yourAccount": "Your account"
+	},
+	"maps": {
+		"courtesy": "Photo courtesy of",
+		"map": "Map",
+		"subTitle": "Different maps of Costa Rica",
+		"title": "Maps"
+	},
+	"menu": {
+		"about": "About Us",
+		"account": "Account",
+		"donate": "Support the app",
+		"feedback": "Give us your feedback",
+		"legal": "Legal",
+		"logOut": "Log Out",
+		"memberSince": "Member since",
+		"payments": "Payments",
+		"ratings": "Ratings",
+		"refunds": "Refunds"
+	},
+	"messageEmpty": {
+		"bookRide": "Book your next ride",
+		"message": "No {{title}} found",
+		"publishRide": "Publish a ride"
+	},
+	"messages": {
+		"title": "Messages"
+	},
+	"navigationBar": {
+		"account": "Account",
+		"find": "Find",
+		"home": "Home",
+		"menu": "Menu",
+		"messages": "Messages",
+		"publish": "Publish",
+		"publishRide": "Publish a ride",
+		"rides": "Rides"
+	},
+	"newRating": {
+		"ratingReceived": "Your rating is now under review by a moderator",
+		"rideSummary": "Ride summary",
+		"title": "Rate your ride",
+		"typeComment": "Type your comment here"
+	},
+	"notifications": {
+		"answersBookings": "Answers from your bookings",
+		"bookingsRides": "Bookings for your ride(s)",
+		"title": "Notifications"
+	},
+	"passengerProfile": {
+		"contactRemoveAccount": "Contact us to remove your account",
+		"contactRequestData": "Contact us to download your data collected",
+		"removeAccount": "Remove my account",
+		"requestData": "Request my data"
+	},
+	"publish": {
+		"checkItOut": "Check it out",
+		"chooseTime": "Choose a time",
+		"comment": "Any comment?",
+		"details": "Details about your ride",
+		"estimatedDistance": "Estimated distance",
+		"estimatedTime": "Estimated time",
+		"findRide": "Find a ride",
+		"onlyVerifiedDriver": "You can publish rides only when you are a verified driver",
+		"placeholderComment": "Want to share the road you'll take or a precision on your destination?",
+		"preview": "Preview on Google Maps",
+		"previewTrip": "Preview trip",
+		"priceTitle": "Price per seats",
+		"seatsAvailable": "How many seats available do you have?",
+		"selectNumber": "Select a number",
+		"summary": "Summary",
+		"title": "Publish a ride",
+		"whatTime": "At what time?",
+		"when": "When are you leaving?",
+		"whereFrom": "Where are you leaving from?",
+		"whereTo": "Where are you heading to?"
+	},
+	"ratings": {
+		"asDriver": "As a driver",
+		"asPassenger": "As a passenger",
+		"noRatings": "No ratings found",
+		"noRatingsYou": "It seems that no one has left you a rating yet",
+		"noYouRatings": "It seems that you haven't left a rating yet",
+		"title": "Ratings",
+		"toDo": "Ratings to do"
+	},
+	"refundPolicy": {
+		"message": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
+		"title": "Refund Policy"
+	},
+	"report": {
+		"behavior": "Report a behavior",
+		"problemApp": "A problem with the app"
+	},
+	"resetPassword": {
+		"sendLink": "Send reset link",
+		"subTitle": "Please enter your email address to receive a link",
+		"title": "Reset your password",
+		"typeEmail": "Type your email address here"
+	},
+	"ride": {
+		"allSeatsBooked": "All the seats have been booked",
+		"feedback": "Leave us a feedback",
+		"manageBookingRequests": "Manage your booking requests",
+		"reviewRide": "Review the ride",
+		"title": "Ride",
+		"viewTrip": "View trip"
+	},
+	"rides": {
+		"bookingsReceived": "Bookings received",
+		"ridesBookings": "Your rides & bookings",
+		"ridesPublished": "Ride(s) published",
+		"ridesToConfirm": "Rides to confirm"
+	},
+	"ridesBookings": {
+		"subTitle": "Find your potential passenger here",
+		"summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
+		"title": "Bookings for your rides"
+	},
+	"ridesDriver": {
+		"subTitle": "All the rides you have submitted",
+		"summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
+		"title": "Rides published"
+	},
+	"ridesToConfirm": {
+		"goBack": "Go back to your rides",
+		"noRides": "No rides to confirm",
+		"title": "Rides to confirm"
+	},
+	"signUp": {
+		"agreement": "I agree with the <2>terms & conditions</2> and the <6>privacy policy</6>",
+		"newsletter": "I agree to receive casual newsletter (no spam)",
+		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
+		"subTitle": "Sign up to access the platform"
+	},
+	"signUpSuccess": {
+		"subTitle": "Welcome to our platform 🎉",
+		"text": "Check for the confirmation link in your email inbox & your spam folder to confirm your account",
+		"title": "Sign up successful"
+	},
+	"singleConversation": {
+		"sendMessage": "Send a message",
+		"sendPin": "Send this pin",
+		"titleOffCanva": "Send a location"
+	}
 }

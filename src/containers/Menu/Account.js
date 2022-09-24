@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
   CheckCircleFillIcon,
-  CheckIcon,
   StarFillIcon,
   XCircleFillIcon,
 } from "@primer/octicons-react";

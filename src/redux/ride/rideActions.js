@@ -169,7 +169,7 @@ export const resetFormPublishRide = () => {
     });
 
     dispatch({
-      type: rideTypes.RESET_FORM_Publish_RIDE,
+      type: rideTypes.RESET_FORM_PUBLISH_RIDE,
     });
   };
 };
@@ -224,7 +224,7 @@ export const getETAFail = (error) => {
 
 export const submitFormPublishRideRequested = () => {
   return {
-    type: rideTypes.SUBMIT_FORM_Publish_RIDE_REQUEST,
+    type: rideTypes.SUBMIT_FORM_PUBLISH_RIDE_REQUEST,
   };
 };
 
@@ -313,14 +313,14 @@ export const submitFormPublishRide = (user, formPublishRide, ETAdata) => {
 
 export const submitFormPublishRideData = (data) => {
   return {
-    type: rideTypes.SUBMIT_FORM_Publish_RIDE_SUCCESS,
+    type: rideTypes.SUBMIT_FORM_PUBLISH_RIDE_SUCCESS,
     payload: data,
   };
 };
 
 export const submitFormPublishRideError = (error) => {
   return {
-    type: rideTypes.SUBMIT_FORM_Publish_RIDE_FAIL,
+    type: rideTypes.SUBMIT_FORM_PUBLISH_RIDE_FAIL,
     payload: error,
   };
 };

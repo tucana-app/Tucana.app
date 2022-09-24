@@ -40,6 +40,7 @@ import {
 } from "../helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import InputSearchLocation from "../components/InputSearchLocation";
+import ErrorFallback from "./ErrorFallback";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 
 // Enable translation for the date picker
@@ -885,30 +886,7 @@ const Publish = () => {
                 </Col>
               </Row>
             ) : (
-              <Row className="mt-5">
-                <Col className="text-center">
-                  <h1 className="title text-warning">
-                    {t("translation:global.errors.errorFallback")}
-                  </h1>
-                  <p>{t("translation:global.errors.errorPersist")}</p>
-                  <p>
-                    <Link to="/publish" className="link-success me-2">
-                      <Button variant="success">
-                        <ArrowLeftIcon size={24} className="me-2" />
-                        {t("translation:global.goBack")}
-                      </Button>
-                    </Link>
-                    <a
-                      href={`mailto:${process.env.REACT_APP_EMAIL_CONTACT}`}
-                      alt=""
-                    >
-                      <Button variant="warning">
-                        {t("translation:global.contactUs")}
-                      </Button>
-                    </a>
-                  </p>
-                </Col>
-              </Row>
+              <ErrorFallback />
             )}
           </>
         ) : null
