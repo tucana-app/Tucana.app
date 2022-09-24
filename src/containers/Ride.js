@@ -67,7 +67,7 @@ const Ride = () => {
       !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
       rideData.ride.seatsLeft > 0 ? (
         currentUser.Driver &&
-        currentUser.Driver.id !== rideData.ride.Driver.User.id ? null : (
+        currentUser.Driver.id === rideData.ride.Driver.id ? null : (
           <div className="book-button">
             <Link to={`/book/${rideData.ride.id}`}>
               <Button variant="success" size="lg">

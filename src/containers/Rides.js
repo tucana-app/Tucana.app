@@ -30,7 +30,7 @@ const Rides = () => {
     // driverRidesData,
     // isLoadingUserBookings,
     // userBookingsData,
-    isLoadingRidesToConfirm,
+    // isLoadingRidesToConfirm,
     ridesToConfirmData,
     isLoadingDriverBookings,
     driverBookingsData,
@@ -67,7 +67,7 @@ const Rides = () => {
           <hr className="my-2" />
 
           <ListGroup variant="flush">
-            {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+            {ridesToConfirmData.length ? (
               <>
                 <Link
                   to="/rides/rides-to-confirm"
