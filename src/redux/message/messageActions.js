@@ -255,14 +255,7 @@ export const getUserNewMessages = (userId) => {
 
         // console.log(error);
 
-        dispatch(
-          setToast({
-            show: true,
-            headerText: "Error",
-            bodyText: message,
-            variant: "danger",
-          })
-        );
+        dispatch(getUserNewMessagesFail(message));
       });
   };
 };
