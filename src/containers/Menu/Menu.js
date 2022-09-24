@@ -16,7 +16,6 @@ import { getNotifications, logout } from "../../redux";
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
 import SocialIcons from "../../components/SocialIcons";
-import { LinkContainer } from "react-router-bootstrap";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();

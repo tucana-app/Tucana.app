@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";

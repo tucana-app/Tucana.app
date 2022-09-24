@@ -61,23 +61,25 @@ const Ride = () => {
         <GoBack />
       </span>
 
-      {rideData.ride &&
-      !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
-      rideData.ride.seatsLeft > 0 &&
+      {currentUser.Driver &&
       currentUser.Driver.id !== rideData.ride.Driver.User.id ? (
-        <div className="book-button">
-          <Link to={`/book/${rideData.ride.id}`}>
-            <Button variant="success" size="lg">
-              {t("translation:global.bookThisRide")}
-            </Button>
-          </Link>
-          {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
-            <p className="smaller text-center text-warning mb-0">
-              <AlertIcon size={24} className="me-2" />
-              {t("translation:global.alreadyBooking")}
-            </p>
-          ) : null}
-        </div>
+        rideData.ride &&
+        !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
+        rideData.ride.seatsLeft > 0 ? (
+          <div className="book-button">
+            <Link to={`/book/${rideData.ride.id}`}>
+              <Button variant="success" size="lg">
+                {t("translation:global.bookThisRide")}
+              </Button>
+            </Link>
+            {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
+              <p className="smaller text-center text-warning mb-0">
+                <AlertIcon size={24} className="me-2" />
+                {t("translation:global.alreadyBooking")}
+              </p>
+            ) : null}
+          </div>
+        ) : null
       ) : null}
 
       <Container className="mb-5">
@@ -100,7 +102,8 @@ const Ride = () => {
             <RideDetails ride={rideData.ride} />
 
             {/* Display past booking for this ride by this user */}
-            {!(rideData.ride.DriverId === currentUser.Driver.id) ? (
+            {currentUser.Driver &&
+            !(rideData.ride.DriverId === currentUser.Driver.id) ? (
               <>
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
