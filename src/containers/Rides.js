@@ -143,7 +143,7 @@ const Rides = () => {
                   </ListGroup.Item>
                 </Link>
 
-                {!isLoadingRidesToConfirm && ridesToConfirmData.length ? (
+                {!isLoadingRidesToConfirm && ridesToConfirmData.length > 0 ? (
                   <div>
                     <hr className="my-2" />
 

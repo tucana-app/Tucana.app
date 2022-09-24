@@ -4,6 +4,7 @@ import {
   getUserNewMessages,
   updateDriverState,
   updateUserRatings,
+  getRidesToConfirm,
 } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -14,6 +15,7 @@ export const getNotifications = (user) => {
     dispatch(getPassengerBookingsResponses(user.id));
     dispatch(getUserNewMessages(user.id));
     dispatch(updateUserRatings(user.id));
+    dispatch(getRidesToConfirm(user));
 
     if (!user.Driver) {
       dispatch(updateDriverState(user.id));
