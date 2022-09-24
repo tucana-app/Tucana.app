@@ -31,7 +31,7 @@ const DriverPastRides = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn || !currentUser.Driver) {
     return <Redirect to="/" />;
   }
 

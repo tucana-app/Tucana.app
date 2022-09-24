@@ -18,7 +18,7 @@ function ManageDriverBooking({ rideId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && currentUser.Driver) {
       dispatch(getDriverBookingsRide(currentUser.Driver.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

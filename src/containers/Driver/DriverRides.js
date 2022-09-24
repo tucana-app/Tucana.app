@@ -25,7 +25,7 @@ const DriverRides = () => {
   const { rideStatusVariant } = useSelector((state) => state.global);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && currentUser.Driver) {
       dispatch(getDriverRides(currentUser.Driver.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
