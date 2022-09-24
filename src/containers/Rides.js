@@ -16,8 +16,8 @@ import {
 import LoadingSpinner from "../components/LoadingSpinner";
 
 import {
-  countUserBookings,
-  countDriverRides,
+  // countUserBookings,
+  // countDriverRides,
   countDriverBookings,
 } from "../helpers";
 
@@ -26,10 +26,10 @@ const Rides = () => {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
-    isLoadingDriverRides,
-    driverRidesData,
-    isLoadingUserBookings,
-    userBookingsData,
+    // isLoadingDriverRides,
+    // driverRidesData,
+    // isLoadingUserBookings,
+    // userBookingsData,
     isLoadingRidesToConfirm,
     ridesToConfirmData,
     isLoadingDriverBookings,
@@ -100,7 +100,7 @@ const Rides = () => {
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <div>
                     {t("translation:global.bookings")}
-                    {userBookingsData.length > 0 ? (
+                    {/* {userBookingsData.length > 0 ? (
                       countUserBookings(userBookingsData) ? (
                         <Badge bg="primary" className="ms-2">
                           {isLoadingUserBookings ? (
@@ -110,7 +110,7 @@ const Rides = () => {
                           )}
                         </Badge>
                       ) : null
-                    ) : null}
+                    ) : null} */}
                   </div>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
@@ -129,7 +129,7 @@ const Rides = () => {
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
                         {t("translation:rides.ridesPublished")}
-                        {driverRidesData.length > 0 ? (
+                        {/* {driverRidesData.length > 0 ? (
                           countDriverRides(driverRidesData) ? (
                             <Badge bg="success" className="text-dark ms-2">
                               {isLoadingDriverRides ? (
@@ -139,7 +139,7 @@ const Rides = () => {
                               )}
                             </Badge>
                           ) : null
-                        ) : null}
+                        ) : null} */}
                       </div>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>

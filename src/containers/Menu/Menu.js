@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Badge, Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
   LinkExternalIcon,
@@ -30,6 +30,9 @@ const Menu = () => {
     isLoadingPassengerBookingsResponses,
     passengerBookingsResponsesData,
   } = useSelector((state) => state.notification);
+  const { getRatingsToDoDriverData, getRatingsToDoPassengerData } = useSelector(
+    (state) => state.rating
+  );
 
   let notifications = 0;
   let numberDriverNewRidesRequests = 0;
@@ -51,6 +54,9 @@ const Menu = () => {
         numberDriverNewRidesRequests + numberPassengerBookingsResponses;
     }
   }
+
+  var ratingsToDo =
+    getRatingsToDoDriverData.length + getRatingsToDoPassengerData.length;
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -167,8 +173,14 @@ const Menu = () => {
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">{t("translation:menu.ratings")}</p>
-
+                      <p className="position-relative mb-0">
+                        {t("translation:menu.ratings")}
+                        {ratingsToDo ? (
+                          <Badge bg="danger" className="ms-2">
+                            {ratingsToDo}
+                          </Badge>
+                        ) : null}
+                      </p>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>

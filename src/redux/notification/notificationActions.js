@@ -5,6 +5,8 @@ import {
   updateDriverState,
   updateUserRatings,
   getRidesToConfirm,
+  getRatingsToDoDriver,
+  getRatingsToDoPassenger,
 } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -14,11 +16,16 @@ export const getNotifications = (user) => {
     dispatch(getDriverNewRidesRequests(user.id));
     dispatch(getPassengerBookingsResponses(user.id));
     dispatch(getUserNewMessages(user.id));
-    dispatch(updateUserRatings(user.id));
     dispatch(getRidesToConfirm(user));
+    dispatch(updateUserRatings(user.id));
+    dispatch(getRatingsToDoPassenger(user.id));
 
     if (!user.Driver) {
       dispatch(updateDriverState(user.id));
+    }
+
+    if (user.Driver) {
+      dispatch(getRatingsToDoDriver(user.id, user.Driver.id));
     }
   };
 };

@@ -16,13 +16,21 @@ function NavigationBar() {
   const { t } = useTranslation();
 
   const { user: currentUser } = useSelector((state) => state.user);
-  // const { driverNewRidesRequestsData, passengerBookingsResponsesData } =
-  //   useSelector((state) => state.notification);
+  const { driverNewRidesRequestsData } = useSelector(
+    (state) => state.notification
+  );
   const { userNewMessagesData } = useSelector((state) => state.message);
+  const { ridesToConfirmData } = useSelector((state) => state.ride);
+  const { getRatingsToDoDriverData, getRatingsToDoPassengerData } = useSelector(
+    (state) => state.rating
+  );
 
-  // var notifications =
-  //   driverNewRidesRequestsData.count + passengerBookingsResponsesData.count;
-  var messages = userNewMessagesData.count;
+  var notificationsRides =
+    driverNewRidesRequestsData.count + ridesToConfirmData.length;
+  var notificationsMenu =
+    getRatingsToDoDriverData.length + getRatingsToDoPassengerData.length;
+
+  const messages = userNewMessagesData.count;
 
   return currentUser ? (
     <Navbar bg="white" variant="light" fixed="bottom" className="pt-0">
@@ -56,11 +64,18 @@ function NavigationBar() {
               </Col>
               <Col xs={2} className="text-center mx-auto">
                 <IndexLinkContainer to="/rides" href="/rides" className="px-0">
-                  <Nav.Link className="text-center text-decoration-none">
-                    <ZapIcon size={24} className="mb-1" />
-                    <p className="text-icon-nav-bar mb-0">
-                      {t("translation:navigationBar.rides")}
-                    </p>
+                  <Nav.Link>
+                    <div className="position-relative">
+                      <ZapIcon size={24} className="mb-1" />
+                      <p className="text-icon-nav-bar mb-0">
+                        {t("translation:navigationBar.rides")}
+                        {notificationsRides > 0 ? (
+                          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
+                            {notificationsRides}
+                          </span>
+                        ) : null}
+                      </p>
+                    </div>
                   </Nav.Link>
                 </IndexLinkContainer>
               </Col>
@@ -92,11 +107,11 @@ function NavigationBar() {
                       <ThreeBarsIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
                         {t("translation:navigationBar.menu")}
-                        {/* {notifications > 0 ? (
+                        {notificationsMenu > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
-                            {notifications}
+                            {notificationsMenu}
                           </span>
-                        ) : null} */}
+                        ) : null}
                       </p>
                       {/* <p className="text-icon-nav-bar d-xs-screen mb-0">
                         {notifications > 0 ? (
