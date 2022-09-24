@@ -31,21 +31,23 @@ function Account() {
       <GoBack />
 
       <Container className="mb-4">
-        <Row>
-          <Col className="text-center">
-            <p>
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <div className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
+              <div>
+                <h3 className="mb-0">{currentUser.firstName}</h3>
+                <p className="small text-secondary mb-0">
+                  {t("translation:menu.memberSince")}:{" "}
+                  {dateFormat(currentUser.createdAt, "mm/yyyy")}
+                </p>
+              </div>
               <img
                 src={srcAvatar(currentUser)}
                 alt="Avatar"
-                className="img-fluid rounded-round cursor-pointer img-avatar"
+                className="img-fluid rounded-round img-avatar me-3"
+                style={{ width: "75px" }}
               />
-            </p>
-            <h3 className="mb-0">
-              {currentUser.firstName} {currentUser.lastName}{" "}
-            </h3>
-            <p>
-              <Link to="/coming-soon">{t("translation:global.edit")}</Link>
-            </p>
+            </div>
           </Col>
         </Row>
 

@@ -16,6 +16,7 @@ import { getNotifications, logout } from "../../redux";
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
 import SocialIcons from "../../components/SocialIcons";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();
@@ -69,25 +70,39 @@ const Menu = () => {
     <Container fluid data-aos="fade-in" className="pb-4">
       {isLoggedIn ? (
         <>
-          <Row className="my-4">
+          <Row className="my-2">
             <Col className="text-center">
-              <p>
+              <img
+                src={logo}
+                alt="Tucána logo"
+                className="img-fluid"
+                style={{ maxWidth: "200px" }}
+              />
+            </Col>
+          </Row>
+          <Row className="my-4">
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+              <ListGroup variant="flush">
                 <Link to="/account" className="text-decoration-none">
-                  <img
-                    src={srcAvatar(currentUser)}
-                    alt="Avatar"
-                    className="img-fluid rounded-round cursor-pointer img-avatar"
-                  />
+                  <ListGroup.Item className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
+                    <div>
+                      <h3 className="mb-0">{currentUser.firstName}</h3>
+                      <p className="small text-secondary mb-0">
+                        {t("translation:menu.memberSince")}:{" "}
+                        {dateFormat(currentUser.createdAt, "mm/yyyy")}
+                      </p>
+                    </div>
+                    <div>
+                      <img
+                        src={srcAvatar(currentUser)}
+                        alt="Avatar"
+                        className="img-fluid rounded-round cursor-pointer img-avatar me-3"
+                      />
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </div>
+                  </ListGroup.Item>
                 </Link>
-              </p>
-
-              <h3 className="mb-0">{currentUser.firstName}</h3>
-              <p className="lead">{currentUser.email}</p>
-
-              <p className="small text-secondary mb-0">
-                {t("translation:menu.memberSince")}:{" "}
-                {dateFormat(currentUser.createdAt, "mm/yyyy")}
-              </p>
+              </ListGroup>
             </Col>
           </Row>
         </>

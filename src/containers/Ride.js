@@ -64,7 +64,7 @@ const Ride = () => {
       {rideData.ride &&
       !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
       rideData.ride.seatsLeft > 0 &&
-      currentUser.id !== rideData.ride.Driver.User.id ? (
+      currentUser.Driver.id !== rideData.ride.Driver.User.id ? (
         <div className="book-button">
           <Link to={`/book/${rideData.ride.id}`}>
             <Button variant="success" size="lg">
@@ -100,7 +100,7 @@ const Ride = () => {
             <RideDetails ride={rideData.ride} />
 
             {/* Display past booking for this ride by this user */}
-            {!(rideData.ride.DriverId === currentUser.id) ? (
+            {!(rideData.ride.DriverId === currentUser.Driver.id) ? (
               <>
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
