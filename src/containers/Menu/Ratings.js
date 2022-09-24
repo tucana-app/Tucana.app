@@ -133,7 +133,7 @@ function Ratings() {
         <Container>
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
-              <h3 className="text-success mt-4 mb-2">
+              <h3 className="text-success mt-5 ms-3">
                 {t("translation:ratings.toDo")}
               </h3>
 
@@ -178,7 +178,7 @@ function Ratings() {
                   </Link>
                 ))}
 
-                {getRatingsToDoDriverData.map((ride, index) => (
+                {getRatingsToDoPassengerData.map((ride, index) => (
                   <Link
                     key={index}
                     to={`/ratings/new-rating/${ride.id}`}
