@@ -13,14 +13,14 @@ export const getAllUserMessagesRequested = () => {
   };
 };
 
-export const getAllUserMessages = (userId) => {
+export const getAllUserMessages = (user) => {
   return (dispatch) => {
     dispatch(getAllUserMessagesRequested());
 
     axios
       .get(URL_API + "/message/all-user-messages", {
         params: {
-          userId,
+          user,
         },
       })
       .then((response) => {
