@@ -12,16 +12,27 @@ import store from "./redux/store";
 import AOS from "aos";
 AOS.init();
 
-ReactDOM.render(
-  <React.StrictMode>
-    <HttpsRedirect>
+if (process.env.NODE_ENV === "development") {
+  ReactDOM.render(
+    <React.StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
-    </HttpsRedirect>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <HttpsRedirect>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </HttpsRedirect>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+}
 
 // Register() the service worker.
 serviceWorker.unregister();

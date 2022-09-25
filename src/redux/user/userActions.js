@@ -877,12 +877,14 @@ export const updateDriverState = (userId) => {
       .then((response) => {
         if (response.data) {
           let user = JSON.parse(localStorage.getItem("user"));
-          user = {
-            ...user,
-            Driver: response.data,
-          };
+          if (user) {
+            user = {
+              ...user,
+              Driver: response.data,
+            };
 
-          localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+          }
 
           dispatch(updateDriverStateSuccess(response.data));
         } else {
@@ -937,12 +939,14 @@ export const updateUserRatings = (userId) => {
       .then((response) => {
         if (response.data) {
           let user = JSON.parse(localStorage.getItem("user"));
-          user = {
-            ...user,
-            Rating: response.data,
-          };
+          if (user) {
+            user = {
+              ...user,
+              Rating: response.data,
+            };
 
-          localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+          }
 
           dispatch(updateUserRatingsSuccess(response.data));
         } else {

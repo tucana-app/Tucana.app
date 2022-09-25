@@ -771,7 +771,7 @@ const Publish = () => {
                   md={8}
                   lg={6}
                   xl={4}
-                  className="bg-light border shadow rounded-5 mx-auto"
+                  className="bg-light container-box"
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
@@ -802,7 +802,7 @@ const Publish = () => {
                   md={8}
                   lg={6}
                   xl={4}
-                  className="bg-light border shadow rounded-5 mx-auto"
+                  className="bg-light container-box"
                 >
                   <Container className="py-3 px-2">
                     <Row>
@@ -891,16 +891,16 @@ const Publish = () => {
           </>
         ) : null
       ) : (
-        <Row className="mt-5 mx-1 mx-sm-0">
+        <Row className="mt-5 pt-5 mx-1 mx-sm-0">
           <Col
             xs={12}
             sm={10}
             md={8}
             lg={6}
             xl={4}
-            className="border shadow-sm rounded text-center pt-3 pb-4 mx-auto"
+            className="container-box text-center"
           >
-            <Container>
+            <Container className="py-3 px-2">
               <Row>
                 <Col>
                   <h1 className="title display-4">

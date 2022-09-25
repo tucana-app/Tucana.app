@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
@@ -13,6 +13,7 @@ import dateFormat from "dateformat";
 import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 import GoBack from "../../components/GoBack";
+import { PencilSquare } from "react-bootstrap-icons";
 
 function Account() {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ function Account() {
     <div data-aos="fade-in">
       <GoBack />
 
-      <Container className="mb-4">
+      <Container className="mb-2">
         <Row className="mb-3 mx-1 mx-sm-0">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
@@ -52,44 +53,31 @@ function Account() {
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
               <Row className="align-items-center mb-3">
-                <Col xs={12} md={4}>
+                <Col>
                   <p className="text-secondary mb-0">
                     {t("translation:global.username")}
                   </p>
-                </Col>
-                <Col>
                   <p className="mb-0">{currentUser.username}</p>
                 </Col>
               </Row>
 
               <Row className="align-items-center mb-3">
-                <Col xs={12} md={4}>
+                <Col className="pe-0">
                   <p className="text-secondary mb-0">
                     {t("translation:global.email")}
                   </p>
-                </Col>
-                <Col>
                   <p className="mb-0">{currentUser.email}</p>
                 </Col>
               </Row>
 
               <Row className="align-items-center mb-3">
-                <Col xs={12} md={4}>
+                <Col>
                   <p className="text-secondary mb-0">
                     {t("translation:global.phone")}
                   </p>
-                </Col>
-                <Col>
                   <p className="mb-0">
                     {formatPhoneNumberIntl(currentUser.phoneNumber)}
                   </p>
@@ -114,6 +102,24 @@ function Account() {
               </Row>
 
               <Row className="align-items-center mb-3">
+                <Col xs={11} className="pe-0">
+                  <p className="text-secondary mb-0">
+                    {t("translation:global.bio")}
+                  </p>
+                  {currentUser.biography && currentUser.biography !== "" ? (
+                    <p className="mb-0">{currentUser.biography}</p>
+                  ) : (
+                    <p className="mb-0">-</p>
+                  )}
+                </Col>
+                <Col xs={1} className="ps-0">
+                  <Link to="/edit/bio" className="cursor-pointer">
+                    <PencilSquare size={20} className="text-primary" />
+                  </Link>
+                </Col>
+              </Row>
+
+              <Row className="align-items-center">
                 <Col xs={12} md={4}>
                   <p className="text-secondary mb-0">
                     {t("translation:global.memberSince")}
@@ -125,34 +131,12 @@ function Account() {
                   </p>
                 </Col>
               </Row>
-
-              <Row className="align-items-center">
-                <Col xs={12} md={4}>
-                  <p className="text-secondary mb-0">
-                    {t("translation:global.bio")}
-                  </p>
-                </Col>
-                <Col>
-                  {currentUser.biography && currentUser.biography !== "" ? (
-                    <p className="mb-0">{currentUser.biography}</p>
-                  ) : (
-                    <p className="mb-0">-</p>
-                  )}
-                </Col>
-              </Row>
             </Container>
           </Col>
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
               <Row>
                 <Col>
@@ -186,28 +170,14 @@ function Account() {
           </Col>
         </Row>
 
-        <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
-            <Container className="p-3">
-              <Row>
-                <Col className="text-center px-0">
-                  <Button
-                    variant="outline-primary"
-                    onClick={() => setShowModalRequestData(true)}
-                    className="me-3"
-                  >
-                    {t("translation:passengerProfile.requestData")}
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
+        <Row>
+          <Col className="text-center px-0">
+            <Button
+              variant="outline-primary"
+              onClick={() => setShowModalRequestData(true)}
+            >
+              {t("translation:passengerProfile.requestData")}
+            </Button>
           </Col>
         </Row>
       </Container>

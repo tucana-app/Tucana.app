@@ -2,10 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import { ArrowDownIcon, ArrowRightIcon } from "@primer/octicons-react";
+import {
+  ArrowDownIcon,
+  ArrowRightIcon,
+  ChevronLeftIcon,
+} from "@primer/octicons-react";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import MessageEmpty from "../components/MessageEmpty";
@@ -79,10 +83,16 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-light border border-success shadow-sm rounded-5 mx-auto mt-2"
+                className="container-box border-success"
               >
                 <Container className="p-2">
-                  <Row className="align-items-center">
+                  <Row
+                    className="align-items-center"
+                    onClick={() => dispatch(showSearchForm())}
+                  >
+                    <Col xs={1}>
+                      <ChevronLeftIcon size={24} />
+                    </Col>
                     <Col>
                       <p className="small fw-bold mb-0">
                         {formSearchRide.origin.city}{" "}
@@ -92,15 +102,6 @@ const Find = () => {
                       <p className="small mb-0">
                         {dateFormat(formSearchRide.date, "dd/mm/yyyy")}
                       </p>
-                    </Col>
-                    <Col xs={"auto"}>
-                      <Button
-                        onClick={() => dispatch(showSearchForm())}
-                        variant="warning"
-                        className="mb-0"
-                      >
-                        {t("translation:find.change")}
-                      </Button>
                     </Col>
                   </Row>
                 </Container>
@@ -123,14 +124,14 @@ const Find = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="bg-light border shadow rounded-5 pb-1 mx-auto hvr-grow hvr-grow-sm"
+                      className="container-box pb-1 hvr-grow hvr-grow-sm"
                     >
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
                         onClick={() => dispatch(displayNavBar(false))}
                         className="cursor-pointer"
                       >
-                        <Container className="p-2">
+                        <Container className="">
                           <Row>
                             <Col className="text-center">
                               <p className="small mb-2">
@@ -292,7 +293,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="bg-light shadow rounded-5 mt-2 mx-auto"
+                className="border border-2 border-dark shadow rounded-5 mt-2 mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

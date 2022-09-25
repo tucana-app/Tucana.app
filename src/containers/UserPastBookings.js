@@ -64,7 +64,7 @@ const UserPastBookings = () => {
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border shadow-sm rounded mx-auto px-0 mb-2"
+                  className="container-box"
                 >
                   <Container className="mt-1 px-0">
                     <LinkContainer

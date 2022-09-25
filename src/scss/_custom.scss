@@ -19,7 +19,7 @@ body {
 // Fonts
 
 .title {
-  @extend .text-success;
+  // @extend .text-success;
 }
 
 .navbar {
@@ -164,7 +164,16 @@ body {
   top: 0;
   left: 0;
 }
-//  background-image: url("/assets/images/filter-shield.png");
+
+.container-box {
+  @extend .border;
+  @extend .border-2;
+  @extend .shadow-sm;
+  @extend .rounded-5;
+  @extend .mx-auto;
+  @extend .px-0;
+  @extend .mb-2;
+}
 
 // ####################################################################
 // END CUSTOM CLASSES

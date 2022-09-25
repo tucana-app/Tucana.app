@@ -28,14 +28,7 @@ function DriverCar(props) {
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
               <Row>
                 <Col>
@@ -58,14 +51,7 @@ function DriverCar(props) {
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
               <Row>
                 <Col>
@@ -93,14 +79,7 @@ function DriverCar(props) {
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
               <Row>
                 <Col>

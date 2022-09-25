@@ -83,14 +83,7 @@ const Book = () => {
         <RideDetails ride={rideData.ride} />
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="py-3 px-2">
               <Row>
                 <Col xs={7}>
@@ -105,14 +98,7 @@ const Book = () => {
         </Row>
 
         <Row className="mb-3 mx-1 mx-sm-0">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="border shadow rounded-5 mx-auto"
-          >
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="py-1 px-2">
               <Row>
                 <Col>

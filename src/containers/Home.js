@@ -80,7 +80,9 @@ function Home() {
             md={4}
             className="d-flex align-items-center text-center mt-3 mt-md-0"
           >
-            <h1 className="title">{t("translation:homepage.catchPhrase")}</h1>
+            <h1 className="text-success">
+              {t("translation:homepage.catchPhrase")}
+            </h1>
             {/* <p className="text-light mb-0">
               {t("translation:homepage.paragraph")}
             </p> */}

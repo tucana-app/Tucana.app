@@ -114,7 +114,7 @@ const Ride = () => {
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow rounded-5 mx-auto"
+                    className="container-box"
                   >
                     <Container className="py-3 px-2">
                       <Row>
@@ -166,7 +166,7 @@ const Ride = () => {
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow rounded-5 mx-auto"
+                    className="container-box"
                   >
                     <Container className="py-3 px-2">
                       <Row>
@@ -191,7 +191,7 @@ const Ride = () => {
                     md={8}
                     lg={6}
                     xl={4}
-                    className="border shadow rounded-5 mx-auto"
+                    className="container-box"
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
@@ -261,7 +261,7 @@ const Ride = () => {
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border shadow rounded-5 mx-auto"
+                      className="container-box"
                     >
                       <Container className="py-3 px-2">
                         <Row>

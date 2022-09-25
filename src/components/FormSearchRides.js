@@ -123,7 +123,7 @@ const FormSearchRides = () => {
     <>
       <Row className="mb-3">
         <Col>
-          <p className="mb-0 text-success">{t("translation:global.from")}:</p>
+          <p className="mb-0">{t("translation:global.from")}:</p>
           <>
             {formSearchRide.origin.city !== "" ? (
               <Container className="px-0">
@@ -155,7 +155,7 @@ const FormSearchRides = () => {
 
       <Row className="my-2">
         <Col>
-          <p className="mb-0 text-success">{t("translation:global.to")}:</p>
+          <p className="mb-0">{t("translation:global.to")}:</p>
           <>
             {formSearchRide.destination.city !== "" ? (
               <Container className="px-0">

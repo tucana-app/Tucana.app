@@ -16,7 +16,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
             md={8}
             lg={6}
             xl={4}
-            className="bg-light border shadow rounded-5 mx-auto"
+            className="bg-light container-box"
           >
             <Container className="pt-3 px-2">
               <Row>
