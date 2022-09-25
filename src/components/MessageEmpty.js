@@ -9,7 +9,7 @@ function MessageEmpty(props) {
   const { title } = props;
   return (
     <div>
-      <h2 className="title">
+      <h2>
         <Trans i18nKey="translation:messageEmpty.message" title={title}>
           No {{ title }} found
         </Trans>

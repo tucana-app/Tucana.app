@@ -124,7 +124,7 @@ const SingleConversation = ({ conversation }) => {
       <ListGroup className="cursor-pointer sticky-top mb-3">
         <ListGroup.Item
           onClick={() => {
-            dispatch(getAllUserMessages(currentUser.id));
+            dispatch(getAllUserMessages(currentUser));
             dispatch(resetConversationView(currentUser.id));
             dispatch(displayNavBar(true));
           }}
