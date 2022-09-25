@@ -86,26 +86,26 @@ export const startConversationRequested = () => {
   };
 };
 
-export const startConversation = (driverId, userId, rideId) => {
+export const startConversation = (driverId, user, rideId) => {
   return (dispatch) => {
     dispatch(startConversationRequested());
 
     axios
       .post(URL_API + "/message/start-conversation", {
         driverId,
-        userId,
+        userId: user.id,
         rideId,
       })
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(getAllUserMessages(userId));
+        dispatch(getAllUserMessages(user));
 
         // The response is the UUID of the conversation
         dispatch(
           changeConversationView(
             response.data.uuid,
-            userId,
+            user.id,
             response.data.conversationId
           )
         );
@@ -156,7 +156,7 @@ export const sendMessageRequested = () => {
 };
 
 export const sendMessage = (
-  senderId,
+  sender,
   receiverId,
   message,
   conversationId,
@@ -177,7 +177,7 @@ export const sendMessage = (
       if (parsingResult.value === 0) {
         axios
           .post(URL_API + "/message/send-message", {
-            senderId,
+            senderId: sender.id,
             receiverId,
             message,
             conversationId,
@@ -194,7 +194,7 @@ export const sendMessage = (
               })
             );
             dispatch(sendMessageEnd());
-            dispatch(getAllUserMessages(senderId));
+            dispatch(getAllUserMessages(sender));
           })
           .catch((error) => {
             // console.log(error)

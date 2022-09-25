@@ -70,18 +70,18 @@ const PassengersDetails = ({ rideId, booking }) => {
                   <SendMessageButton
                     type="button"
                     driverId={booking.DriverId}
-                    userId={booking.UserId}
+                    user={booking.User}
                     receiverName={booking.User.firstName}
-                    rideId={booking.Ride}
+                    rideId={booking.RideId}
                   />
                 </div>
                 <div className="d-md-screen text-end">
                   <SendMessageButton
                     type="link"
                     driverId={booking.DriverId}
-                    userId={booking.UserId}
+                    user={booking.User}
                     receiverName={booking.User.firstName}
-                    rideId={booking.Ride}
+                    rideId={booking.RideId}
                   />
                 </div>
               </Col>

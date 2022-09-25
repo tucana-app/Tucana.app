@@ -132,9 +132,9 @@ const Booking = () => {
                             <SendMessageButton
                               type="link"
                               driverId={bookingData.DriverId}
-                              userId={bookingData.UserId}
+                              user={bookingData.User}
                               receiverName={bookingData.User.firstName}
-                              rideId={bookingData.Ride}
+                              rideId={bookingData.RideId}
                             />
                           </p>
                         ) : null}
@@ -242,11 +242,11 @@ const Booking = () => {
                             <SendMessageButton
                               type="link"
                               driverId={bookingData.Ride.DriverId}
-                              userId={currentUser.id}
+                              user={currentUser}
                               receiverName={
                                 bookingData.Ride.Driver.User.firstName
                               }
-                              rideId={bookingData.Ride}
+                              rideId={bookingData.RideId}
                             />
                           </Col>
                         </Row>

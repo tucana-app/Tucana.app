@@ -104,7 +104,7 @@ const SingleConversation = ({ conversation }) => {
 
     dispatch(
       sendMessage(
-        currentUser.id,
+        currentUser,
         receiverId,
         message,
         conversation.id,

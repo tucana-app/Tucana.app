@@ -230,9 +230,9 @@ const Ride = () => {
                           <SendMessageButton
                             type="link"
                             driverId={rideData.ride.DriverId}
-                            userId={currentUser.id}
+                            user={currentUser}
                             receiverName={rideData.ride.Driver.User.firstName}
-                            rideId={rideData.ride}
+                            rideId={rideData.ride.id}
                           />
                           <hr />
                         </Col>

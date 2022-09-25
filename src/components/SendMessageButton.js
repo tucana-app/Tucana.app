@@ -9,16 +9,15 @@ import { startConversation, displayNavBar } from "../redux";
 
 import LoadingSpinner from "./LoadingSpinner";
 
-function SendMessageButton({ type, driverId, userId, receiverName, rideId }) {
+function SendMessageButton({ type, driverId, user, receiverName, rideId }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { user: currentUser } = useSelector((state) => state.user);
   const { isLoadingStartConversation } = useSelector((state) => state.message);
   const history = useHistory();
 
   const handleStartConversation = () => {
-    // driverId, userId, viewerId, rideId
-    dispatch(startConversation(driverId, userId, currentUser.id, rideId));
+    // driverId, user, rideId
+    dispatch(startConversation(driverId, user, rideId));
 
     history.push("/messages");
   };
