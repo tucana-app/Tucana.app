@@ -120,12 +120,10 @@ function Account() {
               </Row>
 
               <Row className="align-items-center">
-                <Col xs={12} md={4}>
+                <Col>
                   <p className="text-secondary mb-0">
                     {t("translation:global.memberSince")}
                   </p>
-                </Col>
-                <Col>
                   <p className="mb-0">
                     {dateFormat(currentUser.createdAt, "dd/mm/yyyy")}
                   </p>

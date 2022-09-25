@@ -93,6 +93,13 @@
 		"subTitle": "Thank you so much for your consideration",
 		"title": "Donate"
 	},
+	"edit": {
+		"bio": {
+			"placeholder": "Share something about you",
+			"title": "Edit your bio",
+			"update": "Update your bio"
+		}
+	},
 	"find": {
 		"catchPhrase": "Find your next trip across Costa Rica",
 		"change": "Change",
@@ -160,7 +167,9 @@
 			"errorFallback": "There has been an error.",
 			"errorPersist": "If the error persists, please contact us.",
 			"fieldRequired": "This field is required",
+			"labelRequiredField": "This field is required",
 			"max20characters": "Max. 20 characters",
+			"min10characters": "Min. 10 characters",
 			"min4characters": "Min. 4 characters",
 			"missingComment": "You need to write a comment (min. 10 characters)",
 			"missingInfo": "Please fill up all the information",
@@ -260,6 +269,7 @@
 		"time": "Time",
 		"to": "to",
 		"total": "Total",
+		"update": "Update",
 		"username": "Username",
 		"vehicle": "Vehicle",
 		"verified": "Verified",
@@ -463,7 +473,7 @@
 	"rides": {
 		"bookingsReceived": "Bookings received",
 		"ridesBookings": "Your rides & bookings",
-		"ridesPublished": "Ride(s) published",
+		"ridesPublished": "Rides published",
 		"ridesToConfirm": "Rides to confirm"
 	},
 	"ridesBookings": {

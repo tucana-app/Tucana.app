@@ -56,6 +56,9 @@ import Help from "./containers/Help";
 import Page404 from "./containers/Page404";
 import ComingSoon from "./containers/ComingSoon";
 
+// Edits
+import EditBio from "./containers/Edits/EditBio";
+
 // Legal
 import Legal from "./containers/Menu/Legal";
 import Privacy from "./containers/Menu/Privacy";
@@ -213,6 +216,8 @@ function App() {
             <Route exact path="/how-it-works" component={HowItWorks} />
             <Route exact path="/faq" component={FAQ} />
             <Route exact path="/hiring" component={Hiring} />
+
+            <Route exact path="/edit/bio" component={EditBio} />
 
             {/* Verification */}
             <Route exact path="/verification" component={Verification} />

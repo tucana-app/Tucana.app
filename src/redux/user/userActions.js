@@ -1,6 +1,7 @@
 import axios from "axios";
 import userTypes from "./userTypes";
 import validator from "validator";
+import { parseText } from "../../helpers";
 
 import { setToast, getNotifications, resetNotifications } from "../index";
 import { t } from "i18next";
@@ -1037,5 +1038,90 @@ export const submitContactFormSuccess = () => {
 export const submitContactFormFail = () => {
   return {
     type: userTypes.SUBMIT_CONTACT_FORM_ERROR,
+  };
+};
+
+// Edit bio
+
+export const submitEditBioRequested = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_BIO_REQUESTED,
+  };
+};
+
+export const submitEditBio = (userId, values) => {
+  return (dispatch) => {
+    dispatch(submitEditBioRequested());
+
+    const parsingResult = parseText(values.bio);
+
+    if (parsingResult.value === 0) {
+      axios
+        .post(URL_API + "/user/submit-edit-bio", { userId, values })
+        .then((response) => {
+          let user = JSON.parse(localStorage.getItem("user"));
+          if (user) {
+            user = {
+              ...user,
+              biography: values.bio,
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
+          }
+
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Success",
+              bodyText: "Your bio has been updated",
+              variant: "success",
+            })
+          );
+
+          dispatch(submitEditBioSuccess());
+        })
+        .catch((error) => {
+          const message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          dispatch(submitEditBioFail(message));
+
+          dispatch(
+            setToast({
+              show: true,
+              headerText: "Error",
+              bodyText: t("translation:global.errors.sendingMessage"),
+              variant: "danger",
+            })
+          );
+        });
+    } else {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Warning",
+          bodyText: parsingResult.message,
+          variant: "warning",
+        })
+      );
+
+      dispatch(submitEditBioFail(parsingResult.message));
+    }
+  };
+};
+
+export const submitEditBioSuccess = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_BIO_SUCCESS,
+  };
+};
+
+export const submitEditBioFail = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_BIO_ERROR,
   };
 };

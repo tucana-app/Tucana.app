@@ -93,6 +93,13 @@
 		"subTitle": "Muchas gracias por su consideración",
 		"title": "Donar"
 	},
+	"edit": {
+		"bio": {
+			"placeholder": "Comparte algo sobre ti",
+			"title": "Editar su biografía",
+			"update": "Actualiza tu biografía"
+		}
+	},
 	"find": {
 		"catchPhrase": "Encuentre su próximo viaje por Costa Rica",
 		"change": "Cambiar",
@@ -119,7 +126,7 @@
 		"booking": "Reservación",
 		"bookingSubmitted": "Su reserva ha sido enviada al conductor",
 		"bookingSuccess": "Su reserva ha sido enviada al conductor",
-		"bookings": "reservas",
+		"bookings": "Reservas",
 		"by": "Por",
 		"cancel": "Anular",
 		"car": "Carro",
@@ -160,7 +167,9 @@
 			"errorFallback": "Se ha producido un error.",
 			"errorPersist": "Si el error persiste, póngase en contacto con nosotros.",
 			"fieldRequired": "Este campo es obligatorio",
+			"labelRequiredField": "Este campo es obligatorio",
 			"max20characters": "Máx. 20 caracteres",
+			"min10characters": "Mínimo 10 caracteres",
 			"min4characters": "Mínimo 4 caracteres",
 			"missingComment": "Tienes que escribir un comentario (mín. 10 caracteres)",
 			"missingInfo": "Por favor, rellene toda la información",
@@ -260,6 +269,7 @@
 		"time": "tiempo",
 		"to": "a",
 		"total": "Total",
+		"update": "Actualizar",
 		"username": "Nombre de usuario",
 		"vehicle": "Vehículo",
 		"verified": "Verificado",
@@ -397,8 +407,8 @@
 		"typeComment": "Escriba su comentario aquí"
 	},
 	"notifications": {
-		"answersBookings": "Respuestas de sus reservas",
-		"bookingsRides": "Reservas para su(s) ride(s)",
+		"answersBookings": "Respuestas de tus reservas",
+		"bookingsRides": "Reservas para tu(s) ride(s)",
 		"title": "Notificaciones"
 	},
 	"passengerProfile": {
@@ -463,13 +473,13 @@
 	"rides": {
 		"bookingsReceived": "Reservas recibidas",
 		"ridesBookings": "Tus rides & reservacíon",
-		"ridesPublished": "Ride(s) ofrecidas",
+		"ridesPublished": "Rides publicadas",
 		"ridesToConfirm": "Rides a confirmar"
 	},
 	"ridesBookings": {
 		"subTitle": "Encuentre a su pasajero potencial aquí",
 		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
-		"title": "Reservas para sus rides"
+		"title": "Reservas para tus rides"
 	},
 	"ridesDriver": {
 		"subTitle": "Todos los rides que has presentado",

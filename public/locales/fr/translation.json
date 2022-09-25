@@ -93,6 +93,13 @@
 		"subTitle": "Merci beaucoup pour votre considération",
 		"title": "Faire un don"
 	},
+	"edit": {
+		"bio": {
+			"placeholder": "",
+			"title": "",
+			"update": ""
+		}
+	},
 	"find": {
 		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",
 		"change": "Changer",
@@ -160,7 +167,9 @@
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, veuillez nous contacter.",
 			"fieldRequired": "Ce champ est obligatoire",
+			"labelRequiredField": "",
 			"max20characters": "Max. 20 caractères",
+			"min10characters": "Min. 10 caractères",
 			"min4characters": "Min. 4 caractères",
 			"missingComment": "Tu dois écrire un commentaire (10 caractères min.)",
 			"missingInfo": "Veuillez remplir toutes les informations",
@@ -260,6 +269,7 @@
 		"time": "heure",
 		"to": "à",
 		"total": "Total",
+		"update": "Mettre à jour",
 		"username": "Nom d'utilisateur",
 		"vehicle": "Véhicule",
 		"verified": "Vérifié",
@@ -463,7 +473,7 @@
 	"rides": {
 		"bookingsReceived": "Réservations reçues",
 		"ridesBookings": "Tes trajets & réservations",
-		"ridesPublished": "Trajet(s) proposé(s)",
+		"ridesPublished": "Trajets publiés",
 		"ridesToConfirm": "Trajets à confirmer"
 	},
 	"ridesBookings": {

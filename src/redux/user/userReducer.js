@@ -65,6 +65,10 @@ initialState = {
   updateUserRatingsSuccess: false,
   updateUserRatingsError: "",
 
+  isLoadingSubmitEditBioState: false,
+  submitEditBioSuccess: false,
+  submitEditBioError: "",
+
   isLoadingSubmitContactForm: false,
 
   formApplyDriver: {
@@ -651,6 +655,30 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSubmitContactForm: false,
+      };
+
+    // Contact form
+
+    case userTypes.SUBMIT_EDIT_BIO_REQUESTED:
+      return {
+        ...state,
+        isLoadingSubmitEditBioState: true,
+      };
+
+    case userTypes.SUBMIT_EDIT_BIO_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitEditBioState: false,
+        submitEditBioSuccess: action.payload,
+        submitEditBioError: "",
+      };
+
+    case userTypes.SUBMIT_EDIT_BIO_ERROR:
+      return {
+        ...state,
+        isLoadingSubmitEditBioState: false,
+        submitEditBioSuccess: false,
+        submitEditBioError: action.payload,
       };
 
     default:
