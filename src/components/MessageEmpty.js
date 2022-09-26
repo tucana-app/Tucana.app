@@ -11,7 +11,7 @@ function MessageEmpty(props) {
     <div>
       <h2>
         <Trans i18nKey="translation:messageEmpty.message" title={title}>
-          No {{ title }} found
+          No <span className="text-lowercase">{{ title }}</span> found
         </Trans>
       </h2>
       {/* <h1 className="title mb-4">No {title} found</h1> */}

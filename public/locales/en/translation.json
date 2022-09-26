@@ -24,6 +24,9 @@
 		"noPassengers": "You do not have passengers for this ride yet",
 		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
 	},
+	"applicationDriver": {
+		"title": "Driver form application"
+	},
 	"becomeDriver": {
 		"applicationForm": "Application form",
 		"apply": "Apply",
@@ -118,6 +121,7 @@
 		"accepted": "Accepted",
 		"acceptingBooking": "You have accepted the booking",
 		"alreadyBooking": "You already have booking(s) for this ride",
+		"application": "Application",
 		"becomeDriver": "Become a driver",
 		"bio": "Biography",
 		"book": "Book",
@@ -384,7 +388,7 @@
 	},
 	"messageEmpty": {
 		"bookRide": "Book your next ride",
-		"message": "No {{title}} found",
+		"message": "No <1>{{title}}</1> found",
 		"publishRide": "Publish a ride"
 	},
 	"messages": {

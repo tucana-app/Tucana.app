@@ -80,8 +80,7 @@ function RidesToConfirm() {
                               <ArrowRightIcon verticalAlign="middle" />{" "}
                               {ride.destination.city}{" "}
                             </p>
-                            <small>
-                              {t("translation:global.date")}:{" "}
+                            <small className="text-secondary">
                               {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
                             </small>
                           </Col>

@@ -57,6 +57,15 @@ const Credits = () => {
                   Illustrations from UnDraw.co
                 </a>
               </ListGroup.Item>
+              <ListGroup.Item>
+                <a
+                  href="https://www.iconfinder.com/icons/4047337/car_vehicle_transport_van_icon"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Car image by Matin Mahirli
+                </a>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>

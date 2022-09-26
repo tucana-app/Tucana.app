@@ -688,6 +688,55 @@ export const getApplicationsBecomeDriverFail = (error) => {
   };
 };
 
+// Get a single driver's application
+
+export const getApplicationBecomeDriverRequested = () => {
+  return {
+    type: userTypes.GET_APPLICATION_BECOME_DRIVER_REQUESTED,
+  };
+};
+
+export const getApplicationBecomeDriver = (userId, applicationId) => {
+  return (dispatch) => {
+    dispatch(getApplicationBecomeDriverRequested());
+
+    axios
+      .get(URL_API + "/user/application-become-driver", {
+        params: {
+          userId,
+          applicationId,
+        },
+      })
+      .then((response) => {
+        dispatch(getApplicationBecomeDriverData(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getApplicationBecomeDriverFail(message));
+      });
+  };
+};
+
+export const getApplicationBecomeDriverData = (data) => {
+  return {
+    type: userTypes.GET_APPLICATION_BECOME_DRIVER_DATA,
+    payload: data,
+  };
+};
+
+export const getApplicationBecomeDriverFail = (error) => {
+  return {
+    type: userTypes.GET_APPLICATION_BECOME_DRIVER_ERROR,
+    payload: error,
+  };
+};
+
 // Become a driver application form
 // Set the type of ID
 export const setApplicationIdType = (idType) => {
@@ -1078,7 +1127,7 @@ export const submitEditBio = (userId, values) => {
             })
           );
 
-          dispatch(submitEditBioSuccess());
+          dispatch(submitEditBioSuccess(values.bio));
         })
         .catch((error) => {
           const message =
@@ -1114,9 +1163,10 @@ export const submitEditBio = (userId, values) => {
   };
 };
 
-export const submitEditBioSuccess = () => {
+export const submitEditBioSuccess = (bio) => {
   return {
     type: userTypes.SUBMIT_EDIT_BIO_SUCCESS,
+    payload: bio,
   };
 };
 

@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, ListGroup } from "react-bootstrap";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CheckIcon,
+  ChevronRightIcon,
   XIcon,
 } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 import { getApplicationsBecomeDriver, getNotifications } from "../redux";
 
 import LoadingSpinner from "../components/LoadingSpinner";
+import { LinkContainer } from "react-router-bootstrap";
 
 const BecomeDriver = () => {
   const { t } = useTranslation();
@@ -99,7 +101,7 @@ const BecomeDriver = () => {
         ) : null}
 
         <Row className="mt-3">
-          <Col className="text-center">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             {isLoadingGetApplicationsBecomeDriver ? (
               <div className="text-center">
                 <LoadingSpinner />
@@ -108,28 +110,57 @@ const BecomeDriver = () => {
               getApplicationsBecomeDriverData.length > 0 ? (
               <>
                 <hr className="w-75 mt-2 mb-4 mx-auto" />
-                <p>{t("translation:becomeDriver.pastApplications")}:</p>
+                <p className="text-center">
+                  {t("translation:becomeDriver.pastApplications")}:
+                </p>
+
                 {getApplicationsBecomeDriverData.map((application, index) => (
-                  <div key={index} className="mb-3">
-                    {t("translation:becomeDriver.request")} #{index + 1}:{" "}
-                    {application.admin_VerifDriverApplications.length === 0 ? (
-                      <span className="text-warning">
-                        {t("translation:becomeDriver.underReview")}
-                      </span>
-                    ) : application.admin_VerifDriverApplications[0] &&
-                      application.admin_VerifDriverApplications[0]
-                        .isAccepted ? (
-                      <span className="text-success">
-                        <CheckIcon size={24} className="me-2" />
-                        {t("translation:global.accepted")}
-                      </span>
-                    ) : (
-                      <span className="text-danger">
-                        <XIcon size={24} className="me-2" />
-                        {t("translation:global.refused")}
-                      </span>
-                    )}
-                  </div>
+                  <LinkContainer
+                    to={`/driver/application/${application.id}`}
+                    className="cursor-pointer"
+                    key={index}
+                  >
+                    <ListGroup.Item className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
+                      {application.admin_VerifDriverApplications.length ===
+                      0 ? (
+                        <div>
+                          {t("translation:becomeDriver.request")} #{index + 1}:{" "}
+                          <span className="text-warning">
+                            {t("translation:becomeDriver.underReview")}
+                          </span>
+                        </div>
+                      ) : application.admin_VerifDriverApplications[0] &&
+                        application.admin_VerifDriverApplications[0]
+                          .isAccepted ? (
+                        <div>
+                          {t("translation:becomeDriver.request")} #{index + 1}:{" "}
+                          <span className="text-success">
+                            <CheckIcon size={24} className="me-2" />
+                            {t("translation:global.accepted")}
+                          </span>
+                        </div>
+                      ) : (
+                        <div>
+                          {t("translation:becomeDriver.request")} #{index + 1}:{" "}
+                          <span className="text-danger">
+                            <XIcon size={24} className="me-2" />
+                            {t("translation:global.refused")}
+                          </span>{" "}
+                          -{" "}
+                          <span className="text-secondary">
+                            "
+                            {
+                              application.admin_VerifDriverApplications[0]
+                                .comment
+                            }
+                            "
+                          </span>
+                        </div>
+                      )}
+
+                      <ChevronRightIcon size={24} verticalAlign="middle" />
+                    </ListGroup.Item>
+                  </LinkContainer>
                 ))}
               </>
             ) : null}

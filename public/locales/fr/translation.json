@@ -24,6 +24,9 @@
 		"noPassengers": "Tu n'as pas encore de passagers pour ce trajet",
 		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
+	"applicationDriver": {
+		"title": ""
+	},
 	"becomeDriver": {
 		"applicationForm": "Formulaire de demande",
 		"apply": "Postuler",
@@ -118,6 +121,7 @@
 		"accepted": "Accepté",
 		"acceptingBooking": "Tu as accepté la réservation",
 		"alreadyBooking": "Tu as déjà une ou plusieurs réservations pour ce trajet.",
+		"application": "",
 		"becomeDriver": "Devenir chauffeur",
 		"bio": "Biographie",
 		"book": "Réserver",
@@ -266,7 +270,7 @@
 		"submit": "Soumettre",
 		"success": "Succès",
 		"thankYou": "Merci",
-		"time": "heure",
+		"time": "Heure",
 		"to": "à",
 		"total": "Total",
 		"update": "Mettre à jour",
@@ -384,7 +388,7 @@
 	},
 	"messageEmpty": {
 		"bookRide": "Réservez votre prochain voyage",
-		"message": "Il n'y a pas de {{title}}",
+		"message": "Il n'y a pas de <1>{{title}}</1>",
 		"publishRide": "Proposer un trajet"
 	},
 	"messages": {

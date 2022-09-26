@@ -39,6 +39,7 @@ import Publish from "./containers/Publish";
 import HowItWorks from "./containers/HowItWorks";
 
 import BecomeDriver from "./containers/BecomeDriver";
+import DriverApplicationForm from "./containers/Driver/DriverApplicationForm";
 import DriverApplication from "./containers/Driver/DriverApplication";
 
 // All pages included in the side menu
@@ -152,7 +153,16 @@ function App() {
             <Route exact path="/find" component={Find} />
             <Route exact path="/messages" component={Messages} />
             <Route exact path="/become-driver" component={BecomeDriver} />
-            <Route exact path="/apply-driver" component={DriverApplication} />
+            <Route
+              exact
+              path="/apply-driver"
+              component={DriverApplicationForm}
+            />
+            <Route
+              exact
+              path="/driver/application/:applicationId"
+              component={DriverApplication}
+            />
 
             <Route exact path="/ride/:rideId" component={Ride} />
             <Route exact path="/rides" component={Rides} />

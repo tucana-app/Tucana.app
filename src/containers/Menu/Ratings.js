@@ -161,48 +161,7 @@ function Ratings() {
                               <ArrowRightIcon verticalAlign="middle" />{" "}
                               {ride.destination.city}{" "}
                             </p>
-                            <small>
-                              {t("translation:global.date")}:{" "}
-                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
-                            </small>
-                          </Col>
-                          <Col xs={1} className="mx-0 px-0">
-                            <ChevronRightIcon
-                              size={24}
-                              verticalAlign="middle"
-                            />
-                          </Col>
-                        </Row>
-                      </Container>
-                    </ListGroup.Item>
-                  </Link>
-                ))}
-
-                {getRatingsToDoPassengerData.map((ride, index) => (
-                  <Link
-                    key={index}
-                    to={`/ratings/new-rating/${ride.id}`}
-                    className="text-decoration-none"
-                  >
-                    <ListGroup.Item className="border border-start-0 border-end-0">
-                      <Container className="mx-0 px-0">
-                        <Row className="align-items-center">
-                          <Col xs={1} className="mx-0 px-0">
-                            <span>
-                              <DotFillIcon
-                                size={24}
-                                className="text-success me-2"
-                              />
-                            </span>
-                          </Col>
-                          <Col className="ps-0">
-                            <p className="mb-0">
-                              {ride.origin.city}{" "}
-                              <ArrowRightIcon verticalAlign="middle" />{" "}
-                              {ride.destination.city}{" "}
-                            </p>
-                            <small>
-                              {t("translation:global.date")}:{" "}
+                            <small className="text-secondary">
                               {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
                             </small>
                           </Col>
@@ -241,8 +200,7 @@ function Ratings() {
                               <ArrowRightIcon verticalAlign="middle" />{" "}
                               {ride.destination.city}{" "}
                             </p>
-                            <small>
-                              {t("translation:global.date")}:{" "}
+                            <small className="text-secondary">
                               {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
                             </small>
                           </Col>

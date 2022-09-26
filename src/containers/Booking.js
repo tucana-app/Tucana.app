@@ -57,9 +57,13 @@ const Booking = () => {
           (currentUser.Driver &&
             currentUser.Driver.id === bookingData.DriverId) ? (
             <div data-aos="fade-in">
-              <h2 className="text-success text-center">
-                {t("translation:booking.title")}
-              </h2>
+              <Row>
+                <Col>
+                  <h2 className="title text-center">
+                    {t("translation:booking.title")}
+                  </h2>
+                </Col>
+              </Row>
 
               <Row className="mb-3 mx-1 mx-sm-0">
                 <Col

@@ -58,6 +58,20 @@ function Account() {
               <Row className="align-items-center mb-3">
                 <Col>
                   <p className="text-secondary mb-0">
+                    {t("translation:global.firstName")}
+                  </p>
+                  <p className="mb-0">{currentUser.firstName}</p>
+                </Col>
+                <Col>
+                  <p className="text-secondary mb-0">
+                    {t("translation:global.lastName")}
+                  </p>
+                  <p className="mb-0">{currentUser.lastName}</p>
+                </Col>
+              </Row>
+              <Row className="align-items-center mb-3">
+                <Col>
+                  <p className="text-secondary mb-0">
                     {t("translation:global.username")}
                   </p>
                   <p className="mb-0">{currentUser.username}</p>

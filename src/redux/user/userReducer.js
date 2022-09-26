@@ -53,6 +53,10 @@ initialState = {
   getApplicationsBecomeDriverData: [],
   getApplicationsBecomeDriverError: "",
 
+  isLoadingApplicationBecomeDriver: false,
+  applicationBecomeDriverData: [],
+  applicationBecomeDriverError: "",
+
   isLoadingSubmitFormBecomeDriver: false,
   submitFormBecomeDriverSuccess: false,
   submitFormBecomeDriverError: "",
@@ -357,6 +361,30 @@ function userReducer(state = initialState, action) {
         isLoadingGetApplicationsBecomeDriver: false,
         getApplicationsBecomeDriverData: [],
         getApplicationsBecomeDriverError: action.payload,
+      };
+
+    // Get a single driver's application
+
+    case userTypes.GET_APPLICATION_BECOME_DRIVER_REQUESTED:
+      return {
+        ...state,
+        isLoadingApplicationBecomeDriver: true,
+      };
+
+    case userTypes.GET_APPLICATION_BECOME_DRIVER_DATA:
+      return {
+        ...state,
+        isLoadingApplicationBecomeDriver: false,
+        applicationBecomeDriverData: action.payload,
+        applicationBecomeDriverError: "",
+      };
+
+    case userTypes.GET_APPLICATION_BECOME_DRIVER_ERROR:
+      return {
+        ...state,
+        isLoadingApplicationBecomeDriver: false,
+        applicationBecomeDriverData: [],
+        applicationBecomeDriverError: action.payload,
       };
 
     // Application form to become a driver
@@ -668,6 +696,10 @@ function userReducer(state = initialState, action) {
     case userTypes.SUBMIT_EDIT_BIO_SUCCESS:
       return {
         ...state,
+        user: {
+          ...state.user,
+          biography: action.payload,
+        },
         isLoadingSubmitEditBioState: false,
         submitEditBioSuccess: action.payload,
         submitEditBioError: "",

@@ -1,21 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { LinkContainer } from "react-router-bootstrap";
+import { ChevronRightIcon, StarFillIcon } from "@primer/octicons-react";
 
 import GoBack from "../../components/GoBack";
-import { ChevronRightIcon, StarFillIcon } from "@primer/octicons-react";
 import car from "../../assets/images/car.png";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+import { getDriverProfile } from "../../redux";
 
 function DriverProfile(props) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const { isloadingDriverProfile, driverProfileData } = useSelector(
+    (state) => state.ride
+  );
+
+  useEffect(() => {
+    if (currentUser.Driver) {
+      dispatch(getDriverProfile(currentUser.username));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!isLoggedIn || !currentUser.Driver) {
     return <Redirect to="/" />;
   }
+
   return (
     <div data-aos="fade-in">
       <GoBack />
@@ -32,32 +48,58 @@ function DriverProfile(props) {
         <Row className="mb-3 mx-1 mx-sm-0">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
             <Container className="p-3">
-              <Row>
-                <Col>
+              <Row className="align-items-center mb-3">
+                <Col xs={8}>
                   <p className="fw-bold">
                     {t("translation:global.yourRating")}
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={6}>
                   {currentUser.Rating.driverRating > 0 ? (
                     <div className="d-inline-flex align-items-center">
-                      <StarFillIcon size={26} className="text-warning me-2" />
+                      <StarFillIcon
+                        size={26}
+                        className="text-warning me-1 mb-1"
+                      />
                       <h1 className="fw-bold mb-0">
-                        {currentUser.Rating.driverRating}{" "}
+                        {currentUser.Rating.driverRating}
                       </h1>
+                      <p className="ms-3 mb-0">
+                        <span className="text-secondary">
+                          - {currentUser.Rating.nbDriverRating}{" "}
+                          <span className="text-lowercase">
+                            {" "}
+                            {t("translation:global.ratings")}
+                          </span>
+                        </span>
+                      </p>
                     </div>
                   ) : (
-                    <span>{t("translation:global.noRatings")}</span>
+                    <small className="smaller text-secondary">
+                      {t("translation:global.noRatings")}
+                    </small>
                   )}
                 </Col>
-                <Col xs={6} className="text-end">
+
+                <Col xs={4} className="text-end">
                   <LinkContainer to="/profile/driver/ratings">
                     <Button variant="success" size={"lg"}>
                       {t("translation:global.view")}
                     </Button>
                   </LinkContainer>
+                </Col>
+              </Row>
+
+              <Row className="align-items-center">
+                <Col>
+                  <p className="text-lowercase mb-0">
+                    <strong>
+                      {isloadingDriverProfile ? (
+                        <LoadingSpinner />
+                      ) : (
+                        driverProfileData.ridesCount
+                      )}
+                    </strong>{" "}
+                    {t("translation:rides.ridesPublished")}
+                  </p>
                 </Col>
               </Row>
             </Container>
@@ -80,7 +122,7 @@ function DriverProfile(props) {
                   <LinkContainer to="/driver/car" className="cursor-pointer">
                     <Row className="align-items-center mb-2">
                       <Col xs={2} className="text-center pe-0">
-                        <img src={car} alt="" height={36} />
+                        <img src={car} alt="" height={30} />
                       </Col>
                       <Col>
                         <p className="mb-0">{currentUser.Driver.Car.maker}</p>

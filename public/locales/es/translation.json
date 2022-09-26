@@ -24,6 +24,9 @@
 		"noPassengers": "Todavía no tiene pasajeros para este viaje",
 		"summary": "Total: <2>{{totalPassengers}}</2> pasajero(s) con <2>{{bookings}}</2> reservación(es)"
 	},
+	"applicationDriver": {
+		"title": "Solicitud de formulario de conductor"
+	},
 	"becomeDriver": {
 		"applicationForm": "Formulario de solicitud",
 		"apply": "Aplíquese",
@@ -118,6 +121,7 @@
 		"accepted": "Aceptado",
 		"acceptingBooking": "Ha aceptado la reserva",
 		"alreadyBooking": "Ya tiene reserva(s) para este viaje",
+		"application": "Solicitud",
 		"becomeDriver": "Conviértase en conductor",
 		"bio": "Biografía",
 		"book": "Reserva",
@@ -216,7 +220,7 @@
 		"no": "No",
 		"noRatings": "No calificaciones",
 		"notMandatory": "No es obligatorio",
-		"notVerified": "No verificado",
+		"notVerified": "Sin verificación",
 		"number": "Numeró",
 		"numberPlate": "Placa",
 		"origin": "Origen",
@@ -266,7 +270,7 @@
 		"submit": "Envíe",
 		"success": "Éxito",
 		"thankYou": "Gracias",
-		"time": "tiempo",
+		"time": "Hora",
 		"to": "a",
 		"total": "Total",
 		"update": "Actualizar",
@@ -274,7 +278,7 @@
 		"vehicle": "Vehículo",
 		"verified": "Verificado",
 		"verify": "Verifique",
-		"view": "Vea",
+		"view": "Ver",
 		"welcome": "Bienvenido",
 		"year": "Año",
 		"yes": "Sí",
@@ -384,7 +388,7 @@
 	},
 	"messageEmpty": {
 		"bookRide": "Reserve su próximo viaje",
-		"message": "No se encontró {{title}}",
+		"message": "No se encontró <1>{{title}}</1>",
 		"publishRide": "Ofrecer un ride"
 	},
 	"messages": {

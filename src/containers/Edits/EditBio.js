@@ -78,7 +78,7 @@ const EditBio = () => {
                 <Form noValidate onSubmit={handleSubmit}>
                   <Form.Group>
                     <Form.Control
-                      type="textarea"
+                      type="text"
                       as="textarea"
                       rows={3}
                       name="bio"
