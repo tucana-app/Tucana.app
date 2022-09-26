@@ -199,7 +199,7 @@ const Ride = () => {
                         className="cursor-pointer"
                       >
                         <Row className="align-items-center">
-                          <Col xs={3} md={2} className="text-end pe-0">
+                          <Col xs={3} md={2} className="pe-0">
                             <img
                               src={srcAvatar(rideData.ride.Driver.User)}
                               alt="Avatar"
@@ -207,7 +207,7 @@ const Ride = () => {
                               width="50px"
                             />
                           </Col>
-                          <Col xs={6} className="text-start">
+                          <Col xs={6} className="text-start ps-0 ps-md-2">
                             <p className="mb-0">
                               {rideData.ride.Driver.User.firstName}
                             </p>

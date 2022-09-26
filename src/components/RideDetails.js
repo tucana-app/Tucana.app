@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import {
   ArrowDownIcon,
+  ChevronRightIcon,
   DotFillIcon,
-  LinkExternalIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 import { formatDistance, formatPrice, formatTimeSecond } from "../helpers";
+import { Map } from "react-bootstrap-icons";
 
 function RideDetails({ ride }) {
   const { t } = useTranslation();
@@ -16,21 +17,15 @@ function RideDetails({ ride }) {
 
   return (
     <Row className="mb-3 mx-1 mx-sm-0">
-      <Col
-        xs={12}
-        sm={10}
-        md={8}
-        lg={6}
-        xl={4}
-        className="border shadow rounded-5 pb-3 mx-auto"
-      >
+      <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
         <Container className="p-2">
           <Row className="mb-3">
             <Col className="text-center">
               {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
             </Col>
           </Row>
-          <Row>
+
+          <Row className="px-2">
             <Col xs={2} className="mt-1 px-0">
               <p className="smaller line-height-md text-secondary text-end mb-2">
                 {dateFormat(ride.dateTimeOrigin, "HH:MM TT")}
@@ -39,7 +34,7 @@ function RideDetails({ ride }) {
                 {formatTimeSecond(ride.ETA.durationValue)}
               </p>
             </Col>
-            <Col xs={8}>
+            <Col xs={10}>
               <p className="line-height-md mb-1">
                 <strong>{ride.origin.city}, </strong>
                 <small>{ride.origin.province}</small>
@@ -49,7 +44,8 @@ function RideDetails({ ride }) {
               </p>
             </Col>
           </Row>
-          <Row className="mb-4">
+
+          <Row className="px-2">
             <Col xs={2} className="px-0">
               <p className="smaller line-height-md text-secondary text-end mb-0">
                 {dateFormat(ride.dateTimeDestination, "hh:MM TT")}
@@ -63,9 +59,11 @@ function RideDetails({ ride }) {
             </Col>
             <Col xs={3}></Col>
           </Row>
+
           <hr />
+
           <Row className="align-items-center">
-            <Col xs={12} md={8}>
+            <Col xs={10}>
               <p className="mb-0">
                 {t("translation:publish.estimatedTime")}:{" "}
                 <strong>{formatTimeSecond(ride.ETA.durationValue)}</strong>
@@ -75,31 +73,28 @@ function RideDetails({ ride }) {
                 <strong>{formatDistance(ride.ETA.distanceValue)}</strong>
               </p>
             </Col>
-            <Col xs={12} md={4} className="text-center mt-3 mt-md-0">
+            <Col xs={2} className="text-center ps-0">
               <a
                 href={`https://www.google.com/maps/dir/?api=1&origin=${ride.origin.address}&destination=${ride.destination.address}&travelmode=driving`}
                 target="_blank"
+                className="text-success"
                 rel="noopener noreferrer"
               >
-                <Button variant="outline-success" size="sm">
-                  {t("translation:ride.viewTrip")}
-                  <LinkExternalIcon size={18} className="ms-2" />
-                </Button>
+                <Map size={24} />
+                <ChevronRightIcon size={24} />
               </a>
             </Col>
           </Row>
+
           <hr />
-          <Row>
-            <Col xs={8}>
-              {t("translation:global.price")} {t("translation:global.perSeat")}
-            </Col>
-            <Col xs={4} className="text-center">
-              <strong>{formatPrice(ride.price)}</strong>
-            </Col>
-          </Row>
-          <hr />
-          <Row>
-            <Col xs={6}>
+
+          <Row className="align-items-center">
+            <Col>
+              <p className="mb-0">
+                {t("translation:global.seatsAvailable")}:{" "}
+                <span className="text-success">{ride.seatsLeft}</span>/
+                {ride.seatsAvailable}
+              </p>
               <p className="mb-0">
                 {t("translation:global.status")}:{" "}
                 <span
@@ -110,11 +105,12 @@ function RideDetails({ ride }) {
                 </span>
               </p>
             </Col>
-            <Col xs={6} className="text-center">
-              <p className="mb-0">
-                {t("translation:global.seatsAvailable")}:{" "}
-                <span className="text-success">{ride.seatsLeft}</span>/
-                {ride.seatsAvailable}
+            <Col className="text-end me-2">
+              <p className="line-height-sm mb-0">
+                <span className="fw-bold mb-0">{formatPrice(ride.price)}</span>
+                <span className="smaller text-secondary">
+                  /{t("translation:global.perSeat")}
+                </span>
               </p>
             </Col>
           </Row>

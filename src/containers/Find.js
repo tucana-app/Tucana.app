@@ -71,7 +71,7 @@ const Find = () => {
           <>
             <Row>
               <Col xs={12}>
-                <h1 className="title display-5 text-center mb-0">
+                <h1 className="title display-5 text-center">
                   {t("translation:global.searchResults")}
                 </h1>
               </Col>

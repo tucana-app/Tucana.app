@@ -7,9 +7,9 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
 import { submitEditPassword } from "../../redux";
-import GoBack from "../../components/GoBack";
 
 require("yup-password")(Yup); // extend yup
 
@@ -28,6 +28,7 @@ const EditPassword = () => {
   );
 
   const schema = Yup.object().shape({
+    currentPassword: Yup.string().required(labelRequiredField),
     password1: Yup.string().required(labelRequiredField).password(),
     password2: Yup.string(labelStringField)
       .required(labelRequiredField)

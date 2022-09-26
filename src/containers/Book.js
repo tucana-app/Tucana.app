@@ -87,7 +87,7 @@ const Book = () => {
             <Container className="py-3 px-2">
               <Row>
                 <Col xs={7}>
-                  <h1 className="mb-0">{t("translation:global.total")}</h1>
+                  <h1 className="mb-0 ms-3">{t("translation:global.total")}</h1>
                 </Col>
                 <Col xs={5} className="text-center">
                   <h1 className="mb-0">{formatPrice(totalPaidPassenger)}</h1>

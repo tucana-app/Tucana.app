@@ -160,11 +160,11 @@ const Booking = () => {
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
                       <Col xs={7}>
-                        <h1 className="mb-0">
+                        <h1 className="mb-0 ms-2">
                           {t("translation:global.total")}
                         </h1>
                       </Col>
-                      <Col xs={5} className="text-center">
+                      <Col xs={5} className="text-end pe-3">
                         <h2 className="mb-0">
                           {currentUser.Driver &&
                           currentUser.Driver.id !== bookingData.DriverId
