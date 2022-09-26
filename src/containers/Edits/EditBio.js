@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
@@ -17,7 +17,8 @@ const EditBio = () => {
   const {
     user: currentUser,
     isLoggedIn,
-    isLoadingEditBio,
+    isLoadingSubmitEditBio,
+    submitEditBioSuccess,
   } = useSelector((state) => state.user);
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
@@ -29,11 +30,8 @@ const EditBio = () => {
       .min(10, t("translation:global.errors.min10characters")),
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = (bio, formikBag) => {
     dispatch(submitEditBio(currentUser.id, bio));
-    setSubmitted(true);
     formikBag.setSubmitting(false);
   };
 
@@ -43,7 +41,7 @@ const EditBio = () => {
 
   return (
     <div data-aos="fade-in">
-      <GoBack onClick={() => setSubmitted(false)} />
+      <GoBack />
 
       <Container>
         <Row className="mb-3">
@@ -88,7 +86,7 @@ const EditBio = () => {
                       isInvalid={!!errors.bio}
                       isValid={touched.bio && !errors.bio}
                       className="rounded"
-                      disabled={submitted}
+                      disabled={submitEditBioSuccess.flag === "SUCCESS"}
                       required
                     />
                     <Form.Control.Feedback type="invalid">
@@ -103,13 +101,13 @@ const EditBio = () => {
                       type="submit"
                       disabled={
                         isSubmitting ||
-                        submitted ||
-                        isLoadingEditBio ||
+                        submitEditBioSuccess.flag === "SUCCESS" ||
+                        isLoadingSubmitEditBio ||
                         values.bio === currentUser.biography ||
                         values.bio.length < 10
                       }
                     >
-                      {isSubmitting || isLoadingEditBio ? (
+                      {isSubmitting || isLoadingSubmitEditBio ? (
                         <span className="me-2">
                           <LoadingSpinner />
                         </span>

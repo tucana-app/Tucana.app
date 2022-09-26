@@ -1127,7 +1127,7 @@ export const submitEditBio = (userId, values) => {
             })
           );
 
-          dispatch(submitEditBioSuccess(values.bio));
+          dispatch(submitEditBioSuccess(response.data));
         })
         .catch((error) => {
           const message =
@@ -1143,7 +1143,7 @@ export const submitEditBio = (userId, values) => {
             setToast({
               show: true,
               headerText: "Error",
-              bodyText: t("translation:global.errors.sendingMessage"),
+              bodyText: t("translation:global.errors.failUpdateBio"),
               variant: "danger",
             })
           );
@@ -1163,15 +1163,76 @@ export const submitEditBio = (userId, values) => {
   };
 };
 
-export const submitEditBioSuccess = (bio) => {
+export const submitEditBioSuccess = (data) => {
   return {
     type: userTypes.SUBMIT_EDIT_BIO_SUCCESS,
-    payload: bio,
+    payload: data,
   };
 };
 
 export const submitEditBioFail = () => {
   return {
     type: userTypes.SUBMIT_EDIT_BIO_ERROR,
+  };
+};
+
+// Edit password
+
+export const submitEditPasswordRequested = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_PASSWORD_REQUESTED,
+  };
+};
+
+export const submitEditPassword = (user, values) => {
+  return (dispatch) => {
+    dispatch(submitEditPasswordRequested());
+
+    axios
+      .post(URL_API + "/user/submit-edit-password", { user, values })
+      .then((response) => {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: "Your password has been updated",
+            variant: "success",
+          })
+        );
+
+        dispatch(submitEditPasswordSuccess(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(submitEditPasswordFail(message));
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+      });
+  };
+};
+
+export const submitEditPasswordSuccess = (data) => {
+  return {
+    type: userTypes.SUBMIT_EDIT_PASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitEditPasswordFail = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_PASSWORD_ERROR,
   };
 };

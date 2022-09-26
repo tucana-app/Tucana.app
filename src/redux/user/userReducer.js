@@ -69,9 +69,13 @@ initialState = {
   updateUserRatingsSuccess: false,
   updateUserRatingsError: "",
 
-  isLoadingSubmitEditBioState: false,
-  submitEditBioSuccess: false,
+  isLoadingSubmitEditBio: false,
+  submitEditBioSuccess: "",
   submitEditBioError: "",
+
+  isLoadingSubmitEditPassword: false,
+  submitEditPasswordSuccess: false,
+  submitEditPasswordError: "",
 
   isLoadingSubmitContactForm: false,
 
@@ -685,12 +689,12 @@ function userReducer(state = initialState, action) {
         isLoadingSubmitContactForm: false,
       };
 
-    // Contact form
+    // Submit edit bio
 
     case userTypes.SUBMIT_EDIT_BIO_REQUESTED:
       return {
         ...state,
-        isLoadingSubmitEditBioState: true,
+        isLoadingSubmitEditBio: true,
       };
 
     case userTypes.SUBMIT_EDIT_BIO_SUCCESS:
@@ -698,9 +702,9 @@ function userReducer(state = initialState, action) {
         ...state,
         user: {
           ...state.user,
-          biography: action.payload,
+          biography: action.payload.bio,
         },
-        isLoadingSubmitEditBioState: false,
+        isLoadingSubmitEditBio: false,
         submitEditBioSuccess: action.payload,
         submitEditBioError: "",
       };
@@ -708,9 +712,33 @@ function userReducer(state = initialState, action) {
     case userTypes.SUBMIT_EDIT_BIO_ERROR:
       return {
         ...state,
-        isLoadingSubmitEditBioState: false,
+        isLoadingSubmitEditBio: false,
         submitEditBioSuccess: false,
         submitEditBioError: action.payload,
+      };
+
+    // Submit edit password
+
+    case userTypes.SUBMIT_EDIT_PASSWORD_REQUESTED:
+      return {
+        ...state,
+        isLoadingSubmitEditPassword: true,
+      };
+
+    case userTypes.SUBMIT_EDIT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitEditPassword: false,
+        submitEditPasswordSuccess: action.payload,
+        submitEditPasswordError: "",
+      };
+
+    case userTypes.SUBMIT_EDIT_PASSWORD_ERROR:
+      return {
+        ...state,
+        isLoadingSubmitEditPassword: false,
+        submitEditPasswordSuccess: false,
+        submitEditPasswordError: action.payload,
       };
 
     default:

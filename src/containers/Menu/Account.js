@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
   CheckCircleFillIcon,
+  ChevronRightIcon,
   StarFillIcon,
   XCircleFillIcon,
 } from "@primer/octicons-react";
@@ -182,6 +183,21 @@ function Account() {
           </Col>
         </Row>
 
+        <Row className="mb-3 mx-1 mx-sm-0">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
+            <Container className="p-3">
+              <LinkContainer to="/edit/password" className="cursor-pointer">
+                <Row>
+                  <Col>{t("translation:edit.password.title")}</Col>
+                  <Col xs={1} className="ps-0">
+                    <ChevronRightIcon size="24" />
+                  </Col>
+                </Row>
+              </LinkContainer>
+            </Container>
+          </Col>
+        </Row>
+
         <Row>
           <Col className="text-center px-0">
             <Button
@@ -228,15 +244,12 @@ function Account() {
         <Modal.Footer>
           <Button
             variant="outline-secondary"
-            size="lg"
             onClick={() => setShowModalRequestData(false)}
           >
             {t("translation:global.close")}
           </Button>
           <LinkContainer to="/contact">
-            <Button variant="primary" size="lg">
-              {t("translation:global.contact")}
-            </Button>
+            <Button variant="primary">{t("translation:global.contact")}</Button>
           </LinkContainer>
         </Modal.Footer>
       </Modal>
@@ -261,15 +274,12 @@ function Account() {
         <Modal.Footer>
           <Button
             variant="outline-secondary"
-            size="lg"
             onClick={() => setShowModalRemoveAccount(false)}
           >
             {t("translation:global.close")}
           </Button>
           <LinkContainer to="/contact">
-            <Button variant="danger" size="lg">
-              {t("translation:global.contact")}
-            </Button>
+            <Button variant="danger">{t("translation:global.contact")}</Button>
           </LinkContainer>
         </Modal.Footer>
       </Modal>
