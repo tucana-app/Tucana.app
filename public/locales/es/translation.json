@@ -24,6 +24,11 @@
 		"noPassengers": "Todavía no tiene pasajeros para este viaje",
 		"summary": "Total: <2>{{totalPassengers}}</2> pasajero(s) con <2>{{bookings}}</2> reservación(es)"
 	},
+	"account": {
+		"confirmLogOut": "¿Seguro que quieres cerrar la sesión?",
+		"confirmRemoveAccount1": "Todo se eliminará y se perderá para siempre. No hay manera de recuperar ninguno de sus datos.",
+		"confirmRemoveAccount2": "¿Estás seguro de que quiere eliminar su cuenta?"
+	},
 	"applicationDriver": {
 		"title": "Solicitud de formulario de conductor"
 	},
@@ -217,6 +222,7 @@
 		"lastName": "Apellido",
 		"learnMore": "Aprenda más",
 		"logIn": "Ingresar",
+		"logOut": "Cierre de sesión",
 		"maker": "Marca",
 		"manage": "Gestione",
 		"mandatory": "Este campo es obligatorio",
@@ -391,7 +397,6 @@
 		"donate": "Apoyar la app",
 		"feedback": "Danos tu opinión",
 		"legal": "Legal",
-		"logOut": "Cierre de sesión",
 		"memberSince": "Miembro desde",
 		"payments": "Pagos",
 		"ratings": "Calificaciones",
@@ -429,8 +434,8 @@
 	"passengerProfile": {
 		"contactRemoveAccount": "Póngase en contacto con nosotros para eliminar su cuenta",
 		"contactRequestData": "Póngase en contacto con nosotros para descargar los datos recogidos",
-		"removeAccount": "Eliminar mi cuenta",
-		"requestData": "Solicitar mis datos"
+		"removeAccount": "Eliminar tu cuenta",
+		"requestData": "Solicitar tus datos"
 	},
 	"publish": {
 		"checkItOut": "Compruébalo",

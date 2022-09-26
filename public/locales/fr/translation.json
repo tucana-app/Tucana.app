@@ -24,6 +24,11 @@
 		"noPassengers": "Tu n'as pas encore de passagers pour ce trajet",
 		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
+	"account": {
+		"confirmLogOut": "",
+		"confirmRemoveAccount1": "",
+		"confirmRemoveAccount2": ""
+	},
 	"applicationDriver": {
 		"title": ""
 	},
@@ -217,6 +222,7 @@
 		"lastName": "Nom de famille",
 		"learnMore": "En savoir plus",
 		"logIn": "Connexion",
+		"logOut": "Déconnexion",
 		"maker": "Marque",
 		"manage": "Gérer",
 		"mandatory": "Ce champ est obligatoire",
@@ -391,7 +397,6 @@
 		"donate": "Soutenez l'application",
 		"feedback": "Donne-nous ton avis",
 		"legal": "juridique",
-		"logOut": "Déconnexion",
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"ratings": "Avis",
@@ -429,8 +434,8 @@
 	"passengerProfile": {
 		"contactRemoveAccount": "Contactez-nous pour supprimer votre compte",
 		"contactRequestData": "Contacte-nous pour télécharger tes données collectées",
-		"removeAccount": "Supprimer mon compte",
-		"requestData": "Demander mes données"
+		"removeAccount": "Supprime tu compte",
+		"requestData": "Demande tes données"
 	},
 	"publish": {
 		"checkItOut": "Consulter",

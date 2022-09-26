@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Badge, Button, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
 import {
   ChevronRightIcon,
   LinkExternalIcon,
@@ -11,7 +11,7 @@ import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
 
-import { getNotifications, logout } from "../../redux";
+import { getNotifications } from "../../redux";
 
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
@@ -19,11 +19,10 @@ import SocialIcons from "../../components/SocialIcons";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();
-
   const dispatch = useDispatch();
+
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
-  const history = useHistory();
   const {
     isLoadingDriverNewRidesRequests,
     driverNewRidesRequestsData,
@@ -66,11 +65,6 @@ const Menu = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const logOut = () => {
-    history.push("/");
-    dispatch(logout());
-  };
-
   return (
     <Container fluid data-aos="fade-in" className="pb-4">
       {isLoggedIn ? (
@@ -85,7 +79,7 @@ const Menu = () => {
               />
             </Col>
           </Row>
-          <Row className="my-4">
+          <Row className="mt-4 mb-2">
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
               <ListGroup variant="flush">
                 <Link to="/account" className="text-decoration-none">
@@ -93,7 +87,7 @@ const Menu = () => {
                     <div>
                       <h3 className="mb-0">{currentUser.firstName}</h3>
                       <p className="small text-secondary mb-0">
-                        {t("translation:menu.memberSince")}:{" "}
+                        {t("translation:menu.memberSince")}{" "}
                         {dateFormat(currentUser.createdAt, "mm/yyyy")}
                       </p>
                     </div>
@@ -395,23 +389,6 @@ const Menu = () => {
           </div>
         </Col>
       </Row>
-
-      {isLoggedIn ? (
-        <Row>
-          <Col className="text-center">
-            <Button
-              onClick={() => {
-                logOut();
-                window.location.reload(true);
-              }}
-              variant="link"
-              className="link-success text-decoration-none mt-4"
-            >
-              <p className="mb-0 py-1">{t("translation:menu.logOut")}</p>
-            </Button>
-          </Col>
-        </Row>
-      ) : null}
     </Container>
   );
 };

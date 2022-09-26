@@ -17,7 +17,14 @@ function RideDetails({ ride }) {
 
   return (
     <Row className="mb-3 mx-1 mx-sm-0">
-      <Col xs={12} sm={10} md={8} lg={6} xl={4} className="container-box">
+      <Col
+        xs={12}
+        sm={10}
+        md={8}
+        lg={6}
+        xl={4}
+        className="container-box mx-auto"
+      >
         <Container className="p-2">
           <Row className="mb-3">
             <Col className="text-center">

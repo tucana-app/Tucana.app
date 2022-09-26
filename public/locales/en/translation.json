@@ -24,6 +24,11 @@
 		"noPassengers": "You do not have passengers for this ride yet",
 		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
 	},
+	"account": {
+		"confirmLogOut": "Are you sure you want to log out?",
+		"confirmRemoveAccount1": "Everything will be removed and lost forever. We have no ways to recover any of your data.",
+		"confirmRemoveAccount2": "Are you sure you want to remove your account?"
+	},
 	"applicationDriver": {
 		"title": "Driver form application"
 	},
@@ -217,6 +222,7 @@
 		"lastName": "Last name",
 		"learnMore": "Learn more",
 		"logIn": "Log In",
+		"logOut": "Log Out",
 		"maker": "Maker",
 		"manage": "Manage",
 		"mandatory": "This field is mandatory",
@@ -391,7 +397,6 @@
 		"donate": "Support the app",
 		"feedback": "Give us your feedback",
 		"legal": "Legal",
-		"logOut": "Log Out",
 		"memberSince": "Member since",
 		"payments": "Payments",
 		"ratings": "Ratings",
@@ -429,8 +434,8 @@
 	"passengerProfile": {
 		"contactRemoveAccount": "Contact us to remove your account",
 		"contactRequestData": "Contact us to download your data collected",
-		"removeAccount": "Remove my account",
-		"requestData": "Request my data"
+		"removeAccount": "Remove your account",
+		"requestData": "Request your data"
 	},
 	"publish": {
 		"checkItOut": "Check it out",
