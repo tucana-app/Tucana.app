@@ -87,7 +87,7 @@ const Find = () => {
               >
                 <Container className="p-2">
                   <Row
-                    className="align-items-center"
+                    className="align-items-center cursor-pointer"
                     onClick={() => dispatch(showSearchForm())}
                   >
                     <Col xs={1}>

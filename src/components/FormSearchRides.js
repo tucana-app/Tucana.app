@@ -52,7 +52,9 @@ const FormSearchRides = () => {
   const [seats, setSeats] = useState(formSearchRide.seats);
 
   if (formSearchRide.date === "") {
-    dispatch(setSearchDate(now));
+    setTimeout(() => {
+      dispatch(setSearchDate(now));
+    }, 1000);
   }
 
   // Handlers
