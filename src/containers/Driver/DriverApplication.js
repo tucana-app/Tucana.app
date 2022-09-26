@@ -258,13 +258,21 @@ const DriverApplication = () => {
                 <Container className="py-3">
                   <Row>
                     <Col>
-                      <p>
+                      <p className="mb-0">
                         <span className="text-secondary">
                           {t("translation:global.status")}
                         </span>
                         :{" "}
-                        {applicationBecomeDriverData
-                          .admin_VerifDriverApplications[0].isAccepted ? (
+                        {!applicationBecomeDriverData
+                          .admin_VerifDriverApplications[0] ? (
+                          <span className="text-warning">
+                            <CheckCircleFillIcon size={24} className="me-2" />
+                            {t("translation:becomeDriver.underReview")}
+                          </span>
+                        ) : applicationBecomeDriverData
+                            .admin_VerifDriverApplications[0] &&
+                          applicationBecomeDriverData
+                            .admin_VerifDriverApplications[0].isAccepted ? (
                           <span className="text-success">
                             <CheckCircleFillIcon size={24} className="me-2" />
                             {t("translation:global.accepted")}
@@ -278,20 +286,23 @@ const DriverApplication = () => {
                       </p>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
-                      <p className="mb-0">
-                        <span className="text-secondary">
-                          {t("translation:global.comment")}
-                        </span>
-                        :{" "}
-                        {
-                          applicationBecomeDriverData
-                            .admin_VerifDriverApplications[0].comment
-                        }
-                      </p>
-                    </Col>
-                  </Row>
+                  {applicationBecomeDriverData
+                    .admin_VerifDriverApplications[0] ? (
+                    <Row className="mt-3">
+                      <Col>
+                        <p className="mb-0">
+                          <span className="text-secondary">
+                            {t("translation:global.comment")}
+                          </span>
+                          :{" "}
+                          {
+                            applicationBecomeDriverData
+                              .admin_VerifDriverApplications[0].comment
+                          }
+                        </p>
+                      </Col>
+                    </Row>
+                  ) : null}
                 </Container>
               </Col>
             </Row>
