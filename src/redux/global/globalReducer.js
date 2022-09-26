@@ -16,7 +16,7 @@ import none from "../../assets/images/avatars/default.svg";
 const initialState = {
   seatsMax: 3,
 
-  labelStringField: "You must enter a string",
+  labelStringField: "Only letters and numbers allowed",
   labelRequiredField: "This field is required",
 
   feedback: {},

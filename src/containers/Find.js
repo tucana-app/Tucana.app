@@ -131,7 +131,7 @@ const Find = () => {
                         onClick={() => dispatch(displayNavBar(false))}
                         className="cursor-pointer"
                       >
-                        <Container className="">
+                        <Container>
                           <Row>
                             <Col className="text-center">
                               <p className="small mb-2">
@@ -293,7 +293,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-2 border-dark shadow rounded-5 mt-2 mx-auto"
+                className="border border-2 border-success shadow rounded-5 mt-2 mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

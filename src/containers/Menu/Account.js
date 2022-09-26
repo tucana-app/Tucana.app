@@ -116,7 +116,7 @@ function Account() {
               </Row>
 
               <Row className="align-items-center mb-3">
-                <Col xs={11} className="pe-0">
+                <Col xs={11}>
                   <p className="text-secondary mb-0">
                     {t("translation:global.bio")}
                   </p>

@@ -167,3 +167,7 @@ export const formatTimeSecond = (seconds) => {
 
   return `${h}h${m}`;
 };
+
+export const isOnlyLetters = (str) => {
+  return str.match("^[A-Za-z0-9]+$");
+};

@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { Form, Row, Col, Button, Container, Modal } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import Select from "react-select";
 import { Redirect } from "react-router-dom";
-import { ArrowLeftIcon, ArrowRightIcon, XIcon } from "@primer/octicons-react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  QuestionIcon,
+  XIcon,
+} from "@primer/octicons-react";
+import { LinkContainer } from "react-router-bootstrap";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -27,7 +33,8 @@ import {
   resetApplicationForm,
   submitFormBecomeDriver,
 } from "../../redux";
-import { LinkContainer } from "react-router-bootstrap";
+
+import { isOnlyLetters } from "../../helpers";
 
 const DriverApplicationForm = () => {
   const { t } = useTranslation();
@@ -108,6 +115,9 @@ const DriverApplicationForm = () => {
     );
   };
 
+  const [showModalMarchamo, setShowModalMarchamo] = useState(false);
+  const [showModalRiteve, setShowModalRiteve] = useState(false);
+
   // Steps
   // Step 1
   const handleChangeIdType = (e) => {
@@ -127,8 +137,19 @@ const DriverApplicationForm = () => {
 
   const handleClickStepOne = () => {
     if (idType !== "" && idNumber !== "" && idCountry !== "") {
-      setStepOne(false);
-      setStepTwo(true);
+      if (isOnlyLetters(idNumber)) {
+        setStepOne(false);
+        setStepTwo(true);
+      } else {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.labelStringField"),
+            variant: "warning",
+          })
+        );
+      }
     } else {
       dispatch(
         setToast({
@@ -160,8 +181,19 @@ const DriverApplicationForm = () => {
 
   const handleClickStepTwo = () => {
     if (licenseNumber !== "" && licenseCountry !== "") {
-      setStepTwo(false);
-      setStepThree(true);
+      if (isOnlyLetters(licenseNumber)) {
+        setStepTwo(false);
+        setStepThree(true);
+      } else {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.labelStringField"),
+            variant: "warning",
+          })
+        );
+      }
     } else {
       dispatch(
         setToast({
@@ -209,8 +241,10 @@ const DriverApplicationForm = () => {
   };
 
   const handleChangeCarYear = (e) => {
-    setCarYear(e.target.value);
-    dispatch(setApplicationCarYear(e.target.value));
+    if (e.target.value.length <= 4) {
+      setCarYear(e.target.value);
+      dispatch(setApplicationCarYear(e.target.value));
+    }
   };
 
   const handleChangeCarColor = (e) => {
@@ -241,8 +275,37 @@ const DriverApplicationForm = () => {
       carYear <= new Date().getFullYear() &&
       carColor !== ""
     ) {
-      setStepThree(false);
-      setStepFour(true);
+      if (
+        isOnlyLetters(carMaker.value) &&
+        isOnlyLetters(carMakerFromUser.value) &&
+        isOnlyLetters(carModel) &&
+        isOnlyLetters(numberPlate) &&
+        isOnlyLetters(carYear) &&
+        isOnlyLetters(carColor)
+      ) {
+        if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
+          setStepThree(false);
+          setStepFour(true);
+        } else {
+          dispatch(
+            setToast({
+              show: true,
+              headerText: t("translation:global.errors.error"),
+              bodyText: t("translation:global.errors.validNumberPlate"),
+              variant: "warning",
+            })
+          );
+        }
+      } else {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.labelStringField"),
+            variant: "warning",
+          })
+        );
+      }
     } else {
       dispatch(
         setToast({
@@ -257,8 +320,10 @@ const DriverApplicationForm = () => {
 
   // Step 4
   const handleChangeCarMarchamo = (e) => {
-    setCarMarchamo(e.target.value);
-    dispatch(setApplicationCarMarchamo(e.target.value));
+    if (e.target.value.length <= 4) {
+      setCarMarchamo(e.target.value);
+      dispatch(setApplicationCarMarchamo(e.target.value));
+    }
   };
 
   const handleChangeCarRiteveMonth = (e) => {
@@ -267,8 +332,10 @@ const DriverApplicationForm = () => {
   };
 
   const handleChangeCarRiteveYear = (e) => {
-    setCarRiteveYear(e.target.value);
-    dispatch(setApplicationCarRiteveYear(e.target.value));
+    if (e.target.value.length <= 4) {
+      setCarRiteveYear(e.target.value);
+      dispatch(setApplicationCarRiteveYear(e.target.value));
+    }
   };
 
   const handleBackToStepThree = () => {
@@ -295,8 +362,10 @@ const DriverApplicationForm = () => {
 
   const handleSubmit = () => {
     if (carMarchamo !== "" && carRiteveMonth !== "" && carRiteveYear !== "") {
-      // If the number plate has the correct format
-      if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
+      if (
+        carMarchamo <= new Date().getFullYear() + 1 &&
+        carRiteveYear <= new Date().getFullYear() + 10
+      ) {
         dispatch(submitFormBecomeDriver(currentUser, formApplyDriver));
 
         setSubmitted(true);
@@ -306,7 +375,7 @@ const DriverApplicationForm = () => {
           setToast({
             show: true,
             headerText: t("translation:global.errors.error"),
-            bodyText: t("translation:global.errors.validNumberPlate"),
+            bodyText: t("translation:global.errors.missingInfo"),
             variant: "warning",
           })
         );
@@ -365,7 +434,6 @@ const DriverApplicationForm = () => {
           </h1>
         </Col>
       </Row>
-
       {stepOne ? (
         <>
           <Row className="mx-1 mx-sm-0">
@@ -819,9 +887,20 @@ const DriverApplicationForm = () => {
 
                 <Row className="mb-4">
                   <Col xs={12} className="mb-3">
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.marchamo")}
-                      <span className="text-danger">*</span>
+                    <p className="mb-2">
+                      <span className="small ms-2 mb-0">
+                        {t("translation:global.marchamo")}
+                        <span className="text-danger">*</span>
+                      </span>
+                      <span
+                        onClick={() => setShowModalMarchamo(true)}
+                        className="cursor-pointer"
+                      >
+                        <QuestionIcon
+                          size={20}
+                          className="text-secondary ms-3"
+                        />
+                      </span>
                     </p>
                     <Form.Group>
                       <Form.Control
@@ -831,15 +910,26 @@ const DriverApplicationForm = () => {
                         value={carMarchamo}
                         onChange={handleChangeCarMarchamo}
                         min="2000"
-                        max={new Date().getFullYear()}
+                        max={new Date().getFullYear() + 1}
                         required
                       />
                     </Form.Group>
                   </Col>
                   <Col xs={12}>
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.riteve")}
-                      <span className="text-danger">*</span>
+                    <p className="mb-2">
+                      <span className="small ms-2 mb-0">
+                        {t("translation:global.riteve")}
+                        <span className="text-danger">*</span>
+                      </span>
+                      <span
+                        onClick={() => setShowModalRiteve(true)}
+                        className="cursor-pointer"
+                      >
+                        <QuestionIcon
+                          size={20}
+                          className="text-secondary ms-3"
+                        />
+                      </span>
                     </p>
                   </Col>
                   <Col xs={6} className="mb-3">
@@ -862,6 +952,7 @@ const DriverApplicationForm = () => {
                         placeholder={t("translation:global.year")}
                         value={carRiteveYear}
                         onChange={handleChangeCarRiteveYear}
+                        max={new Date().getFullYear() + 10}
                         min="2000"
                         required
                       />
@@ -937,6 +1028,66 @@ const DriverApplicationForm = () => {
           ) : null}
         </>
       ) : null}
+
+      <Modal
+        show={showModalMarchamo}
+        onHide={() => setShowModalMarchamo(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-dark">
+            {t("translation:global.marchamo")}
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>{t("translation:becomeDriver.marchamoExplain1")}</p>
+          <p>{t("translation:becomeDriver.marchamoExplain2")}</p>
+          <p className="mb-0">{t("translation:becomeDriver.contactHelp")}</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <LinkContainer to="/contact">
+            <Button variant="outline-success">
+              {t("translation:global.contact")}
+            </Button>
+          </LinkContainer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowModalMarchamo(false)}
+          >
+            {t("translation:global.close")}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        show={showModalRiteve}
+        onHide={() => setShowModalRiteve(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-dark">
+            {t("translation:passengerProfile.requestData")}
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>{t("translation:becomeDriver.riteveExplain1")}</p>
+          <p>{t("translation:becomeDriver.riteveExplain2")}</p>
+          <p className="mb-0">{t("translation:becomeDriver.contactHelp")}</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <LinkContainer to="/contact">
+            <Button variant="outline-success">
+              {t("translation:global.contact")}
+            </Button>
+          </LinkContainer>
+          <Button variant="secondary" onClick={() => setShowModalRiteve(false)}>
+            {t("translation:global.close")}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

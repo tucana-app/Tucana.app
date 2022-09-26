@@ -1086,16 +1086,7 @@ export const getRidesToConfirm = (user) => {
           error.message ||
           error.toString();
 
-        dispatch(
-          setToast({
-            show: true,
-            headerText: "Error",
-            bodyText: message,
-            variant: "danger",
-          })
-        );
-
-        dispatch(getRidesToConfirmFail(error));
+        dispatch(getRidesToConfirmFail(message));
       });
   };
 };

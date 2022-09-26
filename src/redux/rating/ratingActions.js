@@ -266,6 +266,8 @@ export const getRatingsToDoPassenger = (userId) => {
         dispatch(getRatingsToDoPassengerSuccess(response.data));
       })
       .catch((error) => {
+        // console.log(error);
+
         const message =
           (error.response &&
             error.response.data &&
@@ -273,15 +275,6 @@ export const getRatingsToDoPassenger = (userId) => {
           error.message ||
           error.toString();
 
-        // console.log(error);
-        dispatch(
-          setToast({
-            show: true,
-            headerText: "Error",
-            bodyText: message,
-            variant: "danger",
-          })
-        );
         dispatch(getRatingsToDoPassengerFail(message));
       });
   };
@@ -326,6 +319,8 @@ export const getRatingsToDoDriver = (userId, driverId) => {
         dispatch(getRatingsToDoDriverSuccess(response.data));
       })
       .catch((error) => {
+        // console.log(error);
+
         const message =
           (error.response &&
             error.response.data &&
@@ -333,15 +328,6 @@ export const getRatingsToDoDriver = (userId, driverId) => {
           error.message ||
           error.toString();
 
-        // console.log(error);
-        dispatch(
-          setToast({
-            show: true,
-            headerText: "Error",
-            bodyText: message,
-            variant: "danger",
-          })
-        );
         dispatch(getRatingsToDoDriverFail(message));
       });
   };

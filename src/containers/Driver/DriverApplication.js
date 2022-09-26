@@ -69,6 +69,67 @@ const DriverApplication = () => {
                 <Container className="py-3">
                   <Row>
                     <Col>
+                      <p className="mb-0">
+                        <span className="text-secondary">
+                          {t("translation:global.status")}
+                        </span>
+                        :{" "}
+                        {!applicationBecomeDriverData
+                          .admin_VerifDriverApplications[0] ? (
+                          <span className="text-warning">
+                            <CheckCircleFillIcon size={24} className="me-2" />
+                            {t("translation:becomeDriver.underReview")}
+                          </span>
+                        ) : applicationBecomeDriverData
+                            .admin_VerifDriverApplications[0] &&
+                          applicationBecomeDriverData
+                            .admin_VerifDriverApplications[0].isAccepted ? (
+                          <span className="text-success">
+                            <CheckCircleFillIcon size={24} className="me-2" />
+                            {t("translation:global.accepted")}
+                          </span>
+                        ) : (
+                          <span className="text-danger">
+                            <XCircleFillIcon size={24} className="me-2" />
+                            {t("translation:global.refused")}
+                          </span>
+                        )}
+                      </p>
+                    </Col>
+                  </Row>
+                  {applicationBecomeDriverData
+                    .admin_VerifDriverApplications[0] ? (
+                    <Row className="mt-3">
+                      <Col>
+                        <p className="mb-0">
+                          <span className="text-secondary">
+                            {t("translation:global.comment")}
+                          </span>
+                          :{" "}
+                          {
+                            applicationBecomeDriverData
+                              .admin_VerifDriverApplications[0].comment
+                          }
+                        </p>
+                      </Col>
+                    </Row>
+                  ) : null}
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="container-box"
+              >
+                <Container className="py-3">
+                  <Row>
+                    <Col>
                       <p>
                         <span className="text-secondary">
                           {t("translation:global.idType")}
@@ -208,7 +269,7 @@ const DriverApplication = () => {
               </Col>
             </Row>
 
-            <Row className="mb-3 mx-1 mx-sm-0">
+            <Row className="mx-1 mx-sm-0">
               <Col
                 xs={12}
                 sm={10}
@@ -237,72 +298,11 @@ const DriverApplication = () => {
                         :{" "}
                         {dateFormat(
                           applicationBecomeDriverData.createdAt,
-                          "HH:MM TT"
+                          "hh:MM TT"
                         )}
                       </p>
                     </Col>
                   </Row>
-                </Container>
-              </Col>
-            </Row>
-
-            <Row className="mb-3 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="container-box"
-              >
-                <Container className="py-3">
-                  <Row>
-                    <Col>
-                      <p className="mb-0">
-                        <span className="text-secondary">
-                          {t("translation:global.status")}
-                        </span>
-                        :{" "}
-                        {!applicationBecomeDriverData
-                          .admin_VerifDriverApplications[0] ? (
-                          <span className="text-warning">
-                            <CheckCircleFillIcon size={24} className="me-2" />
-                            {t("translation:becomeDriver.underReview")}
-                          </span>
-                        ) : applicationBecomeDriverData
-                            .admin_VerifDriverApplications[0] &&
-                          applicationBecomeDriverData
-                            .admin_VerifDriverApplications[0].isAccepted ? (
-                          <span className="text-success">
-                            <CheckCircleFillIcon size={24} className="me-2" />
-                            {t("translation:global.accepted")}
-                          </span>
-                        ) : (
-                          <span className="text-danger">
-                            <XCircleFillIcon size={24} className="me-2" />
-                            {t("translation:global.refused")}
-                          </span>
-                        )}
-                      </p>
-                    </Col>
-                  </Row>
-                  {applicationBecomeDriverData
-                    .admin_VerifDriverApplications[0] ? (
-                    <Row className="mt-3">
-                      <Col>
-                        <p className="mb-0">
-                          <span className="text-secondary">
-                            {t("translation:global.comment")}
-                          </span>
-                          :{" "}
-                          {
-                            applicationBecomeDriverData
-                              .admin_VerifDriverApplications[0].comment
-                          }
-                        </p>
-                      </Col>
-                    </Row>
-                  ) : null}
                 </Container>
               </Col>
             </Row>
