@@ -291,14 +291,14 @@ function Account() {
 
         <Modal.Footer>
           <Button
-            variant="success"
+            variant="secondary"
             size="lg"
             className="me-3"
             onClick={() => setShowModalLogOut(false)}
           >
             {t("translation:global.no")}
           </Button>
-          <Button variant="secondary" size="lg" onClick={logOut}>
+          <Button variant="danger" size="lg" onClick={logOut}>
             {t("translation:global.yes")}
           </Button>
         </Modal.Footer>

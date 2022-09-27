@@ -8,8 +8,12 @@
 	"FAQ": {
 		"answer1": "As for now, all payments are made with cash money. You can arrange directly with the driver or your passengers for the currency, in CRC (Costa Rican Colones) or in USD (US dollars)",
 		"answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
+		"answer3": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
+		"answer4": "We are required to keep your ID number and email address for the next 3 months after closing your account. It ensures the safety of the community using Tucána. Then these records will be automatically deleted past that time.",
 		"question1": "How the payment works?",
 		"question2": "How does refund works?",
+		"question3": "What data are you collecting?",
+		"question4": "What happens when I close my account?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -66,8 +70,8 @@
 	},
 	"closeAccount": {
 		"closeAccount": "Close my account",
-		"confirmCloseAccount2": "If you choose to close your account, you will not be able to access it again and will need to create another one with a new username and a new email address.",
-		"confirmCloseAccount3": "Are you sure you want to close your account?",
+		"confirmCloseAccount1": "If you choose to close your account, you will not be able to access it again and will need to create another one with a new username and a new email address.",
+		"confirmCloseAccount2": "Are you sure you want to close your account?",
 		"title": "Close your account",
 		"typePassword": "Type your password to confirm"
 	},
@@ -104,7 +108,7 @@
 	},
 	"dataProtection": {
 		"about": "About my data",
-		"content": "We only collect the minimum information required to ensure that our service provides works properly. We do not share/sell any private information related to your account or your activity.",
+		"content": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"title": "Data Protection"
 	},
 	"donate": {

@@ -8,8 +8,12 @@
 	"FAQ": {
 		"answer1": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le chauffeur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
 		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le chauffeur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer3": "",
+		"answer4": "",
 		"question1": "Comment fonctionne le paiement?",
 		"question2": "Comment fonctionne le remboursement ?",
+		"question3": "",
+		"question4": "",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -66,8 +70,8 @@
 	},
 	"closeAccount": {
 		"closeAccount": "",
+		"confirmCloseAccount1": "",
 		"confirmCloseAccount2": "",
-		"confirmCloseAccount3": "",
 		"title": "",
 		"typePassword": ""
 	},

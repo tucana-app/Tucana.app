@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { Container, Form, Row, Col, Button, ListGroup } from "react-bootstrap";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Formik } from "formik";
@@ -10,7 +10,8 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
 import { submitCloseAccount } from "../../redux";
-import { InfoIcon } from "@primer/octicons-react";
+import { ChevronRightIcon, InfoIcon } from "@primer/octicons-react";
+import { LinkContainer } from "react-router-bootstrap";
 
 require("yup-password")(Yup); // extend yup
 
@@ -60,13 +61,12 @@ const CloseAccount = () => {
 
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <p>{t("translation:dataProtection.content")}</p>
+            <p>{t("translation:closeAccount.confirmCloseAccount1")}</p>
             <p>{t("translation:closeAccount.confirmCloseAccount2")}</p>
-            <p>{t("translation:closeAccount.confirmCloseAccount3")}</p>
           </Col>
         </Row>
 
-        <Row className="mb-5">
+        <Row className="mb-3">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <Formik
               validationSchema={schema}
@@ -131,6 +131,19 @@ const CloseAccount = () => {
                 </Form>
               )}
             </Formik>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+            <LinkContainer to="/faq" className="cursor-pointer">
+              <ListGroup.Item className="border-0">
+                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                  <p className="mb-0">{t("translation:FAQ.question4")}</p>
+                  <ChevronRightIcon size={24} verticalAlign="middle" />
+                </div>
+              </ListGroup.Item>
+            </LinkContainer>
           </Col>
         </Row>
 

@@ -42,6 +42,22 @@ const FAQ = () => {
                   <small>{t("translation:FAQ.answer2")}</small>
                 </Accordion.Body>
               </Accordion.Item>
+              <Accordion.Item eventKey="3">
+                <Accordion.Header>
+                  {t("translation:FAQ.question3")}
+                </Accordion.Header>
+                <Accordion.Body className="py-2">
+                  <small>{t("translation:FAQ.answer3")}</small>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="4">
+                <Accordion.Header>
+                  {t("translation:FAQ.question4")}
+                </Accordion.Header>
+                <Accordion.Body className="py-2">
+                  <small>{t("translation:FAQ.answer4")}</small>
+                </Accordion.Body>
+              </Accordion.Item>
             </Accordion>
           </Col>
         </Row>
