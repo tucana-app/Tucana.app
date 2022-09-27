@@ -384,7 +384,7 @@ const Menu = () => {
         <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
           <hr className="my-2" />
 
-          <div className="text-center pt-3">
+          <div className="text-center my-4">
             <SocialIcons />
           </div>
         </Col>

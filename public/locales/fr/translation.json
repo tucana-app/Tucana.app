@@ -66,8 +66,8 @@
 	},
 	"closeAccount": {
 		"closeAccount": "",
-		"confirmCloseAccount1": "",
 		"confirmCloseAccount2": "",
+		"confirmCloseAccount3": "",
 		"title": "",
 		"typePassword": ""
 	},
@@ -103,6 +103,8 @@
 		"title": "Créer un nouveau mot de passe"
 	},
 	"dataProtection": {
+		"about": "",
+		"content": "",
 		"title": "Protection des données"
 	},
 	"donate": {

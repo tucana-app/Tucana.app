@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
 // Error handling
 import { ErrorBoundary } from "react-error-boundary";
@@ -91,7 +92,12 @@ import NavigationBar from "./components/NavigationBar";
 import ScrollToTop from "./components/ScrollToTop";
 import Toasts from "./components/Toasts";
 
-import { resetConversationView, getNotifications } from "./redux";
+import {
+  resetConversationView,
+  getNotifications,
+  displayNavBar,
+  setGlobalState,
+} from "./redux";
 import { history } from "./helpers/history";
 
 // Importing css for the whole app
@@ -100,9 +106,12 @@ import "./scss/app.scss";
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isNavBar } = useSelector((state) => state.global);
+  const { isNavBar, initHeight } = useSelector((state) => state.global);
+  const { height } = useWindowDimensions();
 
   useEffect(() => {
+    dispatch(setGlobalState(height));
+
     history.listen((location) => {
       if (isLoggedIn) {
         dispatch(resetConversationView(currentUser.id));
@@ -124,6 +133,14 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (height < initHeight - 200) {
+      dispatch(displayNavBar(false));
+    } else {
+      dispatch(displayNavBar(true));
+    }
+  }, [height, initHeight, dispatch]);
+
   return (
     <Suspense fallback={<Fallback />}>
       <Router history={history}>
@@ -134,6 +151,7 @@ function App() {
           }}
         >
           <ScrollToTop />
+
           {isNavBar ? <NavigationBar /> : null}
 
           <Switch>

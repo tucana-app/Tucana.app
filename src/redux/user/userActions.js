@@ -282,14 +282,6 @@ export const logout = () => (dispatch) => {
   });
 
   dispatch(resetNotifications());
-  dispatch(
-    setToast({
-      show: true,
-      headerText: "Logged out",
-      bodyText: "We hope to see you soon",
-      variant: "warning",
-    })
-  );
 };
 
 // Set user's avatar
@@ -1252,6 +1244,7 @@ export const submitCloseAccount = (user, values) => {
     axios
       .post(URL_API + "/user/submit-close-account", { user, values })
       .then((response) => {
+        dispatch(submitCloseAccountSuccess(response.data));
         dispatch(logout());
       })
       .catch((error) => {

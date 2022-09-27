@@ -1,6 +1,15 @@
 import globalTypes from "./globalTypes";
 import axios from "axios";
 
+// Set global state
+
+export const setGlobalState = (data) => {
+  return {
+    type: globalTypes.SET_GLOBAL_STATE,
+    payload: data,
+  };
+};
+
 // Get all countries
 
 export const getCountriesRequested = () => {

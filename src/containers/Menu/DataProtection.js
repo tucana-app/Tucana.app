@@ -22,7 +22,7 @@ const DataProtection = () => {
             className="text-center mx-auto"
           >
             <h1 className="title">{t("translation:dataProtection.title")}</h1>
-            <p>{t("translation:global.comingSoon")}</p>
+            <p>{t("translation:dataProtection.content")}</p>
           </Col>
         </Row>
       </Container>

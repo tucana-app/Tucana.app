@@ -66,8 +66,8 @@
 	},
 	"closeAccount": {
 		"closeAccount": "Close my account",
-		"confirmCloseAccount1": "You will not be able to access your account again. You will need to create another one with a new username and a new email address.",
-		"confirmCloseAccount2": "Are you sure you want to close your account?",
+		"confirmCloseAccount2": "If you choose to close your account, you will not be able to access it again and will need to create another one with a new username and a new email address.",
+		"confirmCloseAccount3": "Are you sure you want to close your account?",
 		"title": "Close your account",
 		"typePassword": "Type your password to confirm"
 	},
@@ -103,6 +103,8 @@
 		"title": "Create a new password"
 	},
 	"dataProtection": {
+		"about": "About my data",
+		"content": "We only collect the minimum information required to ensure that our service provides works properly. We do not share/sell any private information related to your account or your activity.",
 		"title": "Data Protection"
 	},
 	"donate": {

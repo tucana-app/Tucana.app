@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -16,8 +16,9 @@ require("yup-password")(Yup); // extend yup
 
 const CloseAccount = () => {
   const { t } = useTranslation();
-
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const {
     user: currentUser,
     isLoggedIn,
@@ -39,6 +40,11 @@ const CloseAccount = () => {
     return <Redirect to="/" />;
   }
 
+  if (submitCloseAccountSuccess.flag === "SUCCESS") {
+    history.push("/");
+    window.location.reload(true);
+  }
+
   return (
     <div data-aos="fade-in">
       <GoBack />
@@ -54,8 +60,9 @@ const CloseAccount = () => {
 
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <p>{t("translation:closeAccount.confirmCloseAccount1")}</p>
+            <p>{t("translation:dataProtection.content")}</p>
             <p>{t("translation:closeAccount.confirmCloseAccount2")}</p>
+            <p>{t("translation:closeAccount.confirmCloseAccount3")}</p>
           </Col>
         </Row>
 
@@ -100,13 +107,14 @@ const CloseAccount = () => {
 
                   <Form.Group className="text-end">
                     <Link to="/account">
-                      <Button variant="dark" className="me-3">
+                      <Button variant="secondary" className="me-3">
                         {t("translation:global.cancel")}
                       </Button>
                     </Link>
 
                     <Button
-                      variant="success"
+                      variant="danger"
+                      className="text-white"
                       type="submit"
                       disabled={
                         submitCloseAccountSuccess.flag === "SUCCESS" ||

@@ -18,6 +18,7 @@ const initialState = {
 
   labelStringField: "Only letters and numbers allowed",
   labelRequiredField: "This field is required",
+  initHeight: 0,
 
   feedback: {},
 
@@ -163,6 +164,7 @@ function globalReducer(state = initialState, action) {
     case globalTypes.SET_GLOBAL_STATE:
       return {
         ...state,
+        initHeight: action.payload,
       };
 
     case globalTypes.SET_ALERT:

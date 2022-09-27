@@ -78,7 +78,7 @@ initialState = {
   submitEditPasswordError: "",
 
   isLoadingSubmitCloseAccount: false,
-  submitCloseAccountSuccess: false,
+  submitCloseAccountSuccess: {},
   submitCloseAccountError: "",
 
   isLoadingSubmitContactForm: false,
@@ -762,7 +762,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSubmitCloseAccount: false,
-        submitCloseAccountSuccess: false,
+        submitCloseAccountSuccess: {},
         submitCloseAccountError: action.payload,
       };
 

@@ -199,7 +199,18 @@ function Account() {
                 </ListGroup.Item>
               </LinkContainer>
 
-              <ListGroup.Item
+              <LinkContainer to="/data-protection" className="cursor-pointer">
+                <ListGroup.Item className="border-0 cursor-pointer">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                    <p className="mb-0">
+                      {t("translation:dataProtection.about")}
+                    </p>
+                    <ChevronRightIcon size={24} verticalAlign="middle" />
+                  </div>
+                </ListGroup.Item>
+              </LinkContainer>
+
+              {/* <ListGroup.Item
                 className="border-0 cursor-pointer"
                 onClick={() => setShowModalRequestData(true)}
               >
@@ -209,7 +220,7 @@ function Account() {
                   </p>
                   <ChevronRightIcon size={24} verticalAlign="middle" />
                 </div>
-              </ListGroup.Item>
+              </ListGroup.Item> */}
 
               <ListGroup.Item
                 className="border-0 cursor-pointer mb-4"
@@ -233,7 +244,7 @@ function Account() {
         </Row>
       </Container>
 
-      <Modal
+      {/* <Modal
         show={showModalRequestData}
         onHide={() => setShowModalRequestData(false)}
         centered
@@ -261,7 +272,7 @@ function Account() {
             <Button variant="primary">{t("translation:global.contact")}</Button>
           </LinkContainer>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       <Modal
         show={showModalLogOut}
@@ -279,10 +290,15 @@ function Account() {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="success" onClick={() => setShowModalLogOut(false)}>
+          <Button
+            variant="success"
+            size="lg"
+            className="me-3"
+            onClick={() => setShowModalLogOut(false)}
+          >
             {t("translation:global.no")}
           </Button>
-          <Button variant="secondary" onClick={logOut}>
+          <Button variant="secondary" size="lg" onClick={logOut}>
             {t("translation:global.yes")}
           </Button>
         </Modal.Footer>
