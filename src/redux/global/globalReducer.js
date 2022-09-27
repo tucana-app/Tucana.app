@@ -53,7 +53,7 @@ const initialState = {
     "Work with us",
     "Request a feature",
     "Request my data",
-    "Remove my account",
+    "Close my account",
     "Other",
   ],
 

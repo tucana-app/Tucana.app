@@ -1236,3 +1236,110 @@ export const submitEditPasswordFail = () => {
     type: userTypes.SUBMIT_EDIT_PASSWORD_ERROR,
   };
 };
+
+// Close user's account
+
+export const submitCloseAccountRequested = () => {
+  return {
+    type: userTypes.SUBMIT_REMOVE_ACCOUNT_REQUESTED,
+  };
+};
+
+export const submitCloseAccount = (user, values) => {
+  return (dispatch) => {
+    dispatch(submitCloseAccountRequested());
+
+    axios
+      .post(URL_API + "/user/submit-close-account", { user, values })
+      .then((response) => {
+        dispatch(logout());
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(submitCloseAccountFail(message));
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+      });
+  };
+};
+
+export const submitCloseAccountSuccess = (data) => {
+  return {
+    type: userTypes.SUBMIT_REMOVE_ACCOUNT_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitCloseAccountFail = () => {
+  return {
+    type: userTypes.SUBMIT_REMOVE_ACCOUNT_ERROR,
+  };
+};
+
+// Check if the user's account has been closed
+
+export const isAccountClosedRequested = () => {
+  return {
+    type: userTypes.IS_ACCOUNT_CLOSED_REQUESTED,
+  };
+};
+
+export const isAccountClosed = (userId) => {
+  return (dispatch) => {
+    dispatch(isAccountClosedRequested());
+
+    axios
+      .get(URL_API + "/user/is-account-closed", { params: { userId } })
+      .then((response) => {
+        dispatch(isAccountClosedSuccess(response.data));
+        if (response.data.isClosed) {
+          dispatch(logout());
+        }
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(isAccountClosedFail(message));
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+      });
+  };
+};
+
+export const isAccountClosedSuccess = (data) => {
+  return {
+    type: userTypes.IS_ACCOUNT_CLOSED_SUCCESS,
+    payload: data,
+  };
+};
+
+export const isAccountClosedFail = () => {
+  return {
+    type: userTypes.IS_ACCOUNT_CLOSED_ERROR,
+  };
+};

@@ -13,6 +13,7 @@ import CreateNewPassword from "./containers/User/CreateNewPassword";
 import SignUp from "./containers/User/SignUp";
 import SignUpSuccess from "./containers/User/SignUpSuccess";
 import SignUpConfirm from "./containers/User/SignUpConfirm";
+import CloseAccount from "./containers/User/CloseAccount";
 
 import Fallback from "./containers/Fallback";
 import Home from "./containers/Home";
@@ -149,6 +150,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signup-successful" component={SignUpSuccess} />
             <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
+            <Route exact path="/close-account" component={CloseAccount} />
 
             <Route exact path="/publish" component={Publish} />
             <Route exact path="/find" component={Find} />

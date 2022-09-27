@@ -7,12 +7,14 @@ import {
   getRidesToConfirm,
   getRatingsToDoDriver,
   getRatingsToDoPassenger,
+  isAccountClosed,
 } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
 export const getNotifications = (user) => {
   return (dispatch) => {
+    dispatch(isAccountClosed(user.id));
     dispatch(getDriverNewRidesRequests(user.id));
     dispatch(getPassengerBookingsResponses(user.id));
     dispatch(getUserNewMessages(user.id));

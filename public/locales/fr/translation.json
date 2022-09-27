@@ -25,9 +25,7 @@
 		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
 	"account": {
-		"confirmLogOut": "",
-		"confirmRemoveAccount1": "",
-		"confirmRemoveAccount2": ""
+		"confirmLogOut": ""
 	},
 	"applicationDriver": {
 		"title": ""
@@ -65,6 +63,13 @@
 	"bookings": {
 		"noBookings": "Tu n'as pas encore réserver de trajet",
 		"subTitle": "Toutes les réservations que tu as faites"
+	},
+	"closeAccount": {
+		"closeAccount": "",
+		"confirmCloseAccount1": "",
+		"confirmCloseAccount2": "",
+		"title": "",
+		"typePassword": ""
 	},
 	"comingSoon": {
 		"subTitle": "Cette page ou fonctionnalité sera bientôt disponible",
@@ -209,6 +214,7 @@
 		"firstName": "Prénom",
 		"from": "à partir de",
 		"fuelType": "Type de carburant",
+		"fullName": "",
 		"fullname": "Nom et prénom",
 		"getVerified": "Obtenir une vérification",
 		"given": "Laissés",
@@ -432,9 +438,8 @@
 		"title": "notifications"
 	},
 	"passengerProfile": {
-		"contactRemoveAccount": "Contactez-nous pour supprimer votre compte",
+		"closeAccount": "Clôture ton compte",
 		"contactRequestData": "Contacte-nous pour télécharger tes données collectées",
-		"removeAccount": "Supprime tu compte",
 		"requestData": "Demande tes données"
 	},
 	"publish": {

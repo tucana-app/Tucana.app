@@ -25,7 +25,6 @@ function Account() {
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
 
-  const [showModalRemoveAccount, setShowModalRemoveAccount] = useState(false);
   const [showModalRequestData, setShowModalRequestData] = useState(false);
   const [showModalLogOut, setShowModalLogOut] = useState(false);
 
@@ -33,11 +32,6 @@ function Account() {
     history.push("/");
     dispatch(logout());
     window.location.reload(true);
-  };
-
-  const handleRemoveAccount = () => {
-    setShowModalRemoveAccount(false);
-    console.log("remove account");
   };
 
   if (!isLoggedIn) {
@@ -53,7 +47,7 @@ function Account() {
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <div className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
               <div>
-                <h3 className="mb-0">{currentUser.firstName}</h3>
+                <h1 className="mb-0">{currentUser.firstName}</h1>
               </div>
               <img
                 src={srcAvatar(currentUser)}
@@ -71,17 +65,11 @@ function Account() {
               <Row className="align-items-center mb-3">
                 <Col>
                   <p className="text-secondary mb-0">
-                    {t("translation:global.firstName")}
+                    {t("translation:global.fullName")}
                   </p>
-                  <p className="mb-0">{currentUser.firstName}</p>
-                </Col>
-              </Row>
-              <Row className="align-items-center mb-3">
-                <Col>
-                  <p className="text-secondary mb-0">
-                    {t("translation:global.lastName")}
+                  <p className="mb-0">
+                    {currentUser.firstName} {currentUser.lastName}
                   </p>
-                  <p className="mb-0">{currentUser.lastName}</p>
                 </Col>
               </Row>
               <Row className="align-items-center mb-3">
@@ -224,7 +212,7 @@ function Account() {
               </ListGroup.Item>
 
               <ListGroup.Item
-                className="border-0 cursor-pointer"
+                className="border-0 cursor-pointer mb-4"
                 onClick={() => setShowModalLogOut(true)}
               >
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
@@ -233,19 +221,13 @@ function Account() {
                 </div>
               </ListGroup.Item>
 
-              <hr />
-
-              <ListGroup.Item
-                className="border-0 cursor-pointer"
-                onClick={() => setShowModalRemoveAccount(true)}
-              >
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="small text-secondary mb-0">
-                    {t("translation:passengerProfile.removeAccount")}
+              <LinkContainer to="/close-account" className="cursor-pointer">
+                <ListGroup.Item className="border-0 cursor-pointer">
+                  <p className="small text-secondary text-center mb-0">
+                    {t("translation:passengerProfile.closeAccount")}
                   </p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
+                </ListGroup.Item>
+              </LinkContainer>
             </ListGroup>
           </Col>
         </Row>
@@ -335,37 +317,6 @@ function Account() {
               {t("translation:global.contact")}
             </Button>
           </LinkContainer>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal
-        show={showModalRemoveAccount}
-        onHide={() => setShowModalRemoveAccount(false)}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title className="text-dark">
-            {t("translation:passengerProfile.removeAccount")}
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>{t("translation:account.confirmRemoveAccount1")}</p>
-          <p className="mb-0">
-            {t("translation:account.confirmRemoveAccount2")}
-          </p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleRemoveAccount}>
-            {t("translation:confirmRide.confirm")}
-          </Button>
-          <Button
-            variant="success"
-            onClick={() => setShowModalRemoveAccount(false)}
-          >
-            {t("translation:global.no")}
-          </Button>
         </Modal.Footer>
       </Modal>
     </div>

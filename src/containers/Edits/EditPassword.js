@@ -10,6 +10,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
 import { submitEditPassword } from "../../redux";
+import { InfoIcon } from "@primer/octicons-react";
 
 require("yup-password")(Yup); // extend yup
 
@@ -171,7 +172,10 @@ const EditPassword = () => {
         <Row className="mb-5">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <p className="text-secondary">
-              {t("translation:edit.password.forgotPassword")}
+              <InfoIcon size="20" verticalAlign="middle" />{" "}
+              <span className="align-middle">
+                {t("translation:edit.password.forgotPassword")}
+              </span>
             </p>
           </Col>
         </Row>

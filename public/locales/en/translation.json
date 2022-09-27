@@ -25,9 +25,7 @@
 		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
 	},
 	"account": {
-		"confirmLogOut": "Are you sure you want to log out?",
-		"confirmRemoveAccount1": "Everything will be removed and lost forever. We have no ways to recover any of your data.",
-		"confirmRemoveAccount2": "Are you sure you want to remove your account?"
+		"confirmLogOut": "Are you sure you want to log out?"
 	},
 	"applicationDriver": {
 		"title": "Driver form application"
@@ -65,6 +63,13 @@
 	"bookings": {
 		"noBookings": "You haven't made a booking yet",
 		"subTitle": "All the bookings you have made"
+	},
+	"closeAccount": {
+		"closeAccount": "Close my account",
+		"confirmCloseAccount1": "You will not be able to access your account again. You will need to create another one with a new username and a new email address.",
+		"confirmCloseAccount2": "Are you sure you want to close your account?",
+		"title": "Close your account",
+		"typePassword": "Type your password to confirm"
 	},
 	"comingSoon": {
 		"subTitle": "This page or feature will soon be available",
@@ -209,6 +214,7 @@
 		"firstName": "First name",
 		"from": "From",
 		"fuelType": "Fuel type",
+		"fullName": "Full name",
 		"fullname": "Full name",
 		"getVerified": "Get verified",
 		"given": "Given",
@@ -432,9 +438,8 @@
 		"title": "Notifications"
 	},
 	"passengerProfile": {
-		"contactRemoveAccount": "Contact us to remove your account",
+		"closeAccount": "Close your account",
 		"contactRequestData": "Contact us to download your data collected",
-		"removeAccount": "Remove your account",
 		"requestData": "Request your data"
 	},
 	"publish": {

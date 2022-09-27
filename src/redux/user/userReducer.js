@@ -77,6 +77,10 @@ initialState = {
   submitEditPasswordSuccess: false,
   submitEditPasswordError: "",
 
+  isLoadingSubmitCloseAccount: false,
+  submitCloseAccountSuccess: false,
+  submitCloseAccountError: "",
+
   isLoadingSubmitContactForm: false,
 
   formApplyDriver: {
@@ -161,10 +165,7 @@ function userReducer(state = initialState, action) {
     // Log out User
 
     case userTypes.LOGOUT:
-      return {
-        isLoggedIn: false,
-        user: null,
-      };
+      return {};
 
     // Set user's avatar
 
@@ -739,6 +740,30 @@ function userReducer(state = initialState, action) {
         isLoadingSubmitEditPassword: false,
         submitEditPasswordSuccess: false,
         submitEditPasswordError: action.payload,
+      };
+
+    // Submit close account
+
+    case userTypes.SUBMIT_REMOVE_ACCOUNT_REQUESTED:
+      return {
+        ...state,
+        isLoadingSubmitCloseAccount: true,
+      };
+
+    case userTypes.SUBMIT_REMOVE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitCloseAccount: false,
+        submitCloseAccountSuccess: action.payload,
+        submitCloseAccountError: "",
+      };
+
+    case userTypes.SUBMIT_REMOVE_ACCOUNT_ERROR:
+      return {
+        ...state,
+        isLoadingSubmitCloseAccount: false,
+        submitCloseAccountSuccess: false,
+        submitCloseAccountError: action.payload,
       };
 
     default:

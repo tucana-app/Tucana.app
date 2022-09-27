@@ -25,9 +25,7 @@
 		"summary": "Total: <2>{{totalPassengers}}</2> pasajero(s) con <2>{{bookings}}</2> reservación(es)"
 	},
 	"account": {
-		"confirmLogOut": "¿Seguro que quieres cerrar la sesión?",
-		"confirmRemoveAccount1": "Todo se eliminará y se perderá para siempre. No hay manera de recuperar ninguno de sus datos.",
-		"confirmRemoveAccount2": "¿Estás seguro de que quiere eliminar su cuenta?"
+		"confirmLogOut": "¿Seguro que quieres cerrar la sesión?"
 	},
 	"applicationDriver": {
 		"title": "Solicitud de formulario de conductor"
@@ -65,6 +63,13 @@
 	"bookings": {
 		"noBookings": "Todavía no has hecho una reserva",
 		"subTitle": "Todas las reservas que has hecho"
+	},
+	"closeAccount": {
+		"closeAccount": "Eliminar mi cuenta",
+		"confirmCloseAccount1": "No podrás volver a acceder a tu cuenta. Tendrás que crear otra con un nuevo nombre de usuario y una nueva dirección de correo electrónico.",
+		"confirmCloseAccount2": "¿Estás seguro de que quiere cerrar tu cuenta?",
+		"title": "Cerrar tu cuenta",
+		"typePassword": "Escriba su contraseña para confirmar"
 	},
 	"comingSoon": {
 		"subTitle": "Esta página o función estará pronto disponible",
@@ -209,6 +214,7 @@
 		"firstName": "Nombre",
 		"from": "de",
 		"fuelType": "Tipo de combustible",
+		"fullName": "Nombre completo",
 		"fullname": "Nombre completo",
 		"getVerified": "Verificación",
 		"given": "Dejadas",
@@ -432,9 +438,8 @@
 		"title": "Notificaciones"
 	},
 	"passengerProfile": {
-		"contactRemoveAccount": "Póngase en contacto con nosotros para eliminar su cuenta",
+		"closeAccount": "Cerrar tu cuenta",
 		"contactRequestData": "Póngase en contacto con nosotros para descargar los datos recogidos",
-		"removeAccount": "Eliminar tu cuenta",
 		"requestData": "Solicitar tus datos"
 	},
 	"publish": {
