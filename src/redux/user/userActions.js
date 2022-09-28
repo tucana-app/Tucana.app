@@ -1432,7 +1432,7 @@ export const updateUser = (userId) => {
         const user = JSON.parse(localStorage.getItem("user"));
 
         const updatedUser = {
-          ...user,
+          accessToken: user.accessToken,
           ...response.data,
         };
 

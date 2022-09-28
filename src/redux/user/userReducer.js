@@ -813,7 +813,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoadingUpdateUser: false,
         user: {
-          ...user,
+          accessToken: user.accessToken,
           ...action.payload,
         },
         updateUserError: "",
