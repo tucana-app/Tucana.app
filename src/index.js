@@ -36,5 +36,5 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 
-// Register() the service worker.
-serviceWorker.register();
+// Service worker
+serviceWorker.unregister();
