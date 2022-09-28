@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />;
+        <App />
       </Provider>
     </React.StrictMode>,
     document.getElementById("root")
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "development") {
     <React.StrictMode>
       <HttpsRedirect>
         <Provider store={store}>
-          <App />;
+          <App />
         </Provider>
       </HttpsRedirect>
     </React.StrictMode>,
