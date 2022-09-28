@@ -25,6 +25,7 @@
     "react": "^16.14.0",
     "react-bootstrap": "^2.0.0-beta.2",
     "react-bootstrap-icons": "^1.8.4",
+    "react-cache-buster": "^0.1.6",
     "react-country-flag": "^3.0.2",
     "react-datepicker": "^4.8.0",
     "react-dom": "^16.14.0",
@@ -62,7 +63,7 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "pushgit": "git push github master",
-    "generate-build-version": "node generate-build-version"
+    "generate-meta-tag": "node ./node_modules/react-cache-buster/dist/generate-meta-tag.js"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -103,6 +103,9 @@ import { history } from "./helpers/history";
 // Importing css for the whole app
 import "./scss/app.scss";
 
+import CacheBuster from "react-cache-buster";
+import LoadingSpinner from "./components/LoadingSpinner";
+
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -141,150 +144,167 @@ function App() {
     }
   }, [height, initHeight, dispatch]);
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   return (
-    <Suspense fallback={<Fallback />}>
-      <Router history={history}>
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onReset={() => {
-            // reset the state of your app so the error doesn't happen again
-          }}
-        >
-          <ScrollToTop />
+    <CacheBuster
+      currentVersion={global.appVersion}
+      isEnabled={isProduction} //If false, the library is disabled.
+      isVerboseMode={false} //If true, the library writes verbose logs to console.
+      loadingComponent={<LoadingSpinner />} //If not pass, nothing appears at the time of new version check.
+    >
+      <Suspense fallback={<Fallback />}>
+        <Router history={history}>
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onReset={() => {
+              // reset the state of your app so the error doesn't happen again
+            }}
+          >
+            <ScrollToTop />
 
-          {isNavBar ? <NavigationBar /> : null}
+            {isNavBar ? <NavigationBar /> : null}
 
-          <Switch>
-            <Route exact path="/" component={Home} />
+            <Switch>
+              <Route exact path="/" component={Home} />
 
-            <Route exact path="/login" component={LogIn} />
-            <Route exact path="/forgot-password" component={ForgotPassword} />
-            <Route
-              exact
-              path="/create-new-password/:uuid"
-              component={CreateNewPassword}
-            />
+              <Route exact path="/login" component={LogIn} />
+              <Route exact path="/forgot-password" component={ForgotPassword} />
+              <Route
+                exact
+                path="/create-new-password/:uuid"
+                component={CreateNewPassword}
+              />
 
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/signup-successful" component={SignUpSuccess} />
-            <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
-            <Route exact path="/close-account" component={CloseAccount} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route
+                exact
+                path="/signup-successful"
+                component={SignUpSuccess}
+              />
+              <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
+              <Route exact path="/close-account" component={CloseAccount} />
 
-            <Route exact path="/publish" component={Publish} />
-            <Route exact path="/find" component={Find} />
-            <Route exact path="/messages" component={Messages} />
-            <Route exact path="/become-driver" component={BecomeDriver} />
-            <Route
-              exact
-              path="/apply-driver"
-              component={DriverApplicationForm}
-            />
-            <Route
-              exact
-              path="/driver/application/:applicationId"
-              component={DriverApplication}
-            />
+              <Route exact path="/publish" component={Publish} />
+              <Route exact path="/find" component={Find} />
+              <Route exact path="/messages" component={Messages} />
+              <Route exact path="/become-driver" component={BecomeDriver} />
+              <Route
+                exact
+                path="/apply-driver"
+                component={DriverApplicationForm}
+              />
+              <Route
+                exact
+                path="/driver/application/:applicationId"
+                component={DriverApplication}
+              />
 
-            <Route exact path="/ride/:rideId" component={Ride} />
-            <Route exact path="/rides" component={Rides} />
-            <Route exact path="/driver/rides" component={DriverRides} />
-            <Route exact path="/driver/bookings" component={DriverBookings} />
-            <Route exact path="/driver/car" component={DriverCar} />
-            <Route exact path="/bookings" component={Bookings} />
-            <Route exact path="/booking/:bookingId" component={Booking} />
-            <Route exact path="/book/:rideId" component={Book} />
-            <Route exact path="/past-bookings" component={UserPastBookings} />
-            <Route
-              exact
-              path="/driver/past-rides"
-              component={DriverPastRides}
-            />
-            <Route
-              exact
-              path="/driver/past-bookings"
-              component={DriverPastBookings}
-            />
+              <Route exact path="/ride/:rideId" component={Ride} />
+              <Route exact path="/rides" component={Rides} />
+              <Route exact path="/driver/rides" component={DriverRides} />
+              <Route exact path="/driver/bookings" component={DriverBookings} />
+              <Route exact path="/driver/car" component={DriverCar} />
+              <Route exact path="/bookings" component={Bookings} />
+              <Route exact path="/booking/:bookingId" component={Booking} />
+              <Route exact path="/book/:rideId" component={Book} />
+              <Route exact path="/past-bookings" component={UserPastBookings} />
+              <Route
+                exact
+                path="/driver/past-rides"
+                component={DriverPastRides}
+              />
+              <Route
+                exact
+                path="/driver/past-bookings"
+                component={DriverPastBookings}
+              />
 
-            <Route exact path="/menu" component={Menu} />
-            <Route
-              exact
-              path="/profile/passenger/ratings"
-              component={RatingsPassenger}
-            />
-            <Route
-              exact
-              path="/profile/driver/ratings"
-              component={RatingsDriver}
-            />
-            <Route exact path="/ratings" component={Ratings} />
-            <Route
-              exact
-              path="/ratings/new-rating/:rideId"
-              component={NewRating}
-            />
-            <Route exact path="/account" component={Account} />
-            <Route
-              exact
-              path="/rides/rides-to-confirm"
-              component={RidesToConfirm}
-            />
-            <Route exact path="/ride/confirm/:rideId" component={ConfirmRide} />
-            <Route exact path="/profile/" component={DriverProfile} />
-            <Route exact path="/notifications" component={Notifications} />
-            <Route exact path="/help" component={Help} />
-            <Route exact path="/donate" component={Donate} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/map" component={Map} />
-            <Route exact path="/legal" component={Legal} />
-            <Route exact path="/report" component={Report} />
-            <Route exact path="/language" component={Language} />
-            <Route exact path="/credits" component={Credits} />
-            <Route exact path="/privacy" component={Privacy} />
-            <Route exact path="/refund-policy" component={RefundPolicy} />
-            <Route exact path="/legal-notice" component={LegalNotice} />
-            <Route exact path="/terms" component={TermsConditions} />
-            <Route exact path="/data-protection" component={DataProtection} />
-            <Route exact path="/how-it-works" component={HowItWorks} />
-            <Route exact path="/faq" component={FAQ} />
-            <Route exact path="/hiring" component={Hiring} />
+              <Route exact path="/menu" component={Menu} />
+              <Route
+                exact
+                path="/profile/passenger/ratings"
+                component={RatingsPassenger}
+              />
+              <Route
+                exact
+                path="/profile/driver/ratings"
+                component={RatingsDriver}
+              />
+              <Route exact path="/ratings" component={Ratings} />
+              <Route
+                exact
+                path="/ratings/new-rating/:rideId"
+                component={NewRating}
+              />
+              <Route exact path="/account" component={Account} />
+              <Route
+                exact
+                path="/rides/rides-to-confirm"
+                component={RidesToConfirm}
+              />
+              <Route
+                exact
+                path="/ride/confirm/:rideId"
+                component={ConfirmRide}
+              />
+              <Route exact path="/profile/" component={DriverProfile} />
+              <Route exact path="/notifications" component={Notifications} />
+              <Route exact path="/help" component={Help} />
+              <Route exact path="/donate" component={Donate} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/map" component={Map} />
+              <Route exact path="/legal" component={Legal} />
+              <Route exact path="/report" component={Report} />
+              <Route exact path="/language" component={Language} />
+              <Route exact path="/credits" component={Credits} />
+              <Route exact path="/privacy" component={Privacy} />
+              <Route exact path="/refund-policy" component={RefundPolicy} />
+              <Route exact path="/legal-notice" component={LegalNotice} />
+              <Route exact path="/terms" component={TermsConditions} />
+              <Route exact path="/data-protection" component={DataProtection} />
+              <Route exact path="/how-it-works" component={HowItWorks} />
+              <Route exact path="/faq" component={FAQ} />
+              <Route exact path="/hiring" component={Hiring} />
 
-            <Route exact path="/edit/bio" component={EditBio} />
-            <Route exact path="/edit/password" component={EditPassword} />
+              <Route exact path="/edit/bio" component={EditBio} />
+              <Route exact path="/edit/password" component={EditPassword} />
 
-            {/* Verification */}
-            <Route exact path="/verification" component={Verification} />
-            <Route
-              exact
-              path="/passenger-verification"
-              component={DriverVerification}
-            />
-            <Route
-              exact
-              path="/driver-verification"
-              component={PassengerVerification}
-            />
+              {/* Verification */}
+              <Route exact path="/verification" component={Verification} />
+              <Route
+                exact
+                path="/passenger-verification"
+                component={DriverVerification}
+              />
+              <Route
+                exact
+                path="/driver-verification"
+                component={PassengerVerification}
+              />
 
-            {/* Public profile */}
-            <Route
-              exact
-              path="/driver/:username"
-              component={DriverPublicProfile}
-            />
-            <Route
-              exact
-              path="/passenger/:username"
-              component={PassengerPublicProfile}
-            />
+              {/* Public profile */}
+              <Route
+                exact
+                path="/driver/:username"
+                component={DriverPublicProfile}
+              />
+              <Route
+                exact
+                path="/passenger/:username"
+                component={PassengerPublicProfile}
+              />
 
-            <Route exact path="/coming-soon" component={ComingSoon} />
+              <Route exact path="/coming-soon" component={ComingSoon} />
 
-            <Route component={Page404} />
-          </Switch>
+              <Route component={Page404} />
+            </Switch>
 
-          <Toasts />
-        </ErrorBoundary>
-      </Router>
-    </Suspense>
+            <Toasts />
+          </ErrorBoundary>
+        </Router>
+      </Suspense>
+    </CacheBuster>
   );
 }
 
