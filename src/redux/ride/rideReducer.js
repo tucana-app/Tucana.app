@@ -111,7 +111,7 @@ const initialState = {
   driverProfileError: "",
 
   isloadingNbRidesOnline: false,
-  nbRidesOnlineData: 0,
+  nbRidesOnlineData: "-",
   nbRidesOnlineError: "",
 };
 

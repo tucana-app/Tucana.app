@@ -3,7 +3,12 @@ import userTypes from "./userTypes";
 import validator from "validator";
 import { parseText } from "../../helpers";
 
-import { setToast, getNotifications, resetNotifications } from "../index";
+import {
+  setToast,
+  getNotifications,
+  resetNotifications,
+  getConstants,
+} from "../index";
 import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -210,6 +215,7 @@ export const login = (formLogin) => {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          dispatch(getConstants());
 
           dispatch({
             type: userTypes.LOGIN_SUCCESS,
@@ -917,6 +923,9 @@ export const updateDriverState = (userId) => {
       .then((response) => {
         if (response.data) {
           let user = JSON.parse(localStorage.getItem("user"));
+
+          console.log(response.data);
+
           if (user) {
             user = {
               ...user,
@@ -1222,9 +1231,10 @@ export const submitEditBioSuccess = (data) => {
   };
 };
 
-export const submitEditBioFail = () => {
+export const submitEditBioFail = (error) => {
   return {
     type: userTypes.SUBMIT_EDIT_BIO_ERROR,
+    payload: error,
   };
 };
 
@@ -1283,9 +1293,10 @@ export const submitEditPasswordSuccess = (data) => {
   };
 };
 
-export const submitEditPasswordFail = () => {
+export const submitEditPasswordFail = (error) => {
   return {
     type: userTypes.SUBMIT_EDIT_PASSWORD_ERROR,
+    payload: error,
   };
 };
 
@@ -1336,9 +1347,10 @@ export const submitCloseAccountSuccess = (data) => {
   };
 };
 
-export const submitCloseAccountFail = () => {
+export const submitCloseAccountFail = (error) => {
   return {
     type: userTypes.SUBMIT_REMOVE_ACCOUNT_ERROR,
+    payload: error,
   };
 };
 
@@ -1391,8 +1403,65 @@ export const isAccountClosedSuccess = (data) => {
   };
 };
 
-export const isAccountClosedFail = () => {
+export const isAccountClosedFail = (error) => {
   return {
     type: userTypes.IS_ACCOUNT_CLOSED_ERROR,
+    payload: error,
+  };
+};
+
+// Update user
+
+export const updateUserRequested = () => {
+  return {
+    type: userTypes.UPDATE_USER_REQUESTED,
+  };
+};
+
+export const updateUser = (userId) => {
+  return (dispatch) => {
+    dispatch(updateUserRequested());
+
+    axios
+      .get(URL_API + "/user/update", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        const updatedUser = {
+          ...user,
+          ...response.data,
+        };
+
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        dispatch(updateUserSuccess(updatedUser));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(updateUserFail(message));
+      });
+  };
+};
+
+export const updateUserSuccess = (updatedUser) => {
+  return {
+    type: userTypes.UPDATE_USER_SUCCESS,
+    payload: updatedUser,
+  };
+};
+
+export const updateUserFail = (error) => {
+  return {
+    type: userTypes.UPDATE_USER_ERROR,
+    payload: error,
   };
 };

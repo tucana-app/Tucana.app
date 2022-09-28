@@ -9,12 +9,14 @@ import {
   getRatingsToDoDriver,
   getRatingsToDoPassenger,
   isAccountClosed,
+  getConstants,
 } from "../index";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
 export const getNotifications = (user) => {
   return (dispatch) => {
+    dispatch(getConstants());
     dispatch(isAccountClosed(user.id));
     dispatch(getDriverNewRidesRequests(user.id));
     dispatch(getPassengerBookingsResponses(user.id));

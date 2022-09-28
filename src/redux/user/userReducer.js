@@ -110,6 +110,10 @@ initialState = {
       },
     },
   },
+
+  isLoadingUpdateUser: false,
+  updateUserSuccess: false,
+  updateUserError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -794,6 +798,33 @@ function userReducer(state = initialState, action) {
         isLoadingSubmitCloseAccount: false,
         submitCloseAccountSuccess: {},
         submitCloseAccountError: action.payload,
+      };
+
+    // Update user
+
+    case userTypes.UPDATE_USER_REQUESTED:
+      return {
+        ...state,
+        isLoadingUpdateUser: true,
+      };
+
+    case userTypes.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdateUser: false,
+        user: {
+          ...user,
+          ...action.payload,
+        },
+        updateUserError: "",
+      };
+
+    case userTypes.UPDATE_USER_ERROR:
+      return {
+        ...state,
+        isLoadingUpdateUser: false,
+        updateUserSuccess: false,
+        updateUserError: action.payload,
       };
 
     default:

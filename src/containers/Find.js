@@ -31,7 +31,6 @@ const Find = () => {
     filteredRidesData,
     isFormSearchRideSubmitted,
     formSearchRide,
-    isloadingNbRidesOnline,
     nbRidesOnlineData,
   } = useSelector((state) => state.ride);
 
@@ -297,21 +296,17 @@ const Find = () => {
 
             <Row>
               <Col className="text-center">
-                {isloadingNbRidesOnline ? (
-                  <LoadingSpinner />
-                ) : nbRidesOnlineData ? (
-                  <p className="mb-1">
-                    <span className="text-success fw-bold">
-                      <DotFillIcon
-                        size="24"
-                        className="mb-1"
-                        verticalAlign="middle"
-                      />
-                      {nbRidesOnlineData}
-                    </span>{" "}
-                    {t("translation:find.ridesOnline")}
-                  </p>
-                ) : null}
+                <p className="mb-1">
+                  <span className="text-success fw-bold">
+                    <DotFillIcon
+                      size="24"
+                      className="mb-1"
+                      verticalAlign="middle"
+                    />
+                    {nbRidesOnlineData}
+                  </span>{" "}
+                  {t("translation:find.ridesOnline")}
+                </p>
               </Col>
             </Row>
 

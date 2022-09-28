@@ -22,6 +22,7 @@ const initialState = {
   labelStringField: "Only letters and numbers allowed",
   labelRequiredField: "This field is required",
   initHeight: 0,
+  constants: [],
 
   feedback: {},
 
@@ -183,6 +184,23 @@ function globalReducer(state = initialState, action) {
         ...state,
         initHeight: action.payload,
       };
+
+    // Get constants
+
+    case globalTypes.GET_CONSTANTS_REQUEST:
+      return {
+        ...state,
+        isLoadingConstants: true,
+      };
+
+    case globalTypes.GET_CONSTANTS_SUCCESS:
+      return {
+        ...state,
+        isLoadingConstants: false,
+        constants: action.payload,
+      };
+
+    // OLD - Set alert module
 
     case globalTypes.SET_ALERT:
       return {
