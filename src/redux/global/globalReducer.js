@@ -55,8 +55,6 @@ const initialState = {
     "App feedback",
     "Report someone",
     "Work with us",
-    "Request a feature",
-    "Request my data",
     "Close my account",
     "Other",
   ],

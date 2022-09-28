@@ -178,6 +178,11 @@ body {
   height: 0.5rem;
 }
 
+button,
+.btn {
+  @extend .py-1;
+}
+
 // ####################################################################
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE
