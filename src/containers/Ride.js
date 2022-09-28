@@ -203,7 +203,7 @@ const Ride = () => {
                             <img
                               src={srcAvatar(rideData.ride.Driver.User)}
                               alt="Avatar"
-                              className="img-fluid rounded-round cursor-pointer img-avatar mx-2"
+                              className="img-fluid rounded-round cursor-pointer avatar-img-sm mx-2"
                               width="50px"
                             />
                           </Col>

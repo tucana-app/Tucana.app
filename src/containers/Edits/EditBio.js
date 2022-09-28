@@ -60,7 +60,7 @@ const EditBio = () => {
               validateOnBlur={false}
               onSubmit={handleSubmit}
               initialValues={{
-                bio: currentUser.biography,
+                bio: currentUser.biography || "",
               }}
             >
               {({

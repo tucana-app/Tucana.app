@@ -215,6 +215,7 @@
 			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)",
 			"validYear": "Introduzca un año válido"
 		},
+		"experience": "Experiencia",
 		"faq": "Preguntas frecuentes",
 		"finish": "Finalizar",
 		"firstName": "Nombre",
@@ -233,6 +234,7 @@
 		"language": "Idioma",
 		"lastName": "Apellido",
 		"learnMore": "Aprenda más",
+		"level": "Nivel",
 		"logIn": "Ingresar",
 		"logOut": "Cierre de sesión",
 		"maker": "Marca",
@@ -263,6 +265,7 @@
 		"pending": "Pendiente",
 		"perSeat": "por asiento",
 		"phone": "Teléfono",
+		"points": "Puntos",
 		"price": "Precio",
 		"profile": "Perfil",
 		"province": "Provincia",

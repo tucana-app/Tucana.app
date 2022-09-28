@@ -52,7 +52,7 @@ function Account() {
               <img
                 src={srcAvatar(currentUser)}
                 alt="Avatar"
-                className="img-fluid rounded-round img-avatar me-3"
+                className="img-fluid rounded-round avatar-img-sm me-3"
                 style={{ width: "75px" }}
               />
             </div>
@@ -293,12 +293,17 @@ function Account() {
           <Button
             variant="secondary"
             size="lg"
-            className="me-3"
+            className="me-3 py-1"
             onClick={() => setShowModalLogOut(false)}
           >
             {t("translation:global.no")}
           </Button>
-          <Button variant="danger" size="lg" onClick={logOut}>
+          <Button
+            variant="danger"
+            size="lg"
+            className="text-white py-1"
+            onClick={logOut}
+          >
             {t("translation:global.yes")}
           </Button>
         </Modal.Footer>

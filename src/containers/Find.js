@@ -216,7 +216,7 @@ const Find = () => {
                                 <img
                                   src={srcAvatar(ride.rideDetails.Driver.User)}
                                   alt="Avatar"
-                                  className="img-fluid rounded-round cursor-pointer img-avatar me-2"
+                                  className="img-fluid rounded-round cursor-pointer avatar-img-sm me-2"
                                 />
                               </p>
                             </Col>

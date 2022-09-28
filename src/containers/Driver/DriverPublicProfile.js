@@ -52,7 +52,7 @@ const DriverPublicProfile = () => {
                   <img
                     src={srcAvatar(driverProfileData.user)}
                     alt="Avatar"
-                    className="img-fluid rounded-round cursor-pointer img-avatar"
+                    className="img-fluid rounded-round cursor-pointer avatar-img-sm"
                   />
                 </p>
               </Col>
@@ -73,6 +73,19 @@ const DriverPublicProfile = () => {
                 className="container-box"
               >
                 <Container className="py-3 px-2">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={12}>
+                      <p className="fw-bold mb-1">
+                        {t("translation:global.ratings")}
+                      </p>
+                    </Col>
+                    <Col xs={12}>
+                      <DisplayRating
+                        rating={driverProfileData.user.Rating}
+                        type="driver"
+                      />
+                    </Col>
+                  </Row>
                   <Row className="align-items-center">
                     <Col xs={12}>
                       <p className="fw-bold mb-1">
@@ -88,19 +101,6 @@ const DriverPublicProfile = () => {
                           "-"
                         )}
                       </p>
-                    </Col>
-                  </Row>
-                  <Row className="align-items-center">
-                    <Col xs={12}>
-                      <p className="fw-bold mb-0">
-                        {t("translation:global.ratings")}
-                      </p>
-                    </Col>
-                    <Col xs={12}>
-                      <DisplayRating
-                        rating={driverProfileData.user.Rating}
-                        type="driver"
-                      />
                     </Col>
                   </Row>
                 </Container>
@@ -122,6 +122,26 @@ const DriverPublicProfile = () => {
                       <p className="text-lowercase">
                         <strong>{driverProfileData.ridesCount}</strong>{" "}
                         {t("translation:rides.ridesPublished")}
+                      </p>
+                      <p>
+                        {t("translation:global.level")}{" "}
+                        <strong>
+                          {
+                            driverProfileData.user.ExperienceUser
+                              .ExperienceUserLevel.id
+                          }
+                        </strong>
+                        :{" "}
+                        <strong>
+                          {
+                            driverProfileData.user.ExperienceUser
+                              .ExperienceUserLevel.label
+                          }
+                        </strong>{" "}
+                        <small className="text-secondary">
+                          ({driverProfileData.user.ExperienceUser.points}{" "}
+                          {t("translation:global.points")})
+                        </small>
                       </p>
                       <p className="mb-0">
                         {t("translation:global.memberSince")}:{" "}

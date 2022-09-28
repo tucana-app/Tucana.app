@@ -136,7 +136,7 @@ const SingleConversation = ({ conversation }) => {
             <img
               src={srcAvatar(receiver)}
               alt="Avatar"
-              className="img-fluid rounded-round cursor-pointer img-avatar mx-2"
+              className="img-fluid rounded-round cursor-pointer avatar-img-sm mx-2"
             />
             <h2 className="mb-0">{receiverFirstName}</h2>
           </div>

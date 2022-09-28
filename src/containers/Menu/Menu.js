@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Badge, Col, Container, ListGroup, Row } from "react-bootstrap";
+import {
+  Badge,
+  Col,
+  Container,
+  ListGroup,
+  Row,
+  ProgressBar,
+} from "react-bootstrap";
 import {
   ChevronRightIcon,
   LinkExternalIcon,
   // CheckCircleFillIcon,
 } from "@primer/octicons-react";
-import dateFormat from "dateformat";
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
 
@@ -22,7 +28,7 @@ const Menu = () => {
   const dispatch = useDispatch();
 
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { srcAvatar } = useSelector((state) => state.global);
+  const { srcAvatar, srcFilter } = useSelector((state) => state.global);
   const {
     isLoadingDriverNewRidesRequests,
     driverNewRidesRequestsData,
@@ -57,6 +63,17 @@ const Menu = () => {
   var ratingsToDo =
     getRatingsToDoDriverData.length + getRatingsToDoPassengerData.length;
 
+  const getPercent = () => {
+    const range =
+      currentUser.ExperienceUser.ExperienceUserLevel.max -
+      currentUser.ExperienceUser.ExperienceUserLevel.min;
+    const diff =
+      currentUser.ExperienceUser.points -
+      currentUser.ExperienceUser.ExperienceUserLevel.min;
+
+    return ((diff * 100) / range).toFixed(0);
+  };
+
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getNotifications(currentUser));
@@ -79,7 +96,7 @@ const Menu = () => {
               />
             </Col>
           </Row>
-          <Row className="mt-4 mb-2">
+          <Row className="mt-4">
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
               <ListGroup variant="flush">
                 <Link to="/account" className="text-decoration-none">
@@ -87,21 +104,91 @@ const Menu = () => {
                     <div>
                       <h3 className="mb-0">{currentUser.firstName}</h3>
                       <p className="small text-secondary mb-0">
-                        {t("translation:menu.memberSince")}{" "}
-                        {dateFormat(currentUser.createdAt, "mm/yyyy")}
+                        {t("translation:global.level")}:{" "}
+                        <strong>
+                          {currentUser.ExperienceUser.ExperienceUserLevel.label}
+                        </strong>
                       </p>
                     </div>
-                    <div>
-                      <img
+
+                    <div className="d-inline-flex align-items-center">
+                      <div className="avatar-parent me-3">
+                        <img
+                          src={srcAvatar(currentUser)}
+                          alt="Placeholder"
+                          className={
+                            "img-fluid rounded-round cursor-pointer avatar-img-sm"
+                          }
+                        />
+                        <div className="avatar-filter">
+                          <img
+                            src={srcFilter(
+                              currentUser.ExperienceUser.currentFilter
+                            )}
+                            alt="Placeholder"
+                            className={"img-fluid cursor-pointer "}
+                          />
+                        </div>
+                      </div>
+
+                      {/* <img
                         src={srcAvatar(currentUser)}
                         alt="Avatar"
-                        className="img-fluid rounded-round cursor-pointer img-avatar me-3"
-                      />
+                        className="img-fluid rounded-round cursor-pointer avatar-img-sm me-3"
+                      /> */}
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
                   </ListGroup.Item>
                 </Link>
               </ListGroup>
+
+              <hr className="my-3" />
+            </Col>
+          </Row>
+
+          <Row className="mb-2">
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
+              <Container>
+                <Row className="small text-secondary">
+                  <Col xs={4} className="text-start px-0">
+                    <p className="mb-0">
+                      {t("translation:global.level")}{" "}
+                      <strong>
+                        {currentUser.ExperienceUser.ExperienceUserLevel.id}
+                      </strong>
+                    </p>
+                  </Col>
+                  <Col xs={4}></Col>
+                  <Col xs={4} className="text-end px-0">
+                    <p className="mb-0">
+                      {t("translation:global.level")}{" "}
+                      <strong>
+                        {currentUser.ExperienceUser.ExperienceUserLevel.id + 1}
+                      </strong>
+                    </p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="px-0">
+                    <ProgressBar
+                      animated
+                      variant="success"
+                      now={getPercent()}
+                      className="rounded-pill "
+                    />
+                  </Col>
+                </Row>
+                <Row className="small text-secondary">
+                  <Col xs={4} className="text-start px-0"></Col>
+                  <Col xs={4} className="text-center px-0">
+                    {currentUser.ExperienceUser.points}{" "}
+                    {t("translation:global.points")}
+                  </Col>
+                  <Col xs={4} className="text-end px-0">
+                    {currentUser.ExperienceUser.ExperienceUserLevel.max}
+                  </Col>
+                </Row>
+              </Container>
             </Col>
           </Row>
         </>

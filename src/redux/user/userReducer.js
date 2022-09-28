@@ -69,6 +69,10 @@ initialState = {
   updateUserRatingsSuccess: false,
   updateUserRatingsError: "",
 
+  isLoadingUpdateUserExperience: false,
+  updateUserExperienceSuccess: false,
+  updateUserExperienceError: "",
+
   isLoadingSubmitEditBio: false,
   submitEditBioSuccess: "",
   submitEditBioError: "",
@@ -668,6 +672,32 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoadingUpdateUserRatings: false,
         updateUserRatingsError: action.payload,
+      };
+
+    // Update users's experience
+
+    case userTypes.UPDATE_USER_EXPERIENCE_REQUESTED:
+      return {
+        ...state,
+        isLoadingUpdateUserExperience: true,
+      };
+
+    case userTypes.UPDATE_USER_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        isLoadingUpdateUserExperience: false,
+        user: {
+          ...state.user,
+          ExperienceUser: action.payload,
+        },
+        updateUserExperienceError: "",
+      };
+
+    case userTypes.UPDATE_USER_EXPERIENCE_ERROR:
+      return {
+        ...state,
+        isLoadingUpdateUserExperience: false,
+        updateUserExperienceError: action.payload,
       };
 
     // Contact form

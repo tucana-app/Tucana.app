@@ -11,7 +11,10 @@ import toucan from "../../assets/images/avatars/toucan.jpg";
 import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
 import none from "../../assets/images/avatars/default.svg";
-// import filter from "../../assets/images/filter-select.png";
+
+import gold from "../../assets/images/filters/gold.png";
+import selected from "../../assets/images/filters/filter-select.png";
+import transparent from "../../assets/images/filters/transparent.png";
 
 const initialState = {
   seatsMax: 3,
@@ -150,11 +153,27 @@ const initialState = {
       case "whale":
         return whale;
 
-      case "none":
+      case null:
         return none;
 
       default:
         return none;
+    }
+  },
+
+  srcFilter: (filter) => {
+    switch (filter) {
+      case "gold":
+        return gold;
+
+      case "selected":
+        return selected;
+
+      case null:
+        return transparent;
+
+      default:
+        return transparent;
     }
   },
 };

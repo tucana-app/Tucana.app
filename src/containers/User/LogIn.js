@@ -37,7 +37,7 @@ import sloth from "../../assets/images/avatars/sloth.jpg";
 import toucan from "../../assets/images/avatars/toucan.jpg";
 import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
-import filter from "../../assets/images/filter-select.png";
+import filter from "../../assets/images/filters/filter-select.png";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -248,12 +248,12 @@ const Login = () => {
                               src={crocodile}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("crocodile")}
                             />
                             {avatar === "crocodile" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -271,12 +271,12 @@ const Login = () => {
                               src={dolphin}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("dolphin")}
                             />
                             {avatar === "dolphin" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -292,12 +292,12 @@ const Login = () => {
                               src={iguana}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("iguana")}
                             />
                             {avatar === "iguana" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -313,12 +313,12 @@ const Login = () => {
                               src={jaguar}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("jaguar")}
                             />
                             {avatar === "jaguar" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -334,12 +334,12 @@ const Login = () => {
                               src={macaw}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("macaw")}
                             />
                             {avatar === "macaw" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -359,12 +359,12 @@ const Login = () => {
                               src={monkey}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("monkey")}
                             />
                             {avatar === "monkey" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -380,12 +380,12 @@ const Login = () => {
                               src={sloth}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("sloth")}
                             />
                             {avatar === "sloth" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -401,12 +401,12 @@ const Login = () => {
                               src={toucan}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("toucan")}
                             />
                             {avatar === "toucan" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -422,12 +422,12 @@ const Login = () => {
                               src={turtle}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("turtle")}
                             />
                             {avatar === "turtle" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"
@@ -443,12 +443,12 @@ const Login = () => {
                               src={whale}
                               alt="Placeholder"
                               className={
-                                "img-fluid rounded-round cursor-pointer img-avatar-first"
+                                "img-fluid rounded-round cursor-pointer avatar-img"
                               }
                               onClick={() => handleChangeAvatar("whale")}
                             />
                             {avatar === "whale" ? (
-                              <div className="avatar-child">
+                              <div className="avatar-filter">
                                 <img
                                   src={filter}
                                   alt="Placeholder"

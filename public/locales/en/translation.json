@@ -215,6 +215,7 @@
 			"validUsername": "Please enter a valid username (only letters and numbers)",
 			"validYear": "Enter a valid year"
 		},
+		"experience": "Experience",
 		"faq": "FAQ",
 		"finish": "Finish",
 		"firstName": "First name",
@@ -233,6 +234,7 @@
 		"language": "Language",
 		"lastName": "Last name",
 		"learnMore": "Learn more",
+		"level": "Level",
 		"logIn": "Log In",
 		"logOut": "Log Out",
 		"maker": "Maker",
@@ -263,6 +265,7 @@
 		"pending": "Pending",
 		"perSeat": "per seat",
 		"phone": "Phone",
+		"points": "Points",
 		"price": "Price",
 		"profile": "Profile",
 		"province": "Province",

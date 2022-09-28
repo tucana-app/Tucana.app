@@ -439,8 +439,6 @@ export const submitEmailForgotPasswordSuccess = (data) => {
 };
 
 export const submitEmailForgotPasswordFail = (error) => {
-  console.log(error);
-
   return {
     type: userTypes.SEND_EMAIL_FORGOT_PASSWORD_ERROR,
     payload: error,
@@ -1018,6 +1016,68 @@ export const updateUserRatingsSuccess = (ratings) => {
 export const updateUserRatingsFail = (error) => {
   return {
     type: userTypes.UPDATE_USER_RATINGS_ERROR,
+    payload: error,
+  };
+};
+
+// Update user's experience
+
+export const updateUserExperienceRequested = () => {
+  return {
+    type: userTypes.UPDATE_USER_EXPERIENCE_REQUESTED,
+  };
+};
+
+export const updateUserExperience = (userId) => {
+  return (dispatch) => {
+    dispatch(updateUserExperienceRequested());
+
+    axios
+      .get(URL_API + "/user/update-experience", {
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          let user = JSON.parse(localStorage.getItem("user"));
+          if (user) {
+            user = {
+              ...user,
+              ExperienceUser: response.data,
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
+          }
+
+          dispatch(updateUserExperienceSuccess(response.data));
+        } else {
+          dispatch(updateUserExperienceFail("No updates available"));
+        }
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(updateUserExperienceFail(message));
+      });
+  };
+};
+
+export const updateUserExperienceSuccess = (experience) => {
+  return {
+    type: userTypes.UPDATE_USER_EXPERIENCE_SUCCESS,
+    payload: experience,
+  };
+};
+
+export const updateUserExperienceFail = (error) => {
+  return {
+    type: userTypes.UPDATE_USER_EXPERIENCE_ERROR,
     payload: error,
   };
 };

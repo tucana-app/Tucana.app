@@ -72,7 +72,6 @@ const SignUp = () => {
     if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
       values.phoneNumber = phoneNumber;
       dispatch(registerUser(values));
-      form.current.reset();
       formikBag.setSubmitting(false);
     } else {
       dispatch(

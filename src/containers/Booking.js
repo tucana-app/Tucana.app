@@ -220,7 +220,7 @@ const Booking = () => {
                             <img
                               src={srcAvatar(bookingData.Ride.Driver.User)}
                               alt="Avatar"
-                              className="img-fluid rounded-round cursor-pointer img-avatar"
+                              className="img-fluid rounded-round cursor-pointer avatar-img-sm"
                             />
                           </Col>
                           <Col xs={6} className="text-start ps-0">
