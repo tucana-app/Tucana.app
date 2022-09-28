@@ -41,13 +41,12 @@ export const getConstants = () => {
           if (currentConstants.USER_VERSION !== constants.USER_VERSION) {
             // console.log("Update needed");
             dispatch(updateUser(user.id));
-            localStorage.setItem("constants", JSON.stringify(constants));
           } else {
             // console.log("No update necessary");
           }
-        } else {
-          localStorage.setItem("constants", JSON.stringify(constants));
         }
+
+        localStorage.setItem("constants", JSON.stringify(constants));
 
         dispatch(getConstantsSuccess(constants));
       })

@@ -20,15 +20,19 @@ const Contact = () => {
     isLoggedIn,
     isLoadingSubmitContactForm,
   } = useSelector((state) => state.user);
-  const { labelStringField, labelRequiredField, arrayContactSubjects } =
-    useSelector((state) => state.global);
+  const { labelStringField, labelRequiredField } = useSelector(
+    (state) => state.global
+  );
+
+  const constants = JSON.parse(localStorage.getItem("constants"));
+  const contactSubjects = JSON.parse(constants.CONTACT_SUBJECTS);
 
   const [captcha, setCaptcha] = useState(false);
   const [captchaReady, setCaptchaReady] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
   var arraySubjects = [];
-  arrayContactSubjects.map((subject, index) => {
+  contactSubjects.map((subject, index) => {
     return arraySubjects.push(
       <option key={index} value={subject}>
         {subject}
@@ -45,7 +49,7 @@ const Contact = () => {
       .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
     subject: Yup.mixed()
-      .oneOf(arrayContactSubjects, labelRequiredField)
+      .oneOf(contactSubjects, labelRequiredField)
       .required(labelRequiredField),
     message: Yup.string()
       .min(20, t("translation:contact.min20characters"))
