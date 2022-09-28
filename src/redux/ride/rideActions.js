@@ -1241,3 +1241,51 @@ export const getDriverProfileFail = (error) => {
     payload: error,
   };
 };
+
+// Get the number of rides online
+
+export const getNbRidesOnlineRequested = () => {
+  return {
+    type: rideTypes.GET_NB_RIDES_ONLINE_REQUEST,
+  };
+};
+
+export const getNbRidesOnline = (username) => {
+  return (dispatch) => {
+    dispatch(getNbRidesOnlineRequested());
+
+    axios
+      .get(URL_API + "/ride/nb-rides-online")
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(getNbRidesOnlineSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getNbRidesOnlineFail(message));
+      });
+  };
+};
+
+export const getNbRidesOnlineSuccess = (data) => {
+  return {
+    type: rideTypes.GET_NB_RIDES_ONLINE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getNbRidesOnlineFail = (error) => {
+  return {
+    type: rideTypes.GET_NB_RIDES_ONLINE_FAIL,
+    payload: error,
+  };
+};

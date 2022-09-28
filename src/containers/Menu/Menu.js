@@ -182,10 +182,15 @@ const Menu = () => {
                   <Col xs={4} className="text-start px-0"></Col>
                   <Col xs={4} className="text-center px-0">
                     {currentUser.ExperienceUser.points}{" "}
-                    {t("translation:global.points")}
+                    <span className="text-lowercase">
+                      {t("translation:global.points")}
+                    </span>
                   </Col>
                   <Col xs={4} className="text-end px-0">
-                    {currentUser.ExperienceUser.ExperienceUserLevel.max}
+                    {currentUser.ExperienceUser.ExperienceUserLevel.max}{" "}
+                    <span className="text-lowercase">
+                      {t("translation:global.points")}
+                    </span>
                   </Col>
                 </Row>
               </Container>

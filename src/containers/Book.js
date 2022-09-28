@@ -31,6 +31,8 @@ const Book = () => {
     rideData.ride ? rideData.ride.price * seats * commission : null
   );
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleDecreaseSeats = () => {
     let s = seats <= 1 ? 1 : seats - 1;
 
@@ -62,6 +64,7 @@ const Book = () => {
         totalReceivedDriver
       )
     );
+    setIsSubmitted(true);
   };
 
   if (!isLoggedIn) {
@@ -162,6 +165,7 @@ const Book = () => {
                     variant="success"
                     size="lg"
                     className="px-5"
+                    disabled={isSubmitted}
                   >
                     <h1 className="mb-0">{t("translation:global.book")}</h1>
                   </Button>

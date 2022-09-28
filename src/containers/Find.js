@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
@@ -9,6 +9,7 @@ import {
   ArrowDownIcon,
   ArrowRightIcon,
   ChevronLeftIcon,
+  DotFillIcon,
 } from "@primer/octicons-react";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -18,7 +19,7 @@ import DisplayRating from "../components/DisplayRating";
 
 import { formatPrice, formatTimeSecond } from "../helpers";
 
-import { showSearchForm, displayNavBar } from "../redux";
+import { showSearchForm, displayNavBar, getNbRidesOnline } from "../redux";
 
 const Find = () => {
   const { t } = useTranslation();
@@ -30,6 +31,8 @@ const Find = () => {
     filteredRidesData,
     isFormSearchRideSubmitted,
     formSearchRide,
+    isloadingNbRidesOnline,
+    nbRidesOnlineData,
   } = useSelector((state) => state.ride);
 
   // const filteredRides = useRef([]);
@@ -59,6 +62,11 @@ const Find = () => {
   // useEffect(() => {
   // console.log(filteredRidesData);
   // }, []);
+
+  useEffect(() => {
+    dispatch(getNbRidesOnline());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -281,11 +289,32 @@ const Find = () => {
                 xl={4}
                 className="text-center mx-auto"
               >
-                <h1 className="title display-5 mb-0">
+                <h1 className="title mb-0">
                   {t("translation:find.catchPhrase")}
                 </h1>
               </Col>
             </Row>
+
+            <Row>
+              <Col className="text-center">
+                {isloadingNbRidesOnline ? (
+                  <LoadingSpinner />
+                ) : nbRidesOnlineData ? (
+                  <p className="mb-1">
+                    <span className="text-success fw-bold">
+                      <DotFillIcon
+                        size="24"
+                        className="mb-1"
+                        verticalAlign="middle"
+                      />
+                      {nbRidesOnlineData}
+                    </span>{" "}
+                    {t("translation:find.ridesOnline")}
+                  </p>
+                ) : null}
+              </Col>
+            </Row>
+
             <Row className="mb-2 mx-1 mx-sm-0">
               <Col
                 xs={12}
@@ -293,7 +322,7 @@ const Find = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-2 border-success shadow rounded-5 mt-2 mx-auto"
+                className="container-box mx-auto"
               >
                 <Container className="py-3 px-2">
                   <FormSearchRides />

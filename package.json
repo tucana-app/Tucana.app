@@ -1,6 +1,6 @@
 {
   "name": "tucana.app",
-  "version": "0.5.0",
+  "version": "1.0.3",
   "description": "Tucána | Share your rides in Costa Rica",
   "private": false,
   "dependencies": {
@@ -61,7 +61,8 @@
     "start": "react-scripts --max_old_space_size=4096 start",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "pushgit": "git push github master"
+    "pushgit": "git push github master",
+    "generate-build-version": "node generate-build-version"
   },
   "eslintConfig": {
     "extends": "react-app"

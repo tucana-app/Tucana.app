@@ -133,7 +133,8 @@
 		"catchPhrase": "Find your next trip across Costa Rica",
 		"change": "Change",
 		"distanceDestination": "from your arrival address",
-		"distanceOrigin": "from your starting address"
+		"distanceOrigin": "from your starting address",
+		"ridesOnline": "rides online"
 	},
 	"formBookRide": {
 		"numberPassengers": "Number of passenger"

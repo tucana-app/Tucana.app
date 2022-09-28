@@ -109,6 +109,10 @@ const initialState = {
   isloadingDriverProfile: false,
   driverProfileData: {},
   driverProfileError: "",
+
+  isloadingNbRidesOnline: false,
+  nbRidesOnlineData: 0,
+  nbRidesOnlineError: "",
 };
 
 function rideReducer(state = initialState, action) {
@@ -708,6 +712,29 @@ function rideReducer(state = initialState, action) {
         isloadingDriverProfile: false,
         driverProfileData: {},
         driverProfileError: action.payload,
+      };
+
+    // Get the number of rides online
+    case rideTypes.GET_NB_RIDES_ONLINE_REQUEST:
+      return {
+        ...state,
+        isloadingNbRidesOnline: true,
+      };
+
+    case rideTypes.GET_NB_RIDES_ONLINE_SUCCESS:
+      return {
+        ...state,
+        isloadingNbRidesOnline: false,
+        nbRidesOnlineData: action.payload,
+        nbRidesOnlineError: "",
+      };
+
+    case rideTypes.GET_NB_RIDES_ONLINE_FAIL:
+      return {
+        ...state,
+        isloadingNbRidesOnline: false,
+        nbRidesOnlineData: "-",
+        nbRidesOnlineError: action.payload,
       };
 
     default:
