@@ -21,6 +21,9 @@ const initialState = {
 
   labelStringField: "Only letters and numbers allowed",
   labelRequiredField: "This field is required",
+  priceMin: 2000,
+  priceMax: 50000,
+  commission: 1,
   initHeight: 0,
   constants: [],
 
@@ -47,28 +50,9 @@ const initialState = {
     return variant[status - 1];
   },
 
-  arrayContactSubjects: [
-    "Account",
-    "Booking",
-    "Ride",
-    "Investment",
-    "Donation",
-    "App feedback",
-    "Report someone",
-    "Work with us",
-    "Close my account",
-    "Other",
-  ],
-
-  priceMin: 2000,
-  priceMax: 50000,
-
   isLoadingCountries: false,
-  countries: [],
-
   isNavBar: true,
-
-  commission: 1,
+  countries: [],
 
   carMakers: [
     "Other",
