@@ -282,6 +282,7 @@ export const login = (formLogin) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
+  localStorage.removeItem("constants");
 
   dispatch({
     type: userTypes.LOGOUT,

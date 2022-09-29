@@ -44,15 +44,15 @@
 		"countryIssue": "Country of issue",
 		"disclaimer": "We do not disclose any information about your country of origin. This is solely for verification purposes",
 		"licenseNumber": "Driving license's number",
-		"marchamoExplain1": "You can find the year from the sticker usually on your windshield.",
-		"marchamoExplain2": "To assure the safety of the Tucána users on the road, we ask you for the year of insurance of your car. It also allows helps protect everyone in case of an accident during a ride. You are likely to get your application refused if your marchamo is not up-to-date.",
+		"marchamoExplain1": "You can find the year from the sticker usually on your vehicle's windshield.",
+		"marchamoExplain2": "To assure the safety of the Tucána users on the road, we ask to all the drivers for the year of insurance of their car. It also allows helps protect everyone in case of an accident during a ride. You are likely to get your application refused if your marchamo is not up-to-date.",
 		"message": "Build trust with your potential passengers by providing as many authentic proofs of identity.",
 		"nationalId": "National ID",
 		"notDriver": "You can apply to become a driver",
 		"passport": "Passport",
 		"pastApplications": "Past applications",
 		"request": "Request",
-		"riteveExplain1": "You can find the month and the year from the sticker usually on your windshield.",
+		"riteveExplain1": "You can find the month and the year from the sticker usually on your car's windshield.",
 		"riteveExplain2": "To make Tucána a safe platform to use, we require all drivers to input the month and year in which a valid car inspection certificate has been issued.",
 		"thankYou": "Thank you for applying. A moderator will review your submission",
 		"typeMaker": "Type the car maker",
@@ -110,7 +110,7 @@
 	},
 	"dataProtection": {
 		"about": "About my data",
-		"content": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
+		"content": "We collecat only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"title": "Data Protection"
 	},
 	"donate": {
@@ -146,9 +146,9 @@
 			"PUBLISH_RIDE": "Publish a ride",
 			"READ_MESSAGE": "Read a message",
 			"SEND_MESSAGE": "Send a message",
-			"SET_CAR_FUEL": "Set your car's fuel type",
+			"SET_CAR_FUEL": "Add your car's fuel type",
 			"SET_CAR_SEATS": "Set your car's seats",
-			"UPDATE_BIO": "Update your bio"
+			"UPDATE_BIO": "Update the bio"
 		},
 		"multiplier": "Points multiplier",
 		"reward": "Reward"

@@ -6,16 +6,16 @@
 		"notFound": "Page non trouvée"
 	},
 	"FAQ": {
-		"answer1": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le chauffeur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
-		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le chauffeur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
-		"answer3": "",
-		"answer4": "",
-		"answer5": "",
+		"answer1": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer3": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à votre compte ou à votre activité.",
+		"answer4": "Nous sommes tenus de conserver votre numéro d'identification et votre adresse électronique pendant les 3 mois qui suivent la fermeture de votre compte. Cela permet de garantir la sécurité de la communauté utilisant Tucána. Ensuite, ces enregistrements seront automatiquement supprimés après cette période.",
+		"answer5": "Tout est expliqué en détail directement sur la page : <1>Expérience</1>",
 		"question1": "Comment fonctionne le paiement?",
 		"question2": "Comment fonctionne le remboursement ?",
-		"question3": "",
-		"question4": "",
-		"question5": "",
+		"question3": "Quelles sont les données que vous collectez ?",
+		"question4": "Que se passe-t-il lorsque je ferme mon compte ?",
+		"question5": "Comment fonctionne le système d'expérience ?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -31,29 +31,29 @@
 		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
 	"account": {
-		"confirmLogOut": ""
+		"confirmLogOut": "Vous êtes sûr de vouloir vous déconnecter ?"
 	},
 	"applicationDriver": {
-		"title": ""
+		"title": "Formulaire de demande pour devenir conducteur"
 	},
 	"becomeDriver": {
 		"applicationForm": "Formulaire de demande",
 		"apply": "Postuler",
 		"colorPlaceholder": "Gris, noir, blanc, etc.",
-		"contactHelp": "",
+		"contactHelp": "Contacte-nous si tu as besoin d'aide à ce sujet.",
 		"countryIssue": "Pays d'émission",
 		"disclaimer": "Nous ne divulguons aucune information sur votre pays d'origine. Ceci est uniquement à des fins de vérification",
 		"licenseNumber": "Numéro du permis de conduire",
-		"marchamoExplain1": "",
-		"marchamoExplain2": "",
+		"marchamoExplain1": "Tu peux trouver l'année sur l'autocollant qui se trouve généralement sur le pare-brise de ton véhicule.",
+		"marchamoExplain2": "Pour assurer la sécurité des usagers de Tucána sur la route, nous demandons à tous les conducteurs l'année d'assurance de leur voiture. Cela permet également de protéger tout le monde en cas d'accident lors d'un trajet. Vous risquez de voir votre demande refusée si votre marchamo n'est pas à jour.",
 		"message": "Établissez un climat de confiance avec tes passagers potentiels en fournissant autant de preuves d'identité authentiques que possible.",
 		"nationalId": "Carte d'identité",
 		"notDriver": "Tu peux demander à devenir conducteur",
 		"passport": "Passeport",
 		"pastApplications": "Demandes antérieures",
 		"request": "Demande",
-		"riteveExplain1": "",
-		"riteveExplain2": "",
+		"riteveExplain1": "Tu peux trouver le mois et l'année sur l'autocollant qui se trouve généralement sur le pare-brise de ton véhicule",
+		"riteveExplain2": "Pour faire de Tucána une plateforme sûre, nous demandons à tous les conducteurs d'indiquer le mois et l'année de délivrance d'un certificat de contrôle technique valide.",
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
 		"typeMaker": "Tapez le nom du constructeur automobile",
 		"underReview": "En cours d'examen"
@@ -71,11 +71,11 @@
 		"subTitle": "Toutes les réservations que tu as faites"
 	},
 	"closeAccount": {
-		"closeAccount": "",
-		"confirmCloseAccount1": "",
-		"confirmCloseAccount2": "",
-		"title": "",
-		"typePassword": ""
+		"closeAccount": "Fermer mon compte",
+		"confirmCloseAccount1": "Si tu choisis de fermer ton compte, tu ne pourras plus y accéder et devrez en créer un autre avec un nouveau nom d'utilisateur et une nouvelle adresse électronique.",
+		"confirmCloseAccount2": "Es-tu sûr de vouloir fermer ton compte ?",
+		"title": "Fermer ton compte",
+		"typePassword": "Saisis ton mot de passe pour confirmer"
 	},
 	"comingSoon": {
 		"subTitle": "Cette page ou fonctionnalité sera bientôt disponible",
@@ -109,8 +109,8 @@
 		"title": "Créer un nouveau mot de passe"
 	},
 	"dataProtection": {
-		"about": "",
-		"content": "",
+		"about": "À propos de mes données",
+		"content": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à ton compte ou à ton activité.",
 		"title": "Protection des données"
 	},
 	"donate": {
@@ -121,37 +121,37 @@
 	},
 	"edit": {
 		"bio": {
-			"placeholder": "",
-			"title": "",
-			"update": ""
+			"placeholder": "Partage quelque chose à propos de toi",
+			"title": "Modifier ta biographie",
+			"update": "Mettre à jour ta bio"
 		},
 		"password": {
-			"forgotPassword": "",
-			"oldPassword": "",
-			"title": ""
+			"forgotPassword": "Si tu as oublié ton mot de passe, déconnecte-vous d'abord, puis clique sur le lien de réinitialisation du mot de passe dans la page de connexion.",
+			"oldPassword": "Mot de passe actuel",
+			"title": "Mettre à jour ton mot de passe"
 		}
 	},
 	"experience": {
-		"action": "",
-		"content": "",
-		"filtersAvailable": "",
-		"grid": "",
+		"action": "Action",
+		"content": "Gagne de l'expérience en effectuant l'une des tâches suivantes",
+		"filtersAvailable": "Filtres disponibles",
+		"grid": "Grille de points",
 		"gridLabels": {
-			"ADD_BIO": "",
-			"ADD_REVIEW": "",
-			"ANSWER_BOOKING": "",
-			"BECOME_DRIVER": "",
-			"BOOK_RIDE": "",
-			"CONFIRM_RIDE": "",
-			"PUBLISH_RIDE": "",
-			"READ_MESSAGE": "",
-			"SEND_MESSAGE": "",
-			"SET_CAR_FUEL": "",
-			"SET_CAR_SEATS": "",
-			"UPDATE_BIO": ""
+			"ADD_BIO": "Ajouter une biographie",
+			"ADD_REVIEW": "Ajouter un avis",
+			"ANSWER_BOOKING": "Répondre à une réservation",
+			"BECOME_DRIVER": "Devenir conducteur",
+			"BOOK_RIDE": "Réserver un trajet",
+			"CONFIRM_RIDE": "Confirmer un trajet",
+			"PUBLISH_RIDE": "Publier un trajet",
+			"READ_MESSAGE": "Lire un message",
+			"SEND_MESSAGE": "Envoyer un message",
+			"SET_CAR_FUEL": "Ajouter le type de carburant de votre voiture",
+			"SET_CAR_SEATS": "Ajoutez les sièges de votre voiture",
+			"UPDATE_BIO": "Mettre à jour la biographie"
 		},
-		"multiplier": "",
-		"reward": ""
+		"multiplier": "Multiplicateur de points",
+		"reward": "Récompense"
 	},
 	"find": {
 		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",
@@ -172,15 +172,15 @@
 		"accepted": "Accepté",
 		"acceptingBooking": "Tu as accepté la réservation",
 		"alreadyBooking": "Tu as déjà une ou plusieurs réservations pour ce trajet.",
-		"application": "",
-		"becomeDriver": "Devenir chauffeur",
+		"application": "Demande",
+		"becomeDriver": "Deviens conducteur",
 		"bio": "Biographie",
 		"book": "Réserver",
 		"bookRide": "Réserver un trajet",
 		"bookThisRide": "Réservez ce trajet",
 		"booking": "Réservation",
 		"bookingSubmitted": "Votre réservation a été soumise au conducteur",
-		"bookingSuccess": "Votre réservation a été envoyée au chauffeur",
+		"bookingSuccess": "Votre réservation a été envoyée au conducteur",
 		"bookings": "Réservations",
 		"by": "Par",
 		"cancel": "Annuler",
@@ -221,10 +221,10 @@
 			"error": "erreur",
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, veuillez nous contacter.",
-			"failUpdateBio": "",
-			"failUpdatePassword": "",
-			"labelRequiredField": "",
-			"labelStringField": "",
+			"failUpdateBio": "Nous n'avons pas pu mettre à jour votre biographie pour le moment.",
+			"failUpdatePassword": "Nous n'avons pas pu mettre à jour votre mot de passe pour le moment.",
+			"labelRequiredField": "Ce champ est obligatoire",
+			"labelStringField": "Seuls les lettres et les chiffres sont autorisés",
 			"max20characters": "Max. 20 caractères",
 			"min10characters": "Min. 10 caractères",
 			"min4characters": "Min. 4 caractères",
@@ -240,17 +240,17 @@
 			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
 			"validYear": "Entrez une année valide"
 		},
-		"experience": "",
+		"experience": "Expérience",
 		"faq": "FAQ",
 		"finish": "Terminer",
 		"firstName": "Prénom",
-		"from": "à partir de",
+		"from": "Depuis",
 		"fuelType": "Type de carburant",
-		"fullName": "",
+		"fullName": "Nom complet",
 		"fullname": "Nom et prénom",
 		"getVerified": "Obtenir une vérification",
 		"given": "Laissés",
-		"goBack": "Retour en arrière",
+		"goBack": "Retour",
 		"goBackApp": "Vous pouvez maintenant retourner dans l'application",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
@@ -546,7 +546,7 @@
 		"title": "Trajets proposés"
 	},
 	"ridesToConfirm": {
-		"goBack": "Retournez à tes trajets.",
+		"goBack": "Retourne à tes trajets",
 		"noRides": "Aucun trajet à confirmer",
 		"title": "Trajets à confirmer"
 	},

@@ -136,7 +136,7 @@ const Find = () => {
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
                         onClick={() => dispatch(displayNavBar(false))}
-                        className="cursor-pointer"
+                        className="cursor-pointer px-0"
                       >
                         <Container>
                           <Row>
@@ -218,7 +218,7 @@ const Find = () => {
                             </Col>
                           </Row>
                           <Row className="align-items-center">
-                            <Col xs={2} className="px-0 mx-0">
+                            <Col xs={2} className="">
                               <p className="text-end mb-0">
                                 <img
                                   src={srcAvatar(ride.rideDetails.Driver.User)}
