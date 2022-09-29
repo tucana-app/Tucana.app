@@ -110,7 +110,7 @@
 	},
 	"dataProtection": {
 		"about": "About my data",
-		"content": "We collecat only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
+		"content": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"title": "Data Protection"
 	},
 	"donate": {
@@ -156,6 +156,8 @@
 	"find": {
 		"catchPhrase": "Find your next trip across Costa Rica",
 		"change": "Change",
+		"dayAfter": "1 day after",
+		"dayBefore": "1 day before",
 		"distanceDestination": "from your arrival address",
 		"distanceOrigin": "from your starting address",
 		"ridesOnline": "rides online"
@@ -413,7 +415,7 @@
 		"terms": "Terms & Conditions"
 	},
 	"legalNotice": {
-		"title": "Legal Notice"
+		"title": "Legal notice"
 	},
 	"logIn": {
 		"bioPlaceholder": "Ex: I travel a lot to San José & I love dogs",

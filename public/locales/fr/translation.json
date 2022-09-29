@@ -154,8 +154,10 @@
 		"reward": "Récompense"
 	},
 	"find": {
-		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",
+		"catchPhrase": "Trouve ton prochain voyage au Costa Rica",
 		"change": "Changer",
+		"dayAfter": "Lendemain",
+		"dayBefore": "La veille",
 		"distanceDestination": "à partir de votre adresse d'arrivée",
 		"distanceOrigin": "à partir de votre adresse de départ",
 		"ridesOnline": "trajets en ligne"
@@ -436,7 +438,7 @@
 		"account": "Compte",
 		"donate": "Soutenez l'application",
 		"feedback": "Donne-nous ton avis",
-		"legal": "juridique",
+		"legal": "Légal",
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"ratings": "Avis",

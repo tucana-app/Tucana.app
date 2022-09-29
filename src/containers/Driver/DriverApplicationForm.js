@@ -236,8 +236,8 @@ const DriverApplicationForm = () => {
   };
 
   const handleChangeNumberPlate = (e) => {
-    setNumberPlate(e.target.value);
-    dispatch(setApplicationNumberPlate(e.target.value));
+    setNumberPlate(e.target.value.toUpperCase());
+    dispatch(setApplicationNumberPlate(e.target.value.toUpperCase()));
   };
 
   const handleChangeCarYear = (e) => {

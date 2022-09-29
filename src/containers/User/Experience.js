@@ -22,8 +22,9 @@ function Experience() {
   const dispatch = useDispatch();
 
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { constants, isLoadingGetLevels, getLevelsData, srcAvatar } =
-    useSelector((state) => state.global);
+  const { constants, isLoadingGetLevels, getLevelsData } = useSelector(
+    (state) => state.global
+  );
 
   const pointsGrid = JSON.parse(constants.EXPERIENCE_POINTS_GRID);
 
@@ -193,7 +194,7 @@ function Experience() {
                         </span>
                       </h5>
                     </Accordion.Header>
-                    <Accordion.Body className="my-3">
+                    <Accordion.Body className="mt-3">
                       <Container>
                         <Row>
                           <Col xs={4} className="text-start px-0">
@@ -262,14 +263,14 @@ function Experience() {
                           </Col>
                         </Row>
 
-                        <Row className="mb-3">
+                        <Row className="mt-4">
                           <Col className="text-center">
                             {t("translation:experience.multiplier")}:{" "}
                             <strong>x{level.rate}</strong>
                           </Col>
                         </Row>
 
-                        <Row>
+                        {/* <Row>
                           <Col xs={12} className="text-center">
                             <p className="mb-2">
                               {t("translation:experience.filtersAvailable")}
@@ -301,7 +302,7 @@ function Experience() {
                               style={{ filter: "grayscale(1)" }}
                             />
                           </Col>
-                        </Row>
+                        </Row> */}
                       </Container>
                     </Accordion.Body>
                   </Accordion.Item>

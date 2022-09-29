@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import {
@@ -19,7 +19,17 @@ import DisplayRating from "../components/DisplayRating";
 
 import { formatPrice, formatTimeSecond } from "../helpers";
 
-import { showSearchForm, displayNavBar, getNbRidesOnline } from "../redux";
+import {
+  showSearchForm,
+  displayNavBar,
+  getNbRidesOnline,
+  setSearchDate,
+  getFilteredRides,
+} from "../redux";
+import {
+  ArrowLeftCircleFill,
+  ArrowRightCircleFill,
+} from "react-bootstrap-icons";
 
 const Find = () => {
   const { t } = useTranslation();
@@ -33,6 +43,40 @@ const Find = () => {
     formSearchRide,
     nbRidesOnlineData,
   } = useSelector((state) => state.ride);
+
+  const handleDayBefore = () => {
+    let dayBefore = new Date(
+      formSearchRide.date.getFullYear(),
+      formSearchRide.date.getMonth(),
+      formSearchRide.date.getDate() - 1
+    );
+    dispatch(setSearchDate(dayBefore));
+    dispatch(
+      getFilteredRides(
+        formSearchRide.origin,
+        formSearchRide.destination,
+        dayBefore,
+        formSearchRide.seats
+      )
+    );
+  };
+
+  const handleDayAfter = () => {
+    let dayAfter = new Date(
+      formSearchRide.date.getFullYear(),
+      formSearchRide.date.getMonth(),
+      formSearchRide.date.getDate() + 1
+    );
+    dispatch(setSearchDate(dayAfter));
+    dispatch(
+      getFilteredRides(
+        formSearchRide.origin,
+        formSearchRide.destination,
+        dayAfter,
+        formSearchRide.seats
+      )
+    );
+  };
 
   // const filteredRides = useRef([]);
 
@@ -73,17 +117,10 @@ const Find = () => {
 
   return (
     <>
-      <Container className="py-5">
+      <Container className="mb-5">
         {isFormSearchRideSubmitted ? (
           <>
-            <Row>
-              <Col xs={12}>
-                <h1 className="title display-5 text-center">
-                  {t("translation:global.searchResults")}
-                </h1>
-              </Col>
-            </Row>
-            <Row className="sticky-top mb-3 mx-1 mx-sm-0">
+            <Row className="bg-white sticky-top my-2 mx-1 mx-sm-0">
               <Col
                 xs={12}
                 sm={10}
@@ -115,6 +152,42 @@ const Find = () => {
               </Col>
             </Row>
 
+            <Row className="mb-3 mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="mx-auto px-0"
+              >
+                <Container className="p-0">
+                  <Row>
+                    <Col className="text-start small">
+                      <Button
+                        onClick={handleDayBefore}
+                        variant="outline-dark"
+                        size="sm"
+                      >
+                        <ArrowLeftCircleFill className="mb-1 me-2" />
+                        {t("translation:find.dayBefore")}
+                      </Button>
+                    </Col>
+                    <Col xs={6} className="text-end small">
+                      <Button
+                        onClick={handleDayAfter}
+                        variant="outline-dark"
+                        size="sm"
+                      >
+                        {t("translation:find.dayAfter")}
+                        <ArrowRightCircleFill className="mb-1 ms-2" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
             {isloadingFilteredRides ? (
               <Row>
                 <Col className="text-center">
@@ -136,7 +209,7 @@ const Find = () => {
                       <LinkContainer
                         to={`/ride/${ride.rideDetails.id}`}
                         onClick={() => dispatch(displayNavBar(false))}
-                        className="cursor-pointer px-0"
+                        className="cursor-pointer px-2"
                       >
                         <Container>
                           <Row>
@@ -279,15 +352,8 @@ const Find = () => {
           </>
         ) : (
           <>
-            <Row className="justify-content-center mb-4">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="text-center mx-auto"
-              >
+            <Row className="justify-content-center mt-5 pt-5 mb-4">
+              <Col className="text-center ">
                 <h1 className="title mb-0">
                   {t("translation:find.catchPhrase")}
                 </h1>

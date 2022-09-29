@@ -156,6 +156,8 @@
 	"find": {
 		"catchPhrase": "Encuentre su próximo viaje por Costa Rica",
 		"change": "Cambiar",
+		"dayAfter": "El día siguiente",
+		"dayBefore": "El día anterior",
 		"distanceDestination": "de su dirección de llegada",
 		"distanceOrigin": "desde su dirección inicial",
 		"ridesOnline": "rides en linea"

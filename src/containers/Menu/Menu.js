@@ -354,7 +354,7 @@ const Menu = () => {
               <ListGroup.Item className="border-0">
                 <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                   <div className="mb-0">
-                    {i18n.language === "es" ? (
+                    {i18n.language === "es" || i18n.language === "es-CR" ? (
                       <>
                         {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
@@ -363,7 +363,7 @@ const Menu = () => {
                           svg
                         />
                       </>
-                    ) : i18n.language === "fr" ? (
+                    ) : i18n.language === "fr" || i18n.language === "fr-FR" ? (
                       <>
                         {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
@@ -372,7 +372,7 @@ const Menu = () => {
                           svg
                         />
                       </>
-                    ) : (
+                    ) : i18n.language === "en" || i18n.language === "en-US" ? (
                       <>
                         {t("translation:global.currentLanguage")}
                         <ReactCountryFlag
@@ -380,6 +380,12 @@ const Menu = () => {
                           className="ms-2 mb-1"
                           svg
                         />
+                      </>
+                    ) : (
+                      <>
+                        <p className="mb-0">
+                          {t("translation:global.language")}
+                        </p>
                       </>
                     )}
                   </div>

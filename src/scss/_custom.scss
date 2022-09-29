@@ -6,20 +6,12 @@ html {
 
 body {
   background-color: $light;
-
   font-family: "Jost", sans-serif;
   font-size: large;
+  // font-weight: 300;
   padding-bottom: $navbarHeight;
   color: $dark;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-// Fonts
-
-.title {
-  // @extend .text-success;
+  font-kerning: none;
 }
 
 .navbar {
@@ -173,6 +165,7 @@ body {
   @extend .shadow-sm;
   @extend .rounded-5;
   @extend .mx-auto;
+  @extend .px-1;
   @extend .mb-2;
 }
 
