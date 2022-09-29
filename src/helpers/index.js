@@ -169,7 +169,7 @@ export const formatTimeSecond = (seconds) => {
 };
 
 export const isOnlyLetters = (str) => {
-  return str.match("^[A-Za-z0-9]+$");
+  return str.match("^[A-ZÀ-ÿa-z0-9]+$");
 };
 
 export const getPercent = (user) => {

@@ -80,7 +80,7 @@ function Experience() {
                     animated
                     variant="success"
                     now={getPercent(currentUser)}
-                    label={getPercent(currentUser)}
+                    label={`${getPercent(currentUser)}%`}
                     className="rounded-pill"
                     style={{ height: "1rem" }}
                   />
