@@ -171,3 +171,13 @@ export const formatTimeSecond = (seconds) => {
 export const isOnlyLetters = (str) => {
   return str.match("^[A-Za-z0-9]+$");
 };
+
+export const getPercent = (user) => {
+  const range =
+    user.ExperienceUser.ExperienceUserLevel.max -
+    user.ExperienceUser.ExperienceUserLevel.min;
+  const diff =
+    user.ExperienceUser.points - user.ExperienceUser.ExperienceUserLevel.min;
+
+  return ((diff * 100) / range).toFixed(0);
+};

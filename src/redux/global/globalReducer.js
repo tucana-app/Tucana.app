@@ -26,8 +26,11 @@ const initialState = {
   commission: 1,
   initHeight: 0,
   constants: [],
-
   feedback: {},
+  isNavBar: true,
+
+  isLoadingCountries: false,
+  countries: [],
 
   // Booking status
   // Status 1: Sent
@@ -49,10 +52,6 @@ const initialState = {
     const variant = ["warning", "info", "success", "danger"];
     return variant[status - 1];
   },
-
-  isLoadingCountries: false,
-  isNavBar: true,
-  countries: [],
 
   carMakers: [
     "Other",
@@ -159,6 +158,10 @@ const initialState = {
         return transparent;
     }
   },
+
+  isLoadingGetLevels: false,
+  getLevelsData: [],
+  getLevelsError: "",
 };
 
 function globalReducer(state = initialState, action) {
@@ -166,7 +169,8 @@ function globalReducer(state = initialState, action) {
     case globalTypes.SET_GLOBAL_STATE:
       return {
         ...state,
-        initHeight: action.payload,
+        initHeight: action.payload.height,
+        constants: action.payload.constants,
       };
 
     // Get constants
@@ -216,6 +220,30 @@ function globalReducer(state = initialState, action) {
       return {
         ...state,
         isNavBar: action.payload,
+      };
+
+    // Get all the levels
+
+    case globalTypes.GET_LEVELS_REQUEST:
+      return {
+        ...state,
+        isLoadingGetLevels: true,
+      };
+
+    case globalTypes.GET_LEVELS_SUCCESS:
+      return {
+        ...state,
+        isLoadingGetLevels: false,
+        getLevelsData: action.payload,
+        getLevelsError: "",
+      };
+
+    case globalTypes.GET_LEVELS_FAIL:
+      return {
+        ...state,
+        isLoadingGetLevels: false,
+        getLevelsData: [],
+        getLevelsError: action.payload,
       };
 
     default:

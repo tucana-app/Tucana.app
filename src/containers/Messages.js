@@ -122,7 +122,7 @@ function Messages() {
                               <img
                                 src={srcAvatar(getSenderAvatar(conversation))}
                                 alt="Avatar"
-                                className="img-fluid rounded-round cursor-pointer avatar-img-sm me-2"
+                                className="img-fluid cursor-pointer avatar-img-sm me-2"
                               />
                               <h2 className="mb-0">
                                 {getSenderUsername(conversation)}

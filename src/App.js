@@ -12,6 +12,7 @@ import LogIn from "./containers/User/LogIn";
 import ForgotPassword from "./containers/User/ForgotPassword";
 import CreateNewPassword from "./containers/User/CreateNewPassword";
 import SignUp from "./containers/User/SignUp";
+import Experience from "./containers/User/Experience";
 import SignUpSuccess from "./containers/User/SignUpSuccess";
 import SignUpConfirm from "./containers/User/SignUpConfirm";
 import CloseAccount from "./containers/User/CloseAccount";
@@ -192,6 +193,7 @@ function App() {
                 component={SignUpSuccess}
               />
               <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
+              <Route exact path="/experience" component={Experience} />
               <Route exact path="/close-account" component={CloseAccount} />
 
               <Route exact path="/publish" component={Publish} />

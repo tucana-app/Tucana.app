@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Accordion, Button } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import GoBack from "../../components/GoBack";
@@ -56,6 +56,21 @@ const FAQ = () => {
                 </Accordion.Header>
                 <Accordion.Body className="py-2">
                   <small>{t("translation:FAQ.answer4")}</small>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="5">
+                <Accordion.Header>
+                  {t("translation:FAQ.question5")}
+                </Accordion.Header>
+                <Accordion.Body className="py-2">
+                  <small>
+                    <Trans i18nKey={"translation:FAQ.answer5"}>
+                      Everything is explained in details directly on the page:
+                      <Link to="/experience" className="cursor-pointer">
+                        Experience
+                      </Link>
+                    </Trans>
+                  </small>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>

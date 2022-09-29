@@ -18,10 +18,12 @@ import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
 
 import { getNotifications } from "../../redux";
+import { getPercent } from "../../helpers";
 
 // Importing assets
 import logo from "../../assets/images/logo-black.png";
 import SocialIcons from "../../components/SocialIcons";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Menu = () => {
   const { t, i18n } = useTranslation();
@@ -62,17 +64,6 @@ const Menu = () => {
 
   var ratingsToDo =
     getRatingsToDoDriverData.length + getRatingsToDoPassengerData.length;
-
-  const getPercent = () => {
-    const range =
-      currentUser.ExperienceUser.ExperienceUserLevel.max -
-      currentUser.ExperienceUser.ExperienceUserLevel.min;
-    const diff =
-      currentUser.ExperienceUser.points -
-      currentUser.ExperienceUser.ExperienceUserLevel.min;
-
-    return ((diff * 100) / range).toFixed(0);
-  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -116,9 +107,7 @@ const Menu = () => {
                         <img
                           src={srcAvatar(currentUser)}
                           alt="Placeholder"
-                          className={
-                            "img-fluid rounded-round cursor-pointer avatar-img-sm"
-                          }
+                          className={"img-fluid cursor-pointer avatar-img-sm"}
                         />
                         <div className="avatar-filter">
                           <img
@@ -126,7 +115,7 @@ const Menu = () => {
                               currentUser.ExperienceUser.currentFilter
                             )}
                             alt="Placeholder"
-                            className={"img-fluid cursor-pointer "}
+                            className={"img-fluid cursor-pointer"}
                           />
                         </div>
                       </div>
@@ -134,7 +123,7 @@ const Menu = () => {
                       {/* <img
                         src={srcAvatar(currentUser)}
                         alt="Avatar"
-                        className="img-fluid rounded-round cursor-pointer avatar-img-sm me-3"
+                        className="img-fluid cursor-pointer avatar-img-sm me-3"
                       /> */}
                       <ChevronRightIcon size={24} verticalAlign="middle" />
                     </div>
@@ -146,56 +135,65 @@ const Menu = () => {
             </Col>
           </Row>
 
-          <Row className="mb-2">
-            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
-              <Container>
-                <Row className="small text-secondary">
-                  <Col xs={4} className="text-start px-0">
-                    <p className="mb-0">
-                      {t("translation:global.level")}{" "}
-                      <strong>
-                        {currentUser.ExperienceUser.ExperienceUserLevel.id}
-                      </strong>
-                    </p>
-                  </Col>
-                  <Col xs={4}></Col>
-                  <Col xs={4} className="text-end px-0">
-                    <p className="mb-0">
-                      {t("translation:global.level")}{" "}
-                      <strong>
-                        {currentUser.ExperienceUser.ExperienceUserLevel.id + 1}
-                      </strong>
-                    </p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="px-0">
-                    <ProgressBar
-                      animated
-                      variant="success"
-                      now={getPercent()}
-                      className="rounded-pill "
-                    />
-                  </Col>
-                </Row>
-                <Row className="small text-secondary">
-                  <Col xs={4} className="text-start px-0"></Col>
-                  <Col xs={4} className="text-center px-0">
-                    {currentUser.ExperienceUser.points}{" "}
-                    <span className="text-lowercase">
-                      {t("translation:global.points")}
-                    </span>
-                  </Col>
-                  <Col xs={4} className="text-end px-0">
-                    {currentUser.ExperienceUser.ExperienceUserLevel.max}{" "}
-                    <span className="text-lowercase">
-                      {t("translation:global.points")}
-                    </span>
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-          </Row>
+          <LinkContainer to="/experience" className="cursor-pointer">
+            <Row className="mb-2">
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="px-0 mx-auto"
+              >
+                <Container>
+                  <Row className="small text-secondary">
+                    <Col xs={4} className="text-start px-0">
+                      <p className="mb-0">
+                        {t("translation:global.level")}{" "}
+                        <strong>
+                          {currentUser.ExperienceUser.ExperienceUserLevel.id}
+                        </strong>
+                      </p>
+                    </Col>
+                    <Col xs={4}></Col>
+                    <Col xs={4} className="text-end px-0">
+                      <p className="mb-0">
+                        {t("translation:global.level")}{" "}
+                        <strong>
+                          {currentUser.ExperienceUser.ExperienceUserLevel.id +
+                            1}
+                        </strong>
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="px-0">
+                      <ProgressBar
+                        animated
+                        variant="success"
+                        now={getPercent(currentUser)}
+                        className="rounded-pill "
+                      />
+                    </Col>
+                  </Row>
+                  <Row className="small text-secondary">
+                    <Col xs={4} className="text-start px-0">
+                      {currentUser.ExperienceUser.ExperienceUserLevel.min}
+                    </Col>
+                    <Col xs={4} className="text-center px-0">
+                      {currentUser.ExperienceUser.points}{" "}
+                      <span className="text-lowercase">
+                        {t("translation:global.points")}
+                      </span>
+                    </Col>
+                    <Col xs={4} className="text-end px-0">
+                      {currentUser.ExperienceUser.ExperienceUserLevel.max}
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+          </LinkContainer>
         </>
       ) : null}
 

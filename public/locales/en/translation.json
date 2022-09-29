@@ -10,10 +10,12 @@
 		"answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
 		"answer3": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"answer4": "We are required to keep your ID number and email address for the next 3 months after closing your account. It ensures the safety of the community using Tucána. Then these records will be automatically deleted past that time.",
+		"answer5": "Everything is explained in details directly on the page: <1>Experience</1>",
 		"question1": "How the payment works?",
 		"question2": "How does refund works?",
 		"question3": "What data are you collecting?",
 		"question4": "What happens when I close my account?",
+		"question5": "How does the experience system works?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -128,6 +130,28 @@
 			"oldPassword": "Current password",
 			"title": "Update your password"
 		}
+	},
+	"experience": {
+		"action": "Action",
+		"content": "Gain experience by doing any of theses",
+		"filtersAvailable": "Filters available",
+		"grid": "Points grid",
+		"gridLabels": {
+			"ADD_BIO": "Add your bio",
+			"ADD_REVIEW": "Add a review",
+			"ANSWER_BOOKING": "Answer a booking",
+			"BECOME_DRIVER": "Become a driver",
+			"BOOK_RIDE": "Book a ride",
+			"CONFIRM_RIDE": "Confirm a ride",
+			"PUBLISH_RIDE": "Publish a ride",
+			"READ_MESSAGE": "Read a message",
+			"SEND_MESSAGE": "Send a message",
+			"SET_CAR_FUEL": "Set your car's fuel type",
+			"SET_CAR_SEATS": "Set your car's seats",
+			"UPDATE_BIO": "Update your bio"
+		},
+		"multiplier": "Points multiplier",
+		"reward": "Reward"
 	},
 	"find": {
 		"catchPhrase": "Find your next trip across Costa Rica",

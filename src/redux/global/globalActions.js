@@ -6,10 +6,12 @@ const URL_API = process.env.REACT_APP_URL_API;
 
 // Set global state
 
-export const setGlobalState = (data) => {
+export const setGlobalState = (height) => {
+  const constants = JSON.parse(localStorage.getItem("constants"));
+
   return {
     type: globalTypes.SET_GLOBAL_STATE,
-    payload: data,
+    payload: { height, constants },
   };
 };
 
@@ -114,9 +116,49 @@ export const getCountriesSuccess = (data) => {
   };
 };
 
+// Display the navigation bar conditionnally
+
 export const displayNavBar = (isDisplay) => {
   return {
     type: globalTypes.DISPLAY_NAV_BAR,
     payload: isDisplay,
+  };
+};
+
+// Get levels
+
+export const getLevelsRequested = () => {
+  return {
+    type: globalTypes.GET_LEVELS_REQUEST,
+  };
+};
+
+export const getLevels = (userId) => {
+  return (dispatch) => {
+    dispatch(getLevelsRequested());
+
+    axios
+      .get(URL_API + "/global/levels")
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getLevelsSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error)
+      });
+  };
+};
+
+export const getLevelsSuccess = (levels) => {
+  return {
+    type: globalTypes.GET_LEVELS_SUCCESS,
+    payload: levels,
+  };
+};
+
+export const getLevelsError = (error) => {
+  return {
+    type: globalTypes.GET_LEVELS_SUCCESS,
+    payload: error,
   };
 };

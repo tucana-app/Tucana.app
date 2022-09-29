@@ -10,10 +10,12 @@
 		"answer2": "Por ahora, la plataforma no gestiona el reembolso porque no gestionamos el pago. Puedes ponerte en contacto con la gente directamente con la función de mensajería de la aplicación.",
 		"answer3": "Sólo recogemos la información legalmente necesaria para garantizar el buen funcionamiento de nuestro servicio. No compartimos/vendemos ninguna información privada relacionada con su cuenta o su actividad.",
 		"answer4": "Estamos obligados a conservar tu número de identificación y tu dirección de correo electrónico durante los 3 meses siguientes al cierre de tu cuenta. Esto garantiza la seguridad de la comunidad que utiliza Tucána. Después, estos registros se borrarán automáticamente pasado ese tiempo.",
+		"answer5": "Todo está explicado en detalle directamente en la página: <1>Experiencia</1>",
 		"question1": "Cómo funciona el pago",
 		"question2": "¿Cómo funciona el reembolso?",
 		"question3": "¿Qué datos está recogiendo?",
 		"question4": "¿Qué ocurre cuando cierro mi cuenta?",
+		"question5": "¿Cómo funciona el sistema de experiencia?",
 		"title": "Preguntas frecuentes"
 	},
 	"FormDriverResponseBooking": {
@@ -128,6 +130,28 @@
 			"oldPassword": "Contraseña actual",
 			"title": "Actualiza tu contraseña"
 		}
+	},
+	"experience": {
+		"action": "Acción",
+		"content": "Gana experiencia realizando cualquiera de estas",
+		"filtersAvailable": "Filtros disponibles",
+		"grid": "Rejilla de puntos",
+		"gridLabels": {
+			"ADD_BIO": "Añade tu biografía",
+			"ADD_REVIEW": "Añade una calificación",
+			"ANSWER_BOOKING": "Responder a una reserva",
+			"BECOME_DRIVER": "Conviértete en conductor",
+			"BOOK_RIDE": "Reserva un ride",
+			"CONFIRM_RIDE": "Confirma un ride",
+			"PUBLISH_RIDE": "Publica un ride",
+			"READ_MESSAGE": "Lee un mensaje",
+			"SEND_MESSAGE": "Envía un mensaje",
+			"SET_CAR_FUEL": "Establece el tipo de combustible de tu carro",
+			"SET_CAR_SEATS": "Ajuste los asientos de tu carro",
+			"UPDATE_BIO": "Actualice tu biografía"
+		},
+		"multiplier": "Multiplicador de puntos",
+		"reward": "Recompensa"
 	},
 	"find": {
 		"catchPhrase": "Encuentre su próximo viaje por Costa Rica",

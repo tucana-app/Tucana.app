@@ -247,9 +247,7 @@ const Login = () => {
                             <img
                               src={crocodile}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("crocodile")}
                             />
                             {avatar === "crocodile" ? (
@@ -257,7 +255,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() =>
                                     handleChangeAvatar("crocodile")
                                   }
@@ -270,9 +268,7 @@ const Login = () => {
                             <img
                               src={dolphin}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("dolphin")}
                             />
                             {avatar === "dolphin" ? (
@@ -280,7 +276,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("dolphin")}
                                 />
                               </div>
@@ -291,9 +287,7 @@ const Login = () => {
                             <img
                               src={iguana}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("iguana")}
                             />
                             {avatar === "iguana" ? (
@@ -301,7 +295,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("iguana")}
                                 />
                               </div>
@@ -312,9 +306,7 @@ const Login = () => {
                             <img
                               src={jaguar}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("jaguar")}
                             />
                             {avatar === "jaguar" ? (
@@ -322,7 +314,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("jaguar")}
                                 />
                               </div>
@@ -333,9 +325,7 @@ const Login = () => {
                             <img
                               src={macaw}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("macaw")}
                             />
                             {avatar === "macaw" ? (
@@ -343,7 +333,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("macaw")}
                                 />
                               </div>
@@ -358,9 +348,7 @@ const Login = () => {
                             <img
                               src={monkey}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("monkey")}
                             />
                             {avatar === "monkey" ? (
@@ -368,7 +356,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("monkey")}
                                 />
                               </div>
@@ -379,9 +367,7 @@ const Login = () => {
                             <img
                               src={sloth}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("sloth")}
                             />
                             {avatar === "sloth" ? (
@@ -389,7 +375,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("sloth")}
                                 />
                               </div>
@@ -400,9 +386,7 @@ const Login = () => {
                             <img
                               src={toucan}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("toucan")}
                             />
                             {avatar === "toucan" ? (
@@ -410,7 +394,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("toucan")}
                                 />
                               </div>
@@ -421,9 +405,7 @@ const Login = () => {
                             <img
                               src={turtle}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("turtle")}
                             />
                             {avatar === "turtle" ? (
@@ -431,7 +413,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("turtle")}
                                 />
                               </div>
@@ -442,9 +424,7 @@ const Login = () => {
                             <img
                               src={whale}
                               alt="Placeholder"
-                              className={
-                                "img-fluid rounded-round cursor-pointer avatar-img"
-                              }
+                              className={"img-fluid cursor-pointer avatar-img"}
                               onClick={() => handleChangeAvatar("whale")}
                             />
                             {avatar === "whale" ? (
@@ -452,7 +432,7 @@ const Login = () => {
                                 <img
                                   src={filter}
                                   alt="Placeholder"
-                                  className={"img-fluid cursor-pointer "}
+                                  className={"img-fluid cursor-pointer"}
                                   onClick={() => handleChangeAvatar("whale")}
                                 />
                               </div>

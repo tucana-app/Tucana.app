@@ -10,10 +10,12 @@
 		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le chauffeur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
 		"answer3": "",
 		"answer4": "",
+		"answer5": "",
 		"question1": "Comment fonctionne le paiement?",
 		"question2": "Comment fonctionne le remboursement ?",
 		"question3": "",
 		"question4": "",
+		"question5": "",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -128,6 +130,28 @@
 			"oldPassword": "",
 			"title": ""
 		}
+	},
+	"experience": {
+		"action": "",
+		"content": "",
+		"filtersAvailable": "",
+		"grid": "",
+		"gridLabels": {
+			"ADD_BIO": "",
+			"ADD_REVIEW": "",
+			"ANSWER_BOOKING": "",
+			"BECOME_DRIVER": "",
+			"BOOK_RIDE": "",
+			"CONFIRM_RIDE": "",
+			"PUBLISH_RIDE": "",
+			"READ_MESSAGE": "",
+			"SEND_MESSAGE": "",
+			"SET_CAR_FUEL": "",
+			"SET_CAR_SEATS": "",
+			"UPDATE_BIO": ""
+		},
+		"multiplier": "",
+		"reward": ""
 	},
 	"find": {
 		"catchPhrase": "Trouvez votre prochain voyage à travers le Costa Rica",

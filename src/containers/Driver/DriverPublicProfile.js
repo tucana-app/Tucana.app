@@ -52,7 +52,7 @@ const DriverPublicProfile = () => {
                   <img
                     src={srcAvatar(driverProfileData.user)}
                     alt="Avatar"
-                    className="img-fluid rounded-round cursor-pointer avatar-img-sm"
+                    className="img-fluid cursor-pointer avatar-img-sm"
                   />
                 </p>
               </Col>

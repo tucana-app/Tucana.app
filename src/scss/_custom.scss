@@ -149,10 +149,12 @@ body {
 
 .avatar-img {
   width: 75px;
+  @extend .rounded-round;
 }
 
 .avatar-img-sm {
   width: 50px;
+  @extend .rounded-round;
 }
 
 .avatar-parent {
@@ -176,11 +178,6 @@ body {
 
 .progress {
   height: 0.5rem;
-}
-
-button,
-.btn {
-  @extend .py-1;
 }
 
 // ####################################################################
