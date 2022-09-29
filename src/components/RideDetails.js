@@ -96,7 +96,7 @@ function RideDetails({ ride }) {
           <hr />
 
           <Row className="align-items-center">
-            <Col>
+            <Col xs={7}>
               <p className="mb-0">
                 {t("translation:global.seatsAvailable")}:{" "}
                 <span className="text-success">{ride.seatsLeft}</span>/
@@ -112,17 +112,17 @@ function RideDetails({ ride }) {
                 </span>
               </p>
             </Col>
-            <Col className="text-end me-2">
-              <p className="line-height-sm mb-0">
-                <span className="fw-bold mb-0">{formatPrice(ride.price)}</span>
+            <Col xs={5} className="text-center">
+              <div className="line-height-sm mb-0">
+                <p className="p fw-bold mb-0">{formatPrice(ride.price)}</p>
                 <span className="smaller text-secondary">
                   /{t("translation:global.perSeat")}
                 </span>
-              </p>
+              </div>
             </Col>
           </Row>
           {!(ride.comment === "") ? (
-            <Row className="mt-3">
+            <Row>
               <Col>
                 <p className="mb-0">
                   {t("translation:global.comment")}: {ride.comment}

@@ -135,7 +135,7 @@ const Book = () => {
                   />
                 </Col>
                 <Col xs={3} className="text-center">
-                  {seats === rideData.ride.seatsAvailable ? (
+                  {seats === rideData.ride.seatsLeft ? (
                     <span variant="outline-success" className="text-secondary">
                       <PlusCircle size={36} />
                     </span>
@@ -143,7 +143,7 @@ const Book = () => {
                     <span
                       onClick={handleIncreaseSeats}
                       variant="outline-success"
-                      disabled={seats === rideData.ride.seatsAvailable}
+                      disabled={seats === rideData.ride.seatsLeft}
                       className="cursor-pointer text-success"
                     >
                       <PlusCircle size={36} />
