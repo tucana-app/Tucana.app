@@ -28,6 +28,17 @@ $utilities: map-merge(
         100: calc(100vh - #{$navbarHeight}),
       ),
     ),
+    "font-weight": (
+      property: font-weight,
+      class: fw,
+      values: (
+        light: $font-weight-light,
+        lighter: $font-weight-lighter,
+        normal: $font-weight-normal,
+        bold: 500,
+        bolder: $font-weight-bolder,
+      ),
+    ),
   )
 );
 

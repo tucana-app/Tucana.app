@@ -154,16 +154,15 @@ const Rides = () => {
                     <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                       <div>
                         {t("translation:rides.bookingsReceived")}
-                        {driverBookingsData.length > 0 ? (
-                          countDriverBookings(driverBookingsData) ? (
-                            <Badge bg="info" className="text-dark ms-2">
-                              {isLoadingDriverBookings ? (
-                                <LoadingSpinner size="sm" />
-                              ) : (
-                                countDriverBookings(driverBookingsData)
-                              )}
-                            </Badge>
-                          ) : null
+                        {driverBookingsData.length > 0 &&
+                        countDriverBookings(driverBookingsData) ? (
+                          <Badge bg="info" className="text-dark ms-2">
+                            {isLoadingDriverBookings ? (
+                              <LoadingSpinner size="sm" />
+                            ) : (
+                              countDriverBookings(driverBookingsData)
+                            )}
+                          </Badge>
                         ) : null}
                       </div>
                       <ChevronRightIcon size={24} verticalAlign="middle" />
