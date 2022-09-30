@@ -1301,6 +1301,78 @@ export const submitEditPasswordFail = (error) => {
   };
 };
 
+// Edit password
+
+export const submitEditDateOfBirthRequested = () => {
+  return {
+    type: userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_REQUESTED,
+  };
+};
+
+export const submitEditDateOfBirth = (userId, values) => {
+  return (dispatch) => {
+    dispatch(submitEditDateOfBirthRequested());
+
+    axios
+      .post(URL_API + "/user/submit-edit-date-of-birth", { userId, values })
+      .then((response) => {
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+          user = {
+            ...user,
+            dateOfBirth: response.data.dateOfBirth,
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: "Your date of birth has been added",
+            variant: "success",
+          })
+        );
+
+        dispatch(submitEditDateOfBirthSuccess(response.data));
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(submitEditDateOfBirthFail(message));
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+      });
+  };
+};
+
+export const submitEditDateOfBirthSuccess = (data) => {
+  return {
+    type: userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_SUCCESS,
+    payload: data,
+  };
+};
+
+export const submitEditDateOfBirthFail = (error) => {
+  return {
+    type: userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_ERROR,
+    payload: error,
+  };
+};
+
 // Close user's account
 
 export const submitCloseAccountRequested = () => {

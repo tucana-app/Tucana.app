@@ -63,6 +63,7 @@ import ComingSoon from "./containers/ComingSoon";
 // Edits
 import EditBio from "./containers/Edits/EditBio";
 import EditPassword from "./containers/Edits/EditPassword";
+import EditDateOfBirth from "./containers/Edits/EditDateOfBirth";
 
 // Legal
 import Legal from "./containers/Menu/Legal";
@@ -280,6 +281,11 @@ function App() {
 
               <Route exact path="/edit/bio" component={EditBio} />
               <Route exact path="/edit/password" component={EditPassword} />
+              <Route
+                exact
+                path="/edit/date-of-birth"
+                component={EditDateOfBirth}
+              />
 
               {/* Verification */}
               <Route exact path="/verification" component={Verification} />

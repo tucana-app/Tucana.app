@@ -125,6 +125,11 @@
 			"title": "Editar su biografía",
 			"update": "Actualiza tu biografía"
 		},
+		"dateOfBirth": {
+			"content1": "",
+			"content2": "",
+			"title": "Añade tu fecha de nacimiento"
+		},
 		"password": {
 			"forgotPassword": "Si ha olvidado su contraseña, primero cierre la sesión y luego haga clic en el enlace para restablecer la contraseña en la página de inicio de sesión",
 			"oldPassword": "Contraseña actual",
@@ -138,6 +143,7 @@
 		"grid": "Rejilla de puntos",
 		"gridLabels": {
 			"ADD_BIO": "Añade tu biografía",
+			"ADD_DATE_OF_BIRTH": "Añade tu fecha de nacimiento",
 			"ADD_REVIEW": "Añade una calificación",
 			"ANSWER_BOOKING": "Responder a una reserva",
 			"BECOME_DRIVER": "Conviértete en conductor",
@@ -173,6 +179,7 @@
 		"accept": "Aceptar",
 		"accepted": "Aceptado",
 		"acceptingBooking": "Ha aceptado la reserva",
+		"add": "Añadir",
 		"alreadyBooking": "Ya tiene reserva(s) para este viaje",
 		"application": "Solicitud",
 		"becomeDriver": "Conviértase en conductor",
@@ -204,6 +211,7 @@
 		"credits": "Créditos",
 		"currentLanguage": "Español",
 		"date": "Fecha",
+		"dateOfBirth": "Fecha de nacimiento",
 		"day": "Día",
 		"destination": "destino",
 		"distance": "Distancia",
@@ -538,7 +546,7 @@
 		"ridesToConfirm": "Rides a confirmar"
 	},
 	"ridesBookings": {
-		"subTitle": "Encuentre a su pasajero potencial aquí",
+		"subTitle": "Encuentre a tus pasajeros potenciales aquí",
 		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
 		"title": "Reservas para tus rides"
 	},

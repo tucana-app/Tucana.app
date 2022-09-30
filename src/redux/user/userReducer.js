@@ -78,8 +78,12 @@ initialState = {
   submitEditBioError: "",
 
   isLoadingSubmitEditPassword: false,
-  submitEditPasswordSuccess: false,
+  submitEditPasswordSuccess: {},
   submitEditPasswordError: "",
+
+  isLoadingSubmitEditDateOfBirth: false,
+  submitEditDateOfBirthSuccess: {},
+  submitEditDateOfBirthError: "",
 
   isLoadingSubmitCloseAccount: false,
   submitCloseAccountSuccess: {},
@@ -774,6 +778,34 @@ function userReducer(state = initialState, action) {
         isLoadingSubmitEditPassword: false,
         submitEditPasswordSuccess: false,
         submitEditPasswordError: action.payload,
+      };
+
+    // Submit edit date of birth
+
+    case userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_REQUESTED:
+      return {
+        ...state,
+        isLoadingSubmitEditDateOfBirth: true,
+      };
+
+    case userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          dateOfBirth: action.payload.dateOfBirth,
+        },
+        isLoadingSubmitEditDateOfBirth: false,
+        submitEditDateOfBirthSuccess: action.payload,
+        submitEditDateOfBirthError: "",
+      };
+
+    case userTypes.SUBMIT_EDIT_DATE_OF_BIRTH_ERROR:
+      return {
+        ...state,
+        isLoadingSubmitEditDateOfBirth: false,
+        submitEditDateOfBirthSuccess: false,
+        submitEditDateOfBirthError: action.payload,
       };
 
     // Submit close account

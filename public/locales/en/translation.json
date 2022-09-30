@@ -125,6 +125,11 @@
 			"title": "Edit your bio",
 			"update": "Update your bio"
 		},
+		"dateOfBirth": {
+			"content1": "Make sure to use the local format for the date",
+			"content2": "It is <1>DD/MM/YYYY</1>",
+			"title": "Add your date of birth"
+		},
 		"password": {
 			"forgotPassword": "If you forgot your password, first logout then click the reset password link in the Login page",
 			"oldPassword": "Current password",
@@ -138,6 +143,7 @@
 		"grid": "Points grid",
 		"gridLabels": {
 			"ADD_BIO": "Add your bio",
+			"ADD_DATE_OF_BIRTH": "Add your date of birth",
 			"ADD_REVIEW": "Add a review",
 			"ANSWER_BOOKING": "Answer a booking",
 			"BECOME_DRIVER": "Become a driver",
@@ -173,6 +179,7 @@
 		"accept": "Accept",
 		"accepted": "Accepted",
 		"acceptingBooking": "You have accepted the booking",
+		"add": "Add",
 		"alreadyBooking": "You already have booking(s) for this ride",
 		"application": "Application",
 		"becomeDriver": "Become a driver",
@@ -204,6 +211,7 @@
 		"credits": "Credits",
 		"currentLanguage": "English",
 		"date": "Date",
+		"dateOfBirth": "Date of birth",
 		"day": "Day",
 		"destination": "Destination",
 		"distance": "Distance",
@@ -538,7 +546,7 @@
 		"ridesToConfirm": "Rides to confirm"
 	},
 	"ridesBookings": {
-		"subTitle": "Find your potential passenger here",
+		"subTitle": "Find your potential passengers here",
 		"summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
 		"title": "Bookings for your rides"
 	},

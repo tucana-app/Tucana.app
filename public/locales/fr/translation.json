@@ -1,6 +1,6 @@
 {
 	"404": {
-		"back1": "Retournez à la",
+		"back1": "Retourne à la",
 		"back2": "Page d'accueil",
 		"message": "Nous n'avons pas trouvé la page que tu recherches.",
 		"notFound": "Page non trouvée"
@@ -21,7 +21,7 @@
 	"FormDriverResponseBooking": {
 		"manageBooking": "Gérer cette réservation",
 		"message": "{{firstName}} a réservé {{seatsBooked}} siège(s) mais il reste {{seatsLeft}} places, tu ne peux pas accepter ou refuser cette réservation.",
-		"placeholder": "Donnez à votre passager plus de détails sur la réservation ou le trajet."
+		"placeholder": "Donne à ton passager plus de détails sur la réservation ou le trajet."
 	},
 	"ManageDriverBooking": {
 		"noBookings": "Tu n'as pas encore de réservations pour ce trajet."
@@ -45,8 +45,8 @@
 		"disclaimer": "Nous ne divulguons aucune information sur votre pays d'origine. Ceci est uniquement à des fins de vérification",
 		"licenseNumber": "Numéro du permis de conduire",
 		"marchamoExplain1": "Tu peux trouver l'année sur l'autocollant qui se trouve généralement sur le pare-brise de ton véhicule.",
-		"marchamoExplain2": "Pour assurer la sécurité des usagers de Tucána sur la route, nous demandons à tous les conducteurs l'année d'assurance de leur voiture. Cela permet également de protéger tout le monde en cas d'accident lors d'un trajet. Vous risquez de voir votre demande refusée si votre marchamo n'est pas à jour.",
-		"message": "Établissez un climat de confiance avec tes passagers potentiels en fournissant autant de preuves d'identité authentiques que possible.",
+		"marchamoExplain2": "Pour assurer la sécurité des usagers de Tucána sur la route, nous demandons à tous les conducteurs l'année d'assurance de leur voiture. Cela permet également de protéger tout le monde en cas d'accident lors d'un trajet. Tu risque de voir ta demande refusée si la marchamo n'est pas à jour.",
+		"message": "Établis un climat de confiance avec tes passagers potentiels en fournissant autant de preuves d'identité authentiques que possible.",
 		"nationalId": "Carte d'identité",
 		"notDriver": "Tu peux demander à devenir conducteur",
 		"passport": "Passeport",
@@ -55,7 +55,7 @@
 		"riteveExplain1": "Tu peux trouver le mois et l'année sur l'autocollant qui se trouve généralement sur le pare-brise de ton véhicule",
 		"riteveExplain2": "Pour faire de Tucána une plateforme sûre, nous demandons à tous les conducteurs d'indiquer le mois et l'année de délivrance d'un certificat de contrôle technique valide.",
 		"thankYou": "Merci de votre candidature. Un modérateur va examiner votre candidature",
-		"typeMaker": "Tapez le nom du constructeur automobile",
+		"typeMaker": "Tape le nom du constructeur automobile",
 		"underReview": "En cours d'examen"
 	},
 	"booking": {
@@ -72,7 +72,7 @@
 	},
 	"closeAccount": {
 		"closeAccount": "Fermer mon compte",
-		"confirmCloseAccount1": "Si tu choisis de fermer ton compte, tu ne pourras plus y accéder et devrez en créer un autre avec un nouveau nom d'utilisateur et une nouvelle adresse électronique.",
+		"confirmCloseAccount1": "Si tu choisis de fermer ton compte, tu ne pourras plus y accéder et devra en créer un autre avec un nouveau nom d'utilisateur et une nouvelle adresse email.",
 		"confirmCloseAccount2": "Es-tu sûr de vouloir fermer ton compte ?",
 		"title": "Fermer ton compte",
 		"typePassword": "Saisis ton mot de passe pour confirmer"
@@ -87,7 +87,7 @@
 		"answerNo": "Peux-tu nous dire ce qui a mal tourné ? Nous aimerions savoir pourquoi tu n'as pas pu faire le trajet.",
 		"complaint": "Je souhaite déposer une plainte",
 		"confirm": "Je confirme",
-		"confirmNoRide": "Veuillez confirmer que la course n'a pas eu lieu.",
+		"confirmNoRide": "Confirme que le trajet n'a pas eu lieu.",
 		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
 		"message": "Maintenant, tu dois nous dire si tout s'est bien passé et si tu as fait ce trajet.",
 		"rateRide": "Note ton trajet",
@@ -98,13 +98,13 @@
 		"max1000characters": "Max. 1000 caractères",
 		"min20characters": "Min. 20 caractères",
 		"subject": "Sujet",
-		"title": "Prenez contact"
+		"title": "Prends contact"
 	},
 	"createNewPassword": {
 		"linkDeprecated": "Ce lien est obsolète",
 		"newPassword": "Nouveau mot de passe",
 		"reset": "Réinitialiser le mot de passe",
-		"retypePassword": "Retapez le mot de passe",
+		"retypePassword": "Retape le mot de passe",
 		"success": "Votre mot de passe a été réinitialisé avec succès.",
 		"title": "Créer un nouveau mot de passe"
 	},
@@ -125,6 +125,11 @@
 			"title": "Modifier ta biographie",
 			"update": "Mettre à jour ta bio"
 		},
+		"dateOfBirth": {
+			"content1": "",
+			"content2": "",
+			"title": "Ajoute ta date de naissance"
+		},
 		"password": {
 			"forgotPassword": "Si tu as oublié ton mot de passe, déconnecte-vous d'abord, puis clique sur le lien de réinitialisation du mot de passe dans la page de connexion.",
 			"oldPassword": "Mot de passe actuel",
@@ -138,6 +143,7 @@
 		"grid": "Grille de points",
 		"gridLabels": {
 			"ADD_BIO": "Ajouter une biographie",
+			"ADD_DATE_OF_BIRTH": "Ajoute ta date de naissance",
 			"ADD_REVIEW": "Ajouter un avis",
 			"ANSWER_BOOKING": "Répondre à une réservation",
 			"BECOME_DRIVER": "Devenir conducteur",
@@ -147,7 +153,7 @@
 			"READ_MESSAGE": "Lire un message",
 			"SEND_MESSAGE": "Envoyer un message",
 			"SET_CAR_FUEL": "Ajouter le type de carburant de votre voiture",
-			"SET_CAR_SEATS": "Ajoutez les sièges de votre voiture",
+			"SET_CAR_SEATS": "Ajoute les sièges de votre voiture",
 			"UPDATE_BIO": "Mettre à jour la biographie"
 		},
 		"multiplier": "Multiplicateur de points",
@@ -166,20 +172,21 @@
 		"numberPassengers": "Nombre de passagers"
 	},
 	"formSearchRide": {
-		"hitEnter": "ou appuyez sur Entrée"
+		"hitEnter": "ou appuis sur Entrée"
 	},
 	"global": {
 		"about": "A propos",
 		"accept": "Accepter",
 		"accepted": "Accepté",
 		"acceptingBooking": "Tu as accepté la réservation",
+		"add": "Ajouter",
 		"alreadyBooking": "Tu as déjà une ou plusieurs réservations pour ce trajet.",
 		"application": "Demande",
 		"becomeDriver": "Deviens conducteur",
 		"bio": "Biographie",
 		"book": "Réserver",
 		"bookRide": "Réserver un trajet",
-		"bookThisRide": "Réservez ce trajet",
+		"bookThisRide": "Réserve ce trajet",
 		"booking": "Réservation",
 		"bookingSubmitted": "Votre réservation a été soumise au conducteur",
 		"bookingSuccess": "Votre réservation a été envoyée au conducteur",
@@ -188,7 +195,7 @@
 		"cancel": "Annuler",
 		"car": "Voiture",
 		"city": "Ville",
-		"click": "Cliquez sur",
+		"click": "Clique sur",
 		"close": "Fermer",
 		"color": "Couleur",
 		"comingSoon": "À venir",
@@ -197,13 +204,14 @@
 		"confirmingRide": "Tu as confirmé le trajet",
 		"congratulations": "Félicitations ",
 		"contact": "Contacter",
-		"contactUs": "Contactez-nous",
+		"contactUs": "Contacte-nous",
 		"continue": "Continuer",
 		"country": "Pays",
 		"created": "Créé",
 		"credits": "Crédits",
 		"currentLanguage": "Français",
 		"date": "Date",
+		"dateOfBirth": "Date de naissance",
 		"day": "journée",
 		"destination": "Destination",
 		"distance": "Distance",
@@ -215,14 +223,14 @@
 		"email": "Courriel",
 		"errors": {
 			"acceptTerms": "Pour utiliser nos services, tu dois accepter nos conditions générales et notre politique de confidentialité.",
-			"captcha": "Veuillez remplir le captcha",
+			"captcha": "Il faut remplir le captcha",
 			"chooseDate": "Tu dois choisir un jour",
 			"chooseSeatsAvailable": "Tu dois choisir le nombre de sièges dont tu disposes",
 			"chooseTime": "Tu dois choisir une heure",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
 			"errorFallback": "Il y a eu une erreur.",
-			"errorPersist": "Si l'erreur persiste, veuillez nous contacter.",
+			"errorPersist": "Si l'erreur persiste, contacte nous.",
 			"failUpdateBio": "Nous n'avons pas pu mettre à jour votre biographie pour le moment.",
 			"failUpdatePassword": "Nous n'avons pas pu mettre à jour votre mot de passe pour le moment.",
 			"labelRequiredField": "Ce champ est obligatoire",
@@ -231,16 +239,16 @@
 			"min10characters": "Min. 10 caractères",
 			"min4characters": "Min. 4 caractères",
 			"missingComment": "Tu dois écrire un commentaire (10 caractères min.)",
-			"missingInfo": "Veuillez remplir toutes les informations",
+			"missingInfo": "Il faut remplir toutes les informations",
 			"missingRating": "Assure-toi de donner une note",
 			"passwordsMatch": "Les mots de passe doivent correspondre",
 			"sendingMessage": "Votre message n'a pas pu être envoyé",
-			"validEmail": "Veuillez saisir une adresse électronique valide",
-			"validName": "Veuillez entrer un nom valide",
-			"validNumberPlate": "Entrez une plaque d'immatriculation valide",
-			"validPhone": "Veuillez entrer un numéro de téléphone valide",
-			"validUsername": "Veuillez entrer un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
-			"validYear": "Entrez une année valide"
+			"validEmail": "Saisis une adresse email valide",
+			"validName": "Saisis un nom valide",
+			"validNumberPlate": "Saisis une plaque d'immatriculation valide",
+			"validPhone": "Saisis un numéro de téléphone valide",
+			"validUsername": "Saisis un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
+			"validYear": "Saisis une année valide"
 		},
 		"experience": "Expérience",
 		"faq": "FAQ",
@@ -253,7 +261,7 @@
 		"getVerified": "Obtenir une vérification",
 		"given": "Laissés",
 		"goBack": "Retour",
-		"goBackApp": "Vous pouvez maintenant retourner dans l'application",
+		"goBackApp": "Tu peux maintenant retourner dans l'application",
 		"help": "Aide",
 		"howItWorks": "Comment ça marche?",
 		"idType": "Type d'identité",
@@ -304,20 +312,20 @@
 		"rejectingRide": "Tu as refusé le trajet",
 		"report": "Signaler un problème",
 		"reportMember": "Signaler ce membre",
-		"resendLink": "Renvoyez le lien de confirmation",
+		"resendLink": "Renvoyer le lien de confirmation",
 		"reset": "Recommencer",
 		"returnLogin": "Retourner à la <2>page de connexion</2>.",
 		"ride": "Ride",
 		"rideOnline": "Ton trajet est maintenant en ligne.",
 		"riteve": "Riteve (contrôle technique)",
-		"search": "Recherchez",
+		"search": "Rechercher",
 		"searchResults": "Résultats de la recherche",
 		"seat": "Siège",
 		"seats": "Sièges",
 		"seatsAvailable": "Sièges disponibles",
 		"seeBooking": "Voir réservation",
 		"seeRide": "Voir trajet",
-		"selectOption": "Sélectionnez une option",
+		"selectOption": "Sélectionner une option",
 		"selected": "sélectionné",
 		"send": "Envoyer",
 		"settings": "Paramètres",
@@ -347,7 +355,7 @@
 		"yourVehicle": "Ton véhicule"
 	},
 	"help": {
-		"message1": "Si quelque chose se produit pendant votre trajet, appelez",
+		"message1": "Si quelque chose se produit pendant ton trajet, appelle",
 		"message2": "immédiatement, les services d'urgence locaux"
 	},
 	"hiring": {
@@ -367,7 +375,7 @@
 		"bookRide2": "Pour toi et tous tes passagers. Le paiement est effectué en espèce directement entre le conducteur et les passagers. Aucune commission n'est appliquée par Tucána pour le moment.",
 		"both": "Avec Tucána, tu peux faire les deux !",
 		"chat": "Discute avec le conducteur ou tes passagers",
-		"checkFaq": "Consultez la FAQ",
+		"checkFaq": "Consulte la FAQ",
 		"choose": "Choisis",
 		"confirm": "Confirme le trajet",
 		"confirm2": "Pour archiver le trajet, et dans le futur, permettre au conducteur de recevoir l'argent en ligne.",
@@ -397,7 +405,7 @@
 		"review2": "Pour continuer de s'assurer de la sécurité de la communauté",
 		"signUpFree": "Inscrit toi gratuitement",
 		"startTutorial": "Démarrer le tutoriel",
-		"stepsService": "Découvrez comment il est facile de partager un trajet avec le guide interactif",
+		"stepsService": "Découvre comment il est facile de partager un trajet avec le guide interactif",
 		"verifyEmail": "Vérifie ton compte",
 		"verifyEmail2": "Avec ton adresse e-mail : vérifie tes e-mails (boîte de réception et spam)"
 	},
@@ -436,7 +444,7 @@
 	"menu": {
 		"about": "À propos de nous",
 		"account": "Compte",
-		"donate": "Soutenez l'application",
+		"donate": "Soutiens l'application",
 		"feedback": "Donne-nous ton avis",
 		"legal": "Légal",
 		"memberSince": "Membre depuis",
@@ -445,7 +453,7 @@
 		"refunds": "Remboursements"
 	},
 	"messageEmpty": {
-		"bookRide": "Réservez votre prochain voyage",
+		"bookRide": "Réserve ton prochain voyage",
 		"message": "Il n'y a pas de <1>{{title}}</1>",
 		"publishRide": "Proposer un trajet"
 	},
@@ -466,7 +474,7 @@
 		"ratingReceived": "Votre évaluation est en cours d'examen par un modérateur.",
 		"rideSummary": "Résumé de la randonnée",
 		"title": "Noter votre trajet",
-		"typeComment": "Tapez votre commentaire ici"
+		"typeComment": "Tape ton commentaire ici"
 	},
 	"notifications": {
 		"answersBookings": "Réponses de tes réservations",
@@ -492,7 +500,7 @@
 		"previewTrip": "Prévisualiser le trajet",
 		"priceTitle": "Prix par siège",
 		"seatsAvailable": "Combien as-tu de places disponibles ?",
-		"selectNumber": "Sélectionnez un numéro",
+		"selectNumber": "Sélectionner un numéro",
 		"summary": "Résumé",
 		"title": "Proposer un trajet",
 		"whatTime": "A quelle heure?",
@@ -519,9 +527,9 @@
 	},
 	"resetPassword": {
 		"sendLink": "Envoyer le lien de réinitialisation",
-		"subTitle": "Veuillez saisir votre adresse électronique pour recevoir un lien",
+		"subTitle": "Saisis ton adresse email pour recevoir un lien",
 		"title": "Réinitialiser votre mot de passe",
-		"typeEmail": "Tapez votre adresse électronique ici"
+		"typeEmail": "Tape ton adresse email ici"
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
@@ -538,7 +546,7 @@
 		"ridesToConfirm": "Trajets à confirmer"
 	},
 	"ridesBookings": {
-		"subTitle": "Trouvez votre passager potentiel ici",
+		"subTitle": "Trouve tes passagers potentiels ici",
 		"summary": "<2>{{firstName}}</2> a réservé <2>{{seatsBooked}}</2> siège(s) de <2>{{cityOrigin}}</2> à <2>{{cityDestination}}</2>.",
 		"title": "Réservations pour tes trajets"
 	},
@@ -560,7 +568,7 @@
 	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenue sur notre plateforme 🎉",
-		"text": "Vérifiez le lien de confirmation dans votre boîte aux lettres électronique et dans votre dossier spam pour confirmer votre compte.",
+		"text": "Vérifie le lien de confirmation dans ta boîte aux lettres électronique et dans ton dossier spam pour confirmer ton compte.",
 		"title": "S'inscrire avec succès"
 	},
 	"singleConversation": {

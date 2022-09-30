@@ -121,6 +121,28 @@ function Account() {
               <Row className="align-items-center mb-3">
                 <Col xs={11}>
                   <p className="text-secondary mb-0">
+                    {t("translation:global.dateOfBirth")}
+                  </p>
+                  {currentUser.dateOfBirth ? (
+                    <p className="mb-0">
+                      {dateFormat(currentUser.dateOfBirth, "dd/mm/yyyy")}
+                    </p>
+                  ) : (
+                    <p className="mb-0">-</p>
+                  )}
+                </Col>
+                {!currentUser.dateOfBirth ? (
+                  <Col xs={1} className="ps-0">
+                    <Link to="/edit/date-of-birth" className="cursor-pointer">
+                      <PencilSquare size={20} className="text-primary" />
+                    </Link>
+                  </Col>
+                ) : null}
+              </Row>
+
+              <Row className="align-items-center mb-3">
+                <Col xs={11}>
+                  <p className="text-secondary mb-0">
                     {t("translation:global.bio")}
                   </p>
                   {currentUser.biography && currentUser.biography !== "" ? (
