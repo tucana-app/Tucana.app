@@ -6,6 +6,7 @@ import useWindowDimensions from "./hooks/useWindowDimensions";
 // Error handling
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./containers/ErrorFallback";
+import OfflineBanner from "./containers/OfflineBanner";
 
 // Loading Containers
 import LogIn from "./containers/User/LogIn";
@@ -99,6 +100,7 @@ import {
   getNotifications,
   displayNavBar,
   setGlobalState,
+  getConstants,
 } from "./redux";
 import { history } from "./helpers/history";
 
@@ -112,7 +114,9 @@ import { Col, Container, Row } from "react-bootstrap";
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isNavBar, initHeight } = useSelector((state) => state.global);
+  const { isNavBar, initHeight, isOffline } = useSelector(
+    (state) => state.global
+  );
   const { height } = useWindowDimensions();
 
   useEffect(() => {
@@ -129,6 +133,8 @@ function App() {
     interval = setInterval(() => {
       if (isLoggedIn) {
         dispatch(getNotifications(currentUser));
+      } else {
+        dispatch(getConstants());
       }
     }, 60000);
 
@@ -173,7 +179,7 @@ function App() {
             }}
           >
             <ScrollToTop />
-
+            {isOffline ? <OfflineBanner /> : null}
             {isNavBar ? <NavigationBar /> : null}
 
             <Switch>

@@ -20,12 +20,9 @@ const Contact = () => {
     isLoggedIn,
     isLoadingSubmitContactForm,
   } = useSelector((state) => state.user);
-  const { labelStringField, labelRequiredField } = useSelector(
+  const { labelStringField, labelRequiredField, contactSubjects } = useSelector(
     (state) => state.global
   );
-
-  const constants = JSON.parse(localStorage.getItem("constants"));
-  const contactSubjects = JSON.parse(constants.CONTACT_SUBJECTS);
 
   const [captcha, setCaptcha] = useState(false);
   const [captchaReady, setCaptchaReady] = useState(false);

@@ -246,14 +246,14 @@ export const getUserNewMessages = (userId) => {
         dispatch(getUserNewMessagesSuccess(response.data));
       })
       .catch((error) => {
+        // console.log(error);
+
         const message =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
           error.message ||
           error.toString();
-
-        // console.log(error);
 
         dispatch(getUserNewMessagesFail(message));
       });

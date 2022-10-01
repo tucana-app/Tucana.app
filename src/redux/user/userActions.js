@@ -281,7 +281,6 @@ export const login = (formLogin) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("user");
-  localStorage.removeItem("constants");
 
   dispatch({
     type: userTypes.LOGOUT,
@@ -1455,15 +1454,6 @@ export const isAccountClosed = (userId) => {
           error.toString();
 
         dispatch(isAccountClosedFail(message));
-
-        dispatch(
-          setToast({
-            show: true,
-            headerText: "Error",
-            bodyText: message,
-            variant: "danger",
-          })
-        );
       });
   };
 };

@@ -28,6 +28,7 @@ const initialState = {
   constants: [],
   feedback: {},
   isNavBar: true,
+  isOffline: false,
 
   isLoadingCountries: false,
   countries: [],
@@ -52,6 +53,19 @@ const initialState = {
     const variant = ["warning", "info", "success", "danger"];
     return variant[status - 1];
   },
+
+  contactSubjects: [
+    "Account",
+    "Booking",
+    "Ride",
+    "Investment",
+    "Donation",
+    "App feedback",
+    "Report someone",
+    "Work with us",
+    "Close my account",
+    "Other",
+  ],
 
   carMakers: [
     "Other",
@@ -186,6 +200,15 @@ function globalReducer(state = initialState, action) {
         ...state,
         isLoadingConstants: false,
         constants: action.payload,
+        isOffline: false,
+      };
+
+    case globalTypes.GET_CONSTANTS_FAIL:
+      return {
+        ...state,
+        isLoadingConstants: false,
+        constants: action.payload,
+        isOffline: true,
       };
 
     // OLD - Set alert module
