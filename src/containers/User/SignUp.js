@@ -9,6 +9,7 @@ import { Trans, useTranslation } from "react-i18next";
 
 import { registerUser, setToast, resendConfirmationLink } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import EyePassword from "../../components/EyePassword";
 
 require("yup-password")(Yup); // extend yup
 
@@ -25,6 +26,7 @@ const SignUp = () => {
 
   const form = useRef();
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const schema = Yup.object().shape({
     firstName: Yup.string(labelStringField)
@@ -237,15 +239,21 @@ const SignUp = () => {
                   </Col>
 
                   <Col xs={12} sm={6} className="mb-3">
-                    <Form.Group className="mb-3">
+                    <Form.Group className="input-password mb-3">
                       <Form.Control
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         placeholder={t("translation:global.password")}
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
                         required
+                        autoComplete="password"
+                      />
+                      <EyePassword
+                        isShow={showPassword}
+                        touched={touched.password}
+                        setShowPassword={setShowPassword}
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.password}

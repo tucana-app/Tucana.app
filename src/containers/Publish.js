@@ -414,6 +414,15 @@ const Publish = () => {
                         </h3>
                       </Col>
                     </Row>
+                    {formPublishRide.destination.city ===
+                      formPublishRide.origin.city &&
+                    formPublishRide.destination.province ===
+                      formPublishRide.origin.province ? (
+                      <p className="text-danger">
+                        <AlertIcon size="24" className="me-2" />
+                        {t("translation:global.errors.samePlaces")}
+                      </p>
+                    ) : null}
                     <Row>
                       <Col xs={12} className="text-center">
                         <Button
@@ -424,7 +433,16 @@ const Publish = () => {
                           <PencilIcon size={24} className="me-2" />
                           {t("translation:global.edit")}
                         </Button>
-                        <Button onClick={handleClickStepTwo} variant="success">
+                        <Button
+                          onClick={handleClickStepTwo}
+                          variant="success"
+                          disabled={
+                            formPublishRide.destination.city ===
+                              formPublishRide.origin.city &&
+                            formPublishRide.destination.province ===
+                              formPublishRide.origin.province
+                          }
+                        >
                           {t("translation:global.next")}
                           <ArrowRightIcon size={24} className="ms-2" />
                         </Button>

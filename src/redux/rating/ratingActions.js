@@ -355,7 +355,7 @@ export const submitPassengerRatingFormRequested = () => {
   };
 };
 
-export const submitPassengerRatingForm = (ride, note, comment) => {
+export const submitPassengerRatingForm = (rideId, note, comment) => {
   return (dispatch) => {
     dispatch(submitPassengerRatingFormRequested());
 
@@ -364,7 +364,7 @@ export const submitPassengerRatingForm = (ride, note, comment) => {
     if (parsingResult.value === 0) {
       axios
         .post(URL_API + "/rating/submit-passenger-rating-form", {
-          ride,
+          rideId,
           note,
           comment,
         })
@@ -438,7 +438,7 @@ export const submitDriverRatingFormRequested = () => {
   };
 };
 
-export const submitDriverRatingForm = (ride, note, comment) => {
+export const submitDriverRatingForm = (rideId, note, comment) => {
   return (dispatch) => {
     dispatch(submitDriverRatingFormRequested());
 
@@ -447,7 +447,7 @@ export const submitDriverRatingForm = (ride, note, comment) => {
     if (parsingResult.value === 0) {
       axios
         .post(URL_API + "/rating/submit-driver-rating-form", {
-          ride,
+          rideId,
           note,
           comment,
         })

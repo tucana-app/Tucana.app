@@ -38,6 +38,7 @@ import toucan from "../../assets/images/avatars/toucan.jpg";
 import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
 import filter from "../../assets/images/filters/filter-select.png";
+import EyePassword from "../../components/EyePassword";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -55,6 +56,7 @@ const Login = () => {
 
   const [showAlertConfirmEmail, setShowAlertConfirmEmail] = useState(false);
   const [showTutorial, setShowTutorial] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
@@ -647,15 +649,20 @@ const Login = () => {
                         </Col>
 
                         <Col xs={12} className="mb-2">
-                          <Form.Group>
+                          <Form.Group className="input-password">
                             <Form.Control
-                              type="password"
+                              type={showPassword ? "text" : "password"}
                               name="password"
                               placeholder={t("translation:global.password")}
                               onChange={handleChange}
                               isInvalid={!!errors.password}
                               isValid={touched.password && !errors.password}
                               required
+                            />
+                            <EyePassword
+                              isShow={showPassword}
+                              touched={touched.password}
+                              setShowPassword={setShowPassword}
                             />
                             <Form.Control.Feedback type="invalid">
                               {errors.password}

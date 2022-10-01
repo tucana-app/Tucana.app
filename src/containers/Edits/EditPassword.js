@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
@@ -11,6 +11,7 @@ import GoBack from "../../components/GoBack";
 
 import { submitEditPassword } from "../../redux";
 import { InfoIcon } from "@primer/octicons-react";
+import EyePassword from "../../components/EyePassword";
 
 require("yup-password")(Yup); // extend yup
 
@@ -27,6 +28,10 @@ const EditPassword = () => {
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
+
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const schema = Yup.object().shape({
     currentPassword: Yup.string().required(labelRequiredField),
@@ -86,12 +91,12 @@ const EditPassword = () => {
                 isSubmitting,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  <Form.Group className="mb-4">
-                    <Form.Label>
-                      {t("translation:edit.password.oldPassword")}
-                    </Form.Label>
+                  <p className="mb-2">
+                    {t("translation:edit.password.oldPassword")}
+                  </p>
+                  <Form.Group className="input-password mb-4">
                     <Form.Control
-                      type="password"
+                      type={showCurrentPassword ? "text" : "password"}
                       name="currentPassword"
                       placeholder={t("translation:global.password")}
                       onChange={handleChange}
@@ -100,19 +105,28 @@ const EditPassword = () => {
                         touched.currentPassword && !errors.currentPassword
                       }
                       disabled={submitEditPasswordSuccess.flag === "SUCCESS"}
+                      spellCheck="false"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      autoComplete="currentPassword"
                       required
+                    />
+                    <EyePassword
+                      isShow={showCurrentPassword}
+                      touched={touched.currentPassword}
+                      setShowPassword={setShowCurrentPassword}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.currentPassword}
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group className="mb-4">
-                    <Form.Label>
-                      {t("translation:createNewPassword.newPassword")}
-                    </Form.Label>
+                  <p className="mb-2">
+                    {t("translation:createNewPassword.newPassword")}
+                  </p>
+                  <Form.Group className="input-password mb-4">
                     <Form.Control
-                      type="password"
+                      type={showPassword1 ? "text" : "password"}
                       name="password1"
                       placeholder={t("translation:global.password")}
                       onChange={handleChange}
@@ -121,18 +135,23 @@ const EditPassword = () => {
                       disabled={submitEditPasswordSuccess.flag === "SUCCESS"}
                       required
                     />
+                    <EyePassword
+                      isShow={showPassword1}
+                      touched={touched.password1}
+                      setShowPassword={setShowPassword1}
+                    />
                     <Form.Control.Feedback type="invalid">
                       {errors.password1}
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group className="mb-4">
-                    <Form.Label>
-                      {t("translation:createNewPassword.retypePassword")}
-                      <span className="text-danger">*</span>
-                    </Form.Label>
+                  <p className="mb-2">
+                    {t("translation:createNewPassword.retypePassword")}
+                    <span className="text-danger">*</span>
+                  </p>
+                  <Form.Group className="input-password mb-4">
                     <Form.Control
-                      type="password"
+                      type={showPassword2 ? "text" : "password"}
                       name="password2"
                       placeholder={t("translation:global.password")}
                       onChange={handleChange}
@@ -140,6 +159,11 @@ const EditPassword = () => {
                       isInvalid={!!errors.password2}
                       isValid={touched.password2 && !errors.password2}
                       required
+                    />
+                    <EyePassword
+                      isShow={showPassword2}
+                      touched={touched.password2}
+                      setShowPassword={setShowPassword2}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.password2}

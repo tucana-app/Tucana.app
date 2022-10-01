@@ -176,6 +176,21 @@ strong {
   @extend .fw-bold;
 }
 
+input[type="password"]:not(:placeholder-shown) {
+  font-family: "pass", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.input-password {
+  position: relative;
+}
+
+.input-password .eye {
+  position: absolute;
+  right: 20px;
+  top: 4px;
+  cursor: pointer;
+}
+
 // ####################################################################
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE

@@ -187,18 +187,23 @@ const NewRating = () => {
                               {t("translation:newRating.rideSummary")}
                             </p>
                             <p className="mb-0">
-                              {ridePassenger.origin.city} -{" "}
-                              {ridePassenger.destination.city}
+                              <strong>{rideDriver.origin.city}</strong>{" "}
+                              <span className="text-lowercase">
+                                {t("translation:global.to")}
+                              </span>{" "}
+                              <strong>{rideDriver.destination.city}</strong>
                             </p>
                             <p className="mb-2">
                               {t("translation:global.date")}:{" "}
-                              {dateFormat(
-                                ridePassenger.dateTimeOrigin,
-                                "dd/mm/yyyy"
-                              )}
+                              <strong>
+                                {dateFormat(
+                                  rideDriver.dateTimeOrigin,
+                                  "dd/mm/yyyy"
+                                )}
+                              </strong>
                             </p>
                             <Link to={`/ride/${ridePassenger.id}`}>
-                              <Button variant="outline-success">
+                              <Button variant="dark">
                                 <p className="lead mb-0">
                                   {t("translation:global.view")}
                                 </p>
@@ -211,14 +216,15 @@ const NewRating = () => {
 
                         <Row className="mb-3">
                           <Col className="text-center">
-                            <p className="mb-0">
+                            <p>
                               {t("translation:global.comment")}
+                              <span className="text-danger">*</span>
                             </p>
                             <Form.Control
                               type="text"
                               name="message"
                               placeholder={t(
-                                "translation:newRating.typeComment"
+                                "translation:global.errors.min10characters"
                               )}
                               onChange={(e) => setComment(e.target.value)}
                               disabled={
@@ -477,18 +483,23 @@ const NewRating = () => {
                               {t("translation:newRating.rideSummary")}
                             </p>
                             <p className="mb-0">
-                              {rideDriver.origin.city} -{" "}
-                              {rideDriver.destination.city}
+                              <strong>{rideDriver.origin.city}</strong>{" "}
+                              <span className="text-lowercase">
+                                {t("translation:global.to")}
+                              </span>{" "}
+                              <strong>{rideDriver.destination.city}</strong>
                             </p>
                             <p className="mb-2">
-                              Date:{" "}
-                              {dateFormat(
-                                rideDriver.dateTimeOrigin,
-                                "dd/mm/yyyy"
-                              )}
+                              {t("translation:global.date")}:{" "}
+                              <strong>
+                                {dateFormat(
+                                  rideDriver.dateTimeOrigin,
+                                  "dd/mm/yyyy"
+                                )}
+                              </strong>
                             </p>
                             <Link to={`/ride/${rideDriver.id}`}>
-                              <Button variant="outline-success">
+                              <Button variant="dark">
                                 <p className="small mb-0">
                                   {t("translation:global.view")}
                                 </p>
@@ -501,14 +512,15 @@ const NewRating = () => {
 
                         <Row className="mb-3">
                           <Col className="text-center">
-                            <p className="mb-0">
+                            <p>
                               {t("translation:global.comment")}
+                              <span className="text-danger">*</span>
                             </p>
                             <Form.Control
                               type="text"
                               name="message"
                               placeholder={t(
-                                "translation:newRating.typeComment"
+                                "translation:global.errors.min10characters"
                               )}
                               onChange={(e) => setComment(e.target.value)}
                               disabled={

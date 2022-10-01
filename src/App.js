@@ -189,7 +189,7 @@ function App() {
               <Route exact path="/forgot-password" component={ForgotPassword} />
               <Route
                 exact
-                path="/create-new-password/:uuid"
+                path="/new-password/:uuid"
                 component={CreateNewPassword}
               />
 

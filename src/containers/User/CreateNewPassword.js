@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Redirect, useParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   checkDeprecatedLinkResetPassword,
   displayNavBar,
 } from "../../redux";
+import EyePassword from "../../components/EyePassword";
 
 require("yup-password")(Yup); // extend yup
 
@@ -32,6 +33,9 @@ const CreateNewPassword = () => {
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
   );
+
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const schema = Yup.object().shape({
     password1: Yup.string().required(labelRequiredField).password(),
@@ -137,12 +141,12 @@ const CreateNewPassword = () => {
                     <Form noValidate onSubmit={handleSubmit}>
                       <Row>
                         <Col xs={12} className="mb-3 mb-md-4">
-                          <Form.Group>
-                            <Form.Label>
-                              {t("translation:createNewPassword.newPassword")}
-                            </Form.Label>
+                          <p>
+                            {t("translation:createNewPassword.newPassword")}
+                          </p>
+                          <Form.Group className="input-password">
                             <Form.Control
-                              type="password"
+                              type={showPassword1 ? "text" : "password"}
                               name="password1"
                               placeholder={t("translation:global.password")}
                               onChange={handleChange}
@@ -154,6 +158,11 @@ const CreateNewPassword = () => {
                               }
                               required
                             />
+                            <EyePassword
+                              isShow={showPassword1}
+                              touched={touched.password1}
+                              setShowPassword={setShowPassword1}
+                            />
                             <Form.Control.Feedback type="invalid">
                               {errors.password1}
                             </Form.Control.Feedback>
@@ -161,15 +170,13 @@ const CreateNewPassword = () => {
                         </Col>
 
                         <Col xs={12} className="mb-3 mb-md-4">
-                          <Form.Group>
-                            <Form.Label>
-                              {t(
-                                "translation:createNewPassword.retypePassword"
-                              )}
-                              <span className="text-danger">*</span>
-                            </Form.Label>
+                          <p>
+                            {t("translation:createNewPassword.retypePassword")}
+                            <span className="text-danger">*</span>
+                          </p>
+                          <Form.Group className="input-password">
                             <Form.Control
-                              type="password"
+                              type={showPassword2 ? "text" : "password"}
                               name="password2"
                               placeholder={t("translation:global.password")}
                               onChange={handleChange}
@@ -180,6 +187,11 @@ const CreateNewPassword = () => {
                               isInvalid={!!errors.password2}
                               isValid={touched.password2 && !errors.password2}
                               required
+                            />
+                            <EyePassword
+                              isShow={showPassword2}
+                              touched={touched.password2}
+                              setShowPassword={setShowPassword2}
                             />
                             <Form.Control.Feedback type="invalid">
                               {errors.password2}

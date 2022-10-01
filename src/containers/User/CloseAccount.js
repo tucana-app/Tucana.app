@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Form, Row, Col, Button, ListGroup } from "react-bootstrap";
 import { Link, Redirect, useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import GoBack from "../../components/GoBack";
 import { submitCloseAccount } from "../../redux";
 import { ChevronRightIcon, InfoIcon } from "@primer/octicons-react";
 import { LinkContainer } from "react-router-bootstrap";
+import EyePassword from "../../components/EyePassword";
 
 require("yup-password")(Yup); // extend yup
 
@@ -27,6 +28,8 @@ const CloseAccount = () => {
     submitCloseAccountSuccess,
   } = useSelector((state) => state.user);
   const { labelRequiredField } = useSelector((state) => state.global);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const schema = Yup.object().shape({
     password: Yup.string().required(labelRequiredField),
@@ -88,10 +91,9 @@ const CloseAccount = () => {
                 isSubmitting,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  <Form.Group className="mb-4">
-                    <Form.Label></Form.Label>
+                  <Form.Group className="input-password mb-4">
                     <Form.Control
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       name="password"
                       placeholder={t("translation:closeAccount.typePassword")}
                       onChange={handleChange}
@@ -99,6 +101,11 @@ const CloseAccount = () => {
                       isValid={touched.password && !errors.password}
                       disabled={submitCloseAccountSuccess.flag === "SUCCESS"}
                       required
+                    />
+                    <EyePassword
+                      isShow={showPassword}
+                      touched={touched.password}
+                      setShowPassword={setShowPassword}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.password}

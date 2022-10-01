@@ -120,14 +120,14 @@ const Find = () => {
       <Container className="mb-5">
         {isFormSearchRideSubmitted ? (
           <>
-            <Row className="bg-white sticky-top mt-4 mb-2 mx-1 mx-sm-0">
+            <Row className="sticky-top mt-4 mb-2 mx-1 mx-sm-0">
               <Col
                 xs={12}
                 sm={10}
                 md={8}
                 lg={6}
                 xl={4}
-                className="container-box border-success"
+                className="container-box border-success bg-white"
               >
                 <Container className="p-2">
                   <Row
