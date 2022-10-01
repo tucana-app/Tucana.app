@@ -91,13 +91,17 @@ const Booking = () => {
                             {t("translation:global.seat")}
                           </span>
                           {bookingData.seatsBooked > 1 ? "s" : null}{" "}
-                          {t("translation:global.to")}{" "}
+                          <span className="text-lowercase">
+                            {t("translation:global.to")}
+                          </span>{" "}
                           <strong>{bookingData.Ride.destination.city}</strong>{" "}
                           {t("translation:booking.summary4")}{" "}
-                          {dateFormat(
-                            bookingData.Ride.dateTimeOrigin,
-                            "dd/mm/yy"
-                          )}
+                          <strong>
+                            {dateFormat(
+                              bookingData.Ride.dateTimeOrigin,
+                              "dd/mm/yy"
+                            )}
+                          </strong>
                         </p>
                         <p className="mb-0">
                           {t("translation:global.status")}:{" "}

@@ -262,7 +262,6 @@ export const login = (formLogin) => {
           payload: {
             message,
             flag,
-            userId: error.response.data.userId,
           },
         });
 

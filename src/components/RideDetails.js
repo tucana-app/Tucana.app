@@ -96,7 +96,7 @@ function RideDetails({ ride }) {
           <hr />
 
           <Row className="align-items-center">
-            <Col xs={7}>
+            <Col xs={8}>
               <p className="mb-0">
                 {t("translation:global.seatsAvailable")}:{" "}
                 <span className="text-success">{ride.seatsLeft}</span>/
@@ -112,7 +112,7 @@ function RideDetails({ ride }) {
                 </span>
               </p>
             </Col>
-            <Col xs={5} className="text-center">
+            <Col xs={4} className="text-center">
               <div className="line-height-sm mb-0">
                 <p className="p fw-bold mb-0">{formatPrice(ride.price)}</p>
                 <span className="smaller text-secondary">

@@ -28,7 +28,7 @@
 	},
 	"PassengersDetails": {
 		"noPassengers": "Tu n'as pas encore de passagers pour ce trajet",
-		"summary": "Total : <2>{{totalPassagers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
+		"summary": "Total : <2>{{totalPassengers}}</2> passager(s) avec <2>{{réservations}}</2> réservation(s)"
 	},
 	"account": {
 		"confirmLogOut": "Vous êtes sûr de vouloir vous déconnecter ?"
@@ -292,7 +292,7 @@
 		"origin": "Origine",
 		"passenger": "passager",
 		"passengerComment": "Commentaire du passager",
-		"passengerDetails": "Détails sur le passager",
+		"passengerDetails": "Détails sur le(s) passager(s)",
 		"passengers": "Passagers",
 		"password": "Mot de passe",
 		"pastBookings": "Réservations passées",
@@ -490,12 +490,13 @@
 		"checkItOut": "Consulter",
 		"chooseTime": "Choisir une heure",
 		"comment": "Des commentaires ?",
-		"details": "Détails sur votre trajet",
+		"details": "Détails sur ton trajet",
 		"estimatedDistance": "Distance estimée",
 		"estimatedTime": "Durée estimée",
 		"findRide": "Trouver un transport",
+		"legalConsent": "En publiant ce trajet, vous reconnaissez que vous n'êtes pas un professionnel. Si ce n'est pas le cas, vous pouvez être sanctionné par loi.",
 		"onlyVerifiedDriver": "Tu peux proposer des trajets que si tu es un conducteur vérifié.",
-		"placeholderComment": "Tu veux partager la route que tu vas prendre ou une précision sur ta destination ?",
+		"placeholderComment": "Vous voulez partager l'itinéraire que vous allez emprunter, quelque chose à propos des points de prise en charge ou de dépose ? Faites-le savoir à vos passagers.",
 		"preview": "Aperçu sur Google Maps",
 		"previewTrip": "Prévisualiser le trajet",
 		"priceTitle": "Prix par siège",

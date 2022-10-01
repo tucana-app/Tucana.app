@@ -278,7 +278,7 @@ const DriverApplicationForm = () => {
       if (
         isOnlyLetters(carMaker.value) &&
         isOnlyLetters(carMakerFromUser.value) &&
-        isOnlyLetters(carModel) &&
+        isOnlyLetters(carModel.replace(" ", "")) &&
         isOnlyLetters(numberPlate) &&
         isOnlyLetters(carYear) &&
         isOnlyLetters(carColor)

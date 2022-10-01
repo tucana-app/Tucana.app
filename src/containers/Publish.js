@@ -856,6 +856,14 @@ const Publish = () => {
                   </Button>
                 </Col>
               </Row>
+
+              <Row>
+                <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <p className="small text-secondary">
+                    {t("translation:publish.legalConsent")}
+                  </p>
+                </Col>
+              </Row>
             </div>
           )
         ) : submitted ? (

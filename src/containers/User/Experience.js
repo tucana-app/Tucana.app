@@ -173,7 +173,7 @@ function Experience() {
                 {getLevelsData.map((level, index) => (
                   <Accordion.Item key={index} eventKey={index}>
                     <Accordion.Header>
-                      <h5 className="mb-0">
+                      <p className="mb-0">
                         {t("translation:global.level")} {level.id} -{" "}
                         <span
                           className={
@@ -192,7 +192,7 @@ function Experience() {
                             />
                           ) : null}
                         </span>
-                      </h5>
+                      </p>
                     </Accordion.Header>
                     <Accordion.Body className="mt-3">
                       <Container>
