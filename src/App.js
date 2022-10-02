@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Router, Switch, Route } from "react-router-dom";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 
+// Download link
+import DownloadRedirect from "./DownloadRedirect";
+
 // Error handling
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./containers/ErrorFallback";
@@ -184,6 +187,7 @@ function App() {
 
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/download" component={DownloadRedirect} />
 
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/forgot-password" component={ForgotPassword} />

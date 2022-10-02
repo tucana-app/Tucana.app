@@ -100,6 +100,10 @@ const CloseAccount = () => {
                       isInvalid={!!errors.password}
                       isValid={touched.password && !errors.password}
                       disabled={submitCloseAccountSuccess.flag === "SUCCESS"}
+                      spellCheck="false"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      autoComplete="password"
                       required
                     />
                     <EyePassword

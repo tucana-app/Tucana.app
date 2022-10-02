@@ -156,6 +156,10 @@ const CreateNewPassword = () => {
                                 resetPasswordData.flag ===
                                 "RESET_PASSWORD_SUCCESS"
                               }
+                              spellCheck="false"
+                              autoCorrect="off"
+                              autoCapitalize="off"
+                              autoComplete="password1"
                               required
                             />
                             <EyePassword
@@ -186,6 +190,10 @@ const CreateNewPassword = () => {
                               }
                               isInvalid={!!errors.password2}
                               isValid={touched.password2 && !errors.password2}
+                              spellCheck="false"
+                              autoCorrect="off"
+                              autoCapitalize="off"
+                              autoComplete="password2"
                               required
                             />
                             <EyePassword

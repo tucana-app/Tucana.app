@@ -657,6 +657,10 @@ const Login = () => {
                               onChange={handleChange}
                               isInvalid={!!errors.password}
                               isValid={touched.password && !errors.password}
+                              spellCheck="false"
+                              autoCorrect="off"
+                              autoCapitalize="off"
+                              autoComplete="password"
                               required
                             />
                             <EyePassword

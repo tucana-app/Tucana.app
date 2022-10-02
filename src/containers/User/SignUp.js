@@ -247,8 +247,11 @@ const SignUp = () => {
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
-                        required
+                        spellCheck="false"
+                        autoCorrect="off"
+                        autoCapitalize="off"
                         autoComplete="password"
+                        required
                       />
                       <EyePassword
                         isShow={showPassword}

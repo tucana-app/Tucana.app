@@ -133,6 +133,10 @@ const EditPassword = () => {
                       isInvalid={!!errors.password1}
                       isValid={touched.password1 && !errors.password1}
                       disabled={submitEditPasswordSuccess.flag === "SUCCESS"}
+                      spellCheck="false"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      autoComplete="password1"
                       required
                     />
                     <EyePassword
@@ -158,6 +162,10 @@ const EditPassword = () => {
                       disabled={submitEditPasswordSuccess.flag === "SUCCESS"}
                       isInvalid={!!errors.password2}
                       isValid={touched.password2 && !errors.password2}
+                      spellCheck="false"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      autoComplete="password2"
                       required
                     />
                     <EyePassword
