@@ -111,7 +111,9 @@ const Booking = () => {
                             )}`}
                           >
                             <DotFillIcon size="16" verticalAlign="middle" />
-                            {bookingData.BookingStatus.name}
+                            {t(
+                              `translation:global.statuses.booking.${bookingData.BookingStatus.id}`
+                            )}
                           </span>
                         </p>
                         {bookingData.commentPassenger !== "" &&
@@ -203,9 +205,17 @@ const Booking = () => {
                 </Row>
               ) : null}
 
+              <Row>
+                <Col>
+                  <h4 className="text-success text-center mt-3">
+                    {t("translation:booking.rideDetails")}
+                  </h4>
+                </Col>
+              </Row>
+
               {currentUser.Driver &&
               currentUser.Driver.id !== bookingData.DriverId ? (
-                <Row className="mb-4 mx-1 mx-sm-0">
+                <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
                     sm={10}
@@ -263,14 +273,6 @@ const Booking = () => {
                   </Col>
                 </Row>
               ) : null}
-
-              <Row>
-                <Col>
-                  <h4 className="text-success text-center mt-3">
-                    {t("translation:booking.rideDetails")}
-                  </h4>
-                </Col>
-              </Row>
 
               <RideDetails ride={bookingData.Ride} />
 

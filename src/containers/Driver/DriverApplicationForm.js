@@ -46,7 +46,7 @@ const DriverApplicationForm = () => {
     submitFormBecomeDriverSuccess,
     formApplyDriver,
   } = useSelector((state) => state.user);
-  const { isLoadingCountries, countries, carMakers, months } = useSelector(
+  const { isLoadingCountries, countries, carMakers } = useSelector(
     (state) => state.global
   );
 
@@ -94,12 +94,13 @@ const DriverApplicationForm = () => {
     });
   });
 
-  Object.keys(months).map((month) =>
-    selectMonths.push({
-      value: month,
-      label: months[month],
-    })
-  );
+  for (let i = 1; i <= 12; i++) {
+    selectMonths.push(
+      <option key={i} value={i}>
+        {i} - {t(`translation:global.statuses.month.${i}`)}
+      </option>
+    );
+  }
 
   const cancelButton = () => {
     return (
@@ -327,8 +328,8 @@ const DriverApplicationForm = () => {
   };
 
   const handleChangeCarRiteveMonth = (e) => {
-    setCarRiteveMonth(e);
-    dispatch(setApplicationCarRiteveMonth(e));
+    setCarRiteveMonth(e.target.value);
+    dispatch(setApplicationCarRiteveMonth(e.target.value));
   };
 
   const handleChangeCarRiteveYear = (e) => {
@@ -361,7 +362,12 @@ const DriverApplicationForm = () => {
   };
 
   const handleSubmit = () => {
-    if (carMarchamo !== "" && carRiteveMonth !== "" && carRiteveYear !== "") {
+    if (
+      carMarchamo !== "" &&
+      carRiteveMonth !== "" &&
+      carRiteveMonth !== "0" &&
+      carRiteveYear !== ""
+    ) {
       if (
         carMarchamo <= new Date().getFullYear() + 1 &&
         carRiteveYear <= new Date().getFullYear() + 10
@@ -934,14 +940,17 @@ const DriverApplicationForm = () => {
                   </Col>
                   <Col xs={6} className="mb-3">
                     <Form.Group>
-                      <Select
-                        value={carRiteveMonth}
+                      <Form.Select
                         name="carRiteveMonth"
-                        placeholder={t("translation:global.month")}
+                        value={carRiteveMonth}
                         onChange={handleChangeCarRiteveMonth}
-                        options={selectMonths}
                         required
-                      />
+                      >
+                        <option value={0}>
+                          {t("translation:global.month")}
+                        </option>
+                        {selectMonths}
+                      </Form.Select>
                     </Form.Group>
                   </Col>
                   <Col xs={6} className="mb-3">

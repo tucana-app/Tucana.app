@@ -50,7 +50,9 @@ function ManageDriverBooking({ rideId }) {
                       )}`}
                     >
                       <DotFillIcon size="16" verticalAlign="middle" />
-                      {booking.BookingStatus.name}
+                      {t(
+                        `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                      )}
                     </span>
                   </Col>
                   <Col xs={1} className="text-start ps-0">

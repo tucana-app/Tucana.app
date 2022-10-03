@@ -20,22 +20,21 @@ const Contact = () => {
     isLoggedIn,
     isLoadingSubmitContactForm,
   } = useSelector((state) => state.user);
-  const { labelStringField, labelRequiredField, contactSubjects } = useSelector(
-    (state) => state.global
-  );
+  const { labelStringField, labelRequiredField, nbContactSubjects } =
+    useSelector((state) => state.global);
 
   const [captcha, setCaptcha] = useState(false);
   const [captchaReady, setCaptchaReady] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
 
-  var arraySubjects = [];
-  contactSubjects.map((subject, index) => {
-    return arraySubjects.push(
-      <option key={index} value={subject}>
-        {subject}
+  let arraySubjects = [];
+  for (let i = 1; i <= nbContactSubjects; i++) {
+    arraySubjects.push(
+      <option key={i} value={t(`translation:global.statuses.subjects.${i}`)}>
+        {t(`translation:global.statuses.subjects.${i}`)}
       </option>
     );
-  });
+  }
 
   const schema = Yup.object().shape({
     fullname: Yup.string(labelStringField)
@@ -45,9 +44,7 @@ const Contact = () => {
     email: Yup.string(labelStringField)
       .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
-    subject: Yup.mixed()
-      .oneOf(contactSubjects, labelRequiredField)
-      .required(labelRequiredField),
+    subject: Yup.mixed().required(labelRequiredField),
     message: Yup.string()
       .min(20, t("translation:contact.min20characters"))
       .max(1000, t("translation:contact.max1000characters"))
@@ -67,6 +64,8 @@ const Contact = () => {
   };
 
   const handleSubmit = (values, formikBag) => {
+    console.log(values);
+
     if (captchaVerified) {
       setCaptchaVerified(false);
 

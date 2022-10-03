@@ -117,7 +117,9 @@ const UserPastBookings = () => {
                             )}`}
                           >
                             <DotFillIcon size="16" verticalAlign="middle" />
-                            {booking.BookingStatus.name}
+                            {t(
+                              `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                            )}
                           </span>
                         </p>
                       </Col>

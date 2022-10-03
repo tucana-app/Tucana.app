@@ -97,7 +97,9 @@ const Menu = () => {
                       <p className="small text-secondary mb-0">
                         {t("translation:global.level")}:{" "}
                         <strong>
-                          {currentUser.ExperienceUser.ExperienceUserLevel.label}
+                          {t(
+                            `translation:global.statuses.level.${currentUser.ExperienceUser.ExperienceUserLevel.id}`
+                          )}
                         </strong>
                       </p>
                     </div>

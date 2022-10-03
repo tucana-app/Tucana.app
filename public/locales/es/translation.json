@@ -71,7 +71,7 @@
 		"subTitle": "Todas las reservas que has hecho"
 	},
 	"closeAccount": {
-		"closeAccount": "Eliminar mi cuenta",
+		"closeAccount": "Cerrar mi cuenta",
 		"confirmCloseAccount1": "Si decide cerrar su cuenta, no podrá volver a acceder a ella y tendrá que crear otra con un nuevo nombre de usuario y una nueva dirección de correo electrónico.",
 		"confirmCloseAccount2": "¿Estás seguro de que quiere cerrar tu cuenta?",
 		"title": "Cerrar tu cuenta",
@@ -337,6 +337,59 @@
 		"skip": "Omitir",
 		"slogan": "Comparte tus viajes en Costa Rica",
 		"status": "Estado",
+		"statuses": {
+			"booking": {
+				"1": "Pendiente",
+				"2": "Visto",
+				"3": "Aceptado",
+				"4": "Rechazado",
+				"5": "Cancelado"
+			},
+			"level": {
+				"1": "Novato",
+				"2": "Aprendiz",
+				"3": "Explorador/a",
+				"4": "Aventurero/a",
+				"5": "Experto/a",
+				"6": "Caballero/a",
+				"7": "Héroe",
+				"8": "Campeón",
+				"9": "Demiurgo/a",
+				"10": "Veterano/a"
+			},
+			"month": {
+				"1": "Enero",
+				"2": "Febrero",
+				"3": "Marzo",
+				"4": "Abril",
+				"5": "Mayo",
+				"6": "Junio",
+				"7": "Julio",
+				"8": "Agosto",
+				"9": "Septiembre",
+				"10": "Octubre",
+				"11": "Noviembre",
+				"12": "Diciembre"
+			},
+			"ride": {
+				"1": "Planificada",
+				"2": "",
+				"3": "Cancelada",
+				"4": "Realizada"
+			},
+			"subjects": {
+				"1": "Cuenta",
+				"2": "Reserva",
+				"3": "Ride",
+				"4": "Inversión",
+				"5": "Donación",
+				"6": "Comentarios sobre la app",
+				"7": "Denunciar a alguien",
+				"8": "Trabaja con nosotros",
+				"9": "Cerrar mi cuenta",
+				"10": "Otro"
+			}
+		},
 		"step": "Etapa",
 		"submit": "Envíe",
 		"success": "Éxito",

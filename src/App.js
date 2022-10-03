@@ -111,8 +111,6 @@ import { history } from "./helpers/history";
 import "./scss/app.scss";
 
 import CacheBuster from "react-cache-buster";
-import LoadingSpinner from "./components/LoadingSpinner";
-import { Col, Container, Row } from "react-bootstrap";
 
 function App() {
   const dispatch = useDispatch();
@@ -163,15 +161,7 @@ function App() {
       currentVersion={global.appVersion}
       isEnabled={!isProduction} //If false, the library is disabled.
       isVerboseMode={false} //If true, the library writes verbose logs to console.
-      loadingComponent={
-        <Container className="vh-100">
-          <Row className="h-100 align-items-center">
-            <Col className="text-center">
-              <LoadingSpinner />
-            </Col>
-          </Row>
-        </Container>
-      } //If not pass, nothing appears at the time of new version check.
+      loadingComponent={<Fallback />} //If not pass, nothing appears at the time of new version check.
     >
       <Suspense fallback={<Fallback />}>
         <Router history={history}>

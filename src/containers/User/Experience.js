@@ -63,7 +63,9 @@ function Experience() {
                 </Col>
                 <Col xs={4} className="text-center">
                   <strong>
-                    {currentUser.ExperienceUser.ExperienceUserLevel.label}
+                    {t(
+                      `translation:global.statuses.level.${currentUser.ExperienceUser.ExperienceUserLevel.id}`
+                    )}
                   </strong>
                 </Col>
                 <Col xs={4} className="text-end px-0">
@@ -183,7 +185,7 @@ function Experience() {
                               : null
                           }
                         >
-                          {level.label}
+                          {t(`translation:global.statuses.level.${level.id}`)}
                           {currentUser.ExperienceUser.ExperienceUserLevel.id ===
                           level.id ? (
                             <DotFillIcon
@@ -205,7 +207,12 @@ function Experience() {
                           </Col>
                           <Col xs={4} className="text-center px-0">
                             <p className="mb-0">
-                              <strong>{level.label}</strong>
+                              <strong>
+                                {" "}
+                                {t(
+                                  `translation:global.statuses.level.${level.id}`
+                                )}
+                              </strong>
                             </p>
                           </Col>
                           <Col xs={4} className="text-end px-0">

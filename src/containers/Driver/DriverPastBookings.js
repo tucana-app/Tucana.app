@@ -118,7 +118,9 @@ const DriverPastBookings = () => {
                           )}`}
                         >
                           <DotFillIcon size="16" verticalAlign="middle" />
-                          {booking.BookingStatus.name}
+                          {t(
+                            `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                          )}
                         </small>
                       </Col>
                       <Col>
@@ -136,7 +138,9 @@ const DriverPastBookings = () => {
                               )}`}
                             >
                               <DotFillIcon size="16" verticalAlign="middle" />
-                              {booking.Ride.RideStatus.name}
+                              {t(
+                                `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
+                              )}
                             </small>{" "}
                           </>
                         </Link>

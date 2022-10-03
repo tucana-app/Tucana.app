@@ -108,7 +108,7 @@ function RideDetails({ ride }) {
                   className={`text-${rideStatusVariant(ride.RideStatus.id)}`}
                 >
                   <DotFillIcon size="16" verticalAlign="middle" />
-                  {ride.RideStatus.name}
+                  {t(`translation:global.statuses.ride.${ride.RideStatus.id}`)}
                 </span>
               </p>
             </Col>

@@ -156,7 +156,9 @@ const Bookings = () => {
                                     size="16"
                                     verticalAlign="middle"
                                   />
-                                  {booking.BookingStatus.name}
+                                  {t(
+                                    `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                                  )}
                                 </span>
                               </p>
                             </Col>
@@ -185,7 +187,9 @@ const Bookings = () => {
                                     size="16"
                                     verticalAlign="middle"
                                   />
-                                  {booking.Ride.RideStatus.name}
+                                  {t(
+                                    `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
+                                  )}
                                 </span>
                               </p>
                             </Col>
@@ -277,7 +281,9 @@ const Bookings = () => {
                                     size="16"
                                     verticalAlign="middle"
                                   />
-                                  {booking.BookingStatus.name}
+                                  {t(
+                                    `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                                  )}
                                 </span>
                               </p>
                             </Col>
@@ -306,7 +312,9 @@ const Bookings = () => {
                                     size="16"
                                     verticalAlign="middle"
                                   />
-                                  {booking.Ride.RideStatus.name}
+                                  {t(
+                                    `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
+                                  )}
                                 </span>
                               </p>
                             </Col>

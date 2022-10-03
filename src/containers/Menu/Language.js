@@ -35,7 +35,7 @@ function Language() {
             </p>
             <Button
               onClick={() => changeLanguage("en")}
-              variant="outline-success"
+              variant="outline-dark"
               className="me-2"
             >
               <ReactCountryFlag countryCode="US" className="me-2 mb-1" svg />
@@ -43,16 +43,13 @@ function Language() {
             </Button>
             <Button
               onClick={() => changeLanguage("es")}
-              variant="outline-success"
+              variant="outline-dark"
               className="me-2"
             >
               <ReactCountryFlag countryCode="CR" className="me-2 mb-1" svg />
               Español
             </Button>
-            <Button
-              onClick={() => changeLanguage("fr")}
-              variant="outline-success"
-            >
+            <Button onClick={() => changeLanguage("fr")} variant="outline-dark">
               <ReactCountryFlag countryCode="FR" className="me-2 mb-1" svg />
               Français
             </Button>

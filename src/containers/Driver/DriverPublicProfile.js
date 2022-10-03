@@ -133,10 +133,9 @@ const DriverPublicProfile = () => {
                         </strong>
                         :{" "}
                         <strong>
-                          {
-                            driverProfileData.user.ExperienceUser
-                              .ExperienceUserLevel.label
-                          }
+                          {t(
+                            `translation:global.statuses.level.${driverProfileData.user.ExperienceUser.ExperienceUserLevel.id}`
+                          )}
                         </strong>{" "}
                         <small className="text-secondary">
                           ({driverProfileData.user.ExperienceUser.points}{" "}

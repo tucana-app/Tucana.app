@@ -337,6 +337,59 @@
 		"skip": "Skip",
 		"slogan": "Share your rides in Costa Rica",
 		"status": "Status",
+		"statuses": {
+			"booking": {
+				"1": "Pending",
+				"2": "Seen",
+				"3": "Accepted",
+				"4": "Refused",
+				"5": "Canceled"
+			},
+			"level": {
+				"1": "Novice",
+				"2": "Apprentice",
+				"3": "Pathfinder",
+				"4": "Adventurer",
+				"5": "Expert",
+				"6": "Knight",
+				"7": "Hero",
+				"8": "Champion",
+				"9": "Demigod",
+				"10": "Veteran"
+			},
+			"month": {
+				"1": "January",
+				"2": "February",
+				"3": "Mars",
+				"4": "April",
+				"5": "May",
+				"6": "June",
+				"7": "July",
+				"8": "August",
+				"9": "September",
+				"10": "October",
+				"11": "November",
+				"12": "December"
+			},
+			"ride": {
+				"1": "Planned",
+				"2": "",
+				"3": "Canceled",
+				"4": "Done"
+			},
+			"subjects": {
+				"1": "Account",
+				"2": "Booking",
+				"3": "Ride",
+				"4": "Investment",
+				"5": "Donation",
+				"6": "App feedback",
+				"7": "Report someone",
+				"8": "Work with us",
+				"9": "Close my account",
+				"10": "Other"
+			}
+		},
 		"step": "Step",
 		"submit": "Submit",
 		"success": "Success",

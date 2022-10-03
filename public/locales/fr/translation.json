@@ -71,7 +71,7 @@
 		"subTitle": "Toutes les réservations que tu as faites"
 	},
 	"closeAccount": {
-		"closeAccount": "Fermer mon compte",
+		"closeAccount": "Clôturer mon compte",
 		"confirmCloseAccount1": "Si tu choisis de fermer ton compte, tu ne pourras plus y accéder et devra en créer un autre avec un nouveau nom d'utilisateur et une nouvelle adresse email.",
 		"confirmCloseAccount2": "Es-tu sûr de vouloir fermer ton compte ?",
 		"title": "Fermer ton compte",
@@ -337,6 +337,59 @@
 		"skip": "Passer",
 		"slogan": "Partage tes trajets au Costa Rica",
 		"status": "Statut",
+		"statuses": {
+			"booking": {
+				"1": "En attente",
+				"2": "Vu",
+				"3": "Accepté",
+				"4": "Refusé",
+				"5": "Annulé"
+			},
+			"level": {
+				"1": "",
+				"2": "",
+				"3": "Explorateur/euse",
+				"4": "Aventurier/ière",
+				"5": "Expert/e",
+				"6": "Chevalier/Chevaleresse",
+				"7": "",
+				"8": "Champion/nne",
+				"9": "Demi-dieu/déesse",
+				"10": "Vétéran"
+			},
+			"month": {
+				"1": "Janvier",
+				"2": "Février",
+				"3": "Mars",
+				"4": "Avril",
+				"5": "Mai",
+				"6": "Juin",
+				"7": "Juillet",
+				"8": "Août",
+				"9": "Septembre",
+				"10": "Octobre",
+				"11": "Novembre",
+				"12": "Décembre"
+			},
+			"ride": {
+				"1": "Planifiée",
+				"2": "",
+				"3": "Annulée",
+				"4": "Effectuée"
+			},
+			"subjects": {
+				"1": "Compte",
+				"2": "Réservation",
+				"3": "Trajet",
+				"4": "Investissement",
+				"5": "Donation",
+				"6": "Commentaire sur la app",
+				"7": "Dénoncer quelqu'un",
+				"8": "Travailler avec nous",
+				"9": "Clôturer mon compter",
+				"10": "Autre"
+			}
+		},
 		"step": "Étape",
 		"submit": "Soumettre",
 		"success": "Succès",

@@ -119,7 +119,9 @@ const DriverPastRides = () => {
                                     size="16"
                                     verticalAlign="middle"
                                   />
-                                  {ride.RideStatus.name}
+                                  {t(
+                                    `translation:global.statuses.ride.${ride.RideStatus.id}`
+                                  )}
                                 </small>
                               </Col>
                               <Col>

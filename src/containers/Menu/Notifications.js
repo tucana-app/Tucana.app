@@ -169,7 +169,9 @@ const Notifications = () => {
                     booking.BookingStatus.id
                   )}`}
                 >
-                  {booking.BookingStatus.name}
+                  {t(
+                    `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                  )}
                 </span>{" "}
               </ListGroup.Item>
             </Link>
