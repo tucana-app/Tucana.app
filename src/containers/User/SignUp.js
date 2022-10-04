@@ -60,7 +60,11 @@ const SignUp = () => {
       )
       .required(labelRequiredField),
 
-    password: Yup.string().password().required(labelRequiredField),
+    password: Yup.string()
+      .password()
+      .minSymbols(0)
+      .minUppercase(0)
+      .required(labelRequiredField),
 
     checkTerms: Yup.bool().oneOf(
       [true],
@@ -73,7 +77,9 @@ const SignUp = () => {
   const handleSubmit = (values, formikBag) => {
     if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
       values.phoneNumber = phoneNumber;
-      dispatch(registerUser(values));
+      console.log(values);
+
+      // dispatch(registerUser(values));
       formikBag.setSubmitting(false);
     } else {
       dispatch(

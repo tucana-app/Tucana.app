@@ -306,18 +306,16 @@ const Menu = () => {
               </>
             ) : (
               <>
-                <Link to="/" className="text-decoration-none">
-                  <ListGroup.Item className="text-center border-0 py-3">
-                    <div className="d-inline mx-auto">
-                      <img
-                        src={logo}
-                        alt="Tucána logo"
-                        className="img-fluid"
-                        style={{ maxWidth: "200px" }}
-                      />
-                    </div>
-                  </ListGroup.Item>
-                </Link>
+                <ListGroup.Item className="text-center border-0 py-3">
+                  <div className="d-inline mx-auto">
+                    <img
+                      src={logo}
+                      alt="Tucána logo"
+                      className="img-fluid"
+                      style={{ maxWidth: "200px" }}
+                    />
+                  </div>
+                </ListGroup.Item>
 
                 <hr className="my-2" />
 

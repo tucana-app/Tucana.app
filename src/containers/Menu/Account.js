@@ -244,23 +244,26 @@ function Account() {
                 </div>
               </ListGroup.Item> */}
 
-              <ListGroup.Item
-                className="border-0 cursor-pointer mb-4"
-                onClick={() => setShowModalLogOut(true)}
-              >
-                <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                  <p className="mb-0">{t("translation:global.logOut")}</p>
-                  <ChevronRightIcon size={24} verticalAlign="middle" />
-                </div>
-              </ListGroup.Item>
-
               <LinkContainer to="/close-account" className="cursor-pointer">
-                <ListGroup.Item className="border-0 cursor-pointer">
-                  <p className="small text-secondary text-center mb-0">
-                    {t("translation:passengerProfile.closeAccount")}
-                  </p>
+                <ListGroup.Item className="border-0 cursor-pointer mb-4">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                    <p className="mb-0">
+                      {" "}
+                      {t("translation:passengerProfile.closeAccount")}
+                    </p>
+                    <ChevronRightIcon size={24} verticalAlign="middle" />
+                  </div>
                 </ListGroup.Item>
               </LinkContainer>
+
+              <ListGroup.Item
+                className="border-0 cursor-pointer"
+                onClick={() => setShowModalLogOut(true)}
+              >
+                <p className="small text-secondary text-center mb-0">
+                  {t("translation:global.logOut")}
+                </p>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>

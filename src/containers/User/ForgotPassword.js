@@ -47,9 +47,7 @@ const ForgotPassword = () => {
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <div className="text-center">
-              <h1 className="text-warning">
-                {t("translation:resetPassword.title")}
-              </h1>
+              <h2 className="title">{t("translation:resetPassword.title")}</h2>
               <p className="lead">{t("translation:resetPassword.subTitle")}</p>
             </div>
 
