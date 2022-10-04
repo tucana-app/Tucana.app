@@ -1310,9 +1310,11 @@ export const submitEditDateOfBirthRequested = () => {
 export const submitEditDateOfBirth = (userId, values) => {
   return (dispatch) => {
     dispatch(submitEditDateOfBirthRequested());
+    const { day, month, year } = values;
+    const date = new Date(year, month - 1, day);
 
     axios
-      .post(URL_API + "/user/submit-edit-date-of-birth", { userId, values })
+      .post(URL_API + "/user/submit-edit-date-of-birth", { userId, date })
       .then((response) => {
         let user = JSON.parse(localStorage.getItem("user"));
         if (user) {
