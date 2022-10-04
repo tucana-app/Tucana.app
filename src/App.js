@@ -103,7 +103,6 @@ import {
   getNotifications,
   displayNavBar,
   setGlobalState,
-  getConstants,
 } from "./redux";
 import { history } from "./helpers/history";
 
@@ -134,8 +133,6 @@ function App() {
     interval = setInterval(() => {
       if (isLoggedIn) {
         dispatch(getNotifications(currentUser));
-      } else {
-        dispatch(getConstants());
       }
     }, 60000);
 

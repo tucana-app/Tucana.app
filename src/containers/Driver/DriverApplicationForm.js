@@ -282,7 +282,7 @@ const DriverApplicationForm = () => {
         isOnlyLetters(carModel.replace(" ", "")) &&
         isOnlyLetters(numberPlate) &&
         isOnlyLetters(carYear) &&
-        isOnlyLetters(carColor)
+        isOnlyLetters(carColor.replace(" ", ""))
       ) {
         if (numberPlate.match(/^([0-9]{1,3}|[a-zA-Z]{3})[0-9]{0,3}$/)) {
           setStepThree(false);
@@ -373,7 +373,6 @@ const DriverApplicationForm = () => {
         carRiteveYear <= new Date().getFullYear() + 10
       ) {
         dispatch(submitFormBecomeDriver(currentUser, formApplyDriver));
-
         setSubmitted(true);
         setStepFour(false);
       } else {

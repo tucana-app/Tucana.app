@@ -11,6 +11,7 @@ import {
   isAccountClosed,
   getConstants,
 } from "../index";
+import authHeader from "../../helpers/authHeader";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -50,6 +51,7 @@ export const getDriverNewRidesRequests = (driverId) => {
 
     axios
       .get(URL_API + "/ride/driver-new-rides-requests", {
+        headers: authHeader(),
         params: {
           driverId,
         },
@@ -93,6 +95,7 @@ export const getPassengerBookingsResponses = (userId) => {
 
     axios
       .get(URL_API + "/ride/passenger-bookings-responses", {
+        headers: authHeader(),
         params: {
           userId,
         },

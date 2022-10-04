@@ -2,6 +2,7 @@ import axios from "axios";
 import userTypes from "./userTypes";
 import validator from "validator";
 import { parseText } from "../../helpers";
+import authHeader from "../../helpers/authHeader";
 
 import {
   setToast,
@@ -215,13 +216,13 @@ export const login = (formLogin) => {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
-          dispatch(getConstants());
 
           dispatch({
             type: userTypes.LOGIN_SUCCESS,
             payload: response.data,
           });
 
+          dispatch(getConstants());
           dispatch(getNotifications(response.data));
         } else {
           // If a flag is provided, if not default is "ERROR"
@@ -302,10 +303,16 @@ export const setUserAvatar = (user, avatar) => {
     dispatch(setUserAvatarRequested());
 
     axios
-      .post(URL_API + "/user/set-user-avatar", {
-        user,
-        avatar,
-      })
+      .post(
+        URL_API + "/user/set-user-avatar",
+        {
+          user,
+          avatar,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(setUserAvatarSuccess(response.data, avatar));
       })
@@ -358,9 +365,15 @@ export const setUserFirstSetup = (user) => {
     dispatch(setUserFirstSetupRequested());
 
     axios
-      .post(URL_API + "/user/set-user-first-setup", {
-        user,
-      })
+      .post(
+        URL_API + "/user/set-user-first-setup",
+        {
+          user,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(setUserFirstSetupSuccess(response.data));
       })
@@ -398,6 +411,7 @@ export const submitEmailForgotPassword = (form) => {
 
     axios
       .get(URL_API + "/user/send-email-forgot-password", {
+        headers: authHeader(),
         params: {
           email: form.email.replace(" ", ""),
         },
@@ -649,6 +663,7 @@ export const getApplicationsBecomeDriver = (userId) => {
 
     axios
       .get(URL_API + "/user/applications-become-driver", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -697,6 +712,7 @@ export const getApplicationBecomeDriver = (userId, applicationId) => {
 
     axios
       .get(URL_API + "/user/application-become-driver", {
+        headers: authHeader(),
         params: {
           userId,
           applicationId,
@@ -857,10 +873,16 @@ export const submitFormBecomeDriver = (user, form) => {
     dispatch(submitFormBecomeDriverRequested());
 
     axios
-      .post(URL_API + "/user/submit-become-driver", {
-        user,
-        form,
-      })
+      .post(
+        URL_API + "/user/submit-become-driver",
+        {
+          user,
+          form,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(submitFormBecomeDriverSuccess(response.data));
         dispatch(getApplicationsBecomeDriver(user.id));
@@ -915,15 +937,16 @@ export const updateDriverState = (userId) => {
 
     axios
       .get(URL_API + "/user/driver-state", {
+        headers: authHeader(),
         params: {
           userId,
         },
       })
       .then((response) => {
+        // console.log(response.data);
+
         if (response.data) {
           let user = JSON.parse(localStorage.getItem("user"));
-
-          console.log(response.data);
 
           if (user) {
             user = {
@@ -980,6 +1003,7 @@ export const updateUserRatings = (userId) => {
 
     axios
       .get(URL_API + "/user/update-ratings", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -1042,6 +1066,7 @@ export const updateUserExperience = (userId) => {
 
     axios
       .get(URL_API + "/user/update-experience", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -1103,7 +1128,16 @@ export const submitContactForm = (user, values) => {
     dispatch(submitContactFormRequested());
 
     axios
-      .post(URL_API + "/user/submit-contact-form", { user, values })
+      .post(
+        URL_API + "/user/submit-contact-form",
+        {
+          user,
+          values,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(submitContactFormSuccess());
 
@@ -1166,7 +1200,16 @@ export const submitEditBio = (userId, values) => {
 
     if (parsingResult.value === 0) {
       axios
-        .post(URL_API + "/user/submit-edit-bio", { userId, values })
+        .put(
+          URL_API + "/user/submit-edit-bio",
+          {
+            userId,
+            values,
+          },
+          {
+            headers: authHeader(),
+          }
+        )
         .then((response) => {
           let user = JSON.parse(localStorage.getItem("user"));
           if (user) {
@@ -1250,7 +1293,16 @@ export const submitEditPassword = (user, values) => {
     dispatch(submitEditPasswordRequested());
 
     axios
-      .post(URL_API + "/user/submit-edit-password", { user, values })
+      .put(
+        URL_API + "/user/submit-edit-password",
+        {
+          user,
+          values,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(
           setToast({
@@ -1314,7 +1366,16 @@ export const submitEditDateOfBirth = (userId, values) => {
     const date = new Date(year, month - 1, day);
 
     axios
-      .post(URL_API + "/user/submit-edit-date-of-birth", { userId, date })
+      .put(
+        URL_API + "/user/submit-edit-date-of-birth",
+        {
+          userId,
+          date,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         let user = JSON.parse(localStorage.getItem("user"));
         if (user) {
@@ -1386,7 +1447,16 @@ export const submitCloseAccount = (user, values) => {
     dispatch(submitCloseAccountRequested());
 
     axios
-      .post(URL_API + "/user/submit-close-account", { user, values })
+      .post(
+        URL_API + "/user/submit-close-account",
+        {
+          user,
+          values,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         dispatch(submitCloseAccountSuccess(response.data));
         dispatch(logout());
@@ -1440,7 +1510,10 @@ export const isAccountClosed = (userId) => {
     dispatch(isAccountClosedRequested());
 
     axios
-      .get(URL_API + "/user/is-account-closed", { params: { userId } })
+      .get(URL_API + "/user/is-account-closed", {
+        headers: authHeader(),
+        params: { userId },
+      })
       .then((response) => {
         dispatch(isAccountClosedSuccess(response.data));
         if (response.data.isClosed) {
@@ -1488,6 +1561,7 @@ export const updateUser = (userId) => {
 
     axios
       .get(URL_API + "/user/update", {
+        headers: authHeader(),
         params: {
           userId,
         },

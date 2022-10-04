@@ -2,6 +2,7 @@ import messageTypes from "./messageTypes";
 import axios from "axios";
 import { setToast } from "../index";
 import { parseText } from "../../helpers";
+import authHeader from "../../helpers/authHeader";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -19,6 +20,7 @@ export const getAllUserMessages = (user) => {
 
     axios
       .get(URL_API + "/message/all-user-messages", {
+        headers: authHeader(),
         params: {
           user,
         },
@@ -91,11 +93,17 @@ export const startConversation = (driverId, user, rideId) => {
     dispatch(startConversationRequested());
 
     axios
-      .post(URL_API + "/message/start-conversation", {
-        driverId,
-        userId: user.id,
-        rideId,
-      })
+      .post(
+        URL_API + "/message/start-conversation",
+        {
+          driverId,
+          userId: user.id,
+          rideId,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         // console.log(response.data);
 
@@ -176,12 +184,18 @@ export const sendMessage = (
 
       if (parsingResult.value === 0) {
         axios
-          .post(URL_API + "/message/send-message", {
-            senderId: sender.id,
-            receiverId,
-            message,
-            conversationId,
-          })
+          .post(
+            URL_API + "/message/send-message",
+            {
+              senderId: sender.id,
+              receiverId,
+              message,
+              conversationId,
+            },
+            {
+              headers: authHeader(),
+            }
+          )
           .then((response) => {
             // console.log(response.data);
 
@@ -236,6 +250,7 @@ export const getUserNewMessages = (userId) => {
 
     axios
       .get(URL_API + "/message/user-new-messages", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -285,7 +300,16 @@ export const changeConversationView = (uuid, viewerId, conversationId) => {
     });
 
     axios
-      .put(URL_API + "/message/set-messages-seen", { viewerId, conversationId })
+      .put(
+        URL_API + "/message/set-messages-seen",
+        {
+          viewerId,
+          conversationId,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         // console.log(response.data);
         // Message successfully set as "Seen"

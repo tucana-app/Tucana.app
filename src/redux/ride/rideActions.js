@@ -2,6 +2,7 @@ import rideTypes from "./rideTypes";
 import axios from "axios";
 import { getNotifications, setToast } from "../index";
 import { parseText } from "../../helpers";
+import authHeader from "../../helpers/authHeader";
 import * as Yup from "yup";
 import { t } from "i18next";
 
@@ -21,6 +22,7 @@ export const getDriverRides = (driverId) => {
 
     axios
       .get(URL_API + "/ride/driver-rides", {
+        headers: authHeader(),
         params: {
           driverId,
         },
@@ -188,6 +190,7 @@ export const getETA = (origin, destination) => {
 
     axios
       .get(URL_API + "/ride/get-eta", {
+        headers: authHeader(),
         params: {
           originLat: origin.latLng.lat,
           originLng: origin.latLng.lng,
@@ -257,10 +260,16 @@ export const submitFormPublishRide = (user, formPublishRide, ETAdata) => {
       };
 
       axios
-        .post(URL_API + "/ride/add-ride", {
-          user,
-          formPublishRide,
-        })
+        .post(
+          URL_API + "/ride/add-ride",
+          {
+            user,
+            formPublishRide,
+          },
+          {
+            headers: authHeader(),
+          }
+        )
         .then((response) => {
           // console.log(response.message);
 
@@ -338,7 +347,9 @@ export const getRide = (rideId) => {
     dispatch(getRideRequested());
 
     axios
-      .get(URL_API + "/ride/" + rideId)
+      .get(URL_API + "/ride/" + rideId, {
+        headers: authHeader(),
+      })
       .then((response) => {
         // console.log(response);
 
@@ -417,7 +428,9 @@ export const getBooking = (bookingId) => {
     dispatch(getBookingRequested());
 
     axios
-      .get(URL_API + "/booking/" + bookingId)
+      .get(URL_API + "/booking/" + bookingId, {
+        headers: authHeader(),
+      })
       .then((response) => {
         // console.log(response.data);
 
@@ -548,6 +561,7 @@ export const getFilteredRides = (origin, destination, date) => {
 
     axios
       .get(URL_API + "/ride/filtered-rides", {
+        headers: authHeader(),
         params: {
           originProvince: origin.province,
           originLat: origin.latLng.lat,
@@ -625,13 +639,19 @@ export const submitFormBookRide = (
     dispatch(submitFormBookRideRequested());
 
     axios
-      .post(URL_API + "/ride/book", {
-        passenger: user,
-        ride,
-        seats,
-        totalPaidPassenger,
-        totalReceivedDriver,
-      })
+      .post(
+        URL_API + "/ride/book",
+        {
+          passenger: user,
+          ride,
+          seats,
+          totalPaidPassenger,
+          totalReceivedDriver,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         // console.log(response.data);
 
@@ -703,7 +723,16 @@ export const submitFormDriverResponseBooking = (formValues, user, booking) => {
 
     if (parsingResult.value === 0) {
       axios
-        .put(URL_API + "/booking/driver-response", { booking, formValues })
+        .put(
+          URL_API + "/booking/driver-response",
+          {
+            booking,
+            formValues,
+          },
+          {
+            headers: authHeader(),
+          }
+        )
         .then((response) => {
           // console.log(response.data);
 
@@ -799,6 +828,7 @@ export const getUserBookingsRide = (userId, rideId) => {
 
     axios
       .get(URL_API + "/ride/user-bookings-ride", {
+        headers: authHeader(),
         params: {
           userId,
           rideId,
@@ -851,6 +881,7 @@ export const getUserBookings = (userId) => {
 
     axios
       .get(URL_API + "/ride/user-bookings", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -902,6 +933,7 @@ export const getDriverBookings = (driverId) => {
 
     axios
       .get(URL_API + "/ride/driver-bookings", {
+        headers: authHeader(),
         params: {
           driverId,
         },
@@ -945,6 +977,7 @@ export const getDriverBookingsRide = (driverId, rideId) => {
 
     axios
       .get(URL_API + "/ride/driver-bookings-ride", {
+        headers: authHeader(),
         params: {
           driverId,
           rideId,
@@ -1007,6 +1040,7 @@ export const getPassengersDetails = (rideId) => {
 
     axios
       .get(URL_API + "/ride/passengers", {
+        headers: authHeader(),
         params: {
           rideId,
         },
@@ -1068,6 +1102,7 @@ export const getRidesToConfirm = (user) => {
 
     axios
       .get(URL_API + "/ride/rides-to-confirm", {
+        headers: authHeader(),
         params: {
           user,
         },
@@ -1118,11 +1153,17 @@ export const submitFormConfirmRide = (user, ride, isConfirmed) => {
     dispatch(submitFormConfirmRideRequested());
 
     axios
-      .post(URL_API + "/ride/form-confirm-ride", {
-        user,
-        ride,
-        isConfirmed,
-      })
+      .post(
+        URL_API + "/ride/form-confirm-ride",
+        {
+          user,
+          ride,
+          isConfirmed,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
       .then((response) => {
         // console.log(response.message);
 
@@ -1203,7 +1244,7 @@ export const getDriverProfile = (username) => {
     dispatch(getDriverProfileRequested());
 
     axios
-      .get(URL_API + "/driver/" + username)
+      .get(URL_API + "/driver/" + username, { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 
@@ -1255,7 +1296,7 @@ export const getNbRidesOnline = (username) => {
     dispatch(getNbRidesOnlineRequested());
 
     axios
-      .get(URL_API + "/ride/nb-rides-online")
+      .get(URL_API + "/ride/nb-rides-online", { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 

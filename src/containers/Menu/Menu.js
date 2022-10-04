@@ -221,7 +221,7 @@ const Menu = () => {
                   <Link to="/become-driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                        <p className="text-success mb-0">
+                        <p className="fw-bold text-success mb-0">
                           {t("translation:global.becomeDriver")}
                         </p>
                         <ChevronRightIcon size={24} verticalAlign="middle" />

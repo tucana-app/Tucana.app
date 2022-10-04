@@ -64,8 +64,6 @@ const Contact = () => {
   };
 
   const handleSubmit = (values, formikBag) => {
-    console.log(values);
-
     if (captchaVerified) {
       setCaptchaVerified(false);
 

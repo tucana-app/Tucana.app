@@ -2,6 +2,7 @@ import ratingTypes from "./ratingTypes";
 import axios from "axios";
 import { setToast } from "../index";
 import { parseText } from "../../helpers";
+import authHeader from "../../helpers/authHeader";
 import { t } from "i18next";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -20,6 +21,7 @@ export const getRatingsReceivedPassenger = (userId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-received-passenger", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -79,6 +81,7 @@ export const getRatingsGivenPassenger = (userId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-given-passenger", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -138,6 +141,7 @@ export const getRatingsReceivedDriver = (userId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-received-driver", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -197,6 +201,7 @@ export const getRatingsGivenDriver = (userId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-given-driver", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -256,6 +261,7 @@ export const getRatingsToDoPassenger = (userId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-to-do-passenger", {
+        headers: authHeader(),
         params: {
           userId,
         },
@@ -308,6 +314,7 @@ export const getRatingsToDoDriver = (userId, driverId) => {
 
     axios
       .get(URL_API + "/rating/get-ratings-to-do-driver", {
+        headers: authHeader(),
         params: {
           userId,
           driverId,
@@ -363,11 +370,17 @@ export const submitPassengerRatingForm = (rideId, note, comment) => {
 
     if (parsingResult.value === 0) {
       axios
-        .post(URL_API + "/rating/submit-passenger-rating-form", {
-          rideId,
-          note,
-          comment,
-        })
+        .post(
+          URL_API + "/rating/submit-passenger-rating-form",
+          {
+            rideId,
+            note,
+            comment,
+          },
+          {
+            headers: authHeader(),
+          }
+        )
         .then((response) => {
           // console.log(response.data);
 
@@ -446,11 +459,17 @@ export const submitDriverRatingForm = (rideId, note, comment) => {
 
     if (parsingResult.value === 0) {
       axios
-        .post(URL_API + "/rating/submit-driver-rating-form", {
-          rideId,
-          note,
-          comment,
-        })
+        .post(
+          URL_API + "/rating/submit-driver-rating-form",
+          {
+            rideId,
+            note,
+            comment,
+          },
+          {
+            headers: authHeader(),
+          }
+        )
         .then((response) => {
           // console.log(response.data);
 

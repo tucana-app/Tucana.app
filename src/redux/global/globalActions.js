@@ -1,6 +1,7 @@
 import globalTypes from "./globalTypes";
 import axios from "axios";
 import { updateUser } from "../index";
+import authHeader from "../../helpers/authHeader";
 
 const URL_API = process.env.REACT_APP_URL_API;
 
@@ -28,7 +29,7 @@ export const getConstants = () => {
     dispatch(getConstantsRequested());
 
     axios
-      .get(URL_API + "/global/constants")
+      .get(URL_API + "/global/constants", { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 
@@ -138,7 +139,7 @@ export const getLevels = (userId) => {
     dispatch(getLevelsRequested());
 
     axios
-      .get(URL_API + "/global/levels")
+      .get(URL_API + "/global/levels", { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
         dispatch(getLevelsSuccess(response.data));
