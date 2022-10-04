@@ -77,9 +77,7 @@ const SignUp = () => {
   const handleSubmit = (values, formikBag) => {
     if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
       values.phoneNumber = phoneNumber;
-      console.log(values);
-
-      // dispatch(registerUser(values));
+      dispatch(registerUser(values));
       formikBag.setSubmitting(false);
     } else {
       dispatch(

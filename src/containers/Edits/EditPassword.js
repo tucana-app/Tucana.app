@@ -35,10 +35,16 @@ const EditPassword = () => {
 
   const schema = Yup.object().shape({
     currentPassword: Yup.string().required(labelRequiredField),
-    password1: Yup.string().required(labelRequiredField).password(),
+    password1: Yup.string()
+      .required(labelRequiredField)
+      .password()
+      .minSymbols(0)
+      .minUppercase(0),
     password2: Yup.string(labelStringField)
       .required(labelRequiredField)
       .password()
+      .minSymbols(0)
+      .minUppercase(0)
       .oneOf(
         [Yup.ref("password1"), null],
         t("translation:global.errors.passwordsMatch")
