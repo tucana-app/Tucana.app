@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import dateFormat from "dateformat";
-import { AlertIcon } from "@primer/octicons-react";
+import { AlertIcon, ChevronRightIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -17,10 +17,13 @@ const DriverPublicProfile = () => {
   const { username } = useParams();
 
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const {
+    isLoggedIn,
+    isloadingDriverProfile,
+    driverProfileData,
+    driverProfileError,
+  } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
-  const { isloadingDriverProfile, driverProfileData, driverProfileError } =
-    useSelector((state) => state.ride);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -57,9 +60,7 @@ const DriverPublicProfile = () => {
                 </p>
               </Col>
               <Col className="text-start">
-                <h2 className="text-success">
-                  {driverProfileData.user.firstName}
-                </h2>
+                <h2>{driverProfileData.user.firstName}</h2>
               </Col>
             </Row>
 
@@ -73,26 +74,51 @@ const DriverPublicProfile = () => {
                 className="container-box"
               >
                 <Container className="py-3 px-2">
-                  <Row className="align-items-center mb-3">
-                    <Col xs={12}>
-                      <p className="fw-bold mb-1">
-                        {t("translation:global.ratings")}
-                      </p>
-                    </Col>
-                    <Col xs={12}>
-                      <DisplayRating
-                        rating={driverProfileData.user.Rating}
-                        type="driver"
-                      />
+                  <Row>
+                    <Col>
+                      <ListGroup variant="flush">
+                        <Link
+                          to={`/driver/${username}/ratings`}
+                          className="text-decoration-none"
+                        >
+                          <ListGroup.Item className="border-0 px-0">
+                            <div className="d-inline-flex justify-content-between align-items-center w-100">
+                              <div>
+                                <p className="mb-1">
+                                  <strong>
+                                    {t("translation:global.ratings")}
+                                  </strong>{" "}
+                                  (
+                                  <span className="text-lowercase">
+                                    {t("translation:global.driver")})
+                                  </span>
+                                </p>
+                                <div className="mb-0">
+                                  <DisplayRating
+                                    rating={driverProfileData.user.Rating}
+                                    type="driver"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                {t("translation:global.view")}{" "}
+                                <ChevronRightIcon
+                                  size={24}
+                                  verticalAlign="middle"
+                                />
+                              </div>
+                            </div>
+                          </ListGroup.Item>
+                        </Link>
+                      </ListGroup>
                     </Col>
                   </Row>
+
                   <Row className="align-items-center">
-                    <Col xs={12}>
+                    <Col>
                       <p className="fw-bold mb-1">
                         {t("translation:global.bio")}
                       </p>
-                    </Col>
-                    <Col xs={12}>
                       <p className="mb-0">
                         {driverProfileData.user.biography &&
                         driverProfileData.user.biography !== "" ? (

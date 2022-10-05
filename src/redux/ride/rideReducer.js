@@ -106,10 +106,6 @@ const initialState = {
     seats: 1,
   },
 
-  isloadingDriverProfile: false,
-  driverProfileData: {},
-  driverProfileError: "",
-
   isloadingNbRidesOnline: false,
   nbRidesOnlineData: "-",
   nbRidesOnlineError: "",
@@ -689,29 +685,6 @@ function rideReducer(state = initialState, action) {
           ...state.formSearchRide,
           seats: action.payload,
         },
-      };
-
-    // Get a driver's profile
-    case rideTypes.GET_DRIVER_PROFILE_REQUEST:
-      return {
-        ...state,
-        isloadingDriverProfile: true,
-      };
-
-    case rideTypes.GET_DRIVER_PROFILE_SUCCESS:
-      return {
-        ...state,
-        isloadingDriverProfile: false,
-        driverProfileData: action.payload,
-        driverProfileError: "",
-      };
-
-    case rideTypes.GET_DRIVER_PROFILE_FAIL:
-      return {
-        ...state,
-        isloadingDriverProfile: false,
-        driverProfileData: {},
-        driverProfileError: action.payload,
       };
 
     // Get the number of rides online

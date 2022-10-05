@@ -32,6 +32,14 @@ const initialState = {
   isLoadingSubmitDriverRatingForm: false,
   submitDriverRatingFormData: [],
   submitDriverRatingFormFail: "",
+
+  isloadingDriverRatings: false,
+  driverRatingsData: {},
+  driverRatingsError: "",
+
+  isloadingPassengerrRatings: false,
+  passengerRatingsData: {},
+  passengerRatingsError: "",
 };
 
 function ratingReducer(state = initialState, action) {
@@ -218,6 +226,52 @@ function ratingReducer(state = initialState, action) {
         isLoadingSubmitDriverRatingForm: false,
         submitDriverRatingFormData: [],
         submitDriverRatingFormFail: action.payload,
+      };
+
+    // Get a driver's ratings
+    case ratingTypes.GET_DRIVER_RATINGS_REQUEST:
+      return {
+        ...state,
+        isloadingDriverRatings: true,
+      };
+
+    case ratingTypes.GET_DRIVER_RATINGS_SUCCESS:
+      return {
+        ...state,
+        isloadingDriverRatings: false,
+        driverRatingsData: action.payload,
+        driverRatingsError: "",
+      };
+
+    case ratingTypes.GET_DRIVER_RATINGS_FAIL:
+      return {
+        ...state,
+        isloadingDriverRatings: false,
+        driverRatingsData: {},
+        driverRatingsError: action.payload,
+      };
+
+    // Get a passenger's ratings
+    case ratingTypes.GET_PASSENGER_RATINGS_REQUEST:
+      return {
+        ...state,
+        isloadingPassengerrRatings: true,
+      };
+
+    case ratingTypes.GET_PASSENGER_RATINGS_SUCCESS:
+      return {
+        ...state,
+        isloadingPassengerrRatings: false,
+        passengerRatingsData: action.payload,
+        passengerRatingsError: "",
+      };
+
+    case ratingTypes.GET_PASSENGER_RATINGS_FAIL:
+      return {
+        ...state,
+        isloadingPassengerrRatings: false,
+        passengerRatingsData: {},
+        passengerRatingsError: action.payload,
       };
 
     default:

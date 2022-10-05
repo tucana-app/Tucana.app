@@ -1603,3 +1603,107 @@ export const updateUserFail = (error) => {
     payload: error,
   };
 };
+
+// Get a driver's profile
+
+export const getDriverProfileRequested = () => {
+  return {
+    type: userTypes.GET_DRIVER_PROFILE_REQUEST,
+  };
+};
+
+export const getDriverProfile = (username) => {
+  return (dispatch) => {
+    dispatch(getDriverProfileRequested());
+
+    axios
+      .get(URL_API + "/driver/" + username, { headers: authHeader() })
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getDriverProfileSuccess(response.data));
+        } else {
+          dispatch(getDriverProfileFail("Error"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getDriverProfileFail(message));
+      });
+  };
+};
+
+export const getDriverProfileSuccess = (data) => {
+  return {
+    type: userTypes.GET_DRIVER_PROFILE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverProfileFail = (error) => {
+  return {
+    type: userTypes.GET_DRIVER_PROFILE_FAIL,
+    payload: error,
+  };
+};
+
+// Get a passenger's profile
+
+export const getPassengerProfileRequested = () => {
+  return {
+    type: userTypes.GET_PASSENGER_PROFILE_REQUEST,
+  };
+};
+
+export const getPassengerProfile = (username) => {
+  return (dispatch) => {
+    dispatch(getPassengerProfileRequested());
+
+    axios
+      .get(URL_API + "/passenger/" + username, { headers: authHeader() })
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getPassengerProfileSuccess(response.data));
+        } else {
+          dispatch(getPassengerProfileFail("Error"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getPassengerProfileFail(message));
+      });
+  };
+};
+
+export const getPassengerProfileSuccess = (data) => {
+  return {
+    type: userTypes.GET_PASSENGER_PROFILE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getPassengerProfileFail = (error) => {
+  return {
+    type: userTypes.GET_PASSENGER_PROFILE_FAIL,
+    payload: error,
+  };
+};

@@ -35,8 +35,10 @@ const NewRating = () => {
     getRatingsToDoDriverData,
     isLoadingSubmitPassengerRatingForm,
     submitPassengerRatingFormData,
+    submitPassengerRatingFormFail,
     isLoadingSubmitDriverRatingForm,
     submitDriverRatingFormData,
+    submitDriverRatingFormFail,
   } = useSelector((state) => state.rating);
 
   const handleSubmitPassengerRatingForm = () => {
@@ -60,7 +62,9 @@ const NewRating = () => {
       );
     } else {
       setSubmitted(true);
-      dispatch(submitPassengerRatingForm(ridePassenger, note, comment));
+      dispatch(
+        submitPassengerRatingForm(ridePassenger.Booking.id, note, comment)
+      );
     }
   };
 
@@ -85,7 +89,7 @@ const NewRating = () => {
       );
     } else {
       setSubmitted(true);
-      dispatch(submitDriverRatingForm(rideDriver, note, comment));
+      dispatch(submitDriverRatingForm(rideDriver.Booking.id, note, comment));
     }
   };
 
@@ -140,29 +144,24 @@ const NewRating = () => {
               </Row>
 
               {isLoadingGetRatingsToDoPassenger ||
-              isLoadingGetRatingsToDoDriver ? (
+              isLoadingGetRatingsToDoDriver ||
+              isLoadingSubmitDriverRatingForm ? (
                 <Row className="mt-5">
                   <Col className="text-center">
                     <LoadingSpinner />
                   </Col>
                 </Row>
-              ) : submitted ? (
-                isLoadingSubmitDriverRatingForm ? (
-                  <Row className="mt-5">
-                    <Col className="text-center">
-                      <LoadingSpinner />
-                    </Col>
-                  </Row>
-                ) : (
-                  <Row className="mt-5">
-                    <Col className="text-center">
-                      <p className="fw-bold">
-                        {t("translation:global.thankYou")} 🎉
-                      </p>
-                      {t("translation:newRating.ratingReceived")}
-                    </Col>
-                  </Row>
-                )
+              ) : submitted &&
+                submitPassengerRatingFormFail === "" &&
+                submitDriverRatingFormFail === "" ? (
+                <Row className="mt-5">
+                  <Col className="text-center">
+                    <p className="fw-bold">
+                      {t("translation:global.thankYou")} 🎉
+                    </p>
+                    {t("translation:newRating.ratingReceived")}
+                  </Col>
+                </Row>
               ) : (
                 <Row>
                   <Col>
@@ -187,17 +186,17 @@ const NewRating = () => {
                               {t("translation:newRating.rideSummary")}
                             </p>
                             <p className="mb-0">
-                              <strong>{rideDriver.origin.city}</strong>{" "}
+                              <strong>{ridePassenger.origin.city}</strong>{" "}
                               <span className="text-lowercase">
                                 {t("translation:global.to")}
                               </span>{" "}
-                              <strong>{rideDriver.destination.city}</strong>
+                              <strong>{ridePassenger.destination.city}</strong>
                             </p>
                             <p className="mb-2">
                               {t("translation:global.date")}:{" "}
                               <strong>
                                 {dateFormat(
-                                  rideDriver.dateTimeOrigin,
+                                  ridePassenger.dateTimeOrigin,
                                   "dd/mm/yyyy"
                                 )}
                               </strong>

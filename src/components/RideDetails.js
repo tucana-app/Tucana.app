@@ -116,7 +116,7 @@ function RideDetails({ ride }) {
               <div className="line-height-sm mb-0">
                 <p className="p fw-bold mb-0">{formatPrice(ride.price)}</p>
                 <span className="smaller text-secondary">
-                  /{t("translation:global.perSeat")}
+                  {t("translation:global.perSeat")}
                 </span>
               </div>
             </Col>

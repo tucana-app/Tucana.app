@@ -163,3 +163,25 @@ export const getLevelsError = (error) => {
     payload: error,
   };
 };
+
+export const sendErrorReport = (message, stack) => {
+  return (dispatch) => {
+    dispatch(getCountriesRequested());
+
+    axios
+      .post(
+        URL_API + "/global/error",
+        { message, stack },
+        {
+          headers: authHeader(),
+        }
+      )
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(getCountriesSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error)
+      });
+  };
+};

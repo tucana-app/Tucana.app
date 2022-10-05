@@ -60,10 +60,9 @@
 	},
 	"booking": {
 		"rideDetails": "Detalles del viaje",
+		"seatsBooked": "Asientos reservados",
 		"summary1": "Usted reservó",
 		"summary2": "reservó",
-		"summary3": "asiento",
-		"summary4": "el",
 		"title": "Detalles de la reserva"
 	},
 	"bookings": {
@@ -313,6 +312,7 @@
 		"refuse": "Rechazar",
 		"refused": "Rechazado",
 		"rejectingRide": "Has rechazado la ride",
+		"reload": "Recargar",
 		"report": "Informar de un problema",
 		"reportMember": "Denunciar a este miembro",
 		"resendLink": "Reenviar el enlace de confirmación",
@@ -373,9 +373,9 @@
 			},
 			"ride": {
 				"1": "Planificada",
-				"2": "",
-				"3": "Cancelada",
-				"4": "Realizada"
+				"2": "En marcha",
+				"3": "Realizada",
+				"4": "Cancelada"
 			},
 			"subjects": {
 				"1": "Cuenta",
@@ -406,6 +406,7 @@
 		"welcome": "Bienvenido",
 		"year": "Año",
 		"yes": "Sí",
+		"you": "Tú",
 		"yourIdentity": "Tu identidad",
 		"yourLicense": "Tu licencia",
 		"yourRating": "Tu calificación",
@@ -610,7 +611,6 @@
 	},
 	"ridesDriver": {
 		"subTitle": "Todos los rides que has presentado",
-		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
 		"title": "Rides ofrecidos"
 	},
 	"ridesToConfirm": {

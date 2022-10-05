@@ -118,6 +118,14 @@ initialState = {
   isLoadingUpdateUser: false,
   updateUserSuccess: false,
   updateUserError: "",
+
+  isloadingDriverProfile: false,
+  driverProfileData: {},
+  driverProfileError: "",
+
+  isloadingPassengerProfile: false,
+  passengerProfileData: {},
+  passengerProfileError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -857,6 +865,52 @@ function userReducer(state = initialState, action) {
         isLoadingUpdateUser: false,
         updateUserSuccess: false,
         updateUserError: action.payload,
+      };
+
+    // Get a driver's profile
+    case userTypes.GET_DRIVER_PROFILE_REQUEST:
+      return {
+        ...state,
+        isloadingDriverProfile: true,
+      };
+
+    case userTypes.GET_DRIVER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isloadingDriverProfile: false,
+        driverProfileData: action.payload,
+        driverProfileError: "",
+      };
+
+    case userTypes.GET_DRIVER_PROFILE_FAIL:
+      return {
+        ...state,
+        isloadingDriverProfile: false,
+        driverProfileData: {},
+        driverProfileError: action.payload,
+      };
+
+    // Get a passenger's profile
+    case userTypes.GET_PASSENGER_PROFILE_REQUEST:
+      return {
+        ...state,
+        isloadingPassengerProfile: true,
+      };
+
+    case userTypes.GET_PASSENGER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isloadingPassengerProfile: false,
+        passengerProfileData: action.payload,
+        passengerProfileError: "",
+      };
+
+    case userTypes.GET_PASSENGER_PROFILE_FAIL:
+      return {
+        ...state,
+        isloadingPassengerProfile: false,
+        passengerProfileData: {},
+        passengerProfileError: action.payload,
       };
 
     default:

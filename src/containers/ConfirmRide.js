@@ -54,7 +54,7 @@ const ConfirmRide = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getRide(rideId));
-      dispatch(getRidesToConfirm(currentUser));
+      dispatch(getRidesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

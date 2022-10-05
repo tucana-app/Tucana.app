@@ -60,10 +60,9 @@
 	},
 	"booking": {
 		"rideDetails": "Ride details",
+		"seatsBooked": "Seats booked",
 		"summary1": "You booked",
 		"summary2": "booked",
-		"summary3": "seat",
-		"summary4": "on the",
 		"title": "Booking details"
 	},
 	"bookings": {
@@ -313,6 +312,7 @@
 		"refuse": "Refuse",
 		"refused": "Refused",
 		"rejectingRide": "You have rejected the ride",
+		"reload": "Reload",
 		"report": "Report a problem",
 		"reportMember": "Report this member",
 		"resendLink": "Resend the confirmation link",
@@ -373,9 +373,9 @@
 			},
 			"ride": {
 				"1": "Planned",
-				"2": "",
-				"3": "Canceled",
-				"4": "Done"
+				"2": "On going",
+				"3": "Done",
+				"4": "Canceled"
 			},
 			"subjects": {
 				"1": "Account",
@@ -406,6 +406,7 @@
 		"welcome": "Welcome",
 		"year": "Year",
 		"yes": "Yes",
+		"you": "You",
 		"yourIdentity": "Your identity",
 		"yourLicense": "Your driving license",
 		"yourRating": "Your rating",
@@ -610,7 +611,6 @@
 	},
 	"ridesDriver": {
 		"subTitle": "All the rides you have submitted",
-		"summary": "<2>{{firstName}}</2> booked <2>{{seatsBooked}}</2> seat(s) from <2>{{cityOrigin}}</2> to <2>{{cityDestination}}</2>",
 		"title": "Rides published"
 	},
 	"ridesToConfirm": {

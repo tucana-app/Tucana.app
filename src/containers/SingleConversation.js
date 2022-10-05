@@ -23,9 +23,10 @@ import {
 } from "../redux";
 
 import dateFormat from "dateformat";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import { findLinks } from "../helpers";
+import { Link } from "react-router-dom";
 
 const SingleConversation = ({ conversation }) => {
   const { t } = useTranslation();
@@ -131,82 +132,136 @@ const SingleConversation = ({ conversation }) => {
           className="bg-light rounded-0 border border-top-0 border-start-0
           border-end-0 py-3"
         >
-          <div className="d-flex align-items-center">
-            <ChevronLeftIcon size={28} className="text-success" />
-            <img
-              src={srcAvatar(receiver)}
-              alt="Avatar"
-              className="img-fluid cursor-pointer avatar-img-sm mx-2"
-            />
-            <h2 className="mb-0">{receiverFirstName}</h2>
-          </div>
+          <Container className="px-0">
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="d-inline-flex align-items-center mx-auto"
+              >
+                <ChevronLeftIcon size={28} className="text-success" />
+                <img
+                  src={srcAvatar(receiver)}
+                  alt="Avatar"
+                  className="img-fluid cursor-pointer avatar-img-sm mx-2"
+                />
+                <h2 className="mb-0">{receiverFirstName}</h2>
+              </Col>
+            </Row>
+          </Container>
+        </ListGroup.Item>
+        <ListGroup.Item className="p-0 m-0 border-bottom-0">
+          <Container>
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="d-inline-flex justify-content-between align-items-center bg-dark text-white py-2 mx-auto"
+              >
+                <div>
+                  {t("translation:global.ride")}:{" "}
+                  {conversation.Ride.origin.city}{" "}
+                  <span className="text-lowercase">
+                    {t("translation:global.to")}
+                  </span>{" "}
+                  {conversation.Ride.destination.city}{" "}
+                  <small>
+                    (
+                    {dateFormat(conversation.Ride.dateTimeOrigin, "dd/mm/yyyy")}
+                    )
+                  </small>
+                </div>
+                <Link to={`/ride/${conversation.Ride.id}`}>
+                  <Button variant="light" size="sm">
+                    {t("translation:global.view")}
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
+          </Container>
         </ListGroup.Item>
       </ListGroup>
 
       <Container data-aos="fade-in">
-        <div
-          className={
-            conversation.Messages.length > 0
-              ? "imessage rounded px-3 pb-3"
-              : "imessage px-3"
-          }
-        >
-          {conversation.Messages.length > 0
-            ? conversation.Messages.map((message, index) => {
-                return (
-                  <span key={index}>
-                    {message.SenderId === currentUser.id ? (
-                      // The sender's messages
-                      <>
-                        {findLinks(message.body) ? (
-                          <p className="from-me mb-0">
-                            <a
-                              href={message.body}
-                              alt=""
-                              rel="noreferrer"
-                              target="_blank"
-                              className="link link-light"
-                            >
-                              {message.body}
-                            </a>
-                          </p>
+        <Row>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <div
+              className={
+                conversation.Messages.length > 0
+                  ? "imessage rounded px-3 pb-3"
+                  : "imessage px-3"
+              }
+            >
+              {conversation.Messages.length > 0
+                ? conversation.Messages.map((message, index) => {
+                    return (
+                      <span key={index}>
+                        {message.SenderId === currentUser.id ? (
+                          // The sender's messages
+                          <>
+                            {findLinks(message.body) ? (
+                              <p className="from-me mb-0">
+                                <a
+                                  href={message.body}
+                                  alt=""
+                                  rel="noreferrer"
+                                  target="_blank"
+                                  className="link link-light"
+                                >
+                                  {message.body}
+                                </a>
+                              </p>
+                            ) : (
+                              <p className="from-me mb-0">{message.body} </p>
+                            )}
+                            <p className="small text-secondary text-end w-100 mt-1 pe-0 py-0">
+                              {dateFormat(
+                                message.createdAt,
+                                "dd/mm/yy hh:MM TT"
+                              )}{" "}
+                              {messageStatusIcon(message.MessageStatusId)}
+                            </p>
+                          </>
                         ) : (
-                          <p className="from-me mb-0">{message.body} </p>
+                          // The receiver's messages
+                          <>
+                            {findLinks(message.body) ? (
+                              <p className="from-them mb-0">
+                                <a
+                                  href={message.body}
+                                  alt=""
+                                  rel="noreferrer"
+                                  target="_blank"
+                                  className="link link-dark"
+                                >
+                                  {message.body}
+                                </a>
+                              </p>
+                            ) : (
+                              <p className="from-them mb-0">{message.body} </p>
+                            )}
+                            <p className="small text-secondary w-100 mt-1 ps-0 py-0">
+                              {dateFormat(
+                                message.createdAt,
+                                "dd/mm/yy hh:MM TT"
+                              )}
+                            </p>
+                          </>
                         )}
-                        <p className="small text-secondary text-end w-100 mt-1 pe-0 py-0">
-                          {dateFormat(message.createdAt, "dd/mm/yy hh:MM TT")}{" "}
-                          {messageStatusIcon(message.MessageStatusId)}
-                        </p>
-                      </>
-                    ) : (
-                      // The receiver's messages
-                      <>
-                        {findLinks(message.body) ? (
-                          <p className="from-them mb-0">
-                            <a
-                              href={message.body}
-                              alt=""
-                              rel="noreferrer"
-                              target="_blank"
-                              className="link link-dark"
-                            >
-                              {message.body}
-                            </a>
-                          </p>
-                        ) : (
-                          <p className="from-them mb-0">{message.body} </p>
-                        )}
-                        <p className="small text-secondary w-100 mt-1 ps-0 py-0">
-                          {dateFormat(message.createdAt, "dd/mm/yy hh:MM TT")}
-                        </p>
-                      </>
-                    )}
-                  </span>
-                );
-              })
-            : null}
-        </div>
-        <div ref={messagesEndRef} />
+                      </span>
+                    );
+                  })
+                : null}
+            </div>
+            <div ref={messagesEndRef} />
+          </Col>
+        </Row>
       </Container>
 
       <Form
@@ -216,7 +271,7 @@ const SingleConversation = ({ conversation }) => {
       >
         <Container>
           <Row>
-            <Col xs={12} sm={10} md={8} lg={8} className="mx-auto">
+            <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
               <InputGroup className="mx-auto">
                 <Button
                   type="button"
@@ -236,7 +291,7 @@ const SingleConversation = ({ conversation }) => {
                 <Button
                   type="submit"
                   variant="success"
-                  className="px-sm-2 px-md-3 px-lg-5"
+                  className="px-sm-2 px-md-3"
                   disabled={isLoadingSendMessage}
                   size="lg"
                 >

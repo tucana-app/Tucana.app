@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "@primer/octicons-react";
+import { sendErrorReport } from "../redux";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      dispatch(sendErrorReport(error.message, error.stack));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <Container className="mt-5 pt-5">
-        <Row className="mb-3 mx-1 mx-sm-0">
+      <Container>
+        <Row className="min-vh-100 align-items-center">
           <Col
             xs={12}
             sm={10}

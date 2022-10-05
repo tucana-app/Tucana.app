@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
@@ -78,32 +78,30 @@ const Booking = () => {
                     <Row className="align-items-center">
                       <Col>
                         <p>
+                          {t("translation:global.passenger")}:{" "}
                           {currentUser.id === bookingData.User.id ? (
-                            t("translation:booking.summary1")
+                            <strong>{t("translation:global.you")}</strong>
                           ) : (
-                            <>
-                              <strong>{bookingData.User.firstName} </strong>{" "}
-                              {t("translation:booking.summary2")}
-                            </>
-                          )}{" "}
-                          <strong>{bookingData.seatsBooked}</strong>{" "}
-                          <span className="text-lowercase">
-                            {t("translation:global.seat")}
-                          </span>
-                          {bookingData.seatsBooked > 1 ? "s" : null}{" "}
-                          <span className="text-lowercase">
-                            {t("translation:global.to")}
-                          </span>{" "}
-                          <strong>{bookingData.Ride.destination.city}</strong>{" "}
-                          {t("translation:booking.summary4")}{" "}
+                            <strong>{bookingData.User.firstName}</strong>
+                          )}
+                        </p>
+                        <p>
+                          {t("translation:booking.seatsBooked")}:{" "}
                           <strong>
-                            {dateFormat(
-                              bookingData.Ride.dateTimeOrigin,
-                              "dd/mm/yy"
-                            )}
+                            {bookingData.seatsBooked}{" "}
+                            <span className="text-lowercase">
+                              {t("translation:global.seat")}
+                              {bookingData.seatsBooked > 1 ? "s" : null}
+                            </span>
                           </strong>
                         </p>
-                        <p className="mb-0">
+                        <p>
+                          {t("translation:global.created")}:{" "}
+                          <strong>
+                            {dateFormat(bookingData.createdAt, "dd/mm/yy")}
+                          </strong>
+                        </p>
+                        <p>
                           {t("translation:global.status")}:{" "}
                           <span
                             className={`fw-bold text-${bookingStatusVariant(
@@ -119,7 +117,7 @@ const Booking = () => {
                         {bookingData.commentPassenger !== "" &&
                         bookingData.commentPassenger !== null ? (
                           <>
-                            <p className="mt-3 mb-0">
+                            <p className="mt-3">
                               {t("translation:global.passengerComment")}:{" "}
                             </p>
                             <p>"{bookingData.commentPassenger}"</p>
@@ -131,23 +129,68 @@ const Booking = () => {
                             <p className="mt-3 mb-0">
                               {t("translation:global.driverComment")}:{" "}
                             </p>
-                            <p className="mb-0">
-                              "{bookingData.commentDriver}"
-                            </p>
+                            <p>"{bookingData.commentDriver}"</p>
                           </>
                         ) : null}
-                        {currentUser.Driver &&
-                        currentUser.Driver.id === bookingData.DriverId ? (
-                          <p className="mt-2 mb-0">
-                            <SendMessageButton
-                              type="link"
-                              driverId={bookingData.DriverId}
-                              user={bookingData.User}
-                              receiverName={bookingData.User.firstName}
-                              rideId={bookingData.RideId}
-                            />
-                          </p>
-                        ) : null}
+                        <p className="mb-0">
+                          {t("translation:global.ride")}:{" "}
+                          <strong>{bookingData.Ride.origin.city}</strong>{" "}
+                          <span className="text-lowercase">
+                            {t("translation:global.to")}
+                          </span>{" "}
+                          <strong>{bookingData.Ride.destination.city}</strong>
+                        </p>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+              </Row>
+
+              <Row className="mb-3 mx-1 mx-sm-0">
+                <Col
+                  xs={12}
+                  sm={10}
+                  md={8}
+                  lg={6}
+                  xl={4}
+                  className="container-box"
+                >
+                  <Container className="py-3 px-2">
+                    <LinkContainer
+                      to={`/passenger/${bookingData.User.username}`}
+                      className="cursor-pointer"
+                    >
+                      <Row className="align-items-center">
+                        <Col xs={3} md={2} className="pe-0">
+                          <img
+                            src={srcAvatar(bookingData.User)}
+                            alt="Avatar"
+                            className="img-fluid cursor-pointer avatar-img-sm mx-2"
+                            width="50px"
+                          />
+                        </Col>
+                        <Col xs={6} className="text-start ps-0 ps-md-2">
+                          <p className="mb-0">{bookingData.User.firstName}</p>
+                          <DisplayRating
+                            rating={bookingData.User.Rating}
+                            type="driver"
+                          />
+                        </Col>
+                        <Col className="text-end">
+                          <ChevronRightIcon size={24} verticalAlign="middle" />
+                        </Col>
+                      </Row>
+                    </LinkContainer>
+                    <Row>
+                      <Col>
+                        <hr />
+                        <SendMessageButton
+                          type="link"
+                          driverId={bookingData.DriverId}
+                          user={bookingData.User}
+                          receiverName={bookingData.User.firstName}
+                          rideId={bookingData.RideId}
+                        />
                       </Col>
                     </Row>
                   </Container>
@@ -275,19 +318,6 @@ const Booking = () => {
               ) : null}
 
               <RideDetails ride={bookingData.Ride} />
-
-              <Row>
-                <Col className="text-center">
-                  <LinkContainer
-                    to={`/ride/${bookingData.RideId}`}
-                    className="cursor-pointer"
-                  >
-                    <Button variant="success">
-                      {t("translation:global.seeRide")}
-                    </Button>
-                  </LinkContainer>
-                </Col>
-              </Row>
             </div>
           ) : (
             // Viewer not the driver nor a passenger

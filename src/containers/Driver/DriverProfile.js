@@ -18,7 +18,7 @@ function DriverProfile(props) {
 
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { isloadingDriverProfile, driverProfileData } = useSelector(
-    (state) => state.ride
+    (state) => state.user
   );
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export const getNotifications = (user) => {
     dispatch(getDriverNewRidesRequests(user.id));
     dispatch(getPassengerBookingsResponses(user.id));
     dispatch(getUserNewMessages(user.id));
-    dispatch(getRidesToConfirm(user));
+    dispatch(getRidesToConfirm(user.id));
     dispatch(updateUserRatings(user.id));
     dispatch(updateUserExperience(user.id));
     dispatch(getRatingsToDoPassenger(user.id));

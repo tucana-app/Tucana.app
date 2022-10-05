@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronRightIcon } from "@primer/octicons-react";
 
 import LoadingSpinner from "../components/LoadingSpinner";
-import SingleConversation from "../components/SingleConversation";
+import SingleConversation from "./SingleConversation";
 
 import {
   getAllUserMessages,

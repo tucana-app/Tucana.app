@@ -91,7 +91,9 @@ import Ratings from "./containers/Menu/Ratings";
 
 // Public Profile
 import PassengerPublicProfile from "./containers/PassengerPublicProfile";
+import PassengerPublicRatings from "./containers/PassengerPublicRatings";
 import DriverPublicProfile from "./containers/Driver/DriverPublicProfile";
+import DriverPublicRatings from "./containers/Driver/DriverPublicRatings";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -305,8 +307,18 @@ function App() {
               />
               <Route
                 exact
+                path="/driver/:username/ratings"
+                component={DriverPublicRatings}
+              />
+              <Route
+                exact
                 path="/passenger/:username"
                 component={PassengerPublicProfile}
+              />
+              <Route
+                exact
+                path="/passenger/:username/ratings"
+                component={PassengerPublicRatings}
               />
 
               <Route exact path="/coming-soon" component={ComingSoon} />

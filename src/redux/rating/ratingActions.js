@@ -362,7 +362,7 @@ export const submitPassengerRatingFormRequested = () => {
   };
 };
 
-export const submitPassengerRatingForm = (rideId, note, comment) => {
+export const submitPassengerRatingForm = (bookingId, note, comment) => {
   return (dispatch) => {
     dispatch(submitPassengerRatingFormRequested());
 
@@ -373,7 +373,7 @@ export const submitPassengerRatingForm = (rideId, note, comment) => {
         .post(
           URL_API + "/rating/submit-passenger-rating-form",
           {
-            rideId,
+            bookingId,
             note,
             comment,
           },
@@ -451,7 +451,7 @@ export const submitDriverRatingFormRequested = () => {
   };
 };
 
-export const submitDriverRatingForm = (rideId, note, comment) => {
+export const submitDriverRatingForm = (bookingId, note, comment) => {
   return (dispatch) => {
     dispatch(submitDriverRatingFormRequested());
 
@@ -462,7 +462,7 @@ export const submitDriverRatingForm = (rideId, note, comment) => {
         .post(
           URL_API + "/rating/submit-driver-rating-form",
           {
-            rideId,
+            bookingId,
             note,
             comment,
           },
@@ -527,6 +527,114 @@ export const submitDriverRatingFormSuccess = (data) => {
 export const submitDriverRatingFormFail = (error) => {
   return {
     type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_FAIL,
+    payload: error,
+  };
+};
+
+// Get a driver's ratings
+
+export const getDriverRatingsRequested = () => {
+  return {
+    type: ratingTypes.GET_DRIVER_RATINGS_REQUEST,
+  };
+};
+
+export const getDriverRatings = (username) => {
+  return (dispatch) => {
+    dispatch(getDriverRatingsRequested());
+
+    axios
+      .get(URL_API + "/driver/" + username + "/ratings", {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getDriverRatingsSuccess(response.data));
+        } else {
+          dispatch(getDriverRatingsFail("Error"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getDriverRatingsFail(message));
+      });
+  };
+};
+
+export const getDriverRatingsSuccess = (data) => {
+  return {
+    type: ratingTypes.GET_DRIVER_RATINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverRatingsFail = (error) => {
+  return {
+    type: ratingTypes.GET_DRIVER_RATINGS_FAIL,
+    payload: error,
+  };
+};
+
+// Get a passenger's ratings
+
+export const getPassengerRatingsRequested = () => {
+  return {
+    type: ratingTypes.GET_PASSENGER_RATINGS_REQUEST,
+  };
+};
+
+export const getPassengerRatings = (username) => {
+  return (dispatch) => {
+    dispatch(getPassengerRatingsRequested());
+
+    axios
+      .get(URL_API + "/passenger/" + username + "/ratings", {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getPassengerRatingsSuccess(response.data));
+        } else {
+          dispatch(getPassengerRatingsFail("Error"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getPassengerRatingsFail(message));
+      });
+  };
+};
+
+export const getPassengerRatingsSuccess = (data) => {
+  return {
+    type: ratingTypes.GET_PASSENGER_RATINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getPassengerRatingsFail = (error) => {
+  return {
+    type: ratingTypes.GET_PASSENGER_RATINGS_FAIL,
     payload: error,
   };
 };
