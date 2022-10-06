@@ -24,7 +24,6 @@ import {
 
 import dateFormat from "dateformat";
 import LoadingSpinner from "../components/LoadingSpinner";
-import GoBack from "../components/GoBack";
 
 import { findLinks } from "../helpers";
 import { Link } from "react-router-dom";
