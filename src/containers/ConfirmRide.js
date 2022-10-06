@@ -208,7 +208,9 @@ const ConfirmRide = () => {
                       ) : (
                         <>
                           <Col xs={12} className="text-center mb-3">
-                            <LinkContainer to="/ratings">
+                            <LinkContainer
+                              to={`/ratings/new-rating/${rideData.ride.id}`}
+                            >
                               <Button
                                 variant="outline-dark"
                                 size="lg"
@@ -222,18 +224,6 @@ const ConfirmRide = () => {
                                 />
                               </Button>
                             </LinkContainer>
-                          </Col>
-
-                          <Col xs={12} className="text-center">
-                            <a
-                              href="https://forms.gle/Fi5ek3ZTATc1DcG36"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Button variant="warning">
-                                {t("translation:ride.feedback")}
-                              </Button>
-                            </a>
                           </Col>
                         </>
                       )}

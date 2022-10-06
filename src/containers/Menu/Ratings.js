@@ -137,9 +137,7 @@ function Ratings() {
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
               <div className="d-inline-flex align-items-center">
-                <h3 className="text-success ms-3">
-                  {t("translation:ratings.toDo")}{" "}
-                </h3>
+                <h3 className="ms-3">{t("translation:ratings.toDo")}</h3>
                 <span className="mb-2">
                   {ratingsToDo ? (
                     <Badge bg="danger" className="ms-2">

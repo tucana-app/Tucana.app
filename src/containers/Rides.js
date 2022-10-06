@@ -80,8 +80,8 @@ const Rides = () => {
                           {t("translation:rides.ridesToConfirm")}
                         </span>
                         <Badge
-                          bg="warning"
-                          className="text-dark ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
+                          bg="danger"
+                          className="ms-2 animate__animated animate__heartBeat animate__slower animate__infinite"
                         >
                           {ridesToConfirmData.length}
                         </Badge>
@@ -131,7 +131,7 @@ const Rides = () => {
                         {t("translation:rides.ridesPublished")}
                         {/* {driverRidesData.length > 0 ? (
                           countDriverRides(driverRidesData) ? (
-                            <Badge bg="success" className="text-dark ms-2">
+                            <Badge bg="danger" className="ms-2">
                               {isLoadingDriverRides ? (
                                 <LoadingSpinner size="sm" />
                               ) : (
@@ -156,7 +156,7 @@ const Rides = () => {
                         {t("translation:rides.bookingsReceived")}
                         {driverBookingsData.length > 0 &&
                         countDriverBookings(driverBookingsData) ? (
-                          <Badge bg="info" className="text-dark ms-2">
+                          <Badge bg="danger" className="ms-2">
                             {isLoadingDriverBookings ? (
                               <LoadingSpinner size="sm" />
                             ) : (
