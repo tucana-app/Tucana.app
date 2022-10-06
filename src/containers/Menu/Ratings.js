@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Button, Badge } from "react-bootstrap";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
@@ -30,6 +30,9 @@ function Ratings() {
     isLoadingGetRatingsToDoPassenger,
     getRatingsToDoPassengerData,
   } = useSelector((state) => state.rating);
+
+  var ratingsToDo =
+    getRatingsToDoDriverData.length + getRatingsToDoPassengerData.length;
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -130,12 +133,21 @@ function Ratings() {
       {(!isLoadingGetRatingsToDoPassenger || !isLoadingGetRatingsToDoDriver) &&
       (getRatingsToDoPassengerData.length ||
         getRatingsToDoDriverData.length) ? (
-        <Container>
+        <Container className="mt-5">
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
-              <h3 className="text-success mt-5 ms-3">
-                {t("translation:ratings.toDo")}
-              </h3>
+              <div className="d-inline-flex align-items-center">
+                <h3 className="text-success ms-3">
+                  {t("translation:ratings.toDo")}{" "}
+                </h3>
+                <span className="mb-2">
+                  {ratingsToDo ? (
+                    <Badge bg="danger" className="ms-2">
+                      {ratingsToDo}
+                    </Badge>
+                  ) : null}
+                </span>
+              </div>
 
               <ListGroup variant="flush" className="mx-0">
                 {getRatingsToDoPassengerData.map((ride, index) => (

@@ -5,13 +5,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, ListGroup, Modal, Row } from "react-bootstrap";
 import {
-  CheckCircleFillIcon,
+  // CheckCircleFillIcon,
   ChevronRightIcon,
   StarFillIcon,
-  XCircleFillIcon,
+  // XCircleFillIcon,
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
-import { formatPhoneNumberIntl } from "react-phone-number-input";
+// import { formatPhoneNumberIntl } from "react-phone-number-input";
 import { logout } from "../../redux";
 
 import GoBack from "../../components/GoBack";
@@ -52,8 +52,7 @@ function Account() {
               <img
                 src={srcAvatar(currentUser)}
                 alt="Avatar"
-                className="img-fluid rounded-round avatar-img-sm me-3"
-                style={{ width: "75px" }}
+                className="img-fluid avatar-img me-3"
               />
             </div>
           </Col>
@@ -90,7 +89,7 @@ function Account() {
                 </Col>
               </Row>
 
-              <Row className="align-items-center mb-3">
+              {/* <Row className="align-items-center mb-3">
                 <Col>
                   <p className="text-secondary mb-0">
                     {t("translation:global.phone")}
@@ -116,7 +115,7 @@ function Account() {
                     </p>
                   )}
                 </Col>
-              </Row>
+              </Row> */}
 
               <Row className="align-items-center mb-3">
                 <Col xs={11}>

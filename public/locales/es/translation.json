@@ -88,10 +88,10 @@
 		"confirm": "Confirmo",
 		"confirmNoRide": "Por favor, confirme que el paseo no tuvo lugar",
 		"confirmRideMessage": "¿Ha tenido lugar la ride?",
-		"message": "Ahora tienes que contarnos si todo fue bien, y si hiciste este ride",
+		"message": "Cuéntanos si todo fue bien, y si hiciste este ride",
 		"rateRide": "Clasifica tu ride",
 		"tellUsWhy": "Díganos por qué",
-		"title": "Confirmar la ride"
+		"title": "Completa la ride"
 	},
 	"contact": {
 		"max1000characters": "Máx. 1000 caracteres",
@@ -147,7 +147,7 @@
 			"ANSWER_BOOKING": "Responder a una reserva",
 			"BECOME_DRIVER": "Conviértete en conductor",
 			"BOOK_RIDE": "Reserva un ride",
-			"CONFIRM_RIDE": "Confirma un ride",
+			"CONFIRM_RIDE": "Completa un ride",
 			"PUBLISH_RIDE": "Publica un ride",
 			"READ_MESSAGE": "Lee un mensaje",
 			"SEND_MESSAGE": "Envía un mensaje",
@@ -200,7 +200,7 @@
 		"comingSoon": "Próximamente",
 		"comment": "Comentario",
 		"confirm": "Confirme",
-		"confirmingRide": "Has confirmado la ride",
+		"confirmingRide": "Has completado la ride",
 		"congratulations": "felicitaciones",
 		"contact": "Contacte",
 		"contactUs": "Contáctenos",
@@ -286,7 +286,7 @@
 		"next": "Siguiente",
 		"no": "No",
 		"noRatings": "No calificaciones",
-		"notMandatory": "No es obligatorio",
+		"notMandatory": "Opcional",
 		"notVerified": "Sin verificación",
 		"number": "Numeró",
 		"numberPlate": "Placa",
@@ -372,7 +372,7 @@
 				"12": "Diciembre"
 			},
 			"ride": {
-				"1": "Planificada",
+				"1": "Próximamente",
 				"2": "En marcha",
 				"3": "Realizada",
 				"4": "Cancelada"
@@ -435,7 +435,7 @@
 		"chat": "Chatea con tu conductor o pasajeros",
 		"checkFaq": "Consulte las preguntas frecuentes",
 		"choose": "Elija",
-		"confirm": "Confirmar la ride",
+		"confirm": "Completa la ride",
 		"confirm2": "Para archivar el viaje, y en el futuro, permitir que el conductor reciba el dinero en línea.",
 		"contactDriver": "Póngase en contacto con el conductor si necesita",
 		"feedback": "Denos su opinión sobre nuestro servicio",
@@ -602,7 +602,7 @@
 		"bookingsReceived": "Reservas recibidas",
 		"ridesBookings": "Tus rides & reservacíon",
 		"ridesPublished": "Rides publicadas",
-		"ridesToConfirm": "Rides a confirmar"
+		"ridesToConfirm": "Rides a completar"
 	},
 	"ridesBookings": {
 		"subTitle": "Encuentre a tus pasajeros potenciales aquí",
@@ -615,8 +615,8 @@
 	},
 	"ridesToConfirm": {
 		"goBack": "Vuelve a tus rides",
-		"noRides": "No hay rides para confirmar",
-		"title": "Rides para confirmar"
+		"noRides": "No hay rides para completar",
+		"title": "Rides a completar"
 	},
 	"signUp": {
 		"agreement": "Estoy de acuerdo con los <2>términos y condiciones</2> y la <6>política de privacidad</6>",

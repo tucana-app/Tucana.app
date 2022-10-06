@@ -88,10 +88,10 @@
 		"confirm": "Je confirme",
 		"confirmNoRide": "Confirme que le trajet n'a pas eu lieu.",
 		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
-		"message": "Maintenant, tu dois nous dire si tout s'est bien passé et si tu as fait ce trajet.",
+		"message": "Fais-nous savoir si tout s'est bien passé et si tu as fait ce trajet.",
 		"rateRide": "Note ton trajet",
 		"tellUsWhy": "Dis nous pourquoi",
-		"title": "Confirmer le trajet"
+		"title": "Complète le trajet"
 	},
 	"contact": {
 		"max1000characters": "Max. 1000 caractères",
@@ -147,7 +147,7 @@
 			"ANSWER_BOOKING": "Répondre à une réservation",
 			"BECOME_DRIVER": "Devenir conducteur",
 			"BOOK_RIDE": "Réserver un trajet",
-			"CONFIRM_RIDE": "Confirmer un trajet",
+			"CONFIRM_RIDE": "Complète un trajet",
 			"PUBLISH_RIDE": "Publier un trajet",
 			"READ_MESSAGE": "Lire un message",
 			"SEND_MESSAGE": "Envoyer un message",
@@ -200,7 +200,7 @@
 		"comingSoon": "À venir",
 		"comment": "Commentaire",
 		"confirm": "Confirmer",
-		"confirmingRide": "Tu as confirmé le trajet",
+		"confirmingRide": "Tu as complété le trajet",
 		"congratulations": "Félicitations ",
 		"contact": "Contacter",
 		"contactUs": "Contacte-nous",
@@ -286,7 +286,7 @@
 		"next": "Suivant",
 		"no": "Non",
 		"noRatings": "Pas de notes",
-		"notMandatory": "non obligatoire",
+		"notMandatory": "Optionnel",
 		"notVerified": "Pas encore vérifié",
 		"number": "Numéro",
 		"numberPlate": "Plaque d'immatriculation",
@@ -372,7 +372,7 @@
 				"12": "Décembre"
 			},
 			"ride": {
-				"1": "Planifiée",
+				"1": "À venir",
 				"2": "En cours",
 				"3": "Effectuée",
 				"4": "Annulée"
@@ -435,7 +435,7 @@
 		"chat": "Discute avec le conducteur ou tes passagers",
 		"checkFaq": "Consulte la FAQ",
 		"choose": "Choisis",
-		"confirm": "Confirme le trajet",
+		"confirm": "Complète le trajet",
 		"confirm2": "Pour archiver le trajet, et dans le futur, permettre au conducteur de recevoir l'argent en ligne.",
 		"contactDriver": "Contacte le conducteur si nécessaire",
 		"feedback": "Donne-nous ton avis sur notre service",
@@ -602,7 +602,7 @@
 		"bookingsReceived": "Réservations reçues",
 		"ridesBookings": "Tes trajets & réservations",
 		"ridesPublished": "Trajets publiés",
-		"ridesToConfirm": "Trajets à confirmer"
+		"ridesToConfirm": "Trajets à compléter"
 	},
 	"ridesBookings": {
 		"subTitle": "Trouve tes passagers potentiels ici",
@@ -615,8 +615,8 @@
 	},
 	"ridesToConfirm": {
 		"goBack": "Retourne à tes trajets",
-		"noRides": "Aucun trajet à confirmer",
-		"title": "Trajets à confirmer"
+		"noRides": "Aucun trajets à confirmer",
+		"title": "Trajets à compléter"
 	},
 	"signUp": {
 		"agreement": "J'accepte les <2>termes et conditions</2> et la <6>politique de confidentialité</6>",

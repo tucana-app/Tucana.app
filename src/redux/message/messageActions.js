@@ -14,7 +14,7 @@ export const getAllUserMessagesRequested = () => {
   };
 };
 
-export const getAllUserMessages = (user) => {
+export const getAllUserMessages = (userId) => {
   return (dispatch) => {
     dispatch(getAllUserMessagesRequested());
 
@@ -22,7 +22,7 @@ export const getAllUserMessages = (user) => {
       .get(URL_API + "/message/all-user-messages", {
         headers: authHeader(),
         params: {
-          user,
+          userId,
         },
       })
       .then((response) => {
@@ -107,7 +107,7 @@ export const startConversation = (driverId, user, rideId) => {
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(getAllUserMessages(user));
+        dispatch(getAllUserMessages(user.id));
 
         // The response is the UUID of the conversation
         dispatch(
@@ -208,7 +208,7 @@ export const sendMessage = (
               })
             );
             dispatch(sendMessageEnd());
-            dispatch(getAllUserMessages(sender));
+            dispatch(getAllUserMessages(sender.id));
           })
           .catch((error) => {
             // console.log(error)

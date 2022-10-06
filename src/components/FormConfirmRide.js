@@ -128,17 +128,6 @@ const FormConfirmRide = ({ ride }) => {
               </Button>
             </LinkContainer>
           </Col>
-          <Col xs={12} md={6} className="text-center text-md-start">
-            <a
-              href="https://forms.gle/Fi5ek3ZTATc1DcG36"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="warning">
-                {t("translation:ride.feedback")}
-              </Button>
-            </a>
-          </Col>
         </Row>
       )}
     </>

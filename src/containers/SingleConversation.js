@@ -125,7 +125,7 @@ const SingleConversation = ({ conversation }) => {
       <ListGroup className="cursor-pointer sticky-top mb-3">
         <ListGroup.Item
           onClick={() => {
-            dispatch(getAllUserMessages(currentUser));
+            dispatch(getAllUserMessages(currentUser.id));
             dispatch(resetConversationView(currentUser.id));
             dispatch(displayNavBar(true));
           }}
@@ -188,7 +188,7 @@ const SingleConversation = ({ conversation }) => {
         </ListGroup.Item>
       </ListGroup>
 
-      <Container data-aos="fade-in">
+      <Container data-aos="fade-in" className="px-0">
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <div

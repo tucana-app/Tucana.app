@@ -61,7 +61,7 @@ function Messages() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(getAllUserMessages(currentUser));
+    if (isLoggedIn) dispatch(getAllUserMessages(currentUser.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

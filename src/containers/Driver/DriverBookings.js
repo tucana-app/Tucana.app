@@ -60,14 +60,16 @@ const DriverBookings = () => {
       <GoBack />
 
       <Container className="mb-5">
-        <Row className="justify-content-center text-center">
+        <Row className="justify-content-center text-center mb-3">
           <Col>
-            <h1 className="title text-success mb-0">
+            <h1 className="title mb-0">
+              {" "}
               {t("translation:ridesBookings.title")}
             </h1>
             <p className="lead">{t("translation:ridesBookings.subTitle")}</p>
           </Col>
         </Row>
+
         {isLoadingDriverBookings ? (
           <Row>
             <Col className="text-center">

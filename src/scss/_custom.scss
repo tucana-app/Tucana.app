@@ -148,6 +148,11 @@ body {
   @extend .rounded-round;
 }
 
+.avatar-img-xs {
+  width: 30px;
+  @extend .rounded-round;
+}
+
 .avatar-parent {
   position: relative;
 }

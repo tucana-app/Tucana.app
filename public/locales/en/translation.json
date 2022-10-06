@@ -88,10 +88,10 @@
 		"confirm": "I confirm",
 		"confirmNoRide": "Please confirm that the ride didn't take place",
 		"confirmRideMessage": "Did the ride took place?",
-		"message": "Now you have to let us know if everything went well, and if you did this ride",
+		"message": "Let us know if everything went well, and if you did this ride",
 		"rateRide": "Rate your ride",
 		"tellUsWhy": "Tell us why",
-		"title": "Confirm the ride"
+		"title": "Complete the ride"
 	},
 	"contact": {
 		"max1000characters": "Max. 1000 characters",
@@ -147,7 +147,7 @@
 			"ANSWER_BOOKING": "Answer a booking",
 			"BECOME_DRIVER": "Become a driver",
 			"BOOK_RIDE": "Book a ride",
-			"CONFIRM_RIDE": "Confirm a ride",
+			"CONFIRM_RIDE": "Complete a ride",
 			"PUBLISH_RIDE": "Publish a ride",
 			"READ_MESSAGE": "Read a message",
 			"SEND_MESSAGE": "Send a message",
@@ -200,7 +200,7 @@
 		"comingSoon": "Coming soon",
 		"comment": "Comment",
 		"confirm": "Confirm",
-		"confirmingRide": "You have confirmed the ride",
+		"confirmingRide": "You have completed the ride",
 		"congratulations": "Congratulations",
 		"contact": "Contact",
 		"contactUs": "Contact Us",
@@ -286,7 +286,7 @@
 		"next": "Next",
 		"no": "No",
 		"noRatings": "No ratings",
-		"notMandatory": "Not mandatory",
+		"notMandatory": "Optional",
 		"notVerified": "Not verified",
 		"number": "Number",
 		"numberPlate": "Number plate",
@@ -372,7 +372,7 @@
 				"12": "December"
 			},
 			"ride": {
-				"1": "Planned",
+				"1": "Coming",
 				"2": "On going",
 				"3": "Done",
 				"4": "Canceled"
@@ -435,7 +435,7 @@
 		"chat": "Chat with your driver or passengers",
 		"checkFaq": "Check the FAQ",
 		"choose": "Choose",
-		"confirm": "Confirm the ride",
+		"confirm": "Complete the ride",
 		"confirm2": "To archive the trip, and in the future, allow the driver to receive the money online.",
 		"contactDriver": "Contact the driver if you need to",
 		"feedback": "Give us a feedback for our service",
@@ -602,7 +602,7 @@
 		"bookingsReceived": "Bookings received",
 		"ridesBookings": "Your rides & bookings",
 		"ridesPublished": "Rides published",
-		"ridesToConfirm": "Rides to confirm"
+		"ridesToConfirm": "Rides to complete"
 	},
 	"ridesBookings": {
 		"subTitle": "Find your potential passengers here",
@@ -615,8 +615,8 @@
 	},
 	"ridesToConfirm": {
 		"goBack": "Go back to your rides",
-		"noRides": "No rides to confirm",
-		"title": "Rides to confirm"
+		"noRides": "No rides to complete",
+		"title": "Rides to complete"
 	},
 	"signUp": {
 		"agreement": "I agree with the <2>terms & conditions</2> and the <6>privacy policy</6>",
