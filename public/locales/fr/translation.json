@@ -346,13 +346,13 @@
 				"5": "Annulé"
 			},
 			"level": {
-				"1": "",
-				"2": "",
-				"3": "Explorateur/euse",
+				"1": "Novice",
+				"2": "Apprenti/e",
+				"3": "Explorateur/trice",
 				"4": "Aventurier/ière",
 				"5": "Expert/e",
 				"6": "Chevalier/Chevaleresse",
-				"7": "",
+				"7": "Héro",
 				"8": "Champion/nne",
 				"9": "Demi-dieu/déesse",
 				"10": "Vétéran"

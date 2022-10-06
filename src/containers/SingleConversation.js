@@ -24,6 +24,7 @@ import {
 
 import dateFormat from "dateformat";
 import LoadingSpinner from "../components/LoadingSpinner";
+import GoBack from "../components/GoBack";
 
 import { findLinks } from "../helpers";
 import { Link } from "react-router-dom";
@@ -31,6 +32,7 @@ import { Link } from "react-router-dom";
 const SingleConversation = ({ conversation }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const { user: currentUser } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
   const { messageStatusIcon, isLoadingSendMessage } = useSelector(
@@ -165,19 +167,23 @@ const SingleConversation = ({ conversation }) => {
                 className="d-inline-flex justify-content-between align-items-center bg-dark text-white py-2 mx-auto"
               >
                 <div>
-                  {t("translation:global.ride")}:{" "}
-                  {conversation.Ride.origin.city}{" "}
-                  <span className="text-lowercase">
-                    {t("translation:global.to")}
-                  </span>{" "}
-                  {conversation.Ride.destination.city}{" "}
                   <small>
-                    (
+                    {t("translation:global.ride")}:{" "}
+                    {conversation.Ride.origin.city}{" "}
+                    <span className="text-lowercase">
+                      {t("translation:global.to")}
+                    </span>{" "}
+                    {conversation.Ride.destination.city} (
                     {dateFormat(conversation.Ride.dateTimeOrigin, "dd/mm/yyyy")}
                     )
                   </small>
                 </div>
-                <Link to={`/ride/${conversation.Ride.id}`}>
+                <Link
+                  to={`/ride/${conversation.Ride.id}`}
+                  onClick={() => {
+                    dispatch(displayNavBar(true));
+                  }}
+                >
                   <Button variant="light" size="sm">
                     {t("translation:global.view")}
                   </Button>
@@ -188,16 +194,10 @@ const SingleConversation = ({ conversation }) => {
         </ListGroup.Item>
       </ListGroup>
 
-      <Container data-aos="fade-in" className="px-0">
+      <Container fluid data-aos="container-fluid fade-in">
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-            <div
-              className={
-                conversation.Messages.length > 0
-                  ? "imessage rounded px-3 pb-3"
-                  : "imessage px-3"
-              }
-            >
+            <div className="imessage">
               {conversation.Messages.length > 0
                 ? conversation.Messages.map((message, index) => {
                     return (

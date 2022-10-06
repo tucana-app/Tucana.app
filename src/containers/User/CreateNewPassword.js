@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
-import logo from "../../assets/images/logo-black.png";
+import logo from "../../assets/images/logo-full-black.png";
 
 import {
   resetPassword,

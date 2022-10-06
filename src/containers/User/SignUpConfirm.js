@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { displayNavBar, confirmEmail } from "../../redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import logo from "../../assets/images/logo-black.png";
+import logo from "../../assets/images/logo-full-black.png";
 
 const SignUpConfirm = () => {
   const { t } = useTranslation();

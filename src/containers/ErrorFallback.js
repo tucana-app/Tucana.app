@@ -20,17 +20,10 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
     <>
       <Container>
         <Row className="min-vh-100 align-items-center">
-          <Col
-            xs={12}
-            sm={10}
-            md={8}
-            lg={6}
-            xl={4}
-            className="bg-light container-box"
-          >
-            <Container className="pt-3 px-2">
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <Container>
               <Row>
-                <Col className="text-center">
+                <Col className="text-center container-box pt-3 pb-1">
                   <h1 className="title">
                     {t("translation:global.errors.errorFallback")}
                   </h1>

@@ -21,7 +21,7 @@ import { getNotifications } from "../../redux";
 import { getPercent } from "../../helpers";
 
 // Importing assets
-import logo from "../../assets/images/logo-black.png";
+import logo from "../../assets/images/logo-full-black.png";
 import SocialIcons from "../../components/SocialIcons";
 import { LinkContainer } from "react-router-bootstrap";
 

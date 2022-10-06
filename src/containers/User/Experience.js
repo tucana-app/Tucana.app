@@ -273,7 +273,7 @@ function Experience() {
                         <Row className="mt-4">
                           <Col className="text-center">
                             {t("translation:experience.multiplier")}:{" "}
-                            <strong>x{level.rate}</strong>
+                            <strong>x{level.multiplier}</strong>
                           </Col>
                         </Row>
 

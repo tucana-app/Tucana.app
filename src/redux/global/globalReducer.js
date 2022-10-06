@@ -17,12 +17,12 @@ import selected from "../../assets/images/filters/filter-select.png";
 import transparent from "../../assets/images/filters/transparent.png";
 
 const initialState = {
-  seatsMax: 3,
-
   labelStringField: "Only letters and numbers allowed",
   labelRequiredField: "This field is required",
+
   priceMin: 2000,
   priceMax: 50000,
+  seatsMax: 3,
   commission: 1,
   initHeight: 0,
   constants: [],

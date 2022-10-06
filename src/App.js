@@ -146,12 +146,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (height < initHeight - 200) {
+    if (height <= initHeight - 200) {
       dispatch(displayNavBar(false));
     } else {
       dispatch(displayNavBar(true));
     }
-  }, [height, initHeight, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [height, initHeight]);
 
   const isProduction = process.env.NODE_ENV === "production";
 

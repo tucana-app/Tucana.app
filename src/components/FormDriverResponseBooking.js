@@ -86,7 +86,7 @@ const FormDriverResponseBooking = ({ bookingId }) => {
                 <>
                   <Form.Group className="mb-3">
                     <Form.Label>
-                      <p className="small text-secondary">
+                      <p>
                         <AlertIcon size={24} className="me-2" />
                         {t("translation:global.doNotShare")}
                       </p>

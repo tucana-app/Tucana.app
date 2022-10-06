@@ -81,7 +81,14 @@ const DriverBookings = () => {
             {countBookingsPending(driverBookingsData) > 0 ? (
               <>
                 <Row>
-                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
                     <p className="text-warning mb-1">
                       {t("translation:global.bookings")}{" "}
                       <span className="text-lowercase">
@@ -195,7 +202,14 @@ const DriverBookings = () => {
             {countBookingsAccepted(driverBookingsData) > 0 ? (
               <>
                 <Row className="mt-4">
-                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
                     <p className="text-success mb-1">
                       {t("translation:global.bookings")}{" "}
                       <span className="text-lowercase">
@@ -271,31 +285,6 @@ const DriverBookings = () => {
                                   `translation:global.statuses.booking.${booking.BookingStatus.id}`
                                 )}
                               </small>
-                            </Col>
-                            <Col>
-                              <Link
-                                to={`/ride/${booking.RideId}`}
-                                className="text-decoration-none text-black me-3"
-                              >
-                                <>
-                                  <small className="text-secondary mb-0">
-                                    {t("translation:global.ride")}:
-                                  </small>
-                                  <small
-                                    className={`text-${rideStatusVariant(
-                                      booking.Ride.RideStatusId
-                                    )}`}
-                                  >
-                                    <DotFillIcon
-                                      size="16"
-                                      verticalAlign="middle"
-                                    />
-                                    {t(
-                                      `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
-                                    )}
-                                  </small>{" "}
-                                </>
-                              </Link>
                             </Col>
                           </Row>
                         </Container>

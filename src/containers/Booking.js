@@ -146,56 +146,62 @@ const Booking = () => {
                 </Col>
               </Row>
 
-              <Row className="mb-3 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  xl={4}
-                  className="container-box"
-                >
-                  <Container className="py-3 px-2">
-                    <LinkContainer
-                      to={`/passenger/${bookingData.User.username}`}
-                      className="cursor-pointer"
-                    >
-                      <Row className="align-items-center">
-                        <Col xs={3} md={2} className="pe-0">
-                          <img
-                            src={srcAvatar(bookingData.User)}
-                            alt="Avatar"
-                            className="img-fluid cursor-pointer avatar-img-sm mx-2"
-                            width="50px"
+              {currentUser.Driver &&
+              currentUser.Driver.id === bookingData.DriverId ? (
+                <Row className="mb-3 mx-1 mx-sm-0">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="container-box"
+                  >
+                    <Container className="py-3 px-2">
+                      <LinkContainer
+                        to={`/passenger/${bookingData.User.username}`}
+                        className="cursor-pointer"
+                      >
+                        <Row className="align-items-center">
+                          <Col xs={3} md={2} className="pe-0">
+                            <img
+                              src={srcAvatar(bookingData.User)}
+                              alt="Avatar"
+                              className="img-fluid cursor-pointer avatar-img-sm mx-2"
+                              width="50px"
+                            />
+                          </Col>
+                          <Col xs={6} className="text-start ps-0 ps-md-2">
+                            <p className="mb-0">{bookingData.User.firstName}</p>
+                            <DisplayRating
+                              rating={bookingData.User.Rating}
+                              type="passenger"
+                            />
+                          </Col>
+                          <Col className="text-end">
+                            <ChevronRightIcon
+                              size={24}
+                              verticalAlign="middle"
+                            />
+                          </Col>
+                        </Row>
+                      </LinkContainer>
+                      <Row>
+                        <Col>
+                          <hr />
+                          <SendMessageButton
+                            type="link"
+                            driverId={bookingData.DriverId}
+                            user={bookingData.User}
+                            receiverName={bookingData.User.firstName}
+                            rideId={bookingData.RideId}
                           />
-                        </Col>
-                        <Col xs={6} className="text-start ps-0 ps-md-2">
-                          <p className="mb-0">{bookingData.User.firstName}</p>
-                          <DisplayRating
-                            rating={bookingData.User.Rating}
-                            type="driver"
-                          />
-                        </Col>
-                        <Col className="text-end">
-                          <ChevronRightIcon size={24} verticalAlign="middle" />
                         </Col>
                       </Row>
-                    </LinkContainer>
-                    <Row>
-                      <Col>
-                        <hr />
-                        <SendMessageButton
-                          type="link"
-                          driverId={bookingData.DriverId}
-                          user={bookingData.User}
-                          receiverName={bookingData.User.firstName}
-                          rideId={bookingData.RideId}
-                        />
-                      </Col>
-                    </Row>
-                  </Container>
-                </Col>
-              </Row>
+                    </Container>
+                  </Col>
+                </Row>
+              ) : null}
 
               <Row className="mb-3 mx-1 mx-sm-0">
                 <Col

@@ -104,7 +104,7 @@ const DriverApplicationForm = () => {
 
   const cancelButton = () => {
     return (
-      <LinkContainer to="/become-driver">
+      <LinkContainer to="/account">
         <Col
           xs={2}
           className="cursor-pointer text-secondary"
@@ -1075,7 +1075,7 @@ const DriverApplicationForm = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title className="text-dark">
-            {t("translation:passengerProfile.requestData")}
+            {t("translation:global.riteve")}
           </Modal.Title>
         </Modal.Header>
 

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "@primer/octicons-react";
 
 // Importing assets
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo-full.png";
 
 function Home() {
   const { t } = useTranslation();

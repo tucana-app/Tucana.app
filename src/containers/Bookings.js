@@ -80,7 +80,14 @@ const Bookings = () => {
             {countBookingsAccepted(userBookingsData) > 0 ? (
               <>
                 <Row>
-                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
                     <p className="text-success mb-1">
                       {t("translation:global.bookings")}{" "}
                       <span className="text-lowercase">
@@ -205,7 +212,14 @@ const Bookings = () => {
             {countBookingsPending(userBookingsData) > 0 ? (
               <>
                 <Row className="mt-4">
-                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
                     <p className="text-warning mb-1">
                       {t("translation:global.bookings")}{" "}
                       <span className="text-lowercase">
