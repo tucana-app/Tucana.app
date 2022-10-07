@@ -14,7 +14,7 @@ import dateFormat from "dateformat";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
 
-import { getRidesToConfirm } from "../redux";
+import { ridesToConfirm } from "../redux";
 
 function RidesToConfirm() {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ function RidesToConfirm() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getRidesToConfirm(currentUser.id));
+      dispatch(ridesToConfirm(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -57,10 +57,10 @@ function RidesToConfirm() {
           <Row>
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
               <ListGroup variant="flush" className="mx-0 pt-4">
-                {ridesToConfirmData.map((ride, index) => (
+                {ridesToConfirmData.map((booking, index) => (
                   <Link
                     key={index}
-                    to={`/ride/confirm/${ride.id}`}
+                    to={`/ride/booking/${booking.id}/confirm`}
                     className="text-decoration-none"
                   >
                     <ListGroup.Item className="border border-start-0 border-end-0">
@@ -76,12 +76,15 @@ function RidesToConfirm() {
                           </Col>
                           <Col className="ps-0">
                             <p className="mb-0">
-                              {ride.origin.city}{" "}
+                              {booking.Ride.origin.city}{" "}
                               <ArrowRightIcon verticalAlign="middle" />{" "}
-                              {ride.destination.city}{" "}
+                              {booking.Ride.destination.city}{" "}
                             </p>
                             <small className="text-secondary">
-                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
+                              {dateFormat(
+                                booking.Ride.dateTimeOrigin,
+                                "dd/mm/yyyy"
+                              )}
                             </small>
                           </Col>
                           <Col xs={1} className="mx-0 px-0">

@@ -1090,15 +1090,15 @@ export const getPassengersDetailsFail = (error) => {
 // Get all the rides that the user has to provide
 // a feedback whether the ride happened of not
 
-export const getRidesToConfirmRequested = () => {
+export const ridesToConfirmRequested = () => {
   return {
-    type: rideTypes.GET_RIDES_TO_CONFIRM_REQUEST,
+    type: rideTypes.RIDES_TO_CONFIRM_REQUEST,
   };
 };
 
-export const getRidesToConfirm = (userId) => {
+export const ridesToConfirm = (userId) => {
   return (dispatch) => {
-    dispatch(getRidesToConfirmRequested());
+    dispatch(ridesToConfirmRequested());
 
     axios
       .get(URL_API + "/ride/rides-to-confirm", {
@@ -1109,7 +1109,7 @@ export const getRidesToConfirm = (userId) => {
       })
       .then((response) => {
         // console.log(response.data);
-        dispatch(getRidesToConfirmSuccess(response.data));
+        dispatch(ridesToConfirmSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -1121,21 +1121,74 @@ export const getRidesToConfirm = (userId) => {
           error.message ||
           error.toString();
 
-        dispatch(getRidesToConfirmFail(message));
+        dispatch(ridesToConfirmFail(message));
       });
   };
 };
 
-export const getRidesToConfirmSuccess = (data) => {
+export const ridesToConfirmSuccess = (data) => {
   return {
-    type: rideTypes.GET_RIDES_TO_CONFIRM_SUCCESS,
+    type: rideTypes.RIDES_TO_CONFIRM_SUCCESS,
     payload: data,
   };
 };
 
-export const getRidesToConfirmFail = (error) => {
+export const ridesToConfirmFail = (error) => {
   return {
-    type: rideTypes.GET_RIDES_TO_CONFIRM_FAIL,
+    type: rideTypes.RIDES_TO_CONFIRM_FAIL,
+    payload: error,
+  };
+};
+
+// Get a single rides to complete
+
+export const rideToConfirmRequested = () => {
+  return {
+    type: rideTypes.RIDE_TO_CONFIRM_REQUEST,
+  };
+};
+
+export const rideToConfirm = (userId, bookingId) => {
+  return (dispatch) => {
+    dispatch(rideToConfirmRequested());
+
+    axios
+      .get(URL_API + "/ride/ride-to-confirm", {
+        headers: authHeader(),
+        params: {
+          userId,
+          bookingId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        dispatch(rideToConfirmSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(rideToConfirmFail(message));
+      });
+  };
+};
+
+export const rideToConfirmSuccess = (data) => {
+  return {
+    type: rideTypes.RIDE_TO_CONFIRM_SUCCESS,
+    payload: data,
+  };
+};
+
+export const rideToConfirmFail = (error) => {
+  return {
+    type: rideTypes.RIDE_TO_CONFIRM_FAIL,
     payload: error,
   };
 };
@@ -1148,17 +1201,18 @@ export const submitFormConfirmRideRequested = () => {
   };
 };
 
-export const submitFormConfirmRide = (user, ride, isConfirmed) => {
+export const submitFormConfirmRide = (user, bookingId, rideId, isCompleted) => {
   return (dispatch) => {
     dispatch(submitFormConfirmRideRequested());
 
     axios
       .post(
-        URL_API + "/ride/form-confirm-ride",
+        URL_API + "/ride/submit-complete-ride",
         {
-          user,
-          ride,
-          isConfirmed,
+          userId: user.id,
+          bookingId,
+          rideId,
+          isCompleted,
         },
         {
           headers: authHeader(),
@@ -1167,7 +1221,7 @@ export const submitFormConfirmRide = (user, ride, isConfirmed) => {
       .then((response) => {
         // console.log(response.message);
 
-        if (isConfirmed) {
+        if (isCompleted) {
           dispatch(
             setToast({
               show: true,
@@ -1187,6 +1241,7 @@ export const submitFormConfirmRide = (user, ride, isConfirmed) => {
           );
         }
 
+        dispatch(getNotifications(user));
         dispatch(submitFormConfirmRideSuccess(response.data));
       })
       .catch((error) => {

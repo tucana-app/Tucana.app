@@ -246,7 +246,7 @@ function App() {
               <Route exact path="/ratings" component={Ratings} />
               <Route
                 exact
-                path="/ratings/new-rating/:rideId"
+                path="/ratings/new-rating/:bookingId"
                 component={NewRating}
               />
               <Route exact path="/account" component={Account} />
@@ -257,7 +257,7 @@ function App() {
               />
               <Route
                 exact
-                path="/ride/confirm/:rideId"
+                path="/ride/booking/:bookingId/confirm"
                 component={ConfirmRide}
               />
               <Route exact path="/profile/" component={DriverProfile} />

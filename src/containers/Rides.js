@@ -10,7 +10,7 @@ import {
   getDriverRides,
   getUserBookings,
   getDriverBookings,
-  getRidesToConfirm,
+  ridesToConfirm,
 } from "../redux";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -39,7 +39,7 @@ const Rides = () => {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getUserBookings(currentUser.id));
-      dispatch(getRidesToConfirm(currentUser.id));
+      dispatch(ridesToConfirm(currentUser.id));
 
       if (currentUser.Driver) {
         dispatch(getDriverRides(currentUser.Driver.id));

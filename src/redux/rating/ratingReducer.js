@@ -17,6 +17,10 @@ const initialState = {
   getRatingsGivenDriverData: [],
   getRatingsGivenDriverFail: "",
 
+  isLoadingRatingToDo: false,
+  ratingToDoData: {},
+  ratingToDoError: "",
+
   isLoadingGetRatingsToDoPassenger: false,
   getRatingsToDoPassengerData: [],
   getRatingsToDoPassengerFail: "",
@@ -24,6 +28,10 @@ const initialState = {
   isLoadingGetRatingsToDoDriver: false,
   getRatingsToDoDriverData: [],
   getRatingsToDoDriverFail: "",
+
+  isLoadingSubmitRatingForm: false,
+  submitRatingFormData: [],
+  submitRatingFormFail: "",
 
   isLoadingSubmitPassengerRatingForm: false,
   submitPassengerRatingFormData: [],
@@ -136,6 +144,29 @@ function ratingReducer(state = initialState, action) {
         getRatingsGivenDriverFail: action.payload,
       };
 
+    // Get a single rating to do
+    case ratingTypes.GET_RATING_TO_DO_REQUEST:
+      return {
+        ...state,
+        isLoadingRatingToDo: true,
+      };
+
+    case ratingTypes.GET_RATING_TO_DO_SUCCESS:
+      return {
+        ...state,
+        isLoadingRatingToDo: false,
+        ratingToDoData: action.payload,
+        ratingToDoError: "",
+      };
+
+    case ratingTypes.GET_RATING_TO_DO_FAIL:
+      return {
+        ...state,
+        isLoadingRatingToDo: false,
+        ratingToDoData: [],
+        ratingToDoError: action.payload,
+      };
+
     // Get passenger's ratings to do
     case ratingTypes.GET_RATINGS_TO_DO_PASSENGER_REQUEST:
       return {
@@ -180,6 +211,29 @@ function ratingReducer(state = initialState, action) {
         isLoadingGetRatingsToDoDriver: false,
         getRatingsToDoDriverData: [],
         getRatingsToDoDriverFail: action.payload,
+      };
+
+    // Submit a rating's form
+    case ratingTypes.SUBMIT_RATING_FORM_REQUEST:
+      return {
+        ...state,
+        isLoadingSubmitRatingForm: true,
+      };
+
+    case ratingTypes.SUBMIT_RATING_FORM_SUCCESS:
+      return {
+        ...state,
+        isLoadingSubmitRatingForm: false,
+        submitRatingFormData: action.payload,
+        submitRatingFormFail: "",
+      };
+
+    case ratingTypes.SUBMIT_RATING_FORM_FAIL:
+      return {
+        ...state,
+        isLoadingSubmitRatingForm: false,
+        submitRatingFormData: [],
+        submitRatingFormFail: action.payload,
       };
 
     // Submit the passenger rating's form

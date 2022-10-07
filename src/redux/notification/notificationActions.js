@@ -5,7 +5,7 @@ import {
   updateDriverState,
   updateUserRatings,
   updateUserExperience,
-  getRidesToConfirm,
+  ridesToConfirm,
   getRatingsToDoDriver,
   getRatingsToDoPassenger,
   isAccountClosed,
@@ -22,7 +22,7 @@ export const getNotifications = (user) => {
     dispatch(getDriverNewRidesRequests(user.id));
     dispatch(getPassengerBookingsResponses(user.id));
     dispatch(getUserNewMessages(user.id));
-    dispatch(getRidesToConfirm(user.id));
+    dispatch(ridesToConfirm(user.id));
     dispatch(updateUserRatings(user.id));
     dispatch(updateUserExperience(user.id));
     dispatch(getRatingsToDoPassenger(user.id));

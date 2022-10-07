@@ -331,7 +331,7 @@ const Booking = () => {
             <Redirect to="/bookings" />
           )
         ) : bookingError ? (
-          <Redirect to="/" />
+          <Redirect to="/bookings" />
         ) : null}
       </Container>
     </div>

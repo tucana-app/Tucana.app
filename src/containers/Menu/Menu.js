@@ -139,15 +139,8 @@ const Menu = () => {
 
           <LinkContainer to="/experience" className="cursor-pointer">
             <Row className="mb-2">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="px-0 mx-auto"
-              >
-                <Container>
+              <Col xs={12} sm={10} md={8} lg={6} xl={4} className="p-0 mx-auto">
+                <Container fluid>
                   <Row className="small text-secondary">
                     <Col xs={4} className="text-start px-0">
                       <p className="mb-0">

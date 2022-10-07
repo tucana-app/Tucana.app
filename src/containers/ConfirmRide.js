@@ -14,22 +14,20 @@ import { LinkContainer } from "react-router-bootstrap";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GoBack from "../components/GoBack";
 
-import { getRide, getRidesToConfirm, submitFormConfirmRide } from "../redux";
+import { rideToConfirm, submitFormConfirmRide } from "../redux";
 
 import RideDetails from "../components/RideDetails";
 
 const ConfirmRide = () => {
   const { t } = useTranslation();
-  const { rideId } = useParams();
+  const { bookingId } = useParams();
 
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const {
-    isLoadingRide,
-    rideData,
-    isLoadingRidesToConfirm,
-    ridesToConfirmData,
-    ridesToConfirmError,
+    isLoadingRideToConfirm,
+    rideToConfirmData,
+    rideToConfirmError,
     isloadingSubmitFormConfirmRide,
     submitFormConfirmRideData,
     submitFormConfirmRideError,
@@ -38,23 +36,21 @@ const ConfirmRide = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submittedNo, setSubmittedNo] = useState(false);
 
-  const handleSubmitNo = (ride) => {
-    dispatch(submitFormConfirmRide(currentUser, ride, false));
-  };
-
-  const handleSubmitYes = (ride) => {
+  const handleSubmit = (isCompleted) => {
+    dispatch(
+      submitFormConfirmRide(
+        currentUser,
+        rideToConfirmData.id,
+        rideToConfirmData.RideId,
+        isCompleted
+      )
+    );
     setSubmitted(true);
-    dispatch(submitFormConfirmRide(currentUser, ride, true));
-  };
-
-  const rideToConfirm = () => {
-    return ridesToConfirmData.find((ride) => ride.id === parseInt(rideId));
   };
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getRide(rideId));
-      dispatch(getRidesToConfirm(currentUser.id));
+      dispatch(rideToConfirm(currentUser.id, bookingId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -68,13 +64,13 @@ const ConfirmRide = () => {
       <GoBack />
 
       <Container className="mb-5">
-        {isLoadingRide || isLoadingRidesToConfirm ? (
+        {isLoadingRideToConfirm ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : rideToConfirm() ? (
+        ) : rideToConfirmData.id ? (
           <div data-aos="fade-in">
             <Row>
               <Col
@@ -128,7 +124,7 @@ const ConfirmRide = () => {
                         <Button
                           variant="danger"
                           type="submit"
-                          onClick={() => handleSubmitNo(rideToConfirm())}
+                          onClick={() => handleSubmit(false)}
                         >
                           <span>
                             <XIcon size={24} className="me-2" />
@@ -170,7 +166,7 @@ const ConfirmRide = () => {
                             disabled={
                               submitted || isloadingSubmitFormConfirmRide
                             }
-                            onClick={() => handleSubmitYes(rideToConfirm())}
+                            onClick={() => handleSubmit(true)}
                           >
                             <span>
                               <CheckIcon size={24} className="me-2" />
@@ -207,9 +203,9 @@ const ConfirmRide = () => {
                         </>
                       ) : (
                         <>
-                          <Col xs={12} className="text-center mb-3">
+                          <Col xs={12} className="text-center">
                             <LinkContainer
-                              to={`/ratings/new-rating/${rideData.ride.id}`}
+                              to={`/ratings/new-rating/${rideToConfirmData.RideId}`}
                             >
                               <Button
                                 variant="outline-dark"
@@ -251,13 +247,11 @@ const ConfirmRide = () => {
               </Col>
             </Row>
 
-            {rideData.ride ? <RideDetails ride={rideData.ride} /> : null}
+            <RideDetails ride={rideToConfirmData.Ride} />
           </div>
-        ) : ridesToConfirmError ? (
-          <Redirect to="/" />
-        ) : (
+        ) : rideToConfirmError ? (
           <Redirect to="/rides/rides-to-confirm" />
-        )}
+        ) : null}
       </Container>
     </div>
   );

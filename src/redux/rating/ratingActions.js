@@ -1,6 +1,6 @@
 import ratingTypes from "./ratingTypes";
 import axios from "axios";
-import { setToast } from "../index";
+import { setToast, getNotifications } from "../index";
 import { parseText } from "../../helpers";
 import authHeader from "../../helpers/authHeader";
 import { t } from "i18next";
@@ -247,6 +247,60 @@ export const getRatingsGivenDriverFail = (error) => {
   };
 };
 
+// Get a single rating to do
+
+export const getRatingToDoRequested = () => {
+  return {
+    type: ratingTypes.GET_RATING_TO_DO_REQUEST,
+  };
+};
+
+export const getRatingToDo = (bookingId, userId) => {
+  return (dispatch) => {
+    dispatch(getRatingToDoRequested());
+
+    axios
+      .get(URL_API + "/rating/get-rating-to-do", {
+        headers: authHeader(),
+        params: {
+          bookingId,
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        dispatch(getRatingToDoSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getRatingToDoFail(message));
+      });
+  };
+};
+
+export const getRatingToDoSuccess = (data) => {
+  return {
+    type: ratingTypes.GET_RATING_TO_DO_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getRatingToDoFail = (error) => {
+  return {
+    type: ratingTypes.GET_RATING_TO_DO_FAIL,
+    payload: error,
+  };
+};
+
 // Get passenger's ratings to do
 
 export const getRatingsToDoPassengerRequested = () => {
@@ -354,25 +408,26 @@ export const getRatingsToDoDriverFail = (error) => {
   };
 };
 
-// Submit passenger's rating form
+// Submit a rating form
 
-export const submitPassengerRatingFormRequested = () => {
+export const submitRatingFormRequested = () => {
   return {
-    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_REQUEST,
+    type: ratingTypes.SUBMIT_RATING_FORM_REQUEST,
   };
 };
 
-export const submitPassengerRatingForm = (bookingId, note, comment) => {
+export const submitRatingForm = (user, bookingId, note, comment) => {
   return (dispatch) => {
-    dispatch(submitPassengerRatingFormRequested());
+    dispatch(submitRatingFormRequested());
 
     const parsingResult = parseText(comment);
 
     if (parsingResult.value === 0) {
       axios
         .post(
-          URL_API + "/rating/submit-passenger-rating-form",
+          URL_API + "/rating/submit-rating-form",
           {
+            userId: user.id,
             bookingId,
             note,
             comment,
@@ -384,8 +439,6 @@ export const submitPassengerRatingForm = (bookingId, note, comment) => {
         .then((response) => {
           // console.log(response.data);
 
-          dispatch(submitPassengerRatingFormSuccess(response.data));
-
           dispatch(
             setToast({
               show: true,
@@ -394,6 +447,9 @@ export const submitPassengerRatingForm = (bookingId, note, comment) => {
               variant: "success",
             })
           );
+
+          dispatch(getNotifications(user));
+          dispatch(submitRatingFormSuccess(response.data));
         })
         .catch((error) => {
           const message =
@@ -412,7 +468,7 @@ export const submitPassengerRatingForm = (bookingId, note, comment) => {
               variant: "danger",
             })
           );
-          dispatch(submitPassengerRatingFormFail(message));
+          dispatch(submitRatingFormFail(message));
         });
     } else {
       dispatch(
@@ -424,109 +480,21 @@ export const submitPassengerRatingForm = (bookingId, note, comment) => {
         })
       );
 
-      dispatch(submitPassengerRatingFormFail(parsingResult.message));
+      dispatch(submitRatingFormFail(parsingResult.message));
     }
   };
 };
 
-export const submitPassengerRatingFormSuccess = (data) => {
+export const submitRatingFormSuccess = (data) => {
   return {
-    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_SUCCESS,
+    type: ratingTypes.SUBMIT_RATING_FORM_SUCCESS,
     payload: data,
   };
 };
 
-export const submitPassengerRatingFormFail = (error) => {
+export const submitRatingFormFail = (error) => {
   return {
-    type: ratingTypes.SUBMIT_PASSENGER_RATING_FORM_FAIL,
-    payload: error,
-  };
-};
-
-// Submit driver's rating form
-
-export const submitDriverRatingFormRequested = () => {
-  return {
-    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_REQUEST,
-  };
-};
-
-export const submitDriverRatingForm = (bookingId, note, comment) => {
-  return (dispatch) => {
-    dispatch(submitDriverRatingFormRequested());
-
-    const parsingResult = parseText(comment);
-
-    if (parsingResult.value === 0) {
-      axios
-        .post(
-          URL_API + "/rating/submit-driver-rating-form",
-          {
-            bookingId,
-            note,
-            comment,
-          },
-          {
-            headers: authHeader(),
-          }
-        )
-        .then((response) => {
-          // console.log(response.data);
-
-          dispatch(submitDriverRatingFormSuccess(response.data));
-          dispatch(
-            setToast({
-              show: true,
-              headerText: "Success",
-              bodyText: t("translation:newRating.ratingReceived"),
-              variant: "success",
-            })
-          );
-        })
-        .catch((error) => {
-          const message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          // console.log(error);
-          dispatch(
-            setToast({
-              show: true,
-              headerText: "Error",
-              bodyText: message,
-              variant: "danger",
-            })
-          );
-          dispatch(submitDriverRatingFormFail(message));
-        });
-    } else {
-      dispatch(
-        setToast({
-          show: true,
-          headerText: "Warning",
-          bodyText: parsingResult.message,
-          variant: "warning",
-        })
-      );
-
-      dispatch(submitDriverRatingFormFail(parsingResult.message));
-    }
-  };
-};
-
-export const submitDriverRatingFormSuccess = (data) => {
-  return {
-    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_SUCCESS,
-    payload: data,
-  };
-};
-
-export const submitDriverRatingFormFail = (error) => {
-  return {
-    type: ratingTypes.SUBMIT_DRIVER_RATING_FORM_FAIL,
+    type: ratingTypes.SUBMIT_RATING_FORM_FAIL,
     payload: error,
   };
 };
