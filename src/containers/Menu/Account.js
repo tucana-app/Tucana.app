@@ -4,6 +4,8 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Button, Col, Container, ListGroup, Modal, Row } from "react-bootstrap";
+// import Select from "react-select";
+// import makeAnimated from "react-select/animated";
 import {
   // CheckCircleFillIcon,
   ChevronRightIcon,
@@ -22,8 +24,10 @@ function Account() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // const animatedComponents = makeAnimated();
+
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { srcAvatar } = useSelector((state) => state.global);
+  const { srcAvatar, languages } = useSelector((state) => state.global);
 
   const [showModalRequestData, setShowModalRequestData] = useState(false);
   const [showModalLogOut, setShowModalLogOut] = useState(false);
@@ -33,6 +37,21 @@ function Account() {
     dispatch(logout());
     window.location.reload(true);
   };
+
+  let languagesSelect = [];
+  Object.keys(languages).map((key, i) =>
+    languagesSelect.push({
+      value: key,
+      label: `${languages[key].nativeName} (${languages[key].name})`,
+    })
+  );
+  // <Select
+  //    placeholder={t("translation:publish.chooseTime")}
+  //    options={languagesSelect}
+  //    components={animatedComponents}
+  //    isMulti
+  //    onChange={handleChangeLanguage}
+  //           />
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;

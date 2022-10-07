@@ -116,30 +116,18 @@ const Booking = () => {
                         </p>
                         {bookingData.commentPassenger !== "" &&
                         bookingData.commentPassenger !== null ? (
-                          <>
-                            <p className="mt-3">
-                              {t("translation:global.passengerComment")}:{" "}
-                            </p>
-                            <p>"{bookingData.commentPassenger}"</p>
-                          </>
+                          <p className="mt-3">
+                            {t("translation:global.passengerComment")}: "
+                            {bookingData.commentPassenger}"
+                          </p>
                         ) : null}
                         {bookingData.commentDriver !== "" &&
                         bookingData.commentDriver !== null ? (
-                          <>
-                            <p className="mt-3 mb-0">
-                              {t("translation:global.driverComment")}:{" "}
-                            </p>
-                            <p>"{bookingData.commentDriver}"</p>
-                          </>
+                          <p className="mt-3 mb-0">
+                            {t("translation:global.driverComment")}: "
+                            {bookingData.commentDriver}"
+                          </p>
                         ) : null}
-                        <p className="mb-0">
-                          {t("translation:global.ride")}:{" "}
-                          <strong>{bookingData.Ride.origin.city}</strong>{" "}
-                          <span className="text-lowercase">
-                            {t("translation:global.to")}
-                          </span>{" "}
-                          <strong>{bookingData.Ride.destination.city}</strong>
-                        </p>
                       </Col>
                     </Row>
                   </Container>
@@ -262,8 +250,7 @@ const Booking = () => {
                 </Col>
               </Row>
 
-              {currentUser.Driver &&
-              currentUser.Driver.id !== bookingData.DriverId ? (
+              {currentUser.id !== bookingData.DriverId ? (
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}

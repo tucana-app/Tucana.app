@@ -125,7 +125,7 @@ function RideDetails({ ride }) {
             <Row>
               <Col>
                 <p className="mb-0">
-                  {t("translation:global.comment")}: {ride.comment}
+                  {t("translation:global.comment")}: "{ride.comment}"
                 </p>
               </Col>
             </Row>
