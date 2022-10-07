@@ -4,7 +4,7 @@ import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { AlertFillIcon, ChevronRightIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 
 const Help = () => {
   const { t } = useTranslation();

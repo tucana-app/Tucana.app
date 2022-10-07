@@ -11,10 +11,10 @@ import {
 } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import GoBack from "../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
-import { ridesToConfirm } from "../redux";
+import { ridesToConfirm } from "../../redux";
 
 function RidesToConfirm() {
   const { t } = useTranslation();

@@ -10,9 +10,9 @@ import {
   XIcon,
 } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
-import { getApplicationsBecomeDriver, getNotifications } from "../redux";
+import { getApplicationsBecomeDriver, getNotifications } from "../../redux";
 
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { LinkContainer } from "react-router-bootstrap";
 
 const BecomeDriver = () => {

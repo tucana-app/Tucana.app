@@ -20,12 +20,12 @@ import {
   sendMessage,
   getAllUserMessages,
   displayNavBar,
-} from "../redux";
+} from "../../redux";
 
 import dateFormat from "dateformat";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { findLinks } from "../helpers";
+import { findLinks } from "../../helpers";
 import { Link } from "react-router-dom";
 
 const SingleConversation = ({ conversation }) => {

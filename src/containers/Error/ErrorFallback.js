@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "@primer/octicons-react";
-import { sendErrorReport } from "../redux";
+import { sendErrorReport } from "../../redux";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const { t } = useTranslation();

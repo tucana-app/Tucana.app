@@ -7,12 +7,12 @@ import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
-import GoBack from "../components/GoBack";
-import LoadingSpinner from "../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { getUserBookings } from "../redux";
+import { getUserBookings } from "../../redux";
 import { ChevronRight } from "react-bootstrap-icons";
-import { isDateInPast } from "../helpers";
+import { isDateInPast } from "../../helpers";
 
 const Bookings = () => {
   const { t } = useTranslation();

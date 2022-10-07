@@ -126,6 +126,10 @@ initialState = {
   isloadingPassengerProfile: false,
   passengerProfileData: {},
   passengerProfileError: "",
+
+  isloadingDriverEarnings: false,
+  driverEarningsData: [],
+  driverEarningsError: "",
 };
 
 function userReducer(state = initialState, action) {
@@ -911,6 +915,29 @@ function userReducer(state = initialState, action) {
         isloadingPassengerProfile: false,
         passengerProfileData: {},
         passengerProfileError: action.payload,
+      };
+
+    // Get a driver's earnings
+    case userTypes.GET_DRIVER_EARNINGS_REQUEST:
+      return {
+        ...state,
+        isloadingDriverEarnings: true,
+      };
+
+    case userTypes.GET_DRIVER_EARNINGS_SUCCESS:
+      return {
+        ...state,
+        isloadingDriverEarnings: false,
+        driverEarningsData: action.payload,
+        driverEarningsError: "",
+      };
+
+    case userTypes.GET_DRIVER_EARNINGS_FAIL:
+      return {
+        ...state,
+        isloadingDriverEarnings: false,
+        driverEarningsData: [],
+        driverEarningsError: action.payload,
       };
 
     default:

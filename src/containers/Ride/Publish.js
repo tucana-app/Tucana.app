@@ -30,17 +30,17 @@ import {
   submitFormPublishRide,
   getETA,
   setToast,
-} from "../redux";
+} from "../../redux";
 
 import {
   getArrayTimeRide,
   formatPrice,
   formatTimeSecond,
   formatDistance,
-} from "../helpers";
-import LoadingSpinner from "../components/LoadingSpinner";
-import InputSearchLocation from "../components/InputSearchLocation";
-import ErrorFallback from "./ErrorFallback";
+} from "../../helpers";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import InputSearchLocation from "../../components/InputSearchLocation";
+import ErrorFallback from "../Error/ErrorFallback";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 
 // Enable translation for the date picker

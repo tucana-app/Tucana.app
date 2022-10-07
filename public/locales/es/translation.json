@@ -59,6 +59,7 @@
 		"underReview": "En revisión"
 	},
 	"booking": {
+		"cancelBooking": "Anule tu reserva",
 		"rideDetails": "Detalles del viaje",
 		"seatsBooked": "Asientos reservados",
 		"summary1": "Usted reservó",

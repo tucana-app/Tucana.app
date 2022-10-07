@@ -10,7 +10,7 @@ import GoBack from "../../components/GoBack";
 import car from "../../assets/images/car.png";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { getDriverProfile } from "../../redux";
+import { getDriverProfile, getDriverEarnings } from "../../redux";
 
 function DriverProfile(props) {
   const { t } = useTranslation();
@@ -24,6 +24,7 @@ function DriverProfile(props) {
   useEffect(() => {
     if (currentUser.Driver) {
       dispatch(getDriverProfile(currentUser.username));
+      dispatch(getDriverEarnings(currentUser.id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

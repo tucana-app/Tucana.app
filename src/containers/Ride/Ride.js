@@ -6,26 +6,26 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ChevronRightIcon, AlertIcon } from "@primer/octicons-react";
 
-import ManageDriverBooking from "../components/ManageDriverBooking";
-import ManagePassengerBooking from "../components/ManagePassengerBooking";
-import LoadingSpinner from "../components/LoadingSpinner";
+import ManageDriverBooking from "../../components/ManageDriverBooking";
+import ManagePassengerBooking from "../../components/ManagePassengerBooking";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-import PassengersDetails from "../components/PassengersDetails";
-import GoBack from "../components/GoBack";
-import SendMessageButton from "../components/SendMessageButton";
-import DisplayRating from "../components/DisplayRating";
+import PassengersDetails from "../../components/PassengersDetails";
+import GoBack from "../../components/GoBack";
+import SendMessageButton from "../../components/SendMessageButton";
+import DisplayRating from "../../components/DisplayRating";
 
-import { isDateInPast } from "../helpers";
+import { isDateInPast } from "../../helpers";
 
 import {
   getRide,
   getUserBookingsRide,
   ridesToConfirm,
   displayNavBar,
-} from "../redux";
+} from "../../redux";
 
-import car from "../assets/images/car.png";
-import RideDetails from "../components/RideDetails";
+import car from "../../assets/images/car.png";
+import RideDetails from "../../components/RideDetails";
 
 const Ride = () => {
   const { t } = useTranslation();

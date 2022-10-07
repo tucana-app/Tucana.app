@@ -1707,3 +1707,60 @@ export const getPassengerProfileFail = (error) => {
     payload: error,
   };
 };
+
+// Get a driver's earnings
+
+export const getDriverEarningsRequested = () => {
+  return {
+    type: userTypes.GET_DRIVER_EARNINGS_REQUEST,
+  };
+};
+
+export const getDriverEarnings = (userId) => {
+  return (dispatch) => {
+    dispatch(getDriverEarningsRequested());
+
+    axios
+      .get(URL_API + "/driver/get-earnings", {
+        headers: authHeader(),
+        params: {
+          userId,
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+
+        if (response.data) {
+          dispatch(getDriverEarningsSuccess(response.data));
+        } else {
+          dispatch(getDriverEarningsFail("Error"));
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(getDriverEarningsFail(message));
+      });
+  };
+};
+
+export const getDriverEarningsSuccess = (data) => {
+  return {
+    type: userTypes.GET_DRIVER_EARNINGS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getDriverEarningsFail = (error) => {
+  return {
+    type: userTypes.GET_DRIVER_EARNINGS_FAIL,
+    payload: error,
+  };
+};

@@ -59,6 +59,7 @@
 		"underReview": "Under review"
 	},
 	"booking": {
+		"cancelBooking": "Cancel your booking",
 		"rideDetails": "Ride details",
 		"seatsBooked": "Seats booked",
 		"summary1": "You booked",

@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import dateFormat from "dateformat";
 import { ChevronRightIcon, DotFillIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import FormDriverResponseBooking from "../components/FormDriverResponseBooking";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import FormDriverResponseBooking from "../../components/FormDriverResponseBooking";
 
-import GoBack from "../components/GoBack";
-import SendMessageButton from "../components/SendMessageButton";
-import DisplayRating from "../components/DisplayRating";
+import GoBack from "../../components/GoBack";
+import SendMessageButton from "../../components/SendMessageButton";
+import DisplayRating from "../../components/DisplayRating";
 
-import { getBooking } from "../redux";
-import { formatPrice, isDateInPast } from "../helpers";
-import RideDetails from "../components/RideDetails";
+import { getBooking } from "../../redux";
+import { formatPrice, isDateInPast } from "../../helpers";
+import RideDetails from "../../components/RideDetails";
 
 const Booking = () => {
   const { t } = useTranslation();
@@ -219,6 +219,32 @@ const Booking = () => {
                   </Container>
                 </Col>
               </Row>
+
+              {currentUser.id === bookingData.User.id &&
+              !isDateInPast(bookingData.Ride.dateTimeOrigin, new Date()) ? (
+                <Row className="mb-3 mx-1 mx-sm-0">
+                  <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                    <ListGroup variant="flush">
+                      <LinkContainer
+                        to={`/booking/${bookingData.id}/cancel`}
+                        className="cursor-pointer"
+                      >
+                        <ListGroup.Item className="border-0 cursor-pointer px-0">
+                          <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                            <p className="mb-0">
+                              {t("translation:booking.cancelBooking")}
+                            </p>
+                            <ChevronRightIcon
+                              size={24}
+                              verticalAlign="middle"
+                            />
+                          </div>
+                        </ListGroup.Item>
+                      </LinkContainer>
+                    </ListGroup>
+                  </Col>
+                </Row>
+              ) : null}
 
               {/* If not a past booking */}
               {/* and the booking is still pending approval */}

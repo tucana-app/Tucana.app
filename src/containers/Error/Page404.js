@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 
 const Page404 = () => {
   const { t } = useTranslation();

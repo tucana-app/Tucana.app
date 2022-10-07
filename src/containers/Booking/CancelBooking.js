@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import GoBack from "../../components/GoBack";
 
-function Verification(props) {
+function CancelBooking(props) {
   const { t } = useTranslation();
 
   return (
@@ -36,4 +36,4 @@ function Verification(props) {
   );
 }
 
-export default Verification;
+export default CancelBooking;

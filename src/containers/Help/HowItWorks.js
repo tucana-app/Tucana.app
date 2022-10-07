@@ -11,14 +11,14 @@ import {
 import { ArrowLeft, ArrowRight, Check2Square } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 
-import authentication from "../assets/images/undraw_authentication.png";
-import select from "../assets/images/undraw_My_answer.png";
-import drivers from "../assets/images/undraw_by_my_car.png";
-import passengers from "../assets/images/undraw_Select.png";
-import prepare from "../assets/images/undraw_adventure_map.png";
-import finish from "../assets/images/undraw_Best_place.png";
+import authentication from "../../assets/images/undraw_authentication.png";
+import select from "../../assets/images/undraw_My_answer.png";
+import drivers from "../../assets/images/undraw_by_my_car.png";
+import passengers from "../../assets/images/undraw_Select.png";
+import prepare from "../../assets/images/undraw_adventure_map.png";
+import finish from "../../assets/images/undraw_Best_place.png";
 import { LinkContainer } from "react-router-bootstrap";
 import { ChevronRightIcon } from "@primer/octicons-react";
 import { Link } from "react-router-dom";

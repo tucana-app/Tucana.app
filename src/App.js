@@ -6,94 +6,99 @@ import useWindowDimensions from "./hooks/useWindowDimensions";
 // Download link
 import DownloadRedirect from "./DownloadRedirect";
 
-// Error handling
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./containers/ErrorFallback";
-import OfflineBanner from "./containers/OfflineBanner";
-
-// Loading Containers
-import LogIn from "./containers/User/LogIn";
-import ForgotPassword from "./containers/User/ForgotPassword";
-import CreateNewPassword from "./containers/User/CreateNewPassword";
-import SignUp from "./containers/User/SignUp";
-import Experience from "./containers/User/Experience";
-import SignUpSuccess from "./containers/User/SignUpSuccess";
-import SignUpConfirm from "./containers/User/SignUpConfirm";
+// User Containers
+import Account from "./containers/User/Account";
 import CloseAccount from "./containers/User/CloseAccount";
+import CreateNewPassword from "./containers/User/CreateNewPassword";
+import Experience from "./containers/User/Experience";
+import ForgotPassword from "./containers/User/ForgotPassword";
+import LogIn from "./containers/User/LogIn";
+import SignUp from "./containers/User/SignUp";
+import SignUpConfirm from "./containers/User/SignUpConfirm";
+import SignUpSuccess from "./containers/User/SignUpSuccess";
 
-import Fallback from "./containers/Fallback";
-import Home from "./containers/Home";
-import Find from "./containers/Find";
-import Messages from "./containers/Messages";
+// Ride containers
+import ConfirmRide from "./containers/Ride/ConfirmRide";
+import Publish from "./containers/Ride/Publish";
+import Ride from "./containers/Ride/Ride";
+import Rides from "./containers/Ride/Rides";
+import RidesToConfirm from "./containers/Ride/RidesToConfirm";
 
-import Ride from "./containers/Ride";
-import Rides from "./containers/Rides";
-import DriverRides from "./containers/Driver/DriverRides";
-import DriverBookings from "./containers/Driver/DriverBookings";
-import DriverPastRides from "./containers/Driver/DriverPastRides";
-import DriverPastBookings from "./containers/Driver/DriverPastBookings";
-import DriverProfile from "./containers/Driver/DriverProfile";
-import DriverCar from "./containers/Driver/DriverCar";
+// Bookings containers
+import Booking from "./containers/Booking/Booking";
+import Bookings from "./containers/Booking/Bookings";
+import Book from "./containers/Booking/Book";
+import CancelBooking from "./containers/Booking/CancelBooking";
 
-import Bookings from "./containers/Bookings";
-import Booking from "./containers/Booking";
-import Book from "./containers/Book";
-import UserPastBookings from "./containers/UserPastBookings";
-import RidesToConfirm from "./containers/RidesToConfirm";
-import ConfirmRide from "./containers/ConfirmRide";
-
-import Publish from "./containers/Publish";
-import HowItWorks from "./containers/HowItWorks";
-
-import BecomeDriver from "./containers/BecomeDriver";
-import DriverApplicationForm from "./containers/Driver/DriverApplicationForm";
+// Driver containers
+import BecomeDriver from "./containers/Driver/BecomeDriver";
 import DriverApplication from "./containers/Driver/DriverApplication";
-
-// All pages included in the side menu
-import Menu from "./containers/Menu/Menu";
-import Notifications from "./containers/Menu/Notifications";
-import Account from "./containers/Menu/Account";
-import Language from "./containers/Menu/Language";
-import Report from "./containers/Menu/Report";
-import FAQ from "./containers/Menu/FAQ";
-import Hiring from "./containers/Menu/Hiring";
-import Contact from "./containers/Menu/Contact";
-import Donate from "./containers/Donate";
-import Map from "./containers/Menu/Map";
-import Help from "./containers/Help";
-import Page404 from "./containers/Page404";
-import ComingSoon from "./containers/ComingSoon";
-
-// Edits
-import EditBio from "./containers/Edits/EditBio";
-import EditPassword from "./containers/Edits/EditPassword";
-import EditDateOfBirth from "./containers/Edits/EditDateOfBirth";
-
-// Legal
-import Legal from "./containers/Menu/Legal";
-import Privacy from "./containers/Menu/Privacy";
-import RefundPolicy from "./containers/Menu/RefundPolicy";
-import LegalNotice from "./containers/Menu/LegalNotice";
-import TermsConditions from "./containers/Menu/TermsConditions";
-import DataProtection from "./containers/Menu/DataProtection";
-import Credits from "./containers/Menu/Credits";
-
-// Verification
-import Verification from "./containers/Menu/Verification";
-import DriverVerification from "./containers/Menu/DriverVerification";
-import PassengerVerification from "./containers/Menu/PassengerVerification";
-
-// Rating
-import NewRating from "./containers/Menu/NewRating";
-import RatingsPassenger from "./containers/Menu/RatingsPassenger";
-import RatingsDriver from "./containers/Menu/RatingsDriver";
-import Ratings from "./containers/Menu/Ratings";
-
-// Public Profile
-import PassengerPublicProfile from "./containers/PassengerPublicProfile";
-import PassengerPublicRatings from "./containers/PassengerPublicRatings";
+import DriverApplicationForm from "./containers/Driver/DriverApplicationForm";
+import DriverBookings from "./containers/Driver/DriverBookings";
+import DriverCar from "./containers/Driver/DriverCar";
+import DriverPastBookings from "./containers/Driver/DriverPastBookings";
+import DriverPastRides from "./containers/Driver/DriverPastRides";
+import DriverProfile from "./containers/Driver/DriverProfile";
 import DriverPublicProfile from "./containers/Driver/DriverPublicProfile";
 import DriverPublicRatings from "./containers/Driver/DriverPublicRatings";
+import DriverRides from "./containers/Driver/DriverRides";
+
+// Passenger containers
+import PassengerPublicProfile from "./containers/Passenger/PassengerPublicProfile";
+import PassengerPublicRatings from "./containers/Passenger/PassengerPublicRatings";
+import UserPastBookings from "./containers/Passenger/UserPastBookings";
+
+// Edits containers
+import EditBio from "./containers/Edits/EditBio";
+import EditDateOfBirth from "./containers/Edits/EditDateOfBirth";
+import EditPassword from "./containers/Edits/EditPassword";
+
+// Help containers
+import FAQ from "./containers/Help/FAQ";
+import Help from "./containers/Help/Help";
+import HowItWorks from "./containers/Help/HowItWorks";
+import Map from "./containers/Help/Map";
+import RefundPolicy from "./containers/Help/RefundPolicy";
+
+// Legal containers
+import Credits from "./containers/Legal/Credits";
+import DataProtection from "./containers/Legal/DataProtection";
+import Legal from "./containers/Legal/Legal";
+import LegalNotice from "./containers/Legal/LegalNotice";
+import Privacy from "./containers/Legal/Privacy";
+import TermsConditions from "./containers/Legal/TermsConditions";
+
+// Menu containers
+import Contact from "./containers/Menu/Contact";
+import Donate from "./containers/Menu/Donate";
+import Hiring from "./containers/Menu/Hiring";
+import Language from "./containers/Menu/Language";
+import Notifications from "./containers/Menu/Notifications";
+
+// Rating containers
+import NewRating from "./containers/Rating/NewRating";
+import Ratings from "./containers/Rating/Ratings";
+import RatingsDriver from "./containers/Rating/RatingsDriver";
+import RatingsPassenger from "./containers/Rating/RatingsPassenger";
+
+// Report containers
+import Report from "./containers/Report/Report";
+
+// Message containers
+import Messages from "./containers/Message/Messages";
+
+// Other
+import Home from "./containers/Home";
+import Find from "./containers/Find";
+import Menu from "./containers/Menu";
+import ComingSoon from "./components/ComingSoon";
+
+// Error containers
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./containers/Error/ErrorFallback";
+import OfflineBanner from "./containers/Error/OfflineBanner";
+import Fallback from "./containers/Error/Fallback";
+import Page404 from "./containers/Error/Page404";
 
 // Loading Components
 import NavigationBar from "./components/NavigationBar";
@@ -176,131 +181,77 @@ function App() {
             {isNavBar ? <NavigationBar /> : null}
 
             <Switch>
-              <Route exact path="/" component={Home} />
               <Route exact path="/download" component={DownloadRedirect} />
 
-              <Route exact path="/login" component={LogIn} />
-              <Route exact path="/forgot-password" component={ForgotPassword} />
+              {/* User containers */}
+              <Route exact path="/account" component={Account} />
+              <Route exact path="/close-account" component={CloseAccount} />
               <Route
                 exact
                 path="/new-password/:uuid"
                 component={CreateNewPassword}
               />
-
+              <Route exact path="/experience" component={Experience} />
+              <Route exact path="/forgot-password" component={ForgotPassword} />
+              <Route exact path="/login" component={LogIn} />
               <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
               <Route
                 exact
                 path="/signup-successful"
                 component={SignUpSuccess}
               />
-              <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
-              <Route exact path="/experience" component={Experience} />
-              <Route exact path="/close-account" component={CloseAccount} />
 
-              <Route exact path="/publish" component={Publish} />
-              <Route exact path="/find" component={Find} />
-              <Route exact path="/messages" component={Messages} />
-              <Route exact path="/become-driver" component={BecomeDriver} />
-              <Route
-                exact
-                path="/apply-driver"
-                component={DriverApplicationForm}
-              />
-              <Route
-                exact
-                path="/driver/application/:applicationId"
-                component={DriverApplication}
-              />
-
-              <Route exact path="/ride/:rideId" component={Ride} />
-              <Route exact path="/rides" component={Rides} />
-              <Route exact path="/driver/rides" component={DriverRides} />
-              <Route exact path="/driver/bookings" component={DriverBookings} />
-              <Route exact path="/driver/car" component={DriverCar} />
-              <Route exact path="/bookings" component={Bookings} />
-              <Route exact path="/booking/:bookingId" component={Booking} />
-              <Route exact path="/book/:rideId" component={Book} />
-              <Route exact path="/past-bookings" component={UserPastBookings} />
-              <Route
-                exact
-                path="/driver/past-rides"
-                component={DriverPastRides}
-              />
-              <Route
-                exact
-                path="/driver/past-bookings"
-                component={DriverPastBookings}
-              />
-
-              <Route exact path="/menu" component={Menu} />
-              <Route
-                exact
-                path="/profile/passenger/ratings"
-                component={RatingsPassenger}
-              />
-              <Route
-                exact
-                path="/profile/driver/ratings"
-                component={RatingsDriver}
-              />
-              <Route exact path="/ratings" component={Ratings} />
-              <Route
-                exact
-                path="/ratings/new-rating/:bookingId"
-                component={NewRating}
-              />
-              <Route exact path="/account" component={Account} />
-              <Route
-                exact
-                path="/rides/rides-to-confirm"
-                component={RidesToConfirm}
-              />
+              {/* Ride containers */}
               <Route
                 exact
                 path="/ride/booking/:bookingId/confirm"
                 component={ConfirmRide}
               />
+              <Route exact path="/publish" component={Publish} />
+              <Route exact path="/ride/:rideId" component={Ride} />
+              <Route exact path="/rides" component={Rides} />
+              <Route
+                exact
+                path="/rides/rides-to-confirm"
+                component={RidesToConfirm}
+              />
+
+              {/* Booking containers */}
+              <Route exact path="/booking/:bookingId" component={Booking} />
+              <Route exact path="/bookings" component={Bookings} />
+              <Route exact path="/book/:rideId" component={Book} />
+              <Route
+                exact
+                path="/booking/:bookingId/cancel"
+                component={CancelBooking}
+              />
+
+              {/* Driver containers */}
+              <Route exact path="/become-driver" component={BecomeDriver} />
+              <Route
+                exact
+                path="/driver/application/:applicationId"
+                component={DriverApplication}
+              />
+              <Route
+                exact
+                path="/apply-driver"
+                component={DriverApplicationForm}
+              />
+              <Route exact path="/driver/bookings" component={DriverBookings} />
+              <Route exact path="/driver/car" component={DriverCar} />
+              <Route
+                exact
+                path="/driver/past-bookings"
+                component={DriverPastBookings}
+              />
+              <Route
+                exact
+                path="/driver/past-rides"
+                component={DriverPastRides}
+              />
               <Route exact path="/profile/" component={DriverProfile} />
-              <Route exact path="/notifications" component={Notifications} />
-              <Route exact path="/help" component={Help} />
-              <Route exact path="/donate" component={Donate} />
-              <Route exact path="/contact" component={Contact} />
-              <Route exact path="/map" component={Map} />
-              <Route exact path="/legal" component={Legal} />
-              <Route exact path="/report" component={Report} />
-              <Route exact path="/language" component={Language} />
-              <Route exact path="/credits" component={Credits} />
-              <Route exact path="/privacy" component={Privacy} />
-              <Route exact path="/refund-policy" component={RefundPolicy} />
-              <Route exact path="/legal-notice" component={LegalNotice} />
-              <Route exact path="/terms" component={TermsConditions} />
-              <Route exact path="/data-protection" component={DataProtection} />
-              <Route exact path="/how-it-works" component={HowItWorks} />
-              <Route exact path="/faq" component={FAQ} />
-              <Route exact path="/hiring" component={Hiring} />
-
-              <Route exact path="/edit/bio" component={EditBio} />
-              <Route exact path="/edit/password" component={EditPassword} />
-              <Route
-                exact
-                path="/edit/date-of-birth"
-                component={EditDateOfBirth}
-              />
-
-              {/* Verification */}
-              <Route exact path="/verification" component={Verification} />
-              <Route
-                exact
-                path="/passenger-verification"
-                component={DriverVerification}
-              />
-              <Route
-                exact
-                path="/driver-verification"
-                component={PassengerVerification}
-              />
-
-              {/* Public profile */}
               <Route
                 exact
                 path="/driver/:username"
@@ -311,6 +262,9 @@ function App() {
                 path="/driver/:username/ratings"
                 component={DriverPublicRatings}
               />
+              <Route exact path="/driver/rides" component={DriverRides} />
+
+              {/* Passenger containers */}
               <Route
                 exact
                 path="/passenger/:username"
@@ -321,7 +275,67 @@ function App() {
                 path="/passenger/:username/ratings"
                 component={PassengerPublicRatings}
               />
+              <Route exact path="/past-bookings" component={UserPastBookings} />
 
+              {/* Edits containers */}
+              <Route exact path="/edit/bio" component={EditBio} />
+              <Route exact path="/edit/password" component={EditPassword} />
+              <Route
+                exact
+                path="/edit/date-of-birth"
+                component={EditDateOfBirth}
+              />
+
+              {/* Help container */}
+              <Route exact path="/faq" component={FAQ} />
+              <Route exact path="/help" component={Help} />
+              <Route exact path="/how-it-works" component={HowItWorks} />
+              <Route exact path="/map" component={Map} />
+              <Route exact path="/refund-policy" component={RefundPolicy} />
+
+              {/* Legal containers */}
+              <Route exact path="/credits" component={Credits} />
+              <Route exact path="/data-protection" component={DataProtection} />
+              <Route exact path="/legal" component={Legal} />
+              <Route exact path="/legal-notice" component={LegalNotice} />
+              <Route exact path="/privacy" component={Privacy} />
+              <Route exact path="/terms" component={TermsConditions} />
+
+              {/* Menu containers */}
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/donate" component={Donate} />
+              <Route exact path="/hiring" component={Hiring} />
+              <Route exact path="/language" component={Language} />
+              <Route exact path="/notifications" component={Notifications} />
+
+              {/* Rating container */}
+              <Route
+                exact
+                path="/ratings/new-rating/:bookingId"
+                component={NewRating}
+              />
+              <Route exact path="/ratings" component={Ratings} />
+              <Route
+                exact
+                path="/profile/driver/ratings"
+                component={RatingsDriver}
+              />
+              <Route
+                exact
+                path="/profile/passenger/ratings"
+                component={RatingsPassenger}
+              />
+
+              {/* Report containers */}
+              <Route exact path="/report" component={Report} />
+
+              {/* Message containers */}
+              <Route exact path="/messages" component={Messages} />
+
+              {/* Other containers */}
+              <Route exact path="/" component={Home} />
+              <Route exact path="/find" component={Find} />
+              <Route exact path="/menu" component={Menu} />
               <Route exact path="/coming-soon" component={ComingSoon} />
 
               <Route component={Page404} />

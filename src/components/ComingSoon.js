@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-import GoBack from "../components/GoBack";
+import GoBack from "./GoBack";
 
 function ComingSoon(props) {
   const { t } = useTranslation();

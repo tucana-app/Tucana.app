@@ -5,14 +5,14 @@ import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ChevronRightIcon } from "@primer/octicons-react";
 
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import SingleConversation from "./SingleConversation";
 
 import {
   getAllUserMessages,
   changeConversationView,
   displayNavBar,
-} from "../redux";
+} from "../../redux";
 
 function Messages() {
   const { t } = useTranslation();

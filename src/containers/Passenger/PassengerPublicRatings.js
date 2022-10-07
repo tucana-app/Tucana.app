@@ -6,11 +6,11 @@ import { useTranslation } from "react-i18next";
 import { StarFillIcon } from "@primer/octicons-react";
 import dateFormat from "dateformat";
 
-import GoBack from "../components/GoBack";
-import LoadingSpinner from "../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { getRatingsReceivedPassenger, getPassengerProfile } from "../redux";
-import { isEmptyObject } from "../helpers";
+import { getRatingsReceivedPassenger, getPassengerProfile } from "../../redux";
+import { isEmptyObject } from "../../helpers";
 
 function PassengerPublicRatings() {
   const { t } = useTranslation();

@@ -11,15 +11,15 @@ import {
   getUserBookings,
   getDriverBookings,
   ridesToConfirm,
-} from "../redux";
+} from "../../redux";
 
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 import {
   // countUserBookings,
   // countDriverRides,
   countDriverBookings,
-} from "../helpers";
+} from "../../helpers";
 
 const Rides = () => {
   const { t } = useTranslation();

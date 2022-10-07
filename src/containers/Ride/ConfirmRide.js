@@ -11,12 +11,12 @@ import {
 } from "@primer/octicons-react";
 import { LinkContainer } from "react-router-bootstrap";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import GoBack from "../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
-import { rideToConfirm, submitFormConfirmRide } from "../redux";
+import { rideToConfirm, submitFormConfirmRide } from "../../redux";
 
-import RideDetails from "../components/RideDetails";
+import RideDetails from "../../components/RideDetails";
 
 const ConfirmRide = () => {
   const { t } = useTranslation();

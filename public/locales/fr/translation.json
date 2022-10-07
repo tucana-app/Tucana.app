@@ -59,6 +59,7 @@
 		"underReview": "En cours d'examen"
 	},
 	"booking": {
+		"cancelBooking": "Annule ta réservation",
 		"rideDetails": "Détails du trajet",
 		"seatsBooked": "Sièges réservés",
 		"summary1": "Tu as réservé",

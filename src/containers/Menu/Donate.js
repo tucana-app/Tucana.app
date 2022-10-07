@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-import GoBack from "../components/GoBack";
+import GoBack from "../../components/GoBack";
 
 const Donate = () => {
   const { t } = useTranslation();

@@ -17,12 +17,12 @@ import {
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from "react-i18next";
 
-import { getNotifications } from "../../redux";
-import { getPercent } from "../../helpers";
+import { getNotifications } from "../redux";
+import { getPercent } from "../helpers";
 
 // Importing assets
-import logo from "../../assets/images/logo-full-black.png";
-import SocialIcons from "../../components/SocialIcons";
+import logo from "../assets/images/logo-full-black.png";
+import SocialIcons from "../components/SocialIcons";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Menu = () => {
@@ -222,21 +222,6 @@ const Menu = () => {
                     </ListGroup.Item>
                   </Link>
                 )}
-
-                {/* <Link to="/verification" className="text-decoration-none">
-                  <ListGroup.Item className="border-0">
-                    <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                      <p className="mb-0">
-                        {t("translation:global.getVerified")}{" "}
-                        <CheckCircleFillIcon
-                          size={24}
-                          className="text-success"
-                        />
-                      </p>
-                      <ChevronRightIcon size={24} verticalAlign="middle" />
-                    </div>
-                  </ListGroup.Item>
-                </Link> */}
 
                 <Link to="/ratings" className="text-decoration-none">
                   <ListGroup.Item className="border-0">

@@ -6,11 +6,11 @@ import dateFormat from "dateformat";
 import { AlertIcon, ChevronRightIcon } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import GoBack from "../components/GoBack";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
-import { getPassengerProfile } from "../redux";
-import DisplayRating from "../components/DisplayRating";
+import { getPassengerProfile } from "../../redux";
+import DisplayRating from "../../components/DisplayRating";
 
 const PassengerPublicProfile = () => {
   const { t } = useTranslation();

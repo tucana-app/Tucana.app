@@ -5,12 +5,12 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 
-import GoBack from "../components/GoBack";
-import RideDetails from "../components/RideDetails";
+import GoBack from "../../components/GoBack";
+import RideDetails from "../../components/RideDetails";
 
-import { setSearchSeats, submitFormBookRide } from "../redux";
+import { setSearchSeats, submitFormBookRide } from "../../redux";
 
-import { formatPrice } from "../helpers";
+import { formatPrice } from "../../helpers";
 
 const Book = () => {
   const { t } = useTranslation();
