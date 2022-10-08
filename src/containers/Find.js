@@ -9,7 +9,6 @@ import {
   ArrowDownIcon,
   ArrowRightIcon,
   ChevronLeftIcon,
-  DotFillIcon,
 } from "@primer/octicons-react";
 
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -41,7 +40,6 @@ const Find = () => {
     filteredRidesData,
     isFormSearchRideSubmitted,
     formSearchRide,
-    nbRidesOnlineData,
   } = useSelector((state) => state.ride);
 
   const handleDayBefore = () => {
@@ -360,7 +358,7 @@ const Find = () => {
               </Col>
             </Row>
 
-            <Row>
+            {/* <Row>
               <Col className="text-center">
                 <p className="mb-1">
                   <span className="text-success fw-bold">
@@ -374,7 +372,7 @@ const Find = () => {
                   {t("translation:find.ridesOnline")}
                 </p>
               </Col>
-            </Row>
+            </Row> */}
 
             <Row className="mb-2 mx-1 mx-sm-0">
               <Col

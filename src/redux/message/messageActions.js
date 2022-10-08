@@ -199,14 +199,6 @@ export const sendMessage = (
           .then((response) => {
             // console.log(response.data);
 
-            dispatch(
-              setToast({
-                show: true,
-                headerText: "Success",
-                bodyText: "Message sent",
-                variant: "success",
-              })
-            );
             dispatch(sendMessageEnd());
             dispatch(getAllUserMessages(sender.id));
           })
