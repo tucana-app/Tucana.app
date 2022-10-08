@@ -101,7 +101,7 @@ const Booking = () => {
                             {dateFormat(bookingData.createdAt, "dd/mm/yy")}
                           </strong>
                         </p>
-                        <p>
+                        <p className="mb-0">
                           {t("translation:global.status")}:{" "}
                           <span
                             className={`fw-bold text-${bookingStatusVariant(
@@ -116,7 +116,7 @@ const Booking = () => {
                         </p>
                         {bookingData.commentPassenger !== "" &&
                         bookingData.commentPassenger !== null ? (
-                          <p className="mt-3">
+                          <p className="mt-3 mb-0">
                             {t("translation:global.passengerComment")}: "
                             {bookingData.commentPassenger}"
                           </p>
@@ -220,8 +220,11 @@ const Booking = () => {
                 </Col>
               </Row>
 
+              {/* Cancel the booking */}
               {currentUser.id === bookingData.User.id &&
-              !isDateInPast(bookingData.Ride.dateTimeOrigin, new Date()) ? (
+              !isDateInPast(bookingData.Ride.dateTimeOrigin, new Date()) &&
+              bookingData.Ride.RideStatusId === 1 &&
+              bookingData.BookingStatusId < 4 ? (
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
                     <ListGroup variant="flush">
@@ -232,7 +235,7 @@ const Booking = () => {
                         <ListGroup.Item className="border-0 cursor-pointer px-0">
                           <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                             <p className="mb-0">
-                              {t("translation:booking.cancelBooking")}
+                              {t("translation:cancelBooking.title")}
                             </p>
                             <ChevronRightIcon
                               size={24}

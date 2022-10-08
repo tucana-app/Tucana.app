@@ -11,11 +11,13 @@
 		"answer3": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à votre compte ou à votre activité.",
 		"answer4": "Nous sommes tenus de conserver votre numéro d'identification et votre adresse électronique pendant les 3 mois qui suivent la fermeture de votre compte. Cela permet de garantir la sécurité de la communauté utilisant Tucána. Ensuite, ces enregistrements seront automatiquement supprimés après cette période.",
 		"answer5": "Tout est expliqué en détail directement sur la page : <1>Expérience</1>",
+		"answer6": "",
 		"question1": "Comment fonctionne le paiement?",
 		"question2": "Comment fonctionne le remboursement ?",
 		"question3": "Quelles sont les données que vous collectez ?",
 		"question4": "Que se passe-t-il lorsque je ferme mon compte ?",
 		"question5": "Comment fonctionne le système d'expérience ?",
+		"question6": "",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -59,7 +61,6 @@
 		"underReview": "En cours d'examen"
 	},
 	"booking": {
-		"cancelBooking": "Annule ta réservation",
 		"rideDetails": "Détails du trajet",
 		"seatsBooked": "Sièges réservés",
 		"summary1": "Tu as réservé",
@@ -69,6 +70,13 @@
 	"bookings": {
 		"noBookings": "Tu n'as pas encore réserver de trajet",
 		"subTitle": "Toutes les réservations que tu as faites"
+	},
+	"cancelBooking": {
+		"confirm": "",
+		"content1": "",
+		"refundPolicy": "",
+		"success": "",
+		"title": "Annule ta réservation"
 	},
 	"closeAccount": {
 		"closeAccount": "Clôturer mon compte",
@@ -87,9 +95,10 @@
 		"answerNo": "Peux-tu nous dire ce qui a mal tourné ? Nous aimerions savoir pourquoi tu n'as pas pu faire le trajet.",
 		"complaint": "Je souhaite déposer une plainte",
 		"confirm": "Je confirme",
-		"confirmNoRide": "Confirme que le trajet n'a pas eu lieu.",
+		"confirmNoRide": "",
 		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
 		"message": "Fais-nous savoir si tout s'est bien passé et si tu as fait ce trajet.",
+		"question": "",
 		"rateRide": "Note ton trajet",
 		"tellUsWhy": "Dis nous pourquoi",
 		"title": "Complète le trajet"
@@ -227,6 +236,7 @@
 			"chooseDate": "Tu dois choisir un jour",
 			"chooseSeatsAvailable": "Tu dois choisir le nombre de sièges dont tu disposes",
 			"chooseTime": "Tu dois choisir une heure",
+			"completeFirst": "",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
 			"errorFallback": "Il y a eu une erreur.",
@@ -293,6 +303,7 @@
 		"numberPlate": "Plaque d'immatriculation",
 		"offline": "Vous êtes hors ligne",
 		"origin": "Origine",
+		"paid": "Payé",
 		"passenger": "passager",
 		"passengerComment": "Commentaire du passager",
 		"passengerDetails": "Détails sur le(s) passager(s)",
@@ -308,6 +319,7 @@
 		"profile": "Profil",
 		"province": "province",
 		"ratings": "Avis",
+		"reason": "Raison",
 		"received": "Reçus",
 		"refundPolicy": "Politique de remboursement",
 		"refuse": "Refuser",
@@ -371,6 +383,12 @@
 				"10": "Octobre",
 				"11": "Novembre",
 				"12": "Décembre"
+			},
+			"reasons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"other": "Autre"
 			},
 			"ride": {
 				"1": "À venir",
@@ -578,7 +596,14 @@
 		"toDo": "Cotes à faire"
 	},
 	"refundPolicy": {
+		"later": "Plus tard, les remboursements fonctionneront selon ce principe :",
 		"message": "Pour l'instant, la plateforme ne gère pas les remboursements car nous ne gérons pas les paiements. Tu peux contacter les personnes directement avec la fonction de messagerie dès l'application.",
+		"option1-content": "Nous te rembourserons le montant de ta réservation, à l'exception des frais de réservation.",
+		"option1-title": "Ta annules ta réservation plus de 24 heures avant le départ",
+		"option2-content": "Nous te rembourserons 50 % du montant de ta réservation, à l'exception des frais de réservation.",
+		"option2-title": "Tu annules ta réservation moins de 24 heures avant le départ",
+		"option3-content": "Nous paierons au conducteur le montant total de ta réservation.",
+		"option3-title": "Tu ne te présentes pas le jour du départ.",
 		"title": "Politique de remboursement"
 	},
 	"report": {

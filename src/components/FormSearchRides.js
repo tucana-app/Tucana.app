@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Row, Col, Button, Container, Offcanvas } from "react-bootstrap";
+import {
+  Form,
+  Row,
+  Col,
+  Button,
+  Container,
+  Offcanvas,
+  Badge,
+} from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import { XIcon, PersonIcon } from "@primer/octicons-react";
+import { XIcon, PersonIcon, ArrowRightIcon } from "@primer/octicons-react";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 import DatePicker, { registerLocale } from "react-datepicker";
 import en from "date-fns/locale/en-US";
 import es from "date-fns/locale/es";
 import fr from "date-fns/locale/fr";
 import i18n from "i18next";
+import { Link } from "react-router-dom";
 
 import InputSearchLocation from "./InputSearchLocation";
 
@@ -20,6 +29,7 @@ import {
   setToast,
   resetSearchOrigin,
   resetSearchDestination,
+  ridesToConfirm,
 } from "../redux";
 
 // Enable translation for the date picker
@@ -31,8 +41,11 @@ const FormSearchRides = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { seatsMax } = useSelector((state) => state.global);
-  const { formSearchRide } = useSelector((state) => state.ride);
+  const { ridesToConfirmData, formSearchRide } = useSelector(
+    (state) => state.ride
+  );
 
   const [showOffcanvaDate, setShowOffcanvaDate] = useState(false);
   const [showOffcanvaSeats, setShowOffcanvaSeats] = useState(false);
@@ -121,6 +134,13 @@ const FormSearchRides = () => {
     }
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(ridesToConfirm(currentUser.id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Row className="mb-3">
@@ -200,6 +220,7 @@ const FormSearchRides = () => {
               onClick={() => setShowOffcanvaDate(true)}
               required
               readOnly
+              disabled={!!ridesToConfirmData.length}
             />
           </Form.Group>
         </Col>
@@ -214,22 +235,42 @@ const FormSearchRides = () => {
               onClick={() => setShowOffcanvaSeats(true)}
               required
               readOnly
+              disabled={!!ridesToConfirmData.length}
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row className="py-2">
-        <Col className="text-end">
-          <Button
-            onClick={handleSubmit}
-            variant="success"
-            size="lg"
-            type="submit"
-          >
-            {t("translation:global.search")}
-          </Button>
-        </Col>
-      </Row>
+      {ridesToConfirmData.length ? (
+        <Row>
+          <Col className="text-end">
+            <p>{t("translation:global.errors.completeFirst")}</p>
+
+            <div>
+              <Link to="/rides/rides-to-complete">
+                <Button variant="success">
+                  {t("translation:ridesToConfirm.title")}{" "}
+                  <Badge bg="danger">{ridesToConfirmData.length}</Badge>{" "}
+                  <ArrowRightIcon size="24" />
+                </Button>
+              </Link>
+            </div>
+          </Col>
+        </Row>
+      ) : (
+        <Row className="py-2">
+          <Col className="text-end">
+            <Button
+              onClick={handleSubmit}
+              variant="success"
+              size="lg"
+              type="submit"
+              disabled={!!ridesToConfirmData.length}
+            >
+              {t("translation:global.search")}
+            </Button>
+          </Col>
+        </Row>
+      )}
 
       <Offcanvas
         show={showOffcanvaDate}

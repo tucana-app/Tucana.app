@@ -11,11 +11,13 @@
 		"answer3": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"answer4": "We are required to keep your ID number and email address for the next 3 months after closing your account. It ensures the safety of the community using Tucána. Then these records will be automatically deleted past that time.",
 		"answer5": "Everything is explained in details directly on the page: <1>Experience</1>",
+		"answer6": "It is necessary to complete the ride in order for the driver to receive the money from your booking.",
 		"question1": "How the payment works?",
 		"question2": "How does refund works?",
 		"question3": "What data are you collecting?",
 		"question4": "What happens when I close my account?",
 		"question5": "How does the experience system works?",
+		"question6": "Why do I need do complete the ride?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -59,7 +61,6 @@
 		"underReview": "Under review"
 	},
 	"booking": {
-		"cancelBooking": "Cancel your booking",
 		"rideDetails": "Ride details",
 		"seatsBooked": "Seats booked",
 		"summary1": "You booked",
@@ -69,6 +70,13 @@
 	"bookings": {
 		"noBookings": "You haven't made a booking yet",
 		"subTitle": "All the bookings you have made"
+	},
+	"cancelBooking": {
+		"confirm": "Do you really wish to cancel this booking?",
+		"content1": "You receive on a refund depending on when you cancel the booking. Learn more ",
+		"refundPolicy": "Make sure to review our <2>refund policy</2> before canceling.",
+		"success": "Your booking has been successfully canceled",
+		"title": "Cancel your booking"
 	},
 	"closeAccount": {
 		"closeAccount": "Close my account",
@@ -87,9 +95,10 @@
 		"answerNo": "Can you tell us what went wrong? We would love to hear why you couldn't ride",
 		"complaint": "I have a complaint",
 		"confirm": "I confirm",
-		"confirmNoRide": "Please confirm that the ride didn't take place",
+		"confirmNoRide": "What happened?",
 		"confirmRideMessage": "Did the ride took place?",
 		"message": "Let us know if everything went well, and if you did this ride",
+		"question": "Why do I need do complete the ride?",
 		"rateRide": "Rate your ride",
 		"tellUsWhy": "Tell us why",
 		"title": "Complete the ride"
@@ -227,6 +236,7 @@
 			"chooseDate": "You need to pick a day",
 			"chooseSeatsAvailable": "You need to choose the amount of seats you have available",
 			"chooseTime": "You need to pick a time",
+			"completeFirst": "Complete your rides first",
 			"dateFuture": "The date needs to be in the future",
 			"error": "Error",
 			"errorFallback": "There has been an error.",
@@ -293,6 +303,7 @@
 		"numberPlate": "Number plate",
 		"offline": "You are offline",
 		"origin": "Origin",
+		"paid": "Paid",
 		"passenger": "Passenger",
 		"passengerComment": "Passenger comment",
 		"passengerDetails": "Passengers details",
@@ -308,6 +319,7 @@
 		"profile": "Profile",
 		"province": "Province",
 		"ratings": "Ratings",
+		"reason": "Reason",
 		"received": "Received",
 		"refundPolicy": "Refund policy",
 		"refuse": "Refuse",
@@ -371,6 +383,12 @@
 				"10": "October",
 				"11": "November",
 				"12": "December"
+			},
+			"reasons": {
+				"1": "The driver didn't show up",
+				"2": "The passenger didn't show up",
+				"3": "I couldn't make it",
+				"other": "Other"
 			},
 			"ride": {
 				"1": "Coming",
@@ -578,7 +596,14 @@
 		"toDo": "Ratings to do"
 	},
 	"refundPolicy": {
+		"later": "Later, the refunds will work according to this:",
 		"message": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
+		"option1-content": "We will refund the amount of your booking except for the booking fee.",
+		"option1-title": "You cancel your booking more than 24 hours before departure",
+		"option2-content": "We will refund 50% of the amount of your booking except for the reservation fee.",
+		"option2-title": "You cancel your booking less than 24 hours before departure",
+		"option3-content": "We will pay the driver the full amount of your booking.",
+		"option3-title": "You do not show up on the day of departure",
 		"title": "Refund Policy"
 	},
 	"report": {

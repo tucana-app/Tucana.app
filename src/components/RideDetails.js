@@ -114,7 +114,7 @@ function RideDetails({ ride }) {
             </Col>
             <Col xs={4} className="text-center">
               <div className="line-height-sm mb-0">
-                <p className="p fw-bold mb-0">{formatPrice(ride.price)}</p>
+                <h3 className="p fw-bold mb-0">{formatPrice(ride.price)}</h3>
                 <span className="smaller text-secondary">
                   {t("translation:global.perSeat")}
                 </span>

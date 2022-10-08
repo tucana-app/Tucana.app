@@ -22,11 +22,9 @@ function Experience() {
   const dispatch = useDispatch();
 
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { constants, isLoadingGetLevels, getLevelsData } = useSelector(
+  const { pointsGrid, isLoadingGetLevels, getLevelsData } = useSelector(
     (state) => state.global
   );
-
-  const pointsGrid = JSON.parse(constants.EXPERIENCE_POINTS_GRID);
 
   useEffect(() => {
     dispatch(getLevels());
@@ -134,8 +132,8 @@ function Experience() {
                           </thead>
 
                           <tbody>
-                            {Object.keys(pointsGrid).map((key, i) => (
-                              <tr key={i}>
+                            {Object.keys(pointsGrid).map((key, index) => (
+                              <tr key={index}>
                                 <td>
                                   {t(
                                     `translation:experience.gridLabels.${key}`

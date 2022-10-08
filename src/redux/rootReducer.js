@@ -7,6 +7,7 @@ import rideReducer from "./ride/rideReducer";
 import toastReducer from "./toast/toastReducer";
 import messageReducer from "./message/messageReducer";
 import ratingReducer from "./rating/ratingReducer";
+import bookingReducer from "./booking/bookingReducer";
 
 const appReducer = combineReducers({
   user: userReducer,
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
   toast: toastReducer,
   message: messageReducer,
   rating: ratingReducer,
+  booking: bookingReducer,
 });
 
 const rootReducer = (state, action) => {

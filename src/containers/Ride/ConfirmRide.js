@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { Container, Row, Col, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import {
   ArrowLeftIcon,
@@ -14,7 +14,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
-import { rideToConfirm, submitFormConfirmRide } from "../../redux";
+import { rideToConfirm, setToast, submitFormConfirmRide } from "../../redux";
 
 import RideDetails from "../../components/RideDetails";
 
@@ -32,20 +32,95 @@ const ConfirmRide = () => {
     submitFormConfirmRideData,
     submitFormConfirmRideError,
   } = useSelector((state) => state.ride);
+  const { nbReasonNotComplete } = useSelector((state) => state.global);
 
   const [submitted, setSubmitted] = useState(false);
   const [submittedNo, setSubmittedNo] = useState(false);
+  const [reason, setReason] = useState("");
+  const [comment, setComment] = useState("");
+
+  let arrayReasons = [];
+  for (let i = 1; i <= nbReasonNotComplete; i++) {
+    arrayReasons.push(
+      <option key={i} value={t(`translation:global.statuses.reasons.${i}`)}>
+        {t(`translation:global.statuses.reasons.${i}`)}
+      </option>
+    );
+  }
+  arrayReasons.push(
+    <option key={"other"} value={nbReasonNotComplete + 1}>
+      {t(`translation:global.statuses.reasons.other`)}
+    </option>
+  );
+
+  const handleChangeReason = (e) => {
+    setReason(e.target.value);
+    if (e.target.value !== `${nbReasonNotComplete + 1}`) {
+      setComment("");
+    }
+  };
+
+  const handleChangeComment = (e) => {
+    setComment(e.target.value);
+  };
 
   const handleSubmit = (isCompleted) => {
-    dispatch(
-      submitFormConfirmRide(
-        currentUser,
-        rideToConfirmData.id,
-        rideToConfirmData.RideId,
-        isCompleted
-      )
-    );
-    setSubmitted(true);
+    if (!isCompleted) {
+      if (!reason) {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: t("translation:global.errors.error"),
+            bodyText: t("translation:global.errors.labelRequiredField"),
+            variant: "warning",
+          })
+        );
+      } else if (reason === `${nbReasonNotComplete + 1}`) {
+        if (!comment || comment.length < 10) {
+          dispatch(
+            setToast({
+              show: true,
+              headerText: t("translation:global.errors.error"),
+              bodyText: t("translation:global.errors.min10characters"),
+              variant: "warning",
+            })
+          );
+        } else {
+          dispatch(
+            submitFormConfirmRide(
+              currentUser,
+              rideToConfirmData.id,
+              rideToConfirmData.RideId,
+              comment,
+              isCompleted
+            )
+          );
+          setSubmitted(true);
+        }
+      } else {
+        dispatch(
+          submitFormConfirmRide(
+            currentUser,
+            rideToConfirmData.id,
+            rideToConfirmData.RideId,
+            reason,
+            isCompleted
+          )
+        );
+        setSubmitted(true);
+      }
+    } else {
+      dispatch(
+        submitFormConfirmRide(
+          currentUser,
+          rideToConfirmData.id,
+          rideToConfirmData.RideId,
+          null,
+          isCompleted
+        )
+      );
+      setSubmitted(true);
+    }
   };
 
   useEffect(() => {
@@ -93,27 +168,119 @@ const ConfirmRide = () => {
                 md={8}
                 lg={6}
                 xl={4}
-                className="border border-2 border-warning shadow rounded-5 mx-auto"
+                className={
+                  submitted && !submittedNo
+                    ? "border border-2 border-success shadow rounded-5 mx-auto"
+                    : "border border-2 border-warning shadow rounded-5 mx-auto"
+                }
               >
-                <Container className="py-5 px-2">
-                  {!isloadingSubmitFormConfirmRide &&
-                  submittedNo &&
-                  (submitFormConfirmRideError !== "" ||
-                    submitFormConfirmRideData.flag !== "SUCCESS") ? (
-                    <Row data-aos="fade-in">
+                <Container className="px-2">
+                  <Row className="mt-3 mb-4">
+                    <Col className="text-center">
+                      <Link to="/faq">
+                        <small>{t("translation:confirmRide.question")}</small>
+                      </Link>
+                    </Col>
+                  </Row>
+
+                  {submitted && submitFormConfirmRideError !== "" ? (
+                    <Alert variant="danger" className="text-center mb-0">
+                      {submitFormConfirmRideError}
+                    </Alert>
+                  ) : submitted &&
+                    submitFormConfirmRideData.flag === "SUCCESS" ? (
+                    <Row>
+                      <Col xs={12} className="text-center">
+                        <h3 className="text-center mb-3">
+                          {t("translation:confirmRide.answer")}
+                        </h3>
+                      </Col>
+
+                      {submittedNo ? (
+                        <div className="mb-3">
+                          <Col xs={12} className="text-center mb-3">
+                            {t("translation:confirmRide.answerNo")}
+                          </Col>
+                          <Col xs={12} className="text-center">
+                            <LinkContainer to="/contact">
+                              <Button variant="success" size="lg">
+                                {t("translation:confirmRide.tellUsWhy")}
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        </div>
+                      ) : (
+                        <div className="mb-3">
+                          <Col xs={12} className="text-center">
+                            <LinkContainer
+                              to={`/ratings/new-rating/${rideToConfirmData.RideId}`}
+                            >
+                              <Button
+                                variant="outline-dark"
+                                size="lg"
+                                className="animate__animated animate__heartBeat animate__slower animate__infinite me-2"
+                              >
+                                {t("translation:confirmRide.rateRide")}
+                                <StarFillIcon
+                                  size={24}
+                                  className="text-warning ms-2"
+                                  verticalAlign="middle"
+                                />
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        </div>
+                      )}
+                    </Row>
+                  ) : isloadingSubmitFormConfirmRide ? (
+                    <Row>
+                      <Col className="text-center">
+                        <LoadingSpinner />
+                      </Col>
+                    </Row>
+                  ) : submittedNo ? (
+                    // &&
+                    // (submitFormConfirmRideError !== "" ||
+                    //   submitFormConfirmRideData.flag !== "SUCCESS")
+                    <Row className="mb-4">
                       <Col className="text-center px-0 mx-auto">
                         <h3 className="text-center mb-3">
                           {t("translation:confirmRide.confirmNoRide")}
                         </h3>
 
+                        <Form.Group className="mb-3">
+                          <Form.Select
+                            name="reason"
+                            onChange={handleChangeReason}
+                          >
+                            <option value={0}>
+                              {t("translation:global.reason")}
+                            </option>
+                            {arrayReasons}
+                          </Form.Select>
+                        </Form.Group>
+
+                        {reason === `${nbReasonNotComplete + 1}` ? (
+                          <Col xs={12}>
+                            <Form.Group className="mb-3">
+                              <Form.Control
+                                type="text"
+                                name="comment"
+                                value={comment}
+                                placeholder={t("translation:global.reason")}
+                                onChange={handleChangeComment}
+                                minLength={10}
+                                required
+                              />
+                            </Form.Group>
+                          </Col>
+                        ) : null}
+
                         <Button
                           variant="warning"
-                          type="submit"
+                          type="button"
                           className="me-2"
-                          onClick={() => {
-                            setSubmitted(false);
-                            setSubmittedNo(false);
-                          }}
+                          onClick={() => setSubmittedNo(false)}
                         >
                           <span>
                             <ArrowLeftIcon size={24} className="me-2" />
@@ -122,7 +289,7 @@ const ConfirmRide = () => {
                         </Button>
 
                         <Button
-                          variant="danger"
+                          variant="dark"
                           type="submit"
                           onClick={() => handleSubmit(false)}
                         >
@@ -133,9 +300,8 @@ const ConfirmRide = () => {
                         </Button>
                       </Col>
                     </Row>
-                  ) : submitFormConfirmRideError === "" &&
-                    submitFormConfirmRideData.flag !== "SUCCESS" ? (
-                    <div data-aos="fade-in">
+                  ) : (
+                    <div className="mb-4">
                       <Row>
                         <Col className="mx-auto">
                           <h3 className="text-center mb-3">
@@ -166,7 +332,10 @@ const ConfirmRide = () => {
                             disabled={
                               submitted || isloadingSubmitFormConfirmRide
                             }
-                            onClick={() => handleSubmit(true)}
+                            onClick={() => {
+                              setSubmittedNo(false);
+                              handleSubmit(true);
+                            }}
                           >
                             <span>
                               <CheckIcon size={24} className="me-2" />
@@ -176,54 +345,6 @@ const ConfirmRide = () => {
                         </Col>
                       </Row>
                     </div>
-                  ) : submitFormConfirmRideError !== "" ? (
-                    <Alert variant="danger" className="text-center mb-0">
-                      {submitFormConfirmRideError}
-                    </Alert>
-                  ) : (
-                    <Row data-aos="fade-in">
-                      <Col xs={12} className="text-center">
-                        <h3 className="text-center mb-3">
-                          {t("translation:confirmRide.answer")} 🎉
-                        </h3>
-                      </Col>
-
-                      {submittedNo ? (
-                        <>
-                          <Col xs={12} className="text-center mb-3">
-                            {t("translation:confirmRide.answerNo")}
-                          </Col>
-                          <Col xs={12} className="text-center">
-                            <LinkContainer to="/contact">
-                              <Button variant="success" size="lg">
-                                {t("translation:confirmRide.tellUsWhy")}
-                              </Button>
-                            </LinkContainer>
-                          </Col>
-                        </>
-                      ) : (
-                        <>
-                          <Col xs={12} className="text-center">
-                            <LinkContainer
-                              to={`/ratings/new-rating/${rideToConfirmData.RideId}`}
-                            >
-                              <Button
-                                variant="outline-dark"
-                                size="lg"
-                                className="animate__animated animate__heartBeat animate__slower animate__infinite me-2"
-                              >
-                                {t("translation:confirmRide.rateRide")}
-                                <StarFillIcon
-                                  size={24}
-                                  className="text-warning ms-2"
-                                  verticalAlign="middle"
-                                />
-                              </Button>
-                            </LinkContainer>
-                          </Col>
-                        </>
-                      )}
-                    </Row>
                   )}
                 </Container>
               </Col>
@@ -250,7 +371,7 @@ const ConfirmRide = () => {
             <RideDetails ride={rideToConfirmData.Ride} />
           </div>
         ) : rideToConfirmError ? (
-          <Redirect to="/rides/rides-to-confirm" />
+          <Redirect to="/rides/rides-to-complete" />
         ) : null}
       </Container>
     </div>

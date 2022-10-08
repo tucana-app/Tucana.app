@@ -13,7 +13,7 @@ import { getUserBookings } from "../../redux";
 import { ChevronRight } from "react-bootstrap-icons";
 import { isDateInPast } from "../../helpers";
 
-const UserPastBookings = () => {
+const PastBookings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -56,7 +56,8 @@ const UserPastBookings = () => {
         ) : userBookingsData.length > 0 ? (
           userBookingsData.map((booking, index) =>
             isDateInPast(booking.Ride.dateTimeOrigin, new Date()) ||
-            booking.Ride.RideStatus > 2 ? (
+            booking.Ride.RideStatusId > 2 ||
+            booking.BookingStatusId > 3 ? (
               <Row key={index} className="mb-2 mx-1 mx-sm-0">
                 <Col
                   xs={12}
@@ -146,4 +147,4 @@ const UserPastBookings = () => {
   );
 };
 
-export default UserPastBookings;
+export default PastBookings;

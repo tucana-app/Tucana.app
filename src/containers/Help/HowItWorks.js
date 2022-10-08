@@ -747,7 +747,7 @@ const HowItWorks = () => {
                       </Row>
                       <Row className="mt-3">
                         <Link
-                          to="/rides/rides-to-confirm"
+                          to="/rides/rides-to-complete"
                           className="text-decoration-none px-0"
                         >
                           <ListGroup.Item className="border-0 px-0">

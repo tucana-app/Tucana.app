@@ -1101,7 +1101,7 @@ export const ridesToConfirm = (userId) => {
     dispatch(ridesToConfirmRequested());
 
     axios
-      .get(URL_API + "/ride/rides-to-confirm", {
+      .get(URL_API + "/ride/rides-to-complete", {
         headers: authHeader(),
         params: {
           userId,
@@ -1153,7 +1153,7 @@ export const rideToConfirm = (userId, bookingId) => {
     dispatch(rideToConfirmRequested());
 
     axios
-      .get(URL_API + "/ride/ride-to-confirm", {
+      .get(URL_API + "/ride/ride-to-complete", {
         headers: authHeader(),
         params: {
           userId,
@@ -1201,7 +1201,13 @@ export const submitFormConfirmRideRequested = () => {
   };
 };
 
-export const submitFormConfirmRide = (user, bookingId, rideId, isCompleted) => {
+export const submitFormConfirmRide = (
+  user,
+  bookingId,
+  rideId,
+  comment,
+  isCompleted
+) => {
   return (dispatch) => {
     dispatch(submitFormConfirmRideRequested());
 
@@ -1212,6 +1218,7 @@ export const submitFormConfirmRide = (user, bookingId, rideId, isCompleted) => {
           userId: user.id,
           bookingId,
           rideId,
+          comment,
           isCompleted,
         },
         {

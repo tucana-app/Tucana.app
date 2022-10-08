@@ -29,6 +29,7 @@ import Booking from "./containers/Booking/Booking";
 import Bookings from "./containers/Booking/Bookings";
 import Book from "./containers/Booking/Book";
 import CancelBooking from "./containers/Booking/CancelBooking";
+import PastBookings from "./containers/Booking/PastBookings";
 
 // Driver containers
 import BecomeDriver from "./containers/Driver/BecomeDriver";
@@ -46,7 +47,6 @@ import DriverRides from "./containers/Driver/DriverRides";
 // Passenger containers
 import PassengerPublicProfile from "./containers/Passenger/PassengerPublicProfile";
 import PassengerPublicRatings from "./containers/Passenger/PassengerPublicRatings";
-import UserPastBookings from "./containers/Passenger/UserPastBookings";
 
 // Edits containers
 import EditBio from "./containers/Edits/EditBio";
@@ -213,7 +213,7 @@ function App() {
               <Route exact path="/rides" component={Rides} />
               <Route
                 exact
-                path="/rides/rides-to-confirm"
+                path="/rides/rides-to-complete"
                 component={RidesToConfirm}
               />
 
@@ -252,6 +252,7 @@ function App() {
                 component={DriverPastRides}
               />
               <Route exact path="/profile/" component={DriverProfile} />
+              <Route exact path="/driver/rides" component={DriverRides} />
               <Route
                 exact
                 path="/driver/:username"
@@ -262,7 +263,6 @@ function App() {
                 path="/driver/:username/ratings"
                 component={DriverPublicRatings}
               />
-              <Route exact path="/driver/rides" component={DriverRides} />
 
               {/* Passenger containers */}
               <Route
@@ -275,7 +275,7 @@ function App() {
                 path="/passenger/:username/ratings"
                 component={PassengerPublicRatings}
               />
-              <Route exact path="/past-bookings" component={UserPastBookings} />
+              <Route exact path="/past-bookings" component={PastBookings} />
 
               {/* Edits containers */}
               <Route exact path="/edit/bio" component={EditBio} />

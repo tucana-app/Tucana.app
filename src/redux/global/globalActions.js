@@ -134,7 +134,7 @@ export const getLevelsRequested = () => {
   };
 };
 
-export const getLevels = (userId) => {
+export const getLevels = () => {
   return (dispatch) => {
     dispatch(getLevelsRequested());
 

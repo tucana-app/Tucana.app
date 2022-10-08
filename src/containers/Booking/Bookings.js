@@ -79,131 +79,126 @@ const Bookings = () => {
           <>
             {countBookingsAccepted(userBookingsData) > 0 ? (
               <>
-                <Row>
-                  <Col
-                    xs={12}
-                    sm={10}
-                    md={8}
-                    lg={6}
-                    xl={4}
-                    className="text-center mx-auto"
-                  >
-                    <p className="text-success mb-1">
-                      {t("translation:global.bookings")}{" "}
-                      <span className="text-lowercase">
-                        {t("translation:global.accepted")}
-                      </span>
-                    </p>
-                  </Col>
-                </Row>
-
                 {userBookingsData.map((booking, index) =>
                   isDateInPast(new Date(), booking.Ride.dateTimeOrigin) &&
-                  booking.BookingStatus.id === 3 ? (
-                    <Row key={index} className="mb-2 mx-1 mx-sm-0">
-                      <Col
-                        xs={12}
-                        sm={10}
-                        md={8}
-                        lg={6}
-                        xl={4}
-                        className="container-box"
-                      >
-                        <Container className="mt-1 px-0">
-                          <LinkContainer
-                            to={`/booking/${booking.id}`}
-                            className="cursor-pointer"
-                          >
-                            <Row className="align-items-center mx-2 my-1">
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {booking.Ride.origin.city}
-                                </p>
-                                <p className="small mb-0">
-                                  {booking.Ride.origin.province}
+                  booking.BookingStatus.id === 3 &&
+                  booking.Ride.RideStatusId < 3 ? (
+                    <div key={index}>
+                      <Row>
+                        <Col className="text-center mx-auto">
+                          <p className="text-success mb-1">
+                            {t("translation:global.bookings")}{" "}
+                            <span className="text-lowercase">
+                              {t("translation:global.accepted")}
+                            </span>
+                          </p>
+                        </Col>
+                      </Row>
+                      <Row className="mb-2 mx-1 mx-sm-0">
+                        <Col
+                          xs={12}
+                          sm={10}
+                          md={8}
+                          lg={6}
+                          xl={4}
+                          className="container-box"
+                        >
+                          <Container className="mt-1 px-0">
+                            <LinkContainer
+                              to={`/booking/${booking.id}`}
+                              className="cursor-pointer"
+                            >
+                              <Row className="align-items-center mx-2 my-1">
+                                <Col xs={5} className="text-center">
+                                  <p className="fw-bold mb-0">
+                                    {booking.Ride.origin.city}
+                                  </p>
+                                  <p className="small mb-0">
+                                    {booking.Ride.origin.province}
+                                  </p>
+                                </Col>
+                                <Col xs={1} className="text-lowercase">
+                                  {t("translation:global.to")}
+                                </Col>
+                                <Col xs={5} className="text-center">
+                                  <p className="fw-bold mb-0">
+                                    {booking.Ride.destination.city}
+                                  </p>
+                                  <p className="small mb-0">
+                                    {booking.Ride.destination.province}
+                                  </p>
+                                </Col>
+                                <Col xs={1}>
+                                  <ChevronRight />
+                                </Col>
+                              </Row>
+                            </LinkContainer>
+
+                            <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
+                              <Col xs={6}>
+                                <p className="mb-0">
+                                  {t("translation:global.seat")}
+                                  {booking.seatsBooked > 1 ? "s" : null}:{" "}
+                                  <span className="text-success">
+                                    {booking.seatsBooked}
+                                  </span>
                                 </p>
                               </Col>
-                              <Col xs={1} className="text-lowercase">
-                                {t("translation:global.to")}
-                              </Col>
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {booking.Ride.destination.city}
+
+                              <Col xs={6}>
+                                <p className="mb-0">
+                                  {t("translation:global.status")}:{" "}
+                                  <span
+                                    className={`text-${bookingStatusVariant(
+                                      booking.BookingStatus.id
+                                    )}`}
+                                  >
+                                    <DotFillIcon
+                                      size="16"
+                                      verticalAlign="middle"
+                                    />
+                                    {t(
+                                      `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                                    )}
+                                  </span>
                                 </p>
-                                <p className="small mb-0">
-                                  {booking.Ride.destination.province}
-                                </p>
-                              </Col>
-                              <Col xs={1}>
-                                <ChevronRight />
                               </Col>
                             </Row>
-                          </LinkContainer>
 
-                          <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                            <Col xs={6}>
-                              <p className="mb-0">
-                                {t("translation:global.seat")}
-                                {booking.seatsBooked > 1 ? "s" : null}:{" "}
-                                <span className="text-success">
-                                  {booking.seatsBooked}
-                                </span>
-                              </p>
-                            </Col>
-
-                            <Col xs={6}>
-                              <p className="mb-0">
-                                {t("translation:global.status")}:{" "}
-                                <span
-                                  className={`text-${bookingStatusVariant(
-                                    booking.BookingStatus.id
-                                  )}`}
-                                >
-                                  <DotFillIcon
-                                    size="16"
-                                    verticalAlign="middle"
-                                  />
-                                  {t(
-                                    `translation:global.statuses.booking.${booking.BookingStatus.id}`
+                            <Row className="small text-secondary justify-content-center border border-start-0 border-end-0 mx-0 py-1">
+                              <Col xs={6}>
+                                <p className="mb-0">
+                                  {t("translation:global.ride")}:{" "}
+                                  {dateFormat(
+                                    booking.Ride.dateTimeOrigin,
+                                    "dd/mm/yyyy"
                                   )}
-                                </span>
-                              </p>
-                            </Col>
-                          </Row>
+                                </p>
+                              </Col>
 
-                          <Row className="small text-secondary justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                            <Col xs={6}>
-                              <p className="mb-0">
-                                {t("translation:global.ride")}:{" "}
-                                {dateFormat(
-                                  booking.Ride.dateTimeOrigin,
-                                  "dd/mm/yyyy"
-                                )}
-                              </p>
-                            </Col>
-
-                            <Col xs={6}>
-                              <p className="mb-0">
-                                {t("translation:global.status")}:{" "}
-                                <span
-                                  className={`text-${rideStatusVariant(
-                                    booking.Ride.RideStatus.id
-                                  )}`}
-                                >
-                                  <DotFillIcon
-                                    size="16"
-                                    verticalAlign="middle"
-                                  />
-                                  {t(
-                                    `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
-                                  )}
-                                </span>
-                              </p>
-                            </Col>
-                          </Row>
-                        </Container>
-                      </Col>
-                    </Row>
+                              <Col xs={6}>
+                                <p className="mb-0">
+                                  {t("translation:global.status")}:{" "}
+                                  <span
+                                    className={`text-${rideStatusVariant(
+                                      booking.Ride.RideStatus.id
+                                    )}`}
+                                  >
+                                    <DotFillIcon
+                                      size="16"
+                                      verticalAlign="middle"
+                                    />
+                                    {t(
+                                      `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
+                                    )}
+                                  </span>
+                                </p>
+                              </Col>
+                            </Row>
+                          </Container>
+                        </Col>
+                      </Row>
+                    </div>
                   ) : null
                 )}
               </>

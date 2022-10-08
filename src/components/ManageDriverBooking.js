@@ -35,11 +35,11 @@ function ManageDriverBooking({ rideId }) {
                 className="cursor-pointer"
                 key={index}
               >
-                <Row className="align-items-center mb-2">
+                <Row className="align-items-center mb-3">
                   <Col xs={11}>
                     <strong>{booking.User.firstName}</strong>{" "}
                     {t("translation:booking.summary2")}{" "}
-                    <span className="text-success">{booking.seatsBooked}</span>{" "}
+                    <span className="fw-bold">{booking.seatsBooked}</span>{" "}
                     <span className="text-lowercase">
                       {t("translation:global.seat")}
                     </span>

@@ -73,6 +73,14 @@ const FAQ = () => {
                   </small>
                 </Accordion.Body>
               </Accordion.Item>
+              <Accordion.Item eventKey="6">
+                <Accordion.Header>
+                  {t("translation:FAQ.question6")}
+                </Accordion.Header>
+                <Accordion.Body className="py-2">
+                  <small>{t("translation:FAQ.answer6")}</small>
+                </Accordion.Body>
+              </Accordion.Item>
             </Accordion>
           </Col>
         </Row>

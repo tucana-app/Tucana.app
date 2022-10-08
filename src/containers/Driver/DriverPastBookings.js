@@ -57,8 +57,8 @@ const DriverPastBookings = () => {
           </Row>
         ) : driverBookingsData.length > 0 ? (
           driverBookingsData.map((booking, index) =>
-            isDateInPast(booking.Ride.dateTimeOrigin, new Date()) &&
-            booking.BookingStatus.id > 2 ? (
+            isDateInPast(booking.Ride.dateTimeOrigin, new Date()) ||
+            booking.BookingStatus.id >= 4 ? (
               <Row key={index} className="mb-2 mx-1 mx-sm-0">
                 <Col
                   xs={12}

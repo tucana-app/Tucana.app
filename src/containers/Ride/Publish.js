@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { Container, Form, Row, Col, Button, Badge } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -30,6 +30,7 @@ import {
   submitFormPublishRide,
   getETA,
   setToast,
+  ridesToConfirm,
 } from "../../redux";
 
 import {
@@ -58,6 +59,8 @@ const Publish = () => {
     submitFormPublishRideData,
     isLoadingGetETA,
     getETAData,
+    isLoadingRidesToConfirm,
+    ridesToConfirmData,
   } = useSelector((state) => state.ride);
   const { seatsMax, priceMin, priceMax } = useSelector((state) => state.global);
 
@@ -330,6 +333,12 @@ const Publish = () => {
   };
 
   useEffect(() => {
+    if (isLoggedIn && currentUser.Driver)
+      dispatch(ridesToConfirm(currentUser.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     return () => {
       stopCounterDecrease();
       stopCounterIncrease();
@@ -350,7 +359,44 @@ const Publish = () => {
 
   return (
     <Container fluid data-aos="fade-in">
-      {currentUser.Driver ? (
+      {isLoadingRidesToConfirm ? (
+        <Row>
+          <Col className="text-center">
+            <LoadingSpinner />
+          </Col>
+        </Row>
+      ) : ridesToConfirmData.length ? (
+        <Row className="mt-5 pt-5 mx-1 mx-sm-0">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="container-box text-center"
+          >
+            <Container className="py-3 px-2">
+              <Row>
+                <Col>
+                  <h3 className="fw-norml mb-3">
+                    {t("translation:global.errors.completeFirst")}
+                  </h3>
+
+                  <div>
+                    <Link to="/rides/rides-to-complete">
+                      <Button variant="success">
+                        {t("translation:ridesToConfirm.title")}{" "}
+                        <Badge bg="danger">{ridesToConfirmData.length}</Badge>{" "}
+                        <ArrowRightIcon size="24" />
+                      </Button>
+                    </Link>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      ) : currentUser.Driver ? (
         stepOne ? (
           <>
             <Row className="mt-5 pt-3 mb-3">
@@ -793,19 +839,19 @@ const Publish = () => {
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
-                      <Col xs={8}>
+                      <Col xs={4}>
+                        <p className="mb-0">
+                          {t("translation:global.seat")}
+                          {seats > 1 ? "s" : null}: <strong>{seats}</strong>
+                        </p>
+                      </Col>
+                      <Col xs={8} className="text-end">
                         <p className="mb-0">
                           {t("translation:global.price")}:{" "}
                           <strong>{formatPrice(price)}</strong>
                           <small className="text-secondary">
                             /{t("translation:global.perSeat")}
                           </small>
-                        </p>
-                      </Col>
-                      <Col xs={4} className="">
-                        <p className="mb-0">
-                          {t("translation:global.seat")}
-                          {seats > 1 ? "s" : null}: <strong>{seats}</strong>
                         </p>
                       </Col>
                     </Row>
@@ -845,7 +891,7 @@ const Publish = () => {
                             onChange={handleChangeComment}
                           />
                           <Form.Label className="mb-0">
-                            <p className="small text-secondary mb-0">
+                            <p className="mb-0">
                               <AlertIcon
                                 size={24}
                                 className="text-warning me-2"

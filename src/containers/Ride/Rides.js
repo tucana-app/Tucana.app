@@ -70,7 +70,7 @@ const Rides = () => {
             {ridesToConfirmData.length ? (
               <>
                 <Link
-                  to="/rides/rides-to-confirm"
+                  to="/rides/rides-to-complete"
                   className="text-light text-decoration-none"
                 >
                   <ListGroup.Item className="border-0">
