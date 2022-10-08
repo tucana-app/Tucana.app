@@ -148,10 +148,10 @@ function Ratings() {
               </div>
 
               <ListGroup variant="flush" className="mx-0">
-                {getRatingsToDoPassengerData.map((ride, index) => (
+                {getRatingsToDoPassengerData.map((booking, index) => (
                   <Link
                     key={index}
-                    to={`/ratings/new-rating/${ride.id}`}
+                    to={`/ratings/new-rating/${booking.id}`}
                     className="text-decoration-none"
                   >
                     <ListGroup.Item className="border border-start-0 border-end-0">
@@ -167,12 +167,15 @@ function Ratings() {
                           </Col>
                           <Col className="ps-0">
                             <p className="mb-0">
-                              {ride.origin.city}{" "}
+                              {booking.Ride.origin.city}{" "}
                               <ArrowRightIcon verticalAlign="middle" />{" "}
-                              {ride.destination.city}{" "}
+                              {booking.Ride.destination.city}{" "}
                             </p>
                             <small className="text-secondary">
-                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
+                              {dateFormat(
+                                booking.Ride.dateTimeOrigin,
+                                "dd/mm/yyyy"
+                              )}
                             </small>
                           </Col>
                           <Col xs={1} className="mx-0 px-0">
@@ -187,10 +190,10 @@ function Ratings() {
                   </Link>
                 ))}
 
-                {getRatingsToDoDriverData.map((ride, index) => (
+                {getRatingsToDoDriverData.map((booking, index) => (
                   <Link
                     key={index}
-                    to={`/ratings/new-rating/${ride.id}`}
+                    to={`/ratings/new-rating/${booking.id}`}
                     className="text-decoration-none"
                   >
                     <ListGroup.Item className="border border-start-0 border-end-0">
@@ -206,12 +209,15 @@ function Ratings() {
                           </Col>
                           <Col className="ps-0">
                             <p className="mb-0">
-                              {ride.origin.city}{" "}
+                              {booking.Ride.origin.city}{" "}
                               <ArrowRightIcon verticalAlign="middle" />{" "}
-                              {ride.destination.city}{" "}
+                              {booking.Ride.destination.city}{" "}
                             </p>
                             <small className="text-secondary">
-                              {dateFormat(ride.dateTimeOrigin, "dd/mm/yyyy")}
+                              {dateFormat(
+                                booking.Ride.dateTimeOrigin,
+                                "dd/mm/yyyy"
+                              )}
                             </small>
                           </Col>
                           <Col xs={1} className="mx-0 px-0">
