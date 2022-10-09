@@ -360,7 +360,7 @@ const Publish = () => {
   return (
     <Container fluid data-aos="fade-in">
       {isLoadingRidesToConfirm ? (
-        <Row>
+        <Row className="min-vh-100 align-items-center">
           <Col className="text-center">
             <LoadingSpinner />
           </Col>
@@ -736,7 +736,11 @@ const Publish = () => {
           </>
         ) : stepVerify ? (
           isLoadingGetETA ? (
-            <LoadingSpinner />
+            <Row className="min-vh-100 align-items-center">
+              <Col className="text-center">
+                <LoadingSpinner />
+              </Col>
+            </Row>
           ) : (
             <div className="mb-5">
               {backButton(handleBackToStepSix)}
@@ -933,7 +937,7 @@ const Publish = () => {
         ) : submitted ? (
           <>
             {isLoadingSubmitFormPublishRide ? (
-              <Row className="mt-5 pt-5">
+              <Row className="min-vh-100 align-items-center">
                 <Col className="text-center">
                   <LoadingSpinner />
                 </Col>

@@ -52,7 +52,7 @@ function RideDetails({ ride }) {
             </Col>
           </Row>
 
-          <Row className="px-2">
+          <Row className="align-items-center px-2">
             <Col xs={2} className="px-0">
               <p className="smaller line-height-md text-secondary text-end mb-0">
                 {dateFormat(ride.dateTimeDestination, "hh:MM TT")}

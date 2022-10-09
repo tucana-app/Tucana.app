@@ -19,6 +19,7 @@ import SignUpSuccess from "./containers/User/SignUpSuccess";
 
 // Ride containers
 import ConfirmRide from "./containers/Ride/ConfirmRide";
+import Find from "./containers/Ride/Find";
 import Publish from "./containers/Ride/Publish";
 import Ride from "./containers/Ride/Ride";
 import Rides from "./containers/Ride/Rides";
@@ -89,7 +90,6 @@ import Messages from "./containers/Message/Messages";
 
 // Other
 import Home from "./containers/Home";
-import Find from "./containers/Find";
 import Menu from "./containers/Menu";
 import ComingSoon from "./components/ComingSoon";
 

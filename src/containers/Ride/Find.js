@@ -11,12 +11,12 @@ import {
   ChevronLeftIcon,
 } from "@primer/octicons-react";
 
-import LoadingSpinner from "../components/LoadingSpinner";
-import MessageEmpty from "../components/MessageEmpty";
-import FormSearchRides from "../components/FormSearchRides";
-import DisplayRating from "../components/DisplayRating";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import MessageEmpty from "../../components/MessageEmpty";
+import FormSearchRides from "../../components/FormSearchRides";
+import DisplayRating from "../../components/DisplayRating";
 
-import { formatPrice, formatTimeSecond } from "../helpers";
+import { formatPrice, formatTimeSecond } from "../../helpers";
 
 import {
   showSearchForm,
@@ -24,7 +24,7 @@ import {
   getNbRidesOnline,
   setSearchDate,
   getFilteredRides,
-} from "../redux";
+} from "../../redux";
 import {
   ArrowLeftCircleFill,
   ArrowRightCircleFill,
@@ -258,7 +258,7 @@ const Find = () => {
                               </p>
                             </Col>
                           </Row>
-                          <Row className="mb-2">
+                          <Row className="align-items-center mb-2">
                             <Col xs={2} className="px-0">
                               <p className="smaller line-height-md text-secondary text-end mb-0">
                                 {dateFormat(
@@ -350,15 +350,23 @@ const Find = () => {
           </>
         ) : (
           <>
-            <Row className="justify-content-center mt-5 pt-5 mb-4">
-              <Col className="text-center ">
-                <h1 className="title mb-0">
-                  {t("translation:find.catchPhrase")}
-                </h1>
-              </Col>
-            </Row>
+            <Row className="min-vh-100 align-items-center">
+              <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                <Container fluid className="px-0">
+                  <Row>
+                    <Col xs={12}>
+                      <h1 className="title text-center mb-3">
+                        {t("translation:find.catchPhrase")}
+                      </h1>
+                    </Col>
+                  </Row>
 
-            {/* <Row>
+                  <div className="container-box py-3 px-2 mb-2 mx-1 mx-sm-0">
+                    <FormSearchRides />
+                  </div>
+                </Container>
+
+                {/* <Row>
               <Col className="text-center">
                 <p className="mb-1">
                   <span className="text-success fw-bold">
@@ -373,19 +381,6 @@ const Find = () => {
                 </p>
               </Col>
             </Row> */}
-
-            <Row className="mb-2 mx-1 mx-sm-0">
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="container-box mx-auto"
-              >
-                <Container className="py-3 px-2">
-                  <FormSearchRides />
-                </Container>
               </Col>
             </Row>
           </>
