@@ -40,7 +40,7 @@ function CancelBooking(props) {
         })
       );
     } else {
-      dispatch(submitCancelBooking(bookingId, comment));
+      dispatch(submitCancelBooking(bookingId, bookingData.RideId, comment));
       setSubmitted(true);
     }
   };

@@ -79,21 +79,22 @@ const Bookings = () => {
           <>
             {countBookingsAccepted(userBookingsData) > 0 ? (
               <>
+                <Row>
+                  <Col className="text-center mx-auto">
+                    <p className="text-success mb-1">
+                      {t("translation:global.bookings")}{" "}
+                      <span className="text-lowercase">
+                        {t("translation:global.accepted")}
+                      </span>
+                    </p>
+                  </Col>
+                </Row>
+
                 {userBookingsData.map((booking, index) =>
                   isDateInPast(new Date(), booking.Ride.dateTimeOrigin) &&
                   booking.BookingStatus.id === 3 &&
                   booking.Ride.RideStatusId < 3 ? (
                     <div key={index}>
-                      <Row>
-                        <Col className="text-center mx-auto">
-                          <p className="text-success mb-1">
-                            {t("translation:global.bookings")}{" "}
-                            <span className="text-lowercase">
-                              {t("translation:global.accepted")}
-                            </span>
-                          </p>
-                        </Col>
-                      </Row>
                       <Row className="mb-2 mx-1 mx-sm-0">
                         <Col
                           xs={12}

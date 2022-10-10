@@ -13,7 +13,7 @@ export const submitCancelBookingRequested = () => {
   };
 };
 
-export const submitCancelBooking = (bookingId, comment) => {
+export const submitCancelBooking = (bookingId, rideId, comment) => {
   return (dispatch) => {
     dispatch(submitCancelBookingRequested());
 
@@ -22,6 +22,7 @@ export const submitCancelBooking = (bookingId, comment) => {
         URL_API + "/booking/submit-cancel",
         {
           bookingId,
+          rideId,
           comment,
         },
         {
