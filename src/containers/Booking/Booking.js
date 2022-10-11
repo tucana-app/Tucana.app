@@ -279,7 +279,8 @@ const Booking = () => {
                 </Col>
               </Row>
 
-              {currentUser.Driver.id !== bookingData.DriverId ? (
+              {currentUser.Driver &&
+              currentUser.Driver.id !== bookingData.DriverId ? (
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
