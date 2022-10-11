@@ -9,31 +9,34 @@ import dateFormat from "dateformat";
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { getRatingsReceivedDriver, getDriverProfile } from "../../redux";
+import { getRatingsReceivedPassenger, getPublicProfile } from "../../redux";
 import { isEmptyObject } from "../../helpers";
 
-function DriverPublicRatings() {
+function PublicRatings() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { username } = useParams();
 
-  const { isLoggedIn, isloadingDriverProfile, driverProfileData } = useSelector(
+  const { isLoggedIn, isloadingPublicProfile, publicProfileData } = useSelector(
     (state) => state.user
   );
-  const { isLoadingGetRatingsReceivedDriver, getRatingsReceivedDriverData } =
-    useSelector((state) => state.rating);
+  const {
+    isLoadingGetRatingsReceivedPassenger,
+    getRatingsReceivedPassengerData,
+  } = useSelector((state) => state.rating);
   const { srcAvatar } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn) {
-      if (isEmptyObject(driverProfileData)) {
-        dispatch(getDriverProfile(username));
+      if (isEmptyObject(publicProfileData)) {
+        dispatch(getPublicProfile(username));
       } else {
-        dispatch(getRatingsReceivedDriver(driverProfileData.user.Driver.id));
+        dispatch(getRatingsReceivedPassenger(publicProfileData.user.id));
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [driverProfileData]);
+  }, [publicProfileData]);
 
   if (!isLoggedIn) {
     return <Redirect to="/" />;
@@ -44,40 +47,39 @@ function DriverPublicRatings() {
       <GoBack />
 
       <Container data-aos="fade-in">
-        {isloadingDriverProfile ? (
+        {isloadingPublicProfile ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : driverProfileData.user ? (
+        ) : publicProfileData.user ? (
           <Row className="align-items-center">
             <Col className="text-end">
               <p>
                 <img
-                  src={srcAvatar(driverProfileData.user)}
+                  src={srcAvatar(publicProfileData.user)}
                   alt="Avatar"
                   className="img-fluid cursor-pointer avatar-img-sm"
                 />
               </p>
             </Col>
             <Col className="text-start">
-              <h2>{driverProfileData.user.firstName}</h2>
+              <h2>{publicProfileData.user.firstName}</h2>
             </Col>
             <Col xs={12} className="mt-3 text-center">
               <h4 className="mb-0">{t("translation:global.ratings")}</h4>
-              <p className="lead">{t("translation:ratings.asDriver")}</p>
             </Col>
           </Row>
         ) : null}
 
         <Row className="mb-3 mx-1 mx-sm-0">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
-            {isLoadingGetRatingsReceivedDriver ? (
+            {isLoadingGetRatingsReceivedPassenger ? (
               <div className="text-center">
                 <LoadingSpinner />
               </div>
-            ) : !getRatingsReceivedDriverData.length ? (
+            ) : !getRatingsReceivedPassengerData.length ? (
               <Container>
                 <Row>
                   <Col>
@@ -87,10 +89,10 @@ function DriverPublicRatings() {
                   </Col>
                 </Row>
               </Container>
-            ) : getRatingsReceivedDriverData.length > 0 ? (
-              getRatingsReceivedDriverData.map((rating, index) => (
+            ) : getRatingsReceivedPassengerData.length > 0 ? (
+              getRatingsReceivedPassengerData.map((rating, index) => (
                 <div key={index}>
-                  {rating.admin_VerifDriverRating ? (
+                  {rating.admin_VerifPassengerRating ? (
                     <Container className="px-1">
                       <Row>
                         <Col xs={9}>
@@ -132,4 +134,4 @@ function DriverPublicRatings() {
   );
 }
 
-export default DriverPublicRatings;
+export default PublicRatings;

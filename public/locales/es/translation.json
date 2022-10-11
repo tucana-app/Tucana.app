@@ -388,6 +388,8 @@
 				"1": "El conductor no se presentó",
 				"2": "El pasajero no se presentó",
 				"3": "No pude ir",
+				"4": "El pasajero no pagó",
+				"5": "Tuvimos un accidente",
 				"other": "Otro"
 			},
 			"ride": {
@@ -535,7 +537,8 @@
 		"publishRide": "Ofrecer un ride"
 	},
 	"messages": {
-		"title": "Mensajes"
+		"title": "Mensajes",
+		"viewProfile": "Ver perfil"
 	},
 	"navigationBar": {
 		"account": "Cuenta",

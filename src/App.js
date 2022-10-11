@@ -13,6 +13,8 @@ import CreateNewPassword from "./containers/User/CreateNewPassword";
 import Experience from "./containers/User/Experience";
 import ForgotPassword from "./containers/User/ForgotPassword";
 import LogIn from "./containers/User/LogIn";
+import PublicProfile from "./containers/User/PublicProfile";
+import PublicRatings from "./containers/User/PublicRatings";
 import SignUp from "./containers/User/SignUp";
 import SignUpConfirm from "./containers/User/SignUpConfirm";
 import SignUpSuccess from "./containers/User/SignUpSuccess";
@@ -41,13 +43,7 @@ import DriverCar from "./containers/Driver/DriverCar";
 import DriverPastBookings from "./containers/Driver/DriverPastBookings";
 import DriverPastRides from "./containers/Driver/DriverPastRides";
 import DriverProfile from "./containers/Driver/DriverProfile";
-import DriverPublicProfile from "./containers/Driver/DriverPublicProfile";
-import DriverPublicRatings from "./containers/Driver/DriverPublicRatings";
 import DriverRides from "./containers/Driver/DriverRides";
-
-// Passenger containers
-import PassengerPublicProfile from "./containers/Passenger/PassengerPublicProfile";
-import PassengerPublicRatings from "./containers/Passenger/PassengerPublicRatings";
 
 // Edits containers
 import EditBio from "./containers/Edits/EditBio";
@@ -201,6 +197,16 @@ function App() {
                 path="/signup-successful"
                 component={SignUpSuccess}
               />
+              <Route
+                exact
+                path="/profile/:username"
+                component={PublicProfile}
+              />
+              <Route
+                exact
+                path="/profile/:username/ratings"
+                component={PublicRatings}
+              />
 
               {/* Ride containers */}
               <Route
@@ -253,28 +259,6 @@ function App() {
               />
               <Route exact path="/profile/" component={DriverProfile} />
               <Route exact path="/driver/rides" component={DriverRides} />
-              <Route
-                exact
-                path="/driver/:username"
-                component={DriverPublicProfile}
-              />
-              <Route
-                exact
-                path="/driver/:username/ratings"
-                component={DriverPublicRatings}
-              />
-
-              {/* Passenger containers */}
-              <Route
-                exact
-                path="/passenger/:username"
-                component={PassengerPublicProfile}
-              />
-              <Route
-                exact
-                path="/passenger/:username/ratings"
-                component={PassengerPublicRatings}
-              />
               <Route exact path="/past-bookings" component={PastBookings} />
 
               {/* Edits containers */}

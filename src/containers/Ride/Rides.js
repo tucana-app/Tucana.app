@@ -176,7 +176,7 @@ const Rides = () => {
 
             {!currentUser.Driver ? (
               <Link
-                to="/become-driver"
+                to="/apply-driver"
                 className="text-light text-decoration-none"
               >
                 <ListGroup.Item className="border-0">

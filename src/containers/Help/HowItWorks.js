@@ -365,7 +365,7 @@ const HowItWorks = () => {
                         </Col>
 
                         <Link
-                          to="/become-driver"
+                          to="/apply-driver"
                           className="text-decoration-none px-0"
                         >
                           <ListGroup.Item className="border-0 px-0">

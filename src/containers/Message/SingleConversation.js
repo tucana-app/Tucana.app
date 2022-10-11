@@ -7,7 +7,6 @@ import {
   Col,
   Form,
   InputGroup,
-  ListGroup,
   Offcanvas,
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -123,49 +122,38 @@ const SingleConversation = ({ conversation }) => {
 
   return (
     <div>
-      <ListGroup className="cursor-pointer sticky-top mb-3">
-        <ListGroup.Item
-          onClick={() => {
-            dispatch(getAllUserMessages(currentUser.id));
-            dispatch(resetConversationView(currentUser.id));
-            dispatch(displayNavBar(true));
-          }}
-          className="bg-light rounded-0 border border-top-0 border-start-0
-          border-end-0 py-3"
-        >
-          <Container className="px-0">
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="d-inline-flex align-items-center mx-auto"
-              >
-                <ChevronLeftIcon size={28} className="text-success" />
-                <img
-                  src={srcAvatar(receiver)}
-                  alt="Avatar"
-                  className="img-fluid cursor-pointer avatar-img-sm mx-2"
-                />
-                <h2 className="mb-0">{receiverFirstName}</h2>
-              </Col>
-            </Row>
-          </Container>
-        </ListGroup.Item>
-        <ListGroup.Item className="p-0 m-0 border-bottom-0">
-          <Container>
-            <Row>
-              <Col
-                xs={12}
-                sm={10}
-                md={8}
-                lg={6}
-                xl={4}
-                className="d-inline-flex justify-content-between align-items-center bg-dark text-white py-2 mx-auto"
-              >
-                <div>
+      <Container fluid className="sticky-top mb-3">
+        <Row>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <Container className="px-0">
+              <Row className="bg-light align-items-center py-3">
+                <Col
+                  xs={6}
+                  className="d-inline-flex align-items-center cursor-pointer"
+                  onClick={() => {
+                    dispatch(getAllUserMessages(currentUser.id));
+                    dispatch(resetConversationView(currentUser.id));
+                    dispatch(displayNavBar(true));
+                  }}
+                >
+                  <ChevronLeftIcon size={28} className="text-success" />
+                  <img
+                    src={srcAvatar(receiver)}
+                    alt="Avatar"
+                    className="img-fluid cursor-pointer avatar-img-sm mx-2"
+                  />
+                  <h2 className="mb-0">{receiverFirstName}</h2>
+                </Col>
+                <Col xs={6} className="text-end">
+                  <Link to={`/profile/${receiver.username}`}>
+                    <Button variant="success">
+                      {t("translation:messages.viewProfile")}
+                    </Button>
+                  </Link>
+                </Col>
+              </Row>
+              <Row className="bg-dark text-white py-2">
+                <Col className="d-inline-flex justify-content-between align-items-center">
                   <small>
                     {t("translation:global.ride")}:{" "}
                     {conversation.Ride.origin.city}{" "}
@@ -176,22 +164,23 @@ const SingleConversation = ({ conversation }) => {
                     {dateFormat(conversation.Ride.dateTimeOrigin, "dd/mm/yyyy")}
                     )
                   </small>
-                </div>
-                <Link
-                  to={`/ride/${conversation.Ride.id}`}
-                  onClick={() => {
-                    dispatch(displayNavBar(true));
-                  }}
-                >
-                  <Button variant="light" size="sm">
-                    {t("translation:global.view")}
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
-        </ListGroup.Item>
-      </ListGroup>
+
+                  <Link
+                    to={`/ride/${conversation.Ride.id}`}
+                    onClick={() => {
+                      dispatch(displayNavBar(true));
+                    }}
+                  >
+                    <Button variant="light" size="sm">
+                      {t("translation:global.view")}
+                    </Button>
+                  </Link>
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
 
       <Container fluid data-aos="container-fluid fade-in">
         <Row>

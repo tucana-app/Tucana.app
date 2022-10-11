@@ -9,25 +9,25 @@ import { useTranslation } from "react-i18next";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
 
-import { getPassengerProfile } from "../../redux";
+import { getPublicProfile } from "../../redux";
 import DisplayRating from "../../components/DisplayRating";
 
-const PassengerPublicProfile = () => {
+const PublicProfile = () => {
   const { t } = useTranslation();
   const { username } = useParams();
 
   const dispatch = useDispatch();
   const {
     isLoggedIn,
-    isloadingPassengerProfile,
-    passengerProfileData,
-    passengerProfileError,
+    isloadingPublicProfile,
+    publicProfileData,
+    publicProfileError,
   } = useSelector((state) => state.user);
   const { srcAvatar } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getPassengerProfile(username));
+      dispatch(getPublicProfile(username));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -41,26 +41,26 @@ const PassengerPublicProfile = () => {
       <GoBack />
 
       <Container className="mb-5">
-        {isloadingPassengerProfile ? (
+        {isloadingPublicProfile ? (
           <Row>
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
-        ) : passengerProfileData.user ? (
+        ) : publicProfileData.user ? (
           <div data-aos="fade-in">
             <Row className="align-items-center">
               <Col className="text-end">
                 <p>
                   <img
-                    src={srcAvatar(passengerProfileData.user)}
+                    src={srcAvatar(publicProfileData.user)}
                     alt="Avatar"
                     className="img-fluid cursor-pointer avatar-img-sm"
                   />
                 </p>
               </Col>
               <Col className="text-start">
-                <h2>{passengerProfileData.user.firstName}</h2>
+                <h2>{publicProfileData.user.firstName}</h2>
               </Col>
             </Row>
 
@@ -78,7 +78,7 @@ const PassengerPublicProfile = () => {
                     <Col>
                       <ListGroup variant="flush">
                         <Link
-                          to={`/passenger/${username}/ratings`}
+                          to={`/profile/${username}/ratings`}
                           className="text-decoration-none"
                         >
                           <ListGroup.Item className="border-0 px-0">
@@ -87,16 +87,12 @@ const PassengerPublicProfile = () => {
                                 <p className="mb-1">
                                   <strong>
                                     {t("translation:global.ratings")}
-                                  </strong>{" "}
-                                  (
-                                  <span className="text-lowercase">
-                                    {t("translation:global.passenger")})
-                                  </span>
+                                  </strong>
                                 </p>
 
                                 <div className="mb-0">
                                   <DisplayRating
-                                    rating={passengerProfileData.user.Rating}
+                                    rating={publicProfileData.user.Rating}
                                     type="passenger"
                                   />
                                 </div>
@@ -121,9 +117,9 @@ const PassengerPublicProfile = () => {
                         {t("translation:global.bio")}
                       </p>
                       <p className="mb-0">
-                        {passengerProfileData.user.biography &&
-                        passengerProfileData.user.biography !== "" ? (
-                          <p>{passengerProfileData.user.biography}</p>
+                        {publicProfileData.user.biography &&
+                        publicProfileData.user.biography !== "" ? (
+                          <p>{publicProfileData.user.biography}</p>
                         ) : (
                           "-"
                         )}
@@ -150,25 +146,25 @@ const PassengerPublicProfile = () => {
                         {t("translation:global.level")}{" "}
                         <strong>
                           {
-                            passengerProfileData.user.ExperienceUser
+                            publicProfileData.user.ExperienceUser
                               .ExperienceUserLevel.id
                           }
                         </strong>
                         :{" "}
                         <strong>
                           {t(
-                            `translation:global.statuses.level.${passengerProfileData.user.ExperienceUser.ExperienceUserLevel.id}`
+                            `translation:global.statuses.level.${publicProfileData.user.ExperienceUser.ExperienceUserLevel.id}`
                           )}
                         </strong>{" "}
                         <small className="text-secondary">
-                          ({passengerProfileData.user.ExperienceUser.points}{" "}
+                          ({publicProfileData.user.ExperienceUser.points}{" "}
                           {t("translation:global.points")})
                         </small>
                       </p>
                       <p className="mb-0">
                         {t("translation:global.memberSince")}:{" "}
                         {dateFormat(
-                          passengerProfileData.user.createdAt,
+                          publicProfileData.user.createdAt,
                           "mm/yyyy"
                         )}
                       </p>
@@ -192,7 +188,7 @@ const PassengerPublicProfile = () => {
               </Col>
             </Row>
           </div>
-        ) : passengerProfileError ? (
+        ) : publicProfileError ? (
           <Redirect to="/" />
         ) : null}
       </Container>
@@ -200,4 +196,4 @@ const PassengerPublicProfile = () => {
   );
 };
 
-export default PassengerPublicProfile;
+export default PublicProfile;

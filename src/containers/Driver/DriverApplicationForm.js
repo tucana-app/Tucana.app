@@ -17,6 +17,8 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import {
   setToast,
   getCountries,
+  getApplicationsBecomeDriver,
+  getNotifications,
   setApplicationIdType,
   setApplicationIdNumber,
   setApplicationIdCountry,
@@ -42,6 +44,8 @@ const DriverApplicationForm = () => {
   const {
     user: currentUser,
     isLoggedIn,
+    isLoadingGetApplicationsBecomeDriver,
+    getApplicationsBecomeDriverData,
     isLoadingSubmitFormBecomeDriver,
     submitFormBecomeDriverSuccess,
     formApplyDriver,
@@ -49,6 +53,30 @@ const DriverApplicationForm = () => {
   const { isLoadingCountries, countries, carMakers } = useSelector(
     (state) => state.global
   );
+
+  const isFoundAccepted = () => {
+    let found = 0;
+    if (getApplicationsBecomeDriverData !== undefined) {
+      found = getApplicationsBecomeDriverData.find((application) => {
+        return application.admin_VerifDriverApplications.length > 0
+          ? application.admin_VerifDriverApplications[0].isAccepted === true
+          : null;
+      });
+    }
+
+    return found === undefined ? false : true;
+  };
+
+  const isFoundPending = () => {
+    let found = 0;
+    if (getApplicationsBecomeDriverData !== undefined) {
+      found = getApplicationsBecomeDriverData.find(
+        (application) => application.admin_VerifDriverApplications.length === 0
+      );
+    }
+
+    return found === undefined ? false : true;
+  };
 
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
@@ -83,6 +111,9 @@ const DriverApplicationForm = () => {
     formApplyDriver.car.riteve.year
   );
 
+  const [showModalMarchamo, setShowModalMarchamo] = useState(false);
+  const [showModalRiteve, setShowModalRiteve] = useState(false);
+
   const countriesSelect = useRef([]);
   const selectCarMakers = [];
   const selectMonths = [];
@@ -104,7 +135,7 @@ const DriverApplicationForm = () => {
 
   const cancelButton = () => {
     return (
-      <LinkContainer to="/account">
+      <LinkContainer to="/become-driver">
         <Col
           xs={2}
           className="cursor-pointer text-secondary"
@@ -115,9 +146,6 @@ const DriverApplicationForm = () => {
       </LinkContainer>
     );
   };
-
-  const [showModalMarchamo, setShowModalMarchamo] = useState(false);
-  const [showModalRiteve, setShowModalRiteve] = useState(false);
 
   // Steps
   // Step 1
@@ -398,6 +426,14 @@ const DriverApplicationForm = () => {
   };
 
   useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getApplicationsBecomeDriver(currentUser.id));
+      dispatch(getNotifications(currentUser));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (countries.length === 0) {
       dispatch(getCountries());
     } else {
@@ -426,6 +462,13 @@ const DriverApplicationForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries]);
 
+  if (
+    !isLoadingGetApplicationsBecomeDriver &&
+    (isFoundAccepted() || !isFoundPending())
+  ) {
+    return <Redirect to="/become-driver" />;
+  }
+
   if (!isLoggedIn) {
     return <Redirect to="/" />;
   }
@@ -439,603 +482,621 @@ const DriverApplicationForm = () => {
           </h1>
         </Col>
       </Row>
-      {stepOne ? (
-        <>
-          <Row className="mx-1 mx-sm-0">
-            <Col
-              xs={12}
-              md={10}
-              sm={8}
-              lg={6}
-              xl={4}
-              className="bg-light border shadow rounded-5 py-3 mx-auto"
-            >
-              <Container className="px-0 px-md-2">
-                <Row className="align-items-center mb-3">
-                  <Col xs={10} className="text-center">
-                    <h3>1. {t("translation:global.yourIdentity")}</h3>
-                  </Col>
 
-                  {cancelButton()}
-                </Row>
+      {isLoadingGetApplicationsBecomeDriver ? (
+        <Row>
+          <Col className="text-center">
+            <LoadingSpinner />
+          </Col>
+        </Row>
+      ) : !isFoundAccepted() && !isFoundPending() ? (
+        stepOne ? (
+          <>
+            <Row className="mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                md={10}
+                sm={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 py-3 mx-auto"
+              >
+                <Container className="px-0 px-md-2">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={10} className="text-center">
+                      <h3>1. {t("translation:global.yourIdentity")}</h3>
+                    </Col>
 
-                <Row className="mb-3">
-                  <Col className="text-center">
-                    <Form.Group>
-                      <Form.Check
-                        label={t("translation:becomeDriver.nationalId")}
-                        value={t("translation:becomeDriver.nationalId")}
-                        name="idType"
-                        type="radio"
-                        checked={
-                          formApplyDriver.id.type ===
-                          t("translation:becomeDriver.nationalId")
-                        }
-                        onChange={handleChangeIdType}
-                        inline
-                      />
-                      <Form.Check
-                        label={t("translation:becomeDriver.passport")}
-                        value={t("translation:becomeDriver.passport")}
-                        name="idType"
-                        checked={
-                          formApplyDriver.id.type ===
-                          t("translation:becomeDriver.passport")
-                        }
-                        onChange={handleChangeIdType}
-                        type="radio"
-                        inline
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+                    {cancelButton()}
+                  </Row>
 
-                {formApplyDriver.id.type !== "" ? (
-                  <>
-                    <Row>
-                      <Col xs={12} className="mb-3">
-                        <p className="small ms-2 mb-0">
-                          {t("translation:global.number")}
-                          <span className="text-danger">*</span>
-                        </p>
-                        <Form.Group>
-                          <Form.Control
-                            type="text"
-                            name="idNumber"
-                            placeholder="11AA22333, 123W333, etc."
-                            value={idNumber}
-                            onChange={handleChangeIdNumber}
-                            maxLength={30}
-                            required
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Col xs={12}>
-                        <Form.Group>
+                  <Row className="mb-3">
+                    <Col className="text-center">
+                      <Form.Group>
+                        <Form.Check
+                          label={t("translation:becomeDriver.nationalId")}
+                          value={t("translation:becomeDriver.nationalId")}
+                          name="idType"
+                          type="radio"
+                          checked={
+                            formApplyDriver.id.type ===
+                            t("translation:becomeDriver.nationalId")
+                          }
+                          onChange={handleChangeIdType}
+                          inline
+                        />
+                        <Form.Check
+                          label={t("translation:becomeDriver.passport")}
+                          value={t("translation:becomeDriver.passport")}
+                          name="idType"
+                          checked={
+                            formApplyDriver.id.type ===
+                            t("translation:becomeDriver.passport")
+                          }
+                          onChange={handleChangeIdType}
+                          type="radio"
+                          inline
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  {formApplyDriver.id.type !== "" ? (
+                    <>
+                      <Row>
+                        <Col xs={12} className="mb-3">
                           <p className="small ms-2 mb-0">
-                            {t("translation:becomeDriver.countryIssue")}
+                            {t("translation:global.number")}
                             <span className="text-danger">*</span>
                           </p>
-                          <Select
-                            value={idCountry}
-                            name="idCountry"
-                            placeholder={`${t("translation:global.search")}...`}
-                            onChange={handleChangeIdCountry}
-                            options={countriesSelect.current}
-                            isDisabled={isLoadingCountries}
-                            formatOptionLabel={(country) => (
-                              <div className="d-inline-flex align-items-center mb-0">
-                                <img
-                                  src={country.image}
-                                  alt=""
-                                  height={"20"}
-                                  className="me-2"
-                                />
-                                <span>{country.label}</span>
-                              </div>
-                            )}
-                            required
-                          />
-                        </Form.Group>
-                      </Col>
-                    </Row>
+                          <Form.Group>
+                            <Form.Control
+                              type="text"
+                              name="idNumber"
+                              placeholder="11AA22333, 123W333, etc."
+                              value={idNumber}
+                              onChange={handleChangeIdNumber}
+                              maxLength={30}
+                              required
+                            />
+                          </Form.Group>
+                        </Col>
+                        <Col xs={12}>
+                          <Form.Group>
+                            <p className="small ms-2 mb-0">
+                              {t("translation:becomeDriver.countryIssue")}
+                              <span className="text-danger">*</span>
+                            </p>
+                            <Select
+                              value={idCountry}
+                              name="idCountry"
+                              placeholder={`${t(
+                                "translation:global.search"
+                              )}...`}
+                              onChange={handleChangeIdCountry}
+                              options={countriesSelect.current}
+                              isDisabled={isLoadingCountries}
+                              formatOptionLabel={(country) => (
+                                <div className="d-inline-flex align-items-center mb-0">
+                                  <img
+                                    src={country.image}
+                                    alt=""
+                                    height={"20"}
+                                    className="me-2"
+                                  />
+                                  <span>{country.label}</span>
+                                </div>
+                              )}
+                              required
+                            />
+                          </Form.Group>
+                        </Col>
+                      </Row>
 
-                    <Row className="mt-3 mb-5">
-                      <Col className="text-center line-height-sm">
-                        <small className="smaller text-secondary">
-                          {t("translation:becomeDriver.disclaimer")}
-                        </small>
-                      </Col>
-                    </Row>
-                  </>
-                ) : null}
+                      <Row className="mt-3 mb-5">
+                        <Col className="text-center line-height-sm">
+                          <small className="smaller text-secondary">
+                            {t("translation:becomeDriver.disclaimer")}
+                          </small>
+                        </Col>
+                      </Row>
+                    </>
+                  ) : null}
 
-                <Row>
-                  <Col className="text-end">
-                    <Button
-                      onClick={handleClickStepOne}
-                      variant="success"
-                      className="hvr-icon-forward ms-2"
-                      disabled={
-                        formApplyDriver.id.type === "" ||
-                        formApplyDriver.id.number === "" ||
-                        formApplyDriver.id.country === ""
-                      }
-                    >
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="hvr-icon ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-          </Row>
+                  <Row>
+                    <Col className="text-end">
+                      <Button
+                        onClick={handleClickStepOne}
+                        variant="success"
+                        className="hvr-icon-forward ms-2"
+                        disabled={
+                          formApplyDriver.id.type === "" ||
+                          formApplyDriver.id.number === "" ||
+                          formApplyDriver.id.country === ""
+                        }
+                      >
+                        {t("translation:global.next")}
+                        <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
 
-          <Row className="mt-3 mb-5">
-            <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
-              <p className="small text-secondary mb-0">
-                {t("translation:becomeDriver.message")}
-              </p>
-            </Col>
-          </Row>
-        </>
-      ) : stepTwo ? (
-        <>
-          <Row className="mx-1 mx-sm-0">
-            <Col
-              xs={12}
-              md={10}
-              sm={8}
-              lg={6}
-              xl={4}
-              className="bg-light border shadow rounded-5 py-3 mx-auto"
-            >
-              <Container className="px-0 px-md-2">
-                <Row className="align-items-center mb-3">
-                  <Col xs={10} className="text-center">
-                    <h3>2. {t("translation:global.yourLicense")}</h3>
-                  </Col>
+            <Row className="mt-3 mb-5">
+              <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
+                <p className="small text-secondary mb-0">
+                  {t("translation:becomeDriver.message")}
+                </p>
+              </Col>
+            </Row>
+          </>
+        ) : stepTwo ? (
+          <>
+            <Row className="mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                md={10}
+                sm={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 py-3 mx-auto"
+              >
+                <Container className="px-0 px-md-2">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={10} className="text-center">
+                      <h3>2. {t("translation:global.yourLicense")}</h3>
+                    </Col>
 
-                  {cancelButton()}
-                </Row>
+                    {cancelButton()}
+                  </Row>
 
-                <Row>
-                  <Col xs={12} className="mb-3">
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.number")}
-                      <span className="text-danger">*</span>
-                    </p>
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        name="licenseNumber"
-                        placeholder="11AA22333, 123W333, etc."
-                        value={licenseNumber}
-                        onChange={handleChangeLicenseNumber}
-                        maxLength={30}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12}>
-                    <Form.Group>
+                  <Row>
+                    <Col xs={12} className="mb-3">
                       <p className="small ms-2 mb-0">
-                        {t("translation:becomeDriver.countryIssue")}
+                        {t("translation:global.number")}
                         <span className="text-danger">*</span>
                       </p>
-                      <Select
-                        value={licenseCountry}
-                        name="licenseCountry"
-                        placeholder={`${t("translation:global.search")}...`}
-                        onChange={handleChangeLicenseCountry}
-                        options={countriesSelect.current}
-                        isDisabled={isLoadingCountries}
-                        formatOptionLabel={(country) => (
-                          <div className="d-inline-flex align-items-center mb-0">
-                            <img
-                              src={country.image}
-                              alt=""
-                              height={"20"}
-                              className="me-2"
-                            />
-                            <span>{country.label}</span>
-                          </div>
-                        )}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Row className="mt-3 mb-5">
-                  <Col className="text-center line-height-sm">
-                    <small className="smaller text-secondary">
-                      <Trans i18nKey="translation:becomeDriver.disclaimer">
-                        We do not disclose any information about your country of
-                        origin. This is solely for verification purposes
-                      </Trans>
-                    </small>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col className="text-start">
-                    <Button
-                      onClick={handleBackToStepOne}
-                      variant="outline-warning"
-                      className="ms-2"
-                    >
-                      <ArrowLeftIcon
-                        size={18}
-                        verticalAlign="middle"
-                        className="me-2"
-                      />
-                      {t("translation:global.goBack")}
-                    </Button>
-                  </Col>
-                  <Col className="text-end">
-                    <Button
-                      onClick={handleClickStepTwo}
-                      variant="success"
-                      className="hvr-icon-forward ms-2"
-                      disabled={
-                        formApplyDriver.license.type === "" ||
-                        formApplyDriver.license.number === "" ||
-                        formApplyDriver.license.country === ""
-                      }
-                    >
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="hvr-icon ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-          </Row>
-
-          <Row className="mt-3 mb-5">
-            <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
-              <p className="small text-secondary mb-0">
-                {t("translation:becomeDriver.message")}
-              </p>
-            </Col>
-          </Row>
-        </>
-      ) : stepThree ? (
-        <>
-          <Row className="mx-1 mx-sm-0">
-            <Col
-              xs={12}
-              md={10}
-              sm={8}
-              lg={6}
-              xl={4}
-              className="bg-light border shadow rounded-5 py-3 mx-auto"
-            >
-              <Container className="px-0 px-md-2">
-                <Row className="align-items-center mb-3">
-                  <Col xs={10} className="text-center">
-                    <h3>3. {t("translation:global.yourVehicle")}</h3>
-                  </Col>
-
-                  {cancelButton()}
-                </Row>
-
-                <Row className="mb-5">
-                  <Col xs={6} className="mb-3">
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.maker")}
-                      <span className="text-danger">*</span>
-                    </p>
-                    <Form.Group>
-                      <Select
-                        value={carMaker}
-                        name="carMaker"
-                        placeholder={`${t("translation:global.search")}...`}
-                        onChange={handleChangeCarMaker}
-                        options={selectCarMakers}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={6} className="mb-3">
-                    <p className="small ms-2 mb-0">
-                      {t("translation:global.model")}
-                      <span className="text-danger">*</span>
-                    </p>
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        name="carModel"
-                        placeholder="RAV4, Trooper, Wrangler, etc. "
-                        value={carModel}
-                        onChange={handleChangeCarModel}
-                        maxLength={30}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  {carMaker.value === "Other" ? (
-                    <Col xs={12} className="mb-3">
                       <Form.Group>
                         <Form.Control
                           type="text"
-                          name="carMakerFromUser"
-                          placeholder={t("translation:becomeDriver.typeMaker")}
-                          value={carMakerFromUser.value}
-                          onChange={handleChangeCarMakerFromUser}
+                          name="licenseNumber"
+                          placeholder="11AA22333, 123W333, etc."
+                          value={licenseNumber}
+                          onChange={handleChangeLicenseNumber}
                           maxLength={30}
                           required
                         />
                       </Form.Group>
                     </Col>
-                  ) : null}
-                  <Col xs={12} className="mb-3">
-                    <Form.Group>
-                      <p className="small ms-2 mb-0">
-                        {t("translation:global.numberPlate")}
-                        <span className="text-danger">*</span>
-                      </p>
-                      <Form.Control
-                        type="text"
-                        name="numberPlate"
-                        placeholder="AAA333, 222000, etc."
-                        value={numberPlate}
-                        onChange={handleChangeNumberPlate}
-                        maxLength={6}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={6}>
-                    <Form.Group>
-                      <p className="small ms-2 mb-0">
-                        {t("translation:global.color")}
-                        <span className="text-danger">*</span>
-                      </p>
-                      <Form.Control
-                        type="text"
-                        name="carColor"
-                        placeholder={t(
-                          "translation:becomeDriver.colorPlaceholder"
-                        )}
-                        value={carColor}
-                        onChange={handleChangeCarColor}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={6}>
-                    <Form.Group>
-                      <p className="small ms-2 mb-0">
-                        {t("translation:global.year")}
-                        <span className="text-danger">*</span>
-                      </p>
-                      <Form.Control
-                        type="number"
-                        name="carYear"
-                        value={carYear}
-                        onChange={handleChangeCarYear}
-                        min={1960}
-                        max={new Date().getFullYear()}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col className="text-start">
-                    <Button
-                      onClick={handleBackToStepTwo}
-                      variant="outline-warning"
-                      className="ms-2"
-                    >
-                      <ArrowLeftIcon
-                        size={18}
-                        verticalAlign="middle"
-                        className="me-2"
-                      />
-                      {t("translation:global.goBack")}
-                    </Button>
-                  </Col>
-
-                  <Col className="text-end">
-                    <Button
-                      onClick={handleClickStepThree}
-                      variant="success"
-                      className="hvr-icon-forward ms-2"
-                      disabled={
-                        formApplyDriver.car.maker === "" ||
-                        formApplyDriver.car.model === "" ||
-                        formApplyDriver.car.numberPlate === "" ||
-                        formApplyDriver.car.year === "" ||
-                        formApplyDriver.car.color === ""
-                      }
-                    >
-                      {t("translation:global.next")}
-                      <ArrowRightIcon size={24} className="hvr-icon ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-          </Row>
-
-          <Row className="mt-3 mb-5">
-            <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
-              <p className="small text-secondary mb-0">
-                {t("translation:becomeDriver.message")}
-              </p>
-            </Col>
-          </Row>
-        </>
-      ) : stepFour ? (
-        <>
-          <Row className="mx-1 mx-sm-0">
-            <Col
-              xs={12}
-              md={10}
-              sm={8}
-              lg={6}
-              xl={4}
-              className="bg-light border shadow rounded-5 py-3 mx-auto"
-            >
-              <Container className="px-0 px-md-2">
-                <Row className="align-items-center mb-3">
-                  <Col xs={10} className="text-center">
-                    <h3>4. {t("translation:global.yourVehicle")}</h3>
-                  </Col>
-
-                  {cancelButton()}
-                </Row>
-
-                <Row className="mb-4">
-                  <Col xs={12} className="mb-3">
-                    <p className="mb-2">
-                      <span className="small ms-2 mb-0">
-                        {t("translation:global.marchamo")}
-                        <span className="text-danger">*</span>
-                      </span>
-                      <span
-                        onClick={() => setShowModalMarchamo(true)}
-                        className="cursor-pointer"
-                      >
-                        <QuestionIcon
-                          size={20}
-                          className="text-secondary ms-3"
+                    <Col xs={12}>
+                      <Form.Group>
+                        <p className="small ms-2 mb-0">
+                          {t("translation:becomeDriver.countryIssue")}
+                          <span className="text-danger">*</span>
+                        </p>
+                        <Select
+                          value={licenseCountry}
+                          name="licenseCountry"
+                          placeholder={`${t("translation:global.search")}...`}
+                          onChange={handleChangeLicenseCountry}
+                          options={countriesSelect.current}
+                          isDisabled={isLoadingCountries}
+                          formatOptionLabel={(country) => (
+                            <div className="d-inline-flex align-items-center mb-0">
+                              <img
+                                src={country.image}
+                                alt=""
+                                height={"20"}
+                                className="me-2"
+                              />
+                              <span>{country.label}</span>
+                            </div>
+                          )}
+                          required
                         />
-                      </span>
-                    </p>
-                    <Form.Group>
-                      <Form.Control
-                        type="number"
-                        name="carMarchamo"
-                        placeholder={t("translation:global.year")}
-                        value={carMarchamo}
-                        onChange={handleChangeCarMarchamo}
-                        min="2000"
-                        max={new Date().getFullYear() + 1}
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12}>
-                    <p className="mb-2">
-                      <span className="small ms-2 mb-0">
-                        {t("translation:global.riteve")}
-                        <span className="text-danger">*</span>
-                      </span>
-                      <span
-                        onClick={() => setShowModalRiteve(true)}
-                        className="cursor-pointer"
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row className="mt-3 mb-5">
+                    <Col className="text-center line-height-sm">
+                      <small className="smaller text-secondary">
+                        <Trans i18nKey="translation:becomeDriver.disclaimer">
+                          We do not disclose any information about your country
+                          of origin. This is solely for verification purposes
+                        </Trans>
+                      </small>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="text-start">
+                      <Button
+                        onClick={handleBackToStepOne}
+                        variant="outline-warning"
+                        className="ms-2"
                       >
-                        <QuestionIcon
-                          size={20}
-                          className="text-secondary ms-3"
+                        <ArrowLeftIcon
+                          size={18}
+                          verticalAlign="middle"
+                          className="me-2"
                         />
-                      </span>
-                    </p>
-                  </Col>
-                  <Col xs={6} className="mb-3">
-                    <Form.Group>
-                      <Form.Select
-                        name="carRiteveMonth"
-                        value={carRiteveMonth}
-                        onChange={handleChangeCarRiteveMonth}
-                        required
+                        {t("translation:global.goBack")}
+                      </Button>
+                    </Col>
+                    <Col className="text-end">
+                      <Button
+                        onClick={handleClickStepTwo}
+                        variant="success"
+                        className="hvr-icon-forward ms-2"
+                        disabled={
+                          formApplyDriver.license.type === "" ||
+                          formApplyDriver.license.number === "" ||
+                          formApplyDriver.license.country === ""
+                        }
                       >
-                        <option value={0}>
-                          {t("translation:global.month")}
-                        </option>
-                        {selectMonths}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col xs={6} className="mb-3">
-                    <Form.Group>
-                      <Form.Control
-                        type="number"
-                        name="carRiteveYear"
-                        placeholder={t("translation:global.year")}
-                        value={carRiteveYear}
-                        onChange={handleChangeCarRiteveYear}
-                        max={new Date().getFullYear() + 10}
-                        min="2000"
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col className="text-start">
-                    <Button
-                      onClick={handleBackToStepThree}
-                      variant="outline-warning"
-                      className="ms-2"
-                    >
-                      <ArrowLeftIcon
-                        size={18}
-                        verticalAlign="middle"
-                        className="me-2"
-                      />
-                      {t("translation:global.goBack")}
-                    </Button>
-                  </Col>
-                  <Col className="text-end">
-                    <Button
-                      onClick={handleSubmit}
-                      variant="success"
-                      className="hvr-icon-forward ms-2"
-                      disabled={
-                        formApplyDriver.car.marchamo === "" ||
-                        formApplyDriver.car.riteve.month === "" ||
-                        formApplyDriver.car.riteve.year === ""
-                      }
-                    >
-                      {t("translation:global.submit")}
-                      <ArrowRightIcon size={24} className="hvr-icon ms-2" />
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Col>
-          </Row>
-
-          <Row className="mt-3 mb-5 pb-5">
-            <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
-              <p className="small text-secondary mb-0">
-                {t("translation:becomeDriver.message")}
-              </p>
-            </Col>
-          </Row>
-        </>
-      ) : submitted ? (
-        <>
-          {isLoadingSubmitFormBecomeDriver ? (
-            <Row>
-              <Col className="text-center">
-                <LoadingSpinner />
+                        {t("translation:global.next")}
+                        <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
               </Col>
             </Row>
-          ) : submitFormBecomeDriverSuccess ? (
-            <Row className="mt-5">
-              <Col className="text-center">
-                <p>{t("translation:becomeDriver.thankYou")}</p>
-                <p>
-                  <LinkContainer to="/become-driver" className="cursor-pointer">
-                    <Button variant="success" className="hvr-icon-back">
-                      <ArrowLeftIcon size={24} className="hvr-icon me-2" />
-                      {t("translation:global.goBack")}
-                    </Button>
-                  </LinkContainer>
+
+            <Row className="mt-3 mb-5">
+              <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
+                <p className="small text-secondary mb-0">
+                  {t("translation:becomeDriver.message")}
                 </p>
               </Col>
             </Row>
-          ) : null}
-        </>
-      ) : null}
+          </>
+        ) : stepThree ? (
+          <>
+            <Row className="mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                md={10}
+                sm={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 py-3 mx-auto"
+              >
+                <Container className="px-0 px-md-2">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={10} className="text-center">
+                      <h3>3. {t("translation:global.yourVehicle")}</h3>
+                    </Col>
+
+                    {cancelButton()}
+                  </Row>
+
+                  <Row className="mb-5">
+                    <Col xs={6} className="mb-3">
+                      <p className="small ms-2 mb-0">
+                        {t("translation:global.maker")}
+                        <span className="text-danger">*</span>
+                      </p>
+                      <Form.Group>
+                        <Select
+                          value={carMaker}
+                          name="carMaker"
+                          placeholder={`${t("translation:global.search")}...`}
+                          onChange={handleChangeCarMaker}
+                          options={selectCarMakers}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col xs={6} className="mb-3">
+                      <p className="small ms-2 mb-0">
+                        {t("translation:global.model")}
+                        <span className="text-danger">*</span>
+                      </p>
+                      <Form.Group>
+                        <Form.Control
+                          type="text"
+                          name="carModel"
+                          placeholder="RAV4, Trooper, Wrangler, etc. "
+                          value={carModel}
+                          onChange={handleChangeCarModel}
+                          maxLength={30}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    {carMaker.value === "Other" ? (
+                      <Col xs={12} className="mb-3">
+                        <Form.Group>
+                          <Form.Control
+                            type="text"
+                            name="carMakerFromUser"
+                            placeholder={t(
+                              "translation:becomeDriver.typeMaker"
+                            )}
+                            value={carMakerFromUser.value}
+                            onChange={handleChangeCarMakerFromUser}
+                            maxLength={30}
+                            required
+                          />
+                        </Form.Group>
+                      </Col>
+                    ) : null}
+                    <Col xs={12} className="mb-3">
+                      <Form.Group>
+                        <p className="small ms-2 mb-0">
+                          {t("translation:global.numberPlate")}
+                          <span className="text-danger">*</span>
+                        </p>
+                        <Form.Control
+                          type="text"
+                          name="numberPlate"
+                          placeholder="AAA333, 222000, etc."
+                          value={numberPlate}
+                          onChange={handleChangeNumberPlate}
+                          maxLength={6}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col xs={6}>
+                      <Form.Group>
+                        <p className="small ms-2 mb-0">
+                          {t("translation:global.color")}
+                          <span className="text-danger">*</span>
+                        </p>
+                        <Form.Control
+                          type="text"
+                          name="carColor"
+                          placeholder={t(
+                            "translation:becomeDriver.colorPlaceholder"
+                          )}
+                          value={carColor}
+                          onChange={handleChangeCarColor}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col xs={6}>
+                      <Form.Group>
+                        <p className="small ms-2 mb-0">
+                          {t("translation:global.year")}
+                          <span className="text-danger">*</span>
+                        </p>
+                        <Form.Control
+                          type="number"
+                          name="carYear"
+                          value={carYear}
+                          onChange={handleChangeCarYear}
+                          min={1960}
+                          max={new Date().getFullYear()}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="text-start">
+                      <Button
+                        onClick={handleBackToStepTwo}
+                        variant="outline-warning"
+                        className="ms-2"
+                      >
+                        <ArrowLeftIcon
+                          size={18}
+                          verticalAlign="middle"
+                          className="me-2"
+                        />
+                        {t("translation:global.goBack")}
+                      </Button>
+                    </Col>
+
+                    <Col className="text-end">
+                      <Button
+                        onClick={handleClickStepThree}
+                        variant="success"
+                        className="hvr-icon-forward ms-2"
+                        disabled={
+                          formApplyDriver.car.maker === "" ||
+                          formApplyDriver.car.model === "" ||
+                          formApplyDriver.car.numberPlate === "" ||
+                          formApplyDriver.car.year === "" ||
+                          formApplyDriver.car.color === ""
+                        }
+                      >
+                        {t("translation:global.next")}
+                        <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mt-3 mb-5">
+              <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
+                <p className="small text-secondary mb-0">
+                  {t("translation:becomeDriver.message")}
+                </p>
+              </Col>
+            </Row>
+          </>
+        ) : stepFour ? (
+          <>
+            <Row className="mx-1 mx-sm-0">
+              <Col
+                xs={12}
+                md={10}
+                sm={8}
+                lg={6}
+                xl={4}
+                className="bg-light border shadow rounded-5 py-3 mx-auto"
+              >
+                <Container className="px-0 px-md-2">
+                  <Row className="align-items-center mb-3">
+                    <Col xs={10} className="text-center">
+                      <h3>4. {t("translation:global.yourVehicle")}</h3>
+                    </Col>
+
+                    {cancelButton()}
+                  </Row>
+
+                  <Row className="mb-4">
+                    <Col xs={12} className="mb-3">
+                      <p className="mb-2">
+                        <span className="small ms-2 mb-0">
+                          {t("translation:global.marchamo")}
+                          <span className="text-danger">*</span>
+                        </span>
+                        <span
+                          onClick={() => setShowModalMarchamo(true)}
+                          className="cursor-pointer"
+                        >
+                          <QuestionIcon
+                            size={20}
+                            className="text-secondary ms-3"
+                          />
+                        </span>
+                      </p>
+                      <Form.Group>
+                        <Form.Control
+                          type="number"
+                          name="carMarchamo"
+                          placeholder={t("translation:global.year")}
+                          value={carMarchamo}
+                          onChange={handleChangeCarMarchamo}
+                          min="2000"
+                          max={new Date().getFullYear() + 1}
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col xs={12}>
+                      <p className="mb-2">
+                        <span className="small ms-2 mb-0">
+                          {t("translation:global.riteve")}
+                          <span className="text-danger">*</span>
+                        </span>
+                        <span
+                          onClick={() => setShowModalRiteve(true)}
+                          className="cursor-pointer"
+                        >
+                          <QuestionIcon
+                            size={20}
+                            className="text-secondary ms-3"
+                          />
+                        </span>
+                      </p>
+                    </Col>
+                    <Col xs={6} className="mb-3">
+                      <Form.Group>
+                        <Form.Select
+                          name="carRiteveMonth"
+                          value={carRiteveMonth}
+                          onChange={handleChangeCarRiteveMonth}
+                          required
+                        >
+                          <option value={0}>
+                            {t("translation:global.month")}
+                          </option>
+                          {selectMonths}
+                        </Form.Select>
+                      </Form.Group>
+                    </Col>
+                    <Col xs={6} className="mb-3">
+                      <Form.Group>
+                        <Form.Control
+                          type="number"
+                          name="carRiteveYear"
+                          placeholder={t("translation:global.year")}
+                          value={carRiteveYear}
+                          onChange={handleChangeCarRiteveYear}
+                          max={new Date().getFullYear() + 10}
+                          min="2000"
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="text-start">
+                      <Button
+                        onClick={handleBackToStepThree}
+                        variant="outline-warning"
+                        className="ms-2"
+                      >
+                        <ArrowLeftIcon
+                          size={18}
+                          verticalAlign="middle"
+                          className="me-2"
+                        />
+                        {t("translation:global.goBack")}
+                      </Button>
+                    </Col>
+                    <Col className="text-end">
+                      <Button
+                        onClick={handleSubmit}
+                        variant="success"
+                        className="hvr-icon-forward ms-2"
+                        disabled={
+                          formApplyDriver.car.marchamo === "" ||
+                          formApplyDriver.car.riteve.month === "" ||
+                          formApplyDriver.car.riteve.year === ""
+                        }
+                      >
+                        {t("translation:global.submit")}
+                        <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Row>
+
+            <Row className="mt-3 mb-5 pb-5">
+              <Col xs={12} md={10} sm={8} lg={6} xl={4} className="mx-auto">
+                <p className="small text-secondary mb-0">
+                  {t("translation:becomeDriver.message")}
+                </p>
+              </Col>
+            </Row>
+          </>
+        ) : submitted ? (
+          <>
+            {isLoadingSubmitFormBecomeDriver ? (
+              <Row>
+                <Col className="text-center">
+                  <LoadingSpinner />
+                </Col>
+              </Row>
+            ) : submitFormBecomeDriverSuccess ? (
+              <Row className="mt-5">
+                <Col className="text-center">
+                  <p>{t("translation:becomeDriver.thankYou")}</p>
+                  <p>
+                    <LinkContainer
+                      to="/become-driver"
+                      className="cursor-pointer"
+                    >
+                      <Button variant="success" className="hvr-icon-back">
+                        <ArrowLeftIcon size={24} className="hvr-icon me-2" />
+                        {t("translation:global.goBack")}
+                      </Button>
+                    </LinkContainer>
+                  </p>
+                </Col>
+              </Row>
+            ) : null}
+          </>
+        ) : null
+      ) : (
+        <Redirect to="/become-driver" />
+      )}
 
       <Modal
         show={showModalMarchamo}

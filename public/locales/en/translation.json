@@ -388,6 +388,8 @@
 				"1": "The driver didn't show up",
 				"2": "The passenger didn't show up",
 				"3": "I couldn't make it",
+				"4": "The passenger didn't pay",
+				"5": "We had an accident",
 				"other": "Other"
 			},
 			"ride": {
@@ -535,7 +537,8 @@
 		"publishRide": "Publish a ride"
 	},
 	"messages": {
-		"title": "Messages"
+		"title": "Messages",
+		"viewProfile": "View profile"
 	},
 	"navigationBar": {
 		"account": "Account",

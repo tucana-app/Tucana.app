@@ -1604,7 +1604,7 @@ export const updateUserFail = (error) => {
   };
 };
 
-// Get a driver's profile
+// Get the current user's driver profile
 
 export const getDriverProfileRequested = () => {
   return {
@@ -1656,27 +1656,27 @@ export const getDriverProfileFail = (error) => {
   };
 };
 
-// Get a passenger's profile
+// Get a user public's profile
 
-export const getPassengerProfileRequested = () => {
+export const getPublicProfileRequested = () => {
   return {
-    type: userTypes.GET_PASSENGER_PROFILE_REQUEST,
+    type: userTypes.GET_PUBLIC_PROFILE_REQUEST,
   };
 };
 
-export const getPassengerProfile = (username) => {
+export const getPublicProfile = (username) => {
   return (dispatch) => {
-    dispatch(getPassengerProfileRequested());
+    dispatch(getPublicProfileRequested());
 
     axios
-      .get(URL_API + "/passenger/" + username, { headers: authHeader() })
+      .get(URL_API + "/profile/" + username, { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 
         if (response.data) {
-          dispatch(getPassengerProfileSuccess(response.data));
+          dispatch(getPublicProfileSuccess(response.data));
         } else {
-          dispatch(getPassengerProfileFail("Error"));
+          dispatch(getPublicProfileFail("Error"));
         }
       })
       .catch((error) => {
@@ -1689,21 +1689,21 @@ export const getPassengerProfile = (username) => {
           error.message ||
           error.toString();
 
-        dispatch(getPassengerProfileFail(message));
+        dispatch(getPublicProfileFail(message));
       });
   };
 };
 
-export const getPassengerProfileSuccess = (data) => {
+export const getPublicProfileSuccess = (data) => {
   return {
-    type: userTypes.GET_PASSENGER_PROFILE_SUCCESS,
+    type: userTypes.GET_PUBLIC_PROFILE_SUCCESS,
     payload: data,
   };
 };
 
-export const getPassengerProfileFail = (error) => {
+export const getPublicProfileFail = (error) => {
   return {
-    type: userTypes.GET_PASSENGER_PROFILE_FAIL,
+    type: userTypes.GET_PUBLIC_PROFILE_FAIL,
     payload: error,
   };
 };

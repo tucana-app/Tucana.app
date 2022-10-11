@@ -147,7 +147,7 @@ const Booking = () => {
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
-                        to={`/passenger/${bookingData.User.username}`}
+                        to={`/profile/${bookingData.User.username}`}
                         className="cursor-pointer"
                       >
                         <Row className="align-items-center">
@@ -279,7 +279,7 @@ const Booking = () => {
                 </Col>
               </Row>
 
-              {currentUser.id !== bookingData.DriverId ? (
+              {currentUser.Driver.id !== bookingData.DriverId ? (
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
@@ -291,7 +291,7 @@ const Booking = () => {
                   >
                     <Container className="py-3 px-2">
                       <LinkContainer
-                        to={`/driver/${bookingData.Ride.Driver.User.username}`}
+                        to={`/profile/${bookingData.Ride.Driver.User.username}`}
                         className="cursor-pointer"
                       >
                         <Row className="align-items-center">

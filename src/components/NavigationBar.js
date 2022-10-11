@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 function NavigationBar() {
   const { t } = useTranslation();
 
-  const { user: currentUser } = useSelector((state) => state.user);
+  const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
   const { driverNewRidesRequestsData } = useSelector(
     (state) => state.notification
   );
@@ -24,6 +24,7 @@ function NavigationBar() {
   const { getRatingsToDoDriverData, getRatingsToDoPassengerData } = useSelector(
     (state) => state.rating
   );
+  const { srcAvatar } = useSelector((state) => state.global);
 
   var notificationsRides =
     driverNewRidesRequestsData.count + ridesToConfirmData.length;
@@ -32,7 +33,7 @@ function NavigationBar() {
 
   const messages = userNewMessagesData.count;
 
-  return currentUser ? (
+  return isLoggedIn ? (
     <Navbar bg="white" variant="light" fixed="bottom" className="pt-0">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-evenly align-items-center">
@@ -104,9 +105,13 @@ function NavigationBar() {
                 <IndexLinkContainer to="/menu" href="/menu" className="px-0">
                   <Nav.Link>
                     <div className="position-relative">
-                      <ThreeBarsIcon size={24} className="mb-1" />
+                      <img
+                        src={srcAvatar(currentUser)}
+                        alt="Avatar"
+                        className="img-fluid cursor-pointer avatar-img-xs border border-dark border-2 mb-1"
+                      />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("translation:navigationBar.menu")}
+                        {t("translation:menu.account")}
                         {notificationsMenu > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {notificationsMenu}

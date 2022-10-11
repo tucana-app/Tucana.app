@@ -123,9 +123,9 @@ initialState = {
   driverProfileData: {},
   driverProfileError: "",
 
-  isloadingPassengerProfile: false,
-  passengerProfileData: {},
-  passengerProfileError: "",
+  isloadingPublicProfile: false,
+  publicProfileData: {},
+  publicProfileError: "",
 
   isloadingDriverEarnings: false,
   driverEarningsData: [],
@@ -871,7 +871,7 @@ function userReducer(state = initialState, action) {
         updateUserError: action.payload,
       };
 
-    // Get a driver's profile
+    // Get the current user's driver profile
     case userTypes.GET_DRIVER_PROFILE_REQUEST:
       return {
         ...state,
@@ -894,27 +894,27 @@ function userReducer(state = initialState, action) {
         driverProfileError: action.payload,
       };
 
-    // Get a passenger's profile
-    case userTypes.GET_PASSENGER_PROFILE_REQUEST:
+    // Get a public user's profile
+    case userTypes.GET_PUBLIC_PROFILE_REQUEST:
       return {
         ...state,
-        isloadingPassengerProfile: true,
+        isloadingPublicProfile: true,
       };
 
-    case userTypes.GET_PASSENGER_PROFILE_SUCCESS:
+    case userTypes.GET_PUBLIC_PROFILE_SUCCESS:
       return {
         ...state,
-        isloadingPassengerProfile: false,
-        passengerProfileData: action.payload,
-        passengerProfileError: "",
+        isloadingPublicProfile: false,
+        publicProfileData: action.payload,
+        publicProfileError: "",
       };
 
-    case userTypes.GET_PASSENGER_PROFILE_FAIL:
+    case userTypes.GET_PUBLIC_PROFILE_FAIL:
       return {
         ...state,
-        isloadingPassengerProfile: false,
-        passengerProfileData: {},
-        passengerProfileError: action.payload,
+        isloadingPublicProfile: false,
+        publicProfileData: {},
+        publicProfileError: action.payload,
       };
 
     // Get a driver's earnings

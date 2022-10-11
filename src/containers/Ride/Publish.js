@@ -977,7 +977,7 @@ const Publish = () => {
             className="container-box text-center"
           >
             <Container className="py-3 px-2">
-              <Row>
+              <Row className="mb-3">
                 <Col>
                   <h1 className="title display-4">
                     {t("translation:publish.title")}
@@ -987,19 +987,12 @@ const Publish = () => {
                   </p>
                 </Col>
               </Row>
-              <Row className="mt-2">
+              <Row>
                 <Col>
                   <p>
-                    <Link to="/become-driver">
+                    <Link to="/apply-driver">
                       <Button variant="success" size="lg">
                         {t("translation:global.becomeDriver")}
-                      </Button>
-                    </Link>
-                  </p>
-                  <p className="mb-0">
-                    <Link to="/find">
-                      <Button variant="warning">
-                        {t("translation:publish.findRide")}
                       </Button>
                     </Link>
                   </p>

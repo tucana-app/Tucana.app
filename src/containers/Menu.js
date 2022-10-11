@@ -211,7 +211,7 @@ const Menu = () => {
                     </ListGroup.Item>
                   </Link>
                 ) : (
-                  <Link to="/become-driver" className="text-decoration-none">
+                  <Link to="/apply-driver" className="text-decoration-none">
                     <ListGroup.Item className="border-0">
                       <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                         <p className="fw-bold text-success mb-0">

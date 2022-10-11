@@ -61,14 +61,6 @@ const BecomeDriver = () => {
     return <Redirect to="/" />;
   }
 
-  if (
-    !isLoadingGetApplicationsBecomeDriver &&
-    !isFoundAccepted() &&
-    !isFoundPending()
-  ) {
-    return <Redirect to="/apply-driver" />;
-  }
-
   return (
     <div data-aos="fade-in">
       <Row className="mb-2 mx-1 mx-sm-0">
