@@ -464,7 +464,7 @@ const DriverApplicationForm = () => {
 
   if (
     !isLoadingGetApplicationsBecomeDriver &&
-    (isFoundAccepted() || !isFoundPending())
+    (isFoundAccepted() || isFoundPending())
   ) {
     return <Redirect to="/become-driver" />;
   }
