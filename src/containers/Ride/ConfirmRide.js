@@ -66,7 +66,7 @@ const ConfirmRide = () => {
 
   const handleSubmit = (isCompleted) => {
     if (!isCompleted) {
-      if (!reason) {
+      if (!reason || reason === "0") {
         dispatch(
           setToast({
             show: true,

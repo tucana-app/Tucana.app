@@ -586,8 +586,8 @@
 		"title": "Publicar un ride",
 		"whatTime": "A que hora?",
 		"when": "¿Cuándo te vas?",
-		"whereFrom": "¿De dónde sales?",
-		"whereTo": "¿Adónde vas?"
+		"whereFrom": "¿De que ciudad sales?",
+		"whereTo": "¿En que ciudad te vas?"
 	},
 	"ratings": {
 		"asDriver": "Como conductor",
