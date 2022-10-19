@@ -134,14 +134,14 @@ const Ride = () => {
                   new Date(rideData.ride.dateTimeOrigin),
                   new Date()
                 ) && rideData.ride.seatsLeft === 0 ? (
-                  <Row className="mb-2 mx-1 mx-sm-0">
+                  <Row className="mb-4 mx-1 mx-sm-0">
                     <Col
                       xs={12}
                       sm={10}
                       md={8}
                       lg={6}
                       xl={4}
-                      className="border border-success shadow rounded-5 mx-auto"
+                      className="border border-success border-2 shadow rounded-5 mx-auto"
                     >
                       <Container fluid className="p-2">
                         <Row>
