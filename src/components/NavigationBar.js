@@ -90,7 +90,7 @@ function NavigationBar() {
                     <div className="position-relative">
                       <CommentDiscussionIcon size={24} className="mb-1" />
                       <p className="text-icon-nav-bar mb-0">
-                        {t("translation:navigationBar.rides")}
+                        {t("translation:navigationBar.messages")}
                         {messages > 0 ? (
                           <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
                             {messages}
