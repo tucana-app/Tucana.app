@@ -202,11 +202,6 @@ function App() {
                 path="/profile/:username"
                 component={PublicProfile}
               />
-              <Route
-                exact
-                path="/profile/:username/ratings"
-                component={PublicRatings}
-              />
 
               {/* Ride containers */}
               <Route
@@ -308,6 +303,12 @@ function App() {
                 exact
                 path="/profile/passenger/ratings"
                 component={RatingsPassenger}
+              />
+
+              <Route
+                exact
+                path="/profile/:username/ratings"
+                component={PublicRatings}
               />
 
               {/* Report containers */}
