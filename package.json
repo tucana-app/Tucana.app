@@ -1,6 +1,6 @@
 {
   "name": "tucana.app",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Tucána | Share your rides in Costa Rica",
   "private": false,
   "dependencies": {
