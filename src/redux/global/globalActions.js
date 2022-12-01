@@ -1,6 +1,9 @@
 import globalTypes from "./globalTypes";
 import axios from "axios";
-import { updateUser } from "../index";
+import {
+  // updateUser,
+  logout,
+} from "../index";
 import authHeader from "../../helpers/authHeader";
 
 const URL_API = process.env.REACT_APP_URL_API;
@@ -33,7 +36,9 @@ export const getConstants = () => {
       .then((response) => {
         // console.log(response.data);
 
-        const user = JSON.parse(localStorage.getItem("user"));
+        // Just update the user in case there are changed in the database
+        // const user = JSON.parse(localStorage.getItem("user"));
+
         const currentConstants = JSON.parse(localStorage.getItem("constants"));
         const constants = response.data.reduce(
           (obj, cur) => ({ ...obj, [cur.key]: cur.value }),
@@ -43,7 +48,12 @@ export const getConstants = () => {
         if (currentConstants) {
           if (currentConstants.USER_VERSION !== constants.USER_VERSION) {
             // console.log("Update needed");
-            dispatch(updateUser(user.id));
+
+            // Just update the user in case there are changed in the database
+            // dispatch(updateUser(user.id));
+
+            // Or simply logout the user to apply changes on the next login
+            dispatch(logout());
           } else {
             // console.log("No update necessary");
           }

@@ -196,6 +196,11 @@ input[type="password"]:not(:placeholder-shown) {
   cursor: pointer;
 }
 
+// Remove X icon for marker on gMaps
+.gm-ui-hover-effect {
+  display: none !important;
+}
+
 // ####################################################################
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE
