@@ -11,13 +11,13 @@
 		"answer3": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à votre compte ou à votre activité.",
 		"answer4": "Nous sommes tenus de conserver votre numéro d'identification et votre adresse électronique pendant les 3 mois qui suivent la fermeture de votre compte. Cela permet de garantir la sécurité de la communauté utilisant Tucána. Ensuite, ces enregistrements seront automatiquement supprimés après cette période.",
 		"answer5": "Tout est expliqué en détail directement sur la page : <1>Expérience</1>",
-		"answer6": "",
+		"answer6": "Il est nécessaire de compléter le trajet pour que le conducteur puisse recevoir l'argent de ta réservation.",
 		"question1": "Comment fonctionne le paiement?",
 		"question2": "Comment fonctionne le remboursement ?",
 		"question3": "Quelles sont les données que vous collectez ?",
 		"question4": "Que se passe-t-il lorsque je ferme mon compte ?",
 		"question5": "Comment fonctionne le système d'expérience ?",
-		"question6": "",
+		"question6": "Pourquoi dois-je compléter le trajet ?",
 		"title": "FAQ"
 	},
 	"FormDriverResponseBooking": {
@@ -72,10 +72,10 @@
 		"subTitle": "Toutes les réservations que tu as faites"
 	},
 	"cancelBooking": {
-		"confirm": "",
-		"content1": "",
-		"refundPolicy": "",
-		"success": "",
+		"confirm": "Souhaitez-vous vraiment annuler cette réservation ?",
+		"content1": "Tu recevras un remboursement en fonction de la date à laquelle tu annule la réservation. En savoir plus",
+		"refundPolicy": "Assurez-vous de consulter notre <2>politique de remboursement</2> avant d'annuler.",
+		"success": "Votre réservation a été annulée avec succès",
 		"title": "Annule ta réservation"
 	},
 	"closeAccount": {
@@ -95,10 +95,10 @@
 		"answerNo": "Peux-tu nous dire ce qui a mal tourné ? Nous aimerions savoir pourquoi tu n'as pas pu faire le trajet.",
 		"complaint": "Je souhaite déposer une plainte",
 		"confirm": "Je confirme",
-		"confirmNoRide": "",
+		"confirmNoRide": "Que s'est-il passé ?",
 		"confirmRideMessage": "Le trajet a-t-il eu lieu ?",
 		"message": "Fais-nous savoir si tout s'est bien passé et si tu as fait ce trajet.",
-		"question": "",
+		"question": "Pourquoi dois-je compléter le trajet?",
 		"rateRide": "Note ton trajet",
 		"tellUsWhy": "Dis nous pourquoi",
 		"title": "Complète le trajet"
@@ -236,7 +236,7 @@
 			"chooseDate": "Tu dois choisir un jour",
 			"chooseSeatsAvailable": "Tu dois choisir le nombre de sièges dont tu disposes",
 			"chooseTime": "Tu dois choisir une heure",
-			"completeFirst": "",
+			"completeFirst": "Complète d'abord tes trajets",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
 			"errorFallback": "Il y a eu une erreur.",
@@ -247,6 +247,7 @@
 			"labelStringField": "Seuls les lettres et les chiffres sont autorisés",
 			"max20characters": "Max. 20 caractères",
 			"min10characters": "Min. 10 caractères",
+			"min3characters": "Min. 3 caractères",
 			"min4characters": "Min. 4 caractères",
 			"missingComment": "Tu dois écrire un commentaire (10 caractères min.)",
 			"missingInfo": "Il faut remplir toutes les informations",
@@ -385,11 +386,11 @@
 				"12": "Décembre"
 			},
 			"reasons": {
-				"1": "",
-				"2": "",
-				"3": "",
-				"4": "",
-				"5": "",
+				"1": "Le conducteur ne s'est pas présenté",
+				"2": "Le passager ne s'est pas présenté",
+				"3": "Je n'ai pas pu y aller",
+				"4": "Le passager n'a pas payé",
+				"5": "Nous avons eu un accident.",
 				"other": "Autre"
 			},
 			"ride": {

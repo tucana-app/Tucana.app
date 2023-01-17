@@ -247,6 +247,7 @@
 			"labelStringField": "Only letters and numbers allowed",
 			"max20characters": "Max. 20 characters",
 			"min10characters": "Min. 10 characters",
+			"min3characters": "Min. 3 characters",
 			"min4characters": "Min. 4 characters",
 			"missingComment": "You need to write a comment (min. 10 characters)",
 			"missingInfo": "Please fill up all the information",

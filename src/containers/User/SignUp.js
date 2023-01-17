@@ -30,7 +30,7 @@ const SignUp = () => {
 
   const schema = Yup.object().shape({
     firstName: Yup.string(labelStringField)
-      .min(4, t("translation:global.errors.min4characters"))
+      .min(3, t("translation:global.errors.min3characters"))
       .max(20, t("translation:global.errors.max20characters"))
       .matches(
         /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
@@ -39,7 +39,7 @@ const SignUp = () => {
       .required(labelRequiredField),
 
     lastName: Yup.string(labelStringField)
-      .min(4, t("translation:global.errors.min4characters"))
+      .min(3, t("translation:global.errors.min3characters"))
       .max(20, t("translation:global.errors.max20characters"))
       .matches(
         /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,

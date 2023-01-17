@@ -73,7 +73,7 @@
 	},
 	"cancelBooking": {
 		"confirm": "¿Realmente desea cancelar esta reserva?",
-		"content1": "",
+		"content1": "El reembolso dependerá del momento en que cancele la reserva. Más información",
 		"refundPolicy": "Asegúrate de revisar nuestra <2>política de reembolso</2> antes de cancelar.",
 		"success": "Tu reserva ha sido cancelada con éxito",
 		"title": "Anule tu reserva"
@@ -247,6 +247,7 @@
 			"labelStringField": "Sólo se permiten letras y números",
 			"max20characters": "Máx. 20 caracteres",
 			"min10characters": "Mínimo 10 caracteres",
+			"min3characters": "Mínimo 3 caracteres",
 			"min4characters": "Mínimo 4 caracteres",
 			"missingComment": "Tienes que escribir un comentario (mín. 10 caracteres)",
 			"missingInfo": "Por favor, rellene toda la información",
