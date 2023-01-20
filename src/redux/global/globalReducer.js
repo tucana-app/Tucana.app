@@ -76,6 +76,7 @@ const initialState = {
     "Jeep",
     "Kia",
     "Land Rover",
+    "Lexus",
     "Mazda",
     "Mercedes-Benz",
     "Mitsubishi",
