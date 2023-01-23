@@ -60,6 +60,12 @@
 		"typeMaker": "Type the car maker",
 		"underReview": "Under review"
 	},
+	"book": {
+		"driverReceives": "The driver receives",
+		"fees": "Booking fees & IVA",
+		"forPassengers": "For {{seats}} passenger",
+		"seatsNeeded": "How many seats do you need?"
+	},
 	"booking": {
 		"rideDetails": "Ride details",
 		"seatsBooked": "Seats booked",
@@ -292,6 +298,7 @@
 		"marchamo": "Marchamo (car insurance)",
 		"memberSince": "Member since",
 		"message": "Message",
+		"messageFree": "In the first few month, booking fees are offered by Tucána.",
 		"model": "Model",
 		"month": "Month",
 		"more": "More",
@@ -419,6 +426,7 @@
 		"time": "Time",
 		"to": "To",
 		"total": "Total",
+		"totalPrice": "Total price",
 		"update": "Update",
 		"username": "Username",
 		"vehicle": "Vehicle",
@@ -580,7 +588,7 @@
 		"placeholderComment": "Want to share the route you'll take, something about the pickup or drop-off points? Let your passengers know.",
 		"preview": "Preview on Google Maps",
 		"previewTrip": "Preview trip",
-		"priceTitle": "Price per seats",
+		"priceTitle": "Price per seat",
 		"seatsAvailable": "How many seats available do you have?",
 		"selectNumber": "Select a number",
 		"summary": "Summary",
@@ -588,7 +596,8 @@
 		"whatTime": "At what time?",
 		"when": "When are you leaving?",
 		"whereFrom": "Where are you leaving from?",
-		"whereTo": "Where are you heading to?"
+		"whereTo": "Where are you heading to?",
+		"youGet": "You can earn up to"
 	},
 	"ratings": {
 		"asDriver": "As a driver",

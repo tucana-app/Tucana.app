@@ -60,6 +60,12 @@
 		"typeMaker": "Escriba el fabricante del carro",
 		"underReview": "En revisión"
 	},
+	"book": {
+		"driverReceives": "El conductor recibe",
+		"fees": "Gastos de reserva & IVA",
+		"forPassengers": "Para {{seats}} pasajero",
+		"seatsNeeded": "¿Cuántos asientos necesitas?"
+	},
 	"booking": {
 		"rideDetails": "Detalles del viaje",
 		"seatsBooked": "Asientos reservados",
@@ -292,6 +298,7 @@
 		"marchamo": "Marchamo",
 		"memberSince": "Miembro desde",
 		"message": "Mensaje",
+		"messageFree": "En los primeros meses, Tucána ofrece comisiones de reserva.",
 		"model": "Modelo",
 		"month": "Mes",
 		"more": "Más",
@@ -419,6 +426,7 @@
 		"time": "Hora",
 		"to": "A",
 		"total": "Total",
+		"totalPrice": "Precio total",
 		"update": "Actualizar",
 		"username": "Nombre de usuario",
 		"vehicle": "Vehículo",
@@ -588,7 +596,8 @@
 		"whatTime": "A que hora?",
 		"when": "¿Cuándo te vas?",
 		"whereFrom": "¿De que ciudad sales?",
-		"whereTo": "¿En que ciudad te vas?"
+		"whereTo": "¿En que ciudad te vas?",
+		"youGet": "Puedes ganar hasta"
 	},
 	"ratings": {
 		"asDriver": "Como conductor",

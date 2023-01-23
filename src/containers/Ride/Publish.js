@@ -43,6 +43,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import InputSearchLocation from "../../components/InputSearchLocation";
 import ErrorFallback from "../Error/ErrorFallback";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
+import { LinkContainer } from "react-router-bootstrap";
 
 // Enable translation for the date picker
 registerLocale("en", en);
@@ -62,7 +63,9 @@ const Publish = () => {
     isLoadingRidesToConfirm,
     ridesToConfirmData,
   } = useSelector((state) => state.ride);
-  const { seatsMax, priceMin, priceMax } = useSelector((state) => state.global);
+  const { seatsMax, priceMin, priceMax, commissionOnDriver } = useSelector(
+    (state) => state.global
+  );
 
   const [date, setDate] = useState(formPublishRide.date);
   const [time, setTime] = useState(formPublishRide.time);
@@ -758,7 +761,7 @@ const Publish = () => {
                   md={8}
                   lg={6}
                   xl={4}
-                  className="border shadow rounded-5 pb-3 mx-auto"
+                  className="container-box"
                 >
                   <Container className="p-2">
                     <Row className="mb-3">
@@ -832,7 +835,7 @@ const Publish = () => {
                 </Col>
               </Row>
 
-              <Row className="mb-3 mx-1 mx-sm-0">
+              <Row className="mb-2 mx-1 mx-sm-0">
                 <Col
                   xs={12}
                   sm={10}
@@ -843,23 +846,73 @@ const Publish = () => {
                 >
                   <Container className="py-3 px-2">
                     <Row className="align-items-center">
-                      <Col xs={4}>
-                        <p className="mb-0">
+                      <Col xs={7}>
+                        <p className="mb-2 ms-3">
                           {t("translation:global.seat")}
-                          {seats > 1 ? "s" : null}: <strong>{seats}</strong>
+                          {seats > 1 ? "s" : null}
                         </p>
                       </Col>
-                      <Col xs={8} className="text-end">
+                      <Col xs={5} className="text-end pe-4">
+                        <p className="mb-0">x{seats}</p>
+                      </Col>
+                    </Row>
+                    <Row className="align-items-center">
+                      <Col xs={7}>
+                        <p className="mb-2 ms-3">
+                          {t("translation:publish.priceTitle")}
+                        </p>
+                      </Col>
+                      <Col xs={5} className="text-end pe-4">
+                        <p className="fw-bold mb-0">{formatPrice(price)}</p>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={7}>
+                        <p className="mb-0 ms-3">
+                          {t("translation:book.fees")}
+                        </p>
+                      </Col>
+                      <Col xs={5} className="text-end pe-4">
                         <p className="mb-0">
-                          {t("translation:global.price")}:{" "}
-                          <strong>{formatPrice(price)}</strong>
-                          <small className="text-secondary">
-                            /{t("translation:global.perSeat")}
-                          </small>
+                          {formatPrice(
+                            price * seats - price * seats * commissionOnDriver
+                          )}
+                          <span className="text-danger fw-bold">*</span>
                         </p>
                       </Col>
                     </Row>
+
+                    <hr className="mx-2" />
+
+                    <Row className="align-items-center">
+                      <Col xs={8}>
+                        <h5 className="mb-0 ms-3">
+                          {t("translation:publish.youGet")}
+                        </h5>
+                      </Col>
+                      <Col xs={4} className="text-end pe-4">
+                        <h2 className="mb-0">
+                          {formatPrice(price * seats * commissionOnDriver)}
+                        </h2>
+                      </Col>
+                    </Row>
                   </Container>
+                </Col>
+              </Row>
+
+              <Row className="mx-1 mx-sm-0">
+                <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+                  <p className="fw-light small">
+                    <span className="text-danger">*</span>
+                    {t("translation:global.messageFree")}{" "}
+                    <LinkContainer
+                      to="/faq"
+                      className="cursor-pointer text-primary"
+                    >
+                      <u>{t("translation:global.learnMore")}</u>
+                    </LinkContainer>
+                    .
+                  </p>
                 </Col>
               </Row>
 

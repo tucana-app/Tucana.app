@@ -34,7 +34,7 @@ const Find = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { commission, srcAvatar } = useSelector((state) => state.global);
+  const { srcAvatar } = useSelector((state) => state.global);
   const {
     isloadingFilteredRides,
     filteredRidesData,
@@ -310,9 +310,7 @@ const Find = () => {
                             <Col xs={4} className="text-center">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
-                                  {formatPrice(
-                                    ride.rideDetails.price * commission
-                                  )}
+                                  {formatPrice(ride.rideDetails.price)}
                                 </span>
                                 <br />
                                 <span className="smaller text-secondary">

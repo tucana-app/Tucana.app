@@ -349,7 +349,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingResendConfirmationLink: true,
-        loginErrorData: "",
       };
 
     case userTypes.RESEND_CONFIRMATION_LINK_DATA:
@@ -613,7 +612,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingSubmitFormBecomeDriver: true,
-        loginErrorData: "",
       };
 
     case userTypes.SUBMIT_FORM_BECOME_DRIVER_SUCCESS:
@@ -638,7 +636,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingUpdateDriverState: true,
-        loginErrorData: "",
       };
 
     case userTypes.UPDATE_DRIVER_STATE_SUCCESS:

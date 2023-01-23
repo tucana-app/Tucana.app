@@ -60,6 +60,12 @@
 		"typeMaker": "Tape le nom du constructeur automobile",
 		"underReview": "En cours d'examen"
 	},
+	"book": {
+		"driverReceives": "Le/la conducteur.rice reçoit",
+		"fees": "Frais de réservation & IVA",
+		"forPassengers": "Pour {{seats}} passager",
+		"seatsNeeded": "De combien de sièges avez-vous besoin ?"
+	},
 	"booking": {
 		"rideDetails": "Détails du trajet",
 		"seatsBooked": "Sièges réservés",
@@ -292,6 +298,7 @@
 		"marchamo": "Marchamo (assurance du véchicule)",
 		"memberSince": "Membre depuis",
 		"message": "Message",
+		"messageFree": "Au cours des premiers mois, les frais de réservation sont offerts par Tucána.",
 		"model": "Modèle",
 		"month": "Mois",
 		"more": "En savoir plus",
@@ -419,6 +426,7 @@
 		"time": "Heure",
 		"to": "À",
 		"total": "Total",
+		"totalPrice": "Prix total",
 		"update": "Mettre à jour",
 		"username": "Nom d'utilisateur",
 		"vehicle": "Véhicule",
@@ -588,7 +596,8 @@
 		"whatTime": "A quelle heure?",
 		"when": "Quand pars-tu?",
 		"whereFrom": "D'où pars-tu?",
-		"whereTo": "Où vas-tu?"
+		"whereTo": "Où vas-tu?",
+		"youGet": "Tu peux gagner jusqu'à"
 	},
 	"ratings": {
 		"asDriver": "En tant que conducteur",

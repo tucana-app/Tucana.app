@@ -210,9 +210,9 @@ const Booking = () => {
                       <Col xs={5} className="text-end pe-3">
                         <h2 className="mb-0">
                           {currentUser.Driver &&
-                          currentUser.Driver.id !== bookingData.DriverId
-                            ? formatPrice(bookingData.totalPaidPassenger)
-                            : formatPrice(bookingData.totalReceivedDriver)}
+                          currentUser.Driver.id === bookingData.DriverId
+                            ? formatPrice(bookingData.totalReceivedDriver)
+                            : formatPrice(bookingData.totalPaidPassenger)}
                         </h2>
                       </Col>
                     </Row>
