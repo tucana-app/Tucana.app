@@ -260,6 +260,7 @@
 			"missingRating": "Make sure you give a rating",
 			"passwordsMatch": "Passwords must match",
 			"samePlaces": "The city of destination has to to be different than the origin one",
+			"searchCity": "Please select a city",
 			"sendingMessage": "Your message couldn't be sent",
 			"validEmail": "Please enter a valid email address",
 			"validName": "Please enter a valid name",
@@ -519,6 +520,8 @@
 		"credential": "Email or Username",
 		"finish": "You can start using the platform now. What would you like to do?",
 		"forgotPassword": "Forgot your password?",
+		"messageService": "You are using a free app, and no service fee is being charged on your rides for now. To help us expand this project across all Costa Rica, so everyone can carpool, please consider making a donation.",
+		"platforms": "You can donate on one of these platforms, or contact us directly.",
 		"setUpAccount": "Start by setting up your account",
 		"welcomeMessage": "You are now a member of the community of drivers and passengers in Costa Rica, that love to share rides and helping each other out!",
 		"yourAccount": "Your account"

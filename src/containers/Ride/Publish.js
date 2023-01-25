@@ -40,6 +40,7 @@ import {
   formatDistance,
 } from "../../helpers";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import DonateComponent from "../../components/DonateComponent";
 import InputSearchLocation from "../../components/InputSearchLocation";
 import ErrorFallback from "../Error/ErrorFallback";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
@@ -413,9 +414,11 @@ const Publish = () => {
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
-                        <h3 className="mb-0">
-                          <strong>{formPublishRide.origin.city}</strong>,{" "}
-                          <small>{formPublishRide.origin.province}</small>
+                        <h3 className="d-inline-flex align-items-center mb-0">
+                          {formPublishRide.origin.city}{" "}
+                          <small className="fw-light">
+                            , {formPublishRide.origin.province}
+                          </small>
                         </h3>
                       </Col>
                     </Row>
@@ -457,9 +460,11 @@ const Publish = () => {
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
-                        <h3 className="mb-0">
-                          <strong>{formPublishRide.destination.city}</strong>,{" "}
-                          <small>{formPublishRide.destination.province}</small>
+                        <h3 className="d-inline-flex align-items-center mb-0">
+                          {formPublishRide.destination.city}{" "}
+                          <small className="fw-light">
+                            , {formPublishRide.destination.province}
+                          </small>
                         </h3>
                       </Col>
                     </Row>
@@ -996,24 +1001,30 @@ const Publish = () => {
                 </Col>
               </Row>
             ) : submitFormPublishRideData.flag === "SUCCESS" ? (
-              <Row className="mt-5 pt-5">
-                <Col className="text-center">
-                  <h1 className="text-success">
-                    {t("translation:global.congratulations")} 🎉
-                  </h1>
-                  <p>{t("translation:global.rideOnline")}</p>
-                  <p>
-                    <Link
-                      to={`/ride/${submitFormPublishRideData.ride.id}`}
-                      className="cursor-pointer"
-                    >
-                      <Button variant="success" size="lg">
-                        {t("translation:publish.checkItOut")}
-                      </Button>
-                    </Link>
-                  </p>
-                </Col>
-              </Row>
+              <>
+                <Row className="my-5 pt-5">
+                  <Col className="text-center">
+                    <h1 className="text-success">
+                      {t("translation:global.congratulations")} 🎉
+                    </h1>
+                    <p>{t("translation:global.rideOnline")}</p>
+                    <p>
+                      <Link
+                        to={`/ride/${submitFormPublishRideData.ride.id}`}
+                        className="cursor-pointer"
+                      >
+                        <Button variant="success" size="lg">
+                          {t("translation:publish.checkItOut")}
+                        </Button>
+                      </Link>
+                    </p>
+                  </Col>
+                </Row>
+
+                <div className="container-box py-3 mb-5">
+                  <DonateComponent />
+                </div>
+              </>
             ) : (
               <ErrorFallback />
             )}

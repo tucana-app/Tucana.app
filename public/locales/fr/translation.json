@@ -260,6 +260,7 @@
 			"missingRating": "Assure-toi de donner une note",
 			"passwordsMatch": "Les mots de passe doivent correspondre",
 			"samePlaces": "La ville de destination doit être différente de celle du départ.",
+			"searchCity": "Sélectionne une ville",
 			"sendingMessage": "Votre message n'a pas pu être envoyé",
 			"validEmail": "Saisis une adresse email valide",
 			"validName": "Saisis un nom valide",
@@ -519,6 +520,8 @@
 		"credential": "Courriel ou nom d'utilisateur",
 		"finish": "Tu peux maintenant commencer à utiliser la plateforme. Que veux-tu faire ?",
 		"forgotPassword": "Mot de passe oublié ?",
+		"messageService": "Tu utilises une application gratuite, et aucun frais de service n'est facturé pour tes trajets pour le moment. Pour nous aider à étendre ce projet à tout le Costa Rica afin que tout le monde puisse covoiturer, pense à faire un don.",
+		"platforms": "Tu peux faire un don sur l'une de ces plateformes, ou nous contacter directement.",
 		"setUpAccount": "Commence par configurer ton compte",
 		"welcomeMessage": "Tu es maintenant membre de la communauté des conducteurs et passagers du Costa Rica, qui aiment partager des trajets et s'entraider !",
 		"yourAccount": "Ton compte"

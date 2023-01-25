@@ -39,6 +39,7 @@ import turtle from "../../assets/images/avatars/turtle.jpg";
 import whale from "../../assets/images/avatars/whale.jpg";
 import filter from "../../assets/images/filters/filter-select.png";
 import EyePassword from "../../components/EyePassword";
+import DonateComponent from "../../components/DonateComponent";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -60,6 +61,7 @@ const Login = () => {
 
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
+  const [stepThree, setStepThree] = useState(false);
 
   const [avatar, setAvatar] = useState("");
 
@@ -87,6 +89,17 @@ const Login = () => {
   const handleBackToStepOne = () => {
     setStepOne(true);
     setStepTwo(false);
+  };
+
+  const handleClickStepTwo = () => {
+    setStepTwo(false);
+    setStepThree(true);
+  };
+
+  // Step 3
+  const handleBackToStepTwo = () => {
+    setStepTwo(true);
+    setStepThree(false);
   };
 
   // Handlers
@@ -462,6 +475,33 @@ const Login = () => {
                       </div>
                     </Container>
                   ) : stepTwo ? (
+                    <Container className="px-0">
+                      <DonateComponent />
+
+                      <div className="fixed-bottom d-flex justify-content-center mb-5">
+                        <Button
+                          onClick={handleBackToStepOne}
+                          variant="outline-warning"
+                          className="ms-2"
+                          disabled={avatar === ""}
+                        >
+                          <ArrowLeft size={18} className="me-2" />
+                          {t("translation:global.goBack")}
+                        </Button>
+
+                        <Button
+                          onClick={handleClickStepTwo}
+                          variant="success"
+                          size="lg"
+                          className="hvr-icon-forward ms-2"
+                          disabled={avatar === ""}
+                        >
+                          {t("translation:global.next")}
+                          <ArrowRightIcon size={24} className="hvr-icon ms-2" />
+                        </Button>
+                      </div>
+                    </Container>
+                  ) : stepThree ? (
                     <Container>
                       <Row className="mb-3">
                         <Col className="text-center">
@@ -572,7 +612,7 @@ const Login = () => {
 
                       <div className="fixed-bottom d-flex justify-content-center mb-5">
                         <Button
-                          onClick={handleBackToStepOne}
+                          onClick={handleBackToStepTwo}
                           variant="outline-warning"
                           className="ms-2"
                           disabled={avatar === ""}

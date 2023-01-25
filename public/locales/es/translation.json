@@ -260,6 +260,7 @@
 			"missingRating": "Asegúrese de dar una calificación",
 			"passwordsMatch": "Las contraseñas deben coincidir",
 			"samePlaces": "La ciudad de destino tiene que ser diferente a la de origen",
+			"searchCity": "Seleccione una ciudad",
 			"sendingMessage": "Su mensaje no pudo ser enviado",
 			"validEmail": "Introduzca una dirección de correo electrónico válida",
 			"validName": "Por favor, introduzca un nombre válido",
@@ -519,6 +520,8 @@
 		"credential": "Correo electrónico o nombre de usuario",
 		"finish": "Ya puedes empezar a utilizar la plataforma. ¿Qué te gustaría hacer?",
 		"forgotPassword": "¿Olvidó su contraseña?",
+		"messageService": "Utilizas una aplicación gratuita y no se te cobra ninguna tasa por tu rides por ahora. Para ayudarnos a ampliar este proyecto a toda Costa Rica y que todo el mundo pueda compartir coche, considere la posibilidad de hacer una donación.",
+		"platforms": "Puede donar en una de estas plataformas, o ponerse en contacto con nosotros directamente.",
 		"setUpAccount": "Comience por configurar su cuenta",
 		"welcomeMessage": "Ahora eres un miembro de la comunidad de conductores y pasajeros en Costa Rica, a los que les encanta compartir viajes y ayudarse mutuamente.",
 		"yourAccount": "Tu cuenta"

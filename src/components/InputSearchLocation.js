@@ -13,6 +13,7 @@ import {
   setSearchDestination,
   setPublishOrigin,
   setPublishDestination,
+  setToast,
 } from "../redux";
 
 function InputSearchLocation(props) {
@@ -131,19 +132,31 @@ function InputSearchLocation(props) {
         });
     };
 
+  // Set the city and the province
+
   const setCityProvince = () => {
     city = details.address_components.find((address) =>
       address.types.find(
         (type) =>
           type === "neighborhood" ||
           type === "locality" ||
-          type === "sublocality"
+          type === "sublocality" ||
+          type === "route"
       )
     );
 
     // If the city is not found, we take the words from the
     // address until the first coma
     if (city === undefined) {
+      dispatch(
+        setToast({
+          show: true,
+          headerText: "Error",
+          bodyText: t("translation:global.errors.searchCity"),
+          variant: "warning",
+        })
+      );
+
       city = location.address.slice(0, location.address.indexOf(","));
     } else {
       city = city.long_name;
@@ -161,6 +174,8 @@ function InputSearchLocation(props) {
     }
   };
 
+  // Renders the suggestions
+
   const renderSuggestions = () =>
     data.map((suggestion) => {
       const {
@@ -172,7 +187,8 @@ function InputSearchLocation(props) {
         (type) =>
           type === "neighborhood" ||
           type === "locality" ||
-          type === "sublocality"
+          type === "sublocality" ||
+          type === "route"
       );
 
       if (isCity) {
