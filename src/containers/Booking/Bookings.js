@@ -148,7 +148,7 @@ const Bookings = () => {
 
                               <Col xs={6}>
                                 <p className="mb-0">
-                                  {t("translation:global.status")}:{" "}
+                                  {t("translation:global.booking")}:{" "}
                                   <span
                                     className={`text-${bookingStatusVariant(
                                       booking.BookingStatus.id
@@ -281,7 +281,7 @@ const Bookings = () => {
 
                             <Col xs={6}>
                               <p className="mb-0">
-                                {t("translation:global.status")}:{" "}
+                                {t("translation:global.booking")}:{" "}
                                 <span
                                   className={`text-${bookingStatusVariant(
                                     booking.BookingStatus.id

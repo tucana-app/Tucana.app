@@ -64,7 +64,8 @@
 		"driverReceives": "The driver receives",
 		"fees": "Booking fees & IVA",
 		"forPassengers": "For {{seats}} passenger",
-		"seatsNeeded": "How many seats do you need?"
+		"seatsNeeded": "How many seats do you need?",
+		"success": "Your booking has successfully been submitted to the driver"
 	},
 	"booking": {
 		"rideDetails": "Ride details",

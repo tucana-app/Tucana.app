@@ -64,7 +64,8 @@
 		"driverReceives": "Le/la conducteur.rice reçoit",
 		"fees": "Frais de réservation & IVA",
 		"forPassengers": "Pour {{seats}} passager",
-		"seatsNeeded": "De combien de sièges avez-vous besoin ?"
+		"seatsNeeded": "De combien de sièges avez-vous besoin ?",
+		"success": "Votre réservation a été soumise au conducteur avec succès"
 	},
 	"booking": {
 		"rideDetails": "Détails du trajet",
