@@ -115,7 +115,7 @@ const Find = () => {
 
   return (
     <>
-      <Container className="mb-5">
+      <Container>
         {isFormSearchRideSubmitted ? (
           <>
             <Row className="sticky-top mt-4 mb-2 mx-1 mx-sm-0">
@@ -350,8 +350,8 @@ const Find = () => {
           <>
             <Row className="min-vh-100 align-items-center">
               <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
-                <Container fluid className="px-0">
-                  <Row>
+                <Container className="px-3">
+                  <Row className="mb-4">
                     <Col xs={12}>
                       <h1 className="title text-center mb-3">
                         {t("translation:find.catchPhrase")}
@@ -359,9 +359,9 @@ const Find = () => {
                     </Col>
                   </Row>
 
-                  <div className="container-box py-3 px-2 mb-2 mx-1 mx-sm-0">
+                  <Row>
                     <FormSearchRides />
-                  </div>
+                  </Row>
                 </Container>
 
                 {/* <Row>
