@@ -576,8 +576,11 @@ const DriverApplicationForm = () => {
                               onChange={handleChangeIdCountry}
                               options={countriesSelect.current}
                               isDisabled={isLoadingCountries}
-                              formatOptionLabel={(country) => (
-                                <div className="d-inline-flex align-items-center mb-0">
+                              formatOptionLabel={(country, index) => (
+                                <div
+                                  key={index}
+                                  className="d-inline-flex align-items-center mb-0"
+                                >
                                   <img
                                     src={country.image}
                                     alt=""
