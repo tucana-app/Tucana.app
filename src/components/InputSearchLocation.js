@@ -1,12 +1,13 @@
 import React from "react";
-import { Button, FormControl, ListGroup } from "react-bootstrap";
+import { FormControl, ListGroup } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import { XIcon } from "@primer/octicons-react";
+// import { XIcon } from "@primer/octicons-react";
 
 import {
   setSearchOrigin,
@@ -17,7 +18,7 @@ import {
 } from "../redux";
 
 function InputSearchLocation(props) {
-  const { inputLocation } = props;
+  const { inputLocation, disabled } = props;
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -47,10 +48,10 @@ function InputSearchLocation(props) {
     }
   };
 
-  const handleReset = () => {
-    clearSuggestions();
-    setValue("");
-  };
+  // const handleReset = () => {
+  //   clearSuggestions();
+  //   setValue("");
+  // };
 
   const handleInput = (e) => {
     // Update the keyword of the input element
@@ -213,19 +214,21 @@ function InputSearchLocation(props) {
         <FormControl
           value={value}
           onChange={handleInput}
-          disabled={!ready}
+          disabled={!ready || disabled}
           placeholder={t("translation:inputSearchLocation.searchCity")}
           required
           aria-label={t("translation:global.search")}
           onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
         />
-        <Button onClick={handleReset} variant="white" className="px-0 ms-1">
+        {/* <Button onClick={handleReset} variant="white" className="px-0 ms-1">
           <XIcon size={24} />
-        </Button>
+        </Button> */}
       </div>
 
       {status === "OK" ? (
-        <ListGroup className="bg-white">{renderSuggestions()}</ListGroup>
+        <ListGroup className="bg-white position-absolute">
+          {renderSuggestions()}
+        </ListGroup>
       ) : null}
     </>
   );

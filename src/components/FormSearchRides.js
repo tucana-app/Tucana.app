@@ -143,20 +143,23 @@ const FormSearchRides = () => {
 
   return (
     <>
-      <Row className="mb-3">
-        <Col>
-          <p className="mb-0">{t("translation:global.from")}:</p>
-          <>
+      <Container
+        className="border border-2 border-bottom-0 pt-3 pb-2 px-3"
+        style={{ borderRadius: "15px 15px 0px 0px" }}
+      >
+        <Row className="mb-3">
+          <Col>
+            <p className="mb-0">{t("translation:global.from")}:</p>
             {formSearchRide.origin.city !== "" ? (
               <Container className="px-0">
                 <Row>
-                  <Col xs={8} className="text-start pe-0">
+                  <Col xs={10} className="text-start pe-0">
                     <p className="mb-0">
                       <strong>{formSearchRide.origin.city}</strong>,{" "}
                       <small>{formSearchRide.origin.province}</small>
                     </p>
                   </Col>
-                  <Col xs={4} className="text-end ps-0">
+                  <Col xs={2} className="text-end ps-0">
                     <Button
                       size={"sm"}
                       onClick={handleEditOne}
@@ -169,108 +172,118 @@ const FormSearchRides = () => {
                 </Row>
               </Container>
             ) : (
-              <InputSearchLocation inputLocation="searchOrigin" />
+              <InputSearchLocation
+                inputLocation="searchOrigin"
+                disabled={!!ridesToConfirmData.length}
+              />
             )}
-          </>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
 
-      <Row className="my-2">
-        <Col>
-          <p className="mb-0">{t("translation:global.to")}:</p>
-          <>
-            {formSearchRide.destination.city !== "" ? (
-              <Container className="px-0">
-                <Row>
-                  <Col xs={8} className="text-start pe-0">
-                    <p className="mb-0">
-                      <strong>{formSearchRide.destination.city}</strong>,{" "}
-                      <small>{formSearchRide.destination.province}</small>
-                    </p>
-                  </Col>
-                  <Col xs={4} className="text-end ps-0">
-                    <Button
-                      size={"sm"}
-                      onClick={handleEditTwo}
-                      variant="outline-warning"
-                      className="p-0"
-                    >
-                      <XIcon size={24} />
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            ) : (
-              <InputSearchLocation inputLocation="searchDestination" />
-            )}
-          </>
-        </Col>
-      </Row>
-      <Row className="align-items-center py-3">
-        <Col xs={2}>
-          <p className="mb-0">{t("translation:global.date")}:</p>
-        </Col>
-        <Col xs={6} className="mx-auto">
-          <Form.Group>
-            <Form.Control
-              type="text"
-              name="date"
-              value={dateFormat(date, "dd/mm/yyyy")}
-              className="cursor-pointer no-caret"
-              onClick={() => setShowOffcanvaDate(true)}
-              required
-              readOnly
-              disabled={!!ridesToConfirmData.length}
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={4} className="mx-auto d-inline-flex align-items-center">
-          <PersonIcon size={24} className="me-2" />
-          <Form.Group>
-            <Form.Control
-              type="number"
-              name="seats"
-              value={seats}
-              className="cursor-pointer no-caret text-center"
-              onClick={() => setShowOffcanvaSeats(true)}
-              required
-              readOnly
-              disabled={!!ridesToConfirmData.length}
-            />
-          </Form.Group>
-        </Col>
-      </Row>
+        <Row className="mb-3">
+          <Col>
+            <p className="mb-0">{t("translation:global.to")}:</p>
+            <>
+              {formSearchRide.destination.city !== "" ? (
+                <Container className="px-0">
+                  <Row>
+                    <Col xs={10} className="text-start pe-0">
+                      <p className="mb-0">
+                        <strong>{formSearchRide.destination.city}</strong>,{" "}
+                        <small>{formSearchRide.destination.province}</small>
+                      </p>
+                    </Col>
+                    <Col xs={2} className="text-end ps-0">
+                      <Button
+                        size={"sm"}
+                        onClick={handleEditTwo}
+                        variant="outline-warning"
+                        className="p-0"
+                      >
+                        <XIcon size={24} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              ) : (
+                <InputSearchLocation
+                  inputLocation="searchDestination"
+                  disabled={!!ridesToConfirmData.length}
+                />
+              )}
+            </>
+          </Col>
+        </Row>
+        <Row className="align-items-center py-3">
+          <Col xs={2}>
+            <p className="mb-0">{t("translation:global.date")}:</p>
+          </Col>
+          <Col xs={6} className="mx-auto">
+            <Form.Group>
+              <Form.Control
+                type="text"
+                name="date"
+                value={dateFormat(date, "dd/mm/yyyy")}
+                className="cursor-pointer no-caret"
+                onClick={() => setShowOffcanvaDate(true)}
+                required
+                readOnly
+                disabled={!!ridesToConfirmData.length}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={4} className="mx-auto d-inline-flex align-items-center">
+            <PersonIcon size={24} className="me-2" />
+            <Form.Group>
+              <Form.Control
+                type="number"
+                name="seats"
+                value={seats}
+                className="cursor-pointer no-caret text-center"
+                onClick={() => setShowOffcanvaSeats(true)}
+                required
+                readOnly
+                disabled={!!ridesToConfirmData.length}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+      </Container>
+
+      <Container
+        className={
+          ridesToConfirmData.length
+            ? "bg-secondary border-0 py-3"
+            : "bg-success border-0 cursor-pointer py-3"
+        }
+        style={{ borderRadius: "0px 0px 15px 15px" }}
+      >
+        <Row onClick={ridesToConfirmData.length ? null : handleSubmit}>
+          <Col className="text-center text-white fw-bold">
+            {t("translation:global.search")}
+          </Col>
+        </Row>
+      </Container>
+
       {ridesToConfirmData.length ? (
-        <Row>
-          <Col className="text-end">
-            <p>{t("translation:global.errors.completeFirst")}</p>
-
-            <div>
+        <Container className="mt-3">
+          <Row>
+            <Col className="text-center animate__animated animate__heartBeat animate__slower animate__infinite">
               <Link to="/rides/rides-to-complete">
                 <Button variant="success">
-                  {t("translation:ridesToConfirm.title")}{" "}
-                  <Badge bg="danger">{ridesToConfirmData.length}</Badge>{" "}
+                  <span className="me-1">
+                    {t("translation:global.errors.completeFirst")}
+                  </span>{" "}
+                  <Badge bg="danger" className="me-1">
+                    {ridesToConfirmData.length}
+                  </Badge>{" "}
                   <ArrowRightIcon size="24" />
                 </Button>
               </Link>
-            </div>
-          </Col>
-        </Row>
-      ) : (
-        <Row className="py-2">
-          <Col className="text-end">
-            <Button
-              onClick={handleSubmit}
-              variant="success"
-              size="lg"
-              type="submit"
-              disabled={!!ridesToConfirmData.length}
-            >
-              {t("translation:global.search")}
-            </Button>
-          </Col>
-        </Row>
-      )}
+            </Col>
+          </Row>
+        </Container>
+      ) : null}
 
       <Offcanvas
         show={showOffcanvaDate}
