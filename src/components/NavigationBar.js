@@ -34,7 +34,7 @@ function NavigationBar() {
   const messages = userNewMessagesData.count;
 
   return isLoggedIn ? (
-    <Navbar bg="white" variant="light" fixed="bottom" className="pt-0">
+    <Navbar bg="white" variant="light" fixed="bottom" className="py-0">
       <Navbar.Collapse id="navigation-bar">
         <Nav className="w-100 justify-content-evenly align-items-center">
           <Container>

@@ -11,7 +11,7 @@ const Privacy = () => {
     <div>
       <GoBack />
 
-      <Container>
+      <Container className="mb-5 pb-5">
         <Row>
           <Col
             xs={12}

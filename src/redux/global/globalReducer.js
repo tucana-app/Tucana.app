@@ -167,6 +167,55 @@ const initialState = {
   },
 
   languages: {
+    en: {
+      name: "English",
+      nativeName: "English",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/English_language.svg/500px-English_language.svg.png",
+    },
+    es: {
+      name: "Spanish",
+      nativeName: "Español",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Spanish_language_(ES-MX).svg/500px-Flag_of_Spanish_language_(ES-MX).svg.png",
+    },
+    fr: {
+      name: "French",
+      nativeName: "Français",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/500px-Flag_of_France.svg.png",
+    },
+    de: {
+      name: "German",
+      nativeName: "Deutsch",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/500px-Flag_of_Germany.svg.png",
+    },
+    he: {
+      name: "Hebrew",
+      nativeName: "עברית",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Flag_of_Israel.svg/500px-Flag_of_Israel.svg.png",
+    },
+    nl: {
+      name: "Dutch",
+      nativeName: "Nederlands",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/500px-Flag_of_the_Netherlands.svg.png",
+    },
+    it: {
+      name: "Italian",
+      nativeName: "Italiano",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/500px-Flag_of_Italy.svg.png",
+    },
+    pt: {
+      name: "Portuguese",
+      nativeName: "Português",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Flag_of_Portuguese_language_(PT-BR).svg/500px-Flag_of_Portuguese_language_(PT-BR).svg.png",
+    },
+
     ab: {
       name: "Abkhaz",
       nativeName: "аҧсуа",
@@ -213,19 +262,19 @@ const initialState = {
     },
     ae: {
       name: "Avestan",
-      nativeName: "avesta",
+      nativeName: "Avesta",
     },
     ay: {
       name: "Aymara",
-      nativeName: "aymar aru",
+      nativeName: "Aymar aru",
     },
     az: {
       name: "Azerbaijani",
-      nativeName: "azərbaycan dili",
+      nativeName: "Azərbaycan dili",
     },
     bm: {
       name: "Bambara",
-      nativeName: "bamanankan",
+      nativeName: "Bamanankan",
     },
     ba: {
       name: "Bashkir",
@@ -233,7 +282,7 @@ const initialState = {
     },
     eu: {
       name: "Basque",
-      nativeName: "euskara, euskera",
+      nativeName: "Euskara",
     },
     be: {
       name: "Belarusian",
@@ -253,11 +302,11 @@ const initialState = {
     },
     bs: {
       name: "Bosnian",
-      nativeName: "bosanski jezik",
+      nativeName: "Bosanski jezik",
     },
     br: {
       name: "Breton",
-      nativeName: "brezhoneg",
+      nativeName: "Brezhoneg",
     },
     bg: {
       name: "Bulgarian",
@@ -281,7 +330,7 @@ const initialState = {
     },
     ny: {
       name: "Chichewa; Chewa; Nyanja",
-      nativeName: "chiCheŵa, chinyanja",
+      nativeName: "ChiCheŵa, chinyanja",
     },
     zh: {
       name: "Chinese",
@@ -297,7 +346,7 @@ const initialState = {
     },
     co: {
       name: "Corsican",
-      nativeName: "corsu, lingua corsa",
+      nativeName: "Corsu",
     },
     cr: {
       name: "Cree",
@@ -305,35 +354,28 @@ const initialState = {
     },
     hr: {
       name: "Croatian",
-      nativeName: "hrvatski",
+      nativeName: "Hrvatski",
     },
     cs: {
       name: "Czech",
-      nativeName: "česky, čeština",
+      nativeName: "Česky, čeština",
     },
     da: {
       name: "Danish",
-      nativeName: "dansk",
+      nativeName: "Dansk",
     },
     dv: {
       name: "Divehi; Dhivehi; Maldivian;",
       nativeName: "ދިވެހި",
     },
-    nl: {
-      name: "Dutch",
-      nativeName: "Nederlands, Vlaams",
-    },
-    en: {
-      name: "English",
-      nativeName: "English",
-    },
+
     eo: {
       name: "Esperanto",
       nativeName: "Esperanto",
     },
     et: {
       name: "Estonian",
-      nativeName: "eesti, eesti keel",
+      nativeName: "Eesti",
     },
     ee: {
       name: "Ewe",
@@ -341,23 +383,20 @@ const initialState = {
     },
     fo: {
       name: "Faroese",
-      nativeName: "føroyskt",
+      nativeName: "Føroyskt",
     },
     fj: {
       name: "Fijian",
-      nativeName: "vosa Vakaviti",
+      nativeName: "Vosa Vakaviti",
     },
     fi: {
       name: "Finnish",
-      nativeName: "suomi, suomen kieli",
+      nativeName: "Suomi, suomen kieli",
     },
-    fr: {
-      name: "French",
-      nativeName: "français, langue française",
-    },
+
     ff: {
       name: "Fula; Fulah; Pulaar; Pular",
-      nativeName: "Fulfulde, Pulaar, Pular",
+      nativeName: "Fulfulde",
     },
     gl: {
       name: "Galician",
@@ -367,10 +406,7 @@ const initialState = {
       name: "Georgian",
       nativeName: "ქართული",
     },
-    de: {
-      name: "German",
-      nativeName: "Deutsch",
-    },
+
     el: {
       name: "Greek, Modern",
       nativeName: "Ελληνικά",
@@ -391,10 +427,7 @@ const initialState = {
       name: "Hausa",
       nativeName: "Hausa, هَوُسَ",
     },
-    he: {
-      name: "Hebrew (modern)",
-      nativeName: "עברית",
-    },
+
     hz: {
       name: "Herero",
       nativeName: "Otjiherero",
@@ -411,17 +444,9 @@ const initialState = {
       name: "Hungarian",
       nativeName: "Magyar",
     },
-    ia: {
-      name: "Interlingua",
-      nativeName: "Interlingua",
-    },
     id: {
       name: "Indonesian",
       nativeName: "Bahasa Indonesia",
-    },
-    ie: {
-      name: "Interlingue",
-      nativeName: "Originally called Occidental; then Interlingue after WWII",
     },
     ga: {
       name: "Irish",
@@ -443,25 +468,22 @@ const initialState = {
       name: "Icelandic",
       nativeName: "Íslenska",
     },
-    it: {
-      name: "Italian",
-      nativeName: "Italiano",
-    },
+
     iu: {
       name: "Inuktitut",
       nativeName: "ᐃᓄᒃᑎᑐᑦ",
     },
     ja: {
       name: "Japanese",
-      nativeName: "日本語 (にほんご／にっぽんご)",
+      nativeName: "日本語",
     },
     jv: {
       name: "Javanese",
-      nativeName: "basa Jawa",
+      nativeName: "Basa Jawa",
     },
     kl: {
       name: "Kalaallisut, Greenlandic",
-      nativeName: "kalaallisut, kalaallit oqaasii",
+      nativeName: "Kalaallisut",
     },
     kn: {
       name: "Kannada",
@@ -515,10 +537,6 @@ const initialState = {
       name: "Kwanyama, Kuanyama",
       nativeName: "Kuanyama",
     },
-    la: {
-      name: "Latin",
-      nativeName: "latine, lingua latina",
-    },
     lb: {
       name: "Luxembourgish, Letzeburgesch",
       nativeName: "Lëtzebuergesch",
@@ -541,15 +559,15 @@ const initialState = {
     },
     lt: {
       name: "Lithuanian",
-      nativeName: "lietuvių kalba",
+      nativeName: "Lietuvių kalba",
     },
     lu: {
       name: "Luba-Katanga",
-      nativeName: "",
+      nativeName: "Luba-Katanga",
     },
     lv: {
       name: "Latvian",
-      nativeName: "latviešu valoda",
+      nativeName: "Latviešu valoda",
     },
     gv: {
       name: "Manx",
@@ -565,7 +583,7 @@ const initialState = {
     },
     ms: {
       name: "Malay",
-      nativeName: "bahasa Melayu, بهاس ملايو‎",
+      nativeName: "Bahasa Melayu, بهاس ملايو‎",
     },
     ml: {
       name: "Malayalam",
@@ -577,7 +595,7 @@ const initialState = {
     },
     mi: {
       name: "Māori",
-      nativeName: "te reo Māori",
+      nativeName: "Te reo Māori",
     },
     mr: {
       name: "Marathi (Marāṭhī)",
@@ -605,7 +623,7 @@ const initialState = {
     },
     nd: {
       name: "North Ndebele",
-      nativeName: "isiNdebele",
+      nativeName: "IsiNdebele",
     },
     ne: {
       name: "Nepali",
@@ -629,7 +647,7 @@ const initialState = {
     },
     nr: {
       name: "South Ndebele",
-      nativeName: "isiNdebele",
+      nativeName: "IsiNdebele",
     },
     oc: {
       name: "Occitan",
@@ -669,35 +687,32 @@ const initialState = {
     },
     pl: {
       name: "Polish",
-      nativeName: "polski",
+      nativeName: "Polski",
     },
     ps: {
       name: "Pashto, Pushto",
       nativeName: "پښتو",
     },
-    pt: {
-      name: "Portuguese",
-      nativeName: "Português",
-    },
+
     qu: {
       name: "Quechua",
       nativeName: "Runa Simi, Kichwa",
     },
     rm: {
       name: "Romansh",
-      nativeName: "rumantsch grischun",
+      nativeName: "Rumantsch grischun",
     },
     rn: {
       name: "Kirundi",
-      nativeName: "kiRundi",
+      nativeName: "KiRundi",
     },
     ro: {
       name: "Romanian, Moldavian, Moldovan",
-      nativeName: "română",
+      nativeName: "Română",
     },
     ru: {
       name: "Russian",
-      nativeName: "русский язык",
+      nativeName: "Русский язык",
     },
     sa: {
       name: "Sanskrit (Saṁskṛta)",
@@ -705,7 +720,7 @@ const initialState = {
     },
     sc: {
       name: "Sardinian",
-      nativeName: "sardu",
+      nativeName: "Sardu",
     },
     sd: {
       name: "Sindhi",
@@ -717,11 +732,11 @@ const initialState = {
     },
     sm: {
       name: "Samoan",
-      nativeName: "gagana faa Samoa",
+      nativeName: "Gagana faa Samoa",
     },
     sg: {
       name: "Sango",
-      nativeName: "yângâ tî sängö",
+      nativeName: "Yângâ tî sängö",
     },
     sr: {
       name: "Serbian",
@@ -733,7 +748,7 @@ const initialState = {
     },
     sn: {
       name: "Shona",
-      nativeName: "chiShona",
+      nativeName: "ChiShona",
     },
     si: {
       name: "Sinhala, Sinhalese",
@@ -741,11 +756,11 @@ const initialState = {
     },
     sk: {
       name: "Slovak",
-      nativeName: "slovenčina",
+      nativeName: "Slovenčina",
     },
     sl: {
       name: "Slovene",
-      nativeName: "slovenščina",
+      nativeName: "Slovenščina",
     },
     so: {
       name: "Somali",
@@ -755,10 +770,7 @@ const initialState = {
       name: "Southern Sotho",
       nativeName: "Sesotho",
     },
-    es: {
-      name: "Spanish; Castilian",
-      nativeName: "español, castellano",
-    },
+
     su: {
       name: "Sundanese",
       nativeName: "Basa Sunda",
@@ -773,7 +785,7 @@ const initialState = {
     },
     sv: {
       name: "Swedish",
-      nativeName: "svenska",
+      nativeName: "Svenska",
     },
     ta: {
       name: "Tamil",
@@ -813,7 +825,7 @@ const initialState = {
     },
     to: {
       name: "Tonga (Tonga Islands)",
-      nativeName: "faka Tonga",
+      nativeName: "Faka Tonga",
     },
     tr: {
       name: "Turkish",
@@ -849,7 +861,7 @@ const initialState = {
     },
     uz: {
       name: "Uzbek",
-      nativeName: "zbek, Ўзбек, أۇزبېك‎",
+      nativeName: "Zbek, Ўзбек, أۇزبېك‎",
     },
     ve: {
       name: "Venda",
@@ -881,7 +893,7 @@ const initialState = {
     },
     xh: {
       name: "Xhosa",
-      nativeName: "isiXhosa",
+      nativeName: "IsiXhosa",
     },
     yi: {
       name: "Yiddish",

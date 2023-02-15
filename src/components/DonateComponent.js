@@ -3,13 +3,21 @@ import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Coin, CurrencyBitcoin, Paypal } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import { Trans } from "react-i18next";
 
 function DonateComponent() {
   return (
     <>
       <Row>
         <Col className="text-center mx-auto">
-          <p>{t("translation:logIn.messageService")}</p>
+          <p>
+            <Trans i18nKey="translation:logIn.messageService">
+              <strong>You are using a free app</strong>, and no service fee is
+              being charged on your rides for now. To help us expand this
+              project across all Costa Rica, so everyone can carpool,{" "}
+              <strong>please consider making a donation</strong>.
+            </Trans>
+          </p>
         </Col>
       </Row>
 
