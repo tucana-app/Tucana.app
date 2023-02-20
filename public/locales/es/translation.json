@@ -499,7 +499,7 @@
 		"registration": "Inscripción",
 		"review": "Envíe una reseña para sus pasajeros o el conductor",
 		"review2": "Para seguir garantizando la seguridad de la comunidad",
-		"signUpFree": "Regístrese gratis",
+		"signUpFree": "Regístrate gratis",
 		"startTutorial": "Iniciar el tutorial",
 		"stepsService": "Aprende lo sencillo que es compartir un ride con nuestra guía interactiva",
 		"verifyEmail": "Verifique su cuenta",
@@ -671,10 +671,11 @@
 		"title": "Rides a completar"
 	},
 	"signUp": {
+		"ageWarning": "Debes tener al menos 18 años para utilizar Tucána",
 		"agreement": "Estoy de acuerdo con los <2>términos y condiciones</2> y la <6>política de privacidad</6>",
 		"newsletter": "Acepto recibir el boletín de noticias ocasional (no spam)",
 		"paragraphInfo": "La información que proporcione será revisada posteriormente por un moderador. Por favor, asegúrese de que son lo más precisos posible.",
-		"subTitle": "Regístrese para acceder a la plataforma"
+		"subTitle": "Todo empieza aquí para todos tus viajes por Costa Rica"
 	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenido a nuestra plataforma 🎉",

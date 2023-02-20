@@ -193,12 +193,18 @@ input[type="password"]:not(:placeholder-shown) {
   position: absolute;
   right: 20px;
   top: 4px;
+  z-index: 1000;
   cursor: pointer;
 }
 
 // Remove X icon for marker on gMaps
 .gm-ui-hover-effect {
   display: none !important;
+}
+
+.border-end-pill {
+  border-end-end-radius: 50rem !important;
+  border-start-end-radius: 50rem !important;
 }
 
 // ####################################################################
