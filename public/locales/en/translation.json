@@ -672,10 +672,11 @@
 		"title": "Rides to complete"
 	},
 	"signUp": {
+		"ageWarning": "You must be at least 18 to use Tucána",
 		"agreement": "I agree with the <2>terms & conditions</2> and the <6>privacy policy</6>",
 		"newsletter": "I agree to receive casual newsletter (no spam)",
 		"paragraphInfo": "The information you are providing will be checked later by a moderator. Please make sure they are the most accurate possible.",
-		"subTitle": "Sign up to access the platform"
+		"subTitle": "Everything starts here for all your travels across Costa Rica"
 	},
 	"signUpSuccess": {
 		"subTitle": "Welcome to our platform 🎉",

@@ -1,15 +1,30 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Container, Form, Row, Col, Button, Alert } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Row,
+  Col,
+  Button,
+  Alert,
+  InputGroup,
+} from "react-bootstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { Trans, useTranslation } from "react-i18next";
 
 import { registerUser, setToast, resendConfirmationLink } from "../../redux";
+import { getYearsDiff } from "../../helpers";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import EyePassword from "../../components/EyePassword";
+import {
+  FeedPersonIcon,
+  KeyIcon,
+  MentionIcon,
+  PersonIcon,
+} from "@primer/octicons-react";
 
 require("yup-password")(Yup); // extend yup
 
@@ -51,6 +66,21 @@ const SignUp = () => {
       .email(t("translation:global.errors.validEmail"))
       .required(labelRequiredField),
 
+    birthDay: Yup.number()
+      .min(1, "1 - 31")
+      .max(31, "1 - 31")
+      .required(labelRequiredField),
+
+    birthMonth: Yup.number()
+      .min(1, "1 - 12")
+      .max(12, "1 - 12")
+      .required(labelRequiredField),
+
+    birthYear: Yup.number()
+      .min(1900, t("translation:global.errors.validYear"))
+      .max(new Date().getFullYear(), `${t("translation:global.year")}`)
+      .required(labelRequiredField),
+
     username: Yup.string(labelStringField)
       .min(4, t("translation:global.errors.min4characters"))
       .max(20, t("translation:global.errors.max20characters"))
@@ -75,16 +105,33 @@ const SignUp = () => {
   });
 
   const handleSubmit = (values, formikBag) => {
-    if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
-      values.phoneNumber = phoneNumber;
-      dispatch(registerUser(values));
-      formikBag.setSubmitting(false);
+    const { birthDay, birthMonth, birthYear } = values;
+
+    if (
+      getYearsDiff(new Date(birthYear, birthMonth - 1, birthDay), new Date()) >=
+      18
+    ) {
+      if (phoneNumber && isValidPhoneNumber(phoneNumber)) {
+        values.phoneNumber = phoneNumber;
+        dispatch(registerUser(values));
+        formikBag.setSubmitting(false);
+      } else {
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: t("translation:global.errors.validPhone"),
+            variant: "warning",
+          })
+        );
+        formikBag.setSubmitting(false);
+      }
     } else {
       dispatch(
         setToast({
           show: true,
           headerText: "Error",
-          bodyText: t("translation:global.errors.validPhone"),
+          bodyText: t("translation:signUp.ageWarning"),
           variant: "warning",
         })
       );
@@ -131,6 +178,9 @@ const SignUp = () => {
               phoneNumber: "",
               username: "",
               password: "",
+              birthDay: "",
+              birthMonth: "",
+              birthYear: "",
               checkTerms: false,
               checkNewsletter: false,
             }}
@@ -148,10 +198,14 @@ const SignUp = () => {
               <Form noValidate onSubmit={handleSubmit} ref={form}>
                 <Row>
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
-                    <Form.Group>
+                    <InputGroup>
+                      <InputGroup.Text className="pe-2">
+                        <PersonIcon size={18} />
+                      </InputGroup.Text>
                       <Form.Control
                         type="text"
                         name="firstName"
+                        className="border-end-pill"
                         placeholder={t("translation:global.firstName")}
                         onChange={handleChange}
                         isInvalid={!!errors.firstName}
@@ -161,14 +215,18 @@ const SignUp = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.firstName}
                       </Form.Control.Feedback>
-                    </Form.Group>
+                    </InputGroup>
                   </Col>
 
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
-                    <Form.Group>
+                    <InputGroup>
+                      <InputGroup.Text className="pe-2">
+                        <PersonIcon size={18} />
+                      </InputGroup.Text>
                       <Form.Control
                         type="text"
                         name="lastName"
+                        className="border-end-pill"
                         placeholder={t("translation:global.lastName")}
                         onChange={handleChange}
                         isInvalid={!!errors.lastName}
@@ -178,16 +236,20 @@ const SignUp = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.lastName}
                       </Form.Control.Feedback>
-                    </Form.Group>
+                    </InputGroup>
                   </Col>
                 </Row>
 
                 <Row>
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
-                    <Form.Group>
+                    <InputGroup>
+                      <InputGroup.Text className="pe-2">
+                        <MentionIcon size={18} />
+                      </InputGroup.Text>
                       <Form.Control
                         type="email"
                         name="email"
+                        className="border-end-pill"
                         placeholder={t("translation:global.email")}
                         onChange={handleChange}
                         isInvalid={!!errors.email}
@@ -197,7 +259,7 @@ const SignUp = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.email}
                       </Form.Control.Feedback>
-                    </Form.Group>
+                    </InputGroup>
                   </Col>
 
                   <Col xs={12} sm={6} className="mb-3 mb-md-4">
@@ -225,12 +287,16 @@ const SignUp = () => {
                 </Row>
 
                 <Row>
-                  <Col xs={12} sm={6} className="mb-3 mb-md-4">
-                    <Form.Group>
+                  <Col xs={12} sm={6} className="mb-3">
+                    <InputGroup>
+                      <InputGroup.Text className="pe-2">
+                        <FeedPersonIcon size={18} />
+                      </InputGroup.Text>
                       <Form.Control
                         type="text"
                         name="username"
                         placeholder={t("translation:global.username")}
+                        className="border-end-pill"
                         onChange={handleChange}
                         isInvalid={!!errors.username}
                         isValid={touched.username && !errors.username}
@@ -239,15 +305,19 @@ const SignUp = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.username}
                       </Form.Control.Feedback>
-                    </Form.Group>
+                    </InputGroup>
                   </Col>
 
-                  <Col xs={12} sm={6} className="mb-3">
-                    <Form.Group className="input-password mb-3">
+                  <Col xs={12} sm={6} className="mb-4">
+                    <InputGroup className="input-password">
+                      <InputGroup.Text className="pe-2">
+                        <KeyIcon size={18} />
+                      </InputGroup.Text>
                       <Form.Control
                         type={showPassword ? "text" : "password"}
                         name="password"
                         placeholder={t("translation:global.password")}
+                        className="border-end-pill"
                         onChange={handleChange}
                         isInvalid={!!errors.password}
                         isValid={touched.password && !errors.password}
@@ -265,7 +335,99 @@ const SignUp = () => {
                       <Form.Control.Feedback type="invalid">
                         {errors.password}
                       </Form.Control.Feedback>
+                    </InputGroup>
+                  </Col>
+                </Row>
+
+                <Row className="align-items-center">
+                  <Col xs={12}>
+                    <p className="h4 text-center ms-1">
+                      {t("translation:global.dateOfBirth")}{" "}
+                    </p>
+                  </Col>
+
+                  <Col xs={4} className="text-center">
+                    <Form.Group>
+                      <Form.Control
+                        type="number"
+                        id="1"
+                        name="birthDay"
+                        placeholder={t("translation:global.day")}
+                        min={1}
+                        max={31}
+                        value={values.birthDay}
+                        onChange={(e) => {
+                          return e.target.value.length <= 2
+                            ? handleChange(e)
+                            : null;
+                        }}
+                        maxLength={2}
+                        isInvalid={!!errors.birthDay}
+                        isValid={touched.birthDay && !errors.birthDay}
+                        disabled={isloadingSignup}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.birthDay}
+                      </Form.Control.Feedback>
                     </Form.Group>
+                  </Col>
+
+                  <Col xs={4} className="text-center">
+                    <Form.Group>
+                      <Form.Control
+                        type="number"
+                        id="2"
+                        name="birthMonth"
+                        placeholder={t("translation:global.month")}
+                        min={1}
+                        max={12}
+                        value={values.birthMonth}
+                        onChange={(e) => {
+                          return e.target.value.length <= 2
+                            ? handleChange(e)
+                            : null;
+                        }}
+                        isInvalid={!!errors.birthMonth}
+                        isValid={touched.birthMonth && !errors.birthMonth}
+                        disabled={isloadingSignup}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.birthMonth}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+
+                  <Col xs={4} className="text-center">
+                    <Form.Group>
+                      <Form.Control
+                        type="number"
+                        name="birthYear"
+                        placeholder={t("translation:global.year")}
+                        min={1900}
+                        max={new Date().getFullYear() - 17}
+                        value={values.birthYear}
+                        onChange={(e) => {
+                          return e.target.value.length <= 4
+                            ? handleChange(e)
+                            : null;
+                        }}
+                        isInvalid={!!errors.birthYear}
+                        isValid={touched.birthYear && !errors.birthYear}
+                        disabled={isloadingSignup}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.birthYear}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+
+                  <Col xs={12} className="text-center mt-2 mb-3 mb-md-4">
+                    <small className="text-secondary">
+                      {t("translation:signUp.ageWarning")}
+                    </small>
                   </Col>
                 </Row>
 
@@ -349,19 +511,18 @@ const SignUp = () => {
 
                 <Row>
                   <Col>
-                    <Form.Group className="text-end">
-                      <Button
-                        variant="success"
-                        size="lg"
-                        type="submit"
-                        disabled={isSubmitting || isloadingSignup}
-                      >
-                        {isSubmitting || isloadingSignup ? (
-                          <LoadingSpinner />
-                        ) : null}
-                        {t("translation:global.submit")}
-                      </Button>
-                    </Form.Group>
+                    <Button
+                      variant="success"
+                      size="lg"
+                      className="py-2 w-100"
+                      type="submit"
+                      disabled={isSubmitting || isloadingSignup}
+                    >
+                      {isSubmitting || isloadingSignup ? (
+                        <LoadingSpinner />
+                      ) : null}
+                      {t("translation:global.signUp")}
+                    </Button>
                   </Col>
                 </Row>
               </Form>

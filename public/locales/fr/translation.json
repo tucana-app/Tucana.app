@@ -228,7 +228,7 @@
 		"currentLanguage": "Français",
 		"date": "Date",
 		"dateOfBirth": "Date de naissance",
-		"day": "journée",
+		"day": "Jour",
 		"destination": "Destination",
 		"distance": "Distance",
 		"doNotShare": "Ne partage pas tes coordonnées (téléphone, e-mail, etc.), elles seront partagées au sein de la plateforme lors de la réservation.",
@@ -672,10 +672,11 @@
 		"title": "Trajets à compléter"
 	},
 	"signUp": {
+		"ageWarning": "Tu dois avoir au moins 18 ans pour utiliser Tucána",
 		"agreement": "J'accepte les <2>termes et conditions</2> et la <6>politique de confidentialité</6>",
 		"newsletter": "J'accepte de recevoir la newsletter occasionnelle (pas de spam)",
 		"paragraphInfo": "Les informations que tu fournis seront vérifiées ultérieurement par un modérateur. Assure toi qu'elles sont les plus précises possibles.",
-		"subTitle": "S'inscrire pour accéder à la plateforme"
+		"subTitle": "Tout commence ici pour tous tes voyages au Costa Rica."
 	},
 	"signUpSuccess": {
 		"subTitle": "Bienvenue sur notre plateforme 🎉",
