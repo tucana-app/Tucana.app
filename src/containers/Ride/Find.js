@@ -247,8 +247,7 @@ const Find = () => {
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
                                   {(
-                                    ride.distanceFromOrigin[index]
-                                      .distanceValue / 1000
+                                    ride.distanceFromOrigin.distanceValue / 1000
                                   ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceOrigin")}
@@ -283,8 +282,8 @@ const Find = () => {
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
                                   {(
-                                    ride.distanceFromDestination[index]
-                                      .distanceValue / 1000
+                                    ride.distanceFromDestination.distanceValue /
+                                    1000
                                   ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceDestination")}
