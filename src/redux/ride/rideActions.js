@@ -73,10 +73,6 @@ export const getDriverRidesFail = (error) => {
 export const setPublishOrigin = (origin) => {
   return (dispatch) => {
     dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
       type: rideTypes.SET_RIDE_ORIGIN,
       payload: origin,
     });
@@ -87,10 +83,6 @@ export const setPublishOrigin = (origin) => {
 export const resetPublishOrigin = () => {
   return (dispatch) => {
     dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
       type: rideTypes.RESET_RIDE_ORIGIN,
     });
   };
@@ -99,10 +91,6 @@ export const resetPublishOrigin = () => {
 // Set destination with Google Maps
 export const setPublishDestination = (destination) => {
   return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
     dispatch({
       type: rideTypes.SET_RIDE_DESTINATION,
       payload: destination,
@@ -113,10 +101,6 @@ export const setPublishDestination = (destination) => {
 // Reset origin
 export const resetPublishDestination = () => {
   return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
     dispatch({
       type: rideTypes.RESET_RIDE_DESTINATION,
     });
@@ -166,10 +150,6 @@ export const setRideComment = (comment) => {
 // Reset form
 export const resetFormPublishRide = () => {
   return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
     dispatch({
       type: rideTypes.RESET_FORM_PUBLISH_RIDE,
     });
@@ -474,10 +454,6 @@ export const getBookingFail = (error) => {
 export const setSearchOrigin = (origin) => {
   return (dispatch) => {
     dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
       type: rideTypes.SET_SEARCH_ORIGIN,
       payload: origin,
     });
@@ -488,10 +464,6 @@ export const setSearchOrigin = (origin) => {
 export const resetSearchOrigin = () => {
   return (dispatch) => {
     dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
-    dispatch({
       type: rideTypes.RESET_SEARCH_ORIGIN,
     });
   };
@@ -500,10 +472,6 @@ export const resetSearchOrigin = () => {
 // Set destination with Google Maps
 export const setSearchDestination = (destination) => {
   return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
     dispatch({
       type: rideTypes.SET_SEARCH_DESTINATION,
       payload: destination,
@@ -514,10 +482,6 @@ export const setSearchDestination = (destination) => {
 // Reset destination
 export const resetSearchDestination = () => {
   return (dispatch) => {
-    dispatch({
-      type: rideTypes.RESET_SEARCH,
-    });
-
     dispatch({
       type: rideTypes.RESET_SEARCH_DESTINATION,
     });
@@ -548,7 +512,7 @@ export const getFilteredRidesRequested = () => {
   };
 };
 
-export const getFilteredRides = (origin, destination, date) => {
+export const getFilteredRides = (origin, destination, date, seats) => {
   return (dispatch) => {
     dispatch(getFilteredRidesRequested());
 
@@ -563,13 +527,10 @@ export const getFilteredRides = (origin, destination, date) => {
       .get(URL_API + "/ride/filtered-rides", {
         headers: authHeader(),
         params: {
-          originProvince: origin.province,
-          originLat: origin.latLng.lat,
-          originLng: origin.latLng.lng,
-          destinationProvince: destination.province,
-          destinationLat: destination.latLng.lat,
-          destinationLng: destination.latLng.lng,
+          origin,
+          destination,
           date: convertedDate,
+          seats,
         },
       })
       .then((response) => {
@@ -1275,21 +1236,6 @@ export const submitFormConfirmRideFail = (error) => {
   return {
     type: rideTypes.SUBMIT_FORM_CONFIRM_RIDE_FAIL,
     payload: error,
-  };
-};
-
-// Set location with Google Maps
-export const setLocation = (location) => {
-  return {
-    type: rideTypes.SET_LOCATION,
-    payload: location,
-  };
-};
-
-// Reset search
-export const resetSearch = () => {
-  return {
-    type: rideTypes.RESET_SEARCH,
   };
 };
 

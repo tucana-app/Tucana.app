@@ -43,8 +43,8 @@ function RideDetails({ ride }) {
             </Col>
             <Col xs={10}>
               <p className="line-height-md mb-1">
-                <strong>{ride.origin.city}, </strong>
-                <small>{ride.origin.province}</small>
+                <strong>{ride.origin.placeName}, </strong>
+                <small>{ride.origin.placeDetails}</small>
               </p>
               <p className="mb-2">
                 <ArrowDownIcon size={24} className="text-success" />
@@ -58,10 +58,10 @@ function RideDetails({ ride }) {
                 {dateFormat(ride.dateTimeDestination, "hh:MM TT")}
               </p>
             </Col>
-            <Col xs={7}>
+            <Col xs={10}>
               <p className="line-height-md mb-0">
-                <strong>{ride.destination.city}, </strong>
-                <small>{ride.destination.province}</small>
+                <strong>{ride.destination.placeName}, </strong>
+                <small>{ride.destination.placeDetails}</small>
               </p>
             </Col>
             <Col xs={3}></Col>

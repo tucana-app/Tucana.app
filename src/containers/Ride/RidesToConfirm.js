@@ -76,9 +76,9 @@ function RidesToConfirm() {
                           </Col>
                           <Col className="ps-0">
                             <p className="mb-0">
-                              {booking.Ride.origin.city}{" "}
+                              {booking.Ride.origin.placeName}{" "}
                               <ArrowRightIcon verticalAlign="middle" />{" "}
-                              {booking.Ride.destination.city}{" "}
+                              {booking.Ride.destination.placeName}{" "}
                             </p>
                             <small className="text-secondary">
                               {dateFormat(

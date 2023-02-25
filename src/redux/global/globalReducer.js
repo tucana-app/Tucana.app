@@ -94,6 +94,18 @@ const initialState = {
     "Volvo",
   ],
 
+  provincesCostaRica: [
+    "Alajuela",
+    "Cartago",
+    "Guanacaste",
+    "Heredia",
+    "Limón",
+    "Puntarenas",
+    "San José",
+  ],
+
+  countriesAvailable: ["Costa Rica"],
+
   pointsGrid: {
     READ_MESSAGE: { value: 1 },
     SEND_MESSAGE: { value: 2 },

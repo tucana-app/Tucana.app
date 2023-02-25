@@ -11,7 +11,11 @@ import {
 } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import dateFormat from "dateformat";
-import { XIcon, PersonIcon, ArrowRightIcon } from "@primer/octicons-react";
+import {
+  XCircleIcon,
+  PersonIcon,
+  ArrowRightIcon,
+} from "@primer/octicons-react";
 import { DashCircle, PlusCircle } from "react-bootstrap-icons";
 import DatePicker, { registerLocale } from "react-datepicker";
 import en from "date-fns/locale/en-US";
@@ -99,8 +103,8 @@ const FormSearchRides = () => {
   const handleSubmit = () => {
     if (
       formSearchRide.date !== "" &&
-      formSearchRide.origin.city !== "" &&
-      formSearchRide.destination.city !== "" &&
+      formSearchRide.origin.placeName !== "" &&
+      formSearchRide.destination.placeName !== "" &&
       formSearchRide.seats > 0
     ) {
       if (date < new Date().setHours(0, 0, 0, 0)) {
@@ -147,26 +151,28 @@ const FormSearchRides = () => {
         className="border border-2 border-bottom-0 pt-3 pb-2 px-3"
         style={{ borderRadius: "15px 15px 0px 0px" }}
       >
-        <Row className="mb-3">
+        <Row className="my-3">
           <Col>
-            <p className="mb-0">{t("translation:global.from")}:</p>
-            {formSearchRide.origin.city !== "" ? (
+            {formSearchRide.origin.placeName !== "" ? (
               <Container className="px-0">
                 <Row>
                   <Col xs={10} className="text-start pe-0">
                     <p className="mb-0">
-                      <strong>{formSearchRide.origin.city}</strong>,{" "}
-                      <small>{formSearchRide.origin.province}</small>
+                      <span className="text-secondary">
+                        {t("translation:global.from")}
+                      </span>{" "}
+                      <strong>{formSearchRide.origin.placeName}</strong>,{" "}
+                      <small>{formSearchRide.origin.placeDetails}</small>
                     </p>
                   </Col>
                   <Col xs={2} className="text-end ps-0">
                     <Button
                       size={"sm"}
                       onClick={handleEditOne}
-                      variant="outline-warning"
-                      className="p-0"
+                      variant="white"
+                      className="pe-0"
                     >
-                      <XIcon size={24} />
+                      <XCircleIcon size={24} />
                     </Button>
                   </Col>
                 </Row>
@@ -175,32 +181,35 @@ const FormSearchRides = () => {
               <InputSearchLocation
                 inputLocation="searchOrigin"
                 disabled={!!ridesToConfirmData.length}
+                placeholder={t("translation:global.from")}
               />
             )}
           </Col>
         </Row>
 
-        <Row className="mb-3">
+        <Row className="mb-2">
           <Col>
-            <p className="mb-0">{t("translation:global.to")}:</p>
             <>
-              {formSearchRide.destination.city !== "" ? (
+              {formSearchRide.destination.placeName !== "" ? (
                 <Container className="px-0">
                   <Row>
                     <Col xs={10} className="text-start pe-0">
                       <p className="mb-0">
-                        <strong>{formSearchRide.destination.city}</strong>,{" "}
-                        <small>{formSearchRide.destination.province}</small>
+                        <span className="text-secondary">
+                          {t("translation:global.to")}
+                        </span>{" "}
+                        <strong>{formSearchRide.destination.placeName}</strong>,{" "}
+                        <small>{formSearchRide.destination.placeDetails}</small>
                       </p>
                     </Col>
                     <Col xs={2} className="text-end ps-0">
                       <Button
                         size={"sm"}
                         onClick={handleEditTwo}
-                        variant="outline-warning"
-                        className="p-0"
+                        variant="white"
+                        className="pe-0"
                       >
-                        <XIcon size={24} />
+                        <XCircleIcon size={24} />
                       </Button>
                     </Col>
                   </Row>
@@ -209,6 +218,7 @@ const FormSearchRides = () => {
                 <InputSearchLocation
                   inputLocation="searchDestination"
                   disabled={!!ridesToConfirmData.length}
+                  placeholder={t("translation:global.to")}
                 />
               )}
             </>

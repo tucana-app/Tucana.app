@@ -75,10 +75,10 @@ const PastBookings = () => {
                       <Row className="align-items-center mx-2 my-1">
                         <Col xs={5} className="text-center">
                           <p className="fw-bold mb-0">
-                            {booking.Ride.origin.city}
+                            {booking.Ride.origin.placeName}
                           </p>
                           <p className="small mb-0">
-                            {booking.Ride.origin.province}
+                            {booking.Ride.origin.placeDetails}
                           </p>
                         </Col>
                         <Col xs={1} className="text-lowercase">
@@ -86,10 +86,10 @@ const PastBookings = () => {
                         </Col>
                         <Col xs={5} className="text-center">
                           <p className="fw-bold mb-0">
-                            {booking.Ride.destination.city}
+                            {booking.Ride.destination.placeName}
                           </p>
                           <p className="small mb-0">
-                            {booking.Ride.destination.province}
+                            {booking.Ride.destination.placeDetails}
                           </p>
                         </Col>
                         <Col xs={1}>

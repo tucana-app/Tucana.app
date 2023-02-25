@@ -1,30 +1,32 @@
 import React from "react";
 import { FormControl, ListGroup } from "react-bootstrap";
-// import { Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-// import { XIcon } from "@primer/octicons-react";
+import { XCircleIcon } from "@primer/octicons-react";
 
 import {
   setSearchOrigin,
   setSearchDestination,
   setPublishOrigin,
   setPublishDestination,
-  setToast,
 } from "../redux";
 
 function InputSearchLocation(props) {
-  const { inputLocation, disabled } = props;
+  const { inputLocation, disabled, placeholder } = props;
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { searchAddress, location } = useSelector((state) => state.ride);
+  const { searchAddress } = useSelector((state) => state.ride);
+  const { provincesCostaRica, countriesAvailable } = useSelector(
+    (state) => state.global
+  );
 
-  var { details, city, province } = "";
+  var { placeName, placeDetails, province, country, locationObject } = "";
 
   const {
     ready,
@@ -35,12 +37,21 @@ function InputSearchLocation(props) {
   } = usePlacesAutocomplete({
     requestOptions: {
       componentRestrictions: {
-        country: "cr",
+        country: ["cr"],
       },
-      types: ["geocode"],
     },
     debounce: 0,
   });
+
+  const findIndice = (array, str) => {
+    let indice = -1;
+    array.forEach((element, index) => {
+      if (str.includes(element)) {
+        indice = index;
+      }
+    });
+    return indice;
+  };
 
   const handleSubmit = () => {
     if (searchAddress !== "") {
@@ -48,130 +59,125 @@ function InputSearchLocation(props) {
     }
   };
 
-  // const handleReset = () => {
-  //   clearSuggestions();
-  //   setValue("");
-  // };
+  const handleReset = () => {
+    clearSuggestions();
+    setValue("");
+  };
 
   const handleInput = (e) => {
     // Update the keyword of the input element
     setValue(e.target.value);
   };
 
-  const handleSelect =
-    ({ description }) =>
-    () => {
-      // When user selects a place, we can replace the keyword without request data from API
-      // by setting the second parameter to "false"
-      setValue(description, false);
-      clearSuggestions();
+  const handleSelect = (suggestion) => () => {
+    // When user selects a place, we can replace the keyword without request data from API
+    // by setting the second parameter to "false"
+    setValue(suggestion.description, false);
+    setPlaceProvince(suggestion);
+    clearSuggestions();
 
-      // Get latitude and longitude via utility functions
-      getGeocode({ address: description })
-        .then((results) => {
-          details = results[0];
-          setCityProvince();
-          return getLatLng(results[0]);
-        })
-        .then((latLng) => {
-          switch (inputLocation) {
-            case "searchOrigin":
-              dispatch(
-                setSearchOrigin({
-                  city,
-                  province,
-                  address: description,
-                  details,
-                  latLng,
-                })
-              );
+    // Get latitude and longitude via utility functions
+    getGeocode({ address: suggestion.description })
+      .then((results) => {
+        locationObject = results[0];
+        return getLatLng(results[0]);
+      })
+      .then((latLng) => {
+        switch (inputLocation) {
+          case "searchOrigin":
+            dispatch(
+              setSearchOrigin({
+                placeName,
+                placeDetails,
+                province,
+                country,
+                address: suggestion.description,
+                locationObject,
+                latLng,
+              })
+            );
 
-              break;
+            break;
 
-            case "searchDestination":
-              dispatch(
-                setSearchDestination({
-                  city,
-                  province,
-                  address: description,
-                  details,
-                  latLng,
-                })
-              );
-              break;
+          case "searchDestination":
+            dispatch(
+              setSearchDestination({
+                placeName,
+                placeDetails,
+                province,
+                address: suggestion.description,
+                country,
+                locationObject,
+                latLng,
+              })
+            );
+            break;
 
-            case "publishOrigin":
-              dispatch(
-                setPublishOrigin({
-                  city,
-                  province,
-                  address: description,
-                  details,
-                  latLng,
-                })
-              );
-              break;
+          case "publishOrigin":
+            dispatch(
+              setPublishOrigin({
+                placeName,
+                placeDetails,
+                province,
+                address: suggestion.description,
+                country,
+                locationObject,
+                latLng,
+              })
+            );
+            break;
 
-            case "publishDestination":
-              dispatch(
-                setPublishDestination({
-                  city,
-                  province,
-                  address: description,
-                  details,
-                  latLng,
-                })
-              );
-              break;
+          case "publishDestination":
+            dispatch(
+              setPublishDestination({
+                placeName,
+                placeDetails,
+                province,
+                address: suggestion.description,
+                country,
+                locationObject,
+                latLng,
+              })
+            );
+            break;
 
-            default:
-              break;
-          }
-        })
-        .catch((error) => {
-          console.log("Error: ", error);
-        });
-    };
+          default:
+            break;
+        }
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
 
   // Set the city and the province
 
-  const setCityProvince = () => {
-    city = details.address_components.find((address) =>
-      address.types.find(
-        (type) =>
-          type === "neighborhood" ||
-          type === "locality" ||
-          type === "sublocality" ||
-          type === "route"
-      )
-    );
+  const setPlaceProvince = (suggestion) => {
+    placeName = suggestion.structured_formatting.main_text;
+    placeDetails = suggestion.structured_formatting.secondary_text;
 
-    // If the city is not found, we take the words from the
-    // address until the first coma
-    if (city === undefined) {
-      dispatch(
-        setToast({
-          show: true,
-          headerText: "Error",
-          bodyText: t("translation:global.errors.searchCity"),
-          variant: "warning",
-        })
-      );
+    province =
+      provincesCostaRica[
+        findIndice(
+          provincesCostaRica,
+          suggestion.structured_formatting.secondary_text
+        )
+      ];
 
-      city = location.address.slice(0, location.address.indexOf(","));
-    } else {
-      city = city.long_name;
+    if (!province) {
+      province = "Unknown";
     }
 
-    province = details.address_components.find((address) =>
-      address.types.find((type) => type === "administrative_area_level_1")
-    );
+    country =
+      countriesAvailable[
+        findIndice(
+          countriesAvailable,
+          suggestion.structured_formatting.secondary_text
+        )
+      ];
 
-    // Remove the term "Province"
-    if (province) {
-      province = province.long_name
-        .replace(" Province", "")
-        .replace("Provincia de ", "");
+    if (!country) {
+      country = "Unknown";
     }
   };
 
@@ -184,52 +190,59 @@ function InputSearchLocation(props) {
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
 
-      let isCity = suggestion.types.find(
-        (type) =>
-          type === "neighborhood" ||
-          type === "locality" ||
-          type === "sublocality" ||
-          type === "route"
+      return (
+        <ListGroup.Item
+          action
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+          className="py-1"
+          style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+        >
+          <p className="text-nowrap mb-0">
+            <small className="fw-bold">{main_text}</small>
+          </p>
+          <small className="text-nowrap text-secondary ">
+            {secondary_text}
+          </small>
+        </ListGroup.Item>
       );
-
-      if (isCity) {
-        return (
-          <ListGroup.Item
-            action
-            key={place_id}
-            onClick={handleSelect(suggestion)}
-          >
-            <strong>{main_text}</strong>{" "}
-            <small>{secondary_text.replace(", Costa Rica", "")}</small>
-          </ListGroup.Item>
-        );
-      } else {
-        return null;
-      }
     });
 
   return (
     <>
-      <div className="d-inline-flex w-100">
-        <FormControl
-          value={value}
-          onChange={handleInput}
-          disabled={!ready || disabled}
-          placeholder={t("translation:inputSearchLocation.searchCity")}
-          required
-          aria-label={t("translation:global.search")}
-          onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
-        />
-        {/* <Button onClick={handleReset} variant="white" className="px-0 ms-1">
-          <XIcon size={24} />
-        </Button> */}
-      </div>
+      <div className="position-relative">
+        <div className="input-city">
+          <FormControl
+            value={value}
+            onChange={handleInput}
+            disabled={!ready || disabled}
+            placeholder={
+              placeholder || t("translation:inputSearchLocation.searchCity")
+            }
+            required
+            aria-label={t("translation:global.search")}
+            onKeyPress={(event) => event.key === "Enter" && handleSubmit()}
+          />
+          {status === "OK" ? (
+            <Button
+              onClick={handleReset}
+              variant="white"
+              className="btn-reset pt-0 px-3"
+            >
+              <XCircleIcon size={18} />
+            </Button>
+          ) : null}
+        </div>
 
-      {status === "OK" ? (
-        <ListGroup className="bg-white position-absolute">
-          {renderSuggestions()}
-        </ListGroup>
-      ) : null}
+        {status === "OK" ? (
+          <ListGroup
+            className="bg-white position-absolute w-100"
+            style={{ zIndex: 1 }}
+          >
+            {renderSuggestions()}
+          </ListGroup>
+        ) : null}
+      </div>
     </>
   );
 }

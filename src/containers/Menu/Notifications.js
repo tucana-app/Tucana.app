@@ -105,10 +105,12 @@ const Notifications = () => {
                   {dateFormat(request.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
                 {t("translation:global.ride")}:{" "}
-                <span className="text-success">{request.Ride.origin.city}</span>{" "}
+                <span className="text-success">
+                  {request.Ride.origin.placeName}
+                </span>{" "}
                 {t("translation:global.to")}{" "}
                 <span className="text-success">
-                  {request.Ride.destination.city}
+                  {request.Ride.destination.placeName}
                 </span>{" "}
                 ({dateFormat(request.Ride.dateTimeOrigin, "dd/mm/yyyy")}) -{" "}
                 {t("translation:global.seat")}
@@ -151,10 +153,12 @@ const Notifications = () => {
                   {dateFormat(booking.createdAt, "dd/mm hh:MM TT")}
                 </small>{" "}
                 {t("translation:global.ride")}:{" "}
-                <span className="text-success">{booking.Ride.origin.city}</span>{" "}
+                <span className="text-success">
+                  {booking.Ride.origin.placeName}
+                </span>{" "}
                 {t("translation:global.to")}{" "}
                 <span className="text-success">
-                  {booking.Ride.destination.city}
+                  {booking.Ride.destination.placeName}
                 </span>{" "}
                 ({dateFormat(booking.Ride.dateTimeOrigin, "dd/mm/yyyy")}){" "}
                 <span>

@@ -131,13 +131,16 @@ const DriverBookings = () => {
                                     </strong>{" "}
                                     seat(s) from{" "}
                                     <strong>
-                                      {{ cityOrigin: booking.Ride.origin.city }}
+                                      {{
+                                        cityOrigin:
+                                          booking.Ride.origin.placeName,
+                                      }}
                                     </strong>{" "}
                                     to{" "}
                                     <strong>
                                       {{
                                         cityDestination:
-                                          booking.Ride.destination.city,
+                                          booking.Ride.destination.placeName,
                                       }}
                                     </strong>
                                   </Trans>
@@ -252,13 +255,16 @@ const DriverBookings = () => {
                                     </strong>{" "}
                                     seat(s) from{" "}
                                     <strong>
-                                      {{ cityOrigin: booking.Ride.origin.city }}
+                                      {{
+                                        cityOrigin:
+                                          booking.Ride.origin.placeName,
+                                      }}
                                     </strong>{" "}
                                     to{" "}
                                     <strong>
                                       {{
                                         cityDestination:
-                                          booking.Ride.destination.city,
+                                          booking.Ride.destination.placeName,
                                       }}
                                     </strong>
                                   </Trans>

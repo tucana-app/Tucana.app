@@ -112,10 +112,10 @@ const Bookings = () => {
                               <Row className="align-items-center mx-2 my-1">
                                 <Col xs={5} className="text-center">
                                   <p className="fw-bold mb-0">
-                                    {booking.Ride.origin.city}
+                                    {booking.Ride.origin.placeName}
                                   </p>
                                   <p className="small mb-0">
-                                    {booking.Ride.origin.province}
+                                    {booking.Ride.origin.placeDetails}
                                   </p>
                                 </Col>
                                 <Col xs={1} className="text-lowercase">
@@ -123,10 +123,10 @@ const Bookings = () => {
                                 </Col>
                                 <Col xs={5} className="text-center">
                                   <p className="fw-bold mb-0">
-                                    {booking.Ride.destination.city}
+                                    {booking.Ride.destination.placeName}
                                   </p>
                                   <p className="small mb-0">
-                                    {booking.Ride.destination.province}
+                                    {booking.Ride.destination.placeDetails}
                                   </p>
                                 </Col>
                                 <Col xs={1}>
@@ -148,7 +148,7 @@ const Bookings = () => {
 
                               <Col xs={6}>
                                 <p className="mb-0">
-                                  {t("translation:global.status")}:{" "}
+                                  {t("translation:global.booking")}:{" "}
                                   <span
                                     className={`text-${bookingStatusVariant(
                                       booking.BookingStatus.id
@@ -245,10 +245,10 @@ const Bookings = () => {
                             <Row className="align-items-center mx-2 my-1">
                               <Col xs={5} className="text-center">
                                 <p className="fw-bold mb-0">
-                                  {booking.Ride.origin.city}
+                                  {booking.Ride.origin.placeName}
                                 </p>
                                 <p className="small mb-0">
-                                  {booking.Ride.origin.province}
+                                  {booking.Ride.origin.placeDetails}
                                 </p>
                               </Col>
                               <Col xs={1} className="text-lowercase">
@@ -256,10 +256,10 @@ const Bookings = () => {
                               </Col>
                               <Col xs={5} className="text-center">
                                 <p className="fw-bold mb-0">
-                                  {booking.Ride.destination.city}
+                                  {booking.Ride.destination.placeName}
                                 </p>
                                 <p className="small mb-0">
-                                  {booking.Ride.destination.province}
+                                  {booking.Ride.destination.placeDetails}
                                 </p>
                               </Col>
                               <Col xs={1}>
@@ -281,7 +281,7 @@ const Bookings = () => {
 
                             <Col xs={6}>
                               <p className="mb-0">
-                                {t("translation:global.status")}:{" "}
+                                {t("translation:global.booking")}:{" "}
                                 <span
                                   className={`text-${bookingStatusVariant(
                                     booking.BookingStatus.id

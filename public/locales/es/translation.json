@@ -64,7 +64,8 @@
 		"driverReceives": "El conductor recibe",
 		"fees": "Gastos de reserva & IVA",
 		"forPassengers": "Para {{seats}} pasajero",
-		"seatsNeeded": "¿Cuántos asientos necesitas?"
+		"seatsNeeded": "¿Cuántos asientos necesitas?",
+		"success": "Su reserva ha sido enviada correctamente al conductor"
 	},
 	"booking": {
 		"rideDetails": "Detalles del viaje",

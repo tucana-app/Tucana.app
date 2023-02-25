@@ -137,9 +137,9 @@ const Find = () => {
                     </Col>
                     <Col>
                       <p className="small fw-bold mb-0">
-                        {formSearchRide.origin.city}{" "}
+                        {formSearchRide.origin.placeName}{" "}
                         <ArrowRightIcon size={24} className="text-success" />{" "}
-                        {formSearchRide.destination.city}
+                        {formSearchRide.destination.placeName}
                       </p>
                       <p className="small mb-0">
                         {dateFormat(formSearchRide.date, "dd/mm/yyyy")}
@@ -236,16 +236,18 @@ const Find = () => {
                             </Col>
                             <Col>
                               <p className="line-height-md mb-0">
-                                <strong>{ride.rideDetails.origin.city}</strong>,{" "}
+                                <strong>
+                                  {ride.rideDetails.origin.placeName}
+                                </strong>
+                                ,{" "}
                                 <small>
-                                  {ride.rideDetails.origin.province}
+                                  {ride.rideDetails.origin.placeDetails}
                                 </small>
                               </p>
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
                                   {(
-                                    ride.distanceFromOrigin[index]
-                                      .distanceValue / 1000
+                                    ride.distanceFromOrigin.distanceValue / 1000
                                   ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceOrigin")}
@@ -270,18 +272,18 @@ const Find = () => {
                             <Col>
                               <p className="line-height-md mb-0">
                                 <strong>
-                                  {ride.rideDetails.destination.city}
+                                  {ride.rideDetails.destination.placeName}
                                 </strong>
                                 ,{" "}
                                 <small>
-                                  {ride.rideDetails.destination.province}
+                                  {ride.rideDetails.destination.placeDetails}
                                 </small>
                               </p>
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
                                   {(
-                                    ride.distanceFromDestination[index]
-                                      .distanceValue / 1000
+                                    ride.distanceFromDestination.distanceValue /
+                                    1000
                                   ).toFixed(2)}
                                 </span>{" "}
                                 km {t("translation:find.distanceDestination")}
