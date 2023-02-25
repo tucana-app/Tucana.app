@@ -145,12 +145,14 @@ const NewRating = () => {
                               {t("translation:newRating.rideSummary")}
                             </p>
                             <p className="mb-0">
-                              <strong>{ratingToDoData.Ride.origin.city}</strong>{" "}
+                              <strong>
+                                {ratingToDoData.Ride.origin.placeName}
+                              </strong>{" "}
                               <span className="text-lowercase">
                                 {t("translation:global.to")}
                               </span>{" "}
                               <strong>
-                                {ratingToDoData.Ride.destination.city}
+                                {ratingToDoData.Ride.destination.placeName}
                               </strong>
                             </p>
                             <p className="mb-2">

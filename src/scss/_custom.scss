@@ -197,6 +197,18 @@ input[type="password"]:not(:placeholder-shown) {
   cursor: pointer;
 }
 
+.input-city {
+  position: relative;
+}
+
+.input-city .btn-reset {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
 // Remove X icon for marker on gMaps
 .gm-ui-hover-effect {
   display: none !important;

@@ -137,9 +137,9 @@ const Find = () => {
                     </Col>
                     <Col>
                       <p className="small fw-bold mb-0">
-                        {formSearchRide.origin.city}{" "}
+                        {formSearchRide.origin.placeName}{" "}
                         <ArrowRightIcon size={24} className="text-success" />{" "}
-                        {formSearchRide.destination.city}
+                        {formSearchRide.destination.placeName}
                       </p>
                       <p className="small mb-0">
                         {dateFormat(formSearchRide.date, "dd/mm/yyyy")}
@@ -236,9 +236,12 @@ const Find = () => {
                             </Col>
                             <Col>
                               <p className="line-height-md mb-0">
-                                <strong>{ride.rideDetails.origin.city}</strong>,{" "}
+                                <strong>
+                                  {ride.rideDetails.origin.placeName}
+                                </strong>
+                                ,{" "}
                                 <small>
-                                  {ride.rideDetails.origin.province}
+                                  {ride.rideDetails.origin.placeDetails}
                                 </small>
                               </p>
                               <small className="smaller text-secondary">
@@ -270,11 +273,11 @@ const Find = () => {
                             <Col>
                               <p className="line-height-md mb-0">
                                 <strong>
-                                  {ride.rideDetails.destination.city}
+                                  {ride.rideDetails.destination.placeName}
                                 </strong>
                                 ,{" "}
                                 <small>
-                                  {ride.rideDetails.destination.province}
+                                  {ride.rideDetails.destination.placeDetails}
                                 </small>
                               </p>
                               <small className="smaller text-secondary">

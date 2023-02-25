@@ -99,13 +99,13 @@ const Book = () => {
                   <Col className="text-center">
                     <p className="mb-0">
                       <span className="fw-bold">
-                        {rideData.ride.origin.city}{" "}
+                        {rideData.ride.origin.placeName}{" "}
                       </span>
                       <span className="text-lowercase">
                         {t("translation:global.to")}
                       </span>{" "}
                       <span className="fw-bold">
-                        {rideData.ride.destination.city}
+                        {rideData.ride.destination.placeName}
                       </span>
                     </p>
                     <p className="mb-0">

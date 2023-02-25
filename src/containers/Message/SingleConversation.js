@@ -156,11 +156,11 @@ const SingleConversation = ({ conversation }) => {
                 <Col className="d-inline-flex justify-content-between align-items-center">
                   <small>
                     {t("translation:global.ride")}:{" "}
-                    {conversation.Ride.origin.city}{" "}
+                    {conversation.Ride.origin.placeName}{" "}
                     <span className="text-lowercase">
                       {t("translation:global.to")}
                     </span>{" "}
-                    {conversation.Ride.destination.city} (
+                    {conversation.Ride.destination.placeName} (
                     {dateFormat(conversation.Ride.dateTimeOrigin, "dd/mm/yyyy")}
                     )
                   </small>

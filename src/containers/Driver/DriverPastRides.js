@@ -78,10 +78,10 @@ const DriverPastRides = () => {
                             <Row className="align-items-center mx-2 my-1">
                               <Col xs={5} className="text-center">
                                 <p className="fw-bold mb-0">
-                                  {ride.origin.city}
+                                  {ride.origin.placeName}
                                 </p>
                                 <p className="small mb-0">
-                                  {ride.origin.province}
+                                  {ride.origin.placeDetails}
                                 </p>
                               </Col>
                               <Col xs={1} className="text-lowercase">
@@ -89,10 +89,10 @@ const DriverPastRides = () => {
                               </Col>
                               <Col xs={5} className="text-center">
                                 <p className="fw-bold mb-0">
-                                  {ride.destination.city}
+                                  {ride.destination.placeName}
                                 </p>
                                 <p className="small mb-0">
-                                  {ride.destination.province}
+                                  {ride.destination.placeDetails}
                                 </p>
                               </Col>
                               <Col xs={1}>

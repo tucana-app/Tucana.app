@@ -404,37 +404,62 @@ const Publish = () => {
         stepOne ? (
           <>
             <Row className="mt-5 pt-3 mb-3">
-              <Col className="text-center">
+              <Col className="text-center mb-3">
                 <h2>{t("translation:publish.whereFrom")}</h2>
               </Col>
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {formPublishRide.origin.city !== "" ? (
+                {formPublishRide.origin.placeName !== "" ? (
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
-                        <h3 className="d-inline-flex align-items-center mb-0">
-                          {formPublishRide.origin.city}{" "}
-                          <small className="fw-light">
-                            , {formPublishRide.origin.province}
-                          </small>
+                        <h3 className="mb-0">
+                          {formPublishRide.origin.placeName}
                         </h3>
+                        <p>{formPublishRide.origin.placeDetails}</p>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="mb-3 mx-auto"
+                      >
+                        <Button
+                          variant="success"
+                          size="lg"
+                          className="py-2 w-100"
+                          type="submit"
+                          onClick={handleClickStepOne}
+                        >
+                          {t("translation:global.next")}
+                          <ArrowRightIcon size={24} className="ms-2" />
+                        </Button>
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={12} className="text-center">
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="mx-auto"
+                      >
                         <Button
-                          onClick={handleEditOrigin}
                           variant="warning"
-                          className="me-2"
+                          size="lg"
+                          className="py-2 w-100"
+                          type="submit"
+                          onClick={handleEditOrigin}
                         >
                           <PencilIcon size={24} className="me-2" />
                           {t("translation:global.edit")}
-                        </Button>
-                        <Button onClick={handleClickStepOne} variant="success">
-                          {t("translation:global.next")}
-                          <ArrowRightIcon size={24} className="ms-2" />
                         </Button>
                       </Col>
                     </Row>
@@ -450,55 +475,77 @@ const Publish = () => {
             {backButton(handleBackToStepOne)}
 
             <Row className="mb-3">
-              <Col className="text-center">
+              <Col className="text-center mb-3">
                 <h2>{t("translation:publish.whereTo")}</h2>
               </Col>
             </Row>
             <Row>
               <Col xs={10} md={8} lg={6} xl={4} className="mx-auto">
-                {formPublishRide.destination.city !== "" ? (
+                {formPublishRide.destination.placeName !== "" ? (
                   <Container className="px-0">
                     <Row className="mb-3">
                       <Col xs={12} className="text-center">
-                        <h3 className="d-inline-flex align-items-center mb-0">
-                          {formPublishRide.destination.city}{" "}
-                          <small className="fw-light">
-                            , {formPublishRide.destination.province}
-                          </small>
+                        <h3 className="mb-0">
+                          {formPublishRide.destination.placeName}
                         </h3>
+                        <p>{formPublishRide.destination.placeDetails}</p>
                       </Col>
                     </Row>
-                    {formPublishRide.destination.city ===
-                      formPublishRide.origin.city &&
-                    formPublishRide.destination.province ===
-                      formPublishRide.origin.province ? (
+                    {formPublishRide.destination.placeName ===
+                      formPublishRide.origin.placeName &&
+                    formPublishRide.destination.placeDetails ===
+                      formPublishRide.origin.placeDetails ? (
                       <p className="text-danger">
                         <AlertIcon size="24" className="me-2" />
                         {t("translation:global.errors.samePlaces")}
                       </p>
                     ) : null}
+
                     <Row>
-                      <Col xs={12} className="text-center">
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="mb-3 mx-auto"
+                      >
                         <Button
-                          onClick={handleEditDestination}
-                          variant="warning"
-                          className="me-2"
-                        >
-                          <PencilIcon size={24} className="me-2" />
-                          {t("translation:global.edit")}
-                        </Button>
-                        <Button
-                          onClick={handleClickStepTwo}
                           variant="success"
+                          size="lg"
+                          className="py-2 w-100"
+                          type="submit"
+                          onClick={handleClickStepTwo}
                           disabled={
-                            formPublishRide.destination.city ===
-                              formPublishRide.origin.city &&
-                            formPublishRide.destination.province ===
-                              formPublishRide.origin.province
+                            formPublishRide.destination.placeName ===
+                              formPublishRide.origin.placeName &&
+                            formPublishRide.destination.placeDetails ===
+                              formPublishRide.origin.placeDetails
                           }
                         >
                           {t("translation:global.next")}
                           <ArrowRightIcon size={24} className="ms-2" />
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="mx-auto"
+                      >
+                        <Button
+                          variant="warning"
+                          size="lg"
+                          className="py-2 w-100"
+                          type="submit"
+                          onClick={handleEditDestination}
+                        >
+                          <PencilIcon size={24} className="me-2" />
+                          {t("translation:global.edit")}
                         </Button>
                       </Col>
                     </Row>
@@ -532,9 +579,22 @@ const Publish = () => {
               </Col>
             </Row>
 
-            <Row className="mt-5">
-              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
-                <Button onClick={handleClickStepThree} variant="success">
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="mt-5 mx-auto"
+              >
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="py-2 w-100"
+                  type="submit"
+                  onClick={handleClickStepThree}
+                >
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
@@ -562,9 +622,22 @@ const Publish = () => {
               </Col>
             </Row>
 
-            <Row className="mt-5">
-              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
-                <Button onClick={handleClickStepFour} variant="success">
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="mt-5 mx-auto"
+              >
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="py-2 w-100"
+                  type="submit"
+                  onClick={handleClickStepFour}
+                >
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
@@ -642,9 +715,22 @@ const Publish = () => {
               </Col>
             </Row>
 
-            <Row className="mt-5">
-              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
-                <Button onClick={handleClickStepFive} variant="success">
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="mt-5 mx-auto"
+              >
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="py-2 w-100"
+                  type="submit"
+                  onClick={handleClickStepFive}
+                >
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
@@ -733,9 +819,22 @@ const Publish = () => {
               </Col>
             </Row>
 
-            <Row className="mt-5">
-              <Col xs={12} sm={6} md={4} className="text-end mx-auto">
-                <Button onClick={handleClickStepSix} variant="success">
+            <Row>
+              <Col
+                xs={12}
+                sm={10}
+                md={8}
+                lg={6}
+                xl={4}
+                className="mt-5 mx-auto"
+              >
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="py-2 w-100"
+                  type="submit"
+                  onClick={handleClickStepSix}
+                >
                   {t("translation:global.next")}
                   <ArrowRightIcon size={24} className="ms-2" />
                 </Button>
@@ -783,10 +882,10 @@ const Publish = () => {
                           {formatTimeSecond(getETAData.durationValue)}
                         </p>
                       </Col>
-                      <Col xs={8}>
+                      <Col xs={10}>
                         <p className="line-height-md mb-1">
-                          <strong>{formPublishRide.origin.city}, </strong>
-                          <small>{formPublishRide.origin.province}</small>
+                          <strong>{formPublishRide.origin.placeName}, </strong>
+                          <small>{formPublishRide.origin.placeDetails}</small>
                         </p>
                         <p className="mb-2">
                           <ArrowDownIcon size={24} className="text-success" />
@@ -799,13 +898,16 @@ const Publish = () => {
                           {dateFormat(timeDestination.current, "HH:MM TT")}
                         </p>
                       </Col>
-                      <Col xs={7}>
+                      <Col xs={10}>
                         <p className="line-height-md mb-0">
-                          <strong>{formPublishRide.destination.city}, </strong>
-                          <small>{formPublishRide.destination.province}</small>
+                          <strong>
+                            {formPublishRide.destination.placeName},{" "}
+                          </strong>
+                          <small>
+                            {formPublishRide.destination.placeDetails}
+                          </small>
                         </p>
                       </Col>
-                      <Col xs={3}></Col>
                     </Row>
                     <hr />
                     <Row className="align-items-center">
@@ -968,17 +1070,24 @@ const Publish = () => {
                 </Col>
               </Row>
 
-              <Row className="mb-3 mx-1 mx-sm-0">
+              <Row>
                 <Col
                   xs={12}
                   sm={10}
                   md={8}
                   lg={6}
                   xl={4}
-                  className="text-end mx-auto"
+                  className="mt-2 mb-4 mx-auto"
                 >
-                  <Button onClick={handleSubmit} size={"lg"} variant="success">
+                  <Button
+                    variant="success"
+                    size="lg"
+                    className="py-2 w-100"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
                     {t("translation:global.submit")}
+                    <ArrowRightIcon size={24} className="ms-2" />
                   </Button>
                 </Col>
               </Row>

@@ -67,19 +67,23 @@ const initialState = {
 
   formPublishRide: {
     origin: {
-      city: "",
+      placeName: "",
+      placeDetails: "",
       province: "",
+      country: "",
       address: "",
       latLng: { lat: 0, lng: 0 },
-      details: {},
+      locationObject: {},
     },
 
     destination: {
-      city: "",
+      placeName: "",
+      placeDetails: "",
       province: "",
+      country: "",
       address: "",
       latLng: { lat: 0, lng: 0 },
-      details: {},
+      locationObject: {},
     },
     date: "",
     time: "",
@@ -92,19 +96,23 @@ const initialState = {
 
   formSearchRide: {
     origin: {
-      city: "",
+      placeName: "",
+      placeDetails: "",
       province: "",
+      country: "",
       address: "",
       latLng: { lat: 0, lng: 0 },
-      details: {},
+      locationObject: {},
     },
 
     destination: {
-      city: "",
+      placeName: "",
+      placeDetails: "",
       province: "",
+      country: "",
       address: "",
       latLng: { lat: 0, lng: 0 },
-      details: {},
+      locationObject: {},
     },
     date: "",
     seats: 1,
@@ -479,41 +487,19 @@ function rideReducer(state = initialState, action) {
         submitFormConfirmRideError: action.payload,
       };
 
-    case rideTypes.SET_LOCATION:
-      return {
-        ...state,
-        location: {
-          city: action.payload.city,
-          province: action.payload.province,
-          address: action.payload.address,
-          latLng: action.payload.latLng,
-          details: action.payload.details,
-        },
-      };
-
-    case rideTypes.RESET_SEARCH:
-      return {
-        ...state,
-        location: {
-          city: "",
-          province: "",
-          address: "",
-          latLng: { lat: 0, lng: 0 },
-          details: {},
-        },
-      };
-
     case rideTypes.SET_RIDE_ORIGIN:
       return {
         ...state,
         formPublishRide: {
           ...state.formPublishRide,
           origin: {
-            city: action.payload.city,
+            placeName: action.payload.placeName,
+            placeDetails: action.payload.placeDetails,
             province: action.payload.province,
+            country: action.payload.country,
             address: action.payload.address,
             latLng: action.payload.latLng,
-            details: action.payload.details,
+            locationObject: action.payload.locationObject,
           },
         },
       };
@@ -524,11 +510,13 @@ function rideReducer(state = initialState, action) {
         formPublishRide: {
           ...state.formPublishRide,
           origin: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
         },
       };
@@ -539,11 +527,13 @@ function rideReducer(state = initialState, action) {
         formPublishRide: {
           ...state.formPublishRide,
           destination: {
-            city: action.payload.city,
+            placeName: action.payload.placeName,
+            placeDetails: action.payload.placeDetails,
             province: action.payload.province,
+            country: action.payload.country,
             address: action.payload.address,
             latLng: action.payload.latLng,
-            details: action.payload.details,
+            locationObject: action.payload.locationObject,
           },
         },
       };
@@ -554,11 +544,13 @@ function rideReducer(state = initialState, action) {
         formPublishRide: {
           ...state.formPublishRide,
           destination: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
         },
       };
@@ -613,19 +605,23 @@ function rideReducer(state = initialState, action) {
         ...state,
         formPublishRide: {
           origin: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
 
           destination: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
           date: "",
           time: "",
@@ -643,11 +639,13 @@ function rideReducer(state = initialState, action) {
         formSearchRide: {
           ...state.formSearchRide,
           origin: {
-            city: action.payload.city,
+            placeName: action.payload.placeName,
+            placeDetails: action.payload.placeDetails,
             province: action.payload.province,
+            country: action.payload.country,
             address: action.payload.address,
             latLng: action.payload.latLng,
-            details: action.payload.details,
+            locationObject: action.payload.locationObject,
           },
         },
       };
@@ -658,11 +656,13 @@ function rideReducer(state = initialState, action) {
         formSearchRide: {
           ...state.formSearchRide,
           origin: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
         },
       };
@@ -673,11 +673,13 @@ function rideReducer(state = initialState, action) {
         formSearchRide: {
           ...state.formSearchRide,
           destination: {
-            city: action.payload.city,
+            placeName: action.payload.placeName,
+            placeDetails: action.payload.placeDetails,
             province: action.payload.province,
+            country: action.payload.country,
             address: action.payload.address,
             latLng: action.payload.latLng,
-            details: action.payload.details,
+            locationObject: action.payload.locationObject,
           },
         },
       };
@@ -688,11 +690,13 @@ function rideReducer(state = initialState, action) {
         formSearchRide: {
           ...state.formSearchRide,
           destination: {
-            city: "",
+            placeName: "",
+            placeDetails: "",
             province: "",
+            country: "",
             address: "",
             latLng: { lat: 0, lng: 0 },
-            details: {},
+            locationObject: {},
           },
         },
       };
