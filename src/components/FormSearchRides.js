@@ -148,7 +148,7 @@ const FormSearchRides = () => {
   return (
     <>
       <Container
-        className="border border-2 border-bottom-0 pt-3 pb-2 px-3"
+        className="bg-white border border-2 border-bottom-0 pt-3 pb-2 px-3"
         style={{ borderRadius: "15px 15px 0px 0px" }}
       >
         <Row className="my-3">

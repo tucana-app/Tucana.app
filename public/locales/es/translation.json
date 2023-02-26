@@ -181,8 +181,7 @@
 		"dayAfter": "El día siguiente",
 		"dayBefore": "El día anterior",
 		"distanceDestination": "de su dirección de llegada",
-		"distanceOrigin": "desde su dirección inicial",
-		"ridesOnline": "rides en linea"
+		"distanceOrigin": "desde su dirección inicial"
 	},
 	"formBookRide": {
 		"numberPassengers": "Número de pasajeros"
@@ -349,6 +348,7 @@
 		"returnLogin": "Volver a la <2>página de inicio de sesión</2>",
 		"ride": "Ride",
 		"rideOnline": "Su ride ya está en línea",
+		"ridesOnline": "rides en linea",
 		"riteve": "Riteve",
 		"search": "Busca en",
 		"searchResults": "Resultados de la búsqueda",
@@ -460,8 +460,7 @@
 		"title": "Estamos contratando"
 	},
 	"homepage": {
-		"catchPhrase": "Su compañero de viaje en Costa Rica",
-		"paragraph": "Bienvenido a Tucána, la mejor app para compartir coche en Costa Rica: una forma práctica y ecológica de viajar y conocer gente.",
+		"catchPhrase": "La primera app para hacer Ride en Costa Rica: una forma ecológica, práctica y económica de viajar y conocer gente.",
 		"start": "Comienza"
 	},
 	"howItWorks": {
@@ -646,6 +645,7 @@
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
 		"feedback": "Déjanos un comentario",
+		"logBefore": "Tienes que iniciar sesión para reservar este Ride",
 		"manageBookingRequests": "Gestione sus solicitudes de reserva",
 		"reviewRide": "Revisar el viaje",
 		"title": "Ride",

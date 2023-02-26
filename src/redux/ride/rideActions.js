@@ -1241,22 +1241,22 @@ export const submitFormConfirmRideFail = (error) => {
 
 // Get the number of rides online
 
-export const getNbRidesOnlineRequested = () => {
+export const getRidesOnlineRequested = () => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_REQUEST,
+    type: rideTypes.GET_RIDES_ONLINE_REQUEST,
   };
 };
 
-export const getNbRidesOnline = (username) => {
+export const getRidesOnline = (username) => {
   return (dispatch) => {
-    dispatch(getNbRidesOnlineRequested());
+    dispatch(getRidesOnlineRequested());
 
     axios
-      .get(URL_API + "/ride/nb-rides-online", { headers: authHeader() })
+      .get(URL_API + "/ride/rides-online", { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(getNbRidesOnlineSuccess(response.data));
+        dispatch(getRidesOnlineSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -1268,21 +1268,21 @@ export const getNbRidesOnline = (username) => {
           error.message ||
           error.toString();
 
-        dispatch(getNbRidesOnlineFail(message));
+        dispatch(getRidesOnlineFail(message));
       });
   };
 };
 
-export const getNbRidesOnlineSuccess = (data) => {
+export const getRidesOnlineSuccess = (data) => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_SUCCESS,
+    type: rideTypes.GET_RIDES_ONLINE_SUCCESS,
     payload: data,
   };
 };
 
-export const getNbRidesOnlineFail = (error) => {
+export const getRidesOnlineFail = (error) => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_FAIL,
+    type: rideTypes.GET_RIDES_ONLINE_FAIL,
     payload: error,
   };
 };

@@ -12,7 +12,6 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import MessageEmpty from "../../components/MessageEmpty";
 
 import { getDriverRides } from "../../redux";
-import { ChevronRight } from "react-bootstrap-icons";
 import { isDateInPast } from "../../helpers";
 
 const DriverRides = () => {
@@ -22,7 +21,6 @@ const DriverRides = () => {
   const { isLoadingDriverRides, driverRidesData } = useSelector(
     (state) => state.ride
   );
-  const { rideStatusVariant } = useSelector((state) => state.global);
 
   useEffect(() => {
     if (isLoggedIn && currentUser.Driver) {
@@ -80,33 +78,35 @@ const DriverRides = () => {
                           className="cursor-pointer"
                         >
                           <Container className="mt-1 px-0">
-                            <Row className="align-items-center mx-2 my-1">
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {ride.origin.placeName}
-                                </p>
-                                <p className="small mb-0">
-                                  {ride.origin.placeDetails}
-                                </p>
-                              </Col>
-                              <Col xs={1} className="text-lowercase">
-                                {t("translation:global.to")}
-                              </Col>
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {ride.destination.placeName}
-                                </p>
-                                <p className="small mb-0">
-                                  {ride.destination.placeDetails}
+                            <Row className="py-2">
+                              <Col xs={12}>
+                                <p className="line-height-md mb-1">
+                                  <DotFillIcon
+                                    size="18"
+                                    className="text-warning mb-1"
+                                    verticalAlign="middle"
+                                  />
+                                  <strong>{ride.origin.placeName}</strong>
+                                  <small>, {ride.origin.placeDetails}</small>
                                 </p>
                               </Col>
-                              <Col xs={1}>
-                                <ChevronRight />
+                              <Col xs={12}>
+                                <p className="line-height-md mb-0">
+                                  <DotFillIcon
+                                    size="18"
+                                    className="text-success mb-1"
+                                    verticalAlign="middle"
+                                  />
+                                  <strong>{ride.destination.placeName}</strong>
+                                  <small>
+                                    , {ride.destination.placeDetails}
+                                  </small>
+                                </p>
                               </Col>
                             </Row>
 
-                            <Row className="text-center justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0 py-1">
-                              <Col>
+                            <Row className="justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0 py-1">
+                              <Col xs={6}>
                                 <p className="mb-0">
                                   {dateFormat(
                                     ride.dateTimeOrigin,
@@ -114,27 +114,12 @@ const DriverRides = () => {
                                   )}
                                 </p>
                               </Col>
-                              <Col>
-                                <small
-                                  className={`text-${rideStatusVariant(
-                                    ride.RideStatusId
-                                  )}`}
-                                >
-                                  <DotFillIcon
-                                    size="16"
-                                    verticalAlign="middle"
-                                  />
-                                  {t(
-                                    `translation:global.statuses.ride.${ride.RideStatus.id}`
-                                  )}
-                                </small>
-                              </Col>
-                              <Col>
+                              <Col xs={6} className="text-end">
                                 <p className="mb-0">
                                   {t("translation:global.seat")}
                                   {ride.seatsAvailable > 1 ? "s" : null}:{" "}
                                   <span className="text-success">
-                                    {ride.seatsLeft}
+                                    {ride.seatsAvailable - ride.seatsLeft}
                                   </span>
                                   /{ride.seatsAvailable}
                                 </p>

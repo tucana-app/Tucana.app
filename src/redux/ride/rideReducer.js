@@ -118,9 +118,9 @@ const initialState = {
     seats: 1,
   },
 
-  isloadingNbRidesOnline: false,
-  nbRidesOnlineData: "-",
-  nbRidesOnlineError: "",
+  isloadingRidesOnline: false,
+  ridesOnlineData: "-",
+  ridesOnlineError: "",
 };
 
 function rideReducer(state = initialState, action) {
@@ -720,26 +720,26 @@ function rideReducer(state = initialState, action) {
       };
 
     // Get the number of rides online
-    case rideTypes.GET_NB_RIDES_ONLINE_REQUEST:
+    case rideTypes.GET_RIDES_ONLINE_REQUEST:
       return {
         ...state,
-        isloadingNbRidesOnline: true,
+        isloadingRidesOnline: true,
       };
 
-    case rideTypes.GET_NB_RIDES_ONLINE_SUCCESS:
+    case rideTypes.GET_RIDES_ONLINE_SUCCESS:
       return {
         ...state,
-        isloadingNbRidesOnline: false,
-        nbRidesOnlineData: action.payload,
-        nbRidesOnlineError: "",
+        isloadingRidesOnline: false,
+        ridesOnlineData: action.payload,
+        ridesOnlineError: "",
       };
 
-    case rideTypes.GET_NB_RIDES_ONLINE_FAIL:
+    case rideTypes.GET_RIDES_ONLINE_FAIL:
       return {
         ...state,
-        isloadingNbRidesOnline: false,
-        nbRidesOnlineData: "-",
-        nbRidesOnlineError: action.payload,
+        isloadingRidesOnline: false,
+        ridesOnlineData: "",
+        ridesOnlineError: action.payload,
       };
 
     default:

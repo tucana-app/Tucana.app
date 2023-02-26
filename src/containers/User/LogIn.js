@@ -676,6 +676,7 @@ const Login = () => {
                             <Form.Control
                               type="text"
                               name="credential"
+                              size="lg"
                               placeholder={t("translation:logIn.credential")}
                               onChange={handleChange}
                               isInvalid={!!errors.credential}
@@ -689,11 +690,12 @@ const Login = () => {
                         </Col>
 
                         <Col xs={12} className="mb-2">
-                          <Form.Group className="input-password">
+                          <Form.Group className="input-password-lg">
                             <Form.Control
                               type={showPassword ? "text" : "password"}
                               name="password"
                               placeholder={t("translation:global.password")}
+                              size="lg"
                               onChange={handleChange}
                               isInvalid={!!errors.password}
                               isValid={touched.password && !errors.password}
@@ -714,8 +716,11 @@ const Login = () => {
                           </Form.Group>
                         </Col>
 
-                        <Col className="text-end mb-3 mb-md-4">
-                          <Link to="/forgot-password" className="text-end">
+                        <Col className="text-end mb-5">
+                          <Link
+                            to="/forgot-password"
+                            className="link-secondary"
+                          >
                             {t("translation:logIn.forgotPassword")}
                           </Link>
                         </Col>
@@ -747,33 +752,37 @@ const Login = () => {
                         ) : null
                       ) : null}
 
+                      <Row className="mb-3">
+                        <Col>
+                          <Button
+                            variant="success"
+                            size="lg"
+                            className="py-2 w-100"
+                            type="submit"
+                            disabled={isSubmitting || isloadingLogin}
+                          >
+                            {isSubmitting || isloadingLogin ? (
+                              <span className="mx-2">
+                                <LoadingSpinner />
+                              </span>
+                            ) : (
+                              <span> {t("translation:global.logIn")}</span>
+                            )}
+                          </Button>
+                        </Col>
+                      </Row>
                       <Row>
-                        <Col className="d-inline-flex justify-content-end">
+                        <Col>
                           <LinkContainer to="/signup">
                             <Button
                               variant="outline-success"
-                              className="me-5"
                               size="lg"
+                              className="py-2 w-100"
+                              disabled={isSubmitting || isloadingLogin}
                             >
                               {t("translation:global.signUp")}
                             </Button>
                           </LinkContainer>
-                          <Form.Group>
-                            <Button
-                              variant="success"
-                              size="lg"
-                              type="submit"
-                              disabled={isSubmitting || isloadingLogin}
-                            >
-                              {isSubmitting || isloadingLogin ? (
-                                <span className="mx-2">
-                                  <LoadingSpinner />
-                                </span>
-                              ) : (
-                                <span> {t("translation:global.logIn")}</span>
-                              )}
-                            </Button>
-                          </Form.Group>
                         </Col>
                       </Row>
                     </Form>

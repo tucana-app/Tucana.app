@@ -15,6 +15,7 @@ import none from "../../assets/images/avatars/default.svg";
 import gold from "../../assets/images/filters/gold.png";
 import selected from "../../assets/images/filters/filter-select.png";
 import transparent from "../../assets/images/filters/transparent.png";
+import driver from "../../assets/images/filters/filter-driver.png";
 
 const initialState = {
   labelStringField: "Only letters and numbers allowed",
@@ -169,6 +170,9 @@ const initialState = {
 
       case "selected":
         return selected;
+
+      case "driver":
+        return driver;
 
       case null:
         return transparent;

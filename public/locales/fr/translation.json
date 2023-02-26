@@ -181,8 +181,7 @@
 		"dayAfter": "Lendemain",
 		"dayBefore": "La veille",
 		"distanceDestination": "à partir de votre adresse d'arrivée",
-		"distanceOrigin": "à partir de votre adresse de départ",
-		"ridesOnline": "trajets en ligne"
+		"distanceOrigin": "à partir de votre adresse de départ"
 	},
 	"formBookRide": {
 		"numberPassengers": "Nombre de passagers"
@@ -349,6 +348,7 @@
 		"returnLogin": "Retourner à la <2>page de connexion</2>.",
 		"ride": "Ride",
 		"rideOnline": "Ton trajet est maintenant en ligne.",
+		"ridesOnline": "trajets en ligne",
 		"riteve": "Riteve (contrôle technique)",
 		"search": "Rechercher",
 		"searchResults": "Résultats de la recherche",
@@ -460,8 +460,7 @@
 		"title": "Nous recrutons"
 	},
 	"homepage": {
-		"catchPhrase": "Ton compagnon pour tous tes voyages au Costa Rica",
-		"paragraph": "Bienvenue à Tucána, la meilleure application de covoiturage au Costa Rica : une façon pratique et écologique de voyager et de rencontrer des gens.",
+		"catchPhrase": "La première application de covoiturage au Costa Rica : Un moyen écologique, pratique et économique de voyager et de rencontrer des gens.",
 		"start": "Démarrer"
 	},
 	"howItWorks": {
@@ -646,6 +645,7 @@
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
 		"feedback": "Laisse-nous un commentaire",
+		"logBefore": "Tu dois être connecté pour réserver ce trajet",
 		"manageBookingRequests": "Gère tes demandes de réservation",
 		"reviewRide": "Revoir le trajet",
 		"title": "Trajet",

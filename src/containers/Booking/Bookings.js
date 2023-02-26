@@ -11,16 +11,13 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 import { getUserBookings } from "../../redux";
-import { ChevronRight } from "react-bootstrap-icons";
 import { isDateInPast } from "../../helpers";
 
 const Bookings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { bookingStatusVariant, rideStatusVariant } = useSelector(
-    (state) => state.global
-  );
+  const { bookingStatusVariant } = useSelector((state) => state.global);
   const { isLoadingUserBookings, userBookingsData } = useSelector(
     (state) => state.ride
   );
@@ -109,34 +106,42 @@ const Bookings = () => {
                               to={`/booking/${booking.id}`}
                               className="cursor-pointer"
                             >
-                              <Row className="align-items-center mx-2 my-1">
-                                <Col xs={5} className="text-center">
-                                  <p className="fw-bold mb-0">
-                                    {booking.Ride.origin.placeName}
-                                  </p>
-                                  <p className="small mb-0">
-                                    {booking.Ride.origin.placeDetails}
-                                  </p>
-                                </Col>
-                                <Col xs={1} className="text-lowercase">
-                                  {t("translation:global.to")}
-                                </Col>
-                                <Col xs={5} className="text-center">
-                                  <p className="fw-bold mb-0">
-                                    {booking.Ride.destination.placeName}
-                                  </p>
-                                  <p className="small mb-0">
-                                    {booking.Ride.destination.placeDetails}
+                              <Row className="py-2">
+                                <Col xs={12}>
+                                  <p className="line-height-md mb-1">
+                                    <DotFillIcon
+                                      size="18"
+                                      className="text-warning mb-1"
+                                      verticalAlign="middle"
+                                    />
+                                    <strong>
+                                      {booking.Ride.origin.placeName}
+                                    </strong>
+                                    <small>
+                                      , {booking.Ride.origin.placeDetails}
+                                    </small>
                                   </p>
                                 </Col>
-                                <Col xs={1}>
-                                  <ChevronRight />
+                                <Col xs={12}>
+                                  <p className="line-height-md mb-0">
+                                    <DotFillIcon
+                                      size="18"
+                                      className="text-success mb-1"
+                                      verticalAlign="middle"
+                                    />
+                                    <strong>
+                                      {booking.Ride.destination.placeName}
+                                    </strong>
+                                    <small>
+                                      , {booking.Ride.destination.placeDetails}
+                                    </small>
+                                  </p>
                                 </Col>
                               </Row>
                             </LinkContainer>
 
                             <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                              <Col xs={6}>
+                              <Col xs={4}>
                                 <p className="mb-0">
                                   {t("translation:global.seat")}
                                   {booking.seatsBooked > 1 ? "s" : null}:{" "}
@@ -146,7 +151,7 @@ const Bookings = () => {
                                 </p>
                               </Col>
 
-                              <Col xs={6}>
+                              <Col xs={8} className="text-end">
                                 <p className="mb-0">
                                   {t("translation:global.booking")}:{" "}
                                   <span
@@ -167,32 +172,13 @@ const Bookings = () => {
                             </Row>
 
                             <Row className="small text-secondary justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                              <Col xs={6}>
+                              <Col xs={12} className="text-start">
                                 <p className="mb-0">
                                   {t("translation:global.ride")}:{" "}
                                   {dateFormat(
                                     booking.Ride.dateTimeOrigin,
                                     "dd/mm/yyyy"
                                   )}
-                                </p>
-                              </Col>
-
-                              <Col xs={6}>
-                                <p className="mb-0">
-                                  {t("translation:global.status")}:{" "}
-                                  <span
-                                    className={`text-${rideStatusVariant(
-                                      booking.Ride.RideStatus.id
-                                    )}`}
-                                  >
-                                    <DotFillIcon
-                                      size="16"
-                                      verticalAlign="middle"
-                                    />
-                                    {t(
-                                      `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
-                                    )}
-                                  </span>
                                 </p>
                               </Col>
                             </Row>
@@ -242,34 +228,42 @@ const Bookings = () => {
                             to={`/booking/${booking.id}`}
                             className="cursor-pointer"
                           >
-                            <Row className="align-items-center mx-2 my-1">
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {booking.Ride.origin.placeName}
-                                </p>
-                                <p className="small mb-0">
-                                  {booking.Ride.origin.placeDetails}
-                                </p>
-                              </Col>
-                              <Col xs={1} className="text-lowercase">
-                                {t("translation:global.to")}
-                              </Col>
-                              <Col xs={5} className="text-center">
-                                <p className="fw-bold mb-0">
-                                  {booking.Ride.destination.placeName}
-                                </p>
-                                <p className="small mb-0">
-                                  {booking.Ride.destination.placeDetails}
+                            <Row className="p-2">
+                              <Col xs={12}>
+                                <p className="line-height-md mb-1">
+                                  <DotFillIcon
+                                    size="18"
+                                    className="text-success mb-1"
+                                    verticalAlign="middle"
+                                  />
+                                  <strong>
+                                    {booking.Ride.origin.placeName}
+                                  </strong>
+                                  <small>
+                                    , {booking.Ride.origin.placeDetails}
+                                  </small>
                                 </p>
                               </Col>
-                              <Col xs={1}>
-                                <ChevronRight />
+                              <Col xs={12}>
+                                <p className="line-height-md mb-0">
+                                  <DotFillIcon
+                                    size="18"
+                                    className="text-success mb-1"
+                                    verticalAlign="middle"
+                                  />
+                                  <strong>
+                                    {booking.Ride.destination.placeName}
+                                  </strong>
+                                  <small>
+                                    , {booking.Ride.destination.placeDetails}
+                                  </small>
+                                </p>
                               </Col>
                             </Row>
                           </LinkContainer>
 
                           <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                            <Col xs={6}>
+                            <Col xs={4}>
                               <p className="mb-0">
                                 {t("translation:global.seat")}
                                 {booking.seatsBooked > 1 ? "s" : null}:{" "}
@@ -279,7 +273,7 @@ const Bookings = () => {
                               </p>
                             </Col>
 
-                            <Col xs={6}>
+                            <Col xs={8} className="text-end">
                               <p className="mb-0">
                                 {t("translation:global.booking")}:{" "}
                                 <span
@@ -300,32 +294,13 @@ const Bookings = () => {
                           </Row>
 
                           <Row className="small text-secondary justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                            <Col xs={6}>
+                            <Col xs={12}>
                               <p className="mb-0">
                                 {t("translation:global.ride")}:{" "}
                                 {dateFormat(
                                   booking.Ride.dateTimeOrigin,
                                   "dd/mm/yyyy"
                                 )}
-                              </p>
-                            </Col>
-
-                            <Col xs={6}>
-                              <p className="mb-0">
-                                {t("translation:global.status")}:{" "}
-                                <span
-                                  className={`text-${rideStatusVariant(
-                                    booking.Ride.RideStatus.id
-                                  )}`}
-                                >
-                                  <DotFillIcon
-                                    size="16"
-                                    verticalAlign="middle"
-                                  />
-                                  {t(
-                                    `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
-                                  )}
-                                </span>
                               </p>
                             </Col>
                           </Row>

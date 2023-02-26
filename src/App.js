@@ -22,6 +22,7 @@ import SignUpSuccess from "./containers/User/SignUpSuccess";
 // Ride containers
 import ConfirmRide from "./containers/Ride/ConfirmRide";
 import Find from "./containers/Ride/Find";
+import SearchResults from "./containers/Ride/SearchResults";
 import Publish from "./containers/Ride/Publish";
 import Ride from "./containers/Ride/Ride";
 import Rides from "./containers/Ride/Rides";
@@ -320,6 +321,7 @@ function App() {
               {/* Other containers */}
               <Route exact path="/" component={Home} />
               <Route exact path="/find" component={Find} />
+              <Route exact path="/search-results" component={SearchResults} />
               <Route exact path="/menu" component={Menu} />
               <Route exact path="/coming-soon" component={ComingSoon} />
 

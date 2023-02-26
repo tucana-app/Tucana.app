@@ -43,17 +43,13 @@ const Ride = () => {
   } = useSelector((state) => state.ride);
 
   useEffect(() => {
+    dispatch(getRide(rideId));
     if (isLoggedIn) {
-      dispatch(getRide(rideId));
       dispatch(ridesToConfirm(currentUser.id));
       dispatch(getUserBookingsRide(currentUser.id, rideId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!isLoggedIn) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className="pb-3">
@@ -61,27 +57,27 @@ const Ride = () => {
         <GoBack />
       </span>
 
-      {/* currentUser.Driver &&
-        currentUser.Driver.id === rideData.ride.Driver.User.id ? null : */}
       {rideData.ride &&
       !isDateInPast(new Date(rideData.ride.dateTimeOrigin), new Date()) &&
       rideData.ride.seatsLeft > 0 ? (
-        currentUser.Driver &&
-        currentUser.Driver.id === rideData.ride.Driver.id ? null : (
-          <div className="book-button">
-            <Link to={`/book/${rideData.ride.id}`}>
-              <Button variant="success" size="lg">
-                {t("translation:global.bookThisRide")}
-              </Button>
-            </Link>
-            {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
-              <p className="smaller text-center text-warning mb-0">
-                <AlertIcon size={24} className="me-2" />
-                {t("translation:global.alreadyBooking")}
-              </p>
-            ) : null}
-          </div>
-        )
+        isLoggedIn ? (
+          currentUser.Driver &&
+          currentUser.Driver.id === rideData.ride.Driver.id ? null : (
+            <div className="book-button">
+              <Link to={`/book/${rideData.ride.id}`}>
+                <Button variant="success" size="lg">
+                  {t("translation:global.bookThisRide")}
+                </Button>
+              </Link>
+              {!isloadingUserRideBookings && userRideBookingsData.length > 0 ? (
+                <p className="smaller text-center text-warning mb-0">
+                  <AlertIcon size={24} className="me-2" />
+                  {t("translation:global.alreadyBooking")}
+                </p>
+              ) : null}
+            </div>
+          )
+        ) : null
       ) : null}
 
       <Container className="mb-5">
@@ -104,7 +100,8 @@ const Ride = () => {
             <RideDetails ride={rideData.ride} />
 
             {/* Display past booking for this ride by this user */}
-            {currentUser.Driver &&
+            {isLoggedIn &&
+            currentUser.Driver &&
             rideData.ride.DriverId === currentUser.Driver.id ? (
               <>
                 <Row className="mb-3 mx-1 mx-sm-0">
@@ -184,6 +181,66 @@ const Ride = () => {
               </>
             ) : (
               <>
+                {!isLoggedIn ? (
+                  <div className="mb-4">
+                    <Row>
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="text-center mx-auto"
+                      >
+                        <p className="fw-bold">
+                          {t("translation:ride.logBefore")}
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row className="mb-3">
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="text-center mx-auto"
+                      >
+                        <LinkContainer to="/login">
+                          <Button
+                            variant="success"
+                            size="lg"
+                            className="py-2 w-100"
+                            onClick={() => dispatch(displayNavBar(true))}
+                          >
+                            <span> {t("translation:global.logIn")}</span>
+                          </Button>
+                        </LinkContainer>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col
+                        xs={12}
+                        sm={10}
+                        md={8}
+                        lg={6}
+                        xl={4}
+                        className="text-center mx-auto"
+                      >
+                        <LinkContainer to="/signup">
+                          <Button
+                            variant="outline-success"
+                            size="lg"
+                            className="py-2 w-100"
+                            onClick={() => dispatch(displayNavBar(true))}
+                          >
+                            {t("translation:global.signUp")}
+                          </Button>
+                        </LinkContainer>
+                      </Col>
+                    </Row>
+                  </div>
+                ) : null}
                 <Row className="mb-3 mx-1 mx-sm-0">
                   <Col
                     xs={12}
@@ -224,19 +281,21 @@ const Ride = () => {
                           </Col>
                         </Row>
                       </LinkContainer>
-                      <Row>
-                        <Col>
-                          <hr />
-                          <SendMessageButton
-                            type="link"
-                            driverId={rideData.ride.DriverId}
-                            user={currentUser}
-                            receiverName={rideData.ride.Driver.User.firstName}
-                            rideId={rideData.ride.id}
-                          />
-                          <hr />
-                        </Col>
-                      </Row>
+                      <hr />
+                      {isLoadingRide ? (
+                        <Row>
+                          <Col>
+                            <SendMessageButton
+                              type="link"
+                              driverId={rideData.ride.DriverId}
+                              user={currentUser}
+                              receiverName={rideData.ride.Driver.User.firstName}
+                              rideId={rideData.ride.id}
+                            />
+                            <hr />
+                          </Col>
+                        </Row>
+                      ) : null}
                       <Row className="align-items-center my-0 py-0">
                         <Col xs={3} md={2} className="text-center pe-0">
                           <img src={car} alt="" height={30} />

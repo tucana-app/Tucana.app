@@ -181,8 +181,7 @@
 		"dayAfter": "1 day after",
 		"dayBefore": "1 day before",
 		"distanceDestination": "from your arrival address",
-		"distanceOrigin": "from your starting address",
-		"ridesOnline": "rides online"
+		"distanceOrigin": "from your starting address"
 	},
 	"formBookRide": {
 		"numberPassengers": "Number of passenger"
@@ -349,6 +348,7 @@
 		"returnLogin": "Return to the <2>login page</2>",
 		"ride": "Ride",
 		"rideOnline": "Your ride is now online",
+		"ridesOnline": "rides online",
 		"riteve": "Riteve (car inspection)",
 		"search": "Search",
 		"searchResults": "Search results",
@@ -460,8 +460,7 @@
 		"title": "We are hiring"
 	},
 	"homepage": {
-		"catchPhrase": "Your companion for all your travels in Costa Rica",
-		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
+		"catchPhrase": "The first carpooling app in Costa Rica: An ecological, practical, and economical way to travel and meet people.",
 		"start": "Start"
 	},
 	"howItWorks": {
@@ -646,6 +645,7 @@
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
 		"feedback": "Leave us a feedback",
+		"logBefore": "You need to be logged in to book this ride",
 		"manageBookingRequests": "Manage your booking requests",
 		"reviewRide": "Review the ride",
 		"title": "Ride",

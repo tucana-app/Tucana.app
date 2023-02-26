@@ -21,9 +21,7 @@ const DriverBookings = () => {
   const { isLoadingDriverBookings, driverBookingsData } = useSelector(
     (state) => state.ride
   );
-  const { bookingStatusVariant, rideStatusVariant } = useSelector(
-    (state) => state.global
-  );
+  const { bookingStatusVariant } = useSelector((state) => state.global);
 
   const countBookingsPending = (bookings) => {
     const bks = bookings.filter(
@@ -153,7 +151,7 @@ const DriverBookings = () => {
                           </Link>
 
                           <Row className="justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0">
-                            <Col className="ms-2">
+                            <Col xs={12} className="ms-2">
                               <small className="text-secondary mb-0">
                                 {t("translation:global.booking")}:
                               </small>
@@ -167,31 +165,6 @@ const DriverBookings = () => {
                                   `translation:global.statuses.booking.${booking.BookingStatus.id}`
                                 )}
                               </small>
-                            </Col>
-                            <Col>
-                              <Link
-                                to={`/ride/${booking.RideId}`}
-                                className="text-decoration-none text-black me-3"
-                              >
-                                <>
-                                  <small className="text-secondary mb-0">
-                                    {t("translation:global.ride")}:
-                                  </small>
-                                  <small
-                                    className={`text-${rideStatusVariant(
-                                      booking.Ride.RideStatusId
-                                    )}`}
-                                  >
-                                    <DotFillIcon
-                                      size="16"
-                                      verticalAlign="middle"
-                                    />
-                                    {t(
-                                      `translation:global.statuses.ride.${booking.Ride.RideStatus.id}`
-                                    )}
-                                  </small>{" "}
-                                </>
-                              </Link>
                             </Col>
                           </Row>
                         </Container>
@@ -232,7 +205,7 @@ const DriverBookings = () => {
                         md={8}
                         lg={6}
                         xl={4}
-                        className="border shadow-sm rounded mx-auto px-0 mb-2"
+                        className="container-box"
                       >
                         <Container className="mt-1 px-0">
                           <Link

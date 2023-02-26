@@ -1,69 +1,38 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Container, Row, Col, Button, Nav } from "react-bootstrap";
-import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon } from "@primer/octicons-react";
 
 // Importing assets
 import logo from "../assets/images/logo-full.png";
 
+import { getRidesOnline } from "../redux";
+import LoadingSpinner from "../components/LoadingSpinner";
+import FormSearchRides from "../components/FormSearchRides";
+
 function Home() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
+  const { isloadingRidesOnline, ridesOnlineData, isFormSearchRideSubmitted } =
+    useSelector((state) => state.ride);
 
-  if (isLoggedIn) {
-    return <Redirect to="/find" />;
+  useEffect(() => {
+    dispatch(getRidesOnline());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (isLoggedIn || isFormSearchRideSubmitted) {
+    return <Redirect to="/search-results" />;
   }
 
   return (
     <div className="container-homepage">
-      <Container className="overlay">
-        <Row>
-          <Nav className="justify-content-end align-items-center py-3 px-0 px-md-5">
-            <Nav.Item>
-              <IndexLinkContainer
-                to="/login"
-                href="/login"
-                className="link-light"
-              >
-                <Nav.Link className="text-center">
-                  <h3 className="fw-light mb-0">
-                    {t("translation:global.logIn")}
-                  </h3>
-                </Nav.Link>
-              </IndexLinkContainer>
-            </Nav.Item>
-            <Nav.Item>
-              <IndexLinkContainer
-                to="/signup"
-                href="/signup"
-                className="link-light"
-              >
-                <Nav.Link className="text-center">
-                  <h3 className="fw-light mb-0">
-                    {t("translation:global.signUp")}
-                  </h3>
-                </Nav.Link>
-              </IndexLinkContainer>
-            </Nav.Item>
-            <Nav.Item>
-              <a
-                href="https://fund.tucana.app"
-                target="_blank"
-                rel="noreferrer"
-                className="link-light nav-link text-decoration-none"
-              >
-                <h3 className="fw-light mb-0">
-                  {t("translation:global.about")}
-                </h3>
-              </a>
-            </Nav.Item>
-          </Nav>
-        </Row>
-        <Row className="justify-content-center align-content-center pt-5 pt-md-0 mt-5">
-          <Col md={2} />
+      <Container className="overlay pb-5">
+        <Row className="justify-content-center align-content-center pt-5 mb-5">
           <Col xs={12} md={4} className="text-center">
             <img
               src={logo}
@@ -71,33 +40,52 @@ function Home() {
               alt="Tucána logo"
               className="img-fluid"
             />
-            <p className="lead text-light mb-0">
-              {t("translation:global.slogan")}
+            <p className="text-light mb-0">
+              {t("translation:homepage.catchPhrase")}
             </p>
           </Col>
-          <Col
-            xs={12}
-            md={4}
-            className="d-flex align-items-center text-center mt-3 mt-md-0"
-          >
-            <h1 className="text-success">
-              {t("translation:homepage.catchPhrase")}
-            </h1>
-            {/* <p className="text-light mb-0">
-              {t("translation:homepage.paragraph")}
-            </p> */}
-          </Col>
-          <Col md={2} />
         </Row>
+
+        <Row>
+          <Col xs={12} className="text-center mx-auto mb-3">
+            <h1 className="text-success mb-0">
+              {t("translation:find.catchPhrase")}
+            </h1>
+          </Col>
+          <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
+            <FormSearchRides />
+          </Col>
+        </Row>
+
+        {isloadingRidesOnline ? (
+          <Row className="mt-3">
+            <Col className="text-center">
+              <LoadingSpinner />
+            </Col>
+          </Row>
+        ) : ridesOnlineData.count > 0 ? (
+          <Row className="mt-3">
+            <Col>
+              <p className="text-center text-white fw-bold mb-0">
+                {ridesOnlineData.count} {t("translation:global.ridesOnline")}
+              </p>
+            </Col>
+          </Row>
+        ) : null}
+
         <Row className="mt-3">
           <Col xs={12} className="text-center mx-auto">
             <p>
               <LinkContainer
-                to="/login"
-                href="/login"
+                to="/signup"
+                href="/signup"
                 className="hvr-icon-forward my-2"
               >
-                <Button variant="success" size="lg">
+                <Button
+                  variant="success"
+                  size="lg"
+                  className="border border-2 border-light px-4 py-2"
+                >
                   {t("translation:homepage.start")}
                   <ArrowRightIcon
                     size={24}
@@ -107,14 +95,6 @@ function Home() {
                 </Button>
               </LinkContainer>
             </p>
-
-            <LinkContainer
-              to="/how-it-works"
-              href="/how-it-works"
-              className="hvr-icon-forward link-light text-decoration-underline cursor-pointer my-2"
-            >
-              <span>{t("translation:global.howItWorks")}</span>
-            </LinkContainer>
           </Col>
         </Row>
       </Container>

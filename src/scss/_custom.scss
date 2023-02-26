@@ -192,8 +192,20 @@ input[type="password"]:not(:placeholder-shown) {
 .input-password .eye {
   position: absolute;
   right: 20px;
-  top: 4px;
   z-index: 1000;
+  top: 4px;
+  cursor: pointer;
+}
+
+.input-password-lg {
+  position: relative;
+}
+
+.input-password-lg .eye {
+  position: absolute;
+  right: 20px;
+  z-index: 1000;
+  top: 10px;
   cursor: pointer;
 }
 
