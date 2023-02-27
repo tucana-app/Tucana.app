@@ -32,7 +32,7 @@ function Home() {
   return (
     <div className="container-homepage">
       <Container className="overlay pb-5">
-        <Row className="justify-content-center align-content-center pt-5 mb-5">
+        <Row className="justify-content-center align-content-center pt-5">
           <Col xs={12} md={4} className="text-center">
             <img
               src={logo}
@@ -42,6 +42,45 @@ function Home() {
             />
             <p className="text-light mb-0">
               {t("translation:homepage.catchPhrase")}
+            </p>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-center my-4">
+          <Col xs={6} className="text-end mx-auto">
+            <p>
+              <LinkContainer
+                to="/how-it-work"
+                href="/how-it-work"
+                className="hvr-icon-forward"
+              >
+                <Button variant="dark" className="border-light px-4 py-2">
+                  {t("translation:homepage.learnMore")}
+                  <ArrowRightIcon
+                    size={24}
+                    verticalAlign="middle"
+                    className="hvr-icon mb-1 ms-2"
+                  />
+                </Button>
+              </LinkContainer>
+            </p>
+          </Col>
+          <Col xs={6} className="text-start mx-auto">
+            <p>
+              <LinkContainer
+                to="/signup"
+                href="/signup"
+                className="hvr-icon-forward"
+              >
+                <Button variant="success" className="border-light px-4 py-2">
+                  {t("translation:homepage.start")}
+                  <ArrowRightIcon
+                    size={24}
+                    verticalAlign="middle"
+                    className="hvr-icon mb-1 ms-2"
+                  />
+                </Button>
+              </LinkContainer>
             </p>
           </Col>
         </Row>
@@ -72,31 +111,6 @@ function Home() {
             </Col>
           </Row>
         ) : null}
-
-        <Row className="mt-3">
-          <Col xs={12} className="text-center mx-auto">
-            <p>
-              <LinkContainer
-                to="/signup"
-                href="/signup"
-                className="hvr-icon-forward my-2"
-              >
-                <Button
-                  variant="success"
-                  size="lg"
-                  className="border border-2 border-light px-4 py-2"
-                >
-                  {t("translation:homepage.start")}
-                  <ArrowRightIcon
-                    size={24}
-                    verticalAlign="middle"
-                    className="hvr-icon mb-1 ms-2"
-                  />
-                </Button>
-              </LinkContainer>
-            </p>
-          </Col>
-        </Row>
       </Container>
     </div>
   );

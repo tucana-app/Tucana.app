@@ -460,7 +460,8 @@
 		"title": "Nous recrutons"
 	},
 	"homepage": {
-		"catchPhrase": "La première application de covoiturage au Costa Rica : Un moyen écologique, pratique et économique de voyager et de rencontrer des gens.",
+		"catchPhrase": "La première appli de covoiturage au Costa Rica",
+		"learnMore": "Info",
 		"start": "Démarrer"
 	},
 	"howItWorks": {

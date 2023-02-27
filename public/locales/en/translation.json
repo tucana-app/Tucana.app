@@ -460,7 +460,8 @@
 		"title": "We are hiring"
 	},
 	"homepage": {
-		"catchPhrase": "The first carpooling app in Costa Rica: An ecological, practical, and economical way to travel and meet people.",
+		"catchPhrase": "The first carpooling app in Costa Rica",
+		"learnMore": "More",
 		"start": "Start"
 	},
 	"howItWorks": {

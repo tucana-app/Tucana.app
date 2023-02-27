@@ -460,7 +460,8 @@
 		"title": "Estamos contratando"
 	},
 	"homepage": {
-		"catchPhrase": "La primera app para hacer Ride en Costa Rica: una forma ecológica, práctica y económica de viajar y conocer gente.",
+		"catchPhrase": "La primera app de Ride en Costa Rica",
+		"learnMore": "Más",
 		"start": "Comienza"
 	},
 	"howItWorks": {
