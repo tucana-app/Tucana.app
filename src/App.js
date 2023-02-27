@@ -26,12 +26,14 @@ import SearchResults from "./containers/Ride/SearchResults";
 import Publish from "./containers/Ride/Publish";
 import Ride from "./containers/Ride/Ride";
 import Rides from "./containers/Ride/Rides";
+import CancelRide from "./containers/Ride/CancelRide";
 import RidesToConfirm from "./containers/Ride/RidesToConfirm";
 
 // Bookings containers
 import Booking from "./containers/Booking/Booking";
 import Bookings from "./containers/Booking/Bookings";
 import Book from "./containers/Booking/Book";
+import BookSuccess from "./containers/Booking/BookSuccess";
 import CancelBooking from "./containers/Booking/CancelBooking";
 import PastBookings from "./containers/Booking/PastBookings";
 
@@ -218,11 +220,17 @@ function App() {
                 path="/rides/rides-to-complete"
                 component={RidesToConfirm}
               />
+              <Route exact path="/ride/:rideId/cancel" component={CancelRide} />
 
               {/* Booking containers */}
               <Route exact path="/booking/:bookingId" component={Booking} />
               <Route exact path="/bookings" component={Bookings} />
               <Route exact path="/book/:rideId" component={Book} />
+              <Route
+                exact
+                path="/book/:rideId/book-success"
+                component={BookSuccess}
+              />
               <Route
                 exact
                 path="/booking/:bookingId/cancel"

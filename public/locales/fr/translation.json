@@ -247,6 +247,7 @@
 			"completeFirst": "Complète d'abord tes trajets",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
+			"errorBook": "Nous n'avons pas pu effectuer votre réservation pour le moment.",
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, contacte nous.",
 			"failUpdateBio": "Nous n'avons pas pu mettre à jour votre biographie pour le moment.",
@@ -645,10 +646,14 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
+		"cancelRide": "Annuler le trajet",
+		"editRide": "Modifier le trajet",
 		"feedback": "Laisse-nous un commentaire",
 		"logBefore": "Tu dois être connecté pour réserver ce trajet",
 		"manageBookingRequests": "Gère tes demandes de réservation",
+		"reasonCancel": "Explique en quelques mots pourquoi tu annules ce trajet",
 		"reviewRide": "Revoir le trajet",
+		"rideCancelled": "Votre trajet a été annulé avec succès",
 		"title": "Trajet",
 		"viewTrip": "Voir le voyage"
 	},

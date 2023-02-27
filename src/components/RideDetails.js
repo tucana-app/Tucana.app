@@ -121,7 +121,7 @@ function RideDetails({ ride }) {
               </div>
             </Col>
           </Row>
-          {!(ride.comment === "") ? (
+          {ride.comment ? (
             <Row>
               <Col>
                 <p className="mb-0">

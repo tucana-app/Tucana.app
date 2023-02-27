@@ -233,7 +233,7 @@ const Bookings = () => {
                                 <p className="line-height-md mb-1">
                                   <DotFillIcon
                                     size="18"
-                                    className="text-success mb-1"
+                                    className="text-warning mb-1"
                                     verticalAlign="middle"
                                   />
                                   <strong>

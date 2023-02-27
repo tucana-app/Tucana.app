@@ -247,6 +247,7 @@
 			"completeFirst": "Complete your rides first",
 			"dateFuture": "The date needs to be in the future",
 			"error": "Error",
+			"errorBook": "We couldn't make your booking at this time",
 			"errorFallback": "There has been an error.",
 			"errorPersist": "If the error persists, please contact us.",
 			"failUpdateBio": "We couldn't update your bio at this moment",
@@ -645,10 +646,14 @@
 	},
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
+		"cancelRide": "Cancel the ride",
+		"editRide": "Edit the ride",
 		"feedback": "Leave us a feedback",
 		"logBefore": "You need to be logged in to book this ride",
 		"manageBookingRequests": "Manage your booking requests",
+		"reasonCancel": "Please explain in a few word why you are canceling this ride",
 		"reviewRide": "Review the ride",
+		"rideCancelled": "Your ride has successfully been canceled",
 		"title": "Ride",
 		"viewTrip": "View trip"
 	},

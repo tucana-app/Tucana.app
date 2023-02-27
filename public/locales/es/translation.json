@@ -247,6 +247,7 @@
 			"completeFirst": "Completa tus rides primero",
 			"dateFuture": "La fecha tiene que ser en el futuro",
 			"error": "Error",
+			"errorBook": "No hemos podido realizar su reserva en este momento",
 			"errorFallback": "Se ha producido un error.",
 			"errorPersist": "Si el error persiste, póngase en contacto con nosotros.",
 			"failUpdateBio": "No hemos podido actualizar tu biografía en este momento",
@@ -645,10 +646,14 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Todas las plazas están reservadas",
+		"cancelRide": "Cancelar el Ride",
+		"editRide": "Editar el ride",
 		"feedback": "Déjanos un comentario",
 		"logBefore": "Tienes que iniciar sesión para reservar este Ride",
 		"manageBookingRequests": "Gestione sus solicitudes de reserva",
+		"reasonCancel": "Por favor, explique en pocas palabras por qué cancela este ride",
 		"reviewRide": "Revisar el viaje",
+		"rideCancelled": "Su ride ha sido cancelado con éxito",
 		"title": "Ride",
 		"viewTrip": "Ver viaje"
 	},

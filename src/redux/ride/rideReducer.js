@@ -22,7 +22,7 @@ const initialState = {
   filteredRidesError: "",
 
   isloadingBookingRide: false,
-  submitBookingRideSuccess: false,
+  submitBookingRideData: {},
   submitBookingRideError: "",
 
   isloadingSubmitFormDriverResponseBooking: false,
@@ -121,6 +121,10 @@ const initialState = {
   isloadingRidesOnline: false,
   ridesOnlineData: "-",
   ridesOnlineError: "",
+
+  isloadingCancelRide: false,
+  cancelRideSuccess: {},
+  cancelRideFail: "",
 };
 
 function rideReducer(state = initialState, action) {
@@ -275,7 +279,7 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isloadingBookingRide: false,
-        submitBookingRideSuccess: action.payload,
+        submitBookingRideData: action.payload,
         submitBookingRideError: "",
       };
 
@@ -283,8 +287,18 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isloadingBookingRide: false,
-        submitBookingRideSuccess: false,
+        submitBookingRideData: {},
         submitBookingRideError: action.payload,
+      };
+
+    case rideTypes.RESET_BOOK_RIDE:
+      return {
+        ...state,
+        isloadingBookingRide: false,
+        submitBookingRideData: {
+          ...state.submitBookingRideData,
+          flag: "",
+        },
       };
 
     case rideTypes.SUBMIT_FORM_DRIVER_RESPONSE_BOOKING_REQUEST:
@@ -740,6 +754,36 @@ function rideReducer(state = initialState, action) {
         isloadingRidesOnline: false,
         ridesOnlineData: "",
         ridesOnlineError: action.payload,
+      };
+
+    // Cancel a ride
+    case rideTypes.CANCEL_RIDE_REQUEST:
+      return {
+        ...state,
+        isloadingCancelRide: true,
+      };
+
+    case rideTypes.CANCEL_RIDE_SUCCESS:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: action.payload,
+        cancelRideFail: "",
+      };
+
+    case rideTypes.CANCEL_RIDE_FAIL:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: {},
+        cancelRideFail: action.payload,
+      };
+
+    case rideTypes.RESET_CANCEL_RIDE:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: {},
       };
 
     default:

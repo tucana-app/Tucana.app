@@ -4,7 +4,12 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { ChevronRightIcon, AlertIcon } from "@primer/octicons-react";
+import {
+  ChevronRightIcon,
+  AlertIcon,
+  XIcon,
+  PencilIcon,
+} from "@primer/octicons-react";
 
 import ManageDriverBooking from "../../components/ManageDriverBooking";
 import ManagePassengerBooking from "../../components/ManagePassengerBooking";
@@ -22,6 +27,7 @@ import {
   getUserBookingsRide,
   ridesToConfirm,
   displayNavBar,
+  resetCancelRide,
 } from "../../redux";
 
 import car from "../../assets/images/car.png";
@@ -40,6 +46,7 @@ const Ride = () => {
     rideError,
     isloadingUserRideBookings,
     userRideBookingsData,
+    cancelRideSuccess,
   } = useSelector((state) => state.ride);
 
   useEffect(() => {
@@ -50,6 +57,11 @@ const Ride = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // If ride canceled successfully
+  if (cancelRideSuccess.flag === "SUCCESS") {
+    dispatch(resetCancelRide());
+  }
 
   return (
     <div className="pb-3">
@@ -116,7 +128,7 @@ const Ride = () => {
                     <Container className="py-3 px-2">
                       <Row>
                         <Col>
-                          <p className="lead">
+                          <p className="fw-bold">
                             {t("translation:ride.manageBookingRequests")}
                           </p>
                         </Col>
@@ -130,7 +142,9 @@ const Ride = () => {
                 {!isDateInPast(
                   new Date(rideData.ride.dateTimeOrigin),
                   new Date()
-                ) && rideData.ride.seatsLeft === 0 ? (
+                ) &&
+                rideData.ride.seatsLeft === 0 &&
+                rideData.ride.RideStatusId < 4 ? (
                   <Row className="mb-4 mx-1 mx-sm-0">
                     <Col
                       xs={12}
@@ -142,7 +156,7 @@ const Ride = () => {
                     >
                       <Container fluid className="p-2">
                         <Row>
-                          <Col className="text-center ">
+                          <Col className="text-center">
                             <h1 className="text-success fw-light mb-0">
                               {t("translation:global.congratulations")}
                             </h1>
@@ -168,7 +182,7 @@ const Ride = () => {
                     <Container className="py-3 px-2">
                       <Row>
                         <Col>
-                          <p className="lead mb-0">
+                          <p className="fw-bold mb-0">
                             {t("translation:global.passengerDetails")}
                           </p>
                         </Col>
@@ -178,6 +192,63 @@ const Ride = () => {
                     </Container>
                   </Col>
                 </Row>
+
+                {!isDateInPast(
+                  new Date(rideData.ride.dateTimeOrigin),
+                  new Date()
+                ) && rideData.ride.RideStatusId < 4 ? (
+                  <Row className="mb-2 mx-1 mx-sm-0">
+                    <Col
+                      xs={12}
+                      sm={10}
+                      md={8}
+                      lg={6}
+                      xl={4}
+                      className="mx-auto"
+                    >
+                      <Container className="py-3 px-2">
+                        <Row>
+                          <Col xs={6} className="text-end ps-0">
+                            {/* <LinkContainer to={`/ride/${rideId}/edit`}> */}
+                            <LinkContainer to={`/coming-soon`}>
+                              <Button
+                                variant="outline-primary"
+                                className="w-100"
+                                onClick={() => dispatch(displayNavBar(true))}
+                              >
+                                <PencilIcon
+                                  size={18}
+                                  verticalAlign="middle"
+                                  className="mb-1"
+                                />{" "}
+                                <small>{t("translation:ride.editRide")}</small>
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+
+                          <Col xs={6} className="text-start pe-0">
+                            <LinkContainer to={`/ride/${rideId}/cancel`}>
+                              <Button
+                                variant="outline-danger"
+                                className="w-100"
+                                onClick={() => dispatch(displayNavBar(true))}
+                              >
+                                <XIcon
+                                  size={18}
+                                  verticalAlign="middle"
+                                  className="mb-1"
+                                />{" "}
+                                <small>
+                                  {t("translation:ride.cancelRide")}
+                                </small>
+                              </Button>
+                            </LinkContainer>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Col>
+                  </Row>
+                ) : null}
               </>
             ) : (
               <>

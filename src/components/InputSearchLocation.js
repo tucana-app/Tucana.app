@@ -154,7 +154,9 @@ function InputSearchLocation(props) {
 
   const setPlaceProvince = (suggestion) => {
     placeName = suggestion.structured_formatting.main_text;
-    placeDetails = suggestion.structured_formatting.secondary_text;
+    placeDetails = suggestion.structured_formatting.secondary_text
+      .replace("Province ", "")
+      .replace("Provincia de ", "");
 
     province =
       provincesCostaRica[
