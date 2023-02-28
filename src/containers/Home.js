@@ -50,8 +50,8 @@ function Home() {
           <Col xs={6} className="text-end mx-auto">
             <p>
               <LinkContainer
-                to="/how-it-work"
-                href="/how-it-work"
+                to="/how-it-works"
+                href="/how-it-works"
                 className="hvr-icon-forward"
               >
                 <Button variant="dark" className="border-light px-4 py-2">
