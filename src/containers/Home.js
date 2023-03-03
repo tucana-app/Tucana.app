@@ -195,13 +195,13 @@ function Home() {
         </Row>
 
         {isloadingRidesOnline ? (
-          <Row className="mt-3 mb-4">
+          <Row className="mt-3">
             <Col className="text-center">
               <LoadingSpinner />
             </Col>
           </Row>
         ) : ridesOnlineData.count > 0 ? (
-          <Row className="mt-3 mb-4">
+          <Row className="mt-3">
             <Col>
               <p className="text-center fw-bold mb-0">
                 {ridesOnlineData.count} {t("translation:global.ridesOnline")}
@@ -210,7 +210,7 @@ function Home() {
           </Row>
         ) : null}
 
-        <Row>
+        <Row className="mt-5">
           <Col
             xs={12}
             sm={10}
@@ -219,9 +219,7 @@ function Home() {
             xl={4}
             className="text-center mx-auto"
           >
-            <p className="lead mb-2">
-              {t("translation:homepage.alreadyAccount")}{" "}
-            </p>
+            <p className="mb-2">{t("translation:homepage.alreadyAccount")} </p>
           </Col>
         </Row>
         <Row className="mb-3">
