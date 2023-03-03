@@ -176,7 +176,7 @@
 		"reward": "Reward"
 	},
 	"find": {
-		"catchPhrase": "Find your next trip across Costa Rica 🇨🇷",
+		"catchPhrase": "Find your next trip 🇨🇷",
 		"change": "Change",
 		"dayAfter": "1 day after",
 		"dayBefore": "1 day before",
@@ -204,7 +204,6 @@
 		"bookThisRide": "Book this ride",
 		"booking": "Booking",
 		"bookingSubmitted": "Your booking has been submitted to the driver",
-		"bookingSuccess": "Your booking has been submitted to the driver",
 		"bookings": "Bookings",
 		"by": "By",
 		"cancel": "Cancel",
@@ -248,6 +247,7 @@
 			"dateFuture": "The date needs to be in the future",
 			"error": "Error",
 			"errorBook": "We couldn't make your booking at this time",
+			"errorDetails": "Details about the error",
 			"errorFallback": "There has been an error.",
 			"errorPersist": "If the error persists, please contact us.",
 			"failUpdateBio": "We couldn't update your bio at this moment",
@@ -435,6 +435,8 @@
 		"thankYou": "Thank you",
 		"time": "Time",
 		"to": "To",
+		"today": "Today",
+		"tomorrow": "Tomorrow",
 		"total": "Total",
 		"totalPrice": "Total price",
 		"update": "Update",
@@ -461,7 +463,8 @@
 		"title": "We are hiring"
 	},
 	"homepage": {
-		"catchPhrase": "The first carpooling app in Costa Rica",
+		"alreadyAccount": "Already have an account?",
+		"catchPhrase": "The first ride-sharing app in Costa Rica: an ecological, practical, and economical way to travel and meet people.",
 		"learnMore": "More",
 		"start": "Start"
 	},
@@ -553,7 +556,8 @@
 		"memberSince": "Member since",
 		"payments": "Payments",
 		"ratings": "Ratings",
-		"refunds": "Refunds"
+		"refunds": "Refunds",
+		"yourInfo": "Driver"
 	},
 	"messageEmpty": {
 		"bookRide": "Book your next ride",

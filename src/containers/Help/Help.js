@@ -17,38 +17,12 @@ const Help = () => {
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="px-0 mx-auto">
             <ListGroup variant="flush">
-              <ListGroup.Item className="border-0">
-                <p className="mb-0">
-                  <AlertFillIcon size={24} className="text-warning me-2" />
-                  {t("translation:help.message1")} <strong>911</strong>{" "}
-                  {t("translation:help.message2")}
-                </p>
-              </ListGroup.Item>
-
-              <hr className="my-2" />
+              <hr className="mb-2" />
 
               <Link to="/how-it-works" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                     <p className="mb-0">{t("translation:global.howItWorks")}</p>
-                    <ChevronRightIcon size={24} verticalAlign="middle" />
-                  </div>
-                </ListGroup.Item>
-              </Link>
-
-              <Link to="/map" className="text-decoration-none">
-                <ListGroup.Item className="border-0">
-                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">{t("translation:global.maps")}</p>
-                    <ChevronRightIcon size={24} verticalAlign="middle" />
-                  </div>
-                </ListGroup.Item>
-              </Link>
-
-              <Link to="/contact" className="text-decoration-none">
-                <ListGroup.Item className="border-0">
-                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">{t("translation:global.report")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
@@ -74,6 +48,33 @@ const Help = () => {
                 </ListGroup.Item>
               </Link>
 
+              <Link to="/map" className="text-decoration-none">
+                <ListGroup.Item className="border-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                    <p className="mb-0">{t("translation:global.maps")}</p>
+                    <ChevronRightIcon size={24} verticalAlign="middle" />
+                  </div>
+                </ListGroup.Item>
+              </Link>
+
+              <Link to="/contact" className="text-decoration-none">
+                <ListGroup.Item className="border-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                    <p className="mb-0">{t("translation:global.report")}</p>
+                    <ChevronRightIcon size={24} verticalAlign="middle" />
+                  </div>
+                </ListGroup.Item>
+              </Link>
+
+              <Link to="/legal" className="text-decoration-none">
+                <ListGroup.Item className="border-0">
+                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
+                    <p className="mb-0">{t("translation:menu.legal")}</p>
+                    <ChevronRightIcon size={24} verticalAlign="middle" />
+                  </div>
+                </ListGroup.Item>
+              </Link>
+
               <hr className="my-2" />
 
               <Link to="/contact" className="text-decoration-none">
@@ -84,6 +85,16 @@ const Help = () => {
                   </div>
                 </ListGroup.Item>
               </Link>
+
+              <hr className="my-2" />
+
+              <ListGroup.Item className="border-0">
+                <p className="mb-0">
+                  <AlertFillIcon size={24} className="text-warning me-2" />
+                  {t("translation:help.message1")} <strong>911</strong>{" "}
+                  {t("translation:help.message2")}
+                </p>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>

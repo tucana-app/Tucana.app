@@ -39,21 +39,28 @@ const SearchResults = () => {
     formSearchRide,
   } = useSelector((state) => state.ride);
 
+  const today = new Date();
   const handleDayBefore = () => {
     let dayBefore = new Date(
       formSearchRide.date.getFullYear(),
       formSearchRide.date.getMonth(),
       formSearchRide.date.getDate() - 1
     );
-    dispatch(setSearchDate(dayBefore));
-    dispatch(
-      getFilteredRides(
-        formSearchRide.origin,
-        formSearchRide.destination,
-        dayBefore,
-        formSearchRide.seats
-      )
-    );
+    if (
+      dayBefore.getFullYear() >= today.getFullYear() &&
+      dayBefore.getMonth() >= today.getMonth() &&
+      dayBefore.getDate() >= today.getDate()
+    ) {
+      dispatch(setSearchDate(dayBefore));
+      dispatch(
+        getFilteredRides(
+          formSearchRide.origin,
+          formSearchRide.destination,
+          dayBefore,
+          formSearchRide.seats
+        )
+      );
+    }
   };
 
   const handleDayAfter = () => {
@@ -169,40 +176,28 @@ const SearchResults = () => {
                         onClick={() => dispatch(displayNavBar(false))}
                         className="cursor-pointer px-2"
                       >
-                        <Container>
+                        <Container className="py-2">
                           <Row>
-                            <Col className="text-center">
-                              <p className="small mb-2">
-                                {dateFormat(
-                                  ride.rideDetails.dateTimeOrigin,
-                                  "dd/mm/yyyy"
-                                )}
+                            <Col xs={3} className="mt-1 pe-0">
+                              <p className="smaller line-height-md text-secondary mb-3">
+                                <span className="fw-bold">
+                                  {dateFormat(
+                                    ride.rideDetails.dateTimeOrigin,
+                                    "hh:MM TT"
+                                  )}
+                                </span>
                               </p>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col xs={2} className="mt-1 px-0">
-                              <p className="smaller line-height-md text-secondary text-end mb-2">
-                                {dateFormat(
-                                  ride.rideDetails.dateTimeOrigin,
-                                  "HH:MM TT"
-                                )}
-                              </p>
-                              <p className="smaller fw-bold line-height-md text-secondary text-end mb-0">
+                              <p className="smaller line-height-md text-secondary mb-0">
                                 {formatTimeSecond(
                                   ride.rideDetails.ETA.durationValue
                                 )}
                               </p>
                             </Col>
-                            <Col>
+                            <Col className="ps-0">
                               <p className="line-height-md mb-0">
                                 <strong>
                                   {ride.rideDetails.origin.placeName}
                                 </strong>
-                                ,{" "}
-                                <small>
-                                  {ride.rideDetails.origin.placeDetails}
-                                </small>
                               </p>
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
@@ -220,24 +215,22 @@ const SearchResults = () => {
                               </p>
                             </Col>
                           </Row>
-                          <Row className="align-items-center mb-2">
-                            <Col xs={2} className="px-0">
-                              <p className="smaller line-height-md text-secondary text-end mb-0">
-                                {dateFormat(
-                                  ride.rideDetails.dateTimeDestination,
-                                  "hh:MM TT"
-                                )}
+                          <Row className="mb-3">
+                            <Col xs={3} className="mt-1 pe-0">
+                              <p className="smaller line-height-md text-secondary mb-0">
+                                <span className="fw-bold">
+                                  {dateFormat(
+                                    ride.rideDetails.dateTimeDestination,
+                                    "hh:MM TT"
+                                  )}
+                                </span>
                               </p>
                             </Col>
-                            <Col>
+                            <Col className="ps-0">
                               <p className="line-height-md mb-0">
                                 <strong>
                                   {ride.rideDetails.destination.placeName}
                                 </strong>
-                                ,{" "}
-                                <small>
-                                  {ride.rideDetails.destination.placeDetails}
-                                </small>
                               </p>
                               <small className="smaller text-secondary">
                                 <span className="text-primary">
@@ -250,7 +243,7 @@ const SearchResults = () => {
                             </Col>
                           </Row>
                           <Row className="align-items-center">
-                            <Col xs={2} className="">
+                            <Col xs={3} className="">
                               <p className="text-end mb-0">
                                 <img
                                   src={srcAvatar(ride.rideDetails.Driver.User)}
@@ -268,7 +261,7 @@ const SearchResults = () => {
                                 type="driver"
                               />
                             </Col>
-                            <Col xs={4} className="text-center">
+                            <Col xs={3} className="text-center">
                               <p className="line-height-sm mb-0">
                                 <span className="fw-bold mb-0">
                                   {formatPrice(ride.rideDetails.price)}

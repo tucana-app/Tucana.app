@@ -17,6 +17,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
 
 import {
   login,
@@ -636,6 +637,10 @@ const Login = () => {
 
   return (
     <Container data-aos="fade-in">
+      <div className="position-absolute">
+        <GoBack />
+      </div>
+
       <Row className="min-vh-100 align-items-center">
         <Col>
           <Container className="p-0">

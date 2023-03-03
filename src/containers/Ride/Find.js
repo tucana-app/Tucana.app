@@ -1,33 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import FormSearchRides from "../../components/FormSearchRides";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import { displayNavBar } from "../../redux";
 
 const Find = () => {
   const { t } = useTranslation();
-  const { isFormSearchRideSubmitted } = useSelector((state) => state.ride);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isFormSearchRideSubmitted, isloadingRidesOnline, ridesOnlineData } =
+    useSelector((state) => state.ride);
+
+  useEffect(() => {
+    dispatch(displayNavBar(true));
+  }, [dispatch]);
+
+  if (!isLoggedIn) {
+    return <Redirect to="/" />;
+  }
 
   return (
-    <div className="container-homepage">
+    <div className="container-background">
       {!isFormSearchRideSubmitted ? (
-        <Container className="overlay pb-5">
+        <Container className="overlay">
           <Row className="min-vh-100 align-items-center">
             <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
               <Container className="px-3">
-                <Row className="mb-4">
-                  <Col xs={12}>
-                    <h1 className="title text-success text-center mb-3">
-                      {t("translation:find.catchPhrase")}
-                    </h1>
-                  </Col>
-                </Row>
-
                 <Row>
                   <FormSearchRides />
                 </Row>
+
+                {isloadingRidesOnline ? (
+                  <Row className="mt-3">
+                    <Col className="text-center">
+                      <LoadingSpinner />
+                    </Col>
+                  </Row>
+                ) : ridesOnlineData.count > 0 ? (
+                  <Row className="mt-3">
+                    <Col>
+                      <p className="text-center text-white fw-bold mb-0">
+                        {ridesOnlineData.count}{" "}
+                        {t("translation:global.ridesOnline")}
+                      </p>
+                    </Col>
+                  </Row>
+                ) : null}
               </Container>
             </Col>
           </Row>

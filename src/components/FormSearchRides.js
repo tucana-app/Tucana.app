@@ -55,6 +55,11 @@ const FormSearchRides = () => {
   const [showOffcanvaSeats, setShowOffcanvaSeats] = useState(false);
 
   var now = new Date();
+  const tomorrow = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1
+  );
   var dateMax;
   if (now.getMonth() === 11) {
     dateMax = new Date(now.getFullYear() + 1, 2, 0);
@@ -151,6 +156,13 @@ const FormSearchRides = () => {
         className="bg-white border border-2 border-bottom-0 pt-3 pb-2 px-3"
         style={{ borderRadius: "15px 15px 0px 0px" }}
       >
+        <Row>
+          <Col className="text-center">
+            <h2 className="text-success mb-0">
+              {t("translation:find.catchPhrase")}
+            </h2>
+          </Col>
+        </Row>
         <Row className="my-3">
           <Col>
             {formSearchRide.origin.placeName !== "" ? (
@@ -224,16 +236,24 @@ const FormSearchRides = () => {
             </>
           </Col>
         </Row>
-        <Row className="align-items-center py-3">
-          <Col xs={2}>
-            <p className="mb-0">{t("translation:global.date")}:</p>
-          </Col>
-          <Col xs={6} className="mx-auto">
+        <Row className="justify-content-between align-items-center py-3">
+          <Col xs={8}>
             <Form.Group>
               <Form.Control
                 type="text"
                 name="date"
-                value={dateFormat(date, "dd/mm/yyyy")}
+                value={
+                  date.getFullYear() === now.getFullYear() &&
+                  date.getMonth() === now.getMonth() &&
+                  date.getDate() === now.getDate()
+                    ? t("translation:global.today")
+                    : date.getFullYear() === tomorrow.getFullYear() &&
+                      date.getMonth() === tomorrow.getMonth() &&
+                      date.getDate() === tomorrow.getDate()
+                    ? t("translation:global.tomorrow")
+                    : dateFormat(date, "dd/mm/yyyy")
+                }
+                // value={}
                 className="cursor-pointer no-caret"
                 onClick={() => setShowOffcanvaDate(true)}
                 required
@@ -242,7 +262,7 @@ const FormSearchRides = () => {
               />
             </Form.Group>
           </Col>
-          <Col xs={4} className="mx-auto d-inline-flex align-items-center">
+          <Col xs={4} className="d-inline-flex align-items-center">
             <PersonIcon size={24} className="me-2" />
             <Form.Group>
               <Form.Control
@@ -267,8 +287,9 @@ const FormSearchRides = () => {
             : "bg-success border-0 cursor-pointer py-3"
         }
         style={{ borderRadius: "0px 0px 15px 15px" }}
+        onClick={ridesToConfirmData.length ? null : handleSubmit}
       >
-        <Row onClick={ridesToConfirmData.length ? null : handleSubmit}>
+        <Row>
           <Col className="text-center text-white fw-bold">
             {t("translation:global.search")}
           </Col>

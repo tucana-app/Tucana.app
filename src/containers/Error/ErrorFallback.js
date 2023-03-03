@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "@primer/octicons-react";
-import { sendErrorReport } from "../../redux";
+import { sendErrorReport, displayNavBar } from "../../redux";
+
+// Importing assets
+import logo from "../../assets/images/logo-full-black.png";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(displayNavBar(false));
+
     if (process.env.NODE_ENV === "production") {
       dispatch(sendErrorReport(error.message, error.stack));
     }
@@ -18,7 +23,91 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
 
   return (
     <>
-      <Container>
+      <Container className="mt-5">
+        <Row className="mb-5">
+          <Col xs={12} className="text-center">
+            <img
+              src={logo}
+              width={300}
+              alt="Tucána logo"
+              className="img-fluid"
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <h1 className="mb-0">
+              {t("translation:global.errors.errorFallback")}
+            </h1>
+            <p>{t("translation:global.errors.errorPersist")}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mb-3 mx-auto"
+          >
+            <a
+              href={process.env.REACT_APP_URL_CLIENT}
+              alt=""
+              onClick={() => resetErrorBoundary()}
+            >
+              <Button variant="success" size="lg" className="py-2 w-100">
+                <ArrowLeftIcon size={24} className="me-2" />
+                {t("translation:navigationBar.home")}
+              </Button>
+            </a>
+          </Col>
+        </Row>
+        <Row className="mb-5">
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <a href={`mailto:${process.env.REACT_APP_EMAIL_CONTACT}`} alt="">
+              <Button
+                variant="outline-success"
+                size="lg"
+                className="py-2 w-100"
+              >
+                {t("translation:global.contactUs")}
+              </Button>
+            </a>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xs={12}
+            sm={10}
+            md={8}
+            lg={6}
+            xl={4}
+            className="text-center mx-auto"
+          >
+            <p className="mb-0">
+              {t("translation:global.errors.errorDetails")}:
+            </p>
+            <Alert variant="danger">{error.message}</Alert>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <Container>
         <Row className="min-vh-100 align-items-center">
           <Col xs={12} sm={10} md={8} lg={6} xl={4} className="mx-auto">
             <Container>
@@ -54,7 +143,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
             </Container>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 };

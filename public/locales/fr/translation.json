@@ -176,7 +176,7 @@
 		"reward": "Récompense"
 	},
 	"find": {
-		"catchPhrase": "Trouve ton prochain voyage au Costa Rica 🇨🇷",
+		"catchPhrase": "Trouve ton prochain voyage 🇨🇷",
 		"change": "Changer",
 		"dayAfter": "Lendemain",
 		"dayBefore": "La veille",
@@ -204,7 +204,6 @@
 		"bookThisRide": "Réserve ce trajet",
 		"booking": "Réservation",
 		"bookingSubmitted": "Votre réservation a été soumise au conducteur",
-		"bookingSuccess": "Votre réservation a été envoyée au conducteur",
 		"bookings": "Réservations",
 		"by": "Par",
 		"cancel": "Annuler",
@@ -248,6 +247,7 @@
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
 			"errorBook": "Nous n'avons pas pu effectuer votre réservation pour le moment.",
+			"errorDetails": "Détails sur l'erreur",
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, contacte nous.",
 			"failUpdateBio": "Nous n'avons pas pu mettre à jour votre biographie pour le moment.",
@@ -435,6 +435,8 @@
 		"thankYou": "Merci",
 		"time": "Heure",
 		"to": "À",
+		"today": "Aujourd'hui",
+		"tomorrow": "Demain",
 		"total": "Total",
 		"totalPrice": "Prix total",
 		"update": "Mettre à jour",
@@ -461,7 +463,8 @@
 		"title": "Nous recrutons"
 	},
 	"homepage": {
-		"catchPhrase": "La première appli de covoiturage au Costa Rica",
+		"alreadyAccount": "Tu as déjà un compte ?",
+		"catchPhrase": "La première application de covoiturage au Costa Rica : un moyen écologique, pratique et économique de voyager et de rencontrer des gens",
 		"learnMore": "Info",
 		"start": "Démarrer"
 	},
@@ -553,7 +556,8 @@
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"ratings": "Avis",
-		"refunds": "Remboursements"
+		"refunds": "Remboursements",
+		"yourInfo": "Conducteur"
 	},
 	"messageEmpty": {
 		"bookRide": "Réserve ton prochain voyage",

@@ -176,7 +176,7 @@
 		"reward": "Recompensa"
 	},
 	"find": {
-		"catchPhrase": "Encuentre su próximo viaje por Costa Rica 🇨🇷",
+		"catchPhrase": "Encuentre su próximo viaje 🇨🇷",
 		"change": "Cambiar",
 		"dayAfter": "El día siguiente",
 		"dayBefore": "El día anterior",
@@ -204,7 +204,6 @@
 		"bookThisRide": "Reservar esta ride",
 		"booking": "Reservación",
 		"bookingSubmitted": "Su reserva ha sido enviada al conductor",
-		"bookingSuccess": "Su reserva ha sido enviada al conductor",
 		"bookings": "Reservas",
 		"by": "Por",
 		"cancel": "Anular",
@@ -248,6 +247,7 @@
 			"dateFuture": "La fecha tiene que ser en el futuro",
 			"error": "Error",
 			"errorBook": "No hemos podido realizar su reserva en este momento",
+			"errorDetails": "Detalles sobre el error",
 			"errorFallback": "Se ha producido un error.",
 			"errorPersist": "Si el error persiste, póngase en contacto con nosotros.",
 			"failUpdateBio": "No hemos podido actualizar tu biografía en este momento",
@@ -435,6 +435,8 @@
 		"thankYou": "Gracias",
 		"time": "Hora",
 		"to": "A",
+		"today": "Hoy",
+		"tomorrow": "Mañana",
 		"total": "Total",
 		"totalPrice": "Precio total",
 		"update": "Actualizar",
@@ -461,7 +463,8 @@
 		"title": "Estamos contratando"
 	},
 	"homepage": {
-		"catchPhrase": "La primera app de Ride en Costa Rica",
+		"alreadyAccount": "¿Ya tienes una cuenta?",
+		"catchPhrase": "La primera app para hacer Ride en Costa Rica: una forma ecológica, práctica y económica de viajar y conocer gente.",
 		"learnMore": "Más",
 		"start": "Comienza"
 	},
@@ -553,7 +556,8 @@
 		"memberSince": "Miembro desde",
 		"payments": "Pagos",
 		"ratings": "Calificaciones",
-		"refunds": "Reembolsos"
+		"refunds": "Reembolsos",
+		"yourInfo": "Conductor"
 	},
 	"messageEmpty": {
 		"bookRide": "Reserve su próximo viaje",
@@ -611,7 +615,7 @@
 		"whatTime": "A que hora?",
 		"when": "¿Cuándo te vas?",
 		"whereFrom": "¿De que ciudad sales?",
-		"whereTo": "¿En que ciudad te vas?",
+		"whereTo": "¿A donde vas?",
 		"youGet": "Puedes ganar hasta"
 	},
 	"ratings": {

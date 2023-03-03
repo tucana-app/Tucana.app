@@ -69,14 +69,7 @@ body {
   @extend .min-vh-100;
 }
 
-.container-homepage {
-  background-image: url("/assets/images/background-homepage.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.container-findpage {
+.container-background {
   background-image: url("/assets/images/background-findpage.jpg");
   background-position: center;
   background-size: cover;
