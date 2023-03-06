@@ -85,7 +85,11 @@ function Home() {
                           : handleClickLanguageCR
                       }
                     >
-                      <ReactCountryFlag countryCode="CR" className="h1" svg />
+                      <ReactCountryFlag
+                        countryCode="CR"
+                        className="cursor-pointer h1"
+                        svg
+                      />
                     </div>
                   ) : i18n.language === "fr" || i18n.language === "fr-FR" ? (
                     <div
@@ -95,7 +99,11 @@ function Home() {
                           : handleClickLanguageFR
                       }
                     >
-                      <ReactCountryFlag countryCode="FR" className="h1" svg />
+                      <ReactCountryFlag
+                        countryCode="FR"
+                        className="cursor-pointer h1"
+                        svg
+                      />
                     </div>
                   ) : i18n.language === "en" || i18n.language === "en-US" ? (
                     <div
@@ -105,7 +113,11 @@ function Home() {
                           : handleClickLanguageEN
                       }
                     >
-                      <ReactCountryFlag countryCode="US" className="h1" svg />
+                      <ReactCountryFlag
+                        countryCode="US"
+                        className="cursor-pointer h1"
+                        svg
+                      />
                     </div>
                   ) : (
                     <div>
@@ -116,7 +128,7 @@ function Home() {
                     <div data-aos="slide-right" className="d-inline-flex">
                       <ReactCountryFlag
                         countryCode="US"
-                        className="h1 ms-3 me-2"
+                        className="h1 cursor-pointer ms-3 me-2"
                         onClick={handleSelectEN}
                         svg
                       />
@@ -131,13 +143,13 @@ function Home() {
                     <div data-aos="slide-right" className="d-inline-flex">
                       <ReactCountryFlag
                         countryCode="US"
-                        className="h1 ms-3 me-2"
+                        className="h1 cursor-pointer ms-3 me-2"
                         onClick={handleSelectEN}
                         svg
                       />
                       <ReactCountryFlag
                         countryCode="CR"
-                        className="h1 mx-2"
+                        className="h1 cursor-pointer mx-2"
                         onClick={handleSelectCR}
                         svg
                       />
@@ -146,13 +158,13 @@ function Home() {
                     <div data-aos="slide-right" className="d-inline-flex">
                       <ReactCountryFlag
                         countryCode="CR"
-                        className="h1 ms-3 me-2"
+                        className="h1 cursor-pointer ms-3 me-2"
                         onClick={handleSelectCR}
                         svg
                       />
                       <ReactCountryFlag
                         countryCode="FR"
-                        className="h1 mx-2"
+                        className="h1 cursor-pointer mx-2"
                         onClick={handleSelectFR}
                         svg
                       />
