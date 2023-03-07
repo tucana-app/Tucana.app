@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 
 import FormSearchRides from "../../components/FormSearchRides";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { displayNavBar } from "../../redux";
+import { displayNavBar, getRidesOnline } from "../../redux";
 
 const Find = () => {
   const { t } = useTranslation();
@@ -16,6 +16,7 @@ const Find = () => {
     useSelector((state) => state.ride);
 
   useEffect(() => {
+    dispatch(getRidesOnline());
     dispatch(displayNavBar(true));
   }, [dispatch]);
 

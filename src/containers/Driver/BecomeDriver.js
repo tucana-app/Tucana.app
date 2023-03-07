@@ -120,7 +120,7 @@ const BecomeDriver = () => {
                     className="cursor-pointer"
                     key={index}
                   >
-                    <ListGroup.Item className="d-inline-flex justify-content-between align-items-center w-100 py-1 border-0">
+                    <ListGroup.Item className="d-inline-flex justify-content-between align-items-center w-100 px-0 py-1 border-0">
                       {application.admin_VerifDriverApplications.length ===
                       0 ? (
                         <div>
