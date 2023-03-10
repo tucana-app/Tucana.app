@@ -68,9 +68,12 @@ function CancelBooking(props) {
             </h2>
 
             <p>
-              <Trans i18nKey={"translation:cancelBooking.refundPolicy"}>
+              <Trans i18nKey={"translation:cancelBooking.cancellationPolicy"}>
                 Make sure you review our{" "}
-                <Link to="/refund-policy" className="fw-bold link-success">
+                <Link
+                  to="/cancellation-policy"
+                  className="fw-bold link-success"
+                >
                   refund policy
                 </Link>{" "}
                 before canceling

@@ -116,12 +116,9 @@ const DriverRides = () => {
                               </Col>
                               <Col xs={6} className="text-end">
                                 <p className="mb-0">
-                                  {t("translation:global.seat")}
-                                  {ride.seatsAvailable > 1 ? "s" : null}:{" "}
-                                  <span className="text-success">
-                                    {ride.seatsAvailable - ride.seatsLeft}
-                                  </span>
-                                  /{ride.seatsAvailable}
+                                  {t("translation:global.passengers")}:{" "}
+                                  {ride.seatsAvailable - ride.seatsLeft}/
+                                  {ride.seatsAvailable}
                                 </p>
                               </Col>
                             </Row>

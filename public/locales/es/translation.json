@@ -7,7 +7,7 @@
 	},
 	"FAQ": {
 		"answer1": "Por ahora, todos los pagos se realizan con dinero en efectivo. Puede acordar directamente con el conductor o sus pasajeros la moneda, en CRC (colones costarricenses) o en USD (dólares estadounidenses)",
-		"answer2": "Por ahora, la plataforma no gestiona el reembolso porque no gestionamos el pago. Puedes ponerte en contacto con la gente directamente con la función de mensajería de la aplicación.",
+		"answer2": "Por ahora, Tucána no ofrece reembolsos porque no se paga a través de ella. Puedes contactar directamente con la gente a través de la función de mensajería de la aplicación.",
 		"answer3": "Sólo recogemos la información legalmente necesaria para garantizar el buen funcionamiento de nuestro servicio. No compartimos/vendemos ninguna información privada relacionada con su cuenta o su actividad.",
 		"answer4": "Estamos obligados a conservar tu número de identificación y tu dirección de correo electrónico durante los 3 meses siguientes al cierre de tu cuenta. Esto garantiza la seguridad de la comunidad que utiliza Tucána. Después, estos registros se borrarán automáticamente pasado ese tiempo.",
 		"answer5": "Todo está explicado en detalle directamente en la página: <1>Experiencia</1>",
@@ -79,11 +79,26 @@
 		"subTitle": "Todas las reservas que has hecho"
 	},
 	"cancelBooking": {
+		"cancellationPolicy": "Asegúrate de revisar nuestra <2>política de cancelación</2> antes de cancelar.",
 		"confirm": "¿Realmente desea cancelar esta reserva?",
 		"content1": "El reembolso dependerá del momento en que cancele la reserva. Más información",
-		"refundPolicy": "Asegúrate de revisar nuestra <2>política de reembolso</2> antes de cancelar.",
 		"success": "Tu reserva ha sido cancelada con éxito",
 		"title": "Anule tu reserva"
+	},
+	"cancelRide": {
+		"cancelPolicy": "Asegúrate de revisar nuestra <2>política de cancelación</2> antes de cancelar.",
+		"existingBookings": "Ya ha aceptado reservas para este ride."
+	},
+	"cancellationPolicy": {
+		"later": "Posteriormente, los reembolsos funcionarán de acuerdo con esto:",
+		"message": "Por ahora, Tucána no ofrece reembolsos porque no se paga a través de ella. Puedes contactar directamente con la gente a través de la función de mensajería de la aplicación.",
+		"option1-content": "Le reembolsaremos el importe de tu reserva, excepto los gastos de reserva.",
+		"option1-title": "Cancela tu reserva más de 24 horas antes de la salida",
+		"option2-content": "Te devolveremos el 50% del importe de tu reserva, excepto la tasa de reserva.",
+		"option2-title": "Cancela tu reserva menos de 24 horas antes de la salida",
+		"option3-content": "Pagaremos al conductor el importe total de tu reserva.",
+		"option3-title": "No te presentas el día de la salida",
+		"title": "Política de cancelación"
 	},
 	"closeAccount": {
 		"closeAccount": "Cerrar mi cuenta",
@@ -150,6 +165,10 @@
 			"forgotPassword": "Si ha olvidado su contraseña, primero cierre la sesión y luego haga clic en el enlace para restablecer la contraseña en la página de inicio de sesión",
 			"oldPassword": "Contraseña actual",
 			"title": "Actualiza tu contraseña"
+		},
+		"ride": {
+			"alreadyBookings": "No puedes editar este ride.",
+			"title": "Editar el ride"
 		}
 	},
 	"experience": {
@@ -207,6 +226,7 @@
 		"bookings": "Reservas",
 		"by": "Por",
 		"cancel": "Anular",
+		"cancellationPolicy": "Politica de cancelación",
 		"car": "Carro",
 		"city": "ciudad",
 		"click": "haga clic en",
@@ -272,6 +292,7 @@
 			"validUsername": "Por favor, introduzca un nombre de usuario válido (sólo letras y números)",
 			"validYear": "Introduzca un año válido"
 		},
+		"existedAcceptedBookings": "Reservas existentes aceptadas",
 		"experience": "Experiencia",
 		"faq": "Preguntas frecuentes",
 		"finish": "Finalizar",
@@ -627,17 +648,6 @@
 		"title": "Calificaciones",
 		"toDo": "Calificaciones para hacer"
 	},
-	"refundPolicy": {
-		"later": "Posteriormente, los reembolsos funcionarán de acuerdo con esto:",
-		"message": "Por ahora, la plataforma no gestiona el reembolso porque no gestionamos el pago. Puedes ponerte en contacto con la gente directamente con la función de mensajería de la aplicación.",
-		"option1-content": "Le reembolsaremos el importe de tu reserva, excepto los gastos de reserva.",
-		"option1-title": "Cancela tu reserva más de 24 horas antes de la salida",
-		"option2-content": "Te devolveremos el 50% del importe de tu reserva, excepto la tasa de reserva.",
-		"option2-title": "Cancela tu reserva menos de 24 horas antes de la salida",
-		"option3-content": "Pagaremos al conductor el importe total de tu reserva.",
-		"option3-title": "No te presentas el día de la salida",
-		"title": "Política de reembolso"
-	},
 	"report": {
 		"behavior": "Denunciar un comportamiento",
 		"problemApp": "Un problema con la aplicación"
@@ -680,6 +690,10 @@
 		"goBack": "Vuelve a tus rides",
 		"noRides": "No hay rides para completar",
 		"title": "Rides a completar"
+	},
+	"searchRides": {
+		"message": "Pruebe con otros lugares y otra fecha",
+		"notFound": "No se han encontrado rides"
 	},
 	"signUp": {
 		"ageWarning": "Debes tener al menos 18 años para utilizar Tucána",

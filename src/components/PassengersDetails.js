@@ -43,12 +43,9 @@ const PassengersDetails = ({ rideId, booking }) => {
             <Col>
               <p>
                 <Trans i18nKey="translation:PassengersDetails.summary">
-                  Total:{" "}
-                  <span className="text-success">{{ totalPassengers }}</span>{" "}
-                  passenger(s) with{" "}
-                  <span className="text-success">
-                    {{ bookings: passengersDetailsData.length }}
-                  </span>{" "}
+                  Total: <strong>{{ totalPassengers }}</strong> passenger(s)
+                  with{" "}
+                  <strong>{{ bookings: passengersDetailsData.length }}</strong>{" "}
                   booking(s)
                 </Trans>
               </p>
@@ -60,7 +57,7 @@ const PassengersDetails = ({ rideId, booking }) => {
                 <p className="flex-grow-1 mb-0">
                   <strong>{booking.User.firstName}</strong>{" "}
                   {t("translation:booking.summary2")}{" "}
-                  <span className="text-success">{booking.seatsBooked}</span>{" "}
+                  <strong>{booking.seatsBooked}</strong>{" "}
                   <span className="text-lowercase">
                     {t("translation:global.seat")}
                     {booking.seatsBooked > 1 ? "s" : null}

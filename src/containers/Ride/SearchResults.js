@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -9,9 +10,12 @@ import {
   ArrowRightIcon,
   ChevronLeftIcon,
 } from "@primer/octicons-react";
+import {
+  ArrowLeftCircleFill,
+  ArrowRightCircleFill,
+} from "react-bootstrap-icons";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
-import MessageEmpty from "../../components/MessageEmpty";
 import DisplayRating from "../../components/DisplayRating";
 
 import { formatDistance, formatPrice, formatTimeSecond } from "../../helpers";
@@ -22,11 +26,9 @@ import {
   setSearchDate,
   getFilteredRides,
 } from "../../redux";
-import {
-  ArrowLeftCircleFill,
-  ArrowRightCircleFill,
-} from "react-bootstrap-icons";
-import { Redirect } from "react-router-dom";
+
+// Importing assets
+import image from "../../assets/images/undraw_adventure_map.svg";
 
 const SearchResults = () => {
   const { t } = useTranslation();
@@ -280,24 +282,40 @@ const SearchResults = () => {
                 ))}
               </>
             ) : (
-              <Row className="mb-2 mx-1 mx-sm-0">
-                <Col
-                  xs={12}
-                  sm={10}
-                  md={8}
-                  lg={6}
-                  xl={4}
-                  className="container-box bg-white mx-auto"
-                >
-                  <Container className="py-3 px-2">
-                    <Row>
-                      <Col className="text-center">
-                        <MessageEmpty title="rides" />
-                      </Col>
-                    </Row>
-                  </Container>
-                </Col>
-              </Row>
+              <>
+                <Row className="mt-5">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
+                    <h2>{t("translation:searchRides.notFound")}</h2>
+                    <p className="mb-0">
+                      {t("translation:searchRides.message")}
+                    </p>
+                  </Col>
+                </Row>
+                <Row className="mt-4">
+                  <Col
+                    xs={12}
+                    sm={10}
+                    md={8}
+                    lg={6}
+                    xl={4}
+                    className="text-center mx-auto"
+                  >
+                    <img
+                      src={image}
+                      alt="Ride-sharing"
+                      className="img-fluid"
+                      style={{ maxWidth: "200px" }}
+                    />
+                  </Col>
+                </Row>
+              </>
             )}
           </>
         ) : (

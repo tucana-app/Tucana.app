@@ -134,62 +134,7 @@ function NavigationBar() {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  ) : (
-    <Navbar bg="light" variant="light" fixed="bottom">
-      <Navbar.Collapse id="navigation-bar">
-        <Nav className="w-100 justify-content-center align-items-center">
-          <Container>
-            <Row>
-              <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                <Container className="px-0">
-                  <Row className="align-items-center">
-                    <Col xs={2} className="text-center me-0 pe-0">
-                      <IndexLinkContainer to="/" href="/">
-                        <Nav.Link>
-                          <HomeIcon size={24} />
-                          <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                            {t("translation:navigationBar.home")}
-                          </p>
-                        </Nav.Link>
-                      </IndexLinkContainer>
-                    </Col>
-                    <Col xs={8} className="text-center px-0 mx-0">
-                      <div className="d-inline-flex">
-                        <IndexLinkContainer to="/login" href="/login">
-                          <Nav.Link>
-                            <Button variant="success" size="lg">
-                              {t("translation:global.logIn")}
-                            </Button>
-                          </Nav.Link>
-                        </IndexLinkContainer>
-                        <IndexLinkContainer to="/signup" href="/signup">
-                          <Nav.Link>
-                            <Button variant="success" size="lg">
-                              {t("translation:global.signUp")}
-                            </Button>
-                          </Nav.Link>
-                        </IndexLinkContainer>
-                      </div>
-                    </Col>
-                    <Col xs={2} className="text-center ps-0 ms-0">
-                      <IndexLinkContainer to="/menu" href="/menu">
-                        <Nav.Link>
-                          <ThreeBarsIcon size={24} />
-                          <p className="text-icon-nav-bar d-md-screen mt-1 mb-0">
-                            {t("translation:navigationBar.menu")}
-                          </p>
-                        </Nav.Link>
-                      </IndexLinkContainer>
-                    </Col>
-                  </Row>
-                </Container>
-              </Col>
-            </Row>
-          </Container>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
+  ) : null;
 }
 
 export default NavigationBar;

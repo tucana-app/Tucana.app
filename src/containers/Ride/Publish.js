@@ -882,11 +882,13 @@ const Publish = () => {
                           {formatTimeSecond(getETAData.durationValue)}
                         </p>
                       </Col>
-                      <Col xs={10}>
-                        <p className="line-height-md mb-1">
-                          <strong>{formPublishRide.origin.placeName}, </strong>
-                          <small>{formPublishRide.origin.placeDetails}</small>
+                      <Col xs={10} className="line-height-sm">
+                        <p className="fw-bold mb-0">
+                          {formPublishRide.origin.placeName}
                         </p>
+                        <small className="smaller">
+                          {formPublishRide.origin.placeDetails}
+                        </small>
                         <p className="mb-2">
                           <ArrowDownIcon size={24} className="text-success" />
                         </p>
@@ -898,15 +900,13 @@ const Publish = () => {
                           {dateFormat(timeDestination.current, "HH:MM TT")}
                         </p>
                       </Col>
-                      <Col xs={10}>
-                        <p className="line-height-md mb-0">
-                          <strong>
-                            {formPublishRide.destination.placeName},{" "}
-                          </strong>
-                          <small>
-                            {formPublishRide.destination.placeDetails}
-                          </small>
+                      <Col xs={10} className="line-height-sm">
+                        <p className="fw-bold mb-0">
+                          {formPublishRide.destination.placeName}
                         </p>
+                        <small className="smaller">
+                          {formPublishRide.destination.placeDetails}
+                        </small>
                       </Col>
                     </Row>
                     <hr />

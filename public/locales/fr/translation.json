@@ -7,7 +7,7 @@
 	},
 	"FAQ": {
 		"answer1": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
-		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer2": "Pour l'instant, Tucána n'offre pas de remboursement car vous ne payez pas par son intermédiaire. Tu peux contacter les personnes directement grâce à la fonction de messagerie de l'application.",
 		"answer3": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à votre compte ou à votre activité.",
 		"answer4": "Nous sommes tenus de conserver votre numéro d'identification et votre adresse électronique pendant les 3 mois qui suivent la fermeture de votre compte. Cela permet de garantir la sécurité de la communauté utilisant Tucána. Ensuite, ces enregistrements seront automatiquement supprimés après cette période.",
 		"answer5": "Tout est expliqué en détail directement sur la page : <1>Expérience</1>",
@@ -79,11 +79,26 @@
 		"subTitle": "Toutes les réservations que tu as faites"
 	},
 	"cancelBooking": {
+		"cancellationPolicy": "Assurez-vous de consulter notre <2>politique d'annulation</2> avant d'annuler.",
 		"confirm": "Souhaitez-vous vraiment annuler cette réservation ?",
 		"content1": "Tu recevras un remboursement en fonction de la date à laquelle tu annule la réservation. En savoir plus",
-		"refundPolicy": "Assurez-vous de consulter notre <2>politique de remboursement</2> avant d'annuler.",
 		"success": "Votre réservation a été annulée avec succès",
 		"title": "Annule ta réservation"
+	},
+	"cancelRide": {
+		"cancelPolicy": "Assurez-vous de consulter notre <2>politique d'annulation</2> avant d'annuler.",
+		"existingBookings": "Tu as déjà accepté des réservations pour ce trajet."
+	},
+	"cancellationPolicy": {
+		"later": "Plus tard, les remboursements fonctionneront selon ce principe :",
+		"message": "Pour l'instant, Tucána n'offre pas de remboursement car vous ne payez pas par son intermédiaire. Tu peux contacter les personnes directement grâce à la fonction de messagerie de l'application.",
+		"option1-content": "Nous te rembourserons le montant de ta réservation, à l'exception des frais de réservation.",
+		"option1-title": "Ta annules ta réservation plus de 24 heures avant le départ",
+		"option2-content": "Nous te rembourserons 50 % du montant de ta réservation, à l'exception des frais de réservation.",
+		"option2-title": "Tu annules ta réservation moins de 24 heures avant le départ",
+		"option3-content": "Nous paierons au conducteur le montant total de ta réservation.",
+		"option3-title": "Tu ne te présentes pas le jour du départ.",
+		"title": "Politique d'annulation"
 	},
 	"closeAccount": {
 		"closeAccount": "Clôturer mon compte",
@@ -150,6 +165,10 @@
 			"forgotPassword": "Si tu as oublié ton mot de passe, déconnecte-vous d'abord, puis clique sur le lien de réinitialisation du mot de passe dans la page de connexion.",
 			"oldPassword": "Mot de passe actuel",
 			"title": "Mettre à jour ton mot de passe"
+		},
+		"ride": {
+			"alreadyBookings": "Tu ne peux pas modifier ce trajet.",
+			"title": "Modifier le trajet"
 		}
 	},
 	"experience": {
@@ -207,6 +226,7 @@
 		"bookings": "Réservations",
 		"by": "Par",
 		"cancel": "Annuler",
+		"cancellationPolicy": "Politique d'annulation",
 		"car": "Voiture",
 		"city": "Ville",
 		"click": "Clique sur",
@@ -272,6 +292,7 @@
 			"validUsername": "Saisis un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
 			"validYear": "Saisis une année valide"
 		},
+		"existedAcceptedBookings": "Réservations acceptées existantes",
 		"experience": "Expérience",
 		"faq": "FAQ",
 		"finish": "Terminer",
@@ -627,17 +648,6 @@
 		"title": "Avis",
 		"toDo": "Cotes à faire"
 	},
-	"refundPolicy": {
-		"later": "Plus tard, les remboursements fonctionneront selon ce principe :",
-		"message": "Pour l'instant, la plateforme ne gère pas les remboursements car nous ne gérons pas les paiements. Tu peux contacter les personnes directement avec la fonction de messagerie dès l'application.",
-		"option1-content": "Nous te rembourserons le montant de ta réservation, à l'exception des frais de réservation.",
-		"option1-title": "Ta annules ta réservation plus de 24 heures avant le départ",
-		"option2-content": "Nous te rembourserons 50 % du montant de ta réservation, à l'exception des frais de réservation.",
-		"option2-title": "Tu annules ta réservation moins de 24 heures avant le départ",
-		"option3-content": "Nous paierons au conducteur le montant total de ta réservation.",
-		"option3-title": "Tu ne te présentes pas le jour du départ.",
-		"title": "Politique de remboursement"
-	},
 	"report": {
 		"behavior": "Signaler un comportement",
 		"problemApp": "Un problème avec l'application"
@@ -680,6 +690,10 @@
 		"goBack": "Retourne à tes trajets",
 		"noRides": "Aucun trajets à confirmer",
 		"title": "Trajets à compléter"
+	},
+	"searchRides": {
+		"message": "Essaye avec d'autres lieux et une autre date",
+		"notFound": "Aucun trajet trouvé"
 	},
 	"signUp": {
 		"ageWarning": "Tu dois avoir au moins 18 ans pour utiliser Tucána",

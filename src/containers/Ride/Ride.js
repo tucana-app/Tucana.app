@@ -209,8 +209,7 @@ const Ride = () => {
                       <Container className="py-3 px-2">
                         <Row>
                           <Col xs={6} className="text-end ps-0">
-                            {/* <LinkContainer to={`/ride/${rideId}/edit`}> */}
-                            <LinkContainer to={`/coming-soon`}>
+                            <LinkContainer to={`/ride/${rideId}/edit`}>
                               <Button
                                 variant="outline-primary"
                                 className="w-100"

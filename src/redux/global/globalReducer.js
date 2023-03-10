@@ -23,13 +23,13 @@ const initialState = {
 
   priceMin: 2000,
   priceMax: 50000,
-  seatsMax: 3,
+  seatsMax: 6,
   commissionOnPassenger: 1,
   commissionOnDriver: 1,
   initHeight: 0,
   constants: [],
   feedback: {},
-  isNavBar: true,
+  isShowNavBar: true,
   isOffline: false,
 
   isLoadingCountries: false,
@@ -995,7 +995,7 @@ function globalReducer(state = initialState, action) {
     case globalTypes.DISPLAY_NAV_BAR:
       return {
         ...state,
-        isNavBar: action.payload,
+        isShowNavBar: action.payload,
       };
 
     // Get all the levels

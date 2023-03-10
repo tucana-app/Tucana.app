@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import FormSearchRides from "../../components/FormSearchRides";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import { displayNavBar, getRidesOnline } from "../../redux";
 
 const Find = () => {
@@ -35,15 +34,9 @@ const Find = () => {
                   <FormSearchRides />
                 </Row>
 
-                {isloadingRidesOnline ? (
+                {!isloadingRidesOnline && ridesOnlineData.count > 0 ? (
                   <Row className="mt-3">
-                    <Col className="text-center">
-                      <LoadingSpinner />
-                    </Col>
-                  </Row>
-                ) : ridesOnlineData.count > 0 ? (
-                  <Row className="mt-3">
-                    <Col>
+                    <Col xs={12}>
                       <p className="text-center text-white fw-bold mb-0">
                         {ridesOnlineData.count}{" "}
                         {t("translation:global.ridesOnline")}

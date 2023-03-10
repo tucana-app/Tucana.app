@@ -52,6 +52,7 @@ import DriverRides from "./containers/Driver/DriverRides";
 import EditBio from "./containers/Edits/EditBio";
 import EditDateOfBirth from "./containers/Edits/EditDateOfBirth";
 import EditPassword from "./containers/Edits/EditPassword";
+import EditRide from "./containers/Edits/EditRide";
 
 // Help containers
 import FAQ from "./containers/Help/FAQ";
@@ -59,6 +60,7 @@ import Help from "./containers/Help/Help";
 import HowItWorks from "./containers/Help/HowItWorks";
 import Map from "./containers/Help/Map";
 import RefundPolicy from "./containers/Help/RefundPolicy";
+import CancellationPolicy from "./containers/Help/CancellationPolicy";
 
 // Legal containers
 import Credits from "./containers/Legal/Credits";
@@ -120,7 +122,7 @@ import CacheBuster from "react-cache-buster";
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isNavBar, initHeight, isOffline } = useSelector(
+  const { isShowNavBar, initHeight, isOffline } = useSelector(
     (state) => state.global
   );
   const { height } = useWindowDimensions();
@@ -177,7 +179,7 @@ function App() {
           >
             <ScrollToTop />
             {isOffline ? <OfflineBanner /> : null}
-            {isNavBar ? <NavigationBar /> : null}
+            {isShowNavBar ? <NavigationBar /> : null}
 
             <Switch>
               <Route exact path="/download" component={DownloadRedirect} />
@@ -221,6 +223,7 @@ function App() {
                 component={RidesToConfirm}
               />
               <Route exact path="/ride/:rideId/cancel" component={CancelRide} />
+              <Route exact path="/ride/:rideId/edit" component={EditRide} />
 
               {/* Booking containers */}
               <Route exact path="/booking/:bookingId" component={Booking} />
@@ -280,6 +283,11 @@ function App() {
               <Route exact path="/how-it-works" component={HowItWorks} />
               <Route exact path="/map" component={Map} />
               <Route exact path="/refund-policy" component={RefundPolicy} />
+              <Route
+                exact
+                path="/cancellation-policy"
+                component={CancellationPolicy}
+              />
 
               {/* Legal containers */}
               <Route exact path="/credits" component={Credits} />

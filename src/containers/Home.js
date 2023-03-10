@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import logo from "../assets/images/logo-full-black.png";
 
 import { displayNavBar, getRidesOnline } from "../redux";
-import LoadingSpinner from "../components/LoadingSpinner";
 import FormSearchRides from "../components/FormSearchRides";
 import SocialIcons from "../components/SocialIcons";
 import ReactCountryFlag from "react-country-flag";
@@ -206,13 +205,7 @@ function Home() {
           </Col>
         </Row>
 
-        {isloadingRidesOnline ? (
-          <Row className="mt-3">
-            <Col className="text-center">
-              <LoadingSpinner />
-            </Col>
-          </Row>
-        ) : ridesOnlineData.count > 0 ? (
+        {!isloadingRidesOnline && ridesOnlineData.count > 0 ? (
           <Row className="mt-3">
             <Col>
               <p className="text-center fw-bold mb-0">
