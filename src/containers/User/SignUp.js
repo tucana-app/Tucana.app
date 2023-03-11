@@ -23,7 +23,7 @@ import {
 
 import { registerUser, setToast, resendConfirmationLink } from "../../redux";
 
-import { getYearsDiff } from "../../helpers";
+import { getYearsDiff, isEmptyObject } from "../../helpers";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import GoBack from "../../components/GoBack";
@@ -34,7 +34,7 @@ require("yup-password")(Yup); // extend yup
 const SignUp = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { isloadingSignup, isLoggedIn, signupUserSuccessful, signupErrorData } =
+  const { isloadingSignup, isLoggedIn, signupUserSuccess, signupUserFail } =
     useSelector((state) => state.user);
   const { labelStringField, labelRequiredField } = useSelector(
     (state) => state.global
@@ -143,19 +143,19 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (signupErrorData) {
-      signupErrorData.flag === "NOT_CONFIRMED"
+    if (signupUserFail) {
+      signupUserFail.flag === "NOT_CONFIRMED"
         ? setShowAlertConfirmEmail(true)
         : setShowAlertConfirmEmail(false);
     }
-  }, [signupErrorData]);
+  }, [signupUserFail]);
 
   // Handle redirection in case the user is already logged in
   if (isLoggedIn) {
     return <Redirect to="/find" />;
   }
 
-  if (signupUserSuccessful) {
+  if (!isEmptyObject(signupUserSuccess)) {
     return <Redirect to="/signup-successful" />;
   }
 
@@ -494,16 +494,16 @@ const SignUp = () => {
                   </Col> */}
                 </Row>
 
-                {signupErrorData ? (
-                  signupErrorData.flag === "NOT_CONFIRMED" ? (
+                {signupUserFail ? (
+                  signupUserFail.flag === "NOT_CONFIRMED" ? (
                     <>
                       <Alert variant="warning" show={showAlertConfirmEmail}>
-                        {signupErrorData.message}.{" "}
+                        {signupUserFail.message}.{" "}
                         <u
                           className="cursor-pointer text-primary"
                           onClick={() => {
                             dispatch(
-                              resendConfirmationLink(signupErrorData.userId)
+                              resendConfirmationLink(signupUserFail.userId)
                             );
                             setShowAlertConfirmEmail(false);
                           }}

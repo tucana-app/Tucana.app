@@ -24,7 +24,7 @@ const Page404 = () => {
               <p>
                 {t("translation:404.back1")}{" "}
                 <Link to="/" className="text-success">
-                  <u>{t("translation:404.back2")}</u>
+                  <u>{t("translation:global.homepage")}</u>
                 </Link>
               </p>
             </div>

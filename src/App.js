@@ -13,6 +13,7 @@ import CreateNewPassword from "./containers/User/CreateNewPassword";
 import Experience from "./containers/User/Experience";
 import ForgotPassword from "./containers/User/ForgotPassword";
 import LogIn from "./containers/User/LogIn";
+import FirstSetup from "./containers/User/FirstSetup";
 import PublicProfile from "./containers/User/PublicProfile";
 import PublicRatings from "./containers/User/PublicRatings";
 import SignUp from "./containers/User/SignUp";
@@ -57,10 +58,10 @@ import EditRide from "./containers/Edits/EditRide";
 // Help containers
 import FAQ from "./containers/Help/FAQ";
 import Help from "./containers/Help/Help";
-import HowItWorks from "./containers/Help/HowItWorks";
 import Map from "./containers/Help/Map";
 import RefundPolicy from "./containers/Help/RefundPolicy";
 import CancellationPolicy from "./containers/Help/CancellationPolicy";
+import Tutorial from "./containers/Help/Tutorial";
 
 // Legal containers
 import Credits from "./containers/Legal/Credits";
@@ -194,6 +195,7 @@ function App() {
               />
               <Route exact path="/experience" component={Experience} />
               <Route exact path="/forgot-password" component={ForgotPassword} />
+              <Route exact path="/first-setup" component={FirstSetup} />
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/confirm/:uuid" component={SignUpConfirm} />
@@ -280,7 +282,6 @@ function App() {
               {/* Help container */}
               <Route exact path="/faq" component={FAQ} />
               <Route exact path="/help" component={Help} />
-              <Route exact path="/how-it-works" component={HowItWorks} />
               <Route exact path="/map" component={Map} />
               <Route exact path="/refund-policy" component={RefundPolicy} />
               <Route
@@ -288,6 +289,7 @@ function App() {
                 path="/cancellation-policy"
                 component={CancellationPolicy}
               />
+              <Route exact path="/tutorial" component={Tutorial} />
 
               {/* Legal containers */}
               <Route exact path="/credits" component={Credits} />

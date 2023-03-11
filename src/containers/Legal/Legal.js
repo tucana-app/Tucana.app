@@ -24,6 +24,8 @@ const Legal = () => {
             className="text-center px-0 mx-auto"
           >
             <ListGroup variant="flush">
+              <hr className="mb-2" />
+
               <Link to="/privacy" className="text-decoration-none">
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">

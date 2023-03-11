@@ -1,7 +1,6 @@
 {
 	"404": {
 		"back1": "Retourne à la",
-		"back2": "Page d'accueil",
 		"message": "Nous n'avons pas trouvé la page que tu recherches.",
 		"notFound": "Page non trouvée"
 	},
@@ -214,9 +213,11 @@
 		"accepted": "Accepté",
 		"acceptingBooking": "Tu as accepté la réservation",
 		"add": "Ajouter",
+		"after": "Après",
 		"alreadyBooking": "Tu as déjà une ou plusieurs réservations pour ce trajet.",
 		"application": "Demande",
 		"becomeDriver": "Deviens conducteur",
+		"before": "Avant",
 		"bio": "Biographie",
 		"book": "Réserver",
 		"bookRide": "Réserver un trajet",
@@ -228,6 +229,7 @@
 		"cancel": "Annuler",
 		"cancellationPolicy": "Politique d'annulation",
 		"car": "Voiture",
+		"catchPhrase": "La première application de covoiturage au Costa Rica : un moyen écologique, pratique et économique de voyager et de rencontrer des gens",
 		"city": "Ville",
 		"click": "Clique sur",
 		"close": "Fermer",
@@ -310,6 +312,7 @@
 		"hebrew": "Hébreu",
 		"help": "Aide",
 		"hide": "Cacher",
+		"homepage": "Page d'accueil",
 		"howItWorks": "Comment ça marche?",
 		"idType": "Type d'identité",
 		"identification": "Identification",
@@ -352,6 +355,7 @@
 		"perSeat": "par siège",
 		"phone": "Téléphone",
 		"points": "Points",
+		"previous": "Précédent",
 		"price": "Prix",
 		"profile": "Profil",
 		"province": "province",
@@ -388,6 +392,7 @@
 		"skip": "Passer",
 		"slogan": "Partage tes trajets au Costa Rica",
 		"spanish": "Espagnol",
+		"start": "Démarrer",
 		"status": "Statut",
 		"statuses": {
 			"booking": {
@@ -485,51 +490,8 @@
 	},
 	"homepage": {
 		"alreadyAccount": "Tu as déjà un compte ?",
-		"catchPhrase": "La première application de covoiturage au Costa Rica : un moyen écologique, pratique et économique de voyager et de rencontrer des gens",
 		"learnMore": "Info",
 		"start": "Démarrer"
-	},
-	"howItWorks": {
-		"after": "Après le trajet",
-		"beDriver": "Être conducteur",
-		"bePassenger": "Être passager",
-		"bookRide": "Réserve un trajet",
-		"bookRide2": "Pour toi et tous tes passagers. Le paiement est effectué en espèce directement entre le conducteur et les passagers. Aucune commission n'est appliquée par Tucána pour le moment.",
-		"both": "Avec Tucána, tu peux faire les deux !",
-		"chat": "Discute avec le conducteur ou tes passagers",
-		"checkFaq": "Consulte la FAQ",
-		"choose": "Choisis",
-		"confirm": "Complète le trajet",
-		"confirm2": "Pour archiver le trajet, et dans le futur, permettre au conducteur de recevoir l'argent en ligne.",
-		"contactDriver": "Contacte le conducteur si nécessaire",
-		"feedback": "Donne-nous ton avis sur notre service",
-		"feedback2": "Pour nous aider à améliorer la plate-forme",
-		"fillUp": "Remplis le formulaire d'inscription",
-		"fillUp2": "Nous avons besoin de toutes les informations pertinentes sur toi et ta voiture afin d'assurer la sécurité de la communauté",
-		"forDrivers": "Pour les conducteurs",
-		"forPassengers": "Pour les passagers",
-		"getVerified": "Obtiens une vérification",
-		"getVerified2": "Ton permis de conduire et ta voiture sont vérifiés par un modérateur.",
-		"giveDetails": "Détaille tes besoins avec le conducteur",
-		"giveDetails2": "Exemple : si tu transportes un animal, une planche de surf, ou si tu n'aimes pas l'odeur de cigarette dans la voiture, etc.",
-		"ifDriver": "Si tu es conducteur",
-		"ifPassenger": "Si tu es un passager",
-		"manageBookingsDriver": "Gère les réservations de tes passagers",
-		"manageBookingsPassenger": "Gère ta réservation",
-		"points": "Organise les points de départ et d'arrivée",
-		"points2": "Assure-toi de savoir où se trouvent les points de prise en charge et de dépose. Utilise la fonction d'épinglage de Google Map intégrée à l'application.",
-		"prepare": "Prépare ton voyage",
-		"publishRide": "Publie ton trajet",
-		"publishRide2": "Fixe ton propre prix. Le paiement est effectué en espèce directement entre le conducteur et les passagers. Aucune commission n'est appliquée par Tucána pour le moment.",
-		"publishRides": "Publier des trajets",
-		"registration": "Inscription",
-		"review": "Soumettre un avis pour tes passagers ou le conducteur",
-		"review2": "Pour continuer de s'assurer de la sécurité de la communauté",
-		"signUpFree": "Inscrit toi gratuitement",
-		"startTutorial": "Démarrer le tutoriel",
-		"stepsService": "Découvre comment il est facile de partager un trajet avec le guide interactif",
-		"verifyEmail": "Vérifie ton compte",
-		"verifyEmail2": "Avec ton adresse e-mail : vérifie tes e-mails (boîte de réception et spam)"
 	},
 	"inputSearchLocation": {
 		"searchCity": "Rechercher une ville"
@@ -703,13 +665,52 @@
 		"subTitle": "Tout commence ici pour tous tes voyages au Costa Rica."
 	},
 	"signUpSuccess": {
-		"subTitle": "Bienvenue sur notre plateforme 🎉",
+		"emailSent": "Courriel envoyé à",
 		"text": "Vérifie le lien de confirmation dans ta boîte aux lettres électronique et dans ton dossier spam pour confirmer ton compte.",
-		"title": "S'inscrire avec succès"
+		"title": "Enregistrement réussi 🎉",
+		"wrongEmail": "Mauvaise adresse électronique ?"
 	},
 	"singleConversation": {
 		"sendMessage": "Envoyer un message",
 		"sendPin": "Envoyer ce point",
 		"titleOffCanva": "Envoyer une localisation"
+	},
+	"tutorial": {
+		"1-createAccount": {
+			"paragraph1": "",
+			"paragraph2": "Avec ton adresse e-mail : vérifie tes e-mails (boîte de réception <2>et spam</2>)",
+			"title": "Créer ton compte",
+			"title1": "Inscrit toi gratuitement",
+			"title2": "Vérifie ton adresse e-mail"
+		},
+		"2-forPassengers": {
+			"paragraph1": "Envoi une demande de réservation au conducteur/trice",
+			"paragraph2": "Tu recevra un courriel t'indiquant si le conducteur a confirmé ta réservation ou non.",
+			"paragraph3": "Utilise la fonction de messagerie de l'application pour discuter",
+			"title": "Pour les passagers",
+			"title1": "Trouve et réserver ton trajet",
+			"title2": "Attend la réponse",
+			"title3": "Rouler ensemble"
+		},
+		"3-forDrivers": {
+			"paragraph1": "",
+			"paragraph2": "Nous te demandons des informations sur ton identité, ton permis de conduire et ta voiture.",
+			"paragraph3": "",
+			"title": "Pour les conducteurs",
+			"title1": "Soumets tes informations",
+			"title2": "Attend la révision",
+			"title3": "Publie tes trajets"
+		},
+		"4-trip": {
+			"paragraph1": "Utilise la fonction de messagerie in-app et l'épingle Google Map",
+			"paragraph2": "Nécessaire pour s'assurer que tout s'est bien passé.",
+			"paragraph3": "Note la personne avec laquelle tu as voyagé, afin de continuer à assurer la sécurité de la communauté.",
+			"title": "Ton voyage",
+			"title1": "Organise les points de départ et d'arrivée",
+			"title2": "Complète le trajet",
+			"title3": "Mets une note"
+		},
+		"welcome": "Bienvenu.e 👋",
+		"welcome2": "Merci d'utiliser Tucána, la meilleure application de covoiturage au Costa Rica. Suis les étapes suivantes pour comprendre le fonctionnement de l'application."
 	}
 }

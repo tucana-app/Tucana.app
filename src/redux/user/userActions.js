@@ -353,51 +353,6 @@ export const setUserAvatarFail = (error) => {
   };
 };
 
-// Set user's first setup
-
-export const setUserFirstSetupRequested = () => {
-  return {
-    type: userTypes.SET_USER_FIRST_SETUP_REQUESTED,
-  };
-};
-
-export const setUserFirstSetup = (user) => {
-  return (dispatch) => {
-    dispatch(setUserFirstSetupRequested());
-
-    axios
-      .post(
-        URL_API + "/user/set-user-first-setup",
-        {
-          user,
-        },
-        {
-          headers: authHeader(),
-        }
-      )
-      .then((response) => {
-        dispatch(setUserFirstSetupSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(setUserFirstSetupFail());
-      });
-  };
-};
-
-export const setUserFirstSetupSuccess = (data) => {
-  return {
-    type: userTypes.SET_USER_FIRST_SETUP_DATA,
-    payload: data,
-  };
-};
-
-export const setUserFirstSetupFail = (error) => {
-  return {
-    type: userTypes.SET_USER_FIRST_SETUP_ERROR,
-    payload: error,
-  };
-};
-
 // Handle sending email for a forgotten password
 
 export const submitEmailForgotPasswordRequested = () => {
