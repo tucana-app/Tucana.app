@@ -174,18 +174,23 @@ const Booking = () => {
                           </Col>
                         </Row>
                       </LinkContainer>
-                      <Row>
-                        <Col>
-                          <hr />
-                          <SendMessageButton
-                            type="link"
-                            driverId={bookingData.DriverId}
-                            user={bookingData.User}
-                            receiverName={bookingData.User.firstName}
-                            rideId={bookingData.RideId}
-                          />
-                        </Col>
-                      </Row>
+                      {!isDateInPast(
+                        bookingData.Ride.dateTimeOrigin,
+                        new Date()
+                      ) && bookingData.BookingStatusId < 4 ? (
+                        <Row>
+                          <Col>
+                            <hr />
+                            <SendMessageButton
+                              type="link"
+                              driverId={bookingData.DriverId}
+                              user={bookingData.User}
+                              receiverName={bookingData.User.firstName}
+                              rideId={bookingData.RideId}
+                            />
+                          </Col>
+                        </Row>
+                      ) : null}
                     </Container>
                   </Col>
                 </Row>
@@ -321,7 +326,12 @@ const Booking = () => {
                           </Col>
                         </Row>
                       </LinkContainer>
-                      {currentUser.id === bookingData.User.id ? (
+                      {currentUser.id === bookingData.User.id &&
+                      !isDateInPast(
+                        new Date(),
+                        bookingData.Ride.dateTimeOrigin
+                      ) &&
+                      bookingData.BookingStatusId < 4 ? (
                         <Row className="mt-3">
                           <Col>
                             <SendMessageButton

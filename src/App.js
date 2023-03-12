@@ -22,15 +22,18 @@ import SignUpSuccess from "./containers/User/SignUpSuccess";
 // Ride containers
 import ConfirmRide from "./containers/Ride/ConfirmRide";
 import Find from "./containers/Ride/Find";
+import SearchResults from "./containers/Ride/SearchResults";
 import Publish from "./containers/Ride/Publish";
 import Ride from "./containers/Ride/Ride";
 import Rides from "./containers/Ride/Rides";
+import CancelRide from "./containers/Ride/CancelRide";
 import RidesToConfirm from "./containers/Ride/RidesToConfirm";
 
 // Bookings containers
 import Booking from "./containers/Booking/Booking";
 import Bookings from "./containers/Booking/Bookings";
 import Book from "./containers/Booking/Book";
+import BookSuccess from "./containers/Booking/BookSuccess";
 import CancelBooking from "./containers/Booking/CancelBooking";
 import PastBookings from "./containers/Booking/PastBookings";
 
@@ -49,6 +52,7 @@ import DriverRides from "./containers/Driver/DriverRides";
 import EditBio from "./containers/Edits/EditBio";
 import EditDateOfBirth from "./containers/Edits/EditDateOfBirth";
 import EditPassword from "./containers/Edits/EditPassword";
+import EditRide from "./containers/Edits/EditRide";
 
 // Help containers
 import FAQ from "./containers/Help/FAQ";
@@ -56,6 +60,7 @@ import Help from "./containers/Help/Help";
 import HowItWorks from "./containers/Help/HowItWorks";
 import Map from "./containers/Help/Map";
 import RefundPolicy from "./containers/Help/RefundPolicy";
+import CancellationPolicy from "./containers/Help/CancellationPolicy";
 
 // Legal containers
 import Credits from "./containers/Legal/Credits";
@@ -117,7 +122,7 @@ import CacheBuster from "react-cache-buster";
 function App() {
   const dispatch = useDispatch();
   const { user: currentUser, isLoggedIn } = useSelector((state) => state.user);
-  const { isNavBar, initHeight, isOffline } = useSelector(
+  const { isShowNavBar, initHeight, isOffline } = useSelector(
     (state) => state.global
   );
   const { height } = useWindowDimensions();
@@ -174,7 +179,7 @@ function App() {
           >
             <ScrollToTop />
             {isOffline ? <OfflineBanner /> : null}
-            {isNavBar ? <NavigationBar /> : null}
+            {isShowNavBar ? <NavigationBar /> : null}
 
             <Switch>
               <Route exact path="/download" component={DownloadRedirect} />
@@ -217,11 +222,18 @@ function App() {
                 path="/rides/rides-to-complete"
                 component={RidesToConfirm}
               />
+              <Route exact path="/ride/:rideId/cancel" component={CancelRide} />
+              <Route exact path="/ride/:rideId/edit" component={EditRide} />
 
               {/* Booking containers */}
               <Route exact path="/booking/:bookingId" component={Booking} />
               <Route exact path="/bookings" component={Bookings} />
               <Route exact path="/book/:rideId" component={Book} />
+              <Route
+                exact
+                path="/book/:rideId/book-success"
+                component={BookSuccess}
+              />
               <Route
                 exact
                 path="/booking/:bookingId/cancel"
@@ -271,6 +283,11 @@ function App() {
               <Route exact path="/how-it-works" component={HowItWorks} />
               <Route exact path="/map" component={Map} />
               <Route exact path="/refund-policy" component={RefundPolicy} />
+              <Route
+                exact
+                path="/cancellation-policy"
+                component={CancellationPolicy}
+              />
 
               {/* Legal containers */}
               <Route exact path="/credits" component={Credits} />
@@ -320,6 +337,7 @@ function App() {
               {/* Other containers */}
               <Route exact path="/" component={Home} />
               <Route exact path="/find" component={Find} />
+              <Route exact path="/search-results" component={SearchResults} />
               <Route exact path="/menu" component={Menu} />
               <Route exact path="/coming-soon" component={ComingSoon} />
 

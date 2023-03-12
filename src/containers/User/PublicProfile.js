@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import dateFormat from "dateformat";
 import { AlertIcon, ChevronRightIcon } from "@primer/octicons-react";
@@ -17,24 +17,15 @@ const PublicProfile = () => {
   const { username } = useParams();
 
   const dispatch = useDispatch();
-  const {
-    isLoggedIn,
-    isloadingPublicProfile,
-    publicProfileData,
-    publicProfileError,
-  } = useSelector((state) => state.user);
+  const { isLoggedIn, isloadingPublicProfile, publicProfileData } = useSelector(
+    (state) => state.user
+  );
   const { srcAvatar } = useSelector((state) => state.global);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getPublicProfile(username));
-    }
+    dispatch(getPublicProfile(username));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!isLoggedIn) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div>
@@ -77,10 +68,38 @@ const PublicProfile = () => {
                   <Row>
                     <Col>
                       <ListGroup variant="flush">
-                        <Link
-                          to={`/profile/${username}/ratings`}
-                          className="text-decoration-none"
-                        >
+                        {isLoggedIn ? (
+                          <Link
+                            to={`/profile/${username}/ratings`}
+                            className="text-decoration-none"
+                          >
+                            <ListGroup.Item className="border-0 px-0">
+                              <div className="d-inline-flex justify-content-between align-items-center w-100">
+                                <div>
+                                  <p className="mb-1">
+                                    <strong>
+                                      {t("translation:global.ratings")}
+                                    </strong>
+                                  </p>
+
+                                  <div className="mb-0">
+                                    <DisplayRating
+                                      rating={publicProfileData.user.Rating}
+                                      type="passenger"
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  {t("translation:global.view")}{" "}
+                                  <ChevronRightIcon
+                                    size={24}
+                                    verticalAlign="middle"
+                                  />
+                                </div>
+                              </div>
+                            </ListGroup.Item>
+                          </Link>
+                        ) : (
                           <ListGroup.Item className="border-0 px-0">
                             <div className="d-inline-flex justify-content-between align-items-center w-100">
                               <div>
@@ -97,16 +116,9 @@ const PublicProfile = () => {
                                   />
                                 </div>
                               </div>
-                              <div>
-                                {t("translation:global.view")}{" "}
-                                <ChevronRightIcon
-                                  size={24}
-                                  verticalAlign="middle"
-                                />
-                              </div>
                             </div>
                           </ListGroup.Item>
-                        </Link>
+                        )}
                       </ListGroup>
                     </Col>
                   </Row>
@@ -188,9 +200,10 @@ const PublicProfile = () => {
               </Col>
             </Row>
           </div>
-        ) : publicProfileError ? (
-          <Redirect to="/" />
-        ) : null}
+        ) : // publicProfileError ? (
+        //   <Redirect to="/" />
+        // ) :
+        null}
       </Container>
     </div>
   );

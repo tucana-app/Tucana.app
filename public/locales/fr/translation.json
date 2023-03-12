@@ -7,7 +7,7 @@
 	},
 	"FAQ": {
 		"answer1": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
-		"answer2": "Pour l'instant, tous les paiements se font en espèces. Tu peux convenir directement avec le conducteur ou tes passagers de la devise, en CRC (colones costariciennes) ou en USD (dollars américains).",
+		"answer2": "Pour l'instant, Tucána n'offre pas de remboursement car vous ne payez pas par son intermédiaire. Tu peux contacter les personnes directement grâce à la fonction de messagerie de l'application.",
 		"answer3": "Nous ne recueillons que les informations légalement requises pour assurer le bon fonctionnement de notre service. Nous ne partageons/vendons aucune information privée liée à votre compte ou à votre activité.",
 		"answer4": "Nous sommes tenus de conserver votre numéro d'identification et votre adresse électronique pendant les 3 mois qui suivent la fermeture de votre compte. Cela permet de garantir la sécurité de la communauté utilisant Tucána. Ensuite, ces enregistrements seront automatiquement supprimés après cette période.",
 		"answer5": "Tout est expliqué en détail directement sur la page : <1>Expérience</1>",
@@ -79,11 +79,26 @@
 		"subTitle": "Toutes les réservations que tu as faites"
 	},
 	"cancelBooking": {
+		"cancellationPolicy": "Assurez-vous de consulter notre <2>politique d'annulation</2> avant d'annuler.",
 		"confirm": "Souhaitez-vous vraiment annuler cette réservation ?",
 		"content1": "Tu recevras un remboursement en fonction de la date à laquelle tu annule la réservation. En savoir plus",
-		"refundPolicy": "Assurez-vous de consulter notre <2>politique de remboursement</2> avant d'annuler.",
 		"success": "Votre réservation a été annulée avec succès",
 		"title": "Annule ta réservation"
+	},
+	"cancelRide": {
+		"cancelPolicy": "Assurez-vous de consulter notre <2>politique d'annulation</2> avant d'annuler.",
+		"existingBookings": "Tu as déjà accepté des réservations pour ce trajet."
+	},
+	"cancellationPolicy": {
+		"later": "Plus tard, les remboursements fonctionneront selon ce principe :",
+		"message": "Pour l'instant, Tucána n'offre pas de remboursement car vous ne payez pas par son intermédiaire. Tu peux contacter les personnes directement grâce à la fonction de messagerie de l'application.",
+		"option1-content": "Nous te rembourserons le montant de ta réservation, à l'exception des frais de réservation.",
+		"option1-title": "Ta annules ta réservation plus de 24 heures avant le départ",
+		"option2-content": "Nous te rembourserons 50 % du montant de ta réservation, à l'exception des frais de réservation.",
+		"option2-title": "Tu annules ta réservation moins de 24 heures avant le départ",
+		"option3-content": "Nous paierons au conducteur le montant total de ta réservation.",
+		"option3-title": "Tu ne te présentes pas le jour du départ.",
+		"title": "Politique d'annulation"
 	},
 	"closeAccount": {
 		"closeAccount": "Clôturer mon compte",
@@ -150,6 +165,10 @@
 			"forgotPassword": "Si tu as oublié ton mot de passe, déconnecte-vous d'abord, puis clique sur le lien de réinitialisation du mot de passe dans la page de connexion.",
 			"oldPassword": "Mot de passe actuel",
 			"title": "Mettre à jour ton mot de passe"
+		},
+		"ride": {
+			"alreadyBookings": "Tu ne peux pas modifier ce trajet.",
+			"title": "Modifier le trajet"
 		}
 	},
 	"experience": {
@@ -176,13 +195,12 @@
 		"reward": "Récompense"
 	},
 	"find": {
-		"catchPhrase": "Trouve ton prochain voyage au Costa Rica 🇨🇷",
+		"catchPhrase": "Trouve ton prochain voyage 🇨🇷",
 		"change": "Changer",
 		"dayAfter": "Lendemain",
 		"dayBefore": "La veille",
 		"distanceDestination": "à partir de votre adresse d'arrivée",
-		"distanceOrigin": "à partir de votre adresse de départ",
-		"ridesOnline": "trajets en ligne"
+		"distanceOrigin": "à partir de votre adresse de départ"
 	},
 	"formBookRide": {
 		"numberPassengers": "Nombre de passagers"
@@ -205,10 +223,10 @@
 		"bookThisRide": "Réserve ce trajet",
 		"booking": "Réservation",
 		"bookingSubmitted": "Votre réservation a été soumise au conducteur",
-		"bookingSuccess": "Votre réservation a été envoyée au conducteur",
 		"bookings": "Réservations",
 		"by": "Par",
 		"cancel": "Annuler",
+		"cancellationPolicy": "Politique d'annulation",
 		"car": "Voiture",
 		"city": "Ville",
 		"click": "Clique sur",
@@ -248,6 +266,8 @@
 			"completeFirst": "Complète d'abord tes trajets",
 			"dateFuture": "La date doit être dans le futur",
 			"error": "erreur",
+			"errorBook": "Nous n'avons pas pu effectuer votre réservation pour le moment.",
+			"errorDetails": "Détails sur l'erreur",
 			"errorFallback": "Il y a eu une erreur.",
 			"errorPersist": "Si l'erreur persiste, contacte nous.",
 			"failUpdateBio": "Nous n'avons pas pu mettre à jour votre biographie pour le moment.",
@@ -272,6 +292,7 @@
 			"validUsername": "Saisis un nom d'utilisateur valide (uniquement des lettres et des chiffres).",
 			"validYear": "Saisis une année valide"
 		},
+		"existedAcceptedBookings": "Réservations acceptées existantes",
 		"experience": "Expérience",
 		"faq": "FAQ",
 		"finish": "Terminer",
@@ -349,6 +370,7 @@
 		"returnLogin": "Retourner à la <2>page de connexion</2>.",
 		"ride": "Ride",
 		"rideOnline": "Ton trajet est maintenant en ligne.",
+		"ridesOnline": "trajets en ligne",
 		"riteve": "Riteve (contrôle technique)",
 		"search": "Rechercher",
 		"searchResults": "Résultats de la recherche",
@@ -434,6 +456,8 @@
 		"thankYou": "Merci",
 		"time": "Heure",
 		"to": "À",
+		"today": "Aujourd'hui",
+		"tomorrow": "Demain",
 		"total": "Total",
 		"totalPrice": "Prix total",
 		"update": "Mettre à jour",
@@ -460,8 +484,9 @@
 		"title": "Nous recrutons"
 	},
 	"homepage": {
-		"catchPhrase": "Ton compagnon pour tous tes voyages au Costa Rica",
-		"paragraph": "Bienvenue à Tucána, la meilleure application de covoiturage au Costa Rica : une façon pratique et écologique de voyager et de rencontrer des gens.",
+		"alreadyAccount": "Tu as déjà un compte ?",
+		"catchPhrase": "La première application de covoiturage au Costa Rica : un moyen écologique, pratique et économique de voyager et de rencontrer des gens",
+		"learnMore": "Info",
 		"start": "Démarrer"
 	},
 	"howItWorks": {
@@ -552,7 +577,8 @@
 		"memberSince": "Membre depuis",
 		"payments": "Paiements",
 		"ratings": "Avis",
-		"refunds": "Remboursements"
+		"refunds": "Remboursements",
+		"yourInfo": "Conducteur"
 	},
 	"messageEmpty": {
 		"bookRide": "Réserve ton prochain voyage",
@@ -622,17 +648,6 @@
 		"title": "Avis",
 		"toDo": "Cotes à faire"
 	},
-	"refundPolicy": {
-		"later": "Plus tard, les remboursements fonctionneront selon ce principe :",
-		"message": "Pour l'instant, la plateforme ne gère pas les remboursements car nous ne gérons pas les paiements. Tu peux contacter les personnes directement avec la fonction de messagerie dès l'application.",
-		"option1-content": "Nous te rembourserons le montant de ta réservation, à l'exception des frais de réservation.",
-		"option1-title": "Ta annules ta réservation plus de 24 heures avant le départ",
-		"option2-content": "Nous te rembourserons 50 % du montant de ta réservation, à l'exception des frais de réservation.",
-		"option2-title": "Tu annules ta réservation moins de 24 heures avant le départ",
-		"option3-content": "Nous paierons au conducteur le montant total de ta réservation.",
-		"option3-title": "Tu ne te présentes pas le jour du départ.",
-		"title": "Politique de remboursement"
-	},
 	"report": {
 		"behavior": "Signaler un comportement",
 		"problemApp": "Un problème avec l'application"
@@ -645,9 +660,14 @@
 	},
 	"ride": {
 		"allSeatsBooked": "Tous les sièges ont été réservés",
+		"cancelRide": "Annuler le trajet",
+		"editRide": "Modifier le trajet",
 		"feedback": "Laisse-nous un commentaire",
+		"logBefore": "Tu dois être connecté pour réserver ce trajet",
 		"manageBookingRequests": "Gère tes demandes de réservation",
+		"reasonCancel": "Explique en quelques mots pourquoi tu annules ce trajet",
 		"reviewRide": "Revoir le trajet",
+		"rideCancelled": "Votre trajet a été annulé avec succès",
 		"title": "Trajet",
 		"viewTrip": "Voir le voyage"
 	},
@@ -670,6 +690,10 @@
 		"goBack": "Retourne à tes trajets",
 		"noRides": "Aucun trajets à confirmer",
 		"title": "Trajets à compléter"
+	},
+	"searchRides": {
+		"message": "Essaye avec d'autres lieux et une autre date",
+		"notFound": "Aucun trajet trouvé"
 	},
 	"signUp": {
 		"ageWarning": "Tu dois avoir au moins 18 ans pour utiliser Tucána",

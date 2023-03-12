@@ -518,6 +518,7 @@ const DriverApplicationForm = () => {
                           value={t("translation:becomeDriver.nationalId")}
                           name="idType"
                           type="radio"
+                          id="id-type-nationalId"
                           checked={
                             formApplyDriver.id.type ===
                             t("translation:becomeDriver.nationalId")
@@ -529,6 +530,7 @@ const DriverApplicationForm = () => {
                           label={t("translation:becomeDriver.passport")}
                           value={t("translation:becomeDriver.passport")}
                           name="idType"
+                          id="id-type-passport"
                           checked={
                             formApplyDriver.id.type ===
                             t("translation:becomeDriver.passport")

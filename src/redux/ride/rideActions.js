@@ -668,6 +668,14 @@ export const submitFormBookRideFail = (error) => {
   };
 };
 
+// Reset cancel ride
+
+export const resetBookRide = () => {
+  return {
+    type: rideTypes.RESET_BOOK_RIDE,
+  };
+};
+
 // When the driver accept or refuse the booking
 
 export const submitFormDriverResponseBookingRequested = () => {
@@ -1241,22 +1249,22 @@ export const submitFormConfirmRideFail = (error) => {
 
 // Get the number of rides online
 
-export const getNbRidesOnlineRequested = () => {
+export const getRidesOnlineRequested = () => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_REQUEST,
+    type: rideTypes.GET_RIDES_ONLINE_REQUEST,
   };
 };
 
-export const getNbRidesOnline = (username) => {
+export const getRidesOnline = (username) => {
   return (dispatch) => {
-    dispatch(getNbRidesOnlineRequested());
+    dispatch(getRidesOnlineRequested());
 
     axios
-      .get(URL_API + "/ride/nb-rides-online", { headers: authHeader() })
+      .get(URL_API + "/ride/rides-online", { headers: authHeader() })
       .then((response) => {
         // console.log(response.data);
 
-        dispatch(getNbRidesOnlineSuccess(response.data));
+        dispatch(getRidesOnlineSuccess(response.data));
       })
       .catch((error) => {
         // console.log(error);
@@ -1268,21 +1276,102 @@ export const getNbRidesOnline = (username) => {
           error.message ||
           error.toString();
 
-        dispatch(getNbRidesOnlineFail(message));
+        dispatch(getRidesOnlineFail(message));
       });
   };
 };
 
-export const getNbRidesOnlineSuccess = (data) => {
+export const getRidesOnlineSuccess = (data) => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_SUCCESS,
+    type: rideTypes.GET_RIDES_ONLINE_SUCCESS,
     payload: data,
   };
 };
 
-export const getNbRidesOnlineFail = (error) => {
+export const getRidesOnlineFail = (error) => {
   return {
-    type: rideTypes.GET_NB_RIDES_ONLINE_FAIL,
+    type: rideTypes.GET_RIDES_ONLINE_FAIL,
     payload: error,
+  };
+};
+
+// Get the number of rides online
+
+export const cancelRideRequested = () => {
+  return {
+    type: rideTypes.CANCEL_RIDE_REQUEST,
+  };
+};
+
+export const cancelRide = (driverId, rideId, reason) => {
+  return (dispatch) => {
+    dispatch(cancelRideRequested());
+
+    axios
+      .put(
+        URL_API + "/ride/cancel-ride",
+        {
+          driverId,
+          rideId,
+          reason,
+        },
+        {
+          headers: authHeader(),
+        }
+      )
+      .then((response) => {
+        // console.log(response);
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Success",
+            bodyText: t("translation:ride.rideCancelled"),
+            variant: "success",
+          })
+        );
+        dispatch(cancelRideSuccess(response.data));
+      })
+      .catch((error) => {
+        // console.log(error);
+
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        dispatch(
+          setToast({
+            show: true,
+            headerText: "Error",
+            bodyText: message,
+            variant: "danger",
+          })
+        );
+        dispatch(cancelRideFail(message));
+      });
+  };
+};
+
+export const cancelRideSuccess = (data) => {
+  return {
+    type: rideTypes.CANCEL_RIDE_SUCCESS,
+    payload: data,
+  };
+};
+
+export const cancelRideFail = (error) => {
+  return {
+    type: rideTypes.CANCEL_RIDE_FAIL,
+    payload: error,
+  };
+};
+
+// Reset cancel ride
+
+export const resetCancelRide = () => {
+  return {
+    type: rideTypes.RESET_CANCEL_RIDE,
   };
 };

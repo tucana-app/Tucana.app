@@ -14,17 +14,20 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { Trans, useTranslation } from "react-i18next";
-
-import { registerUser, setToast, resendConfirmationLink } from "../../redux";
-import { getYearsDiff } from "../../helpers";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import EyePassword from "../../components/EyePassword";
 import {
   FeedPersonIcon,
   KeyIcon,
   MentionIcon,
   PersonIcon,
 } from "@primer/octicons-react";
+
+import { registerUser, setToast, resendConfirmationLink } from "../../redux";
+
+import { getYearsDiff } from "../../helpers";
+
+import LoadingSpinner from "../../components/LoadingSpinner";
+import GoBack from "../../components/GoBack";
+import EyePassword from "../../components/EyePassword";
 
 require("yup-password")(Yup); // extend yup
 
@@ -157,13 +160,16 @@ const SignUp = () => {
   }
 
   return (
-    <Container className="my-5" data-aos="fade-in">
+    <Container data-aos="fade-in">
+      <GoBack />
+
       <Row className="mb-3">
         <Col className="text-center">
           <h1 className="text-success">{t("translation:global.signUp")}</h1>
           <p className="lead">{t("translation:signUp.subTitle")}</p>
         </Col>
       </Row>
+
       <Row>
         <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
           <Formik

@@ -7,7 +7,7 @@
 	},
 	"FAQ": {
 		"answer1": "As for now, all payments are made with cash money. You can arrange directly with the driver or your passengers for the currency, in CRC (Costa Rican Colones) or in USD (US dollars)",
-		"answer2": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
+		"answer2": "As for now, Tucána doesn't provide refunds because you do not pay through the platform. You can contact people directly with the in-App messaging feature.",
 		"answer3": "We collect only information legally required to ensure that our service works properly. We do not share/sell any private information related to your account or your activity.",
 		"answer4": "We are required to keep your ID number and email address for the next 3 months after closing your account. It ensures the safety of the community using Tucána. Then these records will be automatically deleted past that time.",
 		"answer5": "Everything is explained in details directly on the page: <1>Experience</1>",
@@ -30,7 +30,7 @@
 	},
 	"PassengersDetails": {
 		"noPassengers": "You do not have passengers for this ride yet",
-		"summary": "Total: <2>{{totalPassengers}}</2> passenger(s) with <2>{{bookings}}</2> booking(s)"
+		"summary": "Total: <1>{{totalPassengers}}</1> passenger(s) with <1>{{bookings}}</1> booking(s)"
 	},
 	"account": {
 		"confirmLogOut": "Are you sure you want to log out?"
@@ -79,11 +79,26 @@
 		"subTitle": "All the bookings you have made"
 	},
 	"cancelBooking": {
+		"cancellationPolicy": "Make sure to review our <2>cancellation policy</2> before canceling.",
 		"confirm": "Do you really wish to cancel this booking?",
 		"content1": "You receive on a refund depending on when you cancel the booking. Learn more ",
-		"refundPolicy": "Make sure to review our <2>refund policy</2> before canceling.",
 		"success": "Your booking has been successfully canceled",
 		"title": "Cancel your booking"
+	},
+	"cancelRide": {
+		"cancelPolicy": "Make sure to review our <2>cancellation policy</2> before canceling.",
+		"existingBookings": "You already have accepted bookings for this ride."
+	},
+	"cancellationPolicy": {
+		"later": "Later, the refunds will work according to this:",
+		"message": "As for now, Tucána doesn't provide refunds because you do not pay through the platform. You can contact people directly with the in-App messaging feature.",
+		"option1-content": "We will refund the amount of your booking except for the booking fee.",
+		"option1-title": "You cancel your booking more than 24 hours before departure",
+		"option2-content": "We will refund 50% of the amount of your booking except for the reservation fee.",
+		"option2-title": "You cancel your booking less than 24 hours before departure",
+		"option3-content": "We will pay the driver the full amount of your booking.",
+		"option3-title": "You do not show up on the day of departure",
+		"title": "Cancellation Policy"
 	},
 	"closeAccount": {
 		"closeAccount": "Close my account",
@@ -150,6 +165,10 @@
 			"forgotPassword": "If you forgot your password, first logout then click the reset password link in the Login page",
 			"oldPassword": "Current password",
 			"title": "Update your password"
+		},
+		"ride": {
+			"alreadyBookings": "You cannot edit this ride.",
+			"title": "Edit the ride"
 		}
 	},
 	"experience": {
@@ -176,13 +195,12 @@
 		"reward": "Reward"
 	},
 	"find": {
-		"catchPhrase": "Find your next trip across Costa Rica 🇨🇷",
+		"catchPhrase": "Find your next trip 🇨🇷",
 		"change": "Change",
 		"dayAfter": "1 day after",
 		"dayBefore": "1 day before",
 		"distanceDestination": "from your arrival address",
-		"distanceOrigin": "from your starting address",
-		"ridesOnline": "rides online"
+		"distanceOrigin": "from your starting address"
 	},
 	"formBookRide": {
 		"numberPassengers": "Number of passenger"
@@ -205,10 +223,10 @@
 		"bookThisRide": "Book this ride",
 		"booking": "Booking",
 		"bookingSubmitted": "Your booking has been submitted to the driver",
-		"bookingSuccess": "Your booking has been submitted to the driver",
 		"bookings": "Bookings",
 		"by": "By",
 		"cancel": "Cancel",
+		"cancellationPolicy": "Cancellation policy",
 		"car": "Car",
 		"city": "City",
 		"click": "Click",
@@ -248,6 +266,8 @@
 			"completeFirst": "Complete your rides first",
 			"dateFuture": "The date needs to be in the future",
 			"error": "Error",
+			"errorBook": "We couldn't make your booking at this time",
+			"errorDetails": "Details about the error",
 			"errorFallback": "There has been an error.",
 			"errorPersist": "If the error persists, please contact us.",
 			"failUpdateBio": "We couldn't update your bio at this moment",
@@ -272,6 +292,7 @@
 			"validUsername": "Please enter a valid username (only letters and numbers)",
 			"validYear": "Enter a valid year"
 		},
+		"existedAcceptedBookings": "Existing accepted bookings",
 		"experience": "Experience",
 		"faq": "FAQ",
 		"finish": "Finish",
@@ -349,6 +370,7 @@
 		"returnLogin": "Return to the <2>login page</2>",
 		"ride": "Ride",
 		"rideOnline": "Your ride is now online",
+		"ridesOnline": "rides online",
 		"riteve": "Riteve (car inspection)",
 		"search": "Search",
 		"searchResults": "Search results",
@@ -434,6 +456,8 @@
 		"thankYou": "Thank you",
 		"time": "Time",
 		"to": "To",
+		"today": "Today",
+		"tomorrow": "Tomorrow",
 		"total": "Total",
 		"totalPrice": "Total price",
 		"update": "Update",
@@ -460,8 +484,9 @@
 		"title": "We are hiring"
 	},
 	"homepage": {
-		"catchPhrase": "Your companion for all your travels in Costa Rica",
-		"paragraph": "Welcome to Tucána, the best carpooling app in Costa Rica: a practical and ecological way to travel and meet people.",
+		"alreadyAccount": "Already have an account?",
+		"catchPhrase": "The first ride-sharing app in Costa Rica: an ecological, practical, and economical way to travel and meet people.",
+		"learnMore": "More",
 		"start": "Start"
 	},
 	"howItWorks": {
@@ -552,7 +577,8 @@
 		"memberSince": "Member since",
 		"payments": "Payments",
 		"ratings": "Ratings",
-		"refunds": "Refunds"
+		"refunds": "Refunds",
+		"yourInfo": "Driver"
 	},
 	"messageEmpty": {
 		"bookRide": "Book your next ride",
@@ -622,17 +648,6 @@
 		"title": "Ratings",
 		"toDo": "Ratings to do"
 	},
-	"refundPolicy": {
-		"later": "Later, the refunds will work according to this:",
-		"message": "As for now, the platform doesn't handle refund because we do not handle payment. You can contact people directly with the in-App messaging feature.",
-		"option1-content": "We will refund the amount of your booking except for the booking fee.",
-		"option1-title": "You cancel your booking more than 24 hours before departure",
-		"option2-content": "We will refund 50% of the amount of your booking except for the reservation fee.",
-		"option2-title": "You cancel your booking less than 24 hours before departure",
-		"option3-content": "We will pay the driver the full amount of your booking.",
-		"option3-title": "You do not show up on the day of departure",
-		"title": "Refund Policy"
-	},
 	"report": {
 		"behavior": "Report a behavior",
 		"problemApp": "A problem with the app"
@@ -645,9 +660,14 @@
 	},
 	"ride": {
 		"allSeatsBooked": "All the seats have been booked",
+		"cancelRide": "Cancel the ride",
+		"editRide": "Edit the ride",
 		"feedback": "Leave us a feedback",
+		"logBefore": "You need to be logged in to book this ride",
 		"manageBookingRequests": "Manage your booking requests",
+		"reasonCancel": "Please explain in a few word why you are canceling this ride",
 		"reviewRide": "Review the ride",
+		"rideCancelled": "Your ride has successfully been canceled",
 		"title": "Ride",
 		"viewTrip": "View trip"
 	},
@@ -670,6 +690,10 @@
 		"goBack": "Go back to your rides",
 		"noRides": "No rides to complete",
 		"title": "Rides to complete"
+	},
+	"searchRides": {
+		"message": "Please try different locations and a different date",
+		"notFound": "No rides found"
 	},
 	"signUp": {
 		"ageWarning": "You must be at least 18 to use Tucána",

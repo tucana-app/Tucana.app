@@ -10,7 +10,6 @@ import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 import { getUserBookings } from "../../redux";
-import { ChevronRight } from "react-bootstrap-icons";
 import { isDateInPast } from "../../helpers";
 
 const PastBookings = () => {
@@ -72,34 +71,38 @@ const PastBookings = () => {
                       to={`/booking/${booking.id}`}
                       className="cursor-pointer"
                     >
-                      <Row className="align-items-center mx-2 my-1">
-                        <Col xs={5} className="text-center">
-                          <p className="fw-bold mb-0">
-                            {booking.Ride.origin.placeName}
-                          </p>
-                          <p className="small mb-0">
-                            {booking.Ride.origin.placeDetails}
-                          </p>
-                        </Col>
-                        <Col xs={1} className="text-lowercase">
-                          {t("translation:global.to")}
-                        </Col>
-                        <Col xs={5} className="text-center">
-                          <p className="fw-bold mb-0">
-                            {booking.Ride.destination.placeName}
-                          </p>
-                          <p className="small mb-0">
-                            {booking.Ride.destination.placeDetails}
+                      <Row className="p-2">
+                        <Col xs={12}>
+                          <p className="line-height-md mb-1">
+                            <DotFillIcon
+                              size="18"
+                              className="text-warning mb-1"
+                              verticalAlign="middle"
+                            />
+                            <strong>{booking.Ride.origin.placeName}</strong>
+                            <small>, {booking.Ride.origin.placeDetails}</small>
                           </p>
                         </Col>
-                        <Col xs={1}>
-                          <ChevronRight />
+                        <Col xs={12}>
+                          <p className="line-height-md mb-0">
+                            <DotFillIcon
+                              size="18"
+                              className="text-success mb-1"
+                              verticalAlign="middle"
+                            />
+                            <strong>
+                              {booking.Ride.destination.placeName}
+                            </strong>
+                            <small>
+                              , {booking.Ride.destination.placeDetails}
+                            </small>
+                          </p>
                         </Col>
                       </Row>
                     </LinkContainer>
 
                     <Row className="small justify-content-center border border-start-0 border-end-0 mx-0 py-1">
-                      <Col xs={6} className="text-center">
+                      <Col xs={4}>
                         <p className="mb-0">
                           {t("translation:global.seat")}
                           {booking.seatsBooked > 1 ? "s" : null}:{" "}
@@ -109,7 +112,7 @@ const PastBookings = () => {
                         </p>
                       </Col>
 
-                      <Col xs={6}>
+                      <Col xs={8} className="text-end">
                         <p className="mb-0">
                           {t("translation:global.status")}:{" "}
                           <span

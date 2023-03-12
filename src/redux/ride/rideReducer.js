@@ -22,7 +22,7 @@ const initialState = {
   filteredRidesError: "",
 
   isloadingBookingRide: false,
-  submitBookingRideSuccess: false,
+  submitBookingRideData: {},
   submitBookingRideError: "",
 
   isloadingSubmitFormDriverResponseBooking: false,
@@ -118,9 +118,13 @@ const initialState = {
     seats: 1,
   },
 
-  isloadingNbRidesOnline: false,
-  nbRidesOnlineData: "-",
-  nbRidesOnlineError: "",
+  isloadingRidesOnline: false,
+  ridesOnlineData: "-",
+  ridesOnlineError: "",
+
+  isloadingCancelRide: false,
+  cancelRideSuccess: {},
+  cancelRideFail: "",
 };
 
 function rideReducer(state = initialState, action) {
@@ -275,7 +279,7 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isloadingBookingRide: false,
-        submitBookingRideSuccess: action.payload,
+        submitBookingRideData: action.payload,
         submitBookingRideError: "",
       };
 
@@ -283,8 +287,18 @@ function rideReducer(state = initialState, action) {
       return {
         ...state,
         isloadingBookingRide: false,
-        submitBookingRideSuccess: false,
+        submitBookingRideData: {},
         submitBookingRideError: action.payload,
+      };
+
+    case rideTypes.RESET_BOOK_RIDE:
+      return {
+        ...state,
+        isloadingBookingRide: false,
+        submitBookingRideData: {
+          ...state.submitBookingRideData,
+          flag: "",
+        },
       };
 
     case rideTypes.SUBMIT_FORM_DRIVER_RESPONSE_BOOKING_REQUEST:
@@ -720,26 +734,56 @@ function rideReducer(state = initialState, action) {
       };
 
     // Get the number of rides online
-    case rideTypes.GET_NB_RIDES_ONLINE_REQUEST:
+    case rideTypes.GET_RIDES_ONLINE_REQUEST:
       return {
         ...state,
-        isloadingNbRidesOnline: true,
+        isloadingRidesOnline: true,
       };
 
-    case rideTypes.GET_NB_RIDES_ONLINE_SUCCESS:
+    case rideTypes.GET_RIDES_ONLINE_SUCCESS:
       return {
         ...state,
-        isloadingNbRidesOnline: false,
-        nbRidesOnlineData: action.payload,
-        nbRidesOnlineError: "",
+        isloadingRidesOnline: false,
+        ridesOnlineData: action.payload,
+        ridesOnlineError: "",
       };
 
-    case rideTypes.GET_NB_RIDES_ONLINE_FAIL:
+    case rideTypes.GET_RIDES_ONLINE_FAIL:
       return {
         ...state,
-        isloadingNbRidesOnline: false,
-        nbRidesOnlineData: "-",
-        nbRidesOnlineError: action.payload,
+        isloadingRidesOnline: false,
+        ridesOnlineData: "",
+        ridesOnlineError: action.payload,
+      };
+
+    // Cancel a ride
+    case rideTypes.CANCEL_RIDE_REQUEST:
+      return {
+        ...state,
+        isloadingCancelRide: true,
+      };
+
+    case rideTypes.CANCEL_RIDE_SUCCESS:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: action.payload,
+        cancelRideFail: "",
+      };
+
+    case rideTypes.CANCEL_RIDE_FAIL:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: {},
+        cancelRideFail: action.payload,
+      };
+
+    case rideTypes.RESET_CANCEL_RIDE:
+      return {
+        ...state,
+        isloadingCancelRide: false,
+        cancelRideSuccess: {},
       };
 
     default:

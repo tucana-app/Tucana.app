@@ -24,7 +24,7 @@ function DonateComponent() {
       <Row className="justify-content-between mb-3">
         <Col className="text-end mx-auto">
           <a
-            href="https://giveth.io/project/tucana-carpooling-app-in-costa-rica"
+            href="https://giveth.io/project/tucana-the-first-carpooling-app-in-costa-rica"
             target="_blank"
             rel="noreferrer"
           >

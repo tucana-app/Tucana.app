@@ -107,7 +107,7 @@ const DriverPastBookings = () => {
                       </Row>
                     </Link>
 
-                    <Row className="justify-content-center border border-bottom-0 border-start-0 border-end-0 mx-0">
+                    <Row className="justify-content-between border border-bottom-0 border-start-0 border-end-0 mx-0">
                       <Col className="ms-2">
                         <small className="text-secondary mb-0">
                           {t("translation:global.booking")}:
@@ -123,7 +123,7 @@ const DriverPastBookings = () => {
                           )}
                         </small>
                       </Col>
-                      <Col>
+                      <Col className="text-end">
                         <Link
                           to={`/ride/${booking.RideId}`}
                           className="text-decoration-none text-black me-3"
