@@ -14,11 +14,12 @@ var initialState = user
 
 initialState = {
   ...initialState,
-  isloadingLogin: false,
+
   isloadingSignup: false,
-  signupUserSuccessful: false,
-  signupErrorFlag: "",
-  signupErrorMessage: "",
+  signupUserSuccess: {},
+  signupUserFail: "",
+
+  isloadingLogin: false,
   loginErrorData: "",
 
   isLoadingConfirmEmail: false,
@@ -28,10 +29,6 @@ initialState = {
   isLoadingSetUserAvatar: false,
   setUserAvatarData: "",
   setUserAvatarError: "",
-
-  isLoadingSetUserFirstSetup: false,
-  setUserFirstSetupData: "",
-  setUserFirstSetupError: "",
 
   isLoadingSendEmailForgotPassword: false,
   sendEmailForgotPasswordData: "",
@@ -138,26 +135,23 @@ function userReducer(state = initialState, action) {
     case userTypes.REGISTER_USER_REQUESTED:
       return {
         ...state,
-        signupUserSuccessful: false,
         isloadingSignup: true,
       };
 
     case userTypes.REGISTER_USER_SUCCESS:
       return {
         ...state,
-        isLoggedIn: false,
-        signupUserSuccessful: true,
         isloadingSignup: false,
-        signupErrorData: "",
+        signupUserSuccess: action.payload,
+        signupUserFail: "",
       };
 
     case userTypes.REGISTER_USER_FAIL:
       return {
         ...state,
-        isLoggedIn: false,
-        signupUserSuccessful: false,
         isloadingSignup: false,
-        signupErrorData: action.payload,
+        signupUserSuccess: {},
+        signupUserFail: action.payload,
       };
 
     // Login user
@@ -217,34 +211,6 @@ function userReducer(state = initialState, action) {
         isLoadingSetUserAvatar: false,
         setUserAvatarData: "",
         setUserAvatarError: action.payload,
-      };
-
-    // Change user's first setup
-
-    case userTypes.SET_USER_FIRST_SETUP_REQUESTED:
-      return {
-        ...state,
-        isLoadingSetUserFirstSetup: true,
-      };
-
-    case userTypes.SET_USER_FIRST_SETUP_DATA:
-      return {
-        ...state,
-        isLoadingSetUserFirstSetup: false,
-        setUserFirstSetupData: action.payload,
-        setUserFirstSetupError: "",
-        user: {
-          ...state.user,
-          firstSetUp: false,
-        },
-      };
-
-    case userTypes.SET_USER_FIRST_SETUP_ERROR:
-      return {
-        ...state,
-        isLoadingSetUserFirstSetup: false,
-        setUserFirstSetupData: "",
-        setUserFirstSetupError: action.payload,
       };
 
     // Confirm email

@@ -1,7 +1,6 @@
 {
 	"404": {
 		"back1": "Go back to the",
-		"back2": "homepage",
 		"message": "We couldn't find the page you are looking for.",
 		"notFound": "Page not found"
 	},
@@ -214,9 +213,11 @@
 		"accepted": "Accepted",
 		"acceptingBooking": "You have accepted the booking",
 		"add": "Add",
+		"after": "After",
 		"alreadyBooking": "You already have booking(s) for this ride",
 		"application": "Application",
 		"becomeDriver": "Become a driver",
+		"before": "Before",
 		"bio": "Biography",
 		"book": "Book",
 		"bookRide": "Book a ride",
@@ -228,6 +229,7 @@
 		"cancel": "Cancel",
 		"cancellationPolicy": "Cancellation policy",
 		"car": "Car",
+		"catchPhrase": "The first ride-sharing app in Costa Rica: an ecological, practical, and economical way to travel and meet people.",
 		"city": "City",
 		"click": "Click",
 		"close": "Close",
@@ -310,6 +312,7 @@
 		"hebrew": "Hebrew",
 		"help": "Help",
 		"hide": "Hide",
+		"homepage": "Homepage",
 		"howItWorks": "How does it work?",
 		"idType": "ID Type",
 		"identification": "Identification",
@@ -352,6 +355,7 @@
 		"perSeat": "per seat",
 		"phone": "Phone",
 		"points": "Points",
+		"previous": "Previous",
 		"price": "Price",
 		"profile": "Profile",
 		"province": "Province",
@@ -388,6 +392,7 @@
 		"skip": "Skip",
 		"slogan": "Share your rides in Costa Rica",
 		"spanish": "Spanish",
+		"start": "Start",
 		"status": "Status",
 		"statuses": {
 			"booking": {
@@ -485,51 +490,8 @@
 	},
 	"homepage": {
 		"alreadyAccount": "Already have an account?",
-		"catchPhrase": "The first ride-sharing app in Costa Rica: an ecological, practical, and economical way to travel and meet people.",
 		"learnMore": "More",
 		"start": "Start"
-	},
-	"howItWorks": {
-		"after": "After the ride",
-		"beDriver": "Be a driver",
-		"bePassenger": "Be a passenger",
-		"bookRide": "Book a ride",
-		"bookRide2": "For you and all your passengers. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
-		"both": "With Tucána, you can do both!",
-		"chat": "Chat with your driver or passengers",
-		"checkFaq": "Check the FAQ",
-		"choose": "Choose",
-		"confirm": "Complete the ride",
-		"confirm2": "To archive the trip, and in the future, allow the driver to receive the money online.",
-		"contactDriver": "Contact the driver if you need to",
-		"feedback": "Give us a feedback for our service",
-		"feedback2": "To help us improve the platform",
-		"fillUp": "Fill up the registration form",
-		"fillUp2": "With all the relevant information about you and your car in order to keep the community safe",
-		"forDrivers": "For drivers",
-		"forPassengers": "For passengers",
-		"getVerified": "Get verified",
-		"getVerified2": "Your driving license and car are verified by a moderator",
-		"giveDetails": "Detail you needs with your driver",
-		"giveDetails2": "Example: if you transport an animal, a surfboard, or if you don't like the smell of cigarette in the car, etc",
-		"ifDriver": "If you are a driver",
-		"ifPassenger": "If you are a passenger",
-		"manageBookingsDriver": "Manage the booking of your passengers",
-		"manageBookingsPassenger": "Manage your booking",
-		"points": "Arrange pickup & drop off locations",
-		"points2": "Make sure that you know where the pickup and drop off points are. Use the in-app Google Map pin feature",
-		"prepare": "Prepare your trip",
-		"publishRide": "Publish your ride",
-		"publishRide2": "Set your own price. The payment is made in cash directly between the driver and the passengers. No commission is applied by Tucána for the moment.",
-		"publishRides": "Publish rides",
-		"registration": "Registration",
-		"review": "Submit a review for your passengers or the driver",
-		"review2": "To continue to ensure the safety of the community",
-		"signUpFree": "Sign Up for free",
-		"startTutorial": "Start the tutorial",
-		"stepsService": "Learn how simple it is to share a ride with our interactive guide",
-		"verifyEmail": "Verify your account",
-		"verifyEmail2": "With your email address: check your emails (inbox and spam)"
 	},
 	"inputSearchLocation": {
 		"searchCity": "Search a city"
@@ -703,13 +665,52 @@
 		"subTitle": "Everything starts here for all your travels across Costa Rica"
 	},
 	"signUpSuccess": {
-		"subTitle": "Welcome to our platform 🎉",
+		"emailSent": "Email sent to",
 		"text": "Check for the confirmation link in your email inbox & your spam folder to confirm your account",
-		"title": "Sign up successful"
+		"title": "Sign up successful 🎉",
+		"wrongEmail": "Wrong email address?"
 	},
 	"singleConversation": {
 		"sendMessage": "Send a message",
 		"sendPin": "Send this pin",
 		"titleOffCanva": "Send a location"
+	},
+	"tutorial": {
+		"1-createAccount": {
+			"paragraph1": "",
+			"paragraph2": "With your email address: check your emails (inbox <2>and spam</2>)",
+			"title": "Create your account",
+			"title1": "Sign Up for free",
+			"title2": "Verify your email address"
+		},
+		"2-forPassengers": {
+			"paragraph1": "Send a reservation request to the driver",
+			"paragraph2": "You will receive an email whether the driver confirmed your booking or not",
+			"paragraph3": "Use the in-app messaging feature to talk to each other",
+			"title": "For passengers",
+			"title1": "Find & book your ride",
+			"title2": "Wait for the answer",
+			"title3": "Ride together"
+		},
+		"3-forDrivers": {
+			"paragraph1": "We ask for details about your identity, driving license and car",
+			"paragraph2": "Your information are verified by a moderator",
+			"paragraph3": "",
+			"title": "For drivers",
+			"title1": "Submit your information",
+			"title2": "Wait for the review",
+			"title3": "Publish your rides"
+		},
+		"4-trip": {
+			"paragraph1": "Use the in-app messaging feature and the Google Map pin",
+			"paragraph2": "Necessary to make sure everything went well.",
+			"paragraph3": "Note the person you traveled with, to continue to ensure the safety of the community.",
+			"title": "Your trip",
+			"title1": "Arrange pickup & drop off locations",
+			"title2": "Complete the ride",
+			"title3": "Send a review"
+		},
+		"welcome": "Welcome 👋",
+		"welcome2": "Thank you for using Tucána, the best ride-sharing app in Costa Rica. Follow the next few steps to understand how it works."
 	}
 }

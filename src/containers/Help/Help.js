@@ -8,6 +8,7 @@ import GoBack from "../../components/GoBack";
 
 const Help = () => {
   const { t } = useTranslation();
+  const localData = JSON.parse(localStorage.getItem("localData"));
 
   return (
     <div>
@@ -19,7 +20,16 @@ const Help = () => {
             <ListGroup variant="flush">
               <hr className="mb-2" />
 
-              <Link to="/how-it-works" className="text-decoration-none">
+              <Link
+                to="/tutorial"
+                className="text-decoration-none"
+                onClick={() =>
+                  localStorage.setItem(
+                    "localData",
+                    JSON.stringify({ ...localData, isShowTutorial: true })
+                  )
+                }
+              >
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                     <p className="mb-0">{t("translation:global.howItWorks")}</p>
@@ -63,15 +73,6 @@ const Help = () => {
                 <ListGroup.Item className="border-0">
                   <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
                     <p className="mb-0">{t("translation:global.maps")}</p>
-                    <ChevronRightIcon size={24} verticalAlign="middle" />
-                  </div>
-                </ListGroup.Item>
-              </Link>
-
-              <Link to="/contact" className="text-decoration-none">
-                <ListGroup.Item className="border-0">
-                  <div className="d-inline-flex justify-content-between align-items-center w-100 py-1">
-                    <p className="mb-0">{t("translation:global.report")}</p>
                     <ChevronRightIcon size={24} verticalAlign="middle" />
                   </div>
                 </ListGroup.Item>
