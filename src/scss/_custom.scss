@@ -226,6 +226,10 @@ input[type="password"]:not(:placeholder-shown) {
 
 .input-seats {
   position: relative;
+  
+  input {
+    @extend .ps-4;
+  }
 }
 
 .input-seats .person {
