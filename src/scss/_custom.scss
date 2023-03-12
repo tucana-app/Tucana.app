@@ -224,6 +224,22 @@ input[type="password"]:not(:placeholder-shown) {
   border-start-end-radius: 50rem !important;
 }
 
+.input-seats {
+  position: relative;
+  
+  input {
+    @extend .ps-4;
+  }
+}
+
+.input-seats .person {
+  position: absolute;
+  left: 20px;
+  z-index: 1000;
+  top: 8px;
+  cursor: pointer;
+}
+
 // ####################################################################
 // END CUSTOM CLASSES
 // DO NOT TOUCH FROM HERE

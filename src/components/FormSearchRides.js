@@ -263,8 +263,8 @@ const FormSearchRides = () => {
             </Form.Group>
           </Col>
           <Col xs={4} className="d-inline-flex align-items-center">
-            <PersonIcon size={24} className="me-2" />
-            <Form.Group>
+            <Form.Group className="input-seats">
+              <PersonIcon size={20} className="me-2 person"/>
               <Form.Control
                 type="number"
                 name="seats"
