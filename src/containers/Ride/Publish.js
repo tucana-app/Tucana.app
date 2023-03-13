@@ -876,7 +876,7 @@ const Publish = () => {
                     <Row>
                       <Col xs={2} className="mt-1 px-0">
                         <p className="smaller line-height-md text-secondary text-end mb-2">
-                          {dateFormat(timeOrigin.current, "HH:MM TT")}
+                          {dateFormat(timeOrigin.current, "hh:MM TT")}
                         </p>
                         <p className="smaller fw-bold line-height-md text-secondary text-end mb-0">
                           {formatTimeSecond(getETAData.durationValue)}
@@ -897,7 +897,7 @@ const Publish = () => {
                     <Row className="mb-4">
                       <Col xs={2} className="px-0">
                         <p className="smaller line-height-md text-secondary text-end mb-0">
-                          {dateFormat(timeDestination.current, "HH:MM TT")}
+                          {dateFormat(timeDestination.current, "hh:MM TT")}
                         </p>
                       </Col>
                       <Col xs={10} className="line-height-sm">

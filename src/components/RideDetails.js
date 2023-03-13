@@ -29,15 +29,16 @@ function RideDetails({ ride }) {
           </Row>
 
           <Row className="px-2">
-            <Col xs={2} className="mt-1 px-0">
-              <p className="smaller line-height-md text-secondary text-end mb-2">
-                {dateFormat(ride.dateTimeOrigin, "HH:MM TT")}
-              </p>
-              <p className="smaller fw-bold line-height-md text-secondary text-end mb-0">
-                {formatTimeSecond(ride.ETA.durationValue)}
+            <Col xs={2} className="text-center px-0">
+              <p className="smaller mb-2">
+                <span className="fw-bold">
+                  {dateFormat(ride.dateTimeOrigin, "hh:MM")}
+                </span>
+                <br />
+                <span>{dateFormat(ride.dateTimeOrigin, "TT")}</span>
               </p>
             </Col>
-            <Col xs={10}>
+            <Col xs={10} className="ps-0">
               <div className="line-height-sm mb-1">
                 <p className="fw-bold mb-0">{ride.origin.placeName}</p>{" "}
                 <small className="smaller">{ride.origin.placeDetails}</small>
@@ -48,13 +49,17 @@ function RideDetails({ ride }) {
             </Col>
           </Row>
 
-          <Row className="align-items-center px-2">
-            <Col xs={2} className="px-0">
-              <p className="smaller line-height-md text-secondary text-end mb-0">
-                {dateFormat(ride.dateTimeDestination, "hh:MM TT")}
+          <Row className="px-2">
+            <Col xs={2} className="text-center px-0">
+              <p className="smaller line-height-md text-center mb-0">
+                <span className="fw-bold">
+                  {dateFormat(ride.dateTimeDestination, "hh:MM")}
+                </span>
+                <br />
+                <span>{dateFormat(ride.dateTimeDestination, "TT")}</span>
               </p>
             </Col>
-            <Col xs={10}>
+            <Col xs={10} className="ps-0">
               <div className="line-height-sm mb-1">
                 <p className="fw-bold mb-0">{ride.destination.placeName}</p>{" "}
                 <small className="smaller">
@@ -68,17 +73,21 @@ function RideDetails({ ride }) {
           <hr />
 
           <Row className="align-items-center">
-            <Col xs={10}>
+            <Col xs={6} className="pe-0">
+              <p className="mb-0">{t("translation:publish.estimatedTime")}: </p>
               <p className="mb-0">
-                {t("translation:publish.estimatedTime")}:{" "}
+                {t("translation:publish.estimatedDistance")}:{" "}
+              </p>
+            </Col>
+            <Col xs={4}>
+              <p className="mb-0">
                 <strong>{formatTimeSecond(ride.ETA.durationValue)}</strong>
               </p>
               <p className="mb-0">
-                {t("translation:publish.estimatedDistance")}:{" "}
                 <strong>{formatDistance(ride.ETA.distanceValue)}</strong>
               </p>
             </Col>
-            <Col xs={2} className="text-center ps-0">
+            <Col xs={2} className="text-center">
               <a
                 href={`https://www.google.com/maps/dir/?api=1&origin=${ride.origin.address}&destination=${ride.destination.address}&travelmode=driving`}
                 target="_blank"
@@ -93,11 +102,16 @@ function RideDetails({ ride }) {
           <hr />
 
           <Row className="align-items-center">
-            <Col xs={8}>
+            <Col xs={8} className="pe-0">
               <p className="mb-0">
                 {t("translation:global.seatsAvailable")}: {ride.seatsLeft}/
                 {ride.seatsAvailable}
               </p>
+              {ride.comment ? (
+                <p className="mb-0">
+                  {t("translation:global.comment")}: <em>"{ride.comment}"</em>
+                </p>
+              ) : null}
               <p className="mb-0">
                 <span
                   className={`text-${rideStatusVariant(ride.RideStatus.id)}`}
@@ -121,15 +135,6 @@ function RideDetails({ ride }) {
               </div>
             </Col>
           </Row>
-          {ride.comment ? (
-            <Row>
-              <Col>
-                <p className="mb-0">
-                  {t("translation:global.comment")}: "{ride.comment}"
-                </p>
-              </Col>
-            </Row>
-          ) : null}
         </Container>
       </Col>
     </Row>

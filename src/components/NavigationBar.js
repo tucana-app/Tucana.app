@@ -1,14 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IndexLinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Button, Container, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
 import {
   SearchIcon,
   PlusCircleIcon,
   CommentDiscussionIcon,
   ZapIcon,
-  ThreeBarsIcon,
-  HomeIcon,
 } from "@primer/octicons-react";
 import { useTranslation } from "react-i18next";
 

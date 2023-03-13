@@ -57,7 +57,7 @@ export const formatPrice = (number) => {
 
 export const formatDistance = (distance) => {
   let km = distance / 1000;
-  km = km.toFixed(2);
+  km = km.toFixed(0);
   return `${Number(km).toLocaleString()} km`;
 };
 

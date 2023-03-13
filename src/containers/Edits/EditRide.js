@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import * as Yup from "yup";
 
 import GoBack from "../../components/GoBack";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -11,12 +10,9 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import {
   getRide,
   getDriverBookingsRide,
-  resetSearchOrigin,
-  resetSearchDestination,
   // submitEditRide
 } from "../../redux";
 import { isEmptyObject } from "../../helpers";
-import ComingSoon from "../../components/ComingSoon";
 
 const EditRide = () => {
   const { t } = useTranslation();
@@ -29,31 +25,8 @@ const EditRide = () => {
     isloadingDriverRideBookings,
     driverRideBookingsData,
   } = useSelector((state) => state.ride);
-  const { labelStringField, labelRequiredField } = useSelector(
-    (state) => state.global
-  );
 
   const [isFoundAcceptedBooking, setIsFoundAcceptedBooking] = useState(false);
-
-  const schema = Yup.object().shape({
-    bio: Yup.string(labelStringField)
-      .required(labelRequiredField)
-      .min(10, t("translation:global.errors.min10characters")),
-  });
-
-  const handleSubmit = (bio, formikBag) => {
-    // dispatch(submitEditRide(currentUser.id, bio));
-    formikBag.setSubmitting(false);
-  };
-
-  // Handlers
-  const handleEditOne = () => {
-    dispatch(resetSearchOrigin());
-  };
-
-  const handleEditTwo = () => {
-    dispatch(resetSearchDestination());
-  };
 
   useEffect(() => {
     if (isEmptyObject(rideData)) {
