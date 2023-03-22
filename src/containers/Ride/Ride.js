@@ -352,7 +352,7 @@ const Ride = () => {
                         </Row>
                       </LinkContainer>
                       <hr />
-                      {isLoadingRide ? (
+                      {isLoggedIn ? (
                         <Row>
                           <Col>
                             <SendMessageButton
