@@ -352,7 +352,6 @@ const Ride = () => {
                         </Row>
                       </LinkContainer>
                       <hr />
-                      {isLoadingRide ? (
                         <Row>
                           <Col>
                             <SendMessageButton
@@ -365,7 +364,6 @@ const Ride = () => {
                             <hr />
                           </Col>
                         </Row>
-                      ) : null}
                       <Row className="align-items-center my-0 py-0">
                         <Col xs={3} md={2} className="text-center pe-0">
                           <img src={car} alt="" height={30} />
