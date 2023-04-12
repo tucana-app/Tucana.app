@@ -420,8 +420,6 @@ const Ride = () => {
                     </div>
                   </Col>
                 </Row>
-
-
               </>
             )}
           </div>
