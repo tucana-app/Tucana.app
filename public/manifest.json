@@ -1,31 +1,31 @@
 {
   "short_name": "Tucana.app",
   "name": "Tucana.app",
-  "description": "Use Tucána to publish & book rides to travel around Costa Rica hasslefree!",
+  "description": "Use Tucána to publish & book rides to travel around Costa Rica",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "./favicon/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "android-chrome-192x192.png",
+      "src": "./favicon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "android-chrome-192x192.png",
+      "src": "./favicon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "android-chrome-512x512.png",
+      "src": "./favicon/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "apple-touch-icon.png",
+      "src": "./favicon/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }
