@@ -2,7 +2,7 @@
 	"404": {
 		"back1": "Vuelve a la",
 		"message": "No hemos podido encontrar la página que busca.",
-		"notFound": "Página no encontrada"
+		"notFound": "Página fue encontrada"
 	},
 	"FAQ": {
 		"answer1": "Por ahora, todos los pagos se realizan con dinero en efectivo. Puede acordar directamente con el conductor o sus pasajeros la moneda, en CRC (colones costarricenses) o en USD (dólares estadounidenses)",
@@ -39,7 +39,7 @@
 	},
 	"becomeDriver": {
 		"applicationForm": "Formulario de solicitud",
-		"apply": "Aplíquese",
+		"apply": "Aplique",
 		"colorPlaceholder": "Gris, negro, blanco, etc.",
 		"contactHelp": "Póngase en contacto con nosotros si necesita ayuda.",
 		"countryIssue": "País de emisión",
@@ -79,7 +79,7 @@
 	},
 	"cancelBooking": {
 		"cancellationPolicy": "Asegúrate de revisar nuestra <2>política de cancelación</2> antes de cancelar.",
-		"confirm": "¿Realmente desea cancelar esta reserva?",
+		"confirm": "¿Realmente deseas cancelar esta reserva?",
 		"content1": "El reembolso dependerá del momento en que cancele la reserva. Más información",
 		"success": "Tu reserva ha sido cancelada con éxito",
 		"title": "Anule tu reserva"
@@ -90,7 +90,7 @@
 	},
 	"cancellationPolicy": {
 		"later": "Posteriormente, los reembolsos funcionarán de acuerdo con esto:",
-		"message": "Por ahora, Tucána no ofrece reembolsos porque no se paga a través de ella. Puedes contactar directamente con la gente a través de la función de mensajería de la aplicación.",
+		"message": "Por ahora, Tucána no ofrece reembolsos porque no se paga a través de ella. Puedes contactar directamente la persona directamente a través de la función de mensajería de la aplicación.",
 		"option1-content": "Le reembolsaremos el importe de tu reserva, excepto los gastos de reserva.",
 		"option1-title": "Cancela tu reserva más de 24 horas antes de la salida",
 		"option2-content": "Te devolveremos el 50% del importe de tu reserva, excepto la tasa de reserva.",
@@ -102,7 +102,7 @@
 	"closeAccount": {
 		"closeAccount": "Cerrar mi cuenta",
 		"confirmCloseAccount1": "Si decide cerrar su cuenta, no podrá volver a acceder a ella y tendrá que crear otra con un nuevo nombre de usuario y una nueva dirección de correo electrónico.",
-		"confirmCloseAccount2": "¿Estás seguro de que quiere cerrar tu cuenta?",
+		"confirmCloseAccount2": "¿Estás seguro de que quieres cerrar tu cuenta?",
 		"title": "Cerrar tu cuenta",
 		"typePassword": "Escriba su contraseña para confirmar"
 	},
@@ -120,13 +120,13 @@
 		"confirmRideMessage": "¿Ha tenido lugar la ride?",
 		"message": "Cuéntanos si todo fue bien, y si hiciste este ride",
 		"question": "¿Por qué tengo que completar la ride?",
-		"rateRide": "Clasifica tu ride",
+		"rateRide": "Califica tu ride",
 		"tellUsWhy": "Díganos por qué",
 		"title": "Completa la ride"
 	},
 	"contact": {
 		"max1000characters": "Máx. 1000 caracteres",
-		"min20characters": "Mínimo 20 caracteres",
+		"min20characters": "Mín. 20 caracteres",
 		"subject": "Asunto",
 		"title": "Póngase en contacto con nosotros"
 	},
@@ -140,7 +140,7 @@
 	},
 	"dataProtection": {
 		"about": "Sobre mis datos",
-		"content": "Sólo recogemos la información legalmente necesaria para garantizar el buen funcionamiento de nuestro servicio. No compartimos/vendemos ninguna información privada relacionada con su cuenta o su actividad.",
+		"content": "Sólo solicitamos la información legalmente necesaria para garantizar el buen funcionamiento de nuestro servicio. No compartimos/vendemos ninguna información privada relacionada con su cuenta o su actividad.",
 		"title": "Protección de Datos"
 	},
 	"donate": {
@@ -152,7 +152,7 @@
 	"edit": {
 		"bio": {
 			"placeholder": "Comparte algo sobre ti",
-			"title": "Editar su biografía",
+			"title": "Editar tu biografía",
 			"update": "Actualiza tu biografía"
 		},
 		"dateOfBirth": {
@@ -161,7 +161,7 @@
 			"title": "Añade tu fecha de nacimiento"
 		},
 		"password": {
-			"forgotPassword": "Si ha olvidado su contraseña, primero cierre la sesión y luego haga clic en el enlace para restablecer la contraseña en la página de inicio de sesión",
+			"forgotPassword": "Si ha olvidado su contraseña, primero cierra la sesión y luego haga clic en el enlace para restablecer la contraseña en la página de inicio de sesión",
 			"oldPassword": "Contraseña actual",
 			"title": "Actualiza tu contraseña"
 		},
@@ -640,7 +640,7 @@
 		"ridesToConfirm": "Rides a completar"
 	},
 	"ridesBookings": {
-		"subTitle": "Encuentre a tus pasajeros potenciales aquí",
+		"subTitle": "Encuentra a tus pasajeros potenciales aquí",
 		"summary": "<2>{{firstName}}</2> reservó <2>{{seatsBooked}}</2> asiento(s) de <2>{{cityOrigin}}</2> a <2>{{cityDestination}}</2>",
 		"title": "Reservas para tus rides"
 	},
@@ -654,7 +654,7 @@
 		"title": "Rides a completar"
 	},
 	"searchRides": {
-		"message": "Pruebe con otros lugares y otra fecha",
+		"message": "Prueba con otros lugares y otra fecha",
 		"notFound": "No se han encontrado rides"
 	},
 	"signUp": {
@@ -666,9 +666,9 @@
 	},
 	"signUpSuccess": {
 		"emailSent": "Correo electrónico enviado a",
-		"text": "Busque el enlace de confirmación en su buzón de correo electrónico y en su carpeta de spam para confirmar su cuenta",
-		"title": "Inscribirse con éxito🎉",
-		"wrongEmail": "¿Se ha equivocado de dirección de correo electrónico?"
+		"text": "Busca el enlace de confirmación en tu buzón de correo electrónico y en tu carpeta de spam para confirmar su cuenta",
+		"title": "Inscripción exitosa🎉",
+		"wrongEmail": "¿Dirección de correo electrónico incorrecta?"
 	},
 	"singleConversation": {
 		"sendMessage": "Enviar un mensaje",
@@ -678,14 +678,14 @@
 	"tutorial": {
 		"1-createAccount": {
 			"paragraph1": "",
-			"paragraph2": "Con su dirección de correo electrónico: compruebe sus correos electrónicos (bandeja de entrada <2>y spam</2>)",
+			"paragraph2": "Con tu dirección de correo electrónico: busca en tus correos electrónicos (bandeja de entrada <2>y spam</2>)",
 			"title": "Crea tu cuenta",
 			"title1": "Regístrate gratis",
-			"title2": "Verifique tu correo electrónico"
+			"title2": "Verifica tu correo electrónico"
 		},
 		"2-forPassengers": {
 			"paragraph1": "Envía una solicitud de reserva al conductor/ra",
-			"paragraph2": "Recibirá un correo electrónico si el conductor ha confirmado o no su reserva",
+			"paragraph2": "Recibirás un correo electrónico si el conductor ha confirmado o no su reserva",
 			"paragraph3": "Utiliza la función de mensajería de la aplicación para hablar con los demás.",
 			"title": "Para los pasajeros",
 			"title1": "Busca y reserva tu ride",
